@@ -1,7 +1,15 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
-const PROTECTED_PATHS = ["/profile-setup", "/browse", "/dashboard", "/messages"];
+const PROTECTED_PATHS = [
+  "/profile-setup",
+  "/browse",
+  "/dashboard",
+  "/messages",
+  "/tasks",
+  "/post",
+  "/my-tasks",
+];
 const AUTH_PATHS = ["/signin", "/signup"];
 
 export async function updateSession(request: NextRequest) {
