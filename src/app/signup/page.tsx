@@ -61,7 +61,7 @@ export default function SignupPage() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-start pt-16 px-6 pb-16">
       <div className="w-full max-w-[440px]">
-        <div className="mb-10">
+        <div className="mb-10 text-center">
           <Wordmark />
         </div>
 

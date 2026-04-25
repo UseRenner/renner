@@ -9,6 +9,7 @@ const PROTECTED_PATHS = [
   "/tasks",
   "/post",
   "/my-tasks",
+  "/my-applications",
 ];
 const AUTH_PATHS = ["/signin", "/signup"];
 
