@@ -29,14 +29,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.font-display {
+.font-display,
+h1,
+h2,
+h3,
+h4,
+.font-serif {
   font-family: var(--font-source-serif), Georgia, serif;
+  font-variation-settings: "opsz" 144;
+}
+
+.font-display {
   font-weight: 400;
   letter-spacing: -0.035em;
 }
 
 .font-display-tight {
   font-family: var(--font-source-serif), Georgia, serif;
+  font-variation-settings: "opsz" 144;
   font-weight: 400;
   letter-spacing: -0.04em;
 }
@@ -45,6 +55,15 @@ body {
   font-weight: 300;
   font-style: italic;
   color: var(--s-600);
+  font-variation-settings: "opsz" 144;
+}
+
+.wordmark {
+  font-family: var(--font-source-serif), Georgia, serif;
+  font-variation-settings: "opsz" 144;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--s-black);
 }
 
 .micro-label {

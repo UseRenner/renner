@@ -1,0 +1,80 @@
+import { createClient } from "@/lib/supabase/server";
+import { NavLinks } from "./NavLinks";
+import { Wordmark } from "./Wordmark";
+
+function getInitials(
+  firstName: string | null,
+  lastName: string | null,
+  displayName: string | null,
+  email: string | null,
+) {
+  const sources = [
+    firstName?.[0],
+    lastName?.[0],
+  ];
+  if (sources[0] || sources[1]) {
+    return (sources.filter(Boolean).join("") || "").toUpperCase().slice(0, 2);
+  }
+  if (displayName) {
+    const parts = displayName.trim().split(/\s+/);
+    return (parts[0]?.[0] ?? "")
+      .concat(parts[1]?.[0] ?? "")
+      .toUpperCase();
+  }
+  return (email?.[0] ?? "?").toUpperCase();
+}
+
+export async function TopNav() {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  let initials = "?";
+  if (user) {
+    const { data: profile } = await supabase
+      .from("users")
+      .select("first_name, last_name, display_name")
+      .eq("id", user.id)
+      .maybeSingle();
+    initials = getInitials(
+      profile?.first_name ?? null,
+      profile?.last_name ?? null,
+      profile?.display_name ?? null,
+      user.email ?? null,
+    );
+  }
+
+  return (
+    <header
+      className="sticky top-0 z-50"
+      style={{
+        backgroundColor: "#fbfbfc",
+        borderBottom: "1px solid #dce0e5",
+        padding: "16px 32px",
+      }}
+    >
+      <div className="flex items-center justify-between gap-6 mx-auto" style={{ maxWidth: "1200px" }}>
+        <Wordmark />
+        <NavLinks />
+        <div
+          aria-label="Account"
+          className="flex items-center justify-center"
+          style={{
+            width: "32px",
+            height: "32px",
+            borderRadius: "9999px",
+            backgroundColor: "#0d0f12",
+            color: "#fbfbfc",
+            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+            fontSize: "12px",
+            fontWeight: 500,
+            letterSpacing: "0.02em",
+          }}
+        >
+          {initials}
+        </div>
+      </div>
+    </header>
+  );
+}
