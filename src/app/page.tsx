@@ -49,7 +49,7 @@ function PublicNav() {
             <Link
               key={link.href}
               href={link.href}
-              className="ll-nav-link"
+              className="nav-link"
               style={{
                 fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
                 fontSize: "13px",
@@ -65,17 +65,11 @@ function PublicNav() {
           ))}
           <Link
             href="/signup"
-            className="ll-cta-light"
+            className="btn-light"
             style={{
-              fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
               fontSize: "13px",
-              fontWeight: 500,
-              color: "#0d0f12",
               padding: "9px 16px",
-              border: "1px solid #cad1d8",
-              borderRadius: "6px",
               textDecoration: "none",
-              backgroundColor: "#fbfbfc",
               marginLeft: "4px",
             }}
           >
@@ -150,16 +144,13 @@ function Hero() {
               <button
                 type="submit"
                 aria-label="Post a task"
-                className="ll-search-submit"
+                className="btn-dark"
                 style={{
-                  backgroundColor: "#0d0f12",
-                  color: "#fbfbfc",
-                  border: "none",
-                  borderRadius: "8px",
                   width: "44px",
                   height: "44px",
+                  padding: 0,
+                  borderRadius: "8px",
                   fontSize: "16px",
-                  cursor: "pointer",
                 }}
               >
                 →
@@ -612,45 +603,12 @@ function DarkSplit() {
           <p style={bodyStyle}>Real work. Real estate.</p>
 
           <div style={{ marginTop: "8px" }}>
-            <Link
-              href="/post"
-              className="ll-cta-white"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                fontFamily:
-                  "var(--font-inter), ui-sans-serif, system-ui",
-                fontSize: "14px",
-                fontWeight: 500,
-                color: "#0d0f12",
-                backgroundColor: "#fbfbfc",
-                padding: "12px 22px",
-                borderRadius: "6px",
-                textDecoration: "none",
-              }}
-            >
+            <Link href="/post" className="btn-white-dark">
               Post a task
             </Link>
           </div>
           <div style={{ marginTop: "8px" }}>
-            <Link
-              href="/signup"
-              className="ll-cta-outline-dark"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                fontFamily:
-                  "var(--font-inter), ui-sans-serif, system-ui",
-                fontSize: "14px",
-                fontWeight: 500,
-                color: "#fbfbfc",
-                backgroundColor: "transparent",
-                padding: "12px 22px",
-                borderRadius: "6px",
-                border: "1px solid #4d5b6a",
-                textDecoration: "none",
-              }}
-            >
+            <Link href="/signup" className="btn-outline-dark">
               Become a Renner
             </Link>
           </div>
@@ -796,7 +754,7 @@ function CTA() {
         <div className="flex justify-center gap-3 flex-wrap">
           <Link
             href="/post"
-            className="btn-dark ll-cta-dark"
+            className="btn-dark"
             style={{
               width: "auto",
               padding: "13px 28px",
@@ -807,7 +765,7 @@ function CTA() {
           </Link>
           <Link
             href="/signup"
-            className="btn-light ll-cta-light"
+            className="btn-light"
             style={{
               width: "auto",
               padding: "13px 28px",
@@ -909,7 +867,7 @@ function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="ll-footer-link"
+                      className="footer-link"
                       style={{
                         fontFamily:
                           "var(--font-inter), ui-sans-serif, system-ui",

@@ -119,24 +119,14 @@ export function RennerCancelButton({
     <>
       <button
         type="button"
+        className="btn-danger-outline"
         onClick={() => {
           setOpen(true);
           setError(null);
           setReason("");
           setExplanation("");
         }}
-        style={{
-          width: "100%",
-          padding: "13px 18px",
-          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-          fontSize: "14px",
-          fontWeight: 500,
-          color: "#c0392b",
-          backgroundColor: "#fbfbfc",
-          border: "1px solid rgba(192,57,43,0.4)",
-          borderRadius: "6px",
-          cursor: "pointer",
-        }}
+        style={{ width: "100%" }}
       >
         Cancel booking
       </button>
@@ -192,22 +182,10 @@ export function RennerCancelButton({
                 </button>
                 <button
                   type="button"
+                  className="btn-danger"
                   onClick={handleBefore}
                   disabled={submitting}
-                  style={{
-                    flex: 1,
-                    padding: "13px 18px",
-                    fontFamily:
-                      "var(--font-inter), ui-sans-serif, system-ui",
-                    fontSize: "14px",
-                    fontWeight: 500,
-                    color: "#fbfbfc",
-                    backgroundColor: "#c0392b",
-                    border: "1px solid #c0392b",
-                    borderRadius: "6px",
-                    cursor: submitting ? "not-allowed" : "pointer",
-                    opacity: submitting ? 0.6 : 1,
-                  }}
+                  style={{ flex: 1 }}
                 >
                   {submitting ? "Cancelling…" : "Cancel booking"}
                 </button>
@@ -322,21 +300,9 @@ export function RennerCancelButton({
                 </button>
                 <button
                   type="submit"
+                  className="btn-danger"
                   disabled={submitting}
-                  style={{
-                    flex: 1,
-                    padding: "13px 18px",
-                    fontFamily:
-                      "var(--font-inter), ui-sans-serif, system-ui",
-                    fontSize: "14px",
-                    fontWeight: 500,
-                    color: "#fbfbfc",
-                    backgroundColor: "#c0392b",
-                    border: "1px solid #c0392b",
-                    borderRadius: "6px",
-                    cursor: submitting ? "not-allowed" : "pointer",
-                    opacity: submitting ? 0.6 : 1,
-                  }}
+                  style={{ flex: 1 }}
                 >
                   {submitting ? "Submitting…" : "Submit cancellation"}
                 </button>

@@ -61,7 +61,7 @@ export async function TopNav() {
         <Link
           href="/settings"
           aria-label="Account settings"
-          className="flex items-center justify-center"
+          className="avatar-link flex items-center justify-center"
           style={{
             width: "32px",
             height: "32px",

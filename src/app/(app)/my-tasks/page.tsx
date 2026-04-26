@@ -102,6 +102,7 @@ export default async function MyTasksPage() {
                 <Link
                   key={task.id}
                   href={href}
+                  className="task-row block"
                   style={{
                     backgroundColor: "#fbfbfc",
                     border: "1px solid #dce0e5",
@@ -109,7 +110,6 @@ export default async function MyTasksPage() {
                     padding: "24px 28px",
                     textDecoration: "none",
                     color: "inherit",
-                    display: "block",
                   }}
                 >
                   <div className="flex items-start justify-between gap-6">

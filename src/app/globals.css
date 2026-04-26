@@ -121,7 +121,7 @@ h4,
   padding: 13px 18px;
   border: 1px solid var(--s-black);
   cursor: pointer;
-  transition: background-color 120ms ease;
+  transition: background-color 150ms ease, border-color 150ms ease;
 }
 
 .btn-dark:hover:not(:disabled) {
@@ -138,7 +138,7 @@ h4,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--s-25);
+  background-color: transparent;
   color: var(--s-black);
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   font-size: 14px;
@@ -147,12 +147,207 @@ h4,
   padding: 11px 16px;
   border: 1px solid var(--s-300);
   cursor: pointer;
-  transition: background-color 120ms ease, border-color 120ms ease;
+  transition: background-color 150ms ease, border-color 150ms ease;
 }
 
-.btn-light:hover {
+.btn-light:hover:not(:disabled) {
   background-color: var(--s-50);
   border-color: var(--s-400);
+}
+
+.btn-light:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* White filled button on a dark background. */
+.btn-white-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--s-25);
+  color: var(--s-black);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 12px 22px;
+  border: 1px solid var(--s-25);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.btn-white-dark:hover:not(:disabled) {
+  background-color: var(--s-100);
+  border-color: var(--s-100);
+}
+
+/* Outline button on a dark background. */
+.btn-outline-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--s-25);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 12px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.btn-outline-dark:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Destructive button — red filled / red outline. Outside the canonical
+ * 4-color hierarchy but still visibly responds on hover. */
+.btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--red);
+  color: var(--s-25);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 13px 18px;
+  border: 1px solid var(--red);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background-color: #a32f23;
+  border-color: #a32f23;
+}
+
+.btn-danger:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-danger-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--red);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 13px 18px;
+  border: 1px solid rgba(192, 57, 43, 0.4);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.btn-danger-outline:hover:not(:disabled) {
+  background-color: rgba(192, 57, 43, 0.08);
+  border-color: var(--red);
+}
+
+.btn-success {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--green);
+  color: var(--s-25);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 13px 18px;
+  border: 1px solid var(--green);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.btn-success:hover:not(:disabled) {
+  background-color: #246e3e;
+  border-color: #246e3e;
+}
+
+.btn-success:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Nav text links — bg pill that mirrors btn-light. */
+.nav-link {
+  transition: background-color 150ms ease, color 150ms ease;
+  border-radius: 6px;
+}
+.nav-link:hover {
+  background-color: var(--s-50);
+  color: var(--s-black);
+}
+
+/* Footer text links — small dark pill. */
+.footer-link {
+  transition: background-color 150ms ease;
+  border-radius: 4px;
+  padding: 2px 6px;
+  margin: -2px -6px;
+  display: inline-block;
+}
+.footer-link:hover {
+  background-color: var(--s-900);
+}
+
+/* Surfaces that are clickable but aren't canonical buttons:
+ * task list rows, category cards, hero chips. They inherit the
+ * btn-light hover treatment. */
+.ll-card,
+.ll-chip,
+.task-row {
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+.ll-card:hover,
+.ll-chip:hover,
+.task-row:hover {
+  background-color: var(--s-50);
+  border-color: var(--s-400);
+}
+
+/* Messages sidebar conversation rows. Hover only fires on inactive
+ * rows so the selected row keeps its active highlight. */
+.conversation-row {
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+.conversation-row:hover[data-active="false"] {
+  background-color: var(--s-25);
+}
+
+/* Avatar pill in the authenticated TopNav. */
+.avatar-link {
+  transition: background-color 150ms ease;
+}
+.avatar-link:hover {
+  background-color: var(--s-900);
+}
+
+/* Inline text links inside paragraphs (Sign up / Sign in switchers,
+ * Terms / Privacy mentions, etc.). */
+.text-link {
+  text-decoration: none;
+  transition: text-decoration-color 150ms ease;
+}
+.text-link:hover {
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-underline-offset: 3px;
 }
 
 .card {
@@ -173,91 +368,14 @@ h4,
   transform: rotate(45deg);
 }
 
-/* ====== Landing-page interactive hover states ======
- * Every clickable element on the landing page mirrors one of the two
- * canonical CTA-band hover patterns:
- *   - Dark on light  →  background lightens to var(--s-900)
- *   - Light on light →  background tints to var(--s-50), border to var(--s-400)
- * Buttons on the dark band invert the same pair (subtle dim / faint
- * white tint with brighter border). Same 120ms ease across the page. */
-.ll-nav-link {
-  transition: background-color 120ms ease;
-}
-.ll-nav-link:hover {
-  background-color: var(--s-50);
-}
-
-.ll-cta-light {
-  transition: background-color 120ms ease, border-color 120ms ease;
-}
-.ll-cta-light:hover {
-  background-color: var(--s-50);
-  border-color: var(--s-400);
-}
-
-.ll-cta-dark {
-  transition: background-color 120ms ease;
-}
-.ll-cta-dark:hover {
-  background-color: var(--s-900);
-}
-
-.ll-cta-white {
-  transition: background-color 120ms ease;
-}
-.ll-cta-white:hover {
-  background-color: var(--s-100);
-}
-
-.ll-cta-outline-dark {
-  transition: border-color 120ms ease, background-color 120ms ease;
-}
-.ll-cta-outline-dark:hover {
-  border-color: var(--s-500);
-  background-color: rgba(255, 255, 255, 0.04);
-}
-
-.ll-chip {
-  transition: background-color 120ms ease, border-color 120ms ease;
-}
-.ll-chip:hover {
-  background-color: var(--s-50);
-  border-color: var(--s-400);
-}
-
-.ll-card {
-  transition: border-color 120ms ease, background-color 120ms ease;
-}
-.ll-card:hover {
-  border-color: var(--s-400);
-  background-color: var(--s-50);
-}
-
-.ll-footer-link {
-  transition: background-color 120ms ease;
-  border-radius: 4px;
-  padding: 2px 6px;
-  margin: -2px -6px;
-}
-.ll-footer-link:hover {
-  background-color: var(--s-900);
-}
-
-.ll-search-submit {
-  transition: background-color 120ms ease;
-}
-.ll-search-submit:hover {
-  background-color: var(--s-900);
-}
-
 .faq-item {
-  transition: background-color 120ms ease;
+  transition: background-color 150ms ease;
 }
 .faq-item:hover {
   background-color: var(--s-25);
 }
 .faq-item summary {
-  transition: color 120ms ease;
+  transition: color 150ms ease;
 }
 .faq-item:hover .faq-toggle {
   color: var(--s-700);

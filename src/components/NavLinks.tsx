@@ -22,15 +22,14 @@ export function NavLinks() {
           <Link
             key={link.href}
             href={link.href}
+            className="nav-link"
             style={{
               fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
               fontSize: "13px",
               fontWeight: 500,
               padding: "8px 12px",
-              borderRadius: "6px",
               color: active ? "#0d0f12" : "#647589",
               backgroundColor: active ? "#f6f7f9" : "transparent",
-              transition: "color 120ms ease, background-color 120ms ease",
             }}
           >
             {link.label}

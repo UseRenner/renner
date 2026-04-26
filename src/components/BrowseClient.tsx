@@ -86,7 +86,7 @@ function TaskCard({ task }: { task: Task }) {
   return (
     <Link
       href={`/tasks/${task.id}`}
-      className="block transition-colors"
+      className="task-row block"
       style={{
         backgroundColor: "#fbfbfc",
         border: "1px solid #dce0e5",

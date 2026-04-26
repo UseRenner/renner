@@ -54,6 +54,7 @@ export function ReportTaskButton({
     <>
       <button
         type="button"
+        className="text-link"
         onClick={() => {
           setOpen(true);
           setSubmitted(false);
@@ -67,8 +68,6 @@ export function ReportTaskButton({
           fontSize: "12px",
           color: "#7d8da0",
           cursor: "pointer",
-          textDecoration: "underline",
-          textUnderlineOffset: "2px",
         }}
       >
         Task miscategorized? Report it

@@ -123,6 +123,7 @@ export default async function TaskDetailPage({ params }: PageProps) {
       <div className="mx-auto" style={{ maxWidth: "1100px" }}>
         <Link
           href="/browse"
+          className="text-link"
           style={{
             fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
             fontSize: "11px",

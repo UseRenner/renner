@@ -421,6 +421,8 @@ function ConversationSidebar({
               <li key={conv.key}>
                 <button
                   type="button"
+                  className="conversation-row"
+                  data-active={active ? "true" : "false"}
                   onClick={() => onSelect(conv.key)}
                   style={{
                     display: "block",
@@ -432,8 +434,6 @@ function ConversationSidebar({
                       : "3px solid transparent",
                     backgroundColor: active ? "#f6f7f9" : "transparent",
                     cursor: "pointer",
-                    transition:
-                      "background-color 120ms ease, border-color 120ms ease",
                   }}
                 >
                   <div className="flex items-center justify-between gap-3">

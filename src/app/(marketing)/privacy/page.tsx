@@ -70,7 +70,8 @@ export default function PrivacyPage() {
         Questions about this policy? Reach out to{" "}
         <a
           href="mailto:privacy@renner.app"
-          style={{ color: "#0d0f12", textDecoration: "underline" }}
+          className="text-link"
+          style={{ color: "#0d0f12" }}
         >
           privacy@renner.app
         </a>

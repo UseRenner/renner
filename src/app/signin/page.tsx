@@ -119,6 +119,7 @@ export default function SigninPage() {
             Don&apos;t have an account?{" "}
             <Link
               href="/signup"
+              className="text-link"
               style={{ color: "#0d0f12", fontWeight: 500 }}
             >
               Sign up

@@ -524,19 +524,7 @@ export function ApprovalActions({
         type="button"
         onClick={handleApprove}
         disabled={submitting}
-        className="inline-flex items-center justify-center"
-        style={{
-          backgroundColor: "#2d8a4e",
-          color: "#fbfbfc",
-          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-          fontSize: "15px",
-          fontWeight: 500,
-          borderRadius: "6px",
-          padding: "13px 18px",
-          border: "1px solid #2d8a4e",
-          cursor: submitting ? "not-allowed" : "pointer",
-          opacity: submitting ? 0.6 : 1,
-        }}
+        className="btn-success"
       >
         {submitting ? "Releasing payment…" : "Confirm & release payment"}
       </button>

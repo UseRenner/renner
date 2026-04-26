@@ -71,7 +71,8 @@ export default function AcceptableUsePage() {
         If you see something that violates this policy, email{" "}
         <a
           href="mailto:trust@renner.app"
-          style={{ color: "#0d0f12", textDecoration: "underline" }}
+          className="text-link"
+          style={{ color: "#0d0f12" }}
         >
           trust@renner.app
         </a>

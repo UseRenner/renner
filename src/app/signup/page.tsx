@@ -239,6 +239,7 @@ export default function SignupPage() {
             Already have an account?{" "}
             <Link
               href="/signin"
+              className="text-link"
               style={{ color: "#0d0f12", fontWeight: 500 }}
             >
               Sign in
@@ -257,14 +258,16 @@ export default function SignupPage() {
             By creating an account, you agree to Renner&apos;s{" "}
             <Link
               href="/terms"
-              style={{ color: "#647589", textDecoration: "underline" }}
+              className="text-link"
+              style={{ color: "#647589" }}
             >
               Terms of Service
             </Link>{" "}
             and{" "}
             <Link
               href="/privacy"
-              style={{ color: "#647589", textDecoration: "underline" }}
+              className="text-link"
+              style={{ color: "#647589" }}
             >
               Privacy Policy
             </Link>

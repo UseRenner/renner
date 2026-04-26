@@ -72,6 +72,7 @@ export default async function ApplicantsPage({
       <div className="mx-auto" style={{ maxWidth: "900px" }}>
         <Link
           href="/my-tasks"
+          className="text-link"
           style={{
             fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
             fontSize: "11px",

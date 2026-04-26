@@ -659,21 +659,10 @@ function DangerZone({
       )}
       <button
         type="button"
+        className="btn-danger"
         onClick={handleDelete}
         disabled={!ready || submitting}
-        style={{
-          alignSelf: "flex-start",
-          backgroundColor: "#c0392b",
-          color: "#fbfbfc",
-          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-          fontSize: "14px",
-          fontWeight: 500,
-          padding: "10px 18px",
-          border: "1px solid #c0392b",
-          borderRadius: "6px",
-          cursor: !ready || submitting ? "not-allowed" : "pointer",
-          opacity: !ready || submitting ? 0.5 : 1,
-        }}
+        style={{ alignSelf: "flex-start", padding: "10px 18px" }}
       >
         {submitting ? "Deleting…" : "Delete my account"}
       </button>

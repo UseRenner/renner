@@ -12,15 +12,17 @@ export function MarketingHeader() {
     >
       <div
         className="flex items-center justify-between mx-auto"
-        style={{ maxWidth: "1100px" }}
+        style={{ maxWidth: "1200px" }}
       >
         <Wordmark />
         <Link
           href="/signin"
+          className="nav-link"
           style={{
             fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
             fontSize: "13px",
             fontWeight: 500,
+            padding: "8px 12px",
             color: "#647589",
             textDecoration: "none",
           }}

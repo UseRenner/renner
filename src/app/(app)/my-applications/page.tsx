@@ -133,7 +133,7 @@ export default async function MyApplicationsPage() {
               return (
                 <div
                   key={app.id}
-                  className="card"
+                  className="card task-row"
                   style={{ padding: "24px 28px" }}
                 >
                   <div className="flex items-start justify-between gap-6">
@@ -221,13 +221,13 @@ export default async function MyApplicationsPage() {
                       {isBookedToMe && (
                         <Link
                           href={`/tasks/${app.task.id}/review`}
+                          className="text-link"
                           style={{
                             fontFamily:
                               "var(--font-inter), ui-sans-serif, system-ui",
                             fontSize: "13px",
                             fontWeight: 500,
                             color: "#0d0f12",
-                            textDecoration: "none",
                           }}
                         >
                           Mark complete →

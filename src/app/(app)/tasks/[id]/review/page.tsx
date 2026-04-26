@@ -64,6 +64,7 @@ export default async function TaskReviewPage({
       <div className="mx-auto" style={{ maxWidth: "780px" }}>
         <Link
           href={`/tasks/${t.id}`}
+          className="text-link"
           style={{
             fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
             fontSize: "11px",
