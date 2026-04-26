@@ -338,6 +338,34 @@ h4,
   background-color: var(--s-900);
 }
 
+/* My-Renners favorite (skeleton key) toggle. */
+.favorite-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 9999px;
+  color: var(--s-400);
+  transition: color 150ms ease, background-color 150ms ease;
+}
+.favorite-toggle[data-saved="true"] {
+  color: var(--s-black);
+}
+.favorite-toggle:hover:not(:disabled) {
+  background-color: var(--s-50);
+  color: var(--s-700);
+}
+.favorite-toggle[data-saved="true"]:hover:not(:disabled) {
+  color: var(--s-black);
+}
+.favorite-toggle:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 /* Inline text links inside paragraphs (Sign up / Sign in switchers,
  * Terms / Privacy mentions, etc.). */
 .text-link {

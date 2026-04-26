@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { ApprovalActions } from "@/components/ApprovalActions";
 import { CompletionForm } from "@/components/CompletionForm";
+import { FavoriteButton } from "@/components/FavoriteButton";
 import {
   formatHoursLeft,
   formatPay,
@@ -57,6 +58,17 @@ export default async function TaskReviewPage({
       .eq("id", t.booked_runner)
       .maybeSingle();
     runner = (data as typeof runner) ?? null;
+  }
+
+  let runnerIsSaved = false;
+  if (isPoster && runner) {
+    const { data: fav } = await supabase
+      .from("favorites")
+      .select("id")
+      .eq("client_id", user.id)
+      .eq("renner_id", runner.id)
+      .maybeSingle();
+    runnerIsSaved = !!fav;
   }
 
   return (
@@ -143,6 +155,7 @@ export default async function TaskReviewPage({
             task={t}
             user={user}
             runner={runner}
+            runnerIsSaved={runnerIsSaved}
           />
         ) : (
           <StatusNotice task={t} isPoster={isPoster} isRunner={isRunner} />
@@ -156,6 +169,7 @@ function ClientApprovalView({
   task,
   user,
   runner,
+  runnerIsSaved,
 }: {
   task: Task;
   user: { id: string };
@@ -168,6 +182,7 @@ function ClientApprovalView({
     rating: number | null;
     completed_tasks: number | null;
   } | null;
+  runnerIsSaved: boolean;
 }) {
   const runnerName =
     runner?.display_name ??
@@ -255,6 +270,13 @@ function ClientApprovalView({
               >
                 {runnerName}
               </span>
+              {runner && (
+                <FavoriteButton
+                  rennerId={runner.id}
+                  clientId={user.id}
+                  initiallySaved={runnerIsSaved}
+                />
+              )}
               {runner?.background_verified && (
                 <span
                   style={{

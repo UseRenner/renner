@@ -633,7 +633,7 @@ const FAQS: Array<{ q: string; a: string }> = [
   },
   {
     q: "Are Renners employees?",
-    a: "No. Renner is a marketplace. Renners are independent.",
+    a: "No. Renner is a marketplace and network. Renners are independent.",
   },
 ];
 
@@ -833,18 +833,6 @@ function Footer() {
             >
               Renner
             </Link>
-            <p
-              style={{
-                fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-                fontSize: "13px",
-                color: "#a7b2be",
-                lineHeight: 1.55,
-                marginTop: "16px",
-                maxWidth: "300px",
-              }}
-            >
-              Real estate errands. Nearby Renners.
-            </p>
           </div>
           {columns.map((col) => (
             <div key={col.title}>

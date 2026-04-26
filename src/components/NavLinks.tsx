@@ -3,15 +3,24 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const LINKS = [
+const BASE_LINKS = [
   { href: "/browse", label: "Browse" },
   { href: "/post", label: "Post a task" },
   { href: "/my-tasks", label: "My tasks" },
-  { href: "/messages", label: "Messages" },
 ];
 
-export function NavLinks() {
+const TRAILING_LINKS = [{ href: "/messages", label: "Messages" }];
+
+export function NavLinks({ role }: { role?: "renner" | "client" | null }) {
   const pathname = usePathname();
+  const LINKS =
+    role === "client"
+      ? [
+          ...BASE_LINKS,
+          { href: "/my-renners", label: "My Renners" },
+          ...TRAILING_LINKS,
+        ]
+      : [...BASE_LINKS, ...TRAILING_LINKS];
 
   return (
     <nav className="flex items-center gap-1">

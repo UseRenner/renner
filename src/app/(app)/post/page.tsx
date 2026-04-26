@@ -325,15 +325,28 @@ export default function PostTaskPage() {
     }
 
     setSubmitting(true);
-    const { error: insertError } = await supabase.from("tasks").insert({
-      ...pending,
-      posted_by: userId,
-    });
+    const { data: inserted, error: insertError } = await supabase
+      .from("tasks")
+      .insert({ ...pending, posted_by: userId })
+      .select("id")
+      .single();
     if (insertError) {
       setError(insertError.message);
       setSubmitting(false);
       return;
     }
+
+    const inviteRennerId = new URLSearchParams(
+      window.location.search,
+    ).get("invite");
+    if (inviteRennerId && inserted?.id) {
+      await supabase.from("applications").insert({
+        task_id: inserted.id,
+        applicant_id: inviteRennerId,
+        status: "Invited",
+      });
+    }
+
     clearPendingTask();
     router.push("/my-tasks");
     router.refresh();

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { InvitationActions } from "@/components/InvitationActions";
 import { PaymentIndicator } from "@/components/StatusBadge";
 import {
   formatPay,
@@ -12,7 +13,7 @@ export const dynamic = "force-dynamic";
 
 type ApplicationRow = {
   id: string;
-  status: "Applied" | "Accepted" | "Declined";
+  status: "Applied" | "Invited" | "Accepted" | "Declined";
   applied_date: string;
   task: {
     id: string;
@@ -35,6 +36,7 @@ const STATUS_PALETTE: Record<
   { background: string; color: string; label: string }
 > = {
   Applied: { background: "#eaedf0", color: "#0d0f12", label: "Applied" },
+  Invited: { background: "#fbfbfc", color: "#4d5b6a", label: "Invited" },
   Accepted: {
     background: "rgba(45,138,78,0.08)",
     color: "#2d8a4e",
@@ -154,6 +156,10 @@ export default async function MyApplicationsPage() {
                           style={{
                             backgroundColor: statusStyle.background,
                             color: statusStyle.color,
+                            border:
+                              app.status === "Invited"
+                                ? "1px solid #cad1d8"
+                                : undefined,
                             fontFamily:
                               "var(--font-inter), ui-sans-serif, system-ui",
                             fontSize: "11px",
@@ -196,7 +202,7 @@ export default async function MyApplicationsPage() {
                         {[
                           app.task.zip_code ? `Zip code ${app.task.zip_code}` : null,
                           formatTaskTiming(app.task) ?? "Flexible",
-                          `Applied ${formatRelativeDate(app.applied_date) ?? ""}`,
+                          `${app.status === "Invited" ? "Invited" : "Applied"} ${formatRelativeDate(app.applied_date) ?? ""}`,
                         ]
                           .filter(Boolean)
                           .join("  ·  ")}
@@ -232,6 +238,13 @@ export default async function MyApplicationsPage() {
                         >
                           Mark complete →
                         </Link>
+                      )}
+                      {app.status === "Invited" && (
+                        <InvitationActions
+                          applicationId={app.id}
+                          taskId={app.task.id}
+                          rennerId={user.id}
+                        />
                       )}
                     </div>
                   </div>

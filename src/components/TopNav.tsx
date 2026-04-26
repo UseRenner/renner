@@ -36,7 +36,7 @@ export async function TopNav() {
 
   const { data: profile } = await supabase
     .from("users")
-    .select("first_name, last_name, display_name")
+    .select("first_name, last_name, display_name, role")
     .eq("id", user.id)
     .maybeSingle();
   const initials = getInitials(
@@ -45,6 +45,7 @@ export async function TopNav() {
     profile?.display_name ?? null,
     user.email ?? null,
   );
+  const role = (profile?.role as "renner" | "client" | null) ?? null;
 
   return (
     <header
@@ -57,7 +58,7 @@ export async function TopNav() {
     >
       <div className="flex items-center justify-between gap-6 mx-auto" style={{ maxWidth: "1200px" }}>
         <Wordmark />
-        <NavLinks />
+        <NavLinks role={role} />
         <Link
           href="/settings"
           aria-label="Account settings"

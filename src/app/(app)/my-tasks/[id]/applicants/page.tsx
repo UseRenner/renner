@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { BookButton } from "@/components/BookButton";
+import { FavoriteButton } from "@/components/FavoriteButton";
 import { formatPay, formatTaskTiming } from "@/lib/format";
 import { createClient } from "@/lib/supabase/server";
 import type { Task } from "@/lib/types";
@@ -66,6 +67,20 @@ export default async function ApplicantsPage({
     .order("applied_date", { ascending: false });
 
   const applicants = (applicationsData ?? []) as unknown as Applicant[];
+
+  const applicantIds = applicants
+    .map((a) => a.applicant?.id)
+    .filter(Boolean) as string[];
+  const savedRennerIds = new Set<string>();
+  if (applicantIds.length > 0) {
+    const { data: favs } = await supabase
+      .from("favorites")
+      .select("renner_id")
+      .eq("client_id", user.id)
+      .in("renner_id", applicantIds);
+    for (const f of favs ?? [])
+      savedRennerIds.add((f as { renner_id: string }).renner_id);
+  }
 
   return (
     <main className="pt-10 pb-20 px-6">
@@ -153,6 +168,12 @@ export default async function ApplicantsPage({
                 taskId={t.id}
                 taskOpen={t.status === "Open"}
                 application={app}
+                clientId={user.id}
+                isSaved={
+                  app.applicant
+                    ? savedRennerIds.has(app.applicant.id)
+                    : false
+                }
               />
             ))}
           </div>
@@ -166,10 +187,14 @@ function ApplicantRow({
   taskId,
   taskOpen,
   application,
+  clientId,
+  isSaved,
 }: {
   taskId: string;
   taskOpen: boolean;
   application: Applicant;
+  clientId: string;
+  isSaved: boolean;
 }) {
   const a = application.applicant;
   const name =
@@ -226,6 +251,13 @@ function ApplicantRow({
             >
               {name}
             </span>
+            {a?.id && (
+              <FavoriteButton
+                rennerId={a.id}
+                clientId={clientId}
+                initiallySaved={isSaved}
+              />
+            )}
             {a?.background_verified && (
               <SmallBadge label="Background verified" tone="green" />
             )}
