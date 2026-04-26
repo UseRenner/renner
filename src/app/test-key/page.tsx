@@ -2,6 +2,12 @@ import { KeyIcon } from "@/components/KeyIcon";
 
 // TEMPORARY page for reviewing the KeyIcon at multiple sizes.
 // Delete this file once the icon is approved.
+//
+// The icon now uses a 24x16 viewBox (horizontal skeleton key:
+// circle bow on the left, horizontal shaft, two rectangular
+// teeth dropping from the right end). Each row labels the
+// rendered height; the SVG width scales 1.5x to keep the
+// aspect intact.
 
 const SIZES = [16, 24, 32, 48] as const;
 
@@ -16,11 +22,10 @@ export default function TestKeyPage() {
         color: "#0d0f12",
       }}
     >
-      <div style={{ maxWidth: "720px", margin: "0 auto" }}>
+      <div style={{ maxWidth: "780px", margin: "0 auto" }}>
         <h1
           style={{
-            fontFamily:
-              "var(--font-source-serif), Georgia, serif",
+            fontFamily: "var(--font-source-serif), Georgia, serif",
             fontVariationSettings: '"opsz" 144',
             fontSize: "32px",
             fontWeight: 400,
@@ -35,11 +40,51 @@ export default function TestKeyPage() {
           style={{
             fontSize: "13px",
             color: "#647589",
-            marginBottom: "48px",
+            marginBottom: "16px",
           }}
         >
           Outlined (#a7b2be) at rest, filled (#0d0f12) when saved. Each
-          column shows the icon at 16, 24, 32, and 48&nbsp;px.
+          column shows the icon at 16, 24, 32, and 48&nbsp;px tall (width
+          scales 1.5&times; with the new 24&times;16 viewBox).
+        </p>
+        <p
+          style={{
+            fontSize: "13px",
+            color: "#647589",
+            marginBottom: "48px",
+          }}
+        >
+          Inline preview, sitting next to a name like it would on the
+          applicants page:&nbsp;
+          <span
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "6px",
+              fontWeight: 500,
+              color: "#0d0f12",
+            }}
+          >
+            Marcus King
+            <span style={{ color: "#a7b2be", display: "inline-flex" }}>
+              <KeyIcon filled={false} size={16} />
+            </span>
+          </span>
+          &nbsp;·&nbsp;
+          <span
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "6px",
+              fontWeight: 500,
+              color: "#0d0f12",
+            }}
+          >
+            Marcus King
+            <span style={{ color: "#0d0f12", display: "inline-flex" }}>
+              <KeyIcon filled size={16} />
+            </span>
+          </span>
         </p>
 
         <div
@@ -52,11 +97,7 @@ export default function TestKeyPage() {
           }}
         >
           <Column label="Unsaved (outlined)" filled={false} />
-          <Column
-            label="Saved (filled)"
-            filled
-            borderLeft
-          />
+          <Column label="Saved (filled)" filled borderLeft />
         </div>
       </div>
     </main>
@@ -104,15 +145,15 @@ function Column({
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "16px",
+              gap: "20px",
               color: filled ? "#0d0f12" : "#a7b2be",
             }}
           >
             <div
               style={{
-                width: "64px",
+                width: "84px",
                 display: "flex",
-                justifyContent: "center",
+                justifyContent: "flex-start",
               }}
             >
               <KeyIcon filled={filled} size={size} />
@@ -123,7 +164,7 @@ function Column({
                 color: "#647589",
               }}
             >
-              {size}&nbsp;px
+              {size}&nbsp;px tall &middot; {Math.round(size * 1.5)}&nbsp;px wide
             </span>
           </div>
         ))}

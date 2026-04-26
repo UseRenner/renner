@@ -54,10 +54,6 @@ export function FavoriteButton({
       title={saved ? "Saved to My Renners" : "Save to My Renners"}
       className="favorite-toggle"
       data-saved={saved ? "true" : "false"}
-      style={{
-        width: `${size + 12}px`,
-        height: `${size + 12}px`,
-      }}
     >
       <KeyIcon filled={saved} size={size} />
     </button>
