@@ -17,7 +17,7 @@ export default async function TaskDetailPage({ params }: PageProps) {
   const { data: task } = await supabase
     .from("tasks")
     .select(
-      "id, title, description, category, pay, pay_type, zip_code, property_address, date, time_estimate, status, requires_license, posted_by, booked_runner, created_date, booked_date, marked_finished_date, completed_date, payment_status, completion_photo, completion_notes, dispute_reason, auto_release_date",
+      "id, title, description, category, pay, pay_type, zip_code, street_address, unit, task_city, task_state, task_zip, date, time_estimate, status, requires_license, posted_by, booked_runner, created_date, booked_date, marked_finished_date, completed_date, payment_status, completion_photo, completion_notes, dispute_reason, auto_release_date",
     )
     .eq("id", params.id)
     .maybeSingle();
@@ -141,7 +141,7 @@ export default async function TaskDetailPage({ params }: PageProps) {
                 />
               </div>
 
-              {isBookedRunner && t.property_address ? (
+              {isBookedRunner && (t.street_address || t.task_city) ? (
                 <div
                   style={{
                     marginTop: "24px",
@@ -150,7 +150,7 @@ export default async function TaskDetailPage({ params }: PageProps) {
                   }}
                 >
                   <div className="micro-label" style={{ marginBottom: "6px" }}>
-                    Property address
+                    Task address
                   </div>
                   <div
                     style={{
@@ -159,9 +159,22 @@ export default async function TaskDetailPage({ params }: PageProps) {
                       fontSize: "15px",
                       fontWeight: 500,
                       color: "#0d0f12",
+                      lineHeight: 1.5,
                     }}
                   >
-                    {t.property_address}
+                    {[
+                      t.street_address,
+                      t.unit ? `Unit ${t.unit}` : null,
+                    ]
+                      .filter(Boolean)
+                      .join(", ")}
+                    <br />
+                    {[
+                      t.task_city,
+                      [t.task_state, t.task_zip].filter(Boolean).join(" "),
+                    ]
+                      .filter(Boolean)
+                      .join(", ")}
                   </div>
                   <div
                     style={{
@@ -169,7 +182,7 @@ export default async function TaskDetailPage({ params }: PageProps) {
                         "var(--font-inter), ui-sans-serif, system-ui",
                       fontSize: "12px",
                       color: "#7d8da0",
-                      marginTop: "4px",
+                      marginTop: "6px",
                     }}
                   >
                     Shared because you&apos;re booked on this task.

@@ -2,8 +2,11 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { US_STATES } from "@/lib/states";
 import { createClient } from "@/lib/supabase/client";
 import { TASK_CATEGORIES } from "@/lib/types";
+
+const ZIP_REGEX = /^\d{5}$/;
 
 export default function PostTaskPage() {
   const router = useRouter();
@@ -20,7 +23,11 @@ export default function PostTaskPage() {
   const [timeEstimate, setTimeEstimate] = useState("");
   const [pay, setPay] = useState("");
   const [zipCode, setZipCode] = useState("");
-  const [propertyAddress, setPropertyAddress] = useState("");
+  const [streetAddress, setStreetAddress] = useState("");
+  const [unit, setUnit] = useState("");
+  const [taskCity, setTaskCity] = useState("");
+  const [taskState, setTaskState] = useState("");
+  const [taskZip, setTaskZip] = useState("");
   const [requiresLicense, setRequiresLicense] = useState(false);
 
   const [error, setError] = useState<string | null>(null);
@@ -66,14 +73,34 @@ export default function PostTaskPage() {
       return;
     }
 
+    if (!ZIP_REGEX.test(zipCode)) {
+      setError("Please enter a valid 5-digit zip code");
+      setSubmitting(false);
+      return;
+    }
+    if (!ZIP_REGEX.test(taskZip)) {
+      setError("Please enter a valid 5-digit zip code for the task address");
+      setSubmitting(false);
+      return;
+    }
+    if (!streetAddress || !taskCity || !taskState) {
+      setError("Please complete all required task address fields.");
+      setSubmitting(false);
+      return;
+    }
+
     const { error: insertError } = await supabase.from("tasks").insert({
       title,
       description,
       category,
       pay: payNumber,
       pay_type: "Flat rate",
-      zip_code: zipCode || null,
-      property_address: propertyAddress || null,
+      zip_code: zipCode,
+      street_address: streetAddress,
+      unit: unit || null,
+      task_city: taskCity,
+      task_state: taskState,
+      task_zip: taskZip,
       date: date ? new Date(date).toISOString() : null,
       time_estimate: timeEstimate || null,
       status: "Open",
@@ -250,35 +277,125 @@ export default function PostTaskPage() {
                 <input
                   id="zipCode"
                   className="input"
-                  placeholder="e.g. 30305"
                   value={zipCode}
-                  onChange={(e) => setZipCode(e.target.value)}
-                  maxLength={10}
+                  onChange={(e) =>
+                    setZipCode(e.target.value.replace(/\D/g, "").slice(0, 5))
+                  }
+                  inputMode="numeric"
+                  maxLength={5}
+                  required
                 />
               </div>
 
               <div>
-                <label className="input-label" htmlFor="propertyAddress">
-                  Property address
-                </label>
-                <input
-                  id="propertyAddress"
-                  className="input"
-                  placeholder="Full property address"
-                  value={propertyAddress}
-                  onChange={(e) => setPropertyAddress(e.target.value)}
-                />
-                <p
+                <div
+                  style={{
+                    fontFamily:
+                      "var(--font-inter), ui-sans-serif, system-ui",
+                    fontSize: "13px",
+                    fontWeight: 500,
+                    color: "#0d0f12",
+                  }}
+                >
+                  Task address
+                </div>
+                <div
                   style={{
                     fontFamily:
                       "var(--font-inter), ui-sans-serif, system-ui",
                     fontSize: "12px",
                     color: "#7d8da0",
-                    marginTop: "6px",
+                    marginTop: "2px",
+                    marginBottom: "12px",
                   }}
                 >
                   Only shared with your booked Renner.
-                </p>
+                </div>
+
+                <div className="flex flex-col gap-3">
+                  <div className="flex gap-3">
+                    <div style={{ flex: 2 }}>
+                      <label
+                        className="input-label"
+                        htmlFor="streetAddress"
+                      >
+                        Street address
+                      </label>
+                      <input
+                        id="streetAddress"
+                        className="input"
+                        value={streetAddress}
+                        onChange={(e) => setStreetAddress(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <label className="input-label" htmlFor="unit">
+                        Unit / Suite
+                      </label>
+                      <input
+                        id="unit"
+                        className="input"
+                        value={unit}
+                        onChange={(e) => setUnit(e.target.value)}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3">
+                    <div style={{ flex: 2 }}>
+                      <label className="input-label" htmlFor="taskCity">
+                        City
+                      </label>
+                      <input
+                        id="taskCity"
+                        className="input"
+                        value={taskCity}
+                        onChange={(e) => setTaskCity(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <label className="input-label" htmlFor="taskState">
+                        State
+                      </label>
+                      <select
+                        id="taskState"
+                        className="input"
+                        value={taskState}
+                        onChange={(e) => setTaskState(e.target.value)}
+                        required
+                      >
+                        <option value="" disabled>
+                          —
+                        </option>
+                        {US_STATES.map(([code, name]) => (
+                          <option key={code} value={code}>
+                            {code} — {name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <label className="input-label" htmlFor="taskZip">
+                        Zip
+                      </label>
+                      <input
+                        id="taskZip"
+                        className="input"
+                        value={taskZip}
+                        onChange={(e) =>
+                          setTaskZip(
+                            e.target.value.replace(/\D/g, "").slice(0, 5),
+                          )
+                        }
+                        inputMode="numeric"
+                        maxLength={5}
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <label

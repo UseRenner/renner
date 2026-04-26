@@ -41,7 +41,7 @@ export default async function ApplicantsPage({
   const { data: task } = await supabase
     .from("tasks")
     .select(
-      "id, title, description, category, pay, pay_type, zip_code, property_address, date, time_estimate, status, requires_license, posted_by, booked_runner, created_date, booked_date, marked_finished_date, completed_date, payment_status, completion_photo, completion_notes, dispute_reason, auto_release_date",
+      "id, title, description, category, pay, pay_type, zip_code, date, time_estimate, status, requires_license, posted_by, booked_runner, created_date, booked_date, marked_finished_date, completed_date, payment_status, completion_photo, completion_notes, dispute_reason, auto_release_date",
     )
     .eq("id", params.id)
     .maybeSingle();
@@ -261,13 +261,16 @@ function ApplicantRow({
                 applicationId={application.id}
                 applicantId={a?.id ?? ""}
               />
-              <button
-                type="button"
+              <Link
+                href={`/messages?with=${a?.id ?? ""}&task=${taskId}`}
                 className="btn-light"
-                style={{ padding: "10px 16px" }}
+                style={{
+                  padding: "10px 16px",
+                  textDecoration: "none",
+                }}
               >
                 Message
-              </button>
+              </Link>
             </>
           ) : (
             <span

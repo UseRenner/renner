@@ -17,13 +17,15 @@ export type TaskCategory =
   | "Sign work"
   | "Document courier"
   | "Property prep"
-  | "Showing";
+  | "Showing"
+  | "Other";
 
 export const TASK_CATEGORIES: TaskCategory[] = [
   "Sign work",
   "Document courier",
   "Property prep",
   "Showing",
+  "Other",
 ];
 
 export interface Task {
@@ -34,7 +36,11 @@ export interface Task {
   pay: number | null;
   pay_type: "Flat rate" | null;
   zip_code: string | null;
-  property_address: string | null;
+  street_address: string | null;
+  unit: string | null;
+  task_city: string | null;
+  task_state: string | null;
+  task_zip: string | null;
   date: string | null;
   time_estimate: string | null;
   status: TaskStatus;
