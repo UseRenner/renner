@@ -1,24 +1,30 @@
-// Horizontal skeleton-key glyph rendered as a single fill path:
-//   - ring bow on the left (outer circle r=3 minus inner circle r=1.5
-//     via fill-rule="evenodd")
-//   - 1.5-unit-thick horizontal shaft from x=8 to x=22
-//   - two identical-length teeth (1.5 × 4) dropping from the shaft
+// Horizontal skeleton-key glyph rendered as ONE continuous closed
+// path. The path traces the silhouette clockwise starting from the
+// leftmost point of the bow:
 //
-// Both states use the same path. Only the fill color changes:
-// #a7b2be when unsaved, #0d0f12 when saved. No stroke rendering.
+//   1. arc clockwise along the top of the circular bow to the point
+//      where the shaft's top edge meets the circle
+//   2. line right along the top of the shaft to the far end (x=22)
+//   3. down the right end of the shaft
+//   4. step left along the shaft underside, drop down the right side
+//      of tooth 2, across the bottom, back up the left side
+//   5. step left to tooth 1, down/across/up the same way (identical
+//      length to tooth 2)
+//   6. continue left along the underside of the shaft back to the
+//      circle, then arc clockwise along the bottom of the bow back
+//      to the start
+//
+// One closed outline, no inner cutouts. Both states fill this same
+// path with a single color: #a7b2be when unsaved, #0d0f12 when saved.
 
-const KEY_PATH = [
-  // Bow outer ring
-  "M 2 8 A 3 3 0 1 0 8 8 A 3 3 0 1 0 2 8 Z",
-  // Bow inner cutout (hole, evenodd)
-  "M 3.5 8 A 1.5 1.5 0 1 0 6.5 8 A 1.5 1.5 0 1 0 3.5 8 Z",
-  // Shaft
-  "M 8 7.25 H 22 V 8.75 H 8 Z",
-  // Tooth 1
-  "M 16 8 H 17.5 V 12 H 16 Z",
-  // Tooth 2 (same length as Tooth 1)
-  "M 20 8 H 21.5 V 12 H 20 Z",
-].join(" ");
+const KEY_PATH =
+  "M 2 8 " +
+  "A 3 3 0 0 1 7.9 7.25 " +
+  "H 22 V 8.75 " +
+  "H 21.5 V 12.75 H 20 V 8.75 " +
+  "H 17.5 V 12.75 H 16 V 8.75 " +
+  "H 7.9 " +
+  "A 3 3 0 0 1 2 8 Z";
 
 export function KeyIcon({
   filled,
@@ -34,11 +40,7 @@ export function KeyIcon({
       viewBox="0 0 24 16"
       aria-hidden
     >
-      <path
-        d={KEY_PATH}
-        fill={filled ? "#0d0f12" : "#a7b2be"}
-        fillRule="evenodd"
-      />
+      <path d={KEY_PATH} fill={filled ? "#0d0f12" : "#a7b2be"} />
     </svg>
   );
 }
