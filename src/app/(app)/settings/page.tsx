@@ -14,7 +14,7 @@ export default async function SettingsPage() {
   const { data: profile } = await supabase
     .from("users")
     .select(
-      "id, first_name, last_name, display_name, phone, role, city, state, zip, bio, categories, licensed, license_number, license_state, stripe_account_id, stripe_onboarded, background_verified, background_check_date",
+      "id, first_name, last_name, display_name, phone, role, city, state, zip, bio, categories, licensed, license_number, license_state, stripe_account_id, stripe_onboarded, background_verified, background_check_date, profile_visibility",
     )
     .eq("id", user.id)
     .maybeSingle();

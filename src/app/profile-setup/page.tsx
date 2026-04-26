@@ -23,6 +23,7 @@ export default function ProfileSetupPage() {
   const [licensed, setLicensed] = useState(false);
   const [licenseNumber, setLicenseNumber] = useState("");
   const [licenseState, setLicenseState] = useState("");
+  const [role, setRole] = useState<"client" | "renner" | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
@@ -45,7 +46,7 @@ export default function ProfileSetupPage() {
       const { data: profile } = await supabase
         .from("users")
         .select(
-          "display_name, phone, city, state, zip, bio, categories, first_name, last_name, licensed, license_number, license_state",
+          "display_name, phone, city, state, zip, bio, categories, first_name, last_name, licensed, license_number, license_state, role",
         )
         .eq("id", user.id)
         .maybeSingle();
@@ -66,6 +67,9 @@ export default function ProfileSetupPage() {
         setLicensed(!!profile.licensed);
         setLicenseNumber(profile.license_number ?? "");
         setLicenseState(profile.license_state ?? "");
+        setRole(
+          (profile.role as "client" | "renner" | null | undefined) ?? null,
+        );
       }
 
       setLoadingUser(false);
@@ -118,7 +122,7 @@ export default function ProfileSetupPage() {
       return;
     }
 
-    router.push("/browse");
+    router.push(role === "client" ? "/my-tasks" : "/browse");
     router.refresh();
   }
 

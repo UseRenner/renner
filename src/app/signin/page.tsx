@@ -20,10 +20,8 @@ export default function SigninPage() {
     setError(null);
     setSubmitting(true);
 
-    const { error: signInError } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    const { data: signInData, error: signInError } =
+      await supabase.auth.signInWithPassword({ email, password });
 
     if (signInError) {
       setError(signInError.message);
@@ -31,7 +29,18 @@ export default function SigninPage() {
       return;
     }
 
-    router.push("/browse");
+    let role: "client" | "renner" | null = null;
+    const userId = signInData.user?.id;
+    if (userId) {
+      const { data: profile } = await supabase
+        .from("users")
+        .select("role")
+        .eq("id", userId)
+        .maybeSingle();
+      role = (profile?.role as "client" | "renner" | null) ?? null;
+    }
+
+    router.push(role === "client" ? "/my-tasks" : "/browse");
     router.refresh();
   }
 

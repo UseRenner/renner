@@ -25,6 +25,7 @@ type Profile = {
   stripe_onboarded: boolean | null;
   background_verified: boolean | null;
   background_check_date: string | null;
+  profile_visibility: "public" | "private" | null;
 };
 
 export function SettingsClient({
@@ -80,6 +81,14 @@ export function SettingsClient({
       )}
 
       <SectionCard
+        eyebrow="Discovery"
+        title="Profile visibility"
+        description="Public profiles appear in the Browse directories. Private profiles stay invisible to discovery, but anyone you've already worked with — applied to your task, booked you, or saved you — can still find you."
+      >
+        <VisibilitySection profile={profile} supabase={supabase} />
+      </SectionCard>
+
+      <SectionCard
         eyebrow="Danger zone"
         title="Delete account"
         description="Permanently remove your account and all associated tasks, messages, and reviews. This cannot be undone."
@@ -87,6 +96,117 @@ export function SettingsClient({
       >
         <DangerZone supabase={supabase} router={router} />
       </SectionCard>
+    </div>
+  );
+}
+
+function VisibilitySection({
+  profile,
+  supabase,
+}: {
+  profile: Profile | null;
+  supabase: ReturnType<typeof createClient>;
+}) {
+  const [value, setValue] = useState<"public" | "private">(
+    profile?.profile_visibility === "private" ? "private" : "public",
+  );
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+
+  async function handleSelect(next: "public" | "private") {
+    if (!profile || next === value) return;
+    setSubmitting(true);
+    setError(null);
+    setSuccess(null);
+    const { error: updateError } = await supabase
+      .from("users")
+      .update({ profile_visibility: next })
+      .eq("id", profile.id);
+    setSubmitting(false);
+    if (updateError) {
+      setError(updateError.message);
+      return;
+    }
+    setValue(next);
+    setSuccess(
+      next === "public"
+        ? "Visible in the Browse directories."
+        : "Hidden from the Browse directories.",
+    );
+  }
+
+  const Option = ({
+    title,
+    body,
+    selected,
+    onClick,
+  }: {
+    title: string;
+    body: string;
+    selected: boolean;
+    onClick: () => void;
+  }) => (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={submitting}
+      style={{
+        textAlign: "left",
+        flex: 1,
+        border: selected ? "1px solid #0d0f12" : "1px solid #cad1d8",
+        backgroundColor: selected ? "#f6f7f9" : "#fbfbfc",
+        borderRadius: "10px",
+        padding: "14px 16px",
+        cursor: submitting ? "not-allowed" : "pointer",
+        transition:
+          "background-color 150ms ease, border-color 150ms ease",
+      }}
+    >
+      <div
+        style={{
+          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+          fontSize: "14px",
+          fontWeight: 500,
+          color: "#0d0f12",
+          marginBottom: "2px",
+        }}
+      >
+        {title}
+      </div>
+      <div
+        style={{
+          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+          fontSize: "12px",
+          color: "#7d8da0",
+          lineHeight: 1.5,
+        }}
+      >
+        {body}
+      </div>
+    </button>
+  );
+
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="flex gap-3">
+        <Option
+          title="Public"
+          body="Discoverable in the Browse directories."
+          selected={value === "public"}
+          onClick={() => handleSelect("public")}
+        />
+        <Option
+          title="Private"
+          body="Hidden from directory browsing. Saved + booked relationships still see you."
+          selected={value === "private"}
+          onClick={() => handleSelect("private")}
+        />
+      </div>
+      {error && <p style={{ color: "#c0392b", fontSize: "13px" }}>{error}</p>}
+      {success && (
+        <p style={{ color: "#2d8a4e", fontSize: "13px" }}>{success}</p>
+      )}
     </div>
   );
 }

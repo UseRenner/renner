@@ -1,19 +1,15 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { PaymentIndicator, StatusBadge } from "@/components/StatusBadge";
 import { formatPay, formatTaskTiming } from "@/lib/format";
+import { requireClient } from "@/lib/role";
 import { createClient } from "@/lib/supabase/server";
 import type { Task } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
 export default async function MyTasksPage() {
+  const user = await requireClient();
   const supabase = createClient();
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) redirect("/signin");
 
   const { data: tasksData } = await supabase
     .from("tasks")

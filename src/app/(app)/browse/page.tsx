@@ -30,41 +30,25 @@ export default async function BrowsePage() {
     .order("created_date", { ascending: false });
 
   const tasks = (tasksData ?? []) as Task[];
-
   const subtitleLocation = city ? city : "your area";
   const countLabel = `${tasks.length} ${tasks.length === 1 ? "task" : "tasks"} near ${subtitleLocation}`;
 
   return (
-    <main className="pt-12 pb-20 px-6">
-      <div className="mx-auto" style={{ maxWidth: "1100px" }}>
-        <div
-          style={{
-            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-            fontSize: "11px",
-            fontWeight: 500,
-            letterSpacing: "0.14em",
-            textTransform: "uppercase",
-            color: "#7d8da0",
-            marginBottom: "12px",
-          }}
-        >
-          {countLabel}
-        </div>
-
-        <h1
-          className="font-display-tight"
-          style={{
-            fontSize: "48px",
-            lineHeight: 1.05,
-            color: "#0d0f12",
-            marginBottom: "32px",
-          }}
-        >
-          Available <span className="headline-em">tasks</span>
-        </h1>
-
-        <BrowseClient tasks={tasks} />
+    <>
+      <div
+        style={{
+          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+          fontSize: "11px",
+          fontWeight: 500,
+          letterSpacing: "0.14em",
+          textTransform: "uppercase",
+          color: "#7d8da0",
+          marginBottom: "20px",
+        }}
+      >
+        {countLabel}
       </div>
-    </main>
+      <BrowseClient tasks={tasks} />
+    </>
   );
 }

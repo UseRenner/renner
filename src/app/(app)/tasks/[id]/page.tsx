@@ -549,7 +549,8 @@ function SidebarActions({
     return <DisabledLightButton text="You posted this task" />;
   }
   if (!isRenner) {
-    return <DisabledLightButton text="Switch to a Renner account to apply" />;
+    // Clients can browse tasks but cannot apply.
+    return null;
   }
   if (licenseBlocked) {
     return (

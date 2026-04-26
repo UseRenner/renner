@@ -3,24 +3,30 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const BASE_LINKS = [
+const CLIENT_LINKS = [
   { href: "/browse", label: "Browse" },
   { href: "/post", label: "Post a task" },
   { href: "/my-tasks", label: "My tasks" },
+  { href: "/my-renners", label: "My Renners" },
+  { href: "/messages", label: "Messages" },
 ];
 
-const TRAILING_LINKS = [{ href: "/messages", label: "Messages" }];
+const RENNER_LINKS = [
+  { href: "/browse", label: "Browse" },
+  { href: "/my-applications", label: "My applications" },
+  { href: "/messages", label: "Messages" },
+];
+
+const FALLBACK_LINKS = [{ href: "/browse", label: "Browse" }];
 
 export function NavLinks({ role }: { role?: "renner" | "client" | null }) {
   const pathname = usePathname();
   const LINKS =
     role === "client"
-      ? [
-          ...BASE_LINKS,
-          { href: "/my-renners", label: "My Renners" },
-          ...TRAILING_LINKS,
-        ]
-      : [...BASE_LINKS, ...TRAILING_LINKS];
+      ? CLIENT_LINKS
+      : role === "renner"
+        ? RENNER_LINKS
+        : FALLBACK_LINKS;
 
   return (
     <nav className="flex items-center gap-1">

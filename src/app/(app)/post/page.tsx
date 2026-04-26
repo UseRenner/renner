@@ -125,7 +125,11 @@ export default function PostTaskPage() {
         .eq("id", user.id)
         .maybeSingle();
       if (!active) return;
-      setRole((profile?.role as "renner" | "client" | null) ?? null);
+      const r = (profile?.role as "renner" | "client" | null) ?? null;
+      setRole(r);
+      if (r === "renner") {
+        router.replace("/browse");
+      }
     })();
     return () => {
       active = false;
@@ -352,28 +356,9 @@ export default function PostTaskPage() {
     router.refresh();
   }
 
-  if (userId && role === "renner") {
-    return (
-      <main className="pt-16 pb-20 px-6">
-        <div className="mx-auto" style={{ maxWidth: "720px" }}>
-          <h1
-            className="font-display-tight"
-            style={{
-              fontSize: "40px",
-              color: "#0d0f12",
-              marginBottom: "12px",
-            }}
-          >
-            Only clients can post tasks
-          </h1>
-          <p style={{ color: "#647589", fontSize: "15px" }}>
-            Your account is set up as a Renner. Switch to a client account to
-            post a task.
-          </p>
-        </div>
-      </main>
-    );
-  }
+  // Renners get redirected to /browse from the auth probe; render
+  // nothing in the brief window before the route changes.
+  if (userId && role === "renner") return null;
 
   return (
     <main className="pt-12 pb-20 px-6">

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { InvitationActions } from "@/components/InvitationActions";
 import { PaymentIndicator } from "@/components/StatusBadge";
 import {
@@ -7,6 +6,7 @@ import {
   formatRelativeDate,
   formatTaskTiming,
 } from "@/lib/format";
+import { requireRenner } from "@/lib/role";
 import { createClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -50,12 +50,8 @@ const STATUS_PALETTE: Record<
 };
 
 export default async function MyApplicationsPage() {
+  const user = await requireRenner();
   const supabase = createClient();
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) redirect("/signin");
 
   const { data: appsData } = await supabase
     .from("applications")

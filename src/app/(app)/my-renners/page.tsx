@@ -1,7 +1,7 @@
-import { redirect } from "next/navigation";
 import { FavoriteButton } from "@/components/FavoriteButton";
 import { InviteToTaskButton } from "@/components/InviteToTaskButton";
 import { RemoveFavoriteButton } from "@/components/RemoveFavoriteButton";
+import { requireClient } from "@/lib/role";
 import { createClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -46,40 +46,8 @@ function initialsFor(r: RennerProfile | null) {
 }
 
 export default async function MyRennersPage() {
+  const user = await requireClient();
   const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) redirect("/signin");
-
-  const { data: profile } = await supabase
-    .from("users")
-    .select("role")
-    .eq("id", user.id)
-    .maybeSingle();
-
-  if (profile?.role && profile.role !== "client") {
-    return (
-      <main className="pt-16 pb-20 px-6">
-        <div className="mx-auto" style={{ maxWidth: "720px" }}>
-          <h1
-            className="font-display-tight"
-            style={{
-              fontSize: "40px",
-              color: "#0d0f12",
-              marginBottom: "12px",
-            }}
-          >
-            My Renners is for clients
-          </h1>
-          <p style={{ color: "#647589", fontSize: "15px" }}>
-            Switch to a client account to save trusted Renners and invite
-            them to tasks.
-          </p>
-        </div>
-      </main>
-    );
-  }
 
   const { data: favoritesData } = await supabase
     .from("favorites")

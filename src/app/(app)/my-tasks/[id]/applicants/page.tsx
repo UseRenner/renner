@@ -3,6 +3,7 @@ import { notFound, redirect } from "next/navigation";
 import { BookButton } from "@/components/BookButton";
 import { FavoriteButton } from "@/components/FavoriteButton";
 import { formatPay, formatTaskTiming } from "@/lib/format";
+import { requireClient } from "@/lib/role";
 import { createClient } from "@/lib/supabase/server";
 import type { Task } from "@/lib/types";
 
@@ -34,12 +35,8 @@ export default async function ApplicantsPage({
 }: {
   params: { id: string };
 }) {
+  const user = await requireClient();
   const supabase = createClient();
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) redirect("/signin");
 
   const { data: task } = await supabase
     .from("tasks")

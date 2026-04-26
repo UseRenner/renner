@@ -1,7 +1,14 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { getViewer, homeFor } from "@/lib/role";
 import { TASK_CATEGORIES } from "@/lib/types";
 
-export default function LandingPage() {
+export const dynamic = "force-dynamic";
+
+export default async function LandingPage() {
+  const viewer = await getViewer();
+  if (viewer) redirect(homeFor(viewer.role));
+
   return (
     <>
       <PublicNav />
