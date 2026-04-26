@@ -93,8 +93,17 @@ function adminClientOrNull() {
   return createServiceClient(url, key);
 }
 
+// Calling createServiceClient(url, key) at runtime produces a client whose
+// generic parameters are inferred separately from `ReturnType<typeof
+// createServiceClient>`. Across @supabase/supabase-js versions those two
+// don't always line up (postgrest-js v2 added stricter generics), which
+// fails the Vercel typecheck. The helpers below only use a small, well-
+// known surface of the admin client, so we accept it as `any` to keep the
+// build green without introducing a heavy generic ceremony.
+type AdminClient = any;
+
 async function fetchEmail(
-  admin: ReturnType<typeof createServiceClient> | null,
+  admin: AdminClient | null,
   userId: string | null | undefined,
 ) {
   if (!admin || !userId) return null;
@@ -104,7 +113,7 @@ async function fetchEmail(
 }
 
 async function fetchProfile(
-  admin: ReturnType<typeof createServiceClient> | null,
+  admin: AdminClient | null,
   userId: string | null | undefined,
 ) {
   if (!admin || !userId) return null;
