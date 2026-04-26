@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { MarketingHeader } from "./MarketingHeader";
 import { NavLinks } from "./NavLinks";
 import { Wordmark } from "./Wordmark";
 
@@ -31,20 +32,19 @@ export async function TopNav() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  let initials = "?";
-  if (user) {
-    const { data: profile } = await supabase
-      .from("users")
-      .select("first_name, last_name, display_name")
-      .eq("id", user.id)
-      .maybeSingle();
-    initials = getInitials(
-      profile?.first_name ?? null,
-      profile?.last_name ?? null,
-      profile?.display_name ?? null,
-      user.email ?? null,
-    );
-  }
+  if (!user) return <MarketingHeader />;
+
+  const { data: profile } = await supabase
+    .from("users")
+    .select("first_name, last_name, display_name")
+    .eq("id", user.id)
+    .maybeSingle();
+  const initials = getInitials(
+    profile?.first_name ?? null,
+    profile?.last_name ?? null,
+    profile?.display_name ?? null,
+    user.email ?? null,
+  );
 
   return (
     <header

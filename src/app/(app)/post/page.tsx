@@ -2,6 +2,12 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
+import {
+  PendingTask,
+  clearPendingTask,
+  readPendingTask,
+  savePendingTask,
+} from "@/lib/pendingTask";
 import { US_STATES } from "@/lib/states";
 import { createClient } from "@/lib/supabase/client";
 import {
@@ -33,7 +39,6 @@ export default function PostTaskPage() {
 
   const [userId, setUserId] = useState<string | null>(null);
   const [role, setRole] = useState<"renner" | "client" | null>(null);
-  const [loading, setLoading] = useState(true);
 
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState<string>(TASK_CATEGORIES[0]);
@@ -55,6 +60,7 @@ export default function PostTaskPage() {
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
+  // Auth probe (non-blocking — signed-out visitors can still fill the form).
   useEffect(() => {
     let active = true;
     (async () => {
@@ -62,12 +68,8 @@ export default function PostTaskPage() {
         data: { user },
       } = await supabase.auth.getUser();
       if (!active) return;
-      if (!user) {
-        router.replace("/signin");
-        return;
-      }
+      if (!user) return;
       setUserId(user.id);
-
       const { data: profile } = await supabase
         .from("users")
         .select("role")
@@ -75,12 +77,44 @@ export default function PostTaskPage() {
         .maybeSingle();
       if (!active) return;
       setRole((profile?.role as "renner" | "client" | null) ?? null);
-      setLoading(false);
     })();
     return () => {
       active = false;
     };
-  }, [router, supabase]);
+  }, [supabase]);
+
+  // Hydrate form: URL params first, then any pending task in session.
+  useEffect(() => {
+    const sp = new URLSearchParams(window.location.search);
+    const titleParam = sp.get("title");
+    const categoryParam = sp.get("category");
+
+    const pending = readPendingTask();
+    if (pending) {
+      setTitle(pending.title);
+      setCategory(pending.category);
+      setDescription(pending.description);
+      setPay(pending.pay != null ? String(pending.pay) : "");
+      setZipCode(pending.zip_code);
+      setStreetAddress(pending.street_address);
+      setUnit(pending.unit ?? "");
+      setTaskCity(pending.task_city);
+      setTaskState(pending.task_state);
+      setTaskZip(pending.task_zip);
+      setDate(
+        pending.date ? new Date(pending.date).toISOString().slice(0, 10) : "",
+      );
+      setTimeEstimate(pending.time_estimate ?? "");
+    }
+
+    if (titleParam) setTitle(titleParam);
+    if (
+      categoryParam &&
+      (TASK_CATEGORIES as readonly string[]).includes(categoryParam)
+    ) {
+      setCategory(categoryParam);
+    }
+  }, []);
 
   useEffect(() => {
     setLicenseConfirmed(false);
@@ -100,30 +134,26 @@ export default function PostTaskPage() {
     !warningDismissed &&
     hasShowingKeyword(`${title} ${description}`);
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!userId) return;
-    setError(null);
-
+  function buildPendingTask(): PendingTask | null {
     const payNumber = pay ? Number(pay) : null;
     if (pay && Number.isNaN(payNumber)) {
       setError("Pay must be a valid number.");
-      return;
+      return null;
     }
-
     if (!ZIP_REGEX.test(zipCode)) {
       setError("Please enter a valid 5-digit zip code");
-      return;
+      return null;
     }
     if (!ZIP_REGEX.test(taskZip)) {
-      setError("Please enter a valid 5-digit zip code for the task address");
-      return;
+      setError(
+        "Please enter a valid 5-digit zip code for the task address",
+      );
+      return null;
     }
     if (!streetAddress || !taskCity || !taskState) {
       setError("Please complete all required task address fields.");
-      return;
+      return null;
     }
-
     if (
       LICENSE_OPTIONAL_CATEGORIES.includes(category as never) &&
       !otherChoice
@@ -131,7 +161,7 @@ export default function PostTaskPage() {
       setError(
         "Please attest whether this task requires a licensed real estate professional.",
       );
-      return;
+      return null;
     }
     if (
       !LICENSE_REQUIRED_CATEGORIES.includes(category as never) &&
@@ -141,11 +171,10 @@ export default function PostTaskPage() {
       setError(
         "Please confirm that this task does not require a licensed real estate professional.",
       );
-      return;
+      return null;
     }
 
-    setSubmitting(true);
-    const { error: insertError } = await supabase.from("tasks").insert({
+    return {
       title,
       description,
       category,
@@ -161,38 +190,39 @@ export default function PostTaskPage() {
       time_estimate: timeEstimate || null,
       status: "Open",
       requires_license: requiresLicense,
-      posted_by: userId,
       payment_status: "unpaid",
-    });
+    };
+  }
 
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setError(null);
+
+    const pending = buildPendingTask();
+    if (!pending) return;
+
+    if (!userId) {
+      savePendingTask(pending);
+      router.push("/signup");
+      return;
+    }
+
+    setSubmitting(true);
+    const { error: insertError } = await supabase.from("tasks").insert({
+      ...pending,
+      posted_by: userId,
+    });
     if (insertError) {
       setError(insertError.message);
       setSubmitting(false);
       return;
     }
-
+    clearPendingTask();
     router.push("/my-tasks");
     router.refresh();
   }
 
-  if (loading) {
-    return (
-      <main className="pt-16 pb-20 px-6">
-        <p
-          className="mx-auto"
-          style={{
-            maxWidth: "720px",
-            color: "#647589",
-            fontSize: "14px",
-          }}
-        >
-          Loading…
-        </p>
-      </main>
-    );
-  }
-
-  if (role && role !== "client") {
+  if (userId && role === "renner") {
     return (
       <main className="pt-16 pb-20 px-6">
         <div className="mx-auto" style={{ maxWidth: "720px" }}>
@@ -541,8 +571,28 @@ export default function PostTaskPage() {
                 disabled={submitting}
                 style={{ marginTop: "4px" }}
               >
-                {submitting ? "Posting…" : "Post task"}
+                {submitting
+                  ? "Posting…"
+                  : userId
+                    ? "Post task"
+                    : "Continue to post"}
               </button>
+
+              {!userId && (
+                <p
+                  style={{
+                    fontFamily:
+                      "var(--font-inter), ui-sans-serif, system-ui",
+                    fontSize: "12px",
+                    color: "#7d8da0",
+                    textAlign: "center",
+                    lineHeight: 1.5,
+                    marginTop: "-4px",
+                  }}
+                >
+                  We&apos;ll save your task and post it as soon as you sign up.
+                </p>
+              )}
             </div>
           </div>
         </form>
@@ -666,7 +716,8 @@ function AttestationRow({
           marginTop: "2px",
           borderRadius: control === "radio" ? "9999px" : "3px",
           border: selected ? "5px solid #0d0f12" : "1.5px solid #a7b2be",
-          backgroundColor: control === "checkbox" && selected ? "#0d0f12" : "#fbfbfc",
+          backgroundColor:
+            control === "checkbox" && selected ? "#0d0f12" : "#fbfbfc",
           boxSizing: "border-box",
         }}
       />

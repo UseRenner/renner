@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { TASK_CATEGORIES } from "@/lib/types";
 
 export default function LandingPage() {
   return (
@@ -42,7 +43,7 @@ function PublicNav() {
         <div className="flex items-center gap-2">
           {[
             { href: "/how-it-works", label: "How it works" },
-            { href: "/browse", label: "Browse tasks" },
+            { href: "/post", label: "Post a task" },
             { href: "/signin", label: "Sign in" },
           ].map((link) => (
             <Link
@@ -87,7 +88,7 @@ function Hero() {
   return (
     <section
       style={{
-        padding: "96px 32px 80px",
+        padding: "112px 32px 96px",
         backgroundColor: "#f6f7f9",
       }}
     >
@@ -99,32 +100,28 @@ function Hero() {
             lineHeight: 0.95,
             color: "#0d0f12",
             letterSpacing: "-0.04em",
-            marginBottom: "28px",
+            marginBottom: "24px",
             maxWidth: "900px",
           }}
         >
           Keep real estate{" "}
-          <span className="headline-em" style={{ fontStyle: "italic" }}>
-            running.
-          </span>
+          <span className="headline-em">running.</span>
         </h1>
         <p
           style={{
             fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-            fontSize: "18px",
-            color: "#4d5b6a",
-            lineHeight: 1.6,
-            maxWidth: "560px",
-            marginBottom: "40px",
+            fontSize: "17px",
+            color: "#647589",
+            lineHeight: 1.5,
+            marginBottom: "36px",
           }}
         >
-          The task marketplace built for real estate. Verified Renners, secure
-          escrow, photo-proof completion. Post a sign run, a lockbox swap, or
-          a licensed showing in minutes.
+          Real estate errands. Nearby Renners.
         </p>
 
         <form
-          action="/browse"
+          action="/post"
+          method="get"
           style={{
             display: "flex",
             alignItems: "stretch",
@@ -134,12 +131,12 @@ function Hero() {
             borderRadius: "12px",
             padding: "8px",
             maxWidth: "560px",
-            marginBottom: "24px",
+            marginBottom: "20px",
           }}
         >
           <input
-            name="q"
-            placeholder="Find a task near you…"
+            name="title"
+            placeholder="What do you need done?"
             style={{
               flex: 1,
               border: "none",
@@ -152,7 +149,7 @@ function Hero() {
           />
           <button
             type="submit"
-            aria-label="Search"
+            aria-label="Post a task"
             style={{
               backgroundColor: "#0d0f12",
               color: "#fbfbfc",
@@ -173,7 +170,7 @@ function Hero() {
             (chip) => (
               <Link
                 key={chip}
-                href="/browse"
+                href={`/post?category=${encodeURIComponent(chip)}`}
                 style={{
                   fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
                   fontSize: "13px",
@@ -200,23 +197,23 @@ function TrustSignals() {
   const items = [
     {
       icon: <ShieldIcon />,
-      title: "Background-verified Renners",
-      body: "Every Renner clears a Checkr background check before accepting work.",
+      title: "Background-verified",
+      body: "Every Renner clears Checkr.",
     },
     {
       icon: <LockIcon />,
-      title: "Secure payments",
-      body: "Stripe holds your payment in escrow until you confirm the task is complete.",
+      title: "Stripe escrow",
+      body: "Funds held until you confirm.",
     },
     {
       icon: <CameraIcon />,
-      title: "Photo proof of completion",
-      body: "Renners submit a completion photo. Confirm or dispute in 48 hours.",
+      title: "Photo proof",
+      body: "Completion photo with every task.",
     },
     {
       icon: <BadgeIcon />,
       title: "Licensed for showings",
-      body: "Showing-required tasks are gated to Renners with a verified license.",
+      body: "Showing tasks gated to license holders.",
     },
   ];
   return (
@@ -289,17 +286,17 @@ function HowItWorks() {
     {
       number: "01",
       title: "Post a task",
-      body: "Pick a category, describe the work, set a flat-rate price. We collect payment up front and hold it in Stripe escrow.",
+      body: "Pick a category, set a price.",
     },
     {
       number: "02",
       title: "Book a verified Renner",
-      body: "Background-checked applicants apply. Review their ratings, licenses, and history, then book the right one in a tap.",
+      body: "Review applicants, book in a tap.",
     },
     {
       number: "03",
       title: "Confirm & pay",
-      body: "Your Renner submits a completion photo. Confirm the task is complete to release payment, or open a dispute — all without leaving Renner.",
+      body: "Photo proof. Payment releases.",
     },
   ];
   return (
@@ -323,12 +320,13 @@ function HowItWorks() {
             maxWidth: "720px",
           }}
         >
-          Three steps from <span className="headline-em">posted</span> to{" "}
-          <span className="headline-em">paid</span>.
+          Posted to <span className="headline-em">paid</span>, in three steps.
         </h2>
         <div
           className="grid gap-8"
-          style={{ gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))" }}
+          style={{
+            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+          }}
         >
           {steps.map((step) => (
             <div
@@ -364,7 +362,7 @@ function HowItWorks() {
                   style={{
                     fontSize: "26px",
                     color: "#0d0f12",
-                    marginBottom: "10px",
+                    marginBottom: "8px",
                   }}
                 >
                   {step.title}
@@ -375,7 +373,7 @@ function HowItWorks() {
                       "var(--font-inter), ui-sans-serif, system-ui",
                     fontSize: "15px",
                     color: "#4d5b6a",
-                    lineHeight: 1.65,
+                    lineHeight: 1.55,
                   }}
                 >
                   {step.body}
@@ -389,25 +387,20 @@ function HowItWorks() {
   );
 }
 
+const CATEGORY_BLURBS: Record<string, string> = {
+  "Sign work": "Place, swap, or pull yard signs.",
+  Lockbox: "Install, swap, or retrieve lockboxes.",
+  Delivery: "Hand-deliver contracts, keys, checks.",
+  "Property prep": "Light staging, cleaning, photo-ready setup.",
+  Photography: "Property photos and walkthrough video.",
+  "Inspection access": "Meet the inspector. Lock up after.",
+  "Guest access": "Let in repair crews and approved guests.",
+  Showing: "Licensed Renners host showings.",
+  "Open house": "Licensed Renners host open houses.",
+  Other: "Anything else real estate needs.",
+};
+
 function Categories() {
-  const categories = [
-    {
-      title: "Sign work",
-      body: "Place, swap, or pull yard signs and riders.",
-    },
-    {
-      title: "Document courier",
-      body: "Hand-deliver contracts, keys, or earnest checks.",
-    },
-    {
-      title: "Property prep",
-      body: "Light staging, cleaning, lockbox swaps, photo-ready setup.",
-    },
-    {
-      title: "Showing",
-      body: "Licensed Renners host showings and open houses on your behalf.",
-    },
-  ];
   return (
     <section
       style={{
@@ -435,38 +428,44 @@ function Categories() {
         </h2>
         <div
           className="grid gap-4"
-          style={{ gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))" }}
+          style={{
+            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+          }}
         >
-          {categories.map((cat) => (
-            <div
-              key={cat.title}
+          {TASK_CATEGORIES.map((cat) => (
+            <Link
+              key={cat}
+              href={`/post?category=${encodeURIComponent(cat)}`}
               className="card"
               style={{
-                padding: "28px",
+                padding: "24px",
                 backgroundColor: "#fbfbfc",
+                textDecoration: "none",
+                color: "inherit",
+                display: "block",
               }}
             >
               <h3
                 className="font-display"
                 style={{
-                  fontSize: "22px",
+                  fontSize: "20px",
                   color: "#0d0f12",
-                  marginBottom: "8px",
+                  marginBottom: "6px",
                 }}
               >
-                {cat.title}
+                {cat}
               </h3>
               <p
                 style={{
                   fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-                  fontSize: "14px",
+                  fontSize: "13px",
                   color: "#647589",
-                  lineHeight: 1.6,
+                  lineHeight: 1.55,
                 }}
               >
-                {cat.body}
+                {CATEGORY_BLURBS[cat] ?? ""}
               </p>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
@@ -486,7 +485,9 @@ function DarkSplit() {
       <div className="mx-auto" style={{ maxWidth: "1100px" }}>
         <div
           className="grid gap-12"
-          style={{ gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))" }}
+          style={{
+            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+          }}
         >
           <div>
             <div
@@ -512,7 +513,9 @@ function DarkSplit() {
               }}
             >
               Complete tasks.{" "}
-              <span style={{ color: "#a7b2be", fontStyle: "italic", fontWeight: 300 }}>
+              <span
+                style={{ color: "#a7b2be", fontStyle: "italic", fontWeight: 300 }}
+              >
                 Get paid.
               </span>
             </h3>
@@ -521,15 +524,12 @@ function DarkSplit() {
                 fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
                 fontSize: "15px",
                 color: "#cad1d8",
-                lineHeight: 1.7,
+                lineHeight: 1.6,
                 marginBottom: "28px",
-                maxWidth: "440px",
+                maxWidth: "420px",
               }}
             >
-              Set your own schedule. Browse open tasks, apply with a tap, and
-              get paid through Stripe within 1–2 business days of confirmation. We
-              handle background checks, license verification, and dispute
-              support.
+              Set your hours. Stripe payouts in 1–2 days.
             </p>
             <Link
               href="/signup"
@@ -574,7 +574,9 @@ function DarkSplit() {
               }}
             >
               Post tasks.{" "}
-              <span style={{ color: "#a7b2be", fontStyle: "italic", fontWeight: 300 }}>
+              <span
+                style={{ color: "#a7b2be", fontStyle: "italic", fontWeight: 300 }}
+              >
                 Confirm with proof.
               </span>
             </h3>
@@ -583,17 +585,15 @@ function DarkSplit() {
                 fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
                 fontSize: "15px",
                 color: "#cad1d8",
-                lineHeight: 1.7,
+                lineHeight: 1.6,
                 marginBottom: "28px",
-                maxWidth: "440px",
+                maxWidth: "420px",
               }}
             >
-              Stop chasing the favor economy. Post a task, book a verified
-              Renner, and confirm the work with photo proof — funds release
-              instantly. License-required tasks only reach licensed Renners.
+              Verified Renners. License-gated showings.
             </p>
             <Link
-              href="/signup"
+              href="/post"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -608,7 +608,7 @@ function DarkSplit() {
                 textDecoration: "none",
               }}
             >
-              Post your first task →
+              Post a task →
             </Link>
           </div>
         </div>
@@ -620,23 +620,19 @@ function DarkSplit() {
 const FAQS: Array<{ q: string; a: string }> = [
   {
     q: "How do payments work?",
-    a: "When a Client books a Renner, the Client's card is charged and the funds are held in Stripe escrow. After the Renner submits proof of completion, the Client has 48 hours to confirm the task is complete. Confirmed funds release immediately to the Renner; if no action is taken, payment auto-releases after the window.",
+    a: "Stripe holds your payment in escrow. Funds release when you confirm the task is complete, or auto-release after 48 hours.",
   },
   {
-    q: "How does the background check work?",
-    a: "Every Renner runs a Checkr background check before accepting tasks. Most checks finish in 24–72 hours. Once cleared, a small Background Verified badge appears next to your name on every task you apply to.",
+    q: "How are Renners verified?",
+    a: "Every Renner clears a Checkr background check. Showing-required tasks add a license check.",
   },
   {
-    q: "What if I feel unsafe on a task?",
-    a: "Confirm property addresses, lockbox details, and showing windows in-app before you go. Renners working on-property have priority access to our trust & safety team and can flag any task as a problem with one tap.",
-  },
-  {
-    q: "What happens during a dispute?",
-    a: "Either party can open a dispute during the 48-hour review window. Funds stay in escrow while a Renner support specialist reviews photos, notes, and the message thread, then issues an outcome — release, refund, or partial split.",
+    q: "What if a task goes wrong?",
+    a: "Open a dispute in the 48-hour window. Funds stay in escrow while support reviews.",
   },
   {
     q: "Am I a Renner employee?",
-    a: "No. Renner is a marketplace, not an employer. Renners are independent contractors who choose which tasks to accept. We don't direct how the work is done — just verify Renners, hold payment, and resolve disputes.",
+    a: "No. Renner is a marketplace. Renners are independent contractors.",
   },
 ];
 
@@ -661,7 +657,7 @@ function FAQ() {
             marginBottom: "32px",
           }}
         >
-          Common <span className="headline-em">questions</span>
+          Common <span className="headline-em">questions</span>.
         </h2>
         <div className="card" style={{ padding: "8px 0" }}>
           {FAQS.map((item, idx) => (
@@ -715,8 +711,8 @@ function FAQ() {
                     "var(--font-inter), ui-sans-serif, system-ui",
                   fontSize: "15px",
                   color: "#4d5b6a",
-                  lineHeight: 1.7,
-                  marginTop: "14px",
+                  lineHeight: 1.6,
+                  marginTop: "12px",
                 }}
               >
                 {item.a}
@@ -733,7 +729,7 @@ function FAQ() {
             textAlign: "center",
           }}
         >
-          See the full list on the{" "}
+          More on the{" "}
           <Link
             href="/how-it-works"
             style={{ color: "#0d0f12", textDecoration: "underline" }}
@@ -764,7 +760,7 @@ function CTA() {
             fontSize: "clamp(48px, 6vw, 72px)",
             lineHeight: 1.05,
             color: "#0d0f12",
-            marginBottom: "20px",
+            marginBottom: "16px",
           }}
         >
           Ready when you are.
@@ -773,22 +769,16 @@ function CTA() {
           style={{
             fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
             fontSize: "17px",
-            color: "#4d5b6a",
-            lineHeight: 1.6,
-            marginBottom: "36px",
-            maxWidth: "560px",
-            marginLeft: "auto",
-            marginRight: "auto",
+            color: "#647589",
+            lineHeight: 1.5,
+            marginBottom: "32px",
           }}
         >
-          Sign up free. Post your first task or apply to one near you in
-          minutes.
+          Post a task or apply to one.
         </p>
-        <div
-          className="flex justify-center gap-3 flex-wrap"
-        >
+        <div className="flex justify-center gap-3 flex-wrap">
           <Link
-            href="/signup"
+            href="/post"
             className="btn-dark"
             style={{
               width: "auto",
@@ -796,10 +786,10 @@ function CTA() {
               textDecoration: "none",
             }}
           >
-            Get started
+            Post a task
           </Link>
           <Link
-            href="/how-it-works"
+            href="/signup"
             className="btn-light"
             style={{
               width: "auto",
@@ -807,7 +797,7 @@ function CTA() {
               textDecoration: "none",
             }}
           >
-            See how it works
+            Become a Renner
           </Link>
         </div>
       </div>
@@ -820,7 +810,6 @@ function Footer() {
     {
       title: "Product",
       links: [
-        { href: "/browse", label: "Browse tasks" },
         { href: "/post", label: "Post a task" },
         { href: "/how-it-works", label: "How it works" },
       ],
@@ -836,8 +825,8 @@ function Footer() {
     {
       title: "Legal",
       links: [
-        { href: "/terms", label: "Terms of Service" },
-        { href: "/privacy", label: "Privacy Policy" },
+        { href: "/terms", label: "Terms" },
+        { href: "/privacy", label: "Privacy" },
         { href: "/acceptable-use", label: "Acceptable Use" },
       ],
     },
@@ -854,9 +843,7 @@ function Footer() {
       <div className="mx-auto" style={{ maxWidth: "1100px" }}>
         <div
           className="grid gap-10"
-          style={{
-            gridTemplateColumns: "1.4fr repeat(3, 1fr)",
-          }}
+          style={{ gridTemplateColumns: "1.4fr repeat(3, 1fr)" }}
         >
           <div>
             <Link
@@ -875,12 +862,12 @@ function Footer() {
                 fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
                 fontSize: "13px",
                 color: "#a7b2be",
-                lineHeight: 1.6,
+                lineHeight: 1.55,
                 marginTop: "16px",
-                maxWidth: "320px",
+                maxWidth: "300px",
               }}
             >
-              The trust-forward task marketplace built for real estate.
+              Real estate errands. Nearby Renners.
             </p>
           </div>
           {columns.map((col) => (
@@ -934,8 +921,8 @@ function Footer() {
             color: "#7d8da0",
           }}
         >
-          <span>© {new Date().getFullYear()} Renner. All rights reserved.</span>
-          <span>Built for real estate. Made for trust.</span>
+          <span>© {new Date().getFullYear()} Renner.</span>
+          <span>Built for real estate.</span>
         </div>
       </div>
     </footer>

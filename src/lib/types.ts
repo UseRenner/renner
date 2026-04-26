@@ -20,6 +20,7 @@ export type TaskCategory =
   | "Property prep"
   | "Photography"
   | "Inspection access"
+  | "Guest access"
   | "Showing"
   | "Open house"
   | "Other";
@@ -31,6 +32,7 @@ export const TASK_CATEGORIES: TaskCategory[] = [
   "Property prep",
   "Photography",
   "Inspection access",
+  "Guest access",
   "Showing",
   "Open house",
   "Other",
