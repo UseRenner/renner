@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { ApplyButton } from "@/components/ApplyButton";
 import { CategoryBadge, LicenseBadge } from "@/components/CategoryBadge";
 import { ClientCancelButton } from "@/components/ClientCancelButton";
+import { DamageResponseButton } from "@/components/DamageResponseButton";
 import { RennerCancelButton } from "@/components/RennerCancelButton";
 import { ReportTaskButton } from "@/components/ReportTaskButton";
 import { StartTaskButton } from "@/components/StartTaskButton";
@@ -69,6 +70,31 @@ export default async function TaskDetailPage({ params }: PageProps) {
       .eq("applicant_id", user.id)
       .maybeSingle();
     alreadyApplied = !!existing;
+  }
+
+  type LatestDispute = {
+    id: string;
+    raised_by: string | null;
+    against: string | null;
+    reason: string | null;
+    damage_amount: number | null;
+    damage_counter_amount: number | null;
+    damage_response: "accepted" | "countered" | "disputed" | null;
+    damage_photos: string[] | null;
+    admin_notes: string | null;
+  };
+  let latestDispute: LatestDispute | null = null;
+  if (t.status === "Disputed") {
+    const { data: disputeData } = await supabase
+      .from("disputes")
+      .select(
+        "id, raised_by, against, reason, damage_amount, damage_counter_amount, damage_response, damage_photos, admin_notes",
+      )
+      .eq("task_id", t.id)
+      .order("created_date", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+    latestDispute = (disputeData as LatestDispute | null) ?? null;
   }
 
   const posterName =
@@ -344,6 +370,7 @@ export default async function TaskDetailPage({ params }: PageProps) {
                 canApply={canApply}
                 alreadyApplied={alreadyApplied}
                 licenseBlocked={licenseBlocked}
+                latestDispute={latestDispute}
               />
             </div>
           </aside>
@@ -352,6 +379,18 @@ export default async function TaskDetailPage({ params }: PageProps) {
     </main>
   );
 }
+
+type LatestDispute = {
+  id: string;
+  raised_by: string | null;
+  against: string | null;
+  reason: string | null;
+  damage_amount: number | null;
+  damage_counter_amount: number | null;
+  damage_response: "accepted" | "countered" | "disputed" | null;
+  damage_photos: string[] | null;
+  admin_notes: string | null;
+};
 
 function SidebarActions({
   task,
@@ -362,6 +401,7 @@ function SidebarActions({
   canApply,
   alreadyApplied,
   licenseBlocked,
+  latestDispute,
 }: {
   task: Task;
   user: { id: string } | null;
@@ -371,6 +411,7 @@ function SidebarActions({
   canApply: boolean;
   alreadyApplied: boolean;
   licenseBlocked: boolean;
+  latestDispute: LatestDispute | null;
 }) {
   if (!user) {
     return (
@@ -489,10 +530,11 @@ function SidebarActions({
 
   if (task.status === "Disputed") {
     return (
-      <SuccessNotice
-        title="Task disputed"
-        body="An admin is reviewing this task."
-        tone="red"
+      <DisputeBlock
+        latestDispute={latestDispute}
+        viewerId={user.id}
+        isBookedRunner={isBookedRunner}
+        isPoster={isPoster}
       />
     );
   }
@@ -651,6 +693,108 @@ function SummaryRow({ label, value }: { label: string; value: string }) {
       >
         {value}
       </span>
+    </div>
+  );
+}
+
+function DisputeBlock({
+  latestDispute,
+  viewerId,
+  isBookedRunner,
+  isPoster,
+}: {
+  latestDispute: LatestDispute | null;
+  viewerId: string;
+  isBookedRunner: boolean;
+  isPoster: boolean;
+}) {
+  const isDamageClaim =
+    !!latestDispute && latestDispute.damage_amount != null;
+  const renderResponseStatus = () => {
+    if (!latestDispute) return null;
+    if (latestDispute.damage_response === "accepted") {
+      return "Renner accepted the claim. Awaiting payout.";
+    }
+    if (latestDispute.damage_response === "countered") {
+      return `Renner proposed $${Number(
+        latestDispute.damage_counter_amount ?? 0,
+      ).toLocaleString("en-US")}. Awaiting client review.`;
+    }
+    if (latestDispute.damage_response === "disputed") {
+      return "Renner disputed the claim. Escalated to Renner support.";
+    }
+    return "Awaiting Renner response.";
+  };
+
+  return (
+    <div className="flex flex-col gap-3">
+      <div
+        style={{
+          backgroundColor: "rgba(192,57,43,0.08)",
+          color: "#c0392b",
+          borderRadius: "10px",
+          padding: "14px 16px",
+        }}
+      >
+        <div
+          style={{
+            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+            fontSize: "13px",
+            fontWeight: 500,
+            marginBottom: "4px",
+          }}
+        >
+          Task disputed
+        </div>
+        <div
+          style={{
+            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+            fontSize: "12px",
+            color: "#7d8da0",
+            lineHeight: 1.55,
+          }}
+        >
+          {isDamageClaim
+            ? `Damage claim filed for $${Number(
+                latestDispute?.damage_amount ?? 0,
+              ).toLocaleString("en-US")}. ${renderResponseStatus()}`
+            : "An admin is reviewing this task."}
+        </div>
+      </div>
+
+      {isDamageClaim &&
+        latestDispute?.damage_response === null &&
+        isBookedRunner &&
+        latestDispute?.against === viewerId && (
+          <DamageResponseButton
+            disputeId={latestDispute.id}
+            damageAmount={Number(latestDispute.damage_amount ?? 0)}
+          />
+        )}
+
+      {isDamageClaim &&
+        latestDispute?.damage_response === "countered" &&
+        isPoster && (
+          <p
+            style={{
+              fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+              fontSize: "12px",
+              color: "#647589",
+              lineHeight: 1.55,
+            }}
+          >
+            Renner&apos;s counter offer:{" "}
+            <strong style={{ color: "#0d0f12" }}>
+              $
+              {Number(
+                latestDispute.damage_counter_amount ?? 0,
+              ).toLocaleString("en-US")}
+            </strong>
+            {latestDispute.admin_notes
+              ? ` — "${latestDispute.admin_notes}"`
+              : ""}
+          </p>
+        )}
     </div>
   );
 }

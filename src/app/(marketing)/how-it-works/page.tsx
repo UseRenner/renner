@@ -41,6 +41,10 @@ const FAQS: Array<{ q: string; a: string }> = [
     q: "What if a task can't be completed?",
     a: "If you arrive but can't complete the task — the other party didn't show, the access code is wrong, the address is incorrect — report it with a photo and explanation. The task pay is split 50/50. Both parties share the cost equally.",
   },
+  {
+    q: "What if something is damaged or stolen during a task?",
+    a: "Document the damage with photos and file a report within 48 hours. The Renner has 48 hours to respond. We facilitate resolution using completion photos and messages as evidence.",
+  },
 ];
 
 export default function HowItWorksPage() {

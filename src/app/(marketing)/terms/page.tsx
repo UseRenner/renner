@@ -121,7 +121,40 @@ export default function TermsPage() {
         after the Renner has arrived, regardless of fault.
       </LegalP>
 
-      <LegalH2>9. Account suspension and termination</LegalH2>
+      <LegalH2>9. Damage and liability</LegalH2>
+      <LegalP>
+        Renner is a marketplace platform that connects Clients with
+        independent service providers. Renner is not liable for the actions,
+        omissions, or negligence of any Renner or Client.
+      </LegalP>
+      <LegalP>
+        Renners are independent contractors solely responsible for performing
+        tasks with reasonable care. Any damage to property or theft occurring
+        during task performance is the responsibility of the Renner who
+        performed the task.
+      </LegalP>
+      <LegalP>
+        If property damage or theft occurs during a task, the Client should
+        document the damage with photos and file a dispute through the
+        Renner platform within 48 hours of task completion or discovery of
+        the damage.
+      </LegalP>
+      <LegalP>
+        Renner will facilitate resolution between the parties. The claim
+        will first be sent to the Renner, who has 48 hours to accept,
+        propose a different amount, or dispute the claim. Unresolved claims
+        escalate to Renner for review.
+      </LegalP>
+      <LegalP>
+        Clients are encouraged to maintain appropriate property insurance.
+        Renners are encouraged to carry general liability insurance.
+      </LegalP>
+      <LegalP>
+        Renner reserves the right to suspend or remove any user involved in
+        verified property damage or theft.
+      </LegalP>
+
+      <LegalH2>10. Account suspension and termination</LegalH2>
       <LegalP>
         We may suspend or terminate any account that violates these Terms,
         including for fraud, harassment, repeated no-shows, off-platform
@@ -129,7 +162,7 @@ export default function TermsPage() {
         delete your account at any time from Settings.
       </LegalP>
 
-      <LegalH2>10. Limitation of liability</LegalH2>
+      <LegalH2>11. Limitation of liability</LegalH2>
       <LegalP>
         To the fullest extent allowed by law, Renner is not liable for
         indirect, incidental, or consequential damages arising from your use
@@ -137,7 +170,7 @@ export default function TermsPage() {
         the platform fees you have paid us in the prior twelve months.
       </LegalP>
 
-      <LegalH2>11. Changes</LegalH2>
+      <LegalH2>12. Changes</LegalH2>
       <LegalP>
         We may update these Terms from time to time. Material changes will be
         announced in-product or via email at least seven days before they
