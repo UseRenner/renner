@@ -16,10 +16,10 @@ export type PaymentStatus =
 export type TaskCategory =
   | "Sign work"
   | "Lockbox"
-  | "Delivery"
-  | "Property prep"
-  | "Photography"
-  | "Inspection access"
+  | "Courier"
+  | "Prep"
+  | "Photos"
+  | "Property access"
   | "Guest access"
   | "Showing"
   | "Open house"
@@ -28,10 +28,10 @@ export type TaskCategory =
 export const TASK_CATEGORIES: TaskCategory[] = [
   "Sign work",
   "Lockbox",
-  "Delivery",
-  "Property prep",
-  "Photography",
-  "Inspection access",
+  "Courier",
+  "Prep",
+  "Photos",
+  "Property access",
   "Guest access",
   "Showing",
   "Open house",
@@ -69,7 +69,7 @@ export interface Task {
   marked_finished_date: string | null;
   completed_date: string | null;
   payment_status: PaymentStatus | null;
-  completion_photo: string | null;
+  completion_photos: string[] | null;
   completion_notes: string | null;
   dispute_reason: string | null;
   auto_release_date: string | null;

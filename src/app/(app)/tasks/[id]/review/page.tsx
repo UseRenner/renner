@@ -23,7 +23,7 @@ export default async function TaskReviewPage({
   const { data: task } = await supabase
     .from("tasks")
     .select(
-      "id, title, description, category, pay, pay_type, zip_code, street_address, unit, task_city, task_state, task_zip, date, time_estimate, status, requires_license, posted_by, booked_runner, created_date, booked_date, marked_finished_date, completed_date, payment_status, completion_photo, completion_notes, dispute_reason, auto_release_date",
+      "id, title, description, category, pay, pay_type, zip_code, street_address, unit, task_city, task_state, task_zip, date, time_estimate, status, requires_license, posted_by, booked_runner, created_date, booked_date, marked_finished_date, completed_date, payment_status, completion_photos, completion_notes, dispute_reason, auto_release_date",
     )
     .eq("id", params.id)
     .maybeSingle();
@@ -127,9 +127,9 @@ export default async function TaskReviewPage({
                 lineHeight: 1.6,
               }}
             >
-              Upload a quick photo of the finished work and add any notes for
-              the client. The client has 48 hours to confirm before payment
-              auto-releases.
+              Upload up to 10 photos of the finished work and add any notes
+              for the client. The client has 48 hours to confirm before
+              payment auto-releases.
             </p>
             <CompletionForm taskId={t.id} userId={user.id} />
           </div>
@@ -189,34 +189,7 @@ function ClientApprovalView({
         Review completed work
       </h2>
 
-      {task.completion_photo ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={task.completion_photo}
-          alt="Completed work"
-          style={{
-            width: "100%",
-            borderRadius: "10px",
-            border: "1px solid #dce0e5",
-            marginBottom: "20px",
-            display: "block",
-          }}
-        />
-      ) : (
-        <div
-          style={{
-            border: "1px solid #dce0e5",
-            borderRadius: "10px",
-            padding: "32px",
-            textAlign: "center",
-            color: "#7d8da0",
-            fontSize: "13px",
-            marginBottom: "20px",
-          }}
-        >
-          No photo provided.
-        </div>
-      )}
+      <CompletionPhotoGrid photos={task.completion_photos} />
 
       {task.completion_notes && (
         <div style={{ marginBottom: "24px" }}>
@@ -400,6 +373,92 @@ function StatusNotice({
       >
         {body}
       </p>
+    </div>
+  );
+}
+
+function CompletionPhotoGrid({ photos }: { photos: string[] | null }) {
+  if (!photos || photos.length === 0) {
+    return (
+      <div
+        style={{
+          border: "1px solid #dce0e5",
+          borderRadius: "10px",
+          padding: "32px",
+          textAlign: "center",
+          color: "#7d8da0",
+          fontSize: "13px",
+          marginBottom: "20px",
+        }}
+      >
+        No photos provided.
+      </div>
+    );
+  }
+
+  if (photos.length === 1) {
+    return (
+      <a
+        href={photos[0]}
+        target="_blank"
+        rel="noreferrer"
+        style={{
+          display: "block",
+          borderRadius: "10px",
+          border: "1px solid #dce0e5",
+          overflow: "hidden",
+          marginBottom: "20px",
+        }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={photos[0]}
+          alt="Completed work"
+          style={{ width: "100%", display: "block" }}
+        />
+      </a>
+    );
+  }
+
+  return (
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns:
+          photos.length === 2
+            ? "repeat(2, 1fr)"
+            : "repeat(auto-fit, minmax(160px, 1fr))",
+        gap: "8px",
+        marginBottom: "20px",
+      }}
+    >
+      {photos.map((src, i) => (
+        <a
+          key={src}
+          href={src}
+          target="_blank"
+          rel="noreferrer"
+          style={{
+            display: "block",
+            borderRadius: "10px",
+            border: "1px solid #dce0e5",
+            overflow: "hidden",
+            aspectRatio: "1 / 1",
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={src}
+            alt={`Completion photo ${i + 1}`}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              display: "block",
+            }}
+          />
+        </a>
+      ))}
     </div>
   );
 }

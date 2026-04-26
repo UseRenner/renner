@@ -166,7 +166,7 @@ function Hero() {
         </form>
 
         <div className="flex flex-wrap gap-2" style={{ maxWidth: "640px" }}>
-          {["Sign work", "Lockbox", "Delivery", "Property prep", "Showing"].map(
+          {["Sign work", "Lockbox", "Courier", "Prep", "Showing"].map(
             (chip) => (
               <Link
                 key={chip}
@@ -390,10 +390,10 @@ function HowItWorks() {
 const CATEGORY_BLURBS: Record<string, string> = {
   "Sign work": "Place, swap, or pull yard signs.",
   Lockbox: "Install, swap, or retrieve lockboxes.",
-  Delivery: "Hand-deliver contracts, keys, checks.",
-  "Property prep": "Light staging, cleaning, photo-ready setup.",
-  Photography: "Property photos and walkthrough video.",
-  "Inspection access": "Meet the inspector. Lock up after.",
+  Courier: "Hand-deliver contracts, keys, checks.",
+  Prep: "Light staging, cleaning, photo-ready setup.",
+  Photos: "Property photos and walkthrough video.",
+  "Property access": "Meet inspectors and contractors.",
   "Guest access": "Let in repair crews and approved guests.",
   Showing: "Licensed Renners host showings.",
   "Open house": "Licensed Renners host open houses.",
