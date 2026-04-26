@@ -220,7 +220,7 @@ function SampleTaskCard() {
         padding: "28px",
         boxShadow: "0 12px 32px rgba(13, 15, 18, 0.08)",
         maxWidth: "380px",
-        justifySelf: "center",
+        justifySelf: "end",
         width: "100%",
       }}
     >
@@ -453,7 +453,7 @@ function HowItWorks() {
                   left: 0,
                   fontSize: "120px",
                   fontWeight: 400,
-                  color: "rgba(13, 15, 18, 0.05)",
+                  color: "#eaedf0",
                   lineHeight: 1,
                   letterSpacing: "-0.04em",
                   pointerEvents: "none",
@@ -499,7 +499,7 @@ const CATEGORY_BLURBS: Record<string, string> = {
   Prep: "Light staging, cleaning, photo-ready setup.",
   Photos: "Property photos and walkthrough video.",
   "Property access": "Meet inspectors and contractors.",
-  "Guest access": "Let in repair crews and approved guests.",
+  "Guest access": "Check-ins, key handoffs, and guest arrivals.",
   Showing: "Licensed Renners host showings.",
   "Open house": "Licensed Renners host open houses.",
   Other: "Anything else real estate needs.",
@@ -515,9 +515,6 @@ function Categories() {
       }}
     >
       <div className="mx-auto" style={{ maxWidth: "1100px" }}>
-        <div className="micro-label" style={{ marginBottom: "12px" }}>
-          What Renners do
-        </div>
         <h2
           className="font-display-tight"
           style={{
@@ -528,8 +525,7 @@ function Categories() {
             maxWidth: "720px",
           }}
         >
-          The work that keeps a deal{" "}
-          <span className="headline-em">moving</span>.
+          What Renners handle.
         </h2>
         <div
           className="grid gap-4"
@@ -617,7 +613,7 @@ function DarkSplit() {
                 marginBottom: "16px",
               }}
             >
-              Post an errand
+              Post tasks
             </h3>
             <p
               style={{
@@ -629,7 +625,7 @@ function DarkSplit() {
                 maxWidth: "420px",
               }}
             >
-              Vetted Renners. Errands handled.
+              Vetted Renners. Every task handled.
             </p>
             <Link
               href="/post"
@@ -673,7 +669,7 @@ function DarkSplit() {
                 marginBottom: "16px",
               }}
             >
-              Run it
+              Complete them
             </h3>
             <p
               style={{
@@ -685,7 +681,7 @@ function DarkSplit() {
                 maxWidth: "420px",
               }}
             >
-              Set your schedule. Get paid when the task is confirmed.
+              Real work. Real estate.
             </p>
             <Link
               href="/signup"
