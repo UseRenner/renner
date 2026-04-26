@@ -18,6 +18,8 @@ type Applicant = {
     last_name: string | null;
     display_name: string | null;
     licensed: boolean;
+    license_number: string | null;
+    license_state: string | null;
     background_verified: boolean;
     completed_tasks: number;
     rating: number | null;
@@ -56,6 +58,7 @@ export default async function ApplicantsPage({
       `id, status, message, applied_date,
        applicant:users (
          id, first_name, last_name, display_name, licensed,
+         license_number, license_state,
          background_verified, completed_tasks, rating, city, state
        )`,
     )
@@ -239,6 +242,20 @@ function ApplicantRow({
               rating ? `${Number(rating).toFixed(1)}★` : "No ratings yet"
             }`}
           </div>
+          {a?.licensed && (a.license_number || a.license_state) && (
+            <div
+              style={{
+                fontFamily:
+                  "var(--font-inter), ui-sans-serif, system-ui",
+                fontSize: "12px",
+                color: "#647589",
+                marginTop: "2px",
+              }}
+            >
+              License #{a.license_number ?? "—"} ·{" "}
+              {a.license_state ?? "—"}
+            </div>
+          )}
         </div>
 
         <div className="flex items-center gap-2">

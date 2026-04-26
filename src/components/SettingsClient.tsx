@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { LicenseAttestationCard } from "@/components/LicenseAttestation";
 import { createClient } from "@/lib/supabase/client";
 import { TASK_CATEGORIES } from "@/lib/types";
 
@@ -261,6 +262,13 @@ function ProfileSection({
   const [categories, setCategories] = useState<string[]>(
     profile?.categories ?? [],
   );
+  const [licensed, setLicensed] = useState(!!profile?.licensed);
+  const [licenseNumber, setLicenseNumber] = useState(
+    profile?.license_number ?? "",
+  );
+  const [licenseState, setLicenseState] = useState(
+    profile?.license_state ?? "",
+  );
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -278,6 +286,10 @@ function ProfileSection({
     if (!profile) return;
     setError(null);
     setSuccess(null);
+    if (licensed && (!licenseNumber || !licenseState)) {
+      setError("Please provide your license number and state.");
+      return;
+    }
     setSubmitting(true);
     const { error: updateError } = await supabase
       .from("users")
@@ -289,6 +301,9 @@ function ProfileSection({
         zip,
         bio,
         categories,
+        licensed,
+        license_number: licensed ? licenseNumber : null,
+        license_state: licensed ? licenseState : null,
       })
       .eq("id", profile.id);
     setSubmitting(false);
@@ -401,6 +416,18 @@ function ProfileSection({
             );
           })}
         </div>
+      </div>
+
+      <div>
+        <label className="input-label">Real estate license</label>
+        <LicenseAttestationCard
+          licensed={licensed}
+          setLicensed={setLicensed}
+          licenseNumber={licenseNumber}
+          setLicenseNumber={setLicenseNumber}
+          licenseState={licenseState}
+          setLicenseState={setLicenseState}
+        />
       </div>
 
       {error && <p style={{ color: "#c0392b", fontSize: "13px" }}>{error}</p>}

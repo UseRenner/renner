@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ApplyButton } from "@/components/ApplyButton";
 import { CategoryBadge, LicenseBadge } from "@/components/CategoryBadge";
+import { ReportTaskButton } from "@/components/ReportTaskButton";
 import { StatusBadge } from "@/components/StatusBadge";
 import { formatDate, formatPay } from "@/lib/format";
 import { createClient } from "@/lib/supabase/server";
@@ -262,6 +263,16 @@ export default async function TaskDetailPage({ params }: PageProps) {
                 </div>
               </div>
             </div>
+
+            {isRenner && user && (
+              <div style={{ marginTop: "20px" }}>
+                <ReportTaskButton
+                  taskId={t.id}
+                  raisedBy={user.id}
+                  against={t.posted_by}
+                />
+              </div>
+            )}
           </div>
 
           <aside>
@@ -447,6 +458,7 @@ function SidebarActions({
         taskId={task.id}
         userId={user.id}
         alreadyApplied={alreadyApplied}
+        requiresLicense={task.requires_license}
       />
     );
   }

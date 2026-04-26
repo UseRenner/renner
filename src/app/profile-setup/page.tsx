@@ -2,14 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { LicenseAttestationCard } from "@/components/LicenseAttestation";
 import { createClient } from "@/lib/supabase/client";
-
-const TASK_CATEGORIES = [
-  "Sign work",
-  "Document courier",
-  "Property prep",
-  "Showing",
-];
+import { TASK_CATEGORIES } from "@/lib/types";
 
 export default function ProfileSetupPage() {
   const router = useRouter();
@@ -25,6 +20,9 @@ export default function ProfileSetupPage() {
   const [zip, setZip] = useState("");
   const [bio, setBio] = useState("");
   const [categories, setCategories] = useState<string[]>([]);
+  const [licensed, setLicensed] = useState(false);
+  const [licenseNumber, setLicenseNumber] = useState("");
+  const [licenseState, setLicenseState] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
@@ -47,7 +45,7 @@ export default function ProfileSetupPage() {
       const { data: profile } = await supabase
         .from("users")
         .select(
-          "display_name, phone, city, state, zip, bio, categories, first_name, last_name",
+          "display_name, phone, city, state, zip, bio, categories, first_name, last_name, licensed, license_number, license_state",
         )
         .eq("id", user.id)
         .maybeSingle();
@@ -65,6 +63,9 @@ export default function ProfileSetupPage() {
         setZip(profile.zip ?? "");
         setBio(profile.bio ?? "");
         setCategories(profile.categories ?? []);
+        setLicensed(!!profile.licensed);
+        setLicenseNumber(profile.license_number ?? "");
+        setLicenseState(profile.license_state ?? "");
       }
 
       setLoadingUser(false);
@@ -89,6 +90,12 @@ export default function ProfileSetupPage() {
     setError(null);
     setSubmitting(true);
 
+    if (licensed && (!licenseNumber || !licenseState)) {
+      setError("Please provide your license number and state.");
+      setSubmitting(false);
+      return;
+    }
+
     const { error: updateError } = await supabase
       .from("users")
       .update({
@@ -99,6 +106,9 @@ export default function ProfileSetupPage() {
         zip,
         bio,
         categories,
+        licensed,
+        license_number: licensed ? licenseNumber : null,
+        license_state: licensed ? licenseState : null,
       })
       .eq("id", userId);
 
@@ -249,6 +259,18 @@ export default function ProfileSetupPage() {
                     );
                   })}
                 </div>
+              </div>
+
+              <div>
+                <label className="input-label">Real estate license</label>
+                <LicenseAttestationCard
+                  licensed={licensed}
+                  setLicensed={setLicensed}
+                  licenseNumber={licenseNumber}
+                  setLicenseNumber={setLicenseNumber}
+                  licenseState={licenseState}
+                  setLicenseState={setLicenseState}
+                />
               </div>
 
               {error && (

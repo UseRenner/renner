@@ -15,18 +15,33 @@ export type PaymentStatus =
 
 export type TaskCategory =
   | "Sign work"
-  | "Document courier"
+  | "Lockbox"
+  | "Delivery"
   | "Property prep"
+  | "Photography"
+  | "Inspection access"
   | "Showing"
+  | "Open house"
   | "Other";
 
 export const TASK_CATEGORIES: TaskCategory[] = [
   "Sign work",
-  "Document courier",
+  "Lockbox",
+  "Delivery",
   "Property prep",
+  "Photography",
+  "Inspection access",
   "Showing",
+  "Open house",
   "Other",
 ];
+
+export const LICENSE_REQUIRED_CATEGORIES: TaskCategory[] = [
+  "Showing",
+  "Open house",
+];
+
+export const LICENSE_OPTIONAL_CATEGORIES: TaskCategory[] = ["Other"];
 
 export interface Task {
   id: string;
