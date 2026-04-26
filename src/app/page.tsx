@@ -88,11 +88,11 @@ function Hero() {
   return (
     <section
       style={{
-        padding: "112px 32px 96px",
+        padding: "120px 32px",
         backgroundColor: "#f6f7f9",
       }}
     >
-      <div className="mx-auto" style={{ maxWidth: "1100px" }}>
+      <div className="mx-auto" style={{ maxWidth: "1200px" }}>
         <div
           className="grid gap-12 items-center"
           style={{
@@ -325,13 +325,13 @@ function TrustSignals() {
   return (
     <section
       style={{
-        padding: "56px 32px",
+        padding: "100px 32px",
         backgroundColor: "#fbfbfc",
         borderTop: "1px solid #eaedf0",
         borderBottom: "1px solid #eaedf0",
       }}
     >
-      <div className="mx-auto" style={{ maxWidth: "1100px" }}>
+      <div className="mx-auto" style={{ maxWidth: "1200px" }}>
         <div
           className="grid gap-10"
           style={{
@@ -410,11 +410,11 @@ function HowItWorks() {
   return (
     <section
       style={{
-        padding: "96px 32px",
+        padding: "100px 32px",
         backgroundColor: "#f6f7f9",
       }}
     >
-      <div className="mx-auto" style={{ maxWidth: "1100px" }}>
+      <div className="mx-auto" style={{ maxWidth: "1200px" }}>
         <div className="micro-label" style={{ marginBottom: "12px" }}>
           How it works
         </div>
@@ -509,12 +509,12 @@ function Categories() {
   return (
     <section
       style={{
-        padding: "96px 32px",
+        padding: "120px 32px",
         backgroundColor: "#fbfbfc",
         borderTop: "1px solid #eaedf0",
       }}
     >
-      <div className="mx-auto" style={{ maxWidth: "1100px" }}>
+      <div className="mx-auto" style={{ maxWidth: "1200px" }}>
         <h2
           className="font-display-tight"
           style={{
@@ -578,12 +578,12 @@ function DarkSplit() {
   return (
     <section
       style={{
-        padding: "96px 32px",
+        padding: "100px 32px",
         backgroundColor: "#0d0f12",
         color: "#fbfbfc",
       }}
     >
-      <div className="mx-auto" style={{ maxWidth: "1100px" }}>
+      <div className="mx-auto" style={{ maxWidth: "1200px" }}>
         <div
           className="grid gap-12"
           style={{
@@ -731,11 +731,12 @@ function FAQ() {
   return (
     <section
       style={{
-        padding: "96px 32px",
+        padding: "120px 32px",
         backgroundColor: "#f6f7f9",
       }}
     >
-      <div className="mx-auto" style={{ maxWidth: "780px" }}>
+      <div className="mx-auto" style={{ maxWidth: "1200px" }}>
+       <div className="mx-auto" style={{ maxWidth: "780px" }}>
         <div className="micro-label" style={{ marginBottom: "12px" }}>
           FAQ
         </div>
@@ -829,6 +830,7 @@ function FAQ() {
           </Link>{" "}
           page.
         </p>
+       </div>
       </div>
     </section>
   );
@@ -838,13 +840,14 @@ function CTA() {
   return (
     <section
       style={{
-        padding: "112px 32px",
+        padding: "100px 32px",
         backgroundColor: "#fbfbfc",
         borderTop: "1px solid #eaedf0",
         textAlign: "center",
       }}
     >
-      <div className="mx-auto" style={{ maxWidth: "780px" }}>
+      <div className="mx-auto" style={{ maxWidth: "1200px" }}>
+       <div className="mx-auto" style={{ maxWidth: "780px" }}>
         <h2
           className="font-display-tight"
           style={{
@@ -880,6 +883,7 @@ function CTA() {
             Become a Renner
           </Link>
         </div>
+       </div>
       </div>
     </section>
   );
@@ -920,7 +924,7 @@ function Footer() {
         padding: "72px 32px 32px",
       }}
     >
-      <div className="mx-auto" style={{ maxWidth: "1100px" }}>
+      <div className="mx-auto" style={{ maxWidth: "1200px" }}>
         <div
           className="grid gap-10"
           style={{ gridTemplateColumns: "1.4fr repeat(3, 1fr)" }}
