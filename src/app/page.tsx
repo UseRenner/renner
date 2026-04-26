@@ -76,7 +76,7 @@ function PublicNav() {
               marginLeft: "4px",
             }}
           >
-            Get started
+            Become a Renner
           </Link>
         </div>
       </div>
@@ -93,103 +93,209 @@ function Hero() {
       }}
     >
       <div className="mx-auto" style={{ maxWidth: "1100px" }}>
-        <h1
-          className="font-display-tight"
+        <div
+          className="grid gap-12 items-center"
           style={{
-            fontSize: "clamp(64px, 9vw, 108px)",
-            lineHeight: 0.95,
-            color: "#0d0f12",
-            letterSpacing: "-0.04em",
-            marginBottom: "24px",
-            maxWidth: "900px",
+            gridTemplateColumns:
+              "repeat(auto-fit, minmax(min(100%, 320px), 1fr))",
           }}
         >
-          Keep real estate{" "}
-          <span className="headline-em">running.</span>
-        </h1>
-        <p
-          style={{
-            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-            fontSize: "17px",
-            color: "#647589",
-            lineHeight: 1.5,
-            marginBottom: "36px",
-          }}
-        >
-          Real estate errands. Nearby Renners.
-        </p>
+          <div>
+            <h1
+              className="font-display-tight"
+              style={{
+                fontSize: "clamp(56px, 8vw, 96px)",
+                lineHeight: 0.95,
+                color: "#0d0f12",
+                letterSpacing: "-0.04em",
+                marginBottom: "24px",
+              }}
+            >
+              Keep real estate{" "}
+              <span className="headline-em">running.</span>
+            </h1>
+            <p
+              style={{
+                fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+                fontSize: "17px",
+                color: "#647589",
+                lineHeight: 1.5,
+                marginBottom: "36px",
+              }}
+            >
+              Real estate errands. Nearby Renners.
+            </p>
 
-        <form
-          action="/post"
-          method="get"
-          style={{
-            display: "flex",
-            alignItems: "stretch",
-            gap: "8px",
-            backgroundColor: "#fbfbfc",
-            border: "1px solid #cad1d8",
-            borderRadius: "12px",
-            padding: "8px",
-            maxWidth: "560px",
-            marginBottom: "20px",
-          }}
-        >
-          <input
-            name="title"
-            placeholder="What do you need done?"
-            style={{
-              flex: 1,
-              border: "none",
-              outline: "none",
-              padding: "10px 12px",
-              fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-              fontSize: "15px",
-              backgroundColor: "transparent",
-            }}
-          />
-          <button
-            type="submit"
-            aria-label="Post a task"
-            style={{
-              backgroundColor: "#0d0f12",
-              color: "#fbfbfc",
-              border: "none",
-              borderRadius: "8px",
-              width: "44px",
-              height: "44px",
-              fontSize: "16px",
-              cursor: "pointer",
-            }}
-          >
-            →
-          </button>
-        </form>
-
-        <div className="flex flex-wrap gap-2" style={{ maxWidth: "640px" }}>
-          {["Sign work", "Lockbox", "Courier", "Prep", "Showing"].map(
-            (chip) => (
-              <Link
-                key={chip}
-                href={`/post?category=${encodeURIComponent(chip)}`}
+            <form
+              action="/post"
+              method="get"
+              style={{
+                display: "flex",
+                alignItems: "stretch",
+                gap: "8px",
+                backgroundColor: "#fbfbfc",
+                border: "1px solid #cad1d8",
+                borderRadius: "12px",
+                padding: "8px",
+                maxWidth: "560px",
+                marginBottom: "20px",
+              }}
+            >
+              <input
+                name="title"
+                placeholder="What do you need done?"
                 style={{
-                  fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-                  fontSize: "13px",
-                  fontWeight: 500,
-                  color: "#0d0f12",
-                  padding: "8px 14px",
-                  borderRadius: "999px",
-                  border: "1px solid #cad1d8",
-                  backgroundColor: "#fbfbfc",
-                  textDecoration: "none",
+                  flex: 1,
+                  border: "none",
+                  outline: "none",
+                  padding: "10px 12px",
+                  fontFamily:
+                    "var(--font-inter), ui-sans-serif, system-ui",
+                  fontSize: "15px",
+                  backgroundColor: "transparent",
+                }}
+              />
+              <button
+                type="submit"
+                aria-label="Post a task"
+                style={{
+                  backgroundColor: "#0d0f12",
+                  color: "#fbfbfc",
+                  border: "none",
+                  borderRadius: "8px",
+                  width: "44px",
+                  height: "44px",
+                  fontSize: "16px",
+                  cursor: "pointer",
                 }}
               >
-                {chip}
-              </Link>
-            ),
-          )}
+                →
+              </button>
+            </form>
+
+            <div
+              className="flex flex-wrap gap-2"
+              style={{ maxWidth: "640px" }}
+            >
+              {["Sign work", "Lockbox", "Courier", "Prep", "Showing"].map(
+                (chip) => (
+                  <Link
+                    key={chip}
+                    href={`/post?category=${encodeURIComponent(chip)}`}
+                    style={{
+                      fontFamily:
+                        "var(--font-inter), ui-sans-serif, system-ui",
+                      fontSize: "13px",
+                      fontWeight: 500,
+                      color: "#0d0f12",
+                      padding: "8px 14px",
+                      borderRadius: "999px",
+                      border: "1px solid #cad1d8",
+                      backgroundColor: "#fbfbfc",
+                      textDecoration: "none",
+                    }}
+                  >
+                    {chip}
+                  </Link>
+                ),
+              )}
+            </div>
+          </div>
+
+          <SampleTaskCard />
         </div>
       </div>
     </section>
+  );
+}
+
+function SampleTaskCard() {
+  return (
+    <div
+      aria-hidden
+      style={{
+        backgroundColor: "#fbfbfc",
+        border: "1px solid #dce0e5",
+        borderRadius: "16px",
+        padding: "28px",
+        boxShadow: "0 12px 32px rgba(13, 15, 18, 0.08)",
+        maxWidth: "380px",
+        justifySelf: "center",
+        width: "100%",
+      }}
+    >
+      <div
+        className="flex items-center justify-between"
+        style={{ marginBottom: "18px" }}
+      >
+        <span
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            backgroundColor: "#eaedf0",
+            color: "#4d5b6a",
+            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+            fontSize: "10px",
+            fontWeight: 500,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            padding: "4px 8px",
+            borderRadius: "3px",
+          }}
+        >
+          Sign work
+        </span>
+        <span
+          className="font-display"
+          style={{
+            fontSize: "26px",
+            fontWeight: 500,
+            color: "#0d0f12",
+            lineHeight: 1,
+          }}
+        >
+          $45
+        </span>
+      </div>
+      <h3
+        style={{
+          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+          fontSize: "16px",
+          fontWeight: 500,
+          color: "#0d0f12",
+          lineHeight: 1.35,
+          marginBottom: "8px",
+        }}
+      >
+        Install rider sign at 4821 Olive St
+      </h3>
+      <p
+        style={{
+          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+          fontSize: "13px",
+          color: "#647589",
+          marginBottom: "20px",
+        }}
+      >
+        RiNo, Denver  ·  Today by 3:00 PM
+      </p>
+      <div
+        style={{
+          display: "block",
+          width: "100%",
+          textAlign: "center",
+          backgroundColor: "#0d0f12",
+          color: "#fbfbfc",
+          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+          fontSize: "14px",
+          fontWeight: 500,
+          padding: "11px 16px",
+          borderRadius: "6px",
+        }}
+      >
+        View task
+      </div>
+    </div>
   );
 }
 
@@ -197,13 +303,13 @@ function TrustSignals() {
   const items = [
     {
       icon: <ShieldIcon />,
-      title: "Background-verified",
-      body: "Every Renner clears Checkr.",
+      title: "Vetted Renners",
+      body: "Every Renner is background-checked.",
     },
     {
       icon: <LockIcon />,
-      title: "Stripe escrow",
-      body: "Funds held until you confirm.",
+      title: "Secure payments",
+      body: "Payment held until the task is complete.",
     },
     {
       icon: <CameraIcon />,
@@ -212,8 +318,8 @@ function TrustSignals() {
     },
     {
       icon: <BadgeIcon />,
-      title: "Licensed for showings",
-      body: "Showing tasks gated to license holders.",
+      title: "Licensed showings",
+      body: "Showings limited to licensed Renners.",
     },
   ];
   return (
@@ -228,7 +334,9 @@ function TrustSignals() {
       <div className="mx-auto" style={{ maxWidth: "1100px" }}>
         <div
           className="grid gap-10"
-          style={{ gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}
+          style={{
+            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+          }}
         >
           {items.map((item) => (
             <div key={item.title} className="flex items-start gap-3">
@@ -285,18 +393,18 @@ function HowItWorks() {
   const steps = [
     {
       number: "01",
-      title: "Post a task",
-      body: "Pick a category, set a price.",
+      title: "Post",
+      body: "What you need, when, where, and what it pays.",
     },
     {
       number: "02",
-      title: "Book a verified Renner",
-      body: "Review applicants, book in a tap.",
+      title: "Review",
+      body: "Vetted Renners apply. Check ratings and history.",
     },
     {
       number: "03",
-      title: "Confirm & pay",
-      body: "Photo proof. Payment releases.",
+      title: "Confirm",
+      body: "Completion photo submitted. Approve to release payment.",
     },
   ];
   return (
@@ -320,7 +428,7 @@ function HowItWorks() {
             maxWidth: "720px",
           }}
         >
-          Posted to <span className="headline-em">paid</span>, in three steps.
+          Book a Renner
         </h2>
         <div
           className="grid gap-8"
@@ -354,9 +462,6 @@ function HowItWorks() {
                 {step.number}
               </div>
               <div style={{ position: "relative" }}>
-                <div className="micro-label" style={{ marginBottom: "12px" }}>
-                  Step {step.number}
-                </div>
                 <h3
                   className="font-display"
                   style={{
@@ -501,7 +606,7 @@ function DarkSplit() {
                 marginBottom: "12px",
               }}
             >
-              For Renners
+              For Clients
             </div>
             <h3
               className="font-display"
@@ -512,12 +617,7 @@ function DarkSplit() {
                 marginBottom: "16px",
               }}
             >
-              Complete tasks.{" "}
-              <span
-                style={{ color: "#a7b2be", fontStyle: "italic", fontWeight: 300 }}
-              >
-                Get paid.
-              </span>
+              Post an errand
             </h3>
             <p
               style={{
@@ -529,10 +629,10 @@ function DarkSplit() {
                 maxWidth: "420px",
               }}
             >
-              Set your hours. Stripe payouts in 1–2 days.
+              Vetted Renners. Errands handled.
             </p>
             <Link
-              href="/signup"
+              href="/post"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -546,7 +646,7 @@ function DarkSplit() {
                 textDecoration: "none",
               }}
             >
-              Become a Renner →
+              Post a task
             </Link>
           </div>
 
@@ -562,7 +662,7 @@ function DarkSplit() {
                 marginBottom: "12px",
               }}
             >
-              For Clients
+              For Renners
             </div>
             <h3
               className="font-display"
@@ -573,12 +673,7 @@ function DarkSplit() {
                 marginBottom: "16px",
               }}
             >
-              Post tasks.{" "}
-              <span
-                style={{ color: "#a7b2be", fontStyle: "italic", fontWeight: 300 }}
-              >
-                Confirm with proof.
-              </span>
+              Run it
             </h3>
             <p
               style={{
@@ -590,10 +685,10 @@ function DarkSplit() {
                 maxWidth: "420px",
               }}
             >
-              Verified Renners. License-gated showings.
+              Set your schedule. Get paid when the task is confirmed.
             </p>
             <Link
-              href="/post"
+              href="/signup"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -608,7 +703,7 @@ function DarkSplit() {
                 textDecoration: "none",
               }}
             >
-              Post a task →
+              Become a Renner
             </Link>
           </div>
         </div>
@@ -620,31 +715,19 @@ function DarkSplit() {
 const FAQS: Array<{ q: string; a: string }> = [
   {
     q: "How do payments work?",
-    a: "Stripe holds your payment in escrow. Funds release when you confirm the task is complete, or auto-release after 48 hours.",
+    a: "Payment is held until the task is complete. Approve to release, or it auto-releases after 48 hours.",
   },
   {
     q: "How are Renners verified?",
-    a: "Every Renner clears a Checkr background check. Showing-required tasks add a license check.",
+    a: "Every Renner is background-checked. Showing tasks require a verified license.",
   },
   {
     q: "What if a task goes wrong?",
-    a: "Open a dispute in the 48-hour window. Funds stay in escrow while support reviews.",
+    a: "Open a dispute within 48 hours. Funds stay held while we review.",
   },
   {
     q: "Am I a Renner employee?",
-    a: "No. Renner is a marketplace. Renners are independent contractors.",
-  },
-  {
-    q: "What if I need to cancel a task?",
-    a: "Clients can cancel before the Renner starts — full refund, task reopens. After the Renner starts, the task pay is split 50/50 between the Renner and client. Renners can cancel before starting with no penalty. After starting, the same 50/50 split applies regardless of reason.",
-  },
-  {
-    q: "What if a task can't be completed?",
-    a: "If you arrive but can't complete the task — the other party didn't show, the access code is wrong, the address is incorrect — report it with a photo and explanation. The task pay is split 50/50. Both parties share the cost equally.",
-  },
-  {
-    q: "What if something is damaged or stolen during a task?",
-    a: "Document the damage with photos and file a report within 48 hours. The Renner has 48 hours to respond. We facilitate resolution using completion photos and messages as evidence.",
+    a: "No. Renner is a marketplace. Renners are independent.",
   },
 ];
 
@@ -772,22 +855,11 @@ function CTA() {
             fontSize: "clamp(48px, 6vw, 72px)",
             lineHeight: 1.05,
             color: "#0d0f12",
-            marginBottom: "16px",
-          }}
-        >
-          Ready when you are.
-        </h2>
-        <p
-          style={{
-            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-            fontSize: "17px",
-            color: "#647589",
-            lineHeight: 1.5,
             marginBottom: "32px",
           }}
         >
-          Post a task or apply to one.
-        </p>
+          Get something done.
+        </h2>
         <div className="flex justify-center gap-3 flex-wrap">
           <Link
             href="/post"
@@ -829,7 +901,7 @@ function Footer() {
     {
       title: "Company",
       links: [
-        { href: "/signup", label: "Get started" },
+        { href: "/signup", label: "Become a Renner" },
         { href: "/signin", label: "Sign in" },
         { href: "mailto:hello@renner.app", label: "Contact" },
       ],
@@ -924,17 +996,12 @@ function Footer() {
             marginTop: "56px",
             paddingTop: "20px",
             borderTop: "1px solid #272d35",
-            display: "flex",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-            gap: "12px",
             fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
             fontSize: "12px",
             color: "#7d8da0",
           }}
         >
-          <span>© {new Date().getFullYear()} Renner.</span>
-          <span>Built for real estate.</span>
+          © 2026 Renner
         </div>
       </div>
     </footer>
