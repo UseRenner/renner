@@ -3,11 +3,12 @@ import { KeyIcon } from "@/components/KeyIcon";
 // TEMPORARY page for reviewing the KeyIcon at multiple sizes.
 // Delete this file once the icon is approved.
 //
-// The icon is now a single SVG path rendered as a solid fill:
+// The icon is one continuous solid shape — bow, shaft, and teeth all
+// merged into a single unified path with no gaps or disconnected parts.
 //   - same path for both states
-//   - unsaved fills with #a7b2be
-//   - saved fills with #0d0f12
-//   - both teeth identical length
+//   - unsaved fills the whole shape with #a7b2be
+//   - saved fills the whole shape with #0d0f12
+//   - both teeth identical length, flush against each other
 
 const SIZES = [16, 24, 32, 48] as const;
 
@@ -43,9 +44,12 @@ export default function TestKeyPage() {
             marginBottom: "16px",
           }}
         >
-          One path, two states. Unsaved fills with #a7b2be, saved fills
-          with #0d0f12. Both teeth are identical length. The 24&times;16
-          viewBox keeps the icon wide so it sits naturally inline.
+          One continuous solid shape — bow, shaft, and teeth fused into
+          a single unified path with no gaps. Unsaved fills the whole
+          shape with #a7b2be, saved fills it with #0d0f12. Both teeth
+          are identical length and sit flush against each other. The
+          24&times;16 viewBox keeps the icon wide so it sits naturally
+          inline.
         </p>
         <p
           style={{
