@@ -3,11 +3,11 @@ import { KeyIcon } from "@/components/KeyIcon";
 // TEMPORARY page for reviewing the KeyIcon at multiple sizes.
 // Delete this file once the icon is approved.
 //
-// The icon now uses a 24x16 viewBox (horizontal skeleton key:
-// circle bow on the left, horizontal shaft, two rectangular
-// teeth dropping from the right end). Each row labels the
-// rendered height; the SVG width scales 1.5x to keep the
-// aspect intact.
+// The icon is now a single SVG path rendered as a solid fill:
+//   - same path for both states
+//   - unsaved fills with #a7b2be
+//   - saved fills with #0d0f12
+//   - both teeth identical length
 
 const SIZES = [16, 24, 32, 48] as const;
 
@@ -43,9 +43,9 @@ export default function TestKeyPage() {
             marginBottom: "16px",
           }}
         >
-          Outlined (#a7b2be) at rest, filled (#0d0f12) when saved. Each
-          column shows the icon at 16, 24, 32, and 48&nbsp;px tall (width
-          scales 1.5&times; with the new 24&times;16 viewBox).
+          One path, two states. Unsaved fills with #a7b2be, saved fills
+          with #0d0f12. Both teeth are identical length. The 24&times;16
+          viewBox keeps the icon wide so it sits naturally inline.
         </p>
         <p
           style={{
@@ -54,8 +54,7 @@ export default function TestKeyPage() {
             marginBottom: "48px",
           }}
         >
-          Inline preview, sitting next to a name like it would on the
-          applicants page:&nbsp;
+          Inline next to a name:&nbsp;
           <span
             style={{
               display: "inline-flex",
@@ -66,9 +65,7 @@ export default function TestKeyPage() {
             }}
           >
             Marcus King
-            <span style={{ color: "#a7b2be", display: "inline-flex" }}>
-              <KeyIcon filled={false} size={16} />
-            </span>
+            <KeyIcon filled={false} size={16} />
           </span>
           &nbsp;·&nbsp;
           <span
@@ -81,9 +78,7 @@ export default function TestKeyPage() {
             }}
           >
             Marcus King
-            <span style={{ color: "#0d0f12", display: "inline-flex" }}>
-              <KeyIcon filled size={16} />
-            </span>
+            <KeyIcon filled size={16} />
           </span>
         </p>
 
@@ -96,8 +91,8 @@ export default function TestKeyPage() {
             overflow: "hidden",
           }}
         >
-          <Column label="Unsaved (outlined)" filled={false} />
-          <Column label="Saved (filled)" filled borderLeft />
+          <Column label="Unsaved (#a7b2be)" filled={false} />
+          <Column label="Saved (#0d0f12)" filled borderLeft />
         </div>
       </div>
     </main>
@@ -146,7 +141,6 @@ function Column({
               display: "flex",
               alignItems: "center",
               gap: "20px",
-              color: filled ? "#0d0f12" : "#a7b2be",
             }}
           >
             <div

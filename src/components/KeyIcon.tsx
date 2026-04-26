@@ -1,11 +1,24 @@
-// Horizontal skeleton-key glyph: circle bow on the left, a long
-// horizontal shaft, and two short rectangular teeth dropping from
-// the right end of the shaft. Rendered against a 24x16 viewBox so
-// it reads naturally inline with text. currentColor everywhere so
-// the wrapping element controls outlined vs filled appearance.
+// Horizontal skeleton-key glyph rendered as a single fill path:
+//   - ring bow on the left (outer circle r=3 minus inner circle r=1.5
+//     via fill-rule="evenodd")
+//   - 1.5-unit-thick horizontal shaft from x=8 to x=22
+//   - two identical-length teeth (1.5 × 4) dropping from the shaft
 //
-// `size` is the rendered height; the SVG width scales 1.5x to
-// preserve the wide aspect.
+// Both states use the same path. Only the fill color changes:
+// #a7b2be when unsaved, #0d0f12 when saved. No stroke rendering.
+
+const KEY_PATH = [
+  // Bow outer ring
+  "M 2 8 A 3 3 0 1 0 8 8 A 3 3 0 1 0 2 8 Z",
+  // Bow inner cutout (hole, evenodd)
+  "M 3.5 8 A 1.5 1.5 0 1 0 6.5 8 A 1.5 1.5 0 1 0 3.5 8 Z",
+  // Shaft
+  "M 8 7.25 H 22 V 8.75 H 8 Z",
+  // Tooth 1
+  "M 16 8 H 17.5 V 12 H 16 Z",
+  // Tooth 2 (same length as Tooth 1)
+  "M 20 8 H 21.5 V 12 H 20 Z",
+].join(" ");
 
 export function KeyIcon({
   filled,
@@ -14,41 +27,18 @@ export function KeyIcon({
   filled: boolean;
   size?: number;
 }) {
-  const width = size * 1.5;
   return (
     <svg
-      width={width}
+      width={size * 1.5}
       height={size}
       viewBox="0 0 24 16"
       aria-hidden
     >
-      {filled ? (
-        <g fill="currentColor">
-          {/* Bow */}
-          <circle cx="5" cy="8" r="3" />
-          {/* Shaft */}
-          <rect x="8" y="7" width="14" height="2" />
-          {/* Teeth */}
-          <rect x="16" y="9" width="1.5" height="3" />
-          <rect x="20" y="9" width="1.5" height="4" />
-        </g>
-      ) : (
-        <g
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          {/* Bow */}
-          <circle cx="5" cy="8" r="3" />
-          {/* Shaft */}
-          <line x1="8" y1="8" x2="22" y2="8" />
-          {/* Teeth */}
-          <line x1="16" y1="8" x2="16" y2="12" />
-          <line x1="20" y1="8" x2="20" y2="13" />
-        </g>
-      )}
+      <path
+        d={KEY_PATH}
+        fill={filled ? "#0d0f12" : "#a7b2be"}
+        fillRule="evenodd"
+      />
     </svg>
   );
 }
