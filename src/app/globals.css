@@ -172,3 +172,82 @@ h4,
 .faq-item[open] .faq-toggle {
   transform: rotate(45deg);
 }
+
+/* ====== Landing-page interactive hover states ======
+ * Every clickable element shifts subtly on hover so the entire page
+ * feels uniform. Each class targets a distinct visual context. */
+.ll-nav-link {
+  transition: color 120ms ease, background-color 120ms ease;
+}
+.ll-nav-link:hover {
+  color: var(--s-black);
+  background-color: var(--s-50);
+}
+
+.ll-cta-light {
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+.ll-cta-light:hover {
+  background-color: var(--s-50);
+  border-color: var(--s-400);
+}
+
+.ll-cta-dark {
+  transition: background-color 120ms ease;
+}
+.ll-cta-dark:hover {
+  background-color: var(--s-900);
+}
+
+.ll-cta-white {
+  transition: background-color 120ms ease;
+}
+.ll-cta-white:hover {
+  background-color: var(--s-300);
+}
+
+.ll-cta-outline-dark {
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
+.ll-cta-outline-dark:hover {
+  border-color: var(--s-500);
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.ll-chip {
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+.ll-chip:hover {
+  background-color: var(--s-50);
+  border-color: var(--s-400);
+}
+
+.ll-card {
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
+.ll-card:hover {
+  border-color: var(--s-400);
+  background-color: var(--s-50);
+}
+
+.ll-footer-link {
+  transition: color 120ms ease;
+}
+.ll-footer-link:hover {
+  color: var(--s-25);
+}
+
+.ll-search-submit {
+  transition: background-color 120ms ease;
+}
+.ll-search-submit:hover {
+  background-color: var(--s-900);
+}
+
+.faq-item summary {
+  transition: color 120ms ease;
+}
+.faq-item summary:hover .faq-toggle,
+.faq-item[open] summary:hover .faq-toggle {
+  color: var(--s-700);
+}

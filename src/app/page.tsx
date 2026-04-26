@@ -49,6 +49,7 @@ function PublicNav() {
             <Link
               key={link.href}
               href={link.href}
+              className="ll-nav-link"
               style={{
                 fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
                 fontSize: "13px",
@@ -56,6 +57,7 @@ function PublicNav() {
                 color: "#647589",
                 padding: "8px 12px",
                 textDecoration: "none",
+                borderRadius: "6px",
               }}
             >
               {link.label}
@@ -63,6 +65,7 @@ function PublicNav() {
           ))}
           <Link
             href="/signup"
+            className="ll-cta-light"
             style={{
               fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
               fontSize: "13px",
@@ -114,17 +117,6 @@ function Hero() {
               Keep real estate{" "}
               <span className="headline-em">running.</span>
             </h1>
-            <p
-              style={{
-                fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-                fontSize: "17px",
-                color: "#647589",
-                lineHeight: 1.5,
-                marginBottom: "36px",
-              }}
-            >
-              Real estate errands. Nearby Renners.
-            </p>
 
             <form
               action="/post"
@@ -158,6 +150,7 @@ function Hero() {
               <button
                 type="submit"
                 aria-label="Post a task"
+                className="ll-search-submit"
                 style={{
                   backgroundColor: "#0d0f12",
                   color: "#fbfbfc",
@@ -182,6 +175,7 @@ function Hero() {
                   <Link
                     key={chip}
                     href={`/post?category=${encodeURIComponent(chip)}`}
+                    className="ll-chip"
                     style={{
                       fontFamily:
                         "var(--font-inter), ui-sans-serif, system-ui",
@@ -428,7 +422,7 @@ function HowItWorks() {
             maxWidth: "720px",
           }}
         >
-          Book a Renner
+          Book a Renner.
         </h2>
         <div
           className="grid gap-8"
@@ -453,7 +447,7 @@ function HowItWorks() {
                   left: 0,
                   fontSize: "120px",
                   fontWeight: 400,
-                  color: "#eaedf0",
+                  color: "rgba(13, 15, 18, 0.02)",
                   lineHeight: 1,
                   letterSpacing: "-0.04em",
                   pointerEvents: "none",
@@ -493,16 +487,16 @@ function HowItWorks() {
 }
 
 const CATEGORY_BLURBS: Record<string, string> = {
-  "Sign work": "Place, swap, or pull yard signs.",
-  Lockbox: "Install, swap, or retrieve lockboxes.",
-  Courier: "Hand-deliver contracts, keys, checks.",
-  Prep: "Light staging, cleaning, photo-ready setup.",
-  Photos: "Property photos and walkthrough video.",
-  "Property access": "Meet inspectors and contractors.",
-  "Guest access": "Check-ins, key handoffs, and guest arrivals.",
-  Showing: "Licensed Renners host showings.",
-  "Open house": "Licensed Renners host open houses.",
-  Other: "Anything else real estate needs.",
+  "Sign work": "Place, swap, or pull yard signs",
+  Lockbox: "Install, swap, or retrieve lockboxes",
+  Courier: "Hand-deliver contracts, keys, checks",
+  Prep: "Light staging, cleaning, photo-ready setup",
+  Photos: "Property photos and walkthrough video",
+  "Property access": "Meet inspectors and contractors",
+  "Guest access": "Check-ins, key handoffs, and guest arrivals",
+  Showing: "Licensed Renners host showings",
+  "Open house": "Licensed Renners host open houses",
+  Other: "Anything else real estate needs",
 };
 
 function Categories() {
@@ -537,7 +531,7 @@ function Categories() {
             <Link
               key={cat}
               href={`/post?category=${encodeURIComponent(cat)}`}
-              className="card"
+              className="card ll-card"
               style={{
                 padding: "24px",
                 backgroundColor: "#fbfbfc",
@@ -575,6 +569,28 @@ function Categories() {
 }
 
 function DarkSplit() {
+  const labelStyle: React.CSSProperties = {
+    fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+    fontSize: "11px",
+    fontWeight: 500,
+    letterSpacing: "0.14em",
+    textTransform: "uppercase",
+    color: "#a7b2be",
+  };
+  const headingStyle: React.CSSProperties = {
+    fontSize: "40px",
+    lineHeight: 1.1,
+    color: "#fbfbfc",
+    margin: 0,
+  };
+  const bodyStyle: React.CSSProperties = {
+    fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+    fontSize: "15px",
+    color: "#cad1d8",
+    lineHeight: 1.6,
+    maxWidth: "420px",
+    margin: 0,
+  };
   return (
     <section
       style={{
@@ -585,54 +601,36 @@ function DarkSplit() {
     >
       <div className="mx-auto" style={{ maxWidth: "1200px" }}>
         <div
-          className="grid gap-12"
           style={{
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            columnGap: "48px",
+            rowGap: "20px",
+            alignItems: "start",
           }}
         >
-          <div>
-            <div
-              style={{
-                fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-                fontSize: "11px",
-                fontWeight: 500,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color: "#a7b2be",
-                marginBottom: "12px",
-              }}
-            >
-              For Clients
-            </div>
-            <h3
-              className="font-display"
-              style={{
-                fontSize: "40px",
-                lineHeight: 1.1,
-                color: "#fbfbfc",
-                marginBottom: "16px",
-              }}
-            >
-              Post tasks
-            </h3>
-            <p
-              style={{
-                fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-                fontSize: "15px",
-                color: "#cad1d8",
-                lineHeight: 1.6,
-                marginBottom: "28px",
-                maxWidth: "420px",
-              }}
-            >
-              Vetted Renners. Every task handled.
-            </p>
+          <div style={labelStyle}>For Clients</div>
+          <div style={labelStyle}>For Renners</div>
+
+          <h3 className="font-display" style={headingStyle}>
+            Post tasks
+          </h3>
+          <h3 className="font-display" style={headingStyle}>
+            Complete them
+          </h3>
+
+          <p style={bodyStyle}>Vetted Renners. Every task handled.</p>
+          <p style={bodyStyle}>Real work. Real estate.</p>
+
+          <div style={{ marginTop: "8px" }}>
             <Link
               href="/post"
+              className="ll-cta-white"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
-                fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+                fontFamily:
+                  "var(--font-inter), ui-sans-serif, system-ui",
                 fontSize: "14px",
                 fontWeight: 500,
                 color: "#0d0f12",
@@ -645,50 +643,15 @@ function DarkSplit() {
               Post a task
             </Link>
           </div>
-
-          <div>
-            <div
-              style={{
-                fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-                fontSize: "11px",
-                fontWeight: 500,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color: "#a7b2be",
-                marginBottom: "12px",
-              }}
-            >
-              For Renners
-            </div>
-            <h3
-              className="font-display"
-              style={{
-                fontSize: "40px",
-                lineHeight: 1.1,
-                color: "#fbfbfc",
-                marginBottom: "16px",
-              }}
-            >
-              Complete them
-            </h3>
-            <p
-              style={{
-                fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-                fontSize: "15px",
-                color: "#cad1d8",
-                lineHeight: 1.6,
-                marginBottom: "28px",
-                maxWidth: "420px",
-              }}
-            >
-              Real work. Real estate.
-            </p>
+          <div style={{ marginTop: "8px" }}>
             <Link
               href="/signup"
+              className="ll-cta-outline-dark"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
-                fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+                fontFamily:
+                  "var(--font-inter), ui-sans-serif, system-ui",
                 fontSize: "14px",
                 fontWeight: 500,
                 color: "#fbfbfc",
@@ -718,11 +681,11 @@ const FAQS: Array<{ q: string; a: string }> = [
     a: "Every Renner is background-checked. Showing tasks require a verified license.",
   },
   {
-    q: "What if a task goes wrong?",
-    a: "Open a dispute within 48 hours. Funds stay held while we review.",
+    q: "How much does Renner cost?",
+    a: "A 10% service fee is added for clients. Renners keep 100% of the task pay.",
   },
   {
-    q: "Am I a Renner employee?",
+    q: "Are Renners employees?",
     a: "No. Renner is a marketplace. Renners are independent.",
   },
 ];
@@ -812,24 +775,6 @@ function FAQ() {
             </details>
           ))}
         </div>
-        <p
-          style={{
-            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-            fontSize: "13px",
-            color: "#647589",
-            marginTop: "20px",
-            textAlign: "center",
-          }}
-        >
-          More on the{" "}
-          <Link
-            href="/how-it-works"
-            style={{ color: "#0d0f12", textDecoration: "underline" }}
-          >
-            How it works
-          </Link>{" "}
-          page.
-        </p>
        </div>
       </div>
     </section>
@@ -862,7 +807,7 @@ function CTA() {
         <div className="flex justify-center gap-3 flex-wrap">
           <Link
             href="/post"
-            className="btn-dark"
+            className="btn-dark ll-cta-dark"
             style={{
               width: "auto",
               padding: "13px 28px",
@@ -873,7 +818,7 @@ function CTA() {
           </Link>
           <Link
             href="/signup"
-            className="btn-light"
+            className="btn-light ll-cta-light"
             style={{
               width: "auto",
               padding: "13px 28px",
@@ -975,6 +920,7 @@ function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
+                      className="ll-footer-link"
                       style={{
                         fontFamily:
                           "var(--font-inter), ui-sans-serif, system-ui",
