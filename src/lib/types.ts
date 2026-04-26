@@ -1,8 +1,10 @@
 export type TaskStatus =
   | "Open"
   | "Booked"
+  | "Started"
   | "Pending approval"
   | "Complete"
+  | "Unable to complete"
   | "Disputed"
   | "Closed";
 
@@ -59,6 +61,10 @@ export interface Task {
   task_state: string | null;
   task_zip: string | null;
   date: string | null;
+  task_timing_type: "exact" | "window" | null;
+  task_time: string | null;
+  window_start: string | null;
+  window_end: string | null;
   time_estimate: string | null;
   status: TaskStatus;
   requires_license: boolean;
@@ -66,6 +72,7 @@ export interface Task {
   booked_runner: string | null;
   created_date: string;
   booked_date: string | null;
+  started_date: string | null;
   marked_finished_date: string | null;
   completed_date: string | null;
   payment_status: PaymentStatus | null;
@@ -73,6 +80,11 @@ export interface Task {
   completion_notes: string | null;
   dispute_reason: string | null;
   auto_release_date: string | null;
+  unable_to_complete_reason: string | null;
+  unable_to_complete_explanation: string | null;
+  unable_to_complete_photo: string | null;
+  unable_to_complete_date: string | null;
+  safety_flag: boolean;
 }
 
 export interface UserProfile {

@@ -2,7 +2,11 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { ApprovalActions } from "@/components/ApprovalActions";
 import { CompletionForm } from "@/components/CompletionForm";
-import { formatDate, formatHoursLeft, formatPay } from "@/lib/format";
+import {
+  formatHoursLeft,
+  formatPay,
+  formatTaskTiming,
+} from "@/lib/format";
 import { createClient } from "@/lib/supabase/server";
 import type { Task } from "@/lib/types";
 
@@ -23,7 +27,7 @@ export default async function TaskReviewPage({
   const { data: task } = await supabase
     .from("tasks")
     .select(
-      "id, title, description, category, pay, pay_type, zip_code, street_address, unit, task_city, task_state, task_zip, date, time_estimate, status, requires_license, posted_by, booked_runner, created_date, booked_date, marked_finished_date, completed_date, payment_status, completion_photos, completion_notes, dispute_reason, auto_release_date",
+      "id, title, description, category, pay, pay_type, zip_code, street_address, unit, task_city, task_state, task_zip, date, task_timing_type, task_time, window_start, window_end, time_estimate, status, requires_license, posted_by, booked_runner, created_date, booked_date, started_date, marked_finished_date, completed_date, payment_status, completion_photos, completion_notes, dispute_reason, auto_release_date, unable_to_complete_reason, unable_to_complete_explanation, unable_to_complete_photo, unable_to_complete_date, safety_flag",
     )
     .eq("id", params.id)
     .maybeSingle();
@@ -99,13 +103,13 @@ export default async function TaskReviewPage({
           {[
             formatPay(t.pay),
             t.zip_code ? `Zip code ${t.zip_code}` : null,
-            formatDate(t.date) ?? "Flexible",
+            formatTaskTiming(t) ?? "Flexible",
           ]
             .filter(Boolean)
             .join("  ·  ")}
         </p>
 
-        {isRunner && t.status === "Booked" ? (
+        {isRunner && t.status === "Started" ? (
           <div className="card" style={{ padding: "32px" }}>
             <h2
               className="font-display"
@@ -328,8 +332,15 @@ function StatusNotice({
   let body = "Come back when the task moves to the next stage.";
 
   if (isPoster && task.status === "Booked") {
-    title = "Waiting on the Renner";
-    body = "You'll be able to review the work once it's marked complete.";
+    title = "Waiting on the Renner to start";
+    body = "We'll let you know as soon as the Renner starts the task.";
+  } else if (isPoster && task.status === "Started") {
+    title = "Renner is on the task";
+    body = "You'll be able to confirm once the Renner submits proof.";
+  } else if (isRunner && task.status === "Booked") {
+    title = "Booked, not yet started";
+    body =
+      "Use Start task on the task detail page when you're ready to begin.";
   } else if (isRunner && task.status === "Pending approval") {
     title = "Awaiting client confirmation";
     body =
@@ -337,10 +348,13 @@ function StatusNotice({
   } else if (task.status === "Complete") {
     title = "Task complete";
     body = "Payment has been released. Thanks for using Renner.";
+  } else if (task.status === "Unable to complete") {
+    title = "Reported as unable to complete";
+    body =
+      "50% of the pay was released to the Renner; the other 50% was refunded.";
   } else if (task.status === "Disputed") {
     title = "Task disputed";
-    body =
-      "An admin is reviewing this task. We'll be in touch shortly.";
+    body = "An admin is reviewing this task. We'll be in touch shortly.";
   } else if (task.status === "Closed") {
     title = "Task closed";
     body = "This task has been closed.";

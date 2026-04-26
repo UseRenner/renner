@@ -38,3 +38,68 @@ export function formatRelativeDate(value: string | null) {
   if (diffDays < 7) return `${diffDays} days ago`;
   return formatDate(value);
 }
+
+function shortTime(date: Date) {
+  const opts: Intl.DateTimeFormatOptions = {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  };
+  return date
+    .toLocaleTimeString("en-US", opts)
+    .replace(":00", "")
+    .replace(" ", "")
+    .toLowerCase();
+}
+
+export type TimingShape = {
+  date: string | null;
+  task_timing_type: "exact" | "window" | null;
+  task_time: string | null;
+  window_start: string | null;
+  window_end: string | null;
+};
+
+export function formatTaskTiming(task: TimingShape): string | null {
+  if (task.task_timing_type === "exact" && task.task_time) {
+    const t = new Date(task.task_time);
+    if (Number.isNaN(t.getTime())) return null;
+    const datePart = t.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+    });
+    return `${datePart}, ${shortTime(t)}`;
+  }
+  if (
+    task.task_timing_type === "window" &&
+    task.window_start &&
+    task.window_end
+  ) {
+    const start = new Date(task.window_start);
+    const end = new Date(task.window_end);
+    if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime()))
+      return null;
+    const datePart = start.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+    });
+    return `${datePart}, ${shortTime(start)}–${shortTime(end)}`;
+  }
+  return formatDate(task.date);
+}
+
+// Earliest moment a Renner can press "Start task" — 30 minutes before
+// the exact time or window start. Returns null when no schedule exists,
+// meaning the task can be started immediately.
+export function startsAvailableAt(task: TimingShape): Date | null {
+  const target =
+    task.task_timing_type === "exact"
+      ? task.task_time
+      : task.task_timing_type === "window"
+        ? task.window_start
+        : null;
+  if (!target) return null;
+  const t = new Date(target);
+  if (Number.isNaN(t.getTime())) return null;
+  return new Date(t.getTime() - 30 * 60 * 1000);
+}

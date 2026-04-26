@@ -74,7 +74,54 @@ export default function TermsPage() {
         small-claims court or binding arbitration as set out below.
       </LegalP>
 
-      <LegalH2>7. Account suspension and termination</LegalH2>
+      <LegalH2>7. Cancellation policy</LegalH2>
+      <LegalP>
+        Clients may cancel a task before the Renner starts at no cost. A full
+        refund, including the platform fee, will be issued and the task will
+        reopen for other Renners.
+      </LegalP>
+      <LegalP>
+        If a Client cancels after the Renner has started the task, 50% of the
+        task pay will be released to the Renner for their time and travel,
+        and 50% will be refunded to the Client. The platform fee is retained
+        by Renner.
+      </LegalP>
+      <LegalP>
+        Renners may cancel a booking before starting the task. The Client
+        receives a full refund and the task reopens. Repeated cancellations
+        may result in account review.
+      </LegalP>
+      <LegalP>
+        If a Renner cancels after starting a task for any reason &mdash;
+        including safety concerns, personal emergencies, or access issues
+        &mdash; 50% of the task pay is released to the Renner and 50% is
+        refunded to the Client. Renners are required to provide a detailed
+        written explanation for all post-start cancellations.
+      </LegalP>
+      <LegalP>
+        Repeated cancellations by either party may result in account review
+        and potential suspension.
+      </LegalP>
+
+      <LegalH2>8. Unable to complete policy</LegalH2>
+      <LegalP>
+        If a Renner arrives at the task location and is unable to complete
+        the task &mdash; including other party no-shows, incorrect access
+        codes, missing keys, wrong addresses, or locked properties &mdash;
+        the Renner may report the task as unable to complete with photo
+        proof and a written explanation.
+      </LegalP>
+      <LegalP>
+        When a task is reported as unable to complete, 50% of the task pay
+        is released to the Renner and 50% is refunded to the Client. The
+        platform fee is retained by Renner.
+      </LegalP>
+      <LegalP>
+        Both parties share the cost equally when a task cannot be completed
+        after the Renner has arrived, regardless of fault.
+      </LegalP>
+
+      <LegalH2>9. Account suspension and termination</LegalH2>
       <LegalP>
         We may suspend or terminate any account that violates these Terms,
         including for fraud, harassment, repeated no-shows, off-platform
@@ -82,7 +129,7 @@ export default function TermsPage() {
         delete your account at any time from Settings.
       </LegalP>
 
-      <LegalH2>8. Limitation of liability</LegalH2>
+      <LegalH2>10. Limitation of liability</LegalH2>
       <LegalP>
         To the fullest extent allowed by law, Renner is not liable for
         indirect, incidental, or consequential damages arising from your use
@@ -90,7 +137,7 @@ export default function TermsPage() {
         the platform fees you have paid us in the prior twelve months.
       </LegalP>
 
-      <LegalH2>9. Changes</LegalH2>
+      <LegalH2>11. Changes</LegalH2>
       <LegalP>
         We may update these Terms from time to time. Material changes will be
         announced in-product or via email at least seven days before they

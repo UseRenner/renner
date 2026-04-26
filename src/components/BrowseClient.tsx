@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { CategoryBadge, LicenseBadge } from "./CategoryBadge";
-import { formatDate, formatPay } from "@/lib/format";
+import { formatPay, formatTaskTiming } from "@/lib/format";
 import { TASK_CATEGORIES, type Task } from "@/lib/types";
 
 const FILTERS = ["All categories", ...TASK_CATEGORIES] as const;
@@ -77,7 +77,7 @@ export function BrowseClient({ tasks }: { tasks: Task[] }) {
 function TaskCard({ task }: { task: Task }) {
   const meta = [
     task.zip_code ? `Zip code ${task.zip_code}` : null,
-    formatDate(task.date),
+    formatTaskTiming(task),
     task.time_estimate,
   ]
     .filter(Boolean)

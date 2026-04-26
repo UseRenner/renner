@@ -34,8 +34,12 @@ const FAQS: Array<{ q: string; a: string }> = [
     a: "The fee is split transparently between Client and Renner. Both parties see exactly what they pay or receive before they confirm a booking — no hidden surcharges.",
   },
   {
-    q: "Can I cancel a task?",
-    a: "Open tasks can be canceled by the Client at any time. Once a Renner is booked, cancellations within 24 hours of the scheduled date may incur a small fee, paid to the Renner for the time blocked off.",
+    q: "What if I need to cancel a task?",
+    a: "Clients can cancel before the Renner starts — full refund, task reopens. After the Renner starts, the task pay is split 50/50 between the Renner and client. Renners can cancel before starting with no penalty. After starting, the same 50/50 split applies regardless of reason.",
+  },
+  {
+    q: "What if a task can't be completed?",
+    a: "If you arrive but can't complete the task — the other party didn't show, the access code is wrong, the address is incorrect — report it with a photo and explanation. The task pay is split 50/50. Both parties share the cost equally.",
   },
 ];
 

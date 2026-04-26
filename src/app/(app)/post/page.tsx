@@ -17,6 +17,46 @@ import {
 } from "@/lib/types";
 
 const ZIP_REGEX = /^\d{5}$/;
+
+const PRESET_WINDOWS: Record<
+  "Morning" | "Afternoon" | "Evening",
+  { start: number; end: number; label: string }
+> = {
+  Morning: { start: 8, end: 12, label: "Morning (8am–12pm)" },
+  Afternoon: { start: 12, end: 17, label: "Afternoon (12pm–5pm)" },
+  Evening: { start: 17, end: 21, label: "Evening (5pm–9pm)" },
+};
+
+function pad(n: number) {
+  return String(n).padStart(2, "0");
+}
+function toLocalDateInput(d: Date) {
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+}
+function toLocalTimeInput(d: Date) {
+  return `${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+function combineDateAndTime(dateInput: string, timeInput: string) {
+  // Both inputs come from <input type="date"> / <input type="time"> in
+  // the user's local zone. new Date(string) interprets the combined form
+  // as local time.
+  const t = new Date(`${dateInput}T${timeInput}:00`);
+  return Number.isNaN(t.getTime()) ? null : t;
+}
+function combineDateAndHour(dateInput: string, hour: number) {
+  return combineDateAndTime(dateInput, `${pad(hour)}:00`);
+}
+function inferWindowChoice(
+  start: Date,
+  end: Date,
+): "Morning" | "Afternoon" | "Evening" | "Custom" {
+  const sh = start.getHours();
+  const eh = end.getHours();
+  if (sh === 8 && eh === 12) return "Morning";
+  if (sh === 12 && eh === 17) return "Afternoon";
+  if (sh === 17 && eh === 21) return "Evening";
+  return "Custom";
+}
 const KEYWORD_TRIGGERS = [
   "show",
   "showing",
@@ -43,7 +83,16 @@ export default function PostTaskPage() {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState<string>(TASK_CATEGORIES[0]);
   const [description, setDescription] = useState("");
-  const [date, setDate] = useState("");
+
+  // Timing
+  const [timingType, setTimingType] = useState<"exact" | "window">("exact");
+  const [scheduleDate, setScheduleDate] = useState("");
+  const [exactTime, setExactTime] = useState("");
+  const [windowChoice, setWindowChoice] = useState<
+    "Morning" | "Afternoon" | "Evening" | "Custom"
+  >("Morning");
+  const [customStart, setCustomStart] = useState("");
+  const [customEnd, setCustomEnd] = useState("");
   const [timeEstimate, setTimeEstimate] = useState("");
   const [pay, setPay] = useState("");
   const [zipCode, setZipCode] = useState("");
@@ -101,10 +150,28 @@ export default function PostTaskPage() {
       setTaskCity(pending.task_city);
       setTaskState(pending.task_state);
       setTaskZip(pending.task_zip);
-      setDate(
-        pending.date ? new Date(pending.date).toISOString().slice(0, 10) : "",
-      );
       setTimeEstimate(pending.time_estimate ?? "");
+
+      setTimingType(pending.task_timing_type);
+      if (pending.task_timing_type === "exact" && pending.task_time) {
+        const t = new Date(pending.task_time);
+        setScheduleDate(toLocalDateInput(t));
+        setExactTime(toLocalTimeInput(t));
+      } else if (
+        pending.task_timing_type === "window" &&
+        pending.window_start &&
+        pending.window_end
+      ) {
+        const s = new Date(pending.window_start);
+        const e = new Date(pending.window_end);
+        setScheduleDate(toLocalDateInput(s));
+        const choice = inferWindowChoice(s, e);
+        setWindowChoice(choice);
+        if (choice === "Custom") {
+          setCustomStart(toLocalTimeInput(s));
+          setCustomEnd(toLocalTimeInput(e));
+        }
+      }
     }
 
     if (titleParam) setTitle(titleParam);
@@ -174,6 +241,53 @@ export default function PostTaskPage() {
       return null;
     }
 
+    if (!scheduleDate) {
+      setError("Please pick a date for the task.");
+      return null;
+    }
+
+    let task_time: string | null = null;
+    let window_start: string | null = null;
+    let window_end: string | null = null;
+
+    if (timingType === "exact") {
+      if (!exactTime) {
+        setError("Please pick a time for the task.");
+        return null;
+      }
+      const t = combineDateAndTime(scheduleDate, exactTime);
+      if (!t) {
+        setError("That date and time isn't valid.");
+        return null;
+      }
+      task_time = t.toISOString();
+    } else {
+      let startDate: Date | null;
+      let endDate: Date | null;
+      if (windowChoice === "Custom") {
+        if (!customStart || !customEnd) {
+          setError("Please set a start and end time for the window.");
+          return null;
+        }
+        startDate = combineDateAndTime(scheduleDate, customStart);
+        endDate = combineDateAndTime(scheduleDate, customEnd);
+        if (!startDate || !endDate) {
+          setError("That window isn't valid.");
+          return null;
+        }
+        if (endDate.getTime() <= startDate.getTime()) {
+          setError("Window end must be after window start.");
+          return null;
+        }
+      } else {
+        const preset = PRESET_WINDOWS[windowChoice];
+        startDate = combineDateAndHour(scheduleDate, preset.start);
+        endDate = combineDateAndHour(scheduleDate, preset.end);
+      }
+      window_start = startDate?.toISOString() ?? null;
+      window_end = endDate?.toISOString() ?? null;
+    }
+
     return {
       title,
       description,
@@ -186,7 +300,10 @@ export default function PostTaskPage() {
       task_city: taskCity,
       task_state: taskState,
       task_zip: taskZip,
-      date: date ? new Date(date).toISOString() : null,
+      task_timing_type: timingType,
+      task_time,
+      window_start,
+      window_end,
       time_estimate: timeEstimate || null,
       status: "Open",
       requires_license: requiresLicense,
@@ -367,31 +484,32 @@ export default function PostTaskPage() {
                 </div>
               )}
 
-              <div className="flex gap-3">
-                <div className="flex-1">
-                  <label className="input-label" htmlFor="date">
-                    Date
-                  </label>
-                  <input
-                    id="date"
-                    type="date"
-                    className="input"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                  />
-                </div>
-                <div className="flex-1">
-                  <label className="input-label" htmlFor="timeEstimate">
-                    Time estimate
-                  </label>
-                  <input
-                    id="timeEstimate"
-                    className="input"
-                    placeholder="e.g. 1–2 hours"
-                    value={timeEstimate}
-                    onChange={(e) => setTimeEstimate(e.target.value)}
-                  />
-                </div>
+              <TimingFields
+                timingType={timingType}
+                setTimingType={setTimingType}
+                scheduleDate={scheduleDate}
+                setScheduleDate={setScheduleDate}
+                exactTime={exactTime}
+                setExactTime={setExactTime}
+                windowChoice={windowChoice}
+                setWindowChoice={setWindowChoice}
+                customStart={customStart}
+                setCustomStart={setCustomStart}
+                customEnd={customEnd}
+                setCustomEnd={setCustomEnd}
+              />
+
+              <div>
+                <label className="input-label" htmlFor="timeEstimate">
+                  Time estimate
+                </label>
+                <input
+                  id="timeEstimate"
+                  className="input"
+                  placeholder="e.g. 1–2 hours"
+                  value={timeEstimate}
+                  onChange={(e) => setTimeEstimate(e.target.value)}
+                />
               </div>
 
               <div>
@@ -731,6 +849,193 @@ function AttestationRow({
       >
         {text}
       </span>
+    </button>
+  );
+}
+
+function TimingFields({
+  timingType,
+  setTimingType,
+  scheduleDate,
+  setScheduleDate,
+  exactTime,
+  setExactTime,
+  windowChoice,
+  setWindowChoice,
+  customStart,
+  setCustomStart,
+  customEnd,
+  setCustomEnd,
+}: {
+  timingType: "exact" | "window";
+  setTimingType: (v: "exact" | "window") => void;
+  scheduleDate: string;
+  setScheduleDate: (v: string) => void;
+  exactTime: string;
+  setExactTime: (v: string) => void;
+  windowChoice: "Morning" | "Afternoon" | "Evening" | "Custom";
+  setWindowChoice: (
+    v: "Morning" | "Afternoon" | "Evening" | "Custom",
+  ) => void;
+  customStart: string;
+  setCustomStart: (v: string) => void;
+  customEnd: string;
+  setCustomEnd: (v: string) => void;
+}) {
+  return (
+    <div className="flex flex-col gap-3">
+      <label className="input-label">When?</label>
+      <div className="grid grid-cols-2 gap-3">
+        <TimingChoice
+          title="Exact time"
+          subtitle="Showings, meetings, arrivals."
+          selected={timingType === "exact"}
+          onClick={() => setTimingType("exact")}
+        />
+        <TimingChoice
+          title="Time window"
+          subtitle="Pick a span. The Renner shows up within it."
+          selected={timingType === "window"}
+          onClick={() => setTimingType("window")}
+        />
+      </div>
+
+      <div className="flex gap-3">
+        <div style={{ flex: 1 }}>
+          <label className="input-label" htmlFor="scheduleDate">
+            Date
+          </label>
+          <input
+            id="scheduleDate"
+            type="date"
+            className="input"
+            value={scheduleDate}
+            onChange={(e) => setScheduleDate(e.target.value)}
+            required
+          />
+        </div>
+        {timingType === "exact" ? (
+          <div style={{ flex: 1 }}>
+            <label className="input-label" htmlFor="exactTime">
+              Time
+            </label>
+            <input
+              id="exactTime"
+              type="time"
+              className="input"
+              value={exactTime}
+              onChange={(e) => setExactTime(e.target.value)}
+              required
+            />
+          </div>
+        ) : (
+          <div style={{ flex: 1 }}>
+            <label className="input-label" htmlFor="windowChoice">
+              Window
+            </label>
+            <select
+              id="windowChoice"
+              className="input"
+              value={windowChoice}
+              onChange={(e) =>
+                setWindowChoice(
+                  e.target.value as
+                    | "Morning"
+                    | "Afternoon"
+                    | "Evening"
+                    | "Custom",
+                )
+              }
+            >
+              <option value="Morning">Morning (8am–12pm)</option>
+              <option value="Afternoon">Afternoon (12pm–5pm)</option>
+              <option value="Evening">Evening (5pm–9pm)</option>
+              <option value="Custom">Custom</option>
+            </select>
+          </div>
+        )}
+      </div>
+
+      {timingType === "window" && windowChoice === "Custom" && (
+        <div className="flex gap-3">
+          <div style={{ flex: 1 }}>
+            <label className="input-label" htmlFor="customStart">
+              Start time
+            </label>
+            <input
+              id="customStart"
+              type="time"
+              className="input"
+              value={customStart}
+              onChange={(e) => setCustomStart(e.target.value)}
+              required
+            />
+          </div>
+          <div style={{ flex: 1 }}>
+            <label className="input-label" htmlFor="customEnd">
+              End time
+            </label>
+            <input
+              id="customEnd"
+              type="time"
+              className="input"
+              value={customEnd}
+              onChange={(e) => setCustomEnd(e.target.value)}
+              required
+            />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function TimingChoice({
+  title,
+  subtitle,
+  selected,
+  onClick,
+}: {
+  title: string;
+  subtitle: string;
+  selected: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      style={{
+        textAlign: "left",
+        border: selected ? "1px solid #0d0f12" : "1px solid #cad1d8",
+        backgroundColor: selected ? "#0d0f12" : "#fbfbfc",
+        color: selected ? "#fbfbfc" : "#0d0f12",
+        borderRadius: "10px",
+        padding: "14px 16px",
+        cursor: "pointer",
+        transition: "background-color 120ms ease, border-color 120ms ease",
+      }}
+    >
+      <div
+        style={{
+          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+          fontSize: "14px",
+          fontWeight: 500,
+          marginBottom: "2px",
+        }}
+      >
+        {title}
+      </div>
+      <div
+        style={{
+          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+          fontSize: "12px",
+          color: selected ? "#cad1d8" : "#7d8da0",
+          lineHeight: 1.5,
+        }}
+      >
+        {subtitle}
+      </div>
     </button>
   );
 }

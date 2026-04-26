@@ -15,7 +15,10 @@ export type PendingTask = {
   task_city: string;
   task_state: string;
   task_zip: string;
-  date: string | null;
+  task_timing_type: "exact" | "window";
+  task_time: string | null;
+  window_start: string | null;
+  window_end: string | null;
   time_estimate: string | null;
   status: "Open";
   requires_license: boolean;

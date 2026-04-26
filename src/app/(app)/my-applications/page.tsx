@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { PaymentIndicator } from "@/components/StatusBadge";
-import { formatDate, formatPay, formatRelativeDate } from "@/lib/format";
+import {
+  formatPay,
+  formatRelativeDate,
+  formatTaskTiming,
+} from "@/lib/format";
 import { createClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -19,6 +23,10 @@ type ApplicationRow = {
     booked_runner: string | null;
     zip_code: string | null;
     date: string | null;
+    task_timing_type: "exact" | "window" | null;
+    task_time: string | null;
+    window_start: string | null;
+    window_end: string | null;
   } | null;
 };
 
@@ -53,7 +61,8 @@ export default async function MyApplicationsPage() {
       `id, status, applied_date,
        task:tasks (
          id, title, pay, status, payment_status,
-         booked_runner, zip_code, date
+         booked_runner, zip_code, date,
+         task_timing_type, task_time, window_start, window_end
        )`,
     )
     .eq("applicant_id", user.id)
@@ -186,7 +195,7 @@ export default async function MyApplicationsPage() {
                       >
                         {[
                           app.task.zip_code ? `Zip code ${app.task.zip_code}` : null,
-                          formatDate(app.task.date) ?? "Flexible",
+                          formatTaskTiming(app.task) ?? "Flexible",
                           `Applied ${formatRelativeDate(app.applied_date) ?? ""}`,
                         ]
                           .filter(Boolean)

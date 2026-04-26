@@ -2,9 +2,18 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ApplyButton } from "@/components/ApplyButton";
 import { CategoryBadge, LicenseBadge } from "@/components/CategoryBadge";
+import { ClientCancelButton } from "@/components/ClientCancelButton";
+import { RennerCancelButton } from "@/components/RennerCancelButton";
 import { ReportTaskButton } from "@/components/ReportTaskButton";
+import { StartTaskButton } from "@/components/StartTaskButton";
 import { StatusBadge } from "@/components/StatusBadge";
-import { formatDate, formatPay } from "@/lib/format";
+import { UnableToCompleteButton } from "@/components/UnableToCompleteButton";
+import {
+  formatDate,
+  formatPay,
+  formatTaskTiming,
+  startsAvailableAt,
+} from "@/lib/format";
 import { createClient } from "@/lib/supabase/server";
 import type { Task } from "@/lib/types";
 
@@ -18,7 +27,7 @@ export default async function TaskDetailPage({ params }: PageProps) {
   const { data: task } = await supabase
     .from("tasks")
     .select(
-      "id, title, description, category, pay, pay_type, zip_code, street_address, unit, task_city, task_state, task_zip, date, time_estimate, status, requires_license, posted_by, booked_runner, created_date, booked_date, marked_finished_date, completed_date, payment_status, completion_photos, completion_notes, dispute_reason, auto_release_date",
+      "id, title, description, category, pay, pay_type, zip_code, street_address, unit, task_city, task_state, task_zip, date, task_timing_type, task_time, window_start, window_end, time_estimate, status, requires_license, posted_by, booked_runner, created_date, booked_date, started_date, marked_finished_date, completed_date, payment_status, completion_photos, completion_notes, dispute_reason, auto_release_date, unable_to_complete_reason, unable_to_complete_explanation, unable_to_complete_photo, unable_to_complete_date, safety_flag",
     )
     .eq("id", params.id)
     .maybeSingle();
@@ -135,7 +144,10 @@ export default async function TaskDetailPage({ params }: PageProps) {
                   label="Zip code"
                   value={t.zip_code ?? "—"}
                 />
-                <MetaItem label="Date" value={formatDate(t.date) ?? "Flexible"} />
+                <MetaItem
+                  label="When"
+                  value={formatTaskTiming(t) ?? "Flexible"}
+                />
                 <MetaItem
                   label="Time estimate"
                   value={t.time_estimate ?? "—"}
@@ -374,22 +386,69 @@ function SidebarActions({
 
   if (task.status === "Booked") {
     if (isBookedRunner) {
+      const availableAtIso = startsAvailableAt(task)?.toISOString() ?? null;
       return (
-        <Link
-          href={`/tasks/${task.id}/review`}
-          className="btn-dark"
-          style={{ textDecoration: "none" }}
-        >
-          Mark complete →
-        </Link>
+        <div className="flex flex-col gap-2">
+          <StartTaskButton
+            taskId={task.id}
+            availableAtIso={availableAtIso}
+          />
+          <RennerCancelButton
+            taskId={task.id}
+            userId={user.id}
+            phase="Booked"
+          />
+        </div>
       );
     }
     if (isPoster) {
       return (
-        <DisabledLightButton text="Waiting on Renner to mark complete" />
+        <div className="flex flex-col gap-2">
+          <DisabledLightButton text="Waiting on Renner to start" />
+          <ClientCancelButton
+            taskId={task.id}
+            userId={user.id}
+            phase="Booked"
+          />
+        </div>
       );
     }
     return <DisabledLightButton text="Task already booked" />;
+  }
+
+  if (task.status === "Started") {
+    if (isBookedRunner) {
+      return (
+        <div className="flex flex-col gap-2">
+          <Link
+            href={`/tasks/${task.id}/review`}
+            className="btn-dark"
+            style={{ textDecoration: "none" }}
+          >
+            Mark complete →
+          </Link>
+          <UnableToCompleteButton taskId={task.id} userId={user.id} />
+          <RennerCancelButton
+            taskId={task.id}
+            userId={user.id}
+            phase="Started"
+          />
+        </div>
+      );
+    }
+    if (isPoster) {
+      return (
+        <div className="flex flex-col gap-2">
+          <DisabledLightButton text="Renner is on the task" />
+          <ClientCancelButton
+            taskId={task.id}
+            userId={user.id}
+            phase="Started"
+          />
+        </div>
+      );
+    }
+    return <DisabledLightButton text="Task in progress" />;
   }
 
   if (task.status === "Pending approval") {
@@ -415,6 +474,15 @@ function SidebarActions({
       <SuccessNotice
         title="Task complete"
         body="Payment has been released to the Renner."
+      />
+    );
+  }
+
+  if (task.status === "Unable to complete") {
+    return (
+      <SuccessNotice
+        title="Reported as unable to complete"
+        body="50% of the pay was released to the Renner; the other 50% was refunded."
       />
     );
   }

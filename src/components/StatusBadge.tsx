@@ -6,8 +6,10 @@ const STYLES: Record<
 > = {
   Open: { background: "#eaedf0", color: "#0d0f12" },
   Booked: { background: "rgba(45,138,78,0.08)", color: "#2d8a4e" },
+  Started: { background: "rgba(45,138,78,0.08)", color: "#2d8a4e" },
   "Pending approval": { background: "#eaedf0", color: "#4d5b6a" },
   Complete: { background: "rgba(45,138,78,0.08)", color: "#2d8a4e" },
+  "Unable to complete": { background: "#eaedf0", color: "#4d5b6a" },
   Disputed: { background: "rgba(192,57,43,0.08)", color: "#c0392b" },
   Closed: { background: "#f6f7f9", color: "#7d8da0" },
 };
@@ -15,8 +17,10 @@ const STYLES: Record<
 const LABELS: Record<TaskStatus, string> = {
   Open: "Open",
   Booked: "Booked",
+  Started: "Started",
   "Pending approval": "Pending confirmation",
   Complete: "Complete",
+  "Unable to complete": "Unable to complete",
   Disputed: "Disputed",
   Closed: "Closed",
 };

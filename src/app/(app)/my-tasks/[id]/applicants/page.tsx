@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { BookButton } from "@/components/BookButton";
-import { formatDate, formatPay } from "@/lib/format";
+import { formatPay, formatTaskTiming } from "@/lib/format";
 import { createClient } from "@/lib/supabase/server";
 import type { Task } from "@/lib/types";
 
@@ -43,7 +43,7 @@ export default async function ApplicantsPage({
   const { data: task } = await supabase
     .from("tasks")
     .select(
-      "id, title, description, category, pay, pay_type, zip_code, date, time_estimate, status, requires_license, posted_by, booked_runner, created_date, booked_date, marked_finished_date, completed_date, payment_status, completion_photos, completion_notes, dispute_reason, auto_release_date",
+      "id, title, description, category, pay, pay_type, zip_code, date, task_timing_type, task_time, window_start, window_end, time_estimate, status, requires_license, posted_by, booked_runner, created_date, booked_date, started_date, marked_finished_date, completed_date, payment_status, completion_photos, completion_notes, dispute_reason, auto_release_date, unable_to_complete_reason, unable_to_complete_explanation, unable_to_complete_photo, unable_to_complete_date, safety_flag",
     )
     .eq("id", params.id)
     .maybeSingle();
@@ -112,7 +112,7 @@ export default async function ApplicantsPage({
             >
               {[
                 t.zip_code ? `Zip code ${t.zip_code}` : null,
-                formatDate(t.date) ?? "Flexible",
+                formatTaskTiming(t) ?? "Flexible",
               ]
                 .filter(Boolean)
                 .join("  ·  ")}
