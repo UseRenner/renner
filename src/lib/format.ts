@@ -1,11 +1,19 @@
-export function formatPay(pay: number | null, payType: string | null) {
+export function formatPay(pay: number | null) {
   if (pay == null) return "—";
-  const amount = `$${Number(pay).toLocaleString("en-US", {
+  return `$${Number(pay).toLocaleString("en-US", {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   })}`;
-  if (payType === "Hourly") return `${amount}/hr`;
-  return amount;
+}
+
+export function formatHoursLeft(target: string | null) {
+  if (!target) return null;
+  const ms = new Date(target).getTime() - Date.now();
+  if (Number.isNaN(ms) || ms <= 0) return "any moment";
+  const hours = Math.floor(ms / (1000 * 60 * 60));
+  if (hours >= 1) return `${hours} hour${hours === 1 ? "" : "s"}`;
+  const minutes = Math.max(1, Math.floor(ms / (1000 * 60)));
+  return `${minutes} minute${minutes === 1 ? "" : "s"}`;
 }
 
 export function formatDate(value: string | null) {

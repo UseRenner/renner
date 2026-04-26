@@ -19,8 +19,8 @@ export default function PostTaskPage() {
   const [date, setDate] = useState("");
   const [timeEstimate, setTimeEstimate] = useState("");
   const [pay, setPay] = useState("");
-  const [payType, setPayType] = useState<"Flat rate" | "Hourly">("Flat rate");
-  const [location, setLocation] = useState("");
+  const [zipCode, setZipCode] = useState("");
+  const [propertyAddress, setPropertyAddress] = useState("");
   const [requiresLicense, setRequiresLicense] = useState(false);
 
   const [error, setError] = useState<string | null>(null);
@@ -71,8 +71,9 @@ export default function PostTaskPage() {
       description,
       category,
       pay: payNumber,
-      pay_type: payType,
-      location,
+      pay_type: "Flat rate",
+      zip_code: zipCode || null,
+      property_address: propertyAddress || null,
       date: date ? new Date(date).toISOString() : null,
       time_estimate: timeEstimate || null,
       status: "Open",
@@ -226,49 +227,58 @@ export default function PostTaskPage() {
                 </div>
               </div>
 
-              <div className="flex gap-3">
-                <div className="flex-1">
-                  <label className="input-label" htmlFor="pay">
-                    Pay amount
-                  </label>
-                  <input
-                    id="pay"
-                    type="number"
-                    min="0"
-                    step="1"
-                    className="input"
-                    value={pay}
-                    onChange={(e) => setPay(e.target.value)}
-                  />
-                </div>
-                <div className="flex-1">
-                  <label className="input-label" htmlFor="payType">
-                    Pay type
-                  </label>
-                  <select
-                    id="payType"
-                    className="input"
-                    value={payType}
-                    onChange={(e) =>
-                      setPayType(e.target.value as "Flat rate" | "Hourly")
-                    }
-                  >
-                    <option value="Flat rate">Flat rate</option>
-                    <option value="Hourly">Hourly</option>
-                  </select>
-                </div>
+              <div>
+                <label className="input-label" htmlFor="pay">
+                  Pay amount (flat rate)
+                </label>
+                <input
+                  id="pay"
+                  type="number"
+                  min="0"
+                  step="1"
+                  className="input"
+                  placeholder="$"
+                  value={pay}
+                  onChange={(e) => setPay(e.target.value)}
+                />
               </div>
 
               <div>
-                <label className="input-label" htmlFor="location">
-                  Location
+                <label className="input-label" htmlFor="zipCode">
+                  Zip code
                 </label>
                 <input
-                  id="location"
+                  id="zipCode"
                   className="input"
-                  value={location}
-                  onChange={(e) => setLocation(e.target.value)}
+                  placeholder="e.g. 30305"
+                  value={zipCode}
+                  onChange={(e) => setZipCode(e.target.value)}
+                  maxLength={10}
                 />
+              </div>
+
+              <div>
+                <label className="input-label" htmlFor="propertyAddress">
+                  Property address
+                </label>
+                <input
+                  id="propertyAddress"
+                  className="input"
+                  placeholder="Full property address"
+                  value={propertyAddress}
+                  onChange={(e) => setPropertyAddress(e.target.value)}
+                />
+                <p
+                  style={{
+                    fontFamily:
+                      "var(--font-inter), ui-sans-serif, system-ui",
+                    fontSize: "12px",
+                    color: "#7d8da0",
+                    marginTop: "6px",
+                  }}
+                >
+                  Only shared with your booked Renner.
+                </p>
               </div>
 
               <label

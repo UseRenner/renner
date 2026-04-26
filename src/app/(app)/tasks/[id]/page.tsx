@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ApplyButton } from "@/components/ApplyButton";
 import { CategoryBadge, LicenseBadge } from "@/components/CategoryBadge";
+import { StatusBadge } from "@/components/StatusBadge";
 import { formatDate, formatPay } from "@/lib/format";
 import { createClient } from "@/lib/supabase/server";
 import type { Task } from "@/lib/types";
@@ -16,7 +17,7 @@ export default async function TaskDetailPage({ params }: PageProps) {
   const { data: task } = await supabase
     .from("tasks")
     .select(
-      "id, title, description, category, pay, pay_type, location, city, date, time_estimate, status, requires_license, posted_by, booked_runner, created_date, payment_status",
+      "id, title, description, category, pay, pay_type, zip_code, property_address, date, time_estimate, status, requires_license, posted_by, booked_runner, created_date, booked_date, marked_finished_date, completed_date, payment_status, completion_photo, completion_notes, dispute_reason, auto_release_date",
     )
     .eq("id", params.id)
     .maybeSingle();
@@ -73,6 +74,8 @@ export default async function TaskDetailPage({ params }: PageProps) {
       .slice(0, 2) || "?";
   })();
 
+  const isPoster = !!user && t.posted_by === user.id;
+  const isBookedRunner = !!user && t.booked_runner === user.id;
   const isRenner = viewerProfile?.role === "renner";
   const isOpen = t.status === "Open";
   const licenseBlocked = t.requires_license && !viewerProfile?.licensed;
@@ -103,9 +106,13 @@ export default async function TaskDetailPage({ params }: PageProps) {
           style={{ gridTemplateColumns: "minmax(0, 1fr) 360px" }}
         >
           <div>
-            <div className="flex items-center gap-2 flex-wrap" style={{ marginBottom: "16px" }}>
+            <div
+              className="flex items-center gap-2 flex-wrap"
+              style={{ marginBottom: "16px" }}
+            >
               {t.category && <CategoryBadge>{t.category}</CategoryBadge>}
               {t.requires_license && <LicenseBadge />}
+              {t.status !== "Open" && <StatusBadge status={t.status} />}
             </div>
 
             <h1
@@ -120,28 +127,62 @@ export default async function TaskDetailPage({ params }: PageProps) {
               {t.title}
             </h1>
 
-            <div
-              className="card"
-              style={{ padding: "28px", marginBottom: "28px" }}
-            >
-              <div
-                className="grid grid-cols-2 gap-y-6 gap-x-8"
-              >
+            <div className="card" style={{ padding: "28px", marginBottom: "28px" }}>
+              <div className="grid grid-cols-2 gap-y-6 gap-x-8">
                 <MetaItem label="Category" value={t.category ?? "—"} />
-                <MetaItem label="Location" value={t.location ?? "—"} />
+                <MetaItem
+                  label="Zip code"
+                  value={t.zip_code ?? "—"}
+                />
                 <MetaItem label="Date" value={formatDate(t.date) ?? "Flexible"} />
                 <MetaItem
                   label="Time estimate"
                   value={t.time_estimate ?? "—"}
                 />
               </div>
+
+              {isBookedRunner && t.property_address ? (
+                <div
+                  style={{
+                    marginTop: "24px",
+                    paddingTop: "20px",
+                    borderTop: "1px solid #eaedf0",
+                  }}
+                >
+                  <div className="micro-label" style={{ marginBottom: "6px" }}>
+                    Property address
+                  </div>
+                  <div
+                    style={{
+                      fontFamily:
+                        "var(--font-inter), ui-sans-serif, system-ui",
+                      fontSize: "15px",
+                      fontWeight: 500,
+                      color: "#0d0f12",
+                    }}
+                  >
+                    {t.property_address}
+                  </div>
+                  <div
+                    style={{
+                      fontFamily:
+                        "var(--font-inter), ui-sans-serif, system-ui",
+                      fontSize: "12px",
+                      color: "#7d8da0",
+                      marginTop: "4px",
+                    }}
+                  >
+                    Shared because you&apos;re booked on this task.
+                  </div>
+                </div>
+              ) : null}
             </div>
 
-            <div className="card" style={{ padding: "28px", marginBottom: "28px" }}>
-              <h2
-                className="micro-label"
-                style={{ marginBottom: "12px" }}
-              >
+            <div
+              className="card"
+              style={{ padding: "28px", marginBottom: "28px" }}
+            >
+              <h2 className="micro-label" style={{ marginBottom: "12px" }}>
                 Description
               </h2>
               <p
@@ -159,10 +200,7 @@ export default async function TaskDetailPage({ params }: PageProps) {
             </div>
 
             <div className="card" style={{ padding: "24px 28px" }}>
-              <h2
-                className="micro-label"
-                style={{ marginBottom: "14px" }}
-              >
+              <h2 className="micro-label" style={{ marginBottom: "14px" }}>
                 Posted by
               </h2>
               <div className="flex items-center gap-3">
@@ -214,10 +252,7 @@ export default async function TaskDetailPage({ params }: PageProps) {
           </div>
 
           <aside>
-            <div
-              className="card sticky"
-              style={{ padding: "28px", top: "96px" }}
-            >
+            <div className="card sticky" style={{ padding: "28px", top: "96px" }}>
               <div
                 className="font-display"
                 style={{
@@ -228,7 +263,7 @@ export default async function TaskDetailPage({ params }: PageProps) {
                   marginBottom: "10px",
                 }}
               >
-                {formatPay(t.pay, t.pay_type)}
+                {formatPay(t.pay)}
               </div>
               <p
                 style={{
@@ -243,12 +278,12 @@ export default async function TaskDetailPage({ params }: PageProps) {
                 Payment held by Stripe until approved
               </p>
 
-              <div
-                className="divider"
-                style={{ marginBottom: "20px" }}
-              />
+              <div className="divider" style={{ marginBottom: "20px" }} />
 
-              <div className="flex flex-col gap-3" style={{ marginBottom: "24px" }}>
+              <div
+                className="flex flex-col gap-3"
+                style={{ marginBottom: "24px" }}
+              >
                 <SummaryRow label="Category" value={t.category ?? "—"} />
                 <SummaryRow label="Status" value={t.status} />
                 <SummaryRow
@@ -257,73 +292,210 @@ export default async function TaskDetailPage({ params }: PageProps) {
                 />
               </div>
 
-              {!user ? (
-                <Link href="/signin" className="btn-dark" style={{ textDecoration: "none" }}>
-                  Sign in to apply
-                </Link>
-              ) : !isRenner ? (
-                <button
-                  type="button"
-                  className="btn-light"
-                  disabled
-                  style={{ width: "100%", padding: "13px 18px" }}
-                >
-                  Switch to a Renner account to apply
-                </button>
-              ) : !isOpen ? (
-                <button
-                  type="button"
-                  className="btn-light"
-                  disabled
-                  style={{ width: "100%", padding: "13px 18px" }}
-                >
-                  Task is no longer open
-                </button>
-              ) : licenseBlocked ? (
-                <>
-                  <button
-                    type="button"
-                    className="btn-light"
-                    disabled
-                    style={{ width: "100%", padding: "13px 18px" }}
-                  >
-                    License required
-                  </button>
-                  <p
-                    style={{
-                      fontFamily:
-                        "var(--font-inter), ui-sans-serif, system-ui",
-                      fontSize: "12px",
-                      color: "#7d8da0",
-                      marginTop: "10px",
-                      lineHeight: 1.5,
-                    }}
-                  >
-                    Add a verified real estate license to your profile to apply
-                    for licensed tasks.
-                  </p>
-                </>
-              ) : canApply ? (
-                <ApplyButton
-                  taskId={t.id}
-                  userId={user.id}
-                  alreadyApplied={alreadyApplied}
-                />
-              ) : (
-                <button
-                  type="button"
-                  className="btn-light"
-                  disabled
-                  style={{ width: "100%", padding: "13px 18px" }}
-                >
-                  You posted this task
-                </button>
-              )}
+              <SidebarActions
+                task={t}
+                user={user}
+                isPoster={isPoster}
+                isBookedRunner={isBookedRunner}
+                isRenner={isRenner}
+                canApply={canApply}
+                alreadyApplied={alreadyApplied}
+                licenseBlocked={licenseBlocked}
+              />
             </div>
           </aside>
         </div>
       </div>
     </main>
+  );
+}
+
+function SidebarActions({
+  task,
+  user,
+  isPoster,
+  isBookedRunner,
+  isRenner,
+  canApply,
+  alreadyApplied,
+  licenseBlocked,
+}: {
+  task: Task;
+  user: { id: string } | null;
+  isPoster: boolean;
+  isBookedRunner: boolean;
+  isRenner: boolean;
+  canApply: boolean;
+  alreadyApplied: boolean;
+  licenseBlocked: boolean;
+}) {
+  if (!user) {
+    return (
+      <Link
+        href="/signin"
+        className="btn-dark"
+        style={{ textDecoration: "none" }}
+      >
+        Sign in to apply
+      </Link>
+    );
+  }
+
+  if (task.status === "Booked") {
+    if (isBookedRunner) {
+      return (
+        <Link
+          href={`/tasks/${task.id}/review`}
+          className="btn-dark"
+          style={{ textDecoration: "none" }}
+        >
+          Mark complete →
+        </Link>
+      );
+    }
+    if (isPoster) {
+      return (
+        <DisabledLightButton text="Waiting on Renner to mark complete" />
+      );
+    }
+    return <DisabledLightButton text="Task already booked" />;
+  }
+
+  if (task.status === "Pending approval") {
+    if (isPoster) {
+      return (
+        <Link
+          href={`/tasks/${task.id}/review`}
+          className="btn-dark"
+          style={{ textDecoration: "none" }}
+        >
+          Review submitted work
+        </Link>
+      );
+    }
+    if (isBookedRunner) {
+      return <DisabledLightButton text="Awaiting client approval" />;
+    }
+    return <DisabledLightButton text="Pending approval" />;
+  }
+
+  if (task.status === "Complete") {
+    return (
+      <SuccessNotice
+        title="Task complete"
+        body="Payment has been released to the Renner."
+      />
+    );
+  }
+
+  if (task.status === "Disputed") {
+    return (
+      <SuccessNotice
+        title="Task disputed"
+        body="An admin is reviewing this task."
+        tone="red"
+      />
+    );
+  }
+
+  if (task.status === "Closed") {
+    return <DisabledLightButton text="Task closed" />;
+  }
+
+  // Open
+  if (isPoster) {
+    return <DisabledLightButton text="You posted this task" />;
+  }
+  if (!isRenner) {
+    return <DisabledLightButton text="Switch to a Renner account to apply" />;
+  }
+  if (licenseBlocked) {
+    return (
+      <>
+        <DisabledLightButton text="License required" />
+        <p
+          style={{
+            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+            fontSize: "12px",
+            color: "#7d8da0",
+            marginTop: "10px",
+            lineHeight: 1.5,
+          }}
+        >
+          Add a verified real estate license to your profile to apply for
+          licensed tasks.
+        </p>
+      </>
+    );
+  }
+  if (canApply) {
+    return (
+      <ApplyButton
+        taskId={task.id}
+        userId={user.id}
+        alreadyApplied={alreadyApplied}
+      />
+    );
+  }
+  return <DisabledLightButton text="Unable to apply" />;
+}
+
+function DisabledLightButton({ text }: { text: string }) {
+  return (
+    <button
+      type="button"
+      className="btn-light"
+      disabled
+      style={{ width: "100%", padding: "13px 18px" }}
+    >
+      {text}
+    </button>
+  );
+}
+
+function SuccessNotice({
+  title,
+  body,
+  tone = "green",
+}: {
+  title: string;
+  body: string;
+  tone?: "green" | "red";
+}) {
+  const palette =
+    tone === "green"
+      ? { background: "rgba(45,138,78,0.08)", color: "#2d8a4e" }
+      : { background: "rgba(192,57,43,0.08)", color: "#c0392b" };
+  return (
+    <div
+      style={{
+        backgroundColor: palette.background,
+        color: palette.color,
+        borderRadius: "10px",
+        padding: "14px 16px",
+      }}
+    >
+      <div
+        style={{
+          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+          fontSize: "13px",
+          fontWeight: 500,
+          marginBottom: "2px",
+        }}
+      >
+        {title}
+      </div>
+      <div
+        style={{
+          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+          fontSize: "12px",
+          color: "#647589",
+          lineHeight: 1.5,
+        }}
+      >
+        {body}
+      </div>
+    </div>
   );
 }
 

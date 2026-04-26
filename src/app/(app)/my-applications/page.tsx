@@ -14,11 +14,10 @@ type ApplicationRow = {
     id: string;
     title: string;
     pay: number | null;
-    pay_type: "Flat rate" | "Hourly" | null;
     status: string;
     payment_status: string | null;
     booked_runner: string | null;
-    location: string | null;
+    zip_code: string | null;
     date: string | null;
   } | null;
 };
@@ -53,8 +52,8 @@ export default async function MyApplicationsPage() {
     .select(
       `id, status, applied_date,
        task:tasks (
-         id, title, pay, pay_type, status, payment_status,
-         booked_runner, location, date
+         id, title, pay, status, payment_status,
+         booked_runner, zip_code, date
        )`,
     )
     .eq("applicant_id", user.id)
@@ -186,7 +185,7 @@ export default async function MyApplicationsPage() {
                         }}
                       >
                         {[
-                          app.task.location,
+                          app.task.zip_code ? `Zip ${app.task.zip_code}` : null,
                           formatDate(app.task.date) ?? "Flexible",
                           `Applied ${formatRelativeDate(app.applied_date) ?? ""}`,
                         ]
@@ -208,7 +207,7 @@ export default async function MyApplicationsPage() {
                           whiteSpace: "nowrap",
                         }}
                       >
-                        {formatPay(app.task.pay, app.task.pay_type)}
+                        {formatPay(app.task.pay)}
                       </div>
                       {isBookedToMe && (
                         <Link

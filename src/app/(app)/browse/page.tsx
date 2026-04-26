@@ -24,7 +24,7 @@ export default async function BrowsePage() {
   const { data: tasksData } = await supabase
     .from("tasks")
     .select(
-      "id, title, description, category, pay, pay_type, location, city, date, time_estimate, status, requires_license, posted_by, booked_runner, created_date, payment_status",
+      "id, title, description, category, pay, pay_type, zip_code, property_address, date, time_estimate, status, requires_license, posted_by, booked_runner, created_date, booked_date, marked_finished_date, completed_date, payment_status, completion_photo, completion_notes, dispute_reason, auto_release_date",
     )
     .eq("status", "Open")
     .order("created_date", { ascending: false });
