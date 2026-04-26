@@ -13,6 +13,16 @@ import type { Task } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
+type RunnerProfile = {
+  id: string;
+  display_name: string | null;
+  first_name: string | null;
+  last_name: string | null;
+  background_verified: boolean | null;
+  rating: number | null;
+  completed_tasks: number | null;
+};
+
 export default async function TaskReviewPage({
   params,
 }: {
@@ -40,15 +50,7 @@ export default async function TaskReviewPage({
   const isRunner = t.booked_runner === user.id;
   if (!isPoster && !isRunner) redirect(`/tasks/${t.id}`);
 
-  let runner: {
-    id: string;
-    display_name: string | null;
-    first_name: string | null;
-    last_name: string | null;
-    background_verified: boolean | null;
-    rating: number | null;
-    completed_tasks: number | null;
-  } | null = null;
+  let runner: RunnerProfile | null = null;
   if (t.booked_runner) {
     const { data } = await supabase
       .from("users")
@@ -57,7 +59,7 @@ export default async function TaskReviewPage({
       )
       .eq("id", t.booked_runner)
       .maybeSingle();
-    runner = (data as typeof runner) ?? null;
+    runner = (data as RunnerProfile | null) ?? null;
   }
 
   let runnerIsSaved = false;
@@ -173,15 +175,7 @@ function ClientApprovalView({
 }: {
   task: Task;
   user: { id: string };
-  runner: {
-    id: string;
-    display_name: string | null;
-    first_name: string | null;
-    last_name: string | null;
-    background_verified: boolean | null;
-    rating: number | null;
-    completed_tasks: number | null;
-  } | null;
+  runner: RunnerProfile | null;
   runnerIsSaved: boolean;
 }) {
   const runnerName =
