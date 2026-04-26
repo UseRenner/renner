@@ -174,13 +174,16 @@ h4,
 }
 
 /* ====== Landing-page interactive hover states ======
- * Every clickable element shifts subtly on hover so the entire page
- * feels uniform. Each class targets a distinct visual context. */
+ * Every clickable element on the landing page mirrors one of the two
+ * canonical CTA-band hover patterns:
+ *   - Dark on light  →  background lightens to var(--s-900)
+ *   - Light on light →  background tints to var(--s-50), border to var(--s-400)
+ * Buttons on the dark band invert the same pair (subtle dim / faint
+ * white tint with brighter border). Same 120ms ease across the page. */
 .ll-nav-link {
-  transition: color 120ms ease, background-color 120ms ease;
+  transition: background-color 120ms ease;
 }
 .ll-nav-link:hover {
-  color: var(--s-black);
   background-color: var(--s-50);
 }
 
@@ -203,7 +206,7 @@ h4,
   transition: background-color 120ms ease;
 }
 .ll-cta-white:hover {
-  background-color: var(--s-300);
+  background-color: var(--s-100);
 }
 
 .ll-cta-outline-dark {
@@ -231,10 +234,13 @@ h4,
 }
 
 .ll-footer-link {
-  transition: color 120ms ease;
+  transition: background-color 120ms ease;
+  border-radius: 4px;
+  padding: 2px 6px;
+  margin: -2px -6px;
 }
 .ll-footer-link:hover {
-  color: var(--s-25);
+  background-color: var(--s-900);
 }
 
 .ll-search-submit {
@@ -244,10 +250,15 @@ h4,
   background-color: var(--s-900);
 }
 
+.faq-item {
+  transition: background-color 120ms ease;
+}
+.faq-item:hover {
+  background-color: var(--s-25);
+}
 .faq-item summary {
   transition: color 120ms ease;
 }
-.faq-item summary:hover .faq-toggle,
-.faq-item[open] summary:hover .faq-toggle {
+.faq-item:hover .faq-toggle {
   color: var(--s-700);
 }

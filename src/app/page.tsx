@@ -422,7 +422,7 @@ function HowItWorks() {
             maxWidth: "720px",
           }}
         >
-          Book a Renner.
+          Book a Renner
         </h2>
         <div
           className="grid gap-8"
@@ -519,7 +519,7 @@ function Categories() {
             maxWidth: "720px",
           }}
         >
-          What Renners handle.
+          What Renners handle
         </h2>
         <div
           className="grid gap-4"
@@ -577,18 +577,12 @@ function DarkSplit() {
     textTransform: "uppercase",
     color: "#a7b2be",
   };
-  const headingStyle: React.CSSProperties = {
-    fontSize: "40px",
-    lineHeight: 1.1,
-    color: "#fbfbfc",
-    margin: 0,
-  };
   const bodyStyle: React.CSSProperties = {
     fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-    fontSize: "15px",
+    fontSize: "17px",
     color: "#cad1d8",
-    lineHeight: 1.6,
-    maxWidth: "420px",
+    lineHeight: 1.55,
+    maxWidth: "320px",
     margin: 0,
   };
   return (
@@ -604,20 +598,15 @@ function DarkSplit() {
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
-            columnGap: "48px",
+            columnGap: "96px",
             rowGap: "20px",
             alignItems: "start",
+            justifyItems: "center",
+            textAlign: "center",
           }}
         >
           <div style={labelStyle}>For Clients</div>
           <div style={labelStyle}>For Renners</div>
-
-          <h3 className="font-display" style={headingStyle}>
-            Post tasks
-          </h3>
-          <h3 className="font-display" style={headingStyle}>
-            Complete them
-          </h3>
 
           <p style={bodyStyle}>Vetted Renners. Every task handled.</p>
           <p style={bodyStyle}>Real work. Real estate.</p>
@@ -712,7 +701,7 @@ function FAQ() {
             marginBottom: "32px",
           }}
         >
-          Common <span className="headline-em">questions</span>.
+          Common questions
         </h2>
         <div className="card" style={{ padding: "8px 0" }}>
           {FAQS.map((item, idx) => (
@@ -802,7 +791,7 @@ function CTA() {
             marginBottom: "32px",
           }}
         >
-          Get something done.
+          Get something <span className="headline-em">done.</span>
         </h2>
         <div className="flex justify-center gap-3 flex-wrap">
           <Link
