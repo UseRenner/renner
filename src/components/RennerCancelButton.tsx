@@ -3,7 +3,11 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ModalShell } from "@/components/ModalShell";
-import { incrementCancellationCount } from "@/lib/cancellation";
+import {
+  CANCELLATION_THRESHOLD,
+  incrementCancellationCount,
+} from "@/lib/cancellation";
+import { notifyAdmin } from "@/lib/notifyAdmin";
 import { createClient } from "@/lib/supabase/client";
 
 const POST_START_REASONS = [
@@ -51,7 +55,14 @@ export function RennerCancelButton({
       setSubmitting(false);
       return;
     }
-    await incrementCancellationCount(supabase, userId);
+    const newCount = await incrementCancellationCount(supabase, userId);
+    if (newCount > CANCELLATION_THRESHOLD) {
+      await notifyAdmin({
+        event: "cancellation_threshold",
+        userId,
+        count: newCount,
+      });
+    }
     setSubmitting(false);
     setOpen(false);
     router.push("/my-applications");
@@ -87,7 +98,17 @@ export function RennerCancelButton({
       setSubmitting(false);
       return;
     }
-    await incrementCancellationCount(supabase, userId);
+    const newCount = await incrementCancellationCount(supabase, userId);
+    if (safetyFlag) {
+      await notifyAdmin({ event: "safety_flag", taskId });
+    }
+    if (newCount > CANCELLATION_THRESHOLD) {
+      await notifyAdmin({
+        event: "cancellation_threshold",
+        userId,
+        count: newCount,
+      });
+    }
     setSubmitting(false);
     setOpen(false);
     router.push("/my-applications");

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { notifyAdmin } from "@/lib/notifyAdmin";
 import { createClient } from "@/lib/supabase/client";
 
 export function ReportTaskButton({
@@ -27,17 +28,24 @@ export function ReportTaskButton({
     }
     setError(null);
     setSubmitting(true);
-    const { error: insertError } = await supabase.from("disputes").insert({
-      task_id: taskId,
-      raised_by: raisedBy,
-      against,
-      reason,
-      status: "Open",
-    });
+    const { data: inserted, error: insertError } = await supabase
+      .from("disputes")
+      .insert({
+        task_id: taskId,
+        raised_by: raisedBy,
+        against,
+        reason,
+        status: "Open",
+      })
+      .select("id")
+      .single();
     setSubmitting(false);
     if (insertError) {
       setError(insertError.message);
       return;
+    }
+    if (inserted?.id) {
+      await notifyAdmin({ event: "dispute_filed", disputeId: inserted.id });
     }
     setSubmitted(true);
   }

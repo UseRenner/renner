@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ModalShell } from "@/components/ModalShell";
+import { notifyAdmin } from "@/lib/notifyAdmin";
 import { createClient } from "@/lib/supabase/client";
 
 type Mode = "idle" | "accept" | "counter" | "disputed";
@@ -90,6 +91,11 @@ export function DamageResponseButton({
       admin_notes: explanation.trim(),
     });
     if (!ok) return;
+    await notifyAdmin({
+      event: "dispute_escalated",
+      disputeId,
+      explanation: explanation.trim(),
+    });
     setOpen(false);
     reset();
     router.refresh();

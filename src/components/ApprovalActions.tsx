@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { notifyAdmin } from "@/lib/notifyAdmin";
 import { createClient } from "@/lib/supabase/client";
 
 type Mode = "idle" | "review" | "dispute";
@@ -186,15 +187,19 @@ export function ApprovalActions({
 
     const fullReason = `${category}: ${reason.trim()}`;
 
-    const { error: disputeError } = await supabase.from("disputes").insert({
-      task_id: taskId,
-      raised_by: reviewerId,
-      against: runnerId,
-      reason: fullReason,
-      status: "Open",
-      damage_amount: amountValue,
-      damage_photos: uploadedPhotoUrls,
-    });
+    const { data: insertedDispute, error: disputeError } = await supabase
+      .from("disputes")
+      .insert({
+        task_id: taskId,
+        raised_by: reviewerId,
+        against: runnerId,
+        reason: fullReason,
+        status: "Open",
+        damage_amount: amountValue,
+        damage_photos: uploadedPhotoUrls,
+      })
+      .select("id")
+      .single();
 
     if (disputeError) {
       setError(disputeError.message);
@@ -215,6 +220,13 @@ export function ApprovalActions({
       setError(taskError.message);
       setSubmitting(false);
       return;
+    }
+
+    if (insertedDispute?.id) {
+      await notifyAdmin({
+        event: "dispute_filed",
+        disputeId: insertedDispute.id,
+      });
     }
 
     router.push("/my-tasks");

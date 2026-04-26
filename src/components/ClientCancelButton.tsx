@@ -3,7 +3,11 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ModalShell } from "@/components/ModalShell";
-import { incrementCancellationCount } from "@/lib/cancellation";
+import {
+  CANCELLATION_THRESHOLD,
+  incrementCancellationCount,
+} from "@/lib/cancellation";
+import { notifyAdmin } from "@/lib/notifyAdmin";
 import { createClient } from "@/lib/supabase/client";
 
 type Phase = "Booked" | "Started";
@@ -58,11 +62,18 @@ export function ClientCancelButton({
       }
     }
 
-    await incrementCancellationCount(supabase, userId);
+    const newCount = await incrementCancellationCount(supabase, userId);
+    if (newCount > CANCELLATION_THRESHOLD) {
+      await notifyAdmin({
+        event: "cancellation_threshold",
+        userId,
+        count: newCount,
+      });
+    }
 
     setSubmitting(false);
     setOpen(false);
-    router.push(phase === "Booked" ? "/my-tasks" : "/my-tasks");
+    router.push("/my-tasks");
     router.refresh();
   }
 

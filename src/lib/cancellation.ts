@@ -6,7 +6,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 export async function incrementCancellationCount(
   supabase: SupabaseClient,
   userId: string,
-) {
+): Promise<number> {
   const { data } = await supabase
     .from("users")
     .select("cancellation_count")
@@ -20,4 +20,7 @@ export async function incrementCancellationCount(
       last_cancellation_date: new Date().toISOString(),
     })
     .eq("id", userId);
+  return next;
 }
+
+export const CANCELLATION_THRESHOLD = 5;
