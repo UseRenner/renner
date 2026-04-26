@@ -299,7 +299,7 @@ export default async function TaskDetailPage({ params }: PageProps) {
                   lineHeight: 1.5,
                 }}
               >
-                Payment held by Stripe until approved
+                Payment held by Stripe until confirmed
               </p>
 
               <div className="divider" style={{ marginBottom: "20px" }} />
@@ -309,7 +309,14 @@ export default async function TaskDetailPage({ params }: PageProps) {
                 style={{ marginBottom: "24px" }}
               >
                 <SummaryRow label="Category" value={t.category ?? "—"} />
-                <SummaryRow label="Status" value={t.status} />
+                <SummaryRow
+                  label="Status"
+                  value={
+                    t.status === "Pending approval"
+                      ? "Pending confirmation"
+                      : t.status
+                  }
+                />
                 <SummaryRow
                   label="Posted"
                   value={formatDate(t.created_date) ?? "—"}
@@ -398,9 +405,9 @@ function SidebarActions({
       );
     }
     if (isBookedRunner) {
-      return <DisabledLightButton text="Awaiting client approval" />;
+      return <DisabledLightButton text="Awaiting client confirmation" />;
     }
-    return <DisabledLightButton text="Pending approval" />;
+    return <DisabledLightButton text="Pending confirmation" />;
   }
 
   if (task.status === "Complete") {

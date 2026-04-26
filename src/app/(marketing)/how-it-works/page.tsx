@@ -7,7 +7,7 @@ const FAQS: Array<{ q: string; a: string }> = [
   },
   {
     q: "How do payments work?",
-    a: "When a Client books a Renner, the Client's card is charged and the funds are held in escrow by Stripe. After the Renner submits proof of completion, the Client has 48 hours to approve or open a dispute. Approved funds release immediately to the Renner. If the 48-hour window passes with no dispute, payment auto-releases.",
+    a: "When a Client books a Renner, the Client's card is charged and the funds are held in escrow by Stripe. After the Renner submits proof of completion, the Client has 48 hours to confirm the task is complete or open a dispute. Confirmed funds release immediately to the Renner. If the 48-hour window passes with no dispute, payment auto-releases.",
   },
   {
     q: "What is the platform fee?",
@@ -27,7 +27,7 @@ const FAQS: Array<{ q: string; a: string }> = [
   },
   {
     q: "How quickly does payment release?",
-    a: "After the Client approves the work, Stripe transfers the funds to the Renner's connected account within 1–2 business days. If the Client doesn't act, payment auto-releases 48 hours after the Renner submits the work.",
+    a: "After the Client confirms the task is complete, Stripe transfers the funds to the Renner's connected account within 1–2 business days. If the Client doesn't act, payment auto-releases 48 hours after the Renner submits the work.",
   },
   {
     q: "Who pays the platform fee?",
@@ -67,7 +67,8 @@ export default function HowItWorksPage() {
           }}
         >
           The short version: Clients post tasks, Renners apply, Stripe holds
-          payment until the work is approved. Below are the details.
+          payment until the client confirms the task is complete. Below are
+          the details.
         </p>
 
         <div className="card" style={{ padding: "8px 0" }}>

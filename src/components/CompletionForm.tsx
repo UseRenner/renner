@@ -177,7 +177,7 @@ export function CompletionForm({
         className="btn-dark"
         disabled={submitting}
       >
-        {submitting ? "Submitting…" : "Submit for approval"}
+        {submitting ? "Submitting…" : "Submit for confirmation"}
       </button>
 
       <p
@@ -189,7 +189,7 @@ export function CompletionForm({
           lineHeight: 1.5,
         }}
       >
-        The client has 48 hours to approve. Payment auto-releases after that.
+        The client has 48 hours to confirm. Payment auto-releases after that.
       </p>
     </form>
   );

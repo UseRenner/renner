@@ -526,9 +526,9 @@ export default function PostTaskPage() {
                   padding: "14px 16px",
                 }}
               >
-                Your card will be charged when you book a runner. Funds are
-                held by Stripe and released only when you approve the completed
-                work.
+                Your card will be charged when you book a Renner. Funds are
+                held by Stripe and released only when you confirm the task is
+                complete.
               </p>
 
               {error && (

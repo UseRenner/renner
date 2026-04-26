@@ -12,8 +12,18 @@ const STYLES: Record<
   Closed: { background: "#f6f7f9", color: "#7d8da0" },
 };
 
+const LABELS: Record<TaskStatus, string> = {
+  Open: "Open",
+  Booked: "Booked",
+  "Pending approval": "Pending confirmation",
+  Complete: "Complete",
+  Disputed: "Disputed",
+  Closed: "Closed",
+};
+
 export function StatusBadge({ status }: { status: TaskStatus }) {
   const style = STYLES[status] ?? STYLES.Open;
+  const label = LABELS[status] ?? status;
   return (
     <span
       style={{
@@ -31,7 +41,7 @@ export function StatusBadge({ status }: { status: TaskStatus }) {
         whiteSpace: "nowrap",
       }}
     >
-      {status}
+      {label}
     </span>
   );
 }

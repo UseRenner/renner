@@ -218,7 +218,7 @@ export function ApprovalActions({
           opacity: submitting ? 0.6 : 1,
         }}
       >
-        {submitting ? "Releasing payment…" : "Approve & release payment"}
+        {submitting ? "Releasing payment…" : "Confirm & release payment"}
       </button>
       <button
         type="button"

@@ -75,7 +75,7 @@ export default async function TaskReviewPage({
         </Link>
 
         <div className="micro-label" style={{ marginBottom: "10px" }}>
-          {t.status}
+          {t.status === "Pending approval" ? "Pending confirmation" : t.status}
         </div>
         <h1
           className="font-display"
@@ -128,7 +128,7 @@ export default async function TaskReviewPage({
               }}
             >
               Upload a quick photo of the finished work and add any notes for
-              the client. The client has 48 hours to approve before payment
+              the client. The client has 48 hours to confirm before payment
               auto-releases.
             </p>
             <CompletionForm taskId={t.id} userId={user.id} />
@@ -358,9 +358,9 @@ function StatusNotice({
     title = "Waiting on the Renner";
     body = "You'll be able to review the work once it's marked complete.";
   } else if (isRunner && task.status === "Pending approval") {
-    title = "Awaiting client approval";
+    title = "Awaiting client confirmation";
     body =
-      "The client has 48 hours to approve. Payment auto-releases after that.";
+      "The client has 48 hours to confirm. Payment auto-releases after that.";
   } else if (task.status === "Complete") {
     title = "Task complete";
     body = "Payment has been released. Thanks for using Renner.";

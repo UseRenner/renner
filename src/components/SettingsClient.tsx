@@ -62,8 +62,8 @@ export function SettingsClient({
         }
         description={
           profile?.role === "client"
-            ? "Where we charge for tasks. Funds are held in escrow until you approve completed work."
-            : "Where we send your payouts after clients approve completed work."
+            ? "Where we charge for tasks. Funds are held in escrow until you confirm the task is complete."
+            : "Where we send your payouts after clients confirm completed work."
         }
       >
         <PaymentSection profile={profile} />
@@ -528,7 +528,7 @@ function PaymentSection({ profile }: { profile: Profile | null }) {
           }}
         >
           {onboarded
-            ? "Payouts arrive 1–2 business days after task approval."
+            ? "Payouts arrive 1–2 business days after task confirmation."
             : "Connect Stripe to start receiving payouts."}
         </div>
       </div>

@@ -206,12 +206,12 @@ function TrustSignals() {
     {
       icon: <LockIcon />,
       title: "Secure payments",
-      body: "Stripe holds your payment in escrow until the work is approved.",
+      body: "Stripe holds your payment in escrow until you confirm the task is complete.",
     },
     {
       icon: <CameraIcon />,
       title: "Photo proof of completion",
-      body: "Renners submit a completion photo. Approve or dispute in 48 hours.",
+      body: "Renners submit a completion photo. Confirm or dispute in 48 hours.",
     },
     {
       icon: <BadgeIcon />,
@@ -298,8 +298,8 @@ function HowItWorks() {
     },
     {
       number: "03",
-      title: "Approve & pay",
-      body: "Your Renner submits a completion photo. Approve to release payment, or open a dispute — all without leaving Renner.",
+      title: "Confirm & pay",
+      body: "Your Renner submits a completion photo. Confirm the task is complete to release payment, or open a dispute — all without leaving Renner.",
     },
   ];
   return (
@@ -527,7 +527,7 @@ function DarkSplit() {
               }}
             >
               Set your own schedule. Browse open tasks, apply with a tap, and
-              get paid through Stripe within 1–2 business days of approval. We
+              get paid through Stripe within 1–2 business days of confirmation. We
               handle background checks, license verification, and dispute
               support.
             </p>
@@ -575,7 +575,7 @@ function DarkSplit() {
             >
               Post tasks.{" "}
               <span style={{ color: "#a7b2be", fontStyle: "italic", fontWeight: 300 }}>
-                Approve with proof.
+                Confirm with proof.
               </span>
             </h3>
             <p
@@ -589,7 +589,7 @@ function DarkSplit() {
               }}
             >
               Stop chasing the favor economy. Post a task, book a verified
-              Renner, and approve the work with photo proof — funds release
+              Renner, and confirm the work with photo proof — funds release
               instantly. License-required tasks only reach licensed Renners.
             </p>
             <Link
@@ -620,7 +620,7 @@ function DarkSplit() {
 const FAQS: Array<{ q: string; a: string }> = [
   {
     q: "How do payments work?",
-    a: "When a Client books a Renner, the Client's card is charged and the funds are held in Stripe escrow. After the Renner submits proof of completion, the Client has 48 hours to approve. Approved funds release immediately to the Renner; if no action is taken, payment auto-releases after the window.",
+    a: "When a Client books a Renner, the Client's card is charged and the funds are held in Stripe escrow. After the Renner submits proof of completion, the Client has 48 hours to confirm the task is complete. Confirmed funds release immediately to the Renner; if no action is taken, payment auto-releases after the window.",
   },
   {
     q: "How does the background check work?",

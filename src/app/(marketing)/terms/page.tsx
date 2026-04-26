@@ -29,12 +29,11 @@ export default function TermsPage() {
 
       <LegalH2>2. Payments and Stripe escrow</LegalH2>
       <LegalP>
-        When a Client books a Renner, the Client&apos;s card is charged and
-        the funds are held in escrow by our payment processor, Stripe. Funds
-        are released to the Renner only after the Client approves the
-        completed work. If the Client does not approve or dispute the work
-        within 48 hours of the Renner marking it complete, payment auto-releases
-        in the Renner&apos;s favor.
+        Your card will be charged when you book a Renner. Funds are held by
+        Stripe and released only when you confirm the task is complete. If the
+        Client does not confirm or open a dispute within 48 hours of the
+        Renner marking the task complete, payment auto-releases in the
+        Renner&apos;s favor.
       </LegalP>
 
       <LegalH2>3. Platform fee</LegalH2>
