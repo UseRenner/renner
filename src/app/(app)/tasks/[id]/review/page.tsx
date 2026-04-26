@@ -98,7 +98,7 @@ export default async function TaskReviewPage({
         >
           {[
             formatPay(t.pay),
-            t.zip_code ? `Zip ${t.zip_code}` : null,
+            t.zip_code ? `Zip code ${t.zip_code}` : null,
             formatDate(t.date) ?? "Flexible",
           ]
             .filter(Boolean)

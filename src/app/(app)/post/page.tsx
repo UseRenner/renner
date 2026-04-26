@@ -378,7 +378,7 @@ export default function PostTaskPage() {
                     </div>
                     <div style={{ flex: 1 }}>
                       <label className="input-label" htmlFor="taskZip">
-                        Zip
+                        Zip code
                       </label>
                       <input
                         id="taskZip"

@@ -185,7 +185,7 @@ export default async function MyApplicationsPage() {
                         }}
                       >
                         {[
-                          app.task.zip_code ? `Zip ${app.task.zip_code}` : null,
+                          app.task.zip_code ? `Zip code ${app.task.zip_code}` : null,
                           formatDate(app.task.date) ?? "Flexible",
                           `Applied ${formatRelativeDate(app.applied_date) ?? ""}`,
                         ]

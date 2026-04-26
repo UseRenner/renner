@@ -194,7 +194,7 @@ export default function ProfileSetupPage() {
                 </div>
                 <div style={{ flex: 1 }}>
                   <label className="input-label" htmlFor="zip">
-                    Zip
+                    Zip code
                   </label>
                   <input
                     id="zip"

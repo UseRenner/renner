@@ -76,7 +76,7 @@ export function BrowseClient({ tasks }: { tasks: Task[] }) {
 
 function TaskCard({ task }: { task: Task }) {
   const meta = [
-    task.zip_code ? `Zip ${task.zip_code}` : null,
+    task.zip_code ? `Zip code ${task.zip_code}` : null,
     formatDate(task.date),
     task.time_estimate,
   ]

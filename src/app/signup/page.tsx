@@ -205,8 +205,21 @@ export default function SignupPage() {
               lineHeight: 1.5,
             }}
           >
-            By creating an account, you agree to Renner&apos;s Terms of Service
-            and Privacy Policy.
+            By creating an account, you agree to Renner&apos;s{" "}
+            <Link
+              href="/terms"
+              style={{ color: "#647589", textDecoration: "underline" }}
+            >
+              Terms of Service
+            </Link>{" "}
+            and{" "}
+            <Link
+              href="/privacy"
+              style={{ color: "#647589", textDecoration: "underline" }}
+            >
+              Privacy Policy
+            </Link>
+            .
           </p>
         </div>
       </div>

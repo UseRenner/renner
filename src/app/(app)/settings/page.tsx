@@ -1,0 +1,47 @@
+import { redirect } from "next/navigation";
+import { SettingsClient } from "@/components/SettingsClient";
+import { createClient } from "@/lib/supabase/server";
+
+export const dynamic = "force-dynamic";
+
+export default async function SettingsPage() {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) redirect("/signin");
+
+  const { data: profile } = await supabase
+    .from("users")
+    .select(
+      "id, first_name, last_name, display_name, phone, role, city, state, zip, bio, categories, licensed, license_number, license_state, stripe_account_id, stripe_onboarded, background_verified, background_check_date",
+    )
+    .eq("id", user.id)
+    .maybeSingle();
+
+  return (
+    <main className="pt-12 pb-20 px-6">
+      <div className="mx-auto" style={{ maxWidth: "720px" }}>
+        <div className="micro-label" style={{ marginBottom: "12px" }}>
+          Account
+        </div>
+        <h1
+          className="font-display-tight"
+          style={{
+            fontSize: "48px",
+            lineHeight: 1.05,
+            color: "#0d0f12",
+            marginBottom: "32px",
+          }}
+        >
+          Settings
+        </h1>
+
+        <SettingsClient
+          email={user.email ?? ""}
+          profile={(profile ?? null) as any}
+        />
+      </div>
+    </main>
+  );
+}

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { NavLinks } from "./NavLinks";
 import { Wordmark } from "./Wordmark";
@@ -57,8 +58,9 @@ export async function TopNav() {
       <div className="flex items-center justify-between gap-6 mx-auto" style={{ maxWidth: "1200px" }}>
         <Wordmark />
         <NavLinks />
-        <div
-          aria-label="Account"
+        <Link
+          href="/settings"
+          aria-label="Account settings"
           className="flex items-center justify-center"
           style={{
             width: "32px",
@@ -70,10 +72,11 @@ export async function TopNav() {
             fontSize: "12px",
             fontWeight: 500,
             letterSpacing: "0.02em",
+            textDecoration: "none",
           }}
         >
           {initials}
-        </div>
+        </Link>
       </div>
     </header>
   );

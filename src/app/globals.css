@@ -164,3 +164,11 @@ h4,
 .divider {
   border-top: 1px solid var(--s-200);
 }
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item[open] .faq-toggle {
+  transform: rotate(45deg);
+}
