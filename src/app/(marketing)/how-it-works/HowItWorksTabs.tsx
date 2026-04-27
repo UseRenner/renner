@@ -12,7 +12,7 @@ const CLIENT_STEPS: Step[] = [
     body: (
       <>
         Describe what you need — sign installation, lockbox swap, property
-        prep, guest check-in, courier run, or anything real estate. Set
+        photos, guest check-in, courier run, or anything real estate. Set
         the location, time window, and price.
       </>
     ),
@@ -50,8 +50,8 @@ const RENNER_STEPS: Step[] = [
     body: (
       <>
         Sign up, verify your identity, and pass a background check. Add
-        your categories — signs, lockbox, prep, courier, showings, and
-        more. Set your service area.
+        your categories — signs, lockbox, courier, photos, guest access,
+        showings, and more. Set your service area.
       </>
     ),
   },
@@ -60,9 +60,9 @@ const RENNER_STEPS: Step[] = [
     title: "Browse and apply.",
     body: (
       <>
-        See tasks posted by agents, brokers, property managers, and
-        landlords in your area. Apply to the ones that fit your schedule
-        and skills.
+        See tasks posted by agents, brokers, property managers, leasing
+        agents, and landlords in your area. Apply to the ones that fit
+        your schedule and skills.
       </>
     ),
   },
@@ -109,7 +109,15 @@ export function HowItWorksTabs({
   const isClient = tab === "client";
   const steps = isClient ? CLIENT_STEPS : RENNER_STEPS;
   const benefits = isClient ? CLIENT_BENEFITS : RENNER_BENEFITS;
-  const ctaHeading = isClient ? "Ready to post a task?" : "Ready to earn?";
+  const ctaHeading: React.ReactNode = isClient ? (
+    <>
+      Ready to get something <Italic>done.</Italic>
+    </>
+  ) : (
+    <>
+      Ready to <Italic>run.</Italic>
+    </>
+  );
   const ctaButton = isClient
     ? { label: "Sign up", href: "/signup" }
     : { label: "Become a Renner", href: "/signup" };
