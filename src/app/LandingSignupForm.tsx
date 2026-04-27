@@ -113,7 +113,7 @@ export function LandingSignupForm() {
           lineHeight: 1.5,
         }}
       >
-        Post a task or become a Renner.
+        Sign up to post a task.
       </p>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
