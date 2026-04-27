@@ -1,6 +1,7 @@
 import { FavoriteButton } from "@/components/FavoriteButton";
 import { InviteToTaskButton } from "@/components/InviteToTaskButton";
 import { RemoveFavoriteButton } from "@/components/RemoveFavoriteButton";
+import { formatDisplayName, formatInitials } from "@/lib/displayName";
 import { requireClient } from "@/lib/role";
 import { createClient } from "@/lib/supabase/server";
 
@@ -11,6 +12,7 @@ type RennerProfile = {
   display_name: string | null;
   first_name: string | null;
   last_name: string | null;
+  show_full_last_name: boolean | null;
   city: string | null;
   state: string | null;
   rating: number | null;
@@ -27,22 +29,11 @@ type FavoriteRow = {
 };
 
 function nameFor(r: RennerProfile | null) {
-  if (!r) return "Unknown";
-  return (
-    r.display_name ||
-    [r.first_name, r.last_name].filter(Boolean).join(" ") ||
-    "Unknown"
-  );
+  return formatDisplayName(r);
 }
 
 function initialsFor(r: RennerProfile | null) {
-  const name = nameFor(r) || "?";
-  const parts = name.trim().split(/\s+/);
-  return (
-    ((parts[0]?.[0] ?? "") + (parts[1]?.[0] ?? ""))
-      .toUpperCase()
-      .slice(0, 2) || "?"
-  );
+  return formatInitials(r);
 }
 
 export default async function MyRennersPage() {
@@ -54,8 +45,8 @@ export default async function MyRennersPage() {
     .select(
       `id, notes, created_at,
        renner:renner_id (
-         id, display_name, first_name, last_name, city, state,
-         rating, completed_tasks, background_verified, licensed
+         id, display_name, first_name, last_name, show_full_last_name,
+         city, state, rating, completed_tasks, background_verified, licensed
        )`,
     )
     .eq("client_id", user.id)

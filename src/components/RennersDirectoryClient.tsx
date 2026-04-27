@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { FavoriteButton } from "@/components/FavoriteButton";
 import { InviteToTaskButton } from "@/components/InviteToTaskButton";
+import { formatDisplayName, formatInitials } from "@/lib/displayName";
 import { TASK_CATEGORIES } from "@/lib/types";
 
 export type RennerCard = {
@@ -10,6 +11,7 @@ export type RennerCard = {
   display_name: string | null;
   first_name: string | null;
   last_name: string | null;
+  show_full_last_name: boolean | null;
   city: string | null;
   state: string | null;
   rating: number | null;
@@ -22,21 +24,11 @@ export type RennerCard = {
 const FILTERS = ["All", ...TASK_CATEGORIES] as const;
 
 function nameFor(r: RennerCard) {
-  return (
-    r.display_name ||
-    [r.first_name, r.last_name].filter(Boolean).join(" ") ||
-    "Renner"
-  );
+  return formatDisplayName(r);
 }
 
 function initialsFor(r: RennerCard) {
-  const name = nameFor(r) || "?";
-  const parts = name.trim().split(/\s+/);
-  return (
-    ((parts[0]?.[0] ?? "") + (parts[1]?.[0] ?? ""))
-      .toUpperCase()
-      .slice(0, 2) || "?"
-  );
+  return formatInitials(r);
 }
 
 export function RennersDirectoryClient({

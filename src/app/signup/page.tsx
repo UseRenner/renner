@@ -3,7 +3,12 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Wordmark } from "@/components/Wordmark";
+import { MarketingHeader } from "@/components/MarketingHeader";
+import { SiteFooter } from "@/components/SiteFooter";
+import {
+  isValidNameInput,
+  normalizeNameInput,
+} from "@/lib/displayName";
 import {
   clearPendingTask,
   readPendingTask,
@@ -35,13 +40,24 @@ export default function SignupPage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
+
+    if (!isValidNameInput(firstName) || !isValidNameInput(lastName)) {
+      setError(
+        "First and last name may only contain letters, hyphens, and apostrophes.",
+      );
+      return;
+    }
+
+    const cleanFirst = normalizeNameInput(firstName);
+    const cleanLast = normalizeNameInput(lastName);
+
     setSubmitting(true);
 
     const { data, error: signUpError } = await supabase.auth.signUp({
       email,
       password,
       options: {
-        data: { first_name: firstName, last_name: lastName, role },
+        data: { first_name: cleanFirst, last_name: cleanLast, role },
       },
     });
 
@@ -55,9 +71,9 @@ export default function SignupPage() {
     if (userId) {
       const { error: profileError } = await supabase.from("users").upsert({
         id: userId,
-        first_name: firstName,
-        last_name: lastName,
-        display_name: `${firstName} ${lastName}`.trim(),
+        first_name: cleanFirst,
+        last_name: cleanLast,
+        display_name: `${cleanFirst} ${cleanLast.charAt(0)}.`,
         role,
       });
       if (profileError) {
@@ -90,12 +106,10 @@ export default function SignupPage() {
   }
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-start pt-16 px-6 pb-16">
+    <>
+      <MarketingHeader />
+      <main className="flex flex-col items-center justify-start pt-16 px-6 pb-16">
       <div className="w-full max-w-[440px]">
-        <div className="mb-10 text-center">
-          <Wordmark />
-        </div>
-
         <div
           className="card"
           style={{ padding: "40px" }}
@@ -155,7 +169,9 @@ export default function SignupPage() {
                   id="firstName"
                   className="input"
                   value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
+                  onChange={(e) =>
+                    setFirstName(normalizeNameInput(e.target.value))
+                  }
                   required
                   autoComplete="given-name"
                 />
@@ -168,7 +184,9 @@ export default function SignupPage() {
                   id="lastName"
                   className="input"
                   value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
+                  onChange={(e) =>
+                    setLastName(normalizeNameInput(e.target.value))
+                  }
                   required
                   autoComplete="family-name"
                 />
@@ -275,7 +293,9 @@ export default function SignupPage() {
           </p>
         </div>
       </div>
-    </main>
+      </main>
+      <SiteFooter />
+    </>
   );
 }
 

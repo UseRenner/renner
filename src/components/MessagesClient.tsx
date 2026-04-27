@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { formatDisplayName, formatInitials } from "@/lib/displayName";
 import { createClient } from "@/lib/supabase/client";
 
 type Message = {
@@ -19,6 +20,7 @@ type UserSummary = {
   display_name: string | null;
   first_name: string | null;
   last_name: string | null;
+  show_full_last_name: boolean | null;
 };
 
 type TaskSummary = {
@@ -38,22 +40,11 @@ function conversationKey(otherUserId: string, taskId: string | null) {
 }
 
 function nameFor(user: UserSummary | undefined) {
-  if (!user) return "Unknown";
-  return (
-    user.display_name ??
-    [user.first_name, user.last_name].filter(Boolean).join(" ") ??
-    "Unknown"
-  );
+  return formatDisplayName(user);
 }
 
 function initialsFor(user: UserSummary | undefined) {
-  const name = nameFor(user) || "?";
-  const parts = name.trim().split(/\s+/);
-  return (
-    ((parts[0]?.[0] ?? "") + (parts[1]?.[0] ?? ""))
-      .toUpperCase()
-      .slice(0, 2) || "?"
-  );
+  return formatInitials(user);
 }
 
 function formatTimestamp(value: string) {
@@ -131,7 +122,7 @@ export function MessagesClient({
         otherIds.size > 0
           ? supabase
               .from("users")
-              .select("id, display_name, first_name, last_name")
+              .select("id, display_name, first_name, last_name, show_full_last_name")
               .in("id", Array.from(otherIds))
           : Promise.resolve({ data: [] }),
         taskIds.size > 0
@@ -189,7 +180,7 @@ export function MessagesClient({
           if (!users[otherId]) {
             const { data } = await supabase
               .from("users")
-              .select("id, display_name, first_name, last_name")
+              .select("id, display_name, first_name, last_name, show_full_last_name")
               .eq("id", otherId)
               .maybeSingle();
             if (data) {

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { Logo } from "@/components/Logo";
+import { MarketingHeader } from "@/components/MarketingHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 import { getViewer, homeFor } from "@/lib/role";
 import { TASK_CATEGORIES } from "@/lib/types";
 
@@ -12,7 +13,7 @@ export default async function LandingPage() {
 
   return (
     <>
-      <PublicNav />
+      <MarketingHeader />
       <Hero />
       <TrustSignals />
       <HowItWorks />
@@ -20,86 +21,8 @@ export default async function LandingPage() {
       <DarkSplit />
       <FAQ />
       <CTA />
-      <Footer />
+      <SiteFooter />
     </>
-  );
-}
-
-function PublicNav() {
-  return (
-    <header
-      style={{
-        backgroundColor: "#fbfbfc",
-        borderBottom: "1px solid #dce0e5",
-        padding: "16px 32px",
-        position: "sticky",
-        top: 0,
-        zIndex: 50,
-      }}
-    >
-      <div
-        className="flex items-center justify-between mx-auto"
-        style={{ maxWidth: "1200px" }}
-      >
-        <Link
-          href="/"
-          className="inline-flex items-center"
-          style={{
-            gap: "10px",
-            textDecoration: "none",
-            color: "#0d0f12",
-          }}
-          aria-label="Renner"
-        >
-          <Logo size={20} fill="#0d0f12" slotColor="#fbfbfc" />
-          <span
-            className="wordmark"
-            style={{
-              fontSize: "22px",
-              letterSpacing: "-0.03em",
-            }}
-          >
-            Renner
-          </span>
-        </Link>
-        <div className="flex items-center gap-2">
-          {[
-            { href: "/how-it-works", label: "How it works" },
-            { href: "/post", label: "Post a task" },
-            { href: "/signin", label: "Sign in" },
-          ].map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="nav-link"
-              style={{
-                fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-                fontSize: "13px",
-                fontWeight: 500,
-                color: "#647589",
-                padding: "8px 12px",
-                textDecoration: "none",
-                borderRadius: "6px",
-              }}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <Link
-            href="/signup"
-            className="btn-light"
-            style={{
-              fontSize: "13px",
-              padding: "9px 16px",
-              textDecoration: "none",
-              marginLeft: "4px",
-            }}
-          >
-            Become a Renner
-          </Link>
-        </div>
-      </div>
-    </header>
   );
 }
 
@@ -183,7 +106,7 @@ function Hero() {
               className="flex flex-wrap gap-2"
               style={{ maxWidth: "640px" }}
             >
-              {["Sign work", "Lockbox", "Courier", "Prep", "Showing"].map(
+              {["Signs", "Lockbox", "Courier", "Prep", "Showing"].map(
                 (chip) => (
                   <Link
                     key={chip}
@@ -250,7 +173,7 @@ function SampleTaskCard() {
             borderRadius: "3px",
           }}
         >
-          Sign work
+          Signs
         </span>
         <span
           className="font-display"
@@ -274,34 +197,18 @@ function SampleTaskCard() {
           marginBottom: "8px",
         }}
       >
-        Install rider sign at 4821 Olive St
+        Install sign rider at 4821 Olive St
       </h3>
       <p
         style={{
           fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
           fontSize: "13px",
           color: "#647589",
-          marginBottom: "20px",
+          marginBottom: 0,
         }}
       >
-        RiNo, Denver  ·  Today by 3:00 PM
+        RiNo, Denver  ·  Today, 2:00 – 5:00 PM
       </p>
-      <div
-        style={{
-          display: "block",
-          width: "100%",
-          textAlign: "center",
-          backgroundColor: "#0d0f12",
-          color: "#fbfbfc",
-          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-          fontSize: "14px",
-          fontWeight: 500,
-          padding: "11px 16px",
-          borderRadius: "6px",
-        }}
-      >
-        View task
-      </div>
     </div>
   );
 }
@@ -310,8 +217,8 @@ function TrustSignals() {
   const items = [
     {
       icon: <ShieldIcon />,
-      title: "Vetted Renners",
-      body: "Every Renner is background-checked.",
+      title: "Background-checked",
+      body: "Every Renner clears a background check before any task.",
     },
     {
       icon: <LockIcon />,
@@ -500,7 +407,7 @@ function HowItWorks() {
 }
 
 const CATEGORY_BLURBS: Record<string, string> = {
-  "Sign work": "Place, swap, or pull yard signs",
+  Signs: "Place, swap, or pull yard signs",
   Lockbox: "Install, swap, or retrieve lockboxes",
   Courier: "Hand-deliver contracts, keys, checks",
   Prep: "Light staging, cleaning, photo-ready setup",
@@ -647,7 +554,7 @@ const FAQS: Array<{ q: string; a: string }> = [
   },
   {
     q: "How are Renners verified?",
-    a: "Every Renner is background-checked. Showing tasks require a verified license.",
+    a: "Every Renner clears a background check before booking any task. Showing tasks additionally require a verified license.",
   },
   {
     q: "How much does Renner cost?",
@@ -800,125 +707,6 @@ function CTA() {
        </div>
       </div>
     </section>
-  );
-}
-
-function Footer() {
-  const columns = [
-    {
-      title: "Product",
-      links: [
-        { href: "/post", label: "Post a task" },
-        { href: "/how-it-works", label: "How it works" },
-      ],
-    },
-    {
-      title: "Company",
-      links: [
-        { href: "/signup", label: "Become a Renner" },
-        { href: "/signin", label: "Sign in" },
-        { href: "mailto:hello@renner.app", label: "Contact" },
-      ],
-    },
-    {
-      title: "Legal",
-      links: [
-        { href: "/terms", label: "Terms" },
-        { href: "/privacy", label: "Privacy" },
-        { href: "/acceptable-use", label: "Acceptable Use" },
-      ],
-    },
-  ];
-
-  return (
-    <footer
-      style={{
-        backgroundColor: "#0d0f12",
-        color: "#cad1d8",
-        padding: "72px 32px 32px",
-      }}
-    >
-      <div className="mx-auto" style={{ maxWidth: "1200px" }}>
-        <div
-          className="grid gap-10"
-          style={{ gridTemplateColumns: "1.4fr repeat(3, 1fr)" }}
-        >
-          <div>
-            <Link
-              href="/"
-              className="inline-flex items-center"
-              style={{
-                gap: "10px",
-                textDecoration: "none",
-                color: "#fbfbfc",
-              }}
-              aria-label="Renner"
-            >
-              <Logo size={22} fill="#fbfbfc" slotColor="#0d0f12" />
-              <span
-                className="wordmark"
-                style={{
-                  fontSize: "22px",
-                  letterSpacing: "-0.03em",
-                  color: "#fbfbfc",
-                }}
-              >
-                Renner
-              </span>
-            </Link>
-          </div>
-          {columns.map((col) => (
-            <div key={col.title}>
-              <div
-                style={{
-                  fontFamily:
-                    "var(--font-inter), ui-sans-serif, system-ui",
-                  fontSize: "11px",
-                  fontWeight: 500,
-                  letterSpacing: "0.14em",
-                  textTransform: "uppercase",
-                  color: "#7d8da0",
-                  marginBottom: "16px",
-                }}
-              >
-                {col.title}
-              </div>
-              <ul className="flex flex-col gap-2">
-                {col.links.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="footer-link"
-                      style={{
-                        fontFamily:
-                          "var(--font-inter), ui-sans-serif, system-ui",
-                        fontSize: "14px",
-                        color: "#cad1d8",
-                        textDecoration: "none",
-                      }}
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-        <div
-          style={{
-            marginTop: "56px",
-            paddingTop: "20px",
-            borderTop: "1px solid #272d35",
-            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-            fontSize: "12px",
-            color: "#7d8da0",
-          }}
-        >
-          © 2026 Renner
-        </div>
-      </div>
-    </footer>
   );
 }
 

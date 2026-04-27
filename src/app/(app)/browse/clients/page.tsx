@@ -24,7 +24,7 @@ export default async function BrowseClientsPage() {
   const { data: clientsData } = await supabase
     .from("users")
     .select(
-      "id, display_name, first_name, last_name, city, state, created_at",
+      "id, display_name, first_name, last_name, show_full_last_name, company, city, state, created_at",
     )
     .eq("role", "client")
     .eq("profile_visibility", "public");

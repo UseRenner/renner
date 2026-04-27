@@ -10,6 +10,10 @@ import { StartTaskButton } from "@/components/StartTaskButton";
 import { StatusBadge } from "@/components/StatusBadge";
 import { UnableToCompleteButton } from "@/components/UnableToCompleteButton";
 import {
+  formatDisplayNameWithCompany,
+  formatInitials,
+} from "@/lib/displayName";
+import {
   formatDate,
   formatPay,
   formatTaskTiming,
@@ -40,7 +44,9 @@ export default async function TaskDetailPage({ params }: PageProps) {
     t.posted_by
       ? supabase
           .from("users")
-          .select("display_name, first_name, last_name, city, state")
+          .select(
+            "display_name, first_name, last_name, show_full_last_name, company, city, state",
+          )
           .eq("id", t.posted_by)
           .maybeSingle()
       : Promise.resolve({ data: null }),
@@ -97,18 +103,12 @@ export default async function TaskDetailPage({ params }: PageProps) {
     latestDispute = (disputeData as LatestDispute | null) ?? null;
   }
 
-  const posterName =
-    (poster?.display_name as string | undefined) ??
-    [poster?.first_name, poster?.last_name].filter(Boolean).join(" ") ??
-    "Anonymous";
-
-  const posterInitials = (() => {
-    const n = (posterName || "?").trim();
-    const parts = n.split(/\s+/);
-    return ((parts[0]?.[0] ?? "") + (parts[1]?.[0] ?? ""))
-      .toUpperCase()
-      .slice(0, 2) || "?";
-  })();
+  const posterName = formatDisplayNameWithCompany(
+    poster as Parameters<typeof formatDisplayNameWithCompany>[0],
+  );
+  const posterInitials = formatInitials(
+    poster as Parameters<typeof formatInitials>[0],
+  );
 
   const isPoster = !!user && t.posted_by === user.id;
   const isBookedRunner = !!user && t.booked_runner === user.id;

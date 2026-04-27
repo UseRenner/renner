@@ -3,6 +3,7 @@ import { notFound, redirect } from "next/navigation";
 import { ApprovalActions } from "@/components/ApprovalActions";
 import { CompletionForm } from "@/components/CompletionForm";
 import { FavoriteButton } from "@/components/FavoriteButton";
+import { formatDisplayName, formatInitials } from "@/lib/displayName";
 import {
   formatHoursLeft,
   formatPay,
@@ -18,6 +19,7 @@ type RunnerProfile = {
   display_name: string | null;
   first_name: string | null;
   last_name: string | null;
+  show_full_last_name: boolean | null;
   background_verified: boolean | null;
   rating: number | null;
   completed_tasks: number | null;
@@ -55,7 +57,7 @@ export default async function TaskReviewPage({
     const { data } = await supabase
       .from("users")
       .select(
-        "id, display_name, first_name, last_name, background_verified, rating, completed_tasks",
+        "id, display_name, first_name, last_name, show_full_last_name, background_verified, rating, completed_tasks",
       )
       .eq("id", t.booked_runner)
       .maybeSingle();
@@ -178,16 +180,8 @@ function ClientApprovalView({
   runner: RunnerProfile | null;
   runnerIsSaved: boolean;
 }) {
-  const runnerName =
-    runner?.display_name ??
-    [runner?.first_name, runner?.last_name].filter(Boolean).join(" ") ??
-    "Renner";
-  const runnerInitials = (() => {
-    const parts = (runnerName || "?").trim().split(/\s+/);
-    return ((parts[0]?.[0] ?? "") + (parts[1]?.[0] ?? ""))
-      .toUpperCase()
-      .slice(0, 2) || "?";
-  })();
+  const runnerName = formatDisplayName(runner);
+  const runnerInitials = formatInitials(runner);
   const hoursLeft = formatHoursLeft(task.auto_release_date);
 
   return (
