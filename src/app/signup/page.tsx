@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { MarketingHeader } from "@/components/MarketingHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import {
@@ -242,7 +243,7 @@ export default function SignupPage() {
               disabled={submitting}
               style={{ marginTop: "8px" }}
             >
-              {submitting ? "Creating account…" : "Create account"}
+              {submitting ? <LoadingSpinner size={18} tone="light" /> : "Create account"}
             </button>
           </form>
 

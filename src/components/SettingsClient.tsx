@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { LicenseAttestationCard } from "@/components/LicenseAttestation";
+import { LoadingSpinner } from "@/components/LoadingSpinner";
 import {
   formatDisplayNameWithCompany,
   isValidNameInput,
@@ -363,7 +364,7 @@ function AccountSection({
           disabled={submitting || !password}
           style={{ width: "auto", padding: "10px 18px", alignSelf: "flex-start" }}
         >
-          {submitting ? "Saving…" : "Update password"}
+          {submitting ? <LoadingSpinner size={18} tone="light" /> : "Update password"}
         </button>
       </form>
     </div>
@@ -683,7 +684,7 @@ function ProfileSection({
         disabled={submitting}
         style={{ width: "auto", padding: "10px 18px", alignSelf: "flex-start" }}
       >
-        {submitting ? "Saving…" : "Save profile"}
+        {submitting ? <LoadingSpinner size={18} tone="light" /> : "Save profile"}
       </button>
     </form>
   );

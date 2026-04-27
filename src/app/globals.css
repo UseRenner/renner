@@ -512,3 +512,22 @@ h4,
     align-items: flex-start;
   }
 }
+
+/* Logo-mark loading spinner — the Renner disc rotates a full turn
+   on a smooth ease loop. The slot tilt rotates with the disc, so
+   the visual stays the brand mark in motion rather than a generic
+   spinner. */
+@keyframes renner-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.renner-spinner {
+  animation: renner-spin 1.2s ease-in-out infinite;
+  transform-origin: 50% 50%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .renner-spinner {
+    animation: none;
+  }
+}

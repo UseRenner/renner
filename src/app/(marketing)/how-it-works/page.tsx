@@ -67,7 +67,7 @@ export default async function HowItWorksPage() {
               marginBottom: "40px",
             }}
           >
-            Common <span className="headline-em">questions.</span>
+            Common questions
           </h2>
           <div>
             {FAQS.map((item, idx) => (

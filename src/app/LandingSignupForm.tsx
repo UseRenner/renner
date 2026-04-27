@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { isValidNameInput, normalizeNameInput } from "@/lib/displayName";
 import { createClient } from "@/lib/supabase/client";
 
@@ -174,7 +175,7 @@ export function LandingSignupForm() {
           disabled={submitting}
           style={{ marginTop: "8px" }}
         >
-          {submitting ? "Creating account…" : "Sign up"}
+          {submitting ? <LoadingSpinner size={18} tone="light" /> : "Sign up"}
         </button>
       </form>
 
@@ -198,7 +199,7 @@ export function LandingSignupForm() {
       </div>
 
       <Link
-        href="/signup"
+        href="/become-a-renner"
         className="btn-light"
         style={{
           display: "block",

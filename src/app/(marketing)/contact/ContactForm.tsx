@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { LoadingSpinner } from "@/components/LoadingSpinner";
 
 export function ContactForm() {
   const [name, setName] = useState("");
@@ -113,7 +114,7 @@ export function ContactForm() {
         disabled={submitting}
         style={{ marginTop: "8px" }}
       >
-        {submitting ? "Sending…" : "Send"}
+        {submitting ? <LoadingSpinner size={18} tone="light" /> : "Send"}
       </button>
     </form>
   );

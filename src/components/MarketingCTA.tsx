@@ -14,7 +14,7 @@ type Action = { label: string; href: string };
 export async function MarketingCTA({
   heading = "Ready to get started?",
   primary = { label: "Sign up", href: "/signup" },
-  secondary = { label: "Become a Renner", href: "/signup" } as Action | null,
+  secondary = { label: "Become a Renner", href: "/become-a-renner" } as Action | null,
 }: {
   heading?: string;
   primary?: Action;

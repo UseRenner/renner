@@ -205,7 +205,8 @@ function SampleTaskCard() {
 // Visual-only context strip below the hero card. Reads as a quiet
 // taxonomy hint, not a navigation control — these are <span>s, not
 // links, and the order is the spec's: Signs · Lockbox · Showing ·
-// Courier · Photos · Guest access · Host assistance.
+// Courier · Photos · Guest access. (Host assistance remains a
+// selectable category in the app but isn't surfaced here.)
 const HERO_CATEGORIES = [
   "Signs",
   "Lockbox",
@@ -213,7 +214,6 @@ const HERO_CATEGORIES = [
   "Courier",
   "Photos",
   "Guest access",
-  "Host assistance",
 ];
 
 function CategoryPills() {

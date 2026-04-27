@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { LoadingSpinner } from "./LoadingSpinner";
 import { formatDisplayName, formatInitials } from "@/lib/displayName";
 import { createClient } from "@/lib/supabase/client";
 
@@ -380,15 +381,15 @@ function ConversationSidebar({
       </div>
 
       {loading ? (
-        <p
+        <div
           style={{
-            padding: "20px",
-            color: "#7d8da0",
-            fontSize: "13px",
+            padding: "32px 20px",
+            display: "flex",
+            justifyContent: "center",
           }}
         >
-          Loading…
-        </p>
+          <LoadingSpinner size={24} />
+        </div>
       ) : conversations.length === 0 ? (
         <p
           style={{

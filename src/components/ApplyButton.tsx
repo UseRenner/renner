@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { createClient } from "@/lib/supabase/client";
 
 type Props = {
@@ -72,7 +73,7 @@ export function ApplyButton({
         onClick={handleClick}
         disabled={submitting}
       >
-        {submitting ? "Applying…" : "Apply for this task"}
+        {submitting ? <LoadingSpinner size={18} tone="light" /> : "Apply for this task"}
       </button>
       {error && (
         <p style={{ color: "#c0392b", fontSize: "12px", marginTop: "8px" }}>
@@ -125,7 +126,7 @@ export function ApplyButton({
               disabled={submitting}
               style={{ flex: 1 }}
             >
-              {submitting ? "Applying…" : "Confirm & apply"}
+              {submitting ? <LoadingSpinner size={18} tone="light" /> : "Confirm & apply"}
             </button>
           </div>
         </ModalShell>

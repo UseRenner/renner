@@ -120,7 +120,7 @@ export function HowItWorksTabs({
   );
   const ctaButton = isClient
     ? { label: "Sign up", href: "/signup" }
-    : { label: "Become a Renner", href: "/signup" };
+    : { label: "Become a Renner", href: "/become-a-renner" };
 
   return (
     <>
@@ -152,7 +152,7 @@ export function HowItWorksTabs({
           marginBottom: "72px",
         }}
       >
-        How Renner <Italic>works.</Italic>
+        How Renner <Italic>works</Italic>
       </h1>
 
       <ol

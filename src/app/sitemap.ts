@@ -14,7 +14,8 @@ const PUBLIC_ROUTES: Array<{
 }> = [
   { path: "/", changeFrequency: "weekly", priority: 1.0 },
   { path: "/how-it-works", changeFrequency: "monthly", priority: 0.8 },
-  { path: "/signup", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/become-a-renner", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/signup", changeFrequency: "monthly", priority: 0.7 },
   { path: "/contact", changeFrequency: "monthly", priority: 0.5 },
   { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
   { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
