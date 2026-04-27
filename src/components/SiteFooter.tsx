@@ -7,7 +7,7 @@ const COLUMNS = [
     links: [
       { href: "/how-it-works", label: "How it works" },
       { href: "/signup", label: "Become a Renner" },
-      { href: "mailto:hello@renner.app", label: "Contact" },
+      { href: "/contact", label: "Contact" },
     ],
   },
   {

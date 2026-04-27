@@ -111,11 +111,11 @@ export function HowItWorksTabs({
   const benefits = isClient ? CLIENT_BENEFITS : RENNER_BENEFITS;
   const ctaHeading: React.ReactNode = isClient ? (
     <>
-      Ready to get something <Italic>done.</Italic>
+      Ready to get something <Italic>done?</Italic>
     </>
   ) : (
     <>
-      Ready to <Italic>run.</Italic>
+      Ready to <Italic>run?</Italic>
     </>
   );
   const ctaButton = isClient

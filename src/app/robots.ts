@@ -19,6 +19,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: [
           "/",
           "/how-it-works",
+          "/contact",
           "/terms",
           "/privacy",
           "/acceptable-use",

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EmptyState } from "@/components/EmptyState";
 import { PaymentIndicator, StatusBadge } from "@/components/StatusBadge";
 import { formatPay, formatTaskTiming } from "@/lib/format";
 import { requireClient } from "@/lib/role";
@@ -57,35 +58,10 @@ export default async function MyTasksPage() {
         </h1>
 
         {tasks.length === 0 ? (
-          <div
-            className="card"
-            style={{
-              padding: "48px 32px",
-              textAlign: "center",
-            }}
-          >
-            <p
-              style={{
-                color: "#647589",
-                fontSize: "14px",
-                marginBottom: "16px",
-              }}
-            >
-              You haven&apos;t posted any tasks yet.
-            </p>
-            <Link
-              href="/post"
-              className="btn-dark"
-              style={{
-                width: "auto",
-                padding: "10px 18px",
-                textDecoration: "none",
-                display: "inline-flex",
-              }}
-            >
-              Post your first task
-            </Link>
-          </div>
+          <EmptyState
+            message="Post your first task."
+            action={{ label: "Post a task", href: "/post" }}
+          />
         ) : (
           <div className="flex flex-col gap-3">
             {tasks.map((task) => {

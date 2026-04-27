@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { CategoryBadge, LicenseBadge } from "./CategoryBadge";
+import { EmptyState } from "./EmptyState";
 import { formatPay, formatTaskTiming } from "@/lib/format";
 import { TASK_CATEGORIES, type Task } from "@/lib/types";
 
@@ -52,17 +53,11 @@ export function BrowseClient({ tasks }: { tasks: Task[] }) {
       </div>
 
       {filteredTasks.length === 0 ? (
-        <div
-          className="card"
-          style={{
-            padding: "48px 32px",
-            textAlign: "center",
-            color: "#647589",
-            fontSize: "14px",
-          }}
-        >
-          No tasks match this filter yet.
-        </div>
+        tasks.length === 0 ? (
+          <EmptyState message="Tasks in your area will appear here." />
+        ) : (
+          <EmptyState message="No tasks match this filter yet." />
+        )
       ) : (
         <div className="flex flex-col gap-3">
           {filteredTasks.map((task) => (

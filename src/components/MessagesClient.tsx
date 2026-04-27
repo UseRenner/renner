@@ -392,14 +392,16 @@ function ConversationSidebar({
       ) : conversations.length === 0 ? (
         <p
           style={{
-            padding: "20px",
-            color: "#7d8da0",
-            fontSize: "13px",
+            padding: "32px 20px",
+            color: "#0d0f12",
+            fontSize: "15px",
+            fontWeight: 500,
             lineHeight: 1.5,
+            margin: 0,
+            textAlign: "center",
           }}
         >
-          No conversations yet. Message a Renner from a task or applicant
-          page to get started.
+          No messages yet.
         </p>
       ) : (
         <ul style={{ padding: "8px 0" }}>
