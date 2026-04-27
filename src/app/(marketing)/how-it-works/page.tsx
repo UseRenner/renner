@@ -1,146 +1,138 @@
+import { getViewer } from "@/lib/role";
+import { HowItWorksTabs } from "./HowItWorksTabs";
+
 export const metadata = { title: "How it works · Renner" };
+export const dynamic = "force-dynamic";
 
 const FAQS: Array<{ q: string; a: string }> = [
   {
     q: "What is Renner?",
-    a: "Renner is a marketplace built specifically for real-estate task work. Clients post short jobs — sign placement, document delivery, property prep, showings — and verified Renners apply, get booked, and get paid through Stripe.",
+    a: "Renner is a marketplace built specifically for real-estate task work. Clients post short jobs — sign placement, document delivery, property prep, guest check-ins, showings — and background-checked Renners apply, get booked, and get paid through the platform.",
+  },
+  {
+    q: "How much does it cost?",
+    a: "Renner adds a 10% service fee for clients. Renners keep 90% of the task pay. Both numbers are shown to both parties before a booking is confirmed — no hidden charges.",
+  },
+  {
+    q: "Who can become a Renner?",
+    a: "Independent contractors who can pass a background check. Every Renner clears a Checkr background check before booking any task — licensed or not. Showings and other license-required tasks additionally require a verified real-estate license.",
+  },
+  {
+    q: "Are Renners employees?",
+    a: "No. Renner is a marketplace and Renners are independent contractors. They set their own schedule, choose which tasks to apply to, and aren't directed in how the work gets done.",
+  },
+  {
+    q: "What types of tasks can I post?",
+    a: "Anything real estate — sign installs, lockbox swaps, courier runs, property prep, photo-ready setup, guest check-ins, property access for inspectors and contractors, showings, open houses, and more. If it's a short, location-based job tied to a listing or property, it fits.",
   },
   {
     q: "How do payments work?",
-    a: "When a Client books a Renner, the Client's card is charged and the funds are held in escrow by Stripe. After the Renner submits proof of completion, the Client has 48 hours to confirm the task is complete or open a dispute. Confirmed funds release immediately to the Renner. If the 48-hour window passes with no dispute, payment auto-releases.",
-  },
-  {
-    q: "What is the platform fee?",
-    a: "Renner charges a flat platform fee on each booked task. The exact percentage is shown to both parties at the time of booking and covers payment processing, background-check infrastructure, dispute support, and ongoing platform operations.",
-  },
-  {
-    q: "Do I need a real estate license?",
-    a: "Only for tasks that require one. Clients can mark a task as license-required when posting; those tasks are gated to Renners who have a valid license number and state on file. All other tasks (signs, documents, prep work) are open to any background-verified Renner.",
-  },
-  {
-    q: "How does the background check work?",
-    a: "Every Renner runs a background check through our verification partner, Checkr, before booking any task — licensed or not. Most checks finish in 24–72 hours. Once verified, a small badge appears next to your name so Clients know you've cleared.",
-  },
-  {
-    q: "What happens if there's a dispute?",
-    a: "Either party can open a dispute during the 48-hour review window. Funds stay in escrow while a Renner support specialist reviews photos, notes, and the message thread, then issues a fair outcome — releasing the payment, refunding the Client, or splitting the difference.",
-  },
-  {
-    q: "How quickly does payment release?",
-    a: "After the Client confirms the task is complete, Stripe transfers the funds to the Renner's connected account within 1–2 business days. If the Client doesn't act, payment auto-releases 48 hours after the Renner submits the work.",
-  },
-  {
-    q: "Who pays the platform fee?",
-    a: "The fee is split transparently between Client and Renner. Both parties see exactly what they pay or receive before they confirm a booking — no hidden surcharges.",
-  },
-  {
-    q: "What if I need to cancel a task?",
-    a: "Clients can cancel before the Renner starts — full refund, task reopens. After the Renner starts, the task pay is split 50/50 between the Renner and client. Renners can cancel before starting with no penalty. After starting, the same 50/50 split applies regardless of reason.",
-  },
-  {
-    q: "What if a task can't be completed?",
-    a: "If you arrive but can't complete the task — the other party didn't show, the access code is wrong, the address is incorrect — report it with a photo and explanation. The task pay is split 50/50. Both parties share the cost equally.",
+    a: "When you book a Renner, your card is charged and the funds are held in escrow by Stripe. After the Renner submits proof of completion, you have 48 hours to confirm or open a dispute. Confirmed funds release immediately to the Renner; if the 48 hours pass with no action, payment auto-releases.",
   },
   {
     q: "What if something is damaged or stolen during a task?",
-    a: "Document the damage with photos and file a report within 48 hours. The Renner has 48 hours to respond. We facilitate resolution using completion photos and messages as evidence.",
+    a: "Document the damage with photos and file a report within 48 hours. The Renner has 48 hours to accept, counter, or dispute the claim. We facilitate resolution using completion photos and the message thread as evidence; unresolved claims escalate to Renner support.",
+  },
+  {
+    q: "What if I need to cancel a task?",
+    a: "Clients can cancel before the Renner starts — full refund, task reopens. After the Renner starts, the task pay is split 50/50. Renners can cancel before starting with no penalty; after starting the same 50/50 split applies regardless of reason.",
   },
 ];
 
-export default function HowItWorksPage() {
-  return (
-    <main className="pt-12 pb-20 px-6">
-      <div className="mx-auto" style={{ maxWidth: "720px" }}>
-        <div className="micro-label" style={{ marginBottom: "12px" }}>
-          How it works
-        </div>
-        <h1
-          className="font-display-tight"
-          style={{
-            fontSize: "48px",
-            lineHeight: 1.05,
-            color: "#0d0f12",
-            marginBottom: "16px",
-          }}
-        >
-          Frequently asked <span className="headline-em">questions</span>
-        </h1>
-        <p
-          style={{
-            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-            fontSize: "15px",
-            color: "#647589",
-            lineHeight: 1.65,
-            marginBottom: "40px",
-          }}
-        >
-          The short version: Clients post tasks, Renners apply, Stripe holds
-          payment until the client confirms the task is complete. Below are
-          the details.
-        </p>
+export default async function HowItWorksPage() {
+  const viewer = await getViewer();
+  const showCta = !viewer;
 
-        <div className="card" style={{ padding: "8px 0" }}>
-          {FAQS.map((item, idx) => (
-            <details
-              key={item.q}
-              className="faq-item"
-              style={{
-                padding: "20px 28px",
-                borderBottom:
-                  idx === FAQS.length - 1
-                    ? "none"
-                    : "1px solid #eaedf0",
-              }}
-            >
-              <summary
+  return (
+    <main className="pt-16 pb-32 px-6">
+      <div className="mx-auto" style={{ maxWidth: "880px" }}>
+        <HowItWorksTabs showCta={showCta} />
+
+        <div
+          style={{
+            marginTop: "120px",
+            paddingTop: "72px",
+            borderTop: "1px solid #eaedf0",
+          }}
+        >
+          <div className="micro-label" style={{ marginBottom: "16px" }}>
+            FAQ
+          </div>
+          <h2
+            className="font-display-tight"
+            style={{
+              fontSize: "clamp(36px, 5vw, 56px)",
+              lineHeight: 1.05,
+              color: "#0d0f12",
+              marginBottom: "40px",
+            }}
+          >
+            Common <span className="headline-em">questions.</span>
+          </h2>
+          <div>
+            {FAQS.map((item, idx) => (
+              <details
+                key={item.q}
+                className="faq-item"
                 style={{
-                  cursor: "pointer",
-                  listStyle: "none",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  gap: "16px",
+                  padding: "24px 0",
+                  borderBottom:
+                    idx === FAQS.length - 1
+                      ? "none"
+                      : "1px solid #eaedf0",
                 }}
               >
-                <span
-                  className="font-display"
+                <summary
                   style={{
-                    fontSize: "20px",
-                    color: "#0d0f12",
-                    lineHeight: 1.3,
+                    cursor: "pointer",
+                    listStyle: "none",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    gap: "16px",
                   }}
                 >
-                  {item.q}
-                </span>
-                <span
-                  className="faq-toggle"
+                  <span
+                    className="font-display"
+                    style={{
+                      fontSize: "22px",
+                      color: "#0d0f12",
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    {item.q}
+                  </span>
+                  <span
+                    className="faq-toggle"
+                    style={{
+                      fontFamily:
+                        "var(--font-inter), ui-sans-serif, system-ui",
+                      fontSize: "22px",
+                      color: "#7d8da0",
+                      transition: "transform 120ms ease",
+                      flexShrink: 0,
+                    }}
+                    aria-hidden
+                  >
+                    +
+                  </span>
+                </summary>
+                <p
                   style={{
                     fontFamily:
                       "var(--font-inter), ui-sans-serif, system-ui",
-                    fontSize: "20px",
-                    color: "#7d8da0",
-                    transition: "transform 120ms ease",
-                    flexShrink: 0,
+                    fontSize: "16px",
+                    color: "#4d5b6a",
+                    lineHeight: 1.7,
+                    marginTop: "16px",
+                    maxWidth: "720px",
                   }}
-                  aria-hidden
                 >
-                  +
-                </span>
-              </summary>
-              <p
-                style={{
-                  fontFamily:
-                    "var(--font-inter), ui-sans-serif, system-ui",
-                  fontSize: "15px",
-                  color: "#4d5b6a",
-                  lineHeight: 1.7,
-                  marginTop: "14px",
-                }}
-              >
-                {item.a}
-              </p>
-            </details>
-          ))}
+                  {item.a}
+                </p>
+              </details>
+            ))}
+          </div>
         </div>
       </div>
     </main>

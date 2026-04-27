@@ -4,12 +4,14 @@ import {
   LegalP,
   LegalPage,
 } from "@/components/LegalPage";
+import { MarketingCTA } from "@/components/MarketingCTA";
 
 export const metadata = { title: "Terms of Service · Renner" };
 
 export default function TermsPage() {
   return (
-    <LegalPage title="Terms of Service" effective="April 26, 2026">
+    <>
+      <LegalPage title="Terms of Service" effective="April 26, 2026">
       <LegalP>
         Welcome to Renner. These Terms of Service govern your use of our
         marketplace, which connects clients in the real estate industry
@@ -182,6 +184,8 @@ export default function TermsPage() {
         beta and the final agreement will be reviewed by counsel before
         general release.
       </LegalNote>
-    </LegalPage>
+      </LegalPage>
+      <MarketingCTA />
+    </>
   );
 }
