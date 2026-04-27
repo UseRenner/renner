@@ -409,7 +409,12 @@ h4,
 
 /* Split-screen landing — A4-style two-pane on desktop, stacked on
    mobile. Each panel takes the full viewport height on large screens
-   so the layout sits like a single A4 spread above the footer. */
+   so the layout sits like a single A4 spread above the footer. The
+   shared `landing-pane-inner` keeps both sides on identical horizontal
+   padding and a 1fr-auto-1fr vertical rhythm: top slot, centered
+   content, bottom slot. With the bottom slot empty on the left the
+   headline + card sit visually centered; with both slots empty on the
+   right the form sits dead-center vertically. */
 .landing-split {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -419,6 +424,20 @@ h4,
 .landing-right {
   min-height: 100vh;
 }
+.landing-pane-inner {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  padding: clamp(40px, 6vw, 80px) clamp(32px, 6vw, 96px);
+  row-gap: 48px;
+  align-items: center;
+}
+.landing-pane-inner > :first-child {
+  align-self: start;
+}
+.landing-pane-inner > :last-child {
+  align-self: end;
+}
 @media (max-width: 900px) {
   .landing-split {
     grid-template-columns: 1fr;
@@ -427,7 +446,9 @@ h4,
   .landing-right {
     min-height: auto;
   }
-  .landing-left {
-    padding-bottom: 24px;
+  .landing-pane-inner {
+    min-height: auto;
+    padding: 48px 28px;
+    row-gap: 32px;
   }
 }

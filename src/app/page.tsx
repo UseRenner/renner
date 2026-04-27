@@ -29,15 +29,7 @@ function LeftPanel() {
         backgroundColor: "#f0f2f5",
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          minHeight: "100%",
-          padding: "32px 48px",
-        }}
-      >
+      <div className="landing-pane-inner">
         <div>
           <Wordmark />
         </div>
@@ -47,8 +39,6 @@ function LeftPanel() {
             display: "flex",
             flexDirection: "column",
             gap: "32px",
-            paddingTop: "48px",
-            paddingBottom: "48px",
           }}
         >
           <h1
@@ -79,15 +69,7 @@ function LeftPanel() {
           <SampleTaskCard />
         </div>
 
-        <div
-          style={{
-            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-            fontSize: "12px",
-            color: "#7d8da0",
-          }}
-        >
-          © 2026 Renner, Inc.
-        </div>
+        <div aria-hidden />
       </div>
     </section>
   );
@@ -99,13 +81,25 @@ function RightPanel() {
       className="landing-right"
       style={{
         backgroundColor: "#fbfbfc",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "64px 48px",
       }}
     >
-      <LandingSignupForm />
+      <div
+        className="landing-pane-inner"
+        style={{
+          alignItems: "stretch",
+        }}
+      >
+        <div aria-hidden />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <LandingSignupForm />
+        </div>
+        <div aria-hidden />
+      </div>
     </section>
   );
 }
