@@ -455,9 +455,13 @@ h4,
 
 /* Site footer — edge-aligned with the split-screen landing panes
    (same clamp(32px, 6vw, 96px) horizontal padding, no max-width
-   centering). Brand on the far left, three link columns flushed to
-   the far right with consistent gaps between them. The columns wrap
-   below the brand on narrow viewports. */
+   centering). Brand on the far left, link columns flushed to the
+   far right with consistent gaps between them. Column text is
+   right-aligned so the rightmost visible text edge sits flush with
+   the right padding edge, and the meta divider lines up with both
+   the brand on the left and that text edge on the right. The
+   columns wrap below the brand on narrow viewports and revert to
+   left-aligned. */
 .site-footer {
   background-color: #0d0f12;
   color: #cad1d8;
@@ -480,7 +484,10 @@ h4,
   justify-content: flex-end;
 }
 .site-footer-col {
-  min-width: 120px;
+  text-align: right;
+}
+.site-footer-col ul {
+  align-items: flex-end;
 }
 .site-footer-meta {
   margin-top: 56px;
@@ -497,5 +504,11 @@ h4,
   .site-footer-cols {
     gap: 32px;
     justify-content: flex-start;
+  }
+  .site-footer-col {
+    text-align: left;
+  }
+  .site-footer-col ul {
+    align-items: flex-start;
   }
 }
