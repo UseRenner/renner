@@ -4,12 +4,14 @@ import {
   LegalP,
   LegalPage,
 } from "@/components/LegalPage";
+import { MarketingCTA } from "@/components/MarketingCTA";
 
 export const metadata = { title: "Acceptable Use · Renner" };
 
 export default function AcceptableUsePage() {
   return (
-    <LegalPage title="Acceptable Use Policy" effective="April 26, 2026">
+    <>
+      <LegalPage title="Acceptable Use Policy" effective="April 26, 2026">
       <LegalP>
         Renner exists to make real-estate task work safer and more
         professional. This Acceptable Use Policy describes conduct we expect
@@ -84,6 +86,8 @@ export default function AcceptableUsePage() {
         Repeated or severe violations may lead to permanent removal from the
         platform and forfeiture of pending payouts.
       </LegalNote>
-    </LegalPage>
+      </LegalPage>
+      <MarketingCTA />
+    </>
   );
 }

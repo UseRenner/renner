@@ -4,12 +4,14 @@ import {
   LegalP,
   LegalPage,
 } from "@/components/LegalPage";
+import { MarketingCTA } from "@/components/MarketingCTA";
 
 export const metadata = { title: "Privacy Policy · Renner" };
 
 export default function PrivacyPage() {
   return (
-    <LegalPage title="Privacy Policy" effective="April 26, 2026">
+    <>
+      <LegalPage title="Privacy Policy" effective="April 26, 2026">
       <LegalP>
         This Privacy Policy describes how Renner collects, uses, and shares
         information when you use our marketplace.
@@ -82,6 +84,8 @@ export default function PrivacyPage() {
         Renner is in private beta. The final privacy policy will be reviewed
         by counsel before general release.
       </LegalNote>
-    </LegalPage>
+      </LegalPage>
+      <MarketingCTA />
+    </>
   );
 }
