@@ -211,25 +211,6 @@ export function LandingSignupForm() {
       >
         Become a Renner
       </Link>
-
-      <p
-        style={{
-          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-          fontSize: "13px",
-          color: "#647589",
-          marginTop: "20px",
-          textAlign: "center",
-        }}
-      >
-        Have an account?{" "}
-        <Link
-          href="/signin"
-          className="text-link"
-          style={{ color: "#0d0f12", fontWeight: 500 }}
-        >
-          Sign in
-        </Link>
-      </p>
     </div>
   );
 }

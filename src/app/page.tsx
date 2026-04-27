@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Wordmark } from "@/components/Wordmark";
 import { getViewer, homeFor } from "@/lib/role";
@@ -89,7 +90,30 @@ function RightPanel() {
           alignItems: "stretch",
         }}
       >
-        <div aria-hidden />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+          }}
+        >
+          <p
+            style={{
+              fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+              fontSize: "13px",
+              color: "#647589",
+              margin: 0,
+            }}
+          >
+            Have an account?{" "}
+            <Link
+              href="/signin"
+              className="text-link"
+              style={{ color: "#0d0f12", fontWeight: 500 }}
+            >
+              Sign in
+            </Link>
+          </p>
+        </div>
         <div
           style={{
             display: "flex",
