@@ -19,10 +19,10 @@ export type TaskCategory =
   | "Signs"
   | "Lockbox"
   | "Courier"
-  | "Prep"
   | "Photos"
   | "Property access"
   | "Guest access"
+  | "Host assistance"
   | "Showing"
   | "Open house"
   | "Other";
@@ -31,10 +31,10 @@ export const TASK_CATEGORIES: TaskCategory[] = [
   "Signs",
   "Lockbox",
   "Courier",
-  "Prep",
   "Photos",
   "Property access",
   "Guest access",
+  "Host assistance",
   "Showing",
   "Open house",
   "Other",

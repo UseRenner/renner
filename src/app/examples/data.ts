@@ -85,7 +85,7 @@ export const RENNERS: ExampleRenner[] = [
     completed_tasks: 31,
     background_verified: true,
     licensed: false,
-    categories: ["Prep", "Photos", "Property access"],
+    categories: ["Photos", "Property access", "Host assistance"],
     bio: "Photo-ready prep specialist. Detail-driven.",
     saved: true,
   },
@@ -189,7 +189,7 @@ export const TASKS: ExampleTask[] = [
     title: "Photo-ready prep before 10am shoot",
     description:
       "Light staging — fluff cushions, wipe counters, open blinds, turn on lamps. Photographer arrives at 10:00 AM.",
-    category: "Prep",
+    category: "Other",
     pay: 85,
     street_address: "2244 S Lafayette",
     city: "Denver",
