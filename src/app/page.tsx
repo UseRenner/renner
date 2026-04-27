@@ -68,6 +68,8 @@ function LeftPanel() {
           </h1>
 
           <SampleTaskCard />
+
+          <CategoryPills />
         </div>
 
         <div aria-hidden />
@@ -196,6 +198,51 @@ function SampleTaskCard() {
       >
         RiNo, Denver  ·  Today, 2:00 – 5:00 PM
       </p>
+    </div>
+  );
+}
+
+// Visual-only context strip below the hero card. Reads as a quiet
+// taxonomy hint, not a navigation control — these are <span>s, not
+// links, and the order is the spec's: Signs · Lockbox · Showing ·
+// Courier · Photos · Guest access · Host assistance.
+const HERO_CATEGORIES = [
+  "Signs",
+  "Lockbox",
+  "Showing",
+  "Courier",
+  "Photos",
+  "Guest access",
+  "Host assistance",
+];
+
+function CategoryPills() {
+  return (
+    <div
+      aria-hidden
+      className="flex flex-wrap"
+      style={{
+        gap: "8px",
+        maxWidth: "520px",
+      }}
+    >
+      {HERO_CATEGORIES.map((label) => (
+        <span
+          key={label}
+          style={{
+            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+            fontSize: "12px",
+            fontWeight: 500,
+            color: "#647589",
+            backgroundColor: "#fbfbfc",
+            border: "1px solid #dce0e5",
+            borderRadius: "999px",
+            padding: "6px 12px",
+          }}
+        >
+          {label}
+        </span>
+      ))}
     </div>
   );
 }
