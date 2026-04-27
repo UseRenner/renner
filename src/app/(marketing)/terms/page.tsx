@@ -14,7 +14,7 @@ export default function TermsPage() {
         Welcome to Renner. These Terms of Service govern your use of our
         marketplace, which connects clients in the real estate industry
         (&ldquo;Clients&rdquo;) with independent task runners
-        (&ldquo;Renners&rdquo;) for short-form services such as sign work,
+        (&ldquo;Renners&rdquo;) for short-form services such as signs,
         document delivery, property prep, and licensed showings.
       </LegalP>
 

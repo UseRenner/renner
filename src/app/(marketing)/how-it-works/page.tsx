@@ -19,7 +19,7 @@ const FAQS: Array<{ q: string; a: string }> = [
   },
   {
     q: "How does the background check work?",
-    a: "Every Renner runs a background check through our verification partner, Checkr, before accepting tasks. Most checks finish in 24–72 hours. Once verified, a small badge appears next to your name so Clients know you've cleared.",
+    a: "Every Renner runs a background check through our verification partner, Checkr, before booking any task — licensed or not. Most checks finish in 24–72 hours. Once verified, a small badge appears next to your name so Clients know you've cleared.",
   },
   {
     q: "What happens if there's a dispute?",

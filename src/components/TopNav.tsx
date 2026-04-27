@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { formatInitials } from "@/lib/displayName";
 import { createClient } from "@/lib/supabase/server";
 import { MarketingHeader } from "./MarketingHeader";
 import { NavLinks } from "./NavLinks";
@@ -10,19 +11,12 @@ function getInitials(
   displayName: string | null,
   email: string | null,
 ) {
-  const sources = [
-    firstName?.[0],
-    lastName?.[0],
-  ];
-  if (sources[0] || sources[1]) {
-    return (sources.filter(Boolean).join("") || "").toUpperCase().slice(0, 2);
-  }
-  if (displayName) {
-    const parts = displayName.trim().split(/\s+/);
-    return (parts[0]?.[0] ?? "")
-      .concat(parts[1]?.[0] ?? "")
-      .toUpperCase();
-  }
+  const initials = formatInitials({
+    first_name: firstName,
+    last_name: lastName,
+    display_name: displayName,
+  });
+  if (initials !== "?") return initials;
   return (email?.[0] ?? "?").toUpperCase();
 }
 

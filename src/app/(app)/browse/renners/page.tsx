@@ -24,7 +24,7 @@ export default async function BrowseRennersPage() {
   const { data: rennersData } = await supabase
     .from("users")
     .select(
-      "id, display_name, first_name, last_name, city, state, rating, completed_tasks, background_verified, licensed, categories, profile_visibility, role",
+      "id, display_name, first_name, last_name, show_full_last_name, city, state, rating, completed_tasks, background_verified, licensed, categories, profile_visibility, role",
     )
     .eq("role", "renner")
     .eq("profile_visibility", "public");

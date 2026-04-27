@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Wordmark } from "@/components/Wordmark";
+import { MarketingHeader } from "@/components/MarketingHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 import { createClient } from "@/lib/supabase/client";
 
 export default function SigninPage() {
@@ -45,12 +46,10 @@ export default function SigninPage() {
   }
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-start pt-16 px-6 pb-16">
+    <>
+      <MarketingHeader />
+      <main className="flex flex-col items-center justify-start pt-16 px-6 pb-16">
       <div className="w-full max-w-[440px]">
-        <div className="mb-10 text-center">
-          <Wordmark />
-        </div>
-
         <div className="card" style={{ padding: "40px" }}>
           <h1
             className="font-display"
@@ -136,6 +135,8 @@ export default function SigninPage() {
           </p>
         </div>
       </div>
-    </main>
+      </main>
+      <SiteFooter />
+    </>
   );
 }

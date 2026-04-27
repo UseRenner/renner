@@ -3,6 +3,11 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { LicenseAttestationCard } from "@/components/LicenseAttestation";
+import {
+  formatDisplayNameWithCompany,
+  isValidNameInput,
+  normalizeNameInput,
+} from "@/lib/displayName";
 import { createClient } from "@/lib/supabase/client";
 import { TASK_CATEGORIES } from "@/lib/types";
 
@@ -11,6 +16,8 @@ type Profile = {
   first_name: string | null;
   last_name: string | null;
   display_name: string | null;
+  show_full_last_name: boolean | null;
+  company: string | null;
   phone: string | null;
   role: "renner" | "client" | null;
   city: string | null;
@@ -74,7 +81,7 @@ export function SettingsClient({
         <SectionCard
           eyebrow="Verification"
           title="Background check"
-          description="Renners must complete a Checkr background check before booking licensed tasks."
+          description="Every Renner completes a Checkr background check before booking any task."
         >
           <VerificationSection profile={profile} />
         </SectionCard>
@@ -89,10 +96,9 @@ export function SettingsClient({
       </SectionCard>
 
       <SectionCard
-        eyebrow="Danger zone"
+        eyebrow="Account management"
         title="Delete account"
-        description="Permanently remove your account and all associated tasks, messages, and reviews. This cannot be undone."
-        tone="danger"
+        description="Close your Renner account and remove your tasks, messages, and reviews. We&rsquo;ll keep a small audit record where the law requires."
       >
         <DangerZone supabase={supabase} router={router} />
       </SectionCard>
@@ -215,13 +221,11 @@ function SectionCard({
   eyebrow,
   title,
   description,
-  tone = "default",
   children,
 }: {
   eyebrow: string;
   title: string;
   description: string;
-  tone?: "default" | "danger";
   children: React.ReactNode;
 }) {
   return (
@@ -229,7 +233,7 @@ function SectionCard({
       className="card"
       style={{
         padding: "28px",
-        borderColor: tone === "danger" ? "rgba(192,57,43,0.25)" : "#dce0e5",
+        borderColor: "#dce0e5",
       }}
     >
       <div className="micro-label" style={{ marginBottom: "8px" }}>
@@ -373,7 +377,12 @@ function ProfileSection({
   profile: Profile | null;
   supabase: ReturnType<typeof createClient>;
 }) {
-  const [displayName, setDisplayName] = useState(profile?.display_name ?? "");
+  const [firstName, setFirstName] = useState(profile?.first_name ?? "");
+  const [lastName, setLastName] = useState(profile?.last_name ?? "");
+  const [showFullLastName, setShowFullLastName] = useState(
+    !!profile?.show_full_last_name,
+  );
+  const [company, setCompany] = useState(profile?.company ?? "");
   const [phone, setPhone] = useState(profile?.phone ?? "");
   const [city, setCity] = useState(profile?.city ?? "");
   const [state, setState] = useState(profile?.state ?? "");
@@ -406,15 +415,30 @@ function ProfileSection({
     if (!profile) return;
     setError(null);
     setSuccess(null);
+    if (!isValidNameInput(firstName) || !isValidNameInput(lastName)) {
+      setError(
+        "First and last name may only contain letters, hyphens, and apostrophes.",
+      );
+      return;
+    }
     if (licensed && (!licenseNumber || !licenseState)) {
       setError("Please provide your license number and state.");
       return;
     }
+    const cleanFirst = normalizeNameInput(firstName);
+    const cleanLast = normalizeNameInput(lastName);
+    const derivedDisplay = showFullLastName
+      ? `${cleanFirst} ${cleanLast}`
+      : `${cleanFirst} ${cleanLast.charAt(0)}.`;
     setSubmitting(true);
     const { error: updateError } = await supabase
       .from("users")
       .update({
-        display_name: displayName,
+        first_name: cleanFirst,
+        last_name: cleanLast,
+        display_name: derivedDisplay,
+        show_full_last_name: showFullLastName,
+        company: profile.role === "client" ? company.trim() || null : null,
         phone,
         city,
         state,
@@ -434,19 +458,117 @@ function ProfileSection({
     setSuccess("Profile saved.");
   }
 
+  const previewName = formatDisplayNameWithCompany({
+    first_name: normalizeNameInput(firstName),
+    last_name: normalizeNameInput(lastName),
+    show_full_last_name: showFullLastName,
+    company: profile?.role === "client" ? company : null,
+  });
+
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <div>
-        <label className="input-label" htmlFor="displayName">
-          Display name
+        <label className="input-label">Legal name</label>
+        <div
+          style={{
+            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+            fontSize: "12px",
+            color: "#7d8da0",
+            marginTop: "-2px",
+            marginBottom: "10px",
+            lineHeight: 1.5,
+          }}
+        >
+          Letters, hyphens, and apostrophes only. You appear on Renner as{" "}
+          <strong style={{ color: "#0d0f12" }}>{previewName}</strong>.
+        </div>
+        <div className="flex gap-3">
+          <div className="flex-1">
+            <label className="input-label" htmlFor="firstName">
+              First name
+            </label>
+            <input
+              id="firstName"
+              className="input"
+              value={firstName}
+              onChange={(e) =>
+                setFirstName(normalizeNameInput(e.target.value))
+              }
+              autoComplete="given-name"
+              required
+            />
+          </div>
+          <div className="flex-1">
+            <label className="input-label" htmlFor="lastName">
+              Last name
+            </label>
+            <input
+              id="lastName"
+              className="input"
+              value={lastName}
+              onChange={(e) =>
+                setLastName(normalizeNameInput(e.target.value))
+              }
+              autoComplete="family-name"
+              required
+            />
+          </div>
+        </div>
+        <label
+          style={{
+            display: "flex",
+            alignItems: "flex-start",
+            gap: "10px",
+            marginTop: "12px",
+            cursor: "pointer",
+          }}
+        >
+          <input
+            type="checkbox"
+            checked={showFullLastName}
+            onChange={(e) => setShowFullLastName(e.target.checked)}
+            style={{ marginTop: "3px" }}
+          />
+          <span
+            style={{
+              fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+              fontSize: "13px",
+              color: "#4d5b6a",
+              lineHeight: 1.5,
+            }}
+          >
+            Show my full last name instead of just the initial.
+          </span>
         </label>
-        <input
-          id="displayName"
-          className="input"
-          value={displayName}
-          onChange={(e) => setDisplayName(e.target.value)}
-        />
       </div>
+      {profile?.role === "client" && (
+        <div>
+          <label className="input-label" htmlFor="company">
+            Company / firm{" "}
+            <span style={{ color: "#7d8da0", fontWeight: 400 }}>
+              (optional)
+            </span>
+          </label>
+          <input
+            id="company"
+            className="input"
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+            placeholder="e.g. Compass, SERHANT., Coldwell Banker"
+          />
+          <p
+            style={{
+              fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+              fontSize: "12px",
+              color: "#7d8da0",
+              marginTop: "6px",
+              lineHeight: 1.5,
+            }}
+          >
+            Shown after your name to Renners.
+          </p>
+        </div>
+      )}
       <div>
         <label className="input-label" htmlFor="phone">
           Phone number
@@ -765,8 +887,9 @@ function DangerZone({
           lineHeight: 1.6,
         }}
       >
-        Type <strong>DELETE</strong> to confirm. We will permanently remove
-        your account, profile, tasks, applications, messages, and reviews.
+        Type <strong>DELETE</strong> to confirm. Once submitted, your
+        profile, tasks, applications, messages, and reviews will be removed
+        from Renner.
       </p>
       <input
         className="input"
@@ -775,16 +898,16 @@ function DangerZone({
         placeholder="Type DELETE"
       />
       {error && (
-        <p style={{ color: "#c0392b", fontSize: "13px" }}>{error}</p>
+        <p style={{ color: "#647589", fontSize: "13px" }}>{error}</p>
       )}
       <button
         type="button"
-        className="btn-danger"
+        className="btn-light"
         onClick={handleDelete}
         disabled={!ready || submitting}
         style={{ alignSelf: "flex-start", padding: "10px 18px" }}
       >
-        {submitting ? "Deleting…" : "Delete my account"}
+        {submitting ? "Closing account…" : "Delete account"}
       </button>
     </div>
   );

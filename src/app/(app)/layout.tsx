@@ -1,3 +1,4 @@
+import { SiteFooter } from "@/components/SiteFooter";
 import { TopNav } from "@/components/TopNav";
 
 export default function AppLayout({
@@ -9,6 +10,7 @@ export default function AppLayout({
     <>
       <TopNav />
       {children}
+      <SiteFooter />
     </>
   );
 }

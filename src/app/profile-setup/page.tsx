@@ -3,6 +3,9 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LicenseAttestationCard } from "@/components/LicenseAttestation";
+import { MarketingHeader } from "@/components/MarketingHeader";
+import { SiteFooter } from "@/components/SiteFooter";
+import { isValidNameInput, normalizeNameInput } from "@/lib/displayName";
 import { createClient } from "@/lib/supabase/client";
 import { TASK_CATEGORIES } from "@/lib/types";
 
@@ -13,7 +16,10 @@ export default function ProfileSetupPage() {
   const [userId, setUserId] = useState<string | null>(null);
   const [loadingUser, setLoadingUser] = useState(true);
 
-  const [displayName, setDisplayName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [showFullLastName, setShowFullLastName] = useState(false);
+  const [company, setCompany] = useState("");
   const [phone, setPhone] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
@@ -46,18 +52,16 @@ export default function ProfileSetupPage() {
       const { data: profile } = await supabase
         .from("users")
         .select(
-          "display_name, phone, city, state, zip, bio, categories, first_name, last_name, licensed, license_number, license_state, role",
+          "display_name, phone, city, state, zip, bio, categories, first_name, last_name, show_full_last_name, company, licensed, license_number, license_state, role",
         )
         .eq("id", user.id)
         .maybeSingle();
 
       if (profile) {
-        setDisplayName(
-          profile.display_name ||
-            [profile.first_name, profile.last_name]
-              .filter(Boolean)
-              .join(" "),
-        );
+        setFirstName(profile.first_name ?? "");
+        setLastName(profile.last_name ?? "");
+        setShowFullLastName(!!profile.show_full_last_name);
+        setCompany(profile.company ?? "");
         setPhone(profile.phone ?? "");
         setCity(profile.city ?? "");
         setState(profile.state ?? "");
@@ -94,16 +98,34 @@ export default function ProfileSetupPage() {
     setError(null);
     setSubmitting(true);
 
+    if (!isValidNameInput(firstName) || !isValidNameInput(lastName)) {
+      setError(
+        "First and last name may only contain letters, hyphens, and apostrophes.",
+      );
+      setSubmitting(false);
+      return;
+    }
+
     if (licensed && (!licenseNumber || !licenseState)) {
       setError("Please provide your license number and state.");
       setSubmitting(false);
       return;
     }
 
+    const cleanFirst = normalizeNameInput(firstName);
+    const cleanLast = normalizeNameInput(lastName);
+    const derivedDisplay = showFullLastName
+      ? `${cleanFirst} ${cleanLast}`
+      : `${cleanFirst} ${cleanLast.charAt(0)}.`;
+
     const { error: updateError } = await supabase
       .from("users")
       .update({
-        display_name: displayName,
+        first_name: cleanFirst,
+        last_name: cleanLast,
+        display_name: derivedDisplay,
+        show_full_last_name: showFullLastName,
+        company: role === "client" ? company.trim() || null : null,
         phone,
         city,
         state,
@@ -134,8 +156,19 @@ export default function ProfileSetupPage() {
     );
   }
 
+  const previewName = (() => {
+    const f = normalizeNameInput(firstName).trim();
+    const l = normalizeNameInput(lastName).trim();
+    if (!f && !l) return "—";
+    if (showFullLastName && l) return `${f} ${l}`.trim();
+    if (l) return `${f} ${l.charAt(0)}.`.trim();
+    return f;
+  })();
+
   return (
-    <main className="min-h-screen pt-10 pb-20 px-6">
+    <>
+      <MarketingHeader />
+      <main className="pt-10 pb-20 px-6">
       <div className="mx-auto" style={{ maxWidth: "720px" }}>
         <div className="micro-label" style={{ marginBottom: "12px" }}>
           Step 1 of 1
@@ -156,17 +189,110 @@ export default function ProfileSetupPage() {
           <div className="card" style={{ padding: "32px" }}>
             <div className="flex flex-col gap-5">
               <div>
-                <label className="input-label" htmlFor="displayName">
-                  Display name
+                <label className="input-label">Legal name</label>
+                <div
+                  style={{
+                    fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+                    fontSize: "12px",
+                    color: "#7d8da0",
+                    marginTop: "-2px",
+                    marginBottom: "10px",
+                    lineHeight: 1.5,
+                  }}
+                >
+                  Letters, hyphens, and apostrophes only. We display you as
+                  &ldquo;{previewName}&rdquo; on Renner.
+                </div>
+                <div className="flex gap-3">
+                  <div className="flex-1">
+                    <label className="input-label" htmlFor="firstName">
+                      First name
+                    </label>
+                    <input
+                      id="firstName"
+                      className="input"
+                      value={firstName}
+                      onChange={(e) =>
+                        setFirstName(normalizeNameInput(e.target.value))
+                      }
+                      autoComplete="given-name"
+                      required
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <label className="input-label" htmlFor="lastName">
+                      Last name
+                    </label>
+                    <input
+                      id="lastName"
+                      className="input"
+                      value={lastName}
+                      onChange={(e) =>
+                        setLastName(normalizeNameInput(e.target.value))
+                      }
+                      autoComplete="family-name"
+                      required
+                    />
+                  </div>
+                </div>
+                <label
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: "10px",
+                    marginTop: "12px",
+                    cursor: "pointer",
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={showFullLastName}
+                    onChange={(e) => setShowFullLastName(e.target.checked)}
+                    style={{ marginTop: "3px" }}
+                  />
+                  <span
+                    style={{
+                      fontFamily:
+                        "var(--font-inter), ui-sans-serif, system-ui",
+                      fontSize: "13px",
+                      color: "#4d5b6a",
+                      lineHeight: 1.5,
+                    }}
+                  >
+                    Show my full last name instead of just the initial.
+                  </span>
                 </label>
-                <input
-                  id="displayName"
-                  className="input"
-                  value={displayName}
-                  onChange={(e) => setDisplayName(e.target.value)}
-                  required
-                />
               </div>
+
+              {role === "client" && (
+                <div>
+                  <label className="input-label" htmlFor="company">
+                    Company / firm <span style={{ color: "#7d8da0", fontWeight: 400 }}>(optional)</span>
+                  </label>
+                  <input
+                    id="company"
+                    className="input"
+                    value={company}
+                    onChange={(e) => setCompany(e.target.value)}
+                    placeholder="e.g. Compass, SERHANT., Coldwell Banker"
+                  />
+                  <p
+                    style={{
+                      fontFamily:
+                        "var(--font-inter), ui-sans-serif, system-ui",
+                      fontSize: "12px",
+                      color: "#7d8da0",
+                      marginTop: "6px",
+                      lineHeight: 1.5,
+                    }}
+                  >
+                    Shown after your name to Renners — e.g. &ldquo;
+                    {previewName}
+                    {company.trim() ? ` · ${company.trim()}` : " · Compass"}
+                    &rdquo;.
+                  </p>
+                </div>
+              )}
 
               <div>
                 <label className="input-label" htmlFor="phone">
@@ -293,6 +419,8 @@ export default function ProfileSetupPage() {
           </div>
         </form>
       </div>
-    </main>
+      </main>
+      <SiteFooter />
+    </>
   );
 }

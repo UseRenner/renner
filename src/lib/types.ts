@@ -16,7 +16,7 @@ export type PaymentStatus =
   | "disputed";
 
 export type TaskCategory =
-  | "Sign work"
+  | "Signs"
   | "Lockbox"
   | "Courier"
   | "Prep"
@@ -28,7 +28,7 @@ export type TaskCategory =
   | "Other";
 
 export const TASK_CATEGORIES: TaskCategory[] = [
-  "Sign work",
+  "Signs",
   "Lockbox",
   "Courier",
   "Prep",
@@ -92,6 +92,8 @@ export interface UserProfile {
   first_name: string | null;
   last_name: string | null;
   display_name: string | null;
+  show_full_last_name: boolean | null;
+  company: string | null;
   role: "renner" | "client" | null;
   city: string | null;
   state: string | null;

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { BookButton } from "@/components/BookButton";
 import { FavoriteButton } from "@/components/FavoriteButton";
+import { formatDisplayName, formatInitials } from "@/lib/displayName";
 import { formatPay, formatTaskTiming } from "@/lib/format";
 import { requireClient } from "@/lib/role";
 import { createClient } from "@/lib/supabase/server";
@@ -19,6 +20,7 @@ type Applicant = {
     first_name: string | null;
     last_name: string | null;
     display_name: string | null;
+    show_full_last_name: boolean | null;
     licensed: boolean;
     license_number: string | null;
     license_state: string | null;
@@ -55,8 +57,8 @@ export default async function ApplicantsPage({
     .select(
       `id, status, message, applied_date,
        applicant:users (
-         id, first_name, last_name, display_name, licensed,
-         license_number, license_state,
+         id, first_name, last_name, display_name, show_full_last_name,
+         licensed, license_number, license_state,
          background_verified, completed_tasks, rating, city, state
        )`,
     )
@@ -194,16 +196,8 @@ function ApplicantRow({
   isSaved: boolean;
 }) {
   const a = application.applicant;
-  const name =
-    a?.display_name ??
-    [a?.first_name, a?.last_name].filter(Boolean).join(" ") ??
-    "Anonymous";
-  const initials = (() => {
-    const parts = (name || "?").trim().split(/\s+/);
-    return ((parts[0]?.[0] ?? "") + (parts[1]?.[0] ?? ""))
-      .toUpperCase()
-      .slice(0, 2) || "?";
-  })();
+  const name = formatDisplayName(a);
+  const initials = formatInitials(a);
   const rating = a?.rating ?? 0;
   const completed = a?.completed_tasks ?? 0;
   const accepted = application.status === "Accepted";

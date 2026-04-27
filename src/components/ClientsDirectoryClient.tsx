@@ -1,12 +1,18 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import {
+  formatDisplayNameWithCompany,
+  formatInitials,
+} from "@/lib/displayName";
 
 export type ClientCard = {
   id: string;
   display_name: string | null;
   first_name: string | null;
   last_name: string | null;
+  show_full_last_name: boolean | null;
+  company: string | null;
   city: string | null;
   state: string | null;
   created_at: string | null;
@@ -14,21 +20,11 @@ export type ClientCard = {
 };
 
 function nameFor(c: ClientCard) {
-  return (
-    c.display_name ||
-    [c.first_name, c.last_name].filter(Boolean).join(" ") ||
-    "Client"
-  );
+  return formatDisplayNameWithCompany(c);
 }
 
 function initialsFor(c: ClientCard) {
-  const name = nameFor(c) || "?";
-  const parts = name.trim().split(/\s+/);
-  return (
-    ((parts[0]?.[0] ?? "") + (parts[1]?.[0] ?? ""))
-      .toUpperCase()
-      .slice(0, 2) || "?"
-  );
+  return formatInitials(c);
 }
 
 function memberSince(value: string | null) {
