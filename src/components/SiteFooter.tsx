@@ -3,17 +3,19 @@ import { Wordmark } from "./Wordmark";
 
 const COLUMNS = [
   {
-    title: "Product",
+    title: "Platform",
     links: [
-      { href: "/post", label: "Post a task" },
       { href: "/how-it-works", label: "How it works" },
+      { href: "/browse", label: "Browse tasks" },
+      { href: "/post", label: "Post a task" },
+      { href: "/signup", label: "Become a Renner" },
     ],
   },
   {
     title: "Company",
     links: [
-      { href: "/signup", label: "Become a Renner" },
-      { href: "/signin", label: "Sign in" },
+      { href: "/how-it-works", label: "About" },
+      { href: "/how-it-works", label: "FAQ" },
       { href: "mailto:hello@renner.app", label: "Contact" },
     ],
   },
@@ -22,7 +24,6 @@ const COLUMNS = [
     links: [
       { href: "/terms", label: "Terms" },
       { href: "/privacy", label: "Privacy" },
-      { href: "/acceptable-use", label: "Acceptable Use" },
     ],
   },
 ];

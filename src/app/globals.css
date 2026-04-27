@@ -406,3 +406,28 @@ h4,
 .faq-item:hover .faq-toggle {
   color: var(--s-700);
 }
+
+/* Split-screen landing — A4-style two-pane on desktop, stacked on
+   mobile. Each panel takes the full viewport height on large screens
+   so the layout sits like a single A4 spread above the footer. */
+.landing-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+.landing-left,
+.landing-right {
+  min-height: 100vh;
+}
+@media (max-width: 900px) {
+  .landing-split {
+    grid-template-columns: 1fr;
+  }
+  .landing-left,
+  .landing-right {
+    min-height: auto;
+  }
+  .landing-left {
+    padding-bottom: 24px;
+  }
+}
