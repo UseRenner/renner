@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { MarketingHeader } from "@/components/MarketingHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { createClient } from "@/lib/supabase/client";
@@ -112,7 +113,7 @@ export default function SigninPage() {
               disabled={submitting}
               style={{ marginTop: "8px" }}
             >
-              {submitting ? "Signing in…" : "Sign in"}
+              {submitting ? <LoadingSpinner size={18} tone="light" /> : "Sign in"}
             </button>
           </form>
 

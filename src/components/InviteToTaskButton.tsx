@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { ModalShell } from "@/components/ModalShell";
 import { createClient } from "@/lib/supabase/client";
 
@@ -153,16 +154,15 @@ export function InviteToTaskButton({
                   Existing open task
                 </label>
                 {tasks === null ? (
-                  <p
+                  <div
                     style={{
-                      fontFamily:
-                        "var(--font-inter), ui-sans-serif, system-ui",
-                      fontSize: "13px",
-                      color: "#7d8da0",
+                      padding: "20px 0",
+                      display: "flex",
+                      justifyContent: "center",
                     }}
                   >
-                    Loading…
-                  </p>
+                    <LoadingSpinner size={20} />
+                  </div>
                 ) : tasks.length === 0 ? (
                   <p
                     style={{

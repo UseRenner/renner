@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LicenseAttestationCard } from "@/components/LicenseAttestation";
+import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { MarketingHeader } from "@/components/MarketingHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { isValidNameInput, normalizeNameInput } from "@/lib/displayName";
@@ -151,7 +152,7 @@ export default function ProfileSetupPage() {
   if (loadingUser) {
     return (
       <main className="min-h-screen flex items-center justify-center">
-        <p style={{ color: "#647589", fontSize: "14px" }}>Loading…</p>
+        <LoadingSpinner size={32} />
       </main>
     );
   }
@@ -413,7 +414,7 @@ export default function ProfileSetupPage() {
                 disabled={submitting}
                 style={{ marginTop: "8px" }}
               >
-                {submitting ? "Saving…" : "Save & continue"}
+                {submitting ? <LoadingSpinner size={18} tone="light" /> : "Save & continue"}
               </button>
             </div>
           </div>

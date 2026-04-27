@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
+import { LoadingSpinner } from "@/components/LoadingSpinner";
 import {
   PendingTask,
   clearPendingTask,
@@ -687,11 +688,13 @@ export default function PostTaskPage() {
                 disabled={submitting}
                 style={{ marginTop: "4px" }}
               >
-                {submitting
-                  ? "Posting…"
-                  : userId
-                    ? "Post task"
-                    : "Continue to post"}
+                {submitting ? (
+                  <LoadingSpinner size={18} tone="light" />
+                ) : userId ? (
+                  "Post task"
+                ) : (
+                  "Continue to post"
+                )}
               </button>
 
               {!userId && (

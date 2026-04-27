@@ -12,7 +12,7 @@ const PROTECTED_PATHS = [
   "/my-renners",
   "/settings",
 ];
-const AUTH_PATHS = ["/signin", "/signup"];
+const AUTH_PATHS = ["/signin", "/signup", "/become-a-renner"];
 
 export async function updateSession(request: NextRequest) {
   let response = NextResponse.next({ request });

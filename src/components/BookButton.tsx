@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { createClient } from "@/lib/supabase/client";
 
 type Props = {
@@ -73,7 +74,7 @@ export function BookButton({ taskId, applicationId, applicantId }: Props) {
         disabled={submitting}
         style={{ width: "auto", padding: "10px 16px" }}
       >
-        {submitting ? "Booking…" : "Book & pay"}
+        {submitting ? <LoadingSpinner size={18} tone="light" /> : "Book & pay"}
       </button>
       {error && (
         <p style={{ color: "#c0392b", fontSize: "12px" }}>{error}</p>
