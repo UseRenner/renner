@@ -12,7 +12,6 @@ const COLUMNS = [
   {
     title: "Company",
     links: [
-      { href: "/how-it-works", label: "About" },
       { href: "/how-it-works", label: "FAQ" },
       { href: "mailto:hello@renner.app", label: "Contact" },
     ],
@@ -28,23 +27,14 @@ const COLUMNS = [
 
 export function SiteFooter() {
   return (
-    <footer
-      style={{
-        backgroundColor: "#0d0f12",
-        color: "#cad1d8",
-        padding: "72px 32px 32px",
-      }}
-    >
-      <div className="mx-auto" style={{ maxWidth: "1200px" }}>
-        <div
-          className="grid gap-10"
-          style={{ gridTemplateColumns: "1.4fr repeat(3, 1fr)" }}
-        >
-          <div>
-            <Wordmark tone="light" />
-          </div>
+    <footer className="site-footer">
+      <div className="site-footer-row">
+        <div className="site-footer-brand">
+          <Wordmark tone="light" />
+        </div>
+        <div className="site-footer-cols">
           {COLUMNS.map((col) => (
-            <div key={col.title}>
+            <div key={col.title} className="site-footer-col">
               <div
                 style={{
                   fontFamily:
@@ -81,19 +71,8 @@ export function SiteFooter() {
             </div>
           ))}
         </div>
-        <div
-          style={{
-            marginTop: "56px",
-            paddingTop: "20px",
-            borderTop: "1px solid #272d35",
-            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-            fontSize: "12px",
-            color: "#7d8da0",
-          }}
-        >
-          © 2026 Renner
-        </div>
       </div>
+      <div className="site-footer-meta">© 2026 Renner</div>
     </footer>
   );
 }

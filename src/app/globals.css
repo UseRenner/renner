@@ -452,3 +452,50 @@ h4,
     row-gap: 32px;
   }
 }
+
+/* Site footer — edge-aligned with the split-screen landing panes
+   (same clamp(32px, 6vw, 96px) horizontal padding, no max-width
+   centering). Brand on the far left, three link columns flushed to
+   the far right with consistent gaps between them. The columns wrap
+   below the brand on narrow viewports. */
+.site-footer {
+  background-color: #0d0f12;
+  color: #cad1d8;
+  padding: 72px clamp(32px, 6vw, 96px) 32px;
+}
+.site-footer-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+.site-footer-brand {
+  flex: 0 0 auto;
+}
+.site-footer-cols {
+  display: flex;
+  gap: clamp(48px, 6vw, 96px);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.site-footer-col {
+  min-width: 120px;
+}
+.site-footer-meta {
+  margin-top: 56px;
+  padding-top: 20px;
+  border-top: 1px solid #272d35;
+  font-family: var(--font-inter), ui-sans-serif, system-ui;
+  font-size: 12px;
+  color: #7d8da0;
+}
+@media (max-width: 640px) {
+  .site-footer {
+    padding: 56px 28px 28px;
+  }
+  .site-footer-cols {
+    gap: 32px;
+    justify-content: flex-start;
+  }
+}
