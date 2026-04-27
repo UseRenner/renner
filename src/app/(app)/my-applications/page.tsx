@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EmptyState } from "@/components/EmptyState";
 import { InvitationActions } from "@/components/InvitationActions";
 import { PaymentIndicator } from "@/components/StatusBadge";
 import {
@@ -88,35 +89,10 @@ export default async function MyApplicationsPage() {
         </h1>
 
         {applications.length === 0 ? (
-          <div
-            className="card"
-            style={{
-              padding: "48px 32px",
-              textAlign: "center",
-            }}
-          >
-            <p
-              style={{
-                color: "#647589",
-                fontSize: "14px",
-                marginBottom: "16px",
-              }}
-            >
-              You haven&apos;t applied to any tasks yet.
-            </p>
-            <Link
-              href="/browse"
-              className="btn-dark"
-              style={{
-                width: "auto",
-                padding: "10px 18px",
-                textDecoration: "none",
-                display: "inline-flex",
-              }}
-            >
-              Browse open tasks
-            </Link>
-          </div>
+          <EmptyState
+            message="You haven't applied to any tasks yet."
+            action={{ label: "Browse tasks", href: "/browse", tone: "light" }}
+          />
         ) : (
           <div className="flex flex-col gap-3">
             {applications.map((app) => {

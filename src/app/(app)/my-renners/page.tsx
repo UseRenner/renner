@@ -1,3 +1,4 @@
+import { EmptyState } from "@/components/EmptyState";
 import { FavoriteButton } from "@/components/FavoriteButton";
 import { InviteToTaskButton } from "@/components/InviteToTaskButton";
 import { RemoveFavoriteButton } from "@/components/RemoveFavoriteButton";
@@ -74,19 +75,7 @@ export default async function MyRennersPage() {
         </h1>
 
         {favorites.length === 0 ? (
-          <div
-            className="card"
-            style={{
-              padding: "48px 32px",
-              textAlign: "center",
-              color: "#647589",
-              fontSize: "14px",
-              lineHeight: 1.6,
-            }}
-          >
-            No saved Renners yet. Tap the key icon next to a Renner&apos;s
-            name on any task or applicant to add them here.
-          </div>
+          <EmptyState message="Save Renners you want to work with again." />
         ) : (
           <div
             className="grid gap-4"
