@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { Logo } from "@/components/Logo";
 import { getViewer, homeFor } from "@/lib/role";
 import { TASK_CATEGORIES } from "@/lib/types";
 
@@ -42,10 +43,24 @@ function PublicNav() {
       >
         <Link
           href="/"
-          className="wordmark"
-          style={{ fontSize: "26px", textDecoration: "none" }}
+          className="inline-flex items-center"
+          style={{
+            gap: "10px",
+            textDecoration: "none",
+            color: "#0d0f12",
+          }}
+          aria-label="Renner"
         >
-          Renner
+          <Logo size={20} fill="#0d0f12" slotColor="#fbfbfc" />
+          <span
+            className="wordmark"
+            style={{
+              fontSize: "22px",
+              letterSpacing: "-0.03em",
+            }}
+          >
+            Renner
+          </span>
         </Link>
         <div className="flex items-center gap-2">
           {[
@@ -831,14 +846,25 @@ function Footer() {
           <div>
             <Link
               href="/"
-              className="wordmark"
+              className="inline-flex items-center"
               style={{
-                fontSize: "26px",
-                color: "#fbfbfc",
+                gap: "10px",
                 textDecoration: "none",
+                color: "#fbfbfc",
               }}
+              aria-label="Renner"
             >
-              Renner
+              <Logo size={22} fill="#fbfbfc" slotColor="#0d0f12" />
+              <span
+                className="wordmark"
+                style={{
+                  fontSize: "22px",
+                  letterSpacing: "-0.03em",
+                  color: "#fbfbfc",
+                }}
+              >
+                Renner
+              </span>
             </Link>
           </div>
           {columns.map((col) => (

@@ -2,14 +2,19 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { KeyIcon } from "@/components/KeyIcon";
+import { Logo } from "@/components/Logo";
 import { createClient } from "@/lib/supabase/client";
+
+// The save toggle uses the Renner mark itself: an #a7b2be disc when
+// unsaved, an #0d0f12 disc when saved. Slot stays #fbfbfc in both
+// states, the tilt stays at 12°, and only the disc fill animates
+// (150ms ease, owned by .favorite-toggle in globals.css).
 
 export function FavoriteButton({
   rennerId,
   clientId,
   initiallySaved,
-  size = 16,
+  size = 18,
 }: {
   rennerId: string;
   clientId: string;
@@ -55,7 +60,11 @@ export function FavoriteButton({
       className="favorite-toggle"
       data-saved={saved ? "true" : "false"}
     >
-      <KeyIcon filled={saved} size={size} />
+      <Logo
+        size={size}
+        fill={saved ? "#0d0f12" : "#a7b2be"}
+        slotColor="#fbfbfc"
+      />
     </button>
   );
 }

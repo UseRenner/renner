@@ -18,7 +18,7 @@ const sourceSerif = Source_Serif_4({
 
 export const metadata: Metadata = {
   title: "Renner",
-  description: "A trust-forward real estate task marketplace.",
+  description: "Real estate errands. Nearby Renners.",
 };
 
 export default function RootLayout({
