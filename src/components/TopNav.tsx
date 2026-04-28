@@ -63,7 +63,7 @@ export async function TopNav() {
             borderRadius: "9999px",
             backgroundColor: "#0d0f12",
             color: "#fbfbfc",
-            fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
             fontSize: "12px",
             fontWeight: 500,
             letterSpacing: "0.02em",

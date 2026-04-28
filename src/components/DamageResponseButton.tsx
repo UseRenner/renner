@@ -132,7 +132,7 @@ export function DamageResponseButton({
               <p
                 style={{
                   fontFamily:
-                    "var(--font-public-sans), ui-sans-serif, system-ui",
+                    "var(--font-roboto), ui-sans-serif, system-ui",
                   fontSize: "13px",
                   color: "#647589",
                   lineHeight: 1.6,

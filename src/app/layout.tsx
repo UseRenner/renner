@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Public_Sans, Source_Serif_4 } from "next/font/google";
+import { Roboto, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 
-const publicSans = Public_Sans({
+const roboto = Roboto({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-public-sans",
-  weight: ["400", "500", "600"],
+  variable: "--font-roboto",
+  weight: ["400", "500", "700"],
 });
 
 const sourceSerif = Source_Serif_4({
@@ -28,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${publicSans.variable} ${sourceSerif.variable}`}>
+    <html lang="en" className={`${roboto.variable} ${sourceSerif.variable}`}>
       <body>{children}</body>
     </html>
   );
