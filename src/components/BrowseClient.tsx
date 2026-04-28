@@ -112,6 +112,7 @@ function TaskCard({ task }: { task: Task }) {
           </h3>
           {meta && (
             <p
+              className="meta-mono"
               style={{
                 fontFamily:
                   "var(--font-source-sans), ui-sans-serif, system-ui",

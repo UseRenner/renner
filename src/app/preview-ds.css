@@ -174,11 +174,42 @@
   border-radius: 8px;
 }
 
-/* ─── Micro label ── 11 / 500 / 0.14em uppercase (already aligned) */
+/* ─── Micro label ── Source Code Pro mono, 0.18em tracking ─────── */
+/* The kicker line above page titles ("NEW LISTING", "FAQ", etc.)
+   swaps from Source Sans 3 to Source Code Pro. Tiny presence, big
+   visual upgrade — code-y in a serif/sans editorial context reads
+   honest and mechanical. The "this is a network" disruptor signal. */
 [data-ds="v2"] .micro-label {
+  font-family: var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
   font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
+}
+
+/* ─── Task metadata ── Source Code Pro mono ──────────────────────── */
+/* The subtitle line under task titles (zip + time + status) gets
+   the mono treatment — codes and timestamps read as data, not prose.
+   .meta-mono is added additively in source so it's a no-op outside
+   v2; here we override the inline font-family with !important. */
+[data-ds="v2"] .meta-mono {
+  font-family: var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
+  font-size: 12px !important;
+  letter-spacing: 0.06em !important;
+  font-feature-settings: "tnum" 1, "lnum" 1 !important;
+}
+
+/* ─── Editorial body copy ── Source Serif 4, 16/1.6 ──────────────── */
+/* Step descriptions and other long-form body moments swap to serif
+   when v2 is active. Reads gorgeously next to a serif heading and
+   gives long-form copy editorial gravity without theming the
+   marketplace. Add .body-serif to opt in. */
+[data-ds="v2"] .body-serif {
+  font-family: var(--font-source-serif), ui-serif, Georgia, serif !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1.6 !important;
+  font-variation-settings: "opsz" 14 !important;
+  color: #1a1a1a !important;
 }
 
 /* ─── Floating toggle badge ──────────────────────────────────────── */

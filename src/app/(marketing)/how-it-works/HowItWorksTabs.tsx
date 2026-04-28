@@ -22,8 +22,9 @@ const CLIENT_STEPS: Step[] = [
     title: "A vetted Renner applies.",
     body: (
       <>
-        Background-checked Renners in your area see your task and apply.
-        Review their profile, ratings, and experience. Pick the right fit.
+        Background-checked Renners in your area read the task and apply.
+        Review their bio, tenure, and reviews. Pick the right fit for the
+        work.
       </>
     ),
   },
@@ -36,8 +37,8 @@ const CLIENT_STEPS: Step[] = [
     ),
     body: (
       <>
-        Your Renner handles it. You get confirmation with completion
-        photos. Pay securely through the platform. That&rsquo;s it.
+        Your Renner handles it. You receive completion photos and a written
+        confirmation. Payment releases through Stripe. The task closes.
       </>
     ),
   },
@@ -60,9 +61,10 @@ const RENNER_STEPS: Step[] = [
     title: "Browse and apply.",
     body: (
       <>
-        See tasks posted by agents, brokers, property managers, leasing
-        agents, and landlords in your area. Apply to the ones that fit
-        your schedule and skills.
+        See tasks posted by real-estate professionals in your area —
+        agents, brokers, property managers, leasing agents, landlords,
+        Airbnb hosts, and short-term rental operators. Apply to the ones
+        that fit your schedule and skills.
       </>
     ),
   },
@@ -75,9 +77,8 @@ const RENNER_STEPS: Step[] = [
     ),
     body: (
       <>
-        Complete the task, upload confirmation photos, and get paid
-        securely through the platform. Build your reputation with ratings
-        and reviews.
+        Complete the task. Upload completion photos. Payment releases
+        through Stripe. Build a reputation that earns repeat clients.
       </>
     ),
   },
@@ -311,6 +312,7 @@ function StepRow({ step }: { step: Step }) {
         {step.title}
       </h3>
       <p
+        className="body-serif"
         style={{
           fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
           fontSize: "15px",

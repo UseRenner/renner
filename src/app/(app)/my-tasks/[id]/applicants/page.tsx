@@ -118,6 +118,7 @@ export default async function ApplicantsPage({
               {t.title}
             </h1>
             <p
+              className="meta-mono"
               style={{
                 fontFamily:
                   "var(--font-source-sans), ui-sans-serif, system-ui",
