@@ -186,7 +186,7 @@ function SampleTaskCard() {
           marginBottom: "6px",
         }}
       >
-        Install sign rider at 4821 Olive St
+        Install sign rider
       </h3>
       <p
         style={{
@@ -196,7 +196,7 @@ function SampleTaskCard() {
           margin: 0,
         }}
       >
-        RiNo, Denver  ·  Today, 2:00 – 5:00 PM
+        RiNo, Denver 80205  ·  Today, 2:00 – 5:00 PM
       </p>
     </div>
   );

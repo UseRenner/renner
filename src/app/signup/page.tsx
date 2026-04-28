@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { MarketingHeader } from "@/components/MarketingHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -10,33 +10,18 @@ import {
   isValidNameInput,
   normalizeNameInput,
 } from "@/lib/displayName";
-import {
-  clearPendingTask,
-  readPendingTask,
-} from "@/lib/pendingTask";
 import { createClient } from "@/lib/supabase/client";
-
-type Role = "renner" | "client";
 
 export default function SignupPage() {
   const router = useRouter();
   const supabase = createClient();
 
-  const [role, setRole] = useState<Role>("renner");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
-  const [hasPendingTask, setHasPendingTask] = useState(false);
-
-  useEffect(() => {
-    if (readPendingTask()) {
-      setHasPendingTask(true);
-      setRole("client");
-    }
-  }, []);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -58,7 +43,11 @@ export default function SignupPage() {
       email,
       password,
       options: {
-        data: { first_name: cleanFirst, last_name: cleanLast, role },
+        data: {
+          first_name: cleanFirst,
+          last_name: cleanLast,
+          role: "client",
+        },
       },
     });
 
@@ -75,30 +64,11 @@ export default function SignupPage() {
         first_name: cleanFirst,
         last_name: cleanLast,
         display_name: `${cleanFirst} ${cleanLast.charAt(0)}.`,
-        role,
+        role: "client",
       });
       if (profileError) {
         setError(profileError.message);
         setSubmitting(false);
-        return;
-      }
-
-      const pending = readPendingTask();
-      if (pending && role === "client") {
-        const { error: taskError } = await supabase.from("tasks").insert({
-          ...pending,
-          posted_by: userId,
-        });
-        clearPendingTask();
-        if (taskError) {
-          setError(
-            `Account created, but we couldn't post your task: ${taskError.message}`,
-          );
-          setSubmitting(false);
-          return;
-        }
-        router.push("/my-tasks");
-        router.refresh();
         return;
       }
     }
@@ -115,39 +85,6 @@ export default function SignupPage() {
           className="card"
           style={{ padding: "40px" }}
         >
-          {hasPendingTask && (
-            <div
-              style={{
-                backgroundColor: "#f6f7f9",
-                border: "1px solid #eaedf0",
-                borderRadius: "10px",
-                padding: "12px 14px",
-                marginBottom: "20px",
-                fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-                fontSize: "13px",
-                color: "#4d5b6a",
-                lineHeight: 1.55,
-              }}
-            >
-              Your task is saved. Sign up and we&apos;ll post it for you.
-            </div>
-          )}
-
-          <div className="grid grid-cols-2 gap-3 mb-8">
-            <RoleBox
-              title="Renner"
-              subtitle="Complete tasks"
-              selected={role === "renner"}
-              onClick={() => setRole("renner")}
-            />
-            <RoleBox
-              title="Client"
-              subtitle="Post tasks"
-              selected={role === "client"}
-              onClick={() => setRole("client")}
-            />
-          </div>
-
           <h1
             className="font-display"
             style={{
@@ -157,7 +94,7 @@ export default function SignupPage() {
               color: "#0d0f12",
             }}
           >
-            {hasPendingTask ? "One last step" : "Create your account"}
+            Create your account
           </h1>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -297,43 +234,5 @@ export default function SignupPage() {
       </main>
       <SiteFooter />
     </>
-  );
-}
-
-function RoleBox({
-  title,
-  subtitle,
-  selected,
-  onClick,
-}: {
-  title: string;
-  subtitle: string;
-  selected: boolean;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="text-left transition-colors"
-      style={{
-        padding: "16px 18px",
-        borderRadius: "10px",
-        border: selected ? "1px solid #0d0f12" : "1px solid #cad1d8",
-        backgroundColor: selected ? "#0d0f12" : "#fbfbfc",
-        color: selected ? "#fbfbfc" : "#0d0f12",
-      }}
-    >
-      <div style={{ fontSize: "15px", fontWeight: 500 }}>{title}</div>
-      <div
-        style={{
-          fontSize: "12px",
-          marginTop: "2px",
-          color: selected ? "#cad1d8" : "#7d8da0",
-        }}
-      >
-        {subtitle}
-      </div>
-    </button>
   );
 }

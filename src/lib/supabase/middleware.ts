@@ -6,6 +6,7 @@ const PROTECTED_PATHS = [
   "/browse",
   "/dashboard",
   "/messages",
+  "/post",
   "/tasks",
   "/my-tasks",
   "/my-applications",

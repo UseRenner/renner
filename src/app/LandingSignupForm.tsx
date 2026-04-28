@@ -7,25 +7,13 @@ import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { isValidNameInput, normalizeNameInput } from "@/lib/displayName";
 import { createClient } from "@/lib/supabase/client";
 
-// Splits "Marcus King" into ["Marcus", "King"], "Anne-Marie O'Brien" into
-// ["Anne-Marie", "O'Brien"]. Anything before the first space is the
-// first name, the remainder is the last name.
-function splitFullName(value: string): { first: string; last: string } {
-  const trimmed = value.trim();
-  const space = trimmed.indexOf(" ");
-  if (space === -1) return { first: trimmed, last: "" };
-  return {
-    first: trimmed.slice(0, space),
-    last: trimmed.slice(space + 1).trim(),
-  };
-}
-
 export function LandingSignupForm() {
   const router = useRouter();
   const supabase = createClient();
 
   const [email, setEmail] = useState("");
-  const [fullName, setFullName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -34,20 +22,15 @@ export function LandingSignupForm() {
     e.preventDefault();
     setError(null);
 
-    const { first, last } = splitFullName(fullName);
-    if (!first || !last) {
-      setError("Please enter both a first and last name.");
-      return;
-    }
-    if (!isValidNameInput(first) || !isValidNameInput(last)) {
+    if (!isValidNameInput(firstName) || !isValidNameInput(lastName)) {
       setError(
-        "Names may only contain letters, hyphens, and apostrophes.",
+        "First and last name may only contain letters, hyphens, and apostrophes.",
       );
       return;
     }
 
-    const cleanFirst = normalizeNameInput(first);
-    const cleanLast = normalizeNameInput(last);
+    const cleanFirst = normalizeNameInput(firstName);
+    const cleanLast = normalizeNameInput(lastName);
 
     setSubmitting(true);
     const { data, error: signUpError } = await supabase.auth.signUp({
@@ -133,18 +116,37 @@ export function LandingSignupForm() {
           />
         </div>
 
-        <div>
-          <label className="input-label" htmlFor="fullName">
-            Full name
-          </label>
-          <input
-            id="fullName"
-            className="input"
-            value={fullName}
-            onChange={(e) => setFullName(normalizeNameInput(e.target.value))}
-            required
-            autoComplete="name"
-          />
+        <div className="flex gap-3">
+          <div className="flex-1">
+            <label className="input-label" htmlFor="firstName">
+              First name
+            </label>
+            <input
+              id="firstName"
+              className="input"
+              value={firstName}
+              onChange={(e) =>
+                setFirstName(normalizeNameInput(e.target.value))
+              }
+              required
+              autoComplete="given-name"
+            />
+          </div>
+          <div className="flex-1">
+            <label className="input-label" htmlFor="lastName">
+              Last name
+            </label>
+            <input
+              id="lastName"
+              className="input"
+              value={lastName}
+              onChange={(e) =>
+                setLastName(normalizeNameInput(e.target.value))
+              }
+              required
+              autoComplete="family-name"
+            />
+          </div>
         </div>
 
         <div>

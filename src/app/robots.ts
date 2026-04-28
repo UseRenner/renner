@@ -33,6 +33,7 @@ export default function robots(): MetadataRoute.Robots {
           "/my-applications",
           "/my-renners",
           "/my-tasks",
+          "/post",
           "/profile-setup",
           "/settings",
           "/signin",
