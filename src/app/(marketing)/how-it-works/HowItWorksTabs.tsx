@@ -216,10 +216,11 @@ export function HowItWorksTabs({
           <h2
             className="font-display"
             style={{
-              fontSize: "26px",
+              fontSize: "30px",
               color: "#0d0f12",
               margin: 0,
               lineHeight: 1.15,
+              letterSpacing: "-0.02em",
             }}
           >
             {ctaHeading}
@@ -300,10 +301,11 @@ function StepRow({ step }: { step: Step }) {
       <h3
         className="font-display"
         style={{
-          fontSize: "21px",
+          fontSize: "24px",
           color: "#0d0f12",
-          marginBottom: "8px",
+          marginBottom: "10px",
           lineHeight: 1.2,
+          letterSpacing: "-0.015em",
         }}
       >
         {step.title}
