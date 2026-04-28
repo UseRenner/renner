@@ -115,7 +115,7 @@ function SampleTaskCard({ category }: { category: HeroCategory }) {
             {category.label}
           </span>
           <span
-            className="font-display"
+            className="font-display stat-num"
             style={{
               fontSize: "24px",
               fontWeight: 500,

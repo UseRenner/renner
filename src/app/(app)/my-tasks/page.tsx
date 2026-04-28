@@ -113,7 +113,7 @@ export default async function MyTasksPage() {
                       </p>
                     </div>
                     <div
-                      className="font-display"
+                      className="font-display stat-num"
                       style={{
                         fontSize: "22px",
                         fontWeight: 500,

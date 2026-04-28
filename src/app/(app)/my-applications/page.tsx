@@ -178,7 +178,7 @@ export default async function MyApplicationsPage() {
                       style={{ flexShrink: 0 }}
                     >
                       <div
-                        className="font-display"
+                        className="font-display stat-num"
                         style={{
                           fontSize: "22px",
                           fontWeight: 500,

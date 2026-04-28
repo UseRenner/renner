@@ -73,6 +73,21 @@
   font-style: italic !important;
 }
 
+/* ─── Stat numerals ── Sans 3 weight 300, tabular figures ────────── */
+/* Prices and counts swap from .font-display (Source Serif 4) to
+   Source Sans 3 weight 300 with tabular figures — light, generous,
+   contemporary numerals next to the serif headings. The stat-num
+   class is added additively in the source so it's a no-op outside
+   v2; here we override the inline font-weight and the .font-display
+   family with !important. */
+[data-ds="v2"] .stat-num {
+  font-family: var(--font-source-sans), ui-sans-serif, system-ui, sans-serif !important;
+  font-weight: 300 !important;
+  font-variation-settings: normal !important;
+  font-feature-settings: "tnum" 1, "lnum" 1 !important;
+  letter-spacing: -0.025em !important;
+}
+
 /* ─── Buttons ── 14px / pad 12×22 / 0.01em tracking / 6r ─────────── */
 [data-ds="v2"] .btn-dark,
 [data-ds="v2"] .btn-light,
