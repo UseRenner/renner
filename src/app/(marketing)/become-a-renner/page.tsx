@@ -4,18 +4,9 @@ export const metadata = { title: "Become a Renner · Renner" };
 
 export default function BecomeARennerPage() {
   return (
-    <main className="pt-16 pb-32 px-6">
+    <main className="pt-10 pb-24 px-6">
       <div className="mx-auto" style={{ maxWidth: "560px" }}>
-        <h1
-          className="font-display-tight"
-          style={{
-            fontSize: "clamp(40px, 6vw, 64px)",
-            lineHeight: 1.05,
-            letterSpacing: "-0.03em",
-            color: "#0d0f12",
-            marginBottom: "12px",
-          }}
-        >
+        <h1 className="page-title" style={{ marginBottom: "8px" }}>
           Become a Renner
         </h1>
         <p
@@ -24,7 +15,7 @@ export default function BecomeARennerPage() {
             fontSize: "15px",
             color: "#647589",
             lineHeight: 1.55,
-            marginBottom: "40px",
+            marginBottom: "24px",
           }}
         >
           Sign up to complete tasks in your area.

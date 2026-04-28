@@ -70,21 +70,13 @@ export default async function MyApplicationsPage() {
   const applications = (appsData ?? []) as unknown as ApplicationRow[];
 
   return (
-    <main className="pt-12 pb-20 px-6">
+    <main className="pt-10 pb-20 px-6">
       <div className="mx-auto" style={{ maxWidth: "900px" }}>
-        <div className="micro-label" style={{ marginBottom: "12px" }}>
+        <div className="micro-label" style={{ marginBottom: "8px" }}>
           {applications.length}{" "}
           {applications.length === 1 ? "application" : "applications"}
         </div>
-        <h1
-          className="font-display-tight"
-          style={{
-            fontSize: "48px",
-            lineHeight: 1.05,
-            color: "#0d0f12",
-            marginBottom: "32px",
-          }}
-        >
+        <h1 className="page-title" style={{ marginBottom: "24px" }}>
           My <span className="headline-em">applications</span>
         </h1>
 

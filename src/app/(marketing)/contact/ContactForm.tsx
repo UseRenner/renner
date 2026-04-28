@@ -2,14 +2,41 @@
 
 import { useState } from "react";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
+import { Logo } from "@/components/Logo";
+
+const TOPICS = [
+  "General inquiry",
+  "Account help",
+  "Task issue",
+  "Feedback",
+  "Partnership",
+  "Press",
+  "Other",
+] as const;
+
+type Topic = (typeof TOPICS)[number];
+
+const INITIAL_TOPIC: Topic = "General inquiry";
 
 export function ContactForm() {
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [topic, setTopic] = useState<Topic>(INITIAL_TOPIC);
   const [message, setMessage] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sent, setSent] = useState(false);
+
+  function reset() {
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setTopic(INITIAL_TOPIC);
+    setMessage("");
+    setError(null);
+    setSent(false);
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -19,7 +46,7 @@ export function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
+        body: JSON.stringify({ firstName, lastName, email, topic, message }),
       });
       if (!res.ok) {
         const body = (await res.json().catch(() => ({}))) as {
@@ -41,40 +68,83 @@ export function ContactForm() {
     return (
       <div
         style={{
-          padding: "32px",
-          border: "1px solid #eaedf0",
-          borderRadius: "12px",
-          backgroundColor: "#fbfbfc",
+          textAlign: "center",
+          paddingTop: "16px",
         }}
       >
+        <div
+          style={{
+            display: "inline-flex",
+            opacity: 0.12,
+            marginBottom: "20px",
+          }}
+        >
+          <Logo size={40} fill="#0d0f12" slotColor="#fbfbfc" />
+        </div>
+        <h2 className="page-title" style={{ marginBottom: "8px" }}>
+          Message received.
+        </h2>
         <p
           style={{
             fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-            fontSize: "15px",
-            color: "#0d0f12",
-            margin: 0,
+            fontSize: "14px",
+            color: "#647589",
+            margin: "0 0 24px",
+            lineHeight: 1.55,
           }}
         >
-          Message sent. We&rsquo;ll be in touch.
+          We&rsquo;ll get back to you soon.
         </p>
+        <button
+          type="button"
+          onClick={reset}
+          className="text-link"
+          style={{
+            background: "none",
+            border: "none",
+            padding: 0,
+            cursor: "pointer",
+            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+            fontSize: "13px",
+            fontWeight: 500,
+            color: "#0d0f12",
+          }}
+        >
+          Send another
+        </button>
       </div>
     );
   }
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <div>
-        <label className="input-label" htmlFor="contact-name">
-          Name
-        </label>
-        <input
-          id="contact-name"
-          className="input"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-          autoComplete="name"
-        />
+      <div className="flex gap-3">
+        <div className="flex-1">
+          <label className="input-label" htmlFor="contact-first">
+            First name
+          </label>
+          <input
+            id="contact-first"
+            className="input"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            required
+            autoComplete="given-name"
+          />
+        </div>
+        <div className="flex-1">
+          <label className="input-label" htmlFor="contact-last">
+            Last name
+          </label>
+          <input
+            id="contact-last"
+            className="input"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            required
+            autoComplete="family-name"
+          />
+        </div>
       </div>
       <div>
         <label className="input-label" htmlFor="contact-email">
@@ -89,6 +159,23 @@ export function ContactForm() {
           required
           autoComplete="email"
         />
+      </div>
+      <div>
+        <label className="input-label" htmlFor="contact-topic">
+          Topic
+        </label>
+        <select
+          id="contact-topic"
+          className="input"
+          value={topic}
+          onChange={(e) => setTopic(e.target.value as Topic)}
+        >
+          {TOPICS.map((t) => (
+            <option key={t} value={t}>
+              {t}
+            </option>
+          ))}
+        </select>
       </div>
       <div>
         <label className="input-label" htmlFor="contact-message">

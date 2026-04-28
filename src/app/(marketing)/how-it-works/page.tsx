@@ -44,29 +44,21 @@ export default async function HowItWorksPage() {
   const showCta = !viewer;
 
   return (
-    <main className="pt-16 pb-32 px-6">
+    <main className="pt-10 pb-24 px-6">
       <div className="mx-auto" style={{ maxWidth: "880px" }}>
         <HowItWorksTabs showCta={showCta} />
 
         <div
           style={{
-            marginTop: "120px",
-            paddingTop: "72px",
+            marginTop: "56px",
+            paddingTop: "40px",
             borderTop: "1px solid #eaedf0",
           }}
         >
-          <div className="micro-label" style={{ marginBottom: "16px" }}>
+          <div className="micro-label" style={{ marginBottom: "12px" }}>
             FAQ
           </div>
-          <h2
-            className="font-display-tight"
-            style={{
-              fontSize: "clamp(36px, 5vw, 56px)",
-              lineHeight: 1.05,
-              color: "#0d0f12",
-              marginBottom: "40px",
-            }}
-          >
+          <h2 className="page-title" style={{ marginBottom: "24px" }}>
             Common questions
           </h2>
           <div>
@@ -75,7 +67,7 @@ export default async function HowItWorksPage() {
                 key={item.q}
                 className="faq-item"
                 style={{
-                  padding: "24px 0",
+                  padding: "18px 0",
                   borderBottom:
                     idx === FAQS.length - 1
                       ? "none"
@@ -95,9 +87,9 @@ export default async function HowItWorksPage() {
                   <span
                     className="font-display"
                     style={{
-                      fontSize: "22px",
+                      fontSize: "18px",
                       color: "#0d0f12",
-                      lineHeight: 1.3,
+                      lineHeight: 1.35,
                     }}
                   >
                     {item.q}
@@ -107,7 +99,7 @@ export default async function HowItWorksPage() {
                     style={{
                       fontFamily:
                         "var(--font-inter), ui-sans-serif, system-ui",
-                      fontSize: "22px",
+                      fontSize: "20px",
                       color: "#7d8da0",
                       transition: "transform 120ms ease",
                       flexShrink: 0,
@@ -121,10 +113,10 @@ export default async function HowItWorksPage() {
                   style={{
                     fontFamily:
                       "var(--font-inter), ui-sans-serif, system-ui",
-                    fontSize: "16px",
+                    fontSize: "15px",
                     color: "#4d5b6a",
-                    lineHeight: 1.7,
-                    marginTop: "16px",
+                    lineHeight: 1.65,
+                    marginTop: "12px",
                     maxWidth: "720px",
                   }}
                 >

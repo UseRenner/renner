@@ -40,20 +40,12 @@ export default async function MyTasksPage() {
   }
 
   return (
-    <main className="pt-12 pb-20 px-6">
+    <main className="pt-10 pb-20 px-6">
       <div className="mx-auto" style={{ maxWidth: "1100px" }}>
-        <div className="micro-label" style={{ marginBottom: "12px" }}>
+        <div className="micro-label" style={{ marginBottom: "8px" }}>
           {tasks.length} {tasks.length === 1 ? "task" : "tasks"} posted
         </div>
-        <h1
-          className="font-display-tight"
-          style={{
-            fontSize: "48px",
-            lineHeight: 1.05,
-            color: "#0d0f12",
-            marginBottom: "32px",
-          }}
-        >
+        <h1 className="page-title" style={{ marginBottom: "24px" }}>
           My <span className="headline-em">tasks</span>
         </h1>
 

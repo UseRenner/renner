@@ -126,7 +126,7 @@ export function HowItWorksTabs({
     <>
       <div
         className="flex"
-        style={{ gap: "32px", marginBottom: "56px" }}
+        style={{ gap: "32px", marginBottom: "32px" }}
         role="tablist"
         aria-label="Audience"
       >
@@ -142,16 +142,7 @@ export function HowItWorksTabs({
         />
       </div>
 
-      <h1
-        className="font-display-tight"
-        style={{
-          fontSize: "clamp(48px, 7vw, 88px)",
-          lineHeight: 1.05,
-          letterSpacing: "-0.04em",
-          color: "#0d0f12",
-          marginBottom: "72px",
-        }}
-      >
+      <h1 className="page-title" style={{ marginBottom: "40px" }}>
         How Renner <Italic>works</Italic>
       </h1>
 
@@ -162,8 +153,8 @@ export function HowItWorksTabs({
           margin: 0,
           display: "flex",
           flexDirection: "column",
-          gap: "72px",
-          marginBottom: "120px",
+          gap: "40px",
+          marginBottom: "56px",
         }}
       >
         {steps.map((step) => (
@@ -174,13 +165,13 @@ export function HowItWorksTabs({
       <div
         style={{
           borderTop: "1px solid #eaedf0",
-          paddingTop: "48px",
-          marginBottom: showCta ? "96px" : "0",
+          paddingTop: "32px",
+          marginBottom: showCta ? "48px" : "0",
         }}
       >
         <div
           className="micro-label"
-          style={{ marginBottom: "20px" }}
+          style={{ marginBottom: "16px" }}
         >
           {isClient ? "Why Renner" : "What you get"}
         </div>
@@ -191,7 +182,7 @@ export function HowItWorksTabs({
             margin: 0,
             display: "flex",
             flexDirection: "column",
-            gap: "12px",
+            gap: "10px",
           }}
         >
           {benefits.map((b) => (
@@ -199,7 +190,7 @@ export function HowItWorksTabs({
               key={b}
               style={{
                 fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-                fontSize: "17px",
+                fontSize: "15px",
                 color: "#0d0f12",
                 lineHeight: 1.55,
               }}
@@ -225,9 +216,10 @@ export function HowItWorksTabs({
           <h2
             className="font-display"
             style={{
-              fontSize: "28px",
+              fontSize: "26px",
               color: "#0d0f12",
               margin: 0,
+              lineHeight: 1.15,
             }}
           >
             {ctaHeading}
@@ -296,10 +288,10 @@ function StepRow({ step }: { step: Step }) {
         aria-hidden
         className="font-display-tight"
         style={{
-          fontSize: "clamp(96px, 14vw, 160px)",
+          fontSize: "88px",
           lineHeight: 0.85,
-          color: "rgba(13, 15, 18, 0.04)",
-          marginBottom: "16px",
+          color: "rgba(13, 15, 18, 0.05)",
+          marginBottom: "8px",
           letterSpacing: "-0.04em",
         }}
       >
@@ -308,10 +300,10 @@ function StepRow({ step }: { step: Step }) {
       <h3
         className="font-display"
         style={{
-          fontSize: "32px",
+          fontSize: "21px",
           color: "#0d0f12",
-          marginBottom: "12px",
-          lineHeight: 1.15,
+          marginBottom: "8px",
+          lineHeight: 1.2,
         }}
       >
         {step.title}
@@ -319,9 +311,9 @@ function StepRow({ step }: { step: Step }) {
       <p
         style={{
           fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
-          fontSize: "17px",
+          fontSize: "15px",
           color: "#4d5b6a",
-          lineHeight: 1.65,
+          lineHeight: 1.6,
           maxWidth: "640px",
           margin: 0,
         }}
