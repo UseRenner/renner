@@ -434,7 +434,7 @@ function ConversationSidebar({
                     <span
                       style={{
                         fontFamily:
-                          "var(--font-inter), ui-sans-serif, system-ui",
+                          "var(--font-work-sans), ui-sans-serif, system-ui",
                         fontSize: "14px",
                         fontWeight: 500,
                         color: "#0d0f12",
@@ -449,7 +449,7 @@ function ConversationSidebar({
                       <span
                         style={{
                           fontFamily:
-                            "var(--font-inter), ui-sans-serif, system-ui",
+                            "var(--font-work-sans), ui-sans-serif, system-ui",
                           fontSize: "11px",
                           color: "#7d8da0",
                           flexShrink: 0,
@@ -463,7 +463,7 @@ function ConversationSidebar({
                     <div
                       style={{
                         fontFamily:
-                          "var(--font-inter), ui-sans-serif, system-ui",
+                          "var(--font-work-sans), ui-sans-serif, system-ui",
                         fontSize: "11px",
                         color: "#647589",
                         marginTop: "2px",
@@ -478,7 +478,7 @@ function ConversationSidebar({
                   <div
                     style={{
                       fontFamily:
-                        "var(--font-inter), ui-sans-serif, system-ui",
+                        "var(--font-work-sans), ui-sans-serif, system-ui",
                       fontSize: "12px",
                       color: "#7d8da0",
                       marginTop: "4px",
@@ -559,7 +559,7 @@ function ThreadPanel({
             borderRadius: "9999px",
             backgroundColor: "#0d0f12",
             color: "#fbfbfc",
-            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
             fontSize: "12px",
             fontWeight: 500,
             flexShrink: 0,
@@ -570,7 +570,7 @@ function ThreadPanel({
         <div style={{ minWidth: 0 }}>
           <div
             style={{
-              fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
               fontSize: "15px",
               fontWeight: 500,
               color: "#0d0f12",
@@ -582,7 +582,7 @@ function ThreadPanel({
             <Link
               href={`/tasks/${task.id}`}
               style={{
-                fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+                fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
                 fontSize: "12px",
                 color: "#647589",
                 textDecoration: "none",
@@ -630,7 +630,7 @@ function ThreadPanel({
                   borderRadius: "14px",
                   padding: "10px 14px",
                   fontFamily:
-                    "var(--font-inter), ui-sans-serif, system-ui",
+                    "var(--font-work-sans), ui-sans-serif, system-ui",
                   fontSize: "14px",
                   lineHeight: 1.45,
                   whiteSpace: "pre-wrap",
@@ -641,7 +641,7 @@ function ThreadPanel({
                 <div
                   style={{
                     fontFamily:
-                      "var(--font-inter), ui-sans-serif, system-ui",
+                      "var(--font-work-sans), ui-sans-serif, system-ui",
                     fontSize: "10px",
                     color: sent ? "#a7b2be" : "#7d8da0",
                     marginTop: "4px",

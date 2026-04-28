@@ -27,7 +27,7 @@ export function BrowseTabs() {
             key={tab.href}
             href={tab.href}
             style={{
-              fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
               fontSize: "14px",
               fontWeight: 500,
               color: active ? "#0d0f12" : "#7d8da0",

@@ -112,7 +112,7 @@ export function InviteToTaskButton({
           </h2>
           <p
             style={{
-              fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
               fontSize: "13px",
               color: "#647589",
               lineHeight: 1.6,
@@ -128,7 +128,7 @@ export function InviteToTaskButton({
               <p
                 style={{
                   fontFamily:
-                    "var(--font-inter), ui-sans-serif, system-ui",
+                    "var(--font-work-sans), ui-sans-serif, system-ui",
                   fontSize: "14px",
                   color: "#2d8a4e",
                   marginBottom: "20px",
@@ -167,7 +167,7 @@ export function InviteToTaskButton({
                   <p
                     style={{
                       fontFamily:
-                        "var(--font-inter), ui-sans-serif, system-ui",
+                        "var(--font-work-sans), ui-sans-serif, system-ui",
                       fontSize: "13px",
                       color: "#7d8da0",
                     }}

@@ -45,7 +45,7 @@ export default function NotFound() {
         </h1>
         <p
           style={{
-            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
             fontSize: "14px",
             color: "#647589",
             margin: "0 0 32px",

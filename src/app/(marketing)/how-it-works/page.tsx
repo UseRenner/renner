@@ -98,7 +98,7 @@ export default async function HowItWorksPage() {
                     className="faq-toggle"
                     style={{
                       fontFamily:
-                        "var(--font-inter), ui-sans-serif, system-ui",
+                        "var(--font-work-sans), ui-sans-serif, system-ui",
                       fontSize: "20px",
                       color: "#7d8da0",
                       transition: "transform 120ms ease",
@@ -112,7 +112,7 @@ export default async function HowItWorksPage() {
                 <p
                   style={{
                     fontFamily:
-                      "var(--font-inter), ui-sans-serif, system-ui",
+                      "var(--font-work-sans), ui-sans-serif, system-ui",
                     fontSize: "15px",
                     color: "#4d5b6a",
                     lineHeight: 1.65,

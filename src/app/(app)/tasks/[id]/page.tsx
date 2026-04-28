@@ -125,7 +125,7 @@ export default async function TaskDetailPage({ params }: PageProps) {
           href="/browse"
           className="text-link"
           style={{
-            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
             fontSize: "11px",
             fontWeight: 500,
             letterSpacing: "0.1em",
@@ -195,7 +195,7 @@ export default async function TaskDetailPage({ params }: PageProps) {
                   <div
                     style={{
                       fontFamily:
-                        "var(--font-inter), ui-sans-serif, system-ui",
+                        "var(--font-work-sans), ui-sans-serif, system-ui",
                       fontSize: "15px",
                       fontWeight: 500,
                       color: "#0d0f12",
@@ -219,7 +219,7 @@ export default async function TaskDetailPage({ params }: PageProps) {
                   <div
                     style={{
                       fontFamily:
-                        "var(--font-inter), ui-sans-serif, system-ui",
+                        "var(--font-work-sans), ui-sans-serif, system-ui",
                       fontSize: "12px",
                       color: "#7d8da0",
                       marginTop: "6px",
@@ -241,7 +241,7 @@ export default async function TaskDetailPage({ params }: PageProps) {
               <p
                 style={{
                   fontFamily:
-                    "var(--font-inter), ui-sans-serif, system-ui",
+                    "var(--font-work-sans), ui-sans-serif, system-ui",
                   fontSize: "15px",
                   color: "#4d5b6a",
                   lineHeight: 1.65,
@@ -266,7 +266,7 @@ export default async function TaskDetailPage({ params }: PageProps) {
                     backgroundColor: "#0d0f12",
                     color: "#fbfbfc",
                     fontFamily:
-                      "var(--font-inter), ui-sans-serif, system-ui",
+                      "var(--font-work-sans), ui-sans-serif, system-ui",
                     fontSize: "13px",
                     fontWeight: 500,
                   }}
@@ -277,7 +277,7 @@ export default async function TaskDetailPage({ params }: PageProps) {
                   <div
                     style={{
                       fontFamily:
-                        "var(--font-inter), ui-sans-serif, system-ui",
+                        "var(--font-work-sans), ui-sans-serif, system-ui",
                       fontSize: "14px",
                       fontWeight: 500,
                       color: "#0d0f12",
@@ -289,7 +289,7 @@ export default async function TaskDetailPage({ params }: PageProps) {
                     <div
                       style={{
                         fontFamily:
-                          "var(--font-inter), ui-sans-serif, system-ui",
+                          "var(--font-work-sans), ui-sans-serif, system-ui",
                         fontSize: "12px",
                         color: "#7d8da0",
                       }}
@@ -331,7 +331,7 @@ export default async function TaskDetailPage({ params }: PageProps) {
               <p
                 style={{
                   fontFamily:
-                    "var(--font-inter), ui-sans-serif, system-ui",
+                    "var(--font-work-sans), ui-sans-serif, system-ui",
                   fontSize: "12px",
                   color: "#647589",
                   marginBottom: "24px",
@@ -558,7 +558,7 @@ function SidebarActions({
         <DisabledLightButton text="License required" />
         <p
           style={{
-            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
             fontSize: "12px",
             color: "#7d8da0",
             marginTop: "10px",
@@ -621,7 +621,7 @@ function SuccessNotice({
     >
       <div
         style={{
-          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
           fontSize: "13px",
           fontWeight: 500,
           marginBottom: "2px",
@@ -631,7 +631,7 @@ function SuccessNotice({
       </div>
       <div
         style={{
-          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
           fontSize: "12px",
           color: "#647589",
           lineHeight: 1.5,
@@ -648,7 +648,7 @@ function MetaItem({ label, value }: { label: string; value: string }) {
     <div>
       <div
         style={{
-          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
           fontSize: "10px",
           fontWeight: 500,
           letterSpacing: "0.14em",
@@ -661,7 +661,7 @@ function MetaItem({ label, value }: { label: string; value: string }) {
       </div>
       <div
         style={{
-          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
           fontSize: "15px",
           fontWeight: 500,
           color: "#0d0f12",
@@ -678,7 +678,7 @@ function SummaryRow({ label, value }: { label: string; value: string }) {
     <div className="flex items-center justify-between">
       <span
         style={{
-          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
           fontSize: "12px",
           color: "#7d8da0",
         }}
@@ -687,7 +687,7 @@ function SummaryRow({ label, value }: { label: string; value: string }) {
       </span>
       <span
         style={{
-          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
           fontSize: "13px",
           fontWeight: 500,
           color: "#0d0f12",
@@ -740,7 +740,7 @@ function DisputeBlock({
       >
         <div
           style={{
-            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
             fontSize: "13px",
             fontWeight: 500,
             marginBottom: "4px",
@@ -750,7 +750,7 @@ function DisputeBlock({
         </div>
         <div
           style={{
-            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
             fontSize: "12px",
             color: "#7d8da0",
             lineHeight: 1.55,
@@ -779,7 +779,7 @@ function DisputeBlock({
         isPoster && (
           <p
             style={{
-              fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
               fontSize: "12px",
               color: "#647589",
               lineHeight: 1.55,

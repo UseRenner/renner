@@ -85,7 +85,7 @@ export const RENNERS: ExampleRenner[] = [
     completed_tasks: 31,
     background_verified: true,
     licensed: false,
-    categories: ["Photos", "Property access", "Host assistance"],
+    categories: ["Visuals", "Property access", "Host assistance"],
     bio: "Photo-ready prep specialist. Detail-driven.",
     saved: true,
   },

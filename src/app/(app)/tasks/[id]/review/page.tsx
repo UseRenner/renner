@@ -82,7 +82,7 @@ export default async function TaskReviewPage({
           href={`/tasks/${t.id}`}
           className="text-link"
           style={{
-            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
             fontSize: "11px",
             fontWeight: 500,
             letterSpacing: "0.1em",
@@ -111,7 +111,7 @@ export default async function TaskReviewPage({
         </h1>
         <p
           style={{
-            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
             fontSize: "13px",
             color: "#647589",
             marginBottom: "32px",
@@ -141,7 +141,7 @@ export default async function TaskReviewPage({
             <p
               style={{
                 fontFamily:
-                  "var(--font-inter), ui-sans-serif, system-ui",
+                  "var(--font-work-sans), ui-sans-serif, system-ui",
                 fontSize: "13px",
                 color: "#647589",
                 marginBottom: "24px",
@@ -207,7 +207,7 @@ function ClientApprovalView({
           <p
             style={{
               fontFamily:
-                "var(--font-inter), ui-sans-serif, system-ui",
+                "var(--font-work-sans), ui-sans-serif, system-ui",
               fontSize: "14px",
               color: "#4d5b6a",
               lineHeight: 1.6,
@@ -238,7 +238,7 @@ function ClientApprovalView({
               borderRadius: "9999px",
               backgroundColor: "#0d0f12",
               color: "#fbfbfc",
-              fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
               fontSize: "13px",
               fontWeight: 500,
             }}
@@ -250,7 +250,7 @@ function ClientApprovalView({
               <span
                 style={{
                   fontFamily:
-                    "var(--font-inter), ui-sans-serif, system-ui",
+                    "var(--font-work-sans), ui-sans-serif, system-ui",
                   fontSize: "14px",
                   fontWeight: 500,
                   color: "#0d0f12",
@@ -271,7 +271,7 @@ function ClientApprovalView({
                     backgroundColor: "rgba(45,138,78,0.10)",
                     color: "#2d8a4e",
                     fontFamily:
-                      "var(--font-inter), ui-sans-serif, system-ui",
+                      "var(--font-work-sans), ui-sans-serif, system-ui",
                     fontSize: "10px",
                     fontWeight: 500,
                     letterSpacing: "0.12em",
@@ -287,7 +287,7 @@ function ClientApprovalView({
             <div
               style={{
                 fontFamily:
-                  "var(--font-inter), ui-sans-serif, system-ui",
+                  "var(--font-work-sans), ui-sans-serif, system-ui",
                 fontSize: "12px",
                 color: "#7d8da0",
               }}
@@ -312,7 +312,7 @@ function ClientApprovalView({
             borderRadius: "10px",
             padding: "12px 14px",
             marginBottom: "20px",
-            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
             fontSize: "12px",
             color: "#4d5b6a",
           }}
@@ -390,7 +390,7 @@ function StatusNotice({
       </h2>
       <p
         style={{
-          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
           fontSize: "14px",
           color: "#647589",
           lineHeight: 1.6,

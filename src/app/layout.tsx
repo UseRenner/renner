@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Source_Serif_4 } from "next/font/google";
+import { Source_Serif_4, Work_Sans } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const workSans = Work_Sans({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-inter",
+  variable: "--font-work-sans",
+  weight: ["400", "500", "600"],
 });
 
 const sourceSerif = Source_Serif_4({
@@ -27,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${sourceSerif.variable}`}>
+    <html lang="en" className={`${workSans.variable} ${sourceSerif.variable}`}>
       <body>{children}</body>
     </html>
   );

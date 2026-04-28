@@ -39,7 +39,7 @@ export default function TaskInProgressExample() {
 
           <p
             style={{
-              fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
               fontSize: "16px",
               color: "#0d0f12",
               lineHeight: 1.6,
@@ -68,7 +68,7 @@ export default function TaskInProgressExample() {
                 <span
                   style={{
                     fontFamily:
-                      "var(--font-inter), ui-sans-serif, system-ui",
+                      "var(--font-work-sans), ui-sans-serif, system-ui",
                     fontSize: "15px",
                     fontWeight: 500,
                   }}
@@ -79,7 +79,7 @@ export default function TaskInProgressExample() {
               </div>
               <div
                 style={{
-                  fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+                  fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
                   fontSize: "13px",
                   color: "#647589",
                 }}
@@ -125,7 +125,7 @@ export default function TaskInProgressExample() {
                   style={{
                     flex: 1,
                     fontFamily:
-                      "var(--font-inter), ui-sans-serif, system-ui",
+                      "var(--font-work-sans), ui-sans-serif, system-ui",
                     fontSize: "14px",
                     color: step.done ? "#0d0f12" : "#7d8da0",
                   }}
@@ -135,7 +135,7 @@ export default function TaskInProgressExample() {
                 <span
                   style={{
                     fontFamily:
-                      "var(--font-inter), ui-sans-serif, system-ui",
+                      "var(--font-work-sans), ui-sans-serif, system-ui",
                     fontSize: "12px",
                     color: "#7d8da0",
                   }}
@@ -169,7 +169,7 @@ function Row({ label, value }: { label: string; value: string }) {
     <div style={{ marginBottom: "12px" }}>
       <div
         style={{
-          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
           fontSize: "11px",
           fontWeight: 500,
           letterSpacing: "0.12em",
@@ -182,7 +182,7 @@ function Row({ label, value }: { label: string; value: string }) {
       </div>
       <div
         style={{
-          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
           fontSize: "14px",
           color: "#0d0f12",
         }}

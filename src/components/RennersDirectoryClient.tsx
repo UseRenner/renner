@@ -83,7 +83,7 @@ export function RennersDirectoryClient({
                   fontSize: "13px",
                   fontWeight: 500,
                   fontFamily:
-                    "var(--font-inter), ui-sans-serif, system-ui",
+                    "var(--font-work-sans), ui-sans-serif, system-ui",
                   borderRadius: "999px",
                   border: active
                     ? "1px solid #0d0f12"
@@ -107,7 +107,7 @@ export function RennersDirectoryClient({
               fontSize: "13px",
               fontWeight: 500,
               fontFamily:
-                "var(--font-inter), ui-sans-serif, system-ui",
+                "var(--font-work-sans), ui-sans-serif, system-ui",
               borderRadius: "999px",
               border: licensedOnly
                 ? "1px solid #0d0f12"
@@ -197,7 +197,7 @@ function RennerProfileCard({
             borderRadius: "9999px",
             backgroundColor: "#0d0f12",
             color: "#fbfbfc",
-            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
             fontSize: "14px",
             fontWeight: 500,
             flexShrink: 0,
@@ -212,7 +212,7 @@ function RennerProfileCard({
           >
             <span
               style={{
-                fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+                fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
                 fontSize: "15px",
                 fontWeight: 500,
                 color: "#0d0f12",
@@ -230,7 +230,7 @@ function RennerProfileCard({
           </div>
           <div
             style={{
-              fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
               fontSize: "12px",
               color: "#7d8da0",
             }}
@@ -266,7 +266,7 @@ function RennerProfileCard({
               key={c}
               style={{
                 fontFamily:
-                  "var(--font-inter), ui-sans-serif, system-ui",
+                  "var(--font-work-sans), ui-sans-serif, system-ui",
                 fontSize: "11px",
                 color: "#4d5b6a",
                 backgroundColor: "#f6f7f9",
@@ -310,7 +310,7 @@ function SmallTag({
       style={{
         backgroundColor: palette.background,
         color: palette.color,
-        fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+        fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
         fontSize: "10px",
         fontWeight: 500,
         letterSpacing: "0.12em",

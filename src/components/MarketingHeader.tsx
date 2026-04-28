@@ -34,7 +34,7 @@ export function MarketingHeader() {
             href="/signin"
             className="nav-link"
             style={{
-              fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
               fontSize: "13px",
               fontWeight: 500,
               color: "#647589",

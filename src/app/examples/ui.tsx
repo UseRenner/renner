@@ -18,7 +18,7 @@ export function Avatar({
         borderRadius: "9999px",
         backgroundColor: "#0d0f12",
         color: "#fbfbfc",
-        fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+        fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
         fontSize: `${Math.round(size * 0.32)}px`,
         fontWeight: 500,
         flexShrink: 0,
@@ -45,7 +45,7 @@ export function CategoryBadge({ children }: { children: React.ReactNode }) {
         alignItems: "center",
         backgroundColor: "#eaedf0",
         color: "#4d5b6a",
-        fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+        fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
         fontSize: "10px",
         fontWeight: 500,
         letterSpacing: "0.14em",
@@ -84,7 +84,7 @@ export function StatusPill({
       style={{
         backgroundColor: p.bg,
         color: p.fg,
-        fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+        fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
         fontSize: "10px",
         fontWeight: 500,
         letterSpacing: "0.12em",
@@ -104,7 +104,7 @@ export function VerifiedTag() {
       style={{
         backgroundColor: "rgba(45,138,78,0.10)",
         color: "#2d8a4e",
-        fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+        fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
         fontSize: "10px",
         fontWeight: 500,
         letterSpacing: "0.12em",
@@ -124,7 +124,7 @@ export function LicensedTag() {
       style={{
         backgroundColor: "#0d0f12",
         color: "#fbfbfc",
-        fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+        fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
         fontSize: "10px",
         fontWeight: 500,
         letterSpacing: "0.12em",
@@ -169,7 +169,7 @@ export function MutedRow({ children }: { children: React.ReactNode }) {
   return (
     <div
       style={{
-        fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+        fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
         fontSize: "13px",
         color: "#647589",
         lineHeight: 1.55,

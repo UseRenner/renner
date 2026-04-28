@@ -88,7 +88,7 @@ export default async function MyTasksPage() {
                       <h3
                         style={{
                           fontFamily:
-                            "var(--font-inter), ui-sans-serif, system-ui",
+                            "var(--font-work-sans), ui-sans-serif, system-ui",
                           fontSize: "16px",
                           fontWeight: 500,
                           color: "#0d0f12",
@@ -101,7 +101,7 @@ export default async function MyTasksPage() {
                       <p
                         style={{
                           fontFamily:
-                            "var(--font-inter), ui-sans-serif, system-ui",
+                            "var(--font-work-sans), ui-sans-serif, system-ui",
                           fontSize: "13px",
                           color: "#647589",
                         }}
