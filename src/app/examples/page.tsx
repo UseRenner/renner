@@ -2,6 +2,11 @@ import Link from "next/link";
 
 const SCENES = [
   {
+    href: "/examples/design-system",
+    title: "Design system preview",
+    body: "Proposed type scale, spacing, components, and brand lockup.",
+  },
+  {
     href: "/examples/my-renners",
     title: "My Renners",
     body: "Saved Renners list with names, ratings, and categories.",
