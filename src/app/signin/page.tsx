@@ -61,7 +61,7 @@ export default function SigninPage() {
               color: "#0d0f12",
             }}
           >
-            Welcome back
+            Sign in
           </h1>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -127,11 +127,11 @@ export default function SigninPage() {
           >
             Don&apos;t have an account?{" "}
             <Link
-              href="/signup"
+              href="/"
               className="text-link"
               style={{ color: "#0d0f12", fontWeight: 500 }}
             >
-              Sign up
+              Get started
             </Link>
           </p>
         </div>

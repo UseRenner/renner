@@ -171,9 +171,6 @@ export default function ProfileSetupPage() {
       <MarketingHeader />
       <main className="pt-10 pb-20 px-6">
       <div className="mx-auto" style={{ maxWidth: "720px" }}>
-        <div className="micro-label" style={{ marginBottom: "12px" }}>
-          Step 1 of 1
-        </div>
         <h1
           className="font-display-tight"
           style={{

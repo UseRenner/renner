@@ -3,12 +3,6 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
-import {
-  PendingTask,
-  clearPendingTask,
-  readPendingTask,
-  savePendingTask,
-} from "@/lib/pendingTask";
 import { US_STATES } from "@/lib/states";
 import { createClient } from "@/lib/supabase/client";
 import {
@@ -16,6 +10,30 @@ import {
   LICENSE_REQUIRED_CATEGORIES,
   TASK_CATEGORIES,
 } from "@/lib/types";
+
+// Shape of the row inserted into public.tasks. Built from the form
+// state and posted directly — no session buffering, no deferred auth.
+type TaskPayload = {
+  title: string;
+  description: string;
+  category: string;
+  pay: number | null;
+  pay_type: "Flat rate";
+  zip_code: string;
+  street_address: string;
+  unit: string | null;
+  task_city: string;
+  task_state: string;
+  task_zip: string;
+  task_timing_type: "exact" | "window";
+  task_time: string | null;
+  window_start: string | null;
+  window_end: string | null;
+  time_estimate: string | null;
+  status: "Open";
+  requires_license: boolean;
+  payment_status: "unpaid";
+};
 
 const ZIP_REGEX = /^\d{5}$/;
 
@@ -31,12 +49,6 @@ const PRESET_WINDOWS: Record<
 function pad(n: number) {
   return String(n).padStart(2, "0");
 }
-function toLocalDateInput(d: Date) {
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
-}
-function toLocalTimeInput(d: Date) {
-  return `${pad(d.getHours())}:${pad(d.getMinutes())}`;
-}
 function combineDateAndTime(dateInput: string, timeInput: string) {
   // Both inputs come from <input type="date"> / <input type="time"> in
   // the user's local zone. new Date(string) interprets the combined form
@@ -46,17 +58,6 @@ function combineDateAndTime(dateInput: string, timeInput: string) {
 }
 function combineDateAndHour(dateInput: string, hour: number) {
   return combineDateAndTime(dateInput, `${pad(hour)}:00`);
-}
-function inferWindowChoice(
-  start: Date,
-  end: Date,
-): "Morning" | "Afternoon" | "Evening" | "Custom" {
-  const sh = start.getHours();
-  const eh = end.getHours();
-  if (sh === 8 && eh === 12) return "Morning";
-  if (sh === 12 && eh === 17) return "Afternoon";
-  if (sh === 17 && eh === 21) return "Evening";
-  return "Custom";
 }
 const KEYWORD_TRIGGERS = [
   "show",
@@ -79,7 +80,6 @@ export default function PostTaskPage() {
   const supabase = createClient();
 
   const [userId, setUserId] = useState<string | null>(null);
-  const [role, setRole] = useState<"renner" | "client" | null>(null);
 
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState<string>(TASK_CATEGORIES[0]);
@@ -110,7 +110,9 @@ export default function PostTaskPage() {
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
-  // Auth probe (non-blocking — signed-out visitors can still fill the form).
+  // Authenticated route — middleware redirects signed-out users, but
+  // we still verify the role here so renners get bounced back to
+  // /browse instead of seeing the post form.
   useEffect(() => {
     let active = true;
     (async () => {
@@ -118,7 +120,10 @@ export default function PostTaskPage() {
         data: { user },
       } = await supabase.auth.getUser();
       if (!active) return;
-      if (!user) return;
+      if (!user) {
+        router.replace("/");
+        return;
+      }
       setUserId(user.id);
       const { data: profile } = await supabase
         .from("users")
@@ -127,7 +132,6 @@ export default function PostTaskPage() {
         .maybeSingle();
       if (!active) return;
       const r = (profile?.role as "renner" | "client" | null) ?? null;
-      setRole(r);
       if (r === "renner") {
         router.replace("/browse");
       }
@@ -135,50 +139,13 @@ export default function PostTaskPage() {
     return () => {
       active = false;
     };
-  }, [supabase]);
+  }, [supabase, router]);
 
-  // Hydrate form: URL params first, then any pending task in session.
+  // Hydrate prefill from URL params (?title=..., ?category=...).
   useEffect(() => {
     const sp = new URLSearchParams(window.location.search);
     const titleParam = sp.get("title");
     const categoryParam = sp.get("category");
-
-    const pending = readPendingTask();
-    if (pending) {
-      setTitle(pending.title);
-      setCategory(pending.category);
-      setDescription(pending.description);
-      setPay(pending.pay != null ? String(pending.pay) : "");
-      setZipCode(pending.zip_code);
-      setStreetAddress(pending.street_address);
-      setUnit(pending.unit ?? "");
-      setTaskCity(pending.task_city);
-      setTaskState(pending.task_state);
-      setTaskZip(pending.task_zip);
-      setTimeEstimate(pending.time_estimate ?? "");
-
-      setTimingType(pending.task_timing_type);
-      if (pending.task_timing_type === "exact" && pending.task_time) {
-        const t = new Date(pending.task_time);
-        setScheduleDate(toLocalDateInput(t));
-        setExactTime(toLocalTimeInput(t));
-      } else if (
-        pending.task_timing_type === "window" &&
-        pending.window_start &&
-        pending.window_end
-      ) {
-        const s = new Date(pending.window_start);
-        const e = new Date(pending.window_end);
-        setScheduleDate(toLocalDateInput(s));
-        const choice = inferWindowChoice(s, e);
-        setWindowChoice(choice);
-        if (choice === "Custom") {
-          setCustomStart(toLocalTimeInput(s));
-          setCustomEnd(toLocalTimeInput(e));
-        }
-      }
-    }
-
     if (titleParam) setTitle(titleParam);
     if (
       categoryParam &&
@@ -206,7 +173,7 @@ export default function PostTaskPage() {
     !warningDismissed &&
     hasShowingKeyword(`${title} ${description}`);
 
-  function buildPendingTask(): PendingTask | null {
+  function buildTaskPayload(): TaskPayload | null {
     const payNumber = pay ? Number(pay) : null;
     if (pay && Number.isNaN(payNumber)) {
       setError("Pay must be a valid number.");
@@ -320,19 +287,15 @@ export default function PostTaskPage() {
     e.preventDefault();
     setError(null);
 
-    const pending = buildPendingTask();
-    if (!pending) return;
+    if (!userId) return;
 
-    if (!userId) {
-      savePendingTask(pending);
-      router.push("/signup");
-      return;
-    }
+    const payload = buildTaskPayload();
+    if (!payload) return;
 
     setSubmitting(true);
     const { data: inserted, error: insertError } = await supabase
       .from("tasks")
-      .insert({ ...pending, posted_by: userId })
+      .insert({ ...payload, posted_by: userId })
       .select("id")
       .single();
     if (insertError) {
@@ -352,14 +315,13 @@ export default function PostTaskPage() {
       });
     }
 
-    clearPendingTask();
     router.push("/my-tasks");
     router.refresh();
   }
 
-  // Renners get redirected to /browse from the auth probe; render
-  // nothing in the brief window before the route changes.
-  if (userId && role === "renner") return null;
+  // Pre-auth probe; render nothing until middleware/role redirect
+  // settles.
+  if (!userId) return null;
 
   return (
     <main className="pt-12 pb-20 px-6">
@@ -690,28 +652,10 @@ export default function PostTaskPage() {
               >
                 {submitting ? (
                   <LoadingSpinner size={18} tone="light" />
-                ) : userId ? (
-                  "Post task"
                 ) : (
-                  "Continue to post"
+                  "Post task"
                 )}
               </button>
-
-              {!userId && (
-                <p
-                  style={{
-                    fontFamily:
-                      "var(--font-inter), ui-sans-serif, system-ui",
-                    fontSize: "12px",
-                    color: "#7d8da0",
-                    textAlign: "center",
-                    lineHeight: 1.5,
-                    marginTop: "-4px",
-                  }}
-                >
-                  We&apos;ll save your task and post it as soon as you sign up.
-                </p>
-              )}
             </div>
           </div>
         </form>

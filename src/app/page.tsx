@@ -128,4 +128,3 @@ function RightPanel() {
     </section>
   );
 }
-
