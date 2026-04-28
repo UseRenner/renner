@@ -317,7 +317,7 @@ export default async function TaskDetailPage({ params }: PageProps) {
           <aside>
             <div className="card sticky" style={{ padding: "28px", top: "96px" }}>
               <div
-                className="font-display"
+                className="font-display stat-num"
                 style={{
                   fontSize: "44px",
                   fontWeight: 500,

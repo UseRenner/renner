@@ -134,7 +134,7 @@ export default async function ApplicantsPage({
             </p>
           </div>
           <div
-            className="font-display"
+            className="font-display stat-num"
             style={{
               fontSize: "32px",
               fontWeight: 500,
