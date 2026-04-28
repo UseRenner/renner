@@ -57,7 +57,8 @@ export async function updateSession(request: NextRequest) {
     isAuthRoute ||
     path.startsWith("/api/") ||
     path.startsWith("/examples") ||
-    path.startsWith("/legacy");
+    path.startsWith("/legacy") ||
+    path.startsWith("/preview");
 
   if (!user && isProtected) {
     const redirectUrl = request.nextUrl.clone();
