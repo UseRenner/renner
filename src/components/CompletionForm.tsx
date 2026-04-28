@@ -165,7 +165,7 @@ export function CompletionForm({
             <div
               style={{
                 fontFamily:
-                  "var(--font-public-sans), ui-sans-serif, system-ui",
+                  "var(--font-roboto), ui-sans-serif, system-ui",
                 fontSize: "14px",
                 fontWeight: 500,
                 color: "#0d0f12",
@@ -177,7 +177,7 @@ export function CompletionForm({
             <div
               style={{
                 fontFamily:
-                  "var(--font-public-sans), ui-sans-serif, system-ui",
+                  "var(--font-roboto), ui-sans-serif, system-ui",
                 fontSize: "12px",
                 color: "#7d8da0",
               }}
@@ -244,7 +244,7 @@ export function CompletionForm({
             <div className="flex items-center justify-between gap-3 flex-wrap">
               <div
                 style={{
-                  fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
+                  fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
                   fontSize: "12px",
                   color: "#7d8da0",
                 }}
@@ -290,7 +290,7 @@ export function CompletionForm({
 
       <p
         style={{
-          fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
           fontSize: "12px",
           color: "#7d8da0",
           textAlign: "center",

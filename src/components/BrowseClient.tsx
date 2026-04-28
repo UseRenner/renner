@@ -34,7 +34,7 @@ export function BrowseClient({ tasks }: { tasks: Task[] }) {
                 fontSize: "13px",
                 fontWeight: 500,
                 fontFamily:
-                  "var(--font-public-sans), ui-sans-serif, system-ui",
+                  "var(--font-roboto), ui-sans-serif, system-ui",
                 borderRadius: "999px",
                 border: active
                   ? "1px solid #0d0f12"
@@ -100,7 +100,7 @@ function TaskCard({ task }: { task: Task }) {
           <h3
             style={{
               fontFamily:
-                "var(--font-public-sans), ui-sans-serif, system-ui",
+                "var(--font-roboto), ui-sans-serif, system-ui",
               fontSize: "16px",
               fontWeight: 500,
               color: "#0d0f12",
@@ -114,7 +114,7 @@ function TaskCard({ task }: { task: Task }) {
             <p
               style={{
                 fontFamily:
-                  "var(--font-public-sans), ui-sans-serif, system-ui",
+                  "var(--font-roboto), ui-sans-serif, system-ui",
                 fontSize: "13px",
                 color: "#647589",
                 marginBottom: "10px",
@@ -126,7 +126,7 @@ function TaskCard({ task }: { task: Task }) {
           <p
             style={{
               fontFamily:
-                "var(--font-public-sans), ui-sans-serif, system-ui",
+                "var(--font-roboto), ui-sans-serif, system-ui",
               fontSize: "11px",
               color: "#7d8da0",
             }}

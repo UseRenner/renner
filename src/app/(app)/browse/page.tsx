@@ -37,7 +37,7 @@ export default async function BrowsePage() {
     <>
       <div
         style={{
-          fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
           fontSize: "11px",
           fontWeight: 500,
           letterSpacing: "0.14em",

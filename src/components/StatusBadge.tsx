@@ -35,7 +35,7 @@ export function StatusBadge({ status }: { status: TaskStatus }) {
         alignItems: "center",
         backgroundColor: style.background,
         color: style.color,
-        fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
+        fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
         fontSize: "11px",
         fontWeight: 500,
         letterSpacing: "0.06em",
@@ -83,7 +83,7 @@ export function PaymentIndicator({
   return (
     <span
       style={{
-        fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
+        fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
         fontSize: "12px",
         color,
         fontWeight: 500,

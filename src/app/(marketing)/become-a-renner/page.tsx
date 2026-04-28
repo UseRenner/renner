@@ -11,7 +11,7 @@ export default function BecomeARennerPage() {
         </h1>
         <p
           style={{
-            fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
             fontSize: "15px",
             color: "#647589",
             lineHeight: 1.55,
