@@ -513,6 +513,26 @@ h4,
   }
 }
 
+/* Hero task card crossfade — replays each time the active pill
+   changes (the inner div is keyed by category id), so the new
+   content fades in instead of swapping abruptly. */
+@keyframes hero-card-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.hero-card-fade {
+  animation: hero-card-fade 180ms ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-card-fade {
+    animation: none;
+  }
+}
+
 /* Logo-mark loading spinner — the Renner disc rotates a full turn
    on a smooth ease loop. The slot tilt rotates with the disc, so
    the visual stays the brand mark in motion rather than a generic
