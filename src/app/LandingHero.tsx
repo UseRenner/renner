@@ -43,7 +43,7 @@ const CATEGORIES: HeroCategory[] = [
     id: "visuals",
     label: "Visuals",
     price: "$75",
-    title: "Snap photos before showing",
+    title: "Walkthrough photos",
     location: "West Hollywood, Los Angeles 90046  ·  Tomorrow, 8:00 AM",
   },
   {
