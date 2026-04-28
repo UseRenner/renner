@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Logo } from "./Logo";
 
 // Wordmark + logo lockup. The Logo sits to the left of the wordmark
-// at 20px with a 10px gap. The wordmark size defaults to 22px to
+// at 24px with a 12px gap. The wordmark size defaults to 22px to
 // match the lockup sizing in the spec; pass a different size to
 // scale both pieces together.
 //
@@ -29,13 +29,13 @@ export function Wordmark({
       href="/"
       className="inline-flex items-center"
       style={{
-        gap: "10px",
+        gap: "12px",
         textDecoration: "none",
         color: wordColor,
       }}
       aria-label="Renner"
     >
-      <Logo size={20} fill={logoFill} slotColor={resolvedSlot} />
+      <Logo size={24} fill={logoFill} slotColor={resolvedSlot} />
       <span
         className="wordmark"
         style={{
