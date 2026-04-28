@@ -156,6 +156,7 @@ export default async function MyApplicationsPage() {
                         {app.task.title}
                       </h3>
                       <p
+                        className="meta-mono"
                         style={{
                           fontFamily:
                             "var(--font-source-sans), ui-sans-serif, system-ui",
