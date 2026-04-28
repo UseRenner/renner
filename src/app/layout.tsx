@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Source_Serif_4, Work_Sans } from "next/font/google";
+import { Public_Sans, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 
-const workSans = Work_Sans({
+const publicSans = Public_Sans({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-work-sans",
+  variable: "--font-public-sans",
   weight: ["400", "500", "600"],
 });
 
@@ -28,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${workSans.variable} ${sourceSerif.variable}`}>
+    <html lang="en" className={`${publicSans.variable} ${sourceSerif.variable}`}>
       <body>{children}</body>
     </html>
   );

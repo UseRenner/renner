@@ -111,7 +111,7 @@ function ClientProfileCard({ client }: { client: ClientCard }) {
             borderRadius: "9999px",
             backgroundColor: "#0d0f12",
             color: "#fbfbfc",
-            fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
             fontSize: "14px",
             fontWeight: 500,
             flexShrink: 0,
@@ -122,7 +122,7 @@ function ClientProfileCard({ client }: { client: ClientCard }) {
         <div style={{ flex: 1, minWidth: 0 }}>
           <div
             style={{
-              fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
               fontSize: "15px",
               fontWeight: 500,
               color: "#0d0f12",
@@ -133,7 +133,7 @@ function ClientProfileCard({ client }: { client: ClientCard }) {
           </div>
           <div
             style={{
-              fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
               fontSize: "12px",
               color: "#7d8da0",
             }}

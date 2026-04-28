@@ -172,7 +172,7 @@ function VisibilitySection({
     >
       <div
         style={{
-          fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
           fontSize: "14px",
           fontWeight: 500,
           color: "#0d0f12",
@@ -183,7 +183,7 @@ function VisibilitySection({
       </div>
       <div
         style={{
-          fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
           fontSize: "12px",
           color: "#7d8da0",
           lineHeight: 1.5,
@@ -252,7 +252,7 @@ function SectionCard({
       </h2>
       <p
         style={{
-          fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
           fontSize: "13px",
           color: "#647589",
           marginBottom: "20px",
@@ -311,7 +311,7 @@ function AccountSection({
         <div className="input-label">Email</div>
         <div
           style={{
-            fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
             fontSize: "15px",
             color: "#0d0f12",
             padding: "10px 0",
@@ -472,7 +472,7 @@ function ProfileSection({
         <label className="input-label">Legal name</label>
         <div
           style={{
-            fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
             fontSize: "12px",
             color: "#7d8da0",
             marginTop: "-2px",
@@ -532,7 +532,7 @@ function ProfileSection({
           />
           <span
             style={{
-              fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
               fontSize: "13px",
               color: "#4d5b6a",
               lineHeight: 1.5,
@@ -559,7 +559,7 @@ function ProfileSection({
           />
           <p
             style={{
-              fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
               fontSize: "12px",
               color: "#7d8da0",
               marginTop: "6px",
@@ -699,7 +699,7 @@ function PaymentSection({ profile }: { profile: Profile | null }) {
         <div>
           <div
             style={{
-              fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
               fontSize: "14px",
               fontWeight: 500,
               color: "#0d0f12",
@@ -709,7 +709,7 @@ function PaymentSection({ profile }: { profile: Profile | null }) {
           </div>
           <div
             style={{
-              fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
               fontSize: "12px",
               color: "#7d8da0",
               marginTop: "2px",
@@ -736,7 +736,7 @@ function PaymentSection({ profile }: { profile: Profile | null }) {
         <div className="flex items-center gap-2">
           <span
             style={{
-              fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
               fontSize: "14px",
               fontWeight: 500,
               color: "#0d0f12",
@@ -750,7 +750,7 @@ function PaymentSection({ profile }: { profile: Profile | null }) {
                 ? "rgba(45,138,78,0.10)"
                 : "#eaedf0",
               color: onboarded ? "#2d8a4e" : "#4d5b6a",
-              fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
               fontSize: "10px",
               fontWeight: 500,
               letterSpacing: "0.12em",
@@ -764,7 +764,7 @@ function PaymentSection({ profile }: { profile: Profile | null }) {
         </div>
         <div
           style={{
-            fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
             fontSize: "12px",
             color: "#7d8da0",
             marginTop: "2px",
@@ -801,7 +801,7 @@ function VerificationSection({ profile }: { profile: Profile | null }) {
         <div className="flex items-center gap-2">
           <span
             style={{
-              fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
               fontSize: "14px",
               fontWeight: 500,
               color: "#0d0f12",
@@ -815,7 +815,7 @@ function VerificationSection({ profile }: { profile: Profile | null }) {
                 ? "rgba(45,138,78,0.10)"
                 : "#eaedf0",
               color: verified ? "#2d8a4e" : "#4d5b6a",
-              fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
               fontSize: "10px",
               fontWeight: 500,
               letterSpacing: "0.12em",
@@ -829,7 +829,7 @@ function VerificationSection({ profile }: { profile: Profile | null }) {
         </div>
         <div
           style={{
-            fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
             fontSize: "12px",
             color: "#7d8da0",
             marginTop: "2px",
@@ -882,7 +882,7 @@ function DangerZone({
     <div className="flex flex-col gap-3">
       <p
         style={{
-          fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
           fontSize: "13px",
           color: "#4d5b6a",
           lineHeight: 1.6,

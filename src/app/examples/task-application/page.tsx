@@ -46,7 +46,7 @@ export default function TaskApplicationExample() {
             </h2>
             <div
               style={{
-                fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+                fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
                 fontSize: "13px",
                 color: "#647589",
                 marginBottom: "20px",
@@ -56,7 +56,7 @@ export default function TaskApplicationExample() {
             </div>
             <p
               style={{
-                fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+                fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
                 fontSize: "15px",
                 color: "#0d0f12",
                 lineHeight: 1.65,
@@ -67,7 +67,7 @@ export default function TaskApplicationExample() {
             </p>
             <div
               style={{
-                fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+                fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
                 fontSize: "13px",
                 color: "#7d8da0",
                 lineHeight: 1.55,
@@ -129,7 +129,7 @@ export default function TaskApplicationExample() {
                 <div
                   style={{
                     fontFamily:
-                      "var(--font-work-sans), ui-sans-serif, system-ui",
+                      "var(--font-public-sans), ui-sans-serif, system-ui",
                     fontSize: "13px",
                     fontWeight: 500,
                     marginBottom: "2px",
@@ -140,7 +140,7 @@ export default function TaskApplicationExample() {
                 <div
                   style={{
                     fontFamily:
-                      "var(--font-work-sans), ui-sans-serif, system-ui",
+                      "var(--font-public-sans), ui-sans-serif, system-ui",
                     fontSize: "12px",
                     color: "#7d8da0",
                   }}

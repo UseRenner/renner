@@ -125,7 +125,7 @@ export default async function MyApplicationsPage() {
                                 ? "1px solid #cad1d8"
                                 : undefined,
                             fontFamily:
-                              "var(--font-work-sans), ui-sans-serif, system-ui",
+                              "var(--font-public-sans), ui-sans-serif, system-ui",
                             fontSize: "11px",
                             fontWeight: 500,
                             letterSpacing: "0.06em",
@@ -145,7 +145,7 @@ export default async function MyApplicationsPage() {
                       <h3
                         style={{
                           fontFamily:
-                            "var(--font-work-sans), ui-sans-serif, system-ui",
+                            "var(--font-public-sans), ui-sans-serif, system-ui",
                           fontSize: "16px",
                           fontWeight: 500,
                           color: "#0d0f12",
@@ -158,7 +158,7 @@ export default async function MyApplicationsPage() {
                       <p
                         style={{
                           fontFamily:
-                            "var(--font-work-sans), ui-sans-serif, system-ui",
+                            "var(--font-public-sans), ui-sans-serif, system-ui",
                           fontSize: "13px",
                           color: "#647589",
                         }}
@@ -194,7 +194,7 @@ export default async function MyApplicationsPage() {
                           className="text-link"
                           style={{
                             fontFamily:
-                              "var(--font-work-sans), ui-sans-serif, system-ui",
+                              "var(--font-public-sans), ui-sans-serif, system-ui",
                             fontSize: "13px",
                             fontWeight: 500,
                             color: "#0d0f12",
