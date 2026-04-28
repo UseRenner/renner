@@ -39,17 +39,24 @@ export function formatRelativeDate(value: string | null) {
   return formatDate(value);
 }
 
-function shortTime(date: Date) {
-  const opts: Intl.DateTimeFormatOptions = {
-    hour: "numeric",
-    minute: "2-digit",
-    hour12: true,
-  };
-  return date
-    .toLocaleTimeString("en-US", opts)
-    .replace(":00", "")
-    .replace(" ", "")
-    .toLowerCase();
+// Canonical time format used everywhere times appear in the app:
+// "2:00 PM" — minutes always shown, uppercase meridiem, space before
+// AM/PM. Windows render as "2:00 – 5:00 PM" (start meridiem dropped
+// when both ends share the same period) or "10:00 AM – 12:00 PM"
+// (kept when they differ). Always en-dash with surrounding spaces;
+// never "at" or "between".
+function shortTime(date: Date, includeMeridiem = true) {
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+  const meridiem = hour >= 12 ? "PM" : "AM";
+  const display = ((hour + 11) % 12) + 1;
+  const minutes = minute.toString().padStart(2, "0");
+  const time = `${display}:${minutes}`;
+  return includeMeridiem ? `${time} ${meridiem}` : time;
+}
+
+function isPm(date: Date) {
+  return date.getHours() >= 12;
 }
 
 export type TimingShape = {
@@ -83,7 +90,8 @@ export function formatTaskTiming(task: TimingShape): string | null {
       month: "short",
       day: "numeric",
     });
-    return `${datePart}, ${shortTime(start)}–${shortTime(end)}`;
+    const sameMeridiem = isPm(start) === isPm(end);
+    return `${datePart}, ${shortTime(start, !sameMeridiem)} – ${shortTime(end)}`;
   }
   return formatDate(task.date);
 }

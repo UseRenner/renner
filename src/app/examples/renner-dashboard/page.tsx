@@ -8,19 +8,19 @@ export default function RennerDashboardExample() {
   const upcoming = [
     {
       title: "Showing at 1290 Pearl St",
-      when: "Sat, Apr 27 · 11:30 AM",
+      when: "Apr 27, 11:30 AM",
       category: "Showing",
       pay: 120,
     },
     {
       title: "Sign install at 18 Kalamath",
-      when: "Mon, Apr 29 · 9:00 AM",
+      when: "Apr 29, 9:00 AM",
       category: "Signs",
       pay: 45,
     },
     {
       title: "Open house at 902 Cherry Hills",
-      when: "Sat, May 4 · 12:00 – 4:00 PM",
+      when: "May 4, 12:00 – 4:00 PM",
       category: "Open house",
       pay: 220,
     },

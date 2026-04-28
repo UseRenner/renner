@@ -18,7 +18,7 @@ export default function InviteModalExample() {
     {
       id: "t6",
       title: "Courier signed contract to title office",
-      meta: "Apr 30 · 1:30 PM · $35",
+      meta: "Apr 30, 1:30 PM · $35",
     },
   ];
 
