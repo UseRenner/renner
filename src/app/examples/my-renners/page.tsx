@@ -33,7 +33,7 @@ export default function MyRennersExample() {
                   <span
                     style={{
                       fontFamily:
-                        "var(--font-work-sans), ui-sans-serif, system-ui",
+                        "var(--font-public-sans), ui-sans-serif, system-ui",
                       fontSize: "15px",
                       fontWeight: 500,
                       color: "#0d0f12",
@@ -46,7 +46,7 @@ export default function MyRennersExample() {
                 <div
                   style={{
                     fontFamily:
-                      "var(--font-work-sans), ui-sans-serif, system-ui",
+                      "var(--font-public-sans), ui-sans-serif, system-ui",
                     fontSize: "12px",
                     color: "#7d8da0",
                   }}
@@ -74,7 +74,7 @@ export default function MyRennersExample() {
                   key={c}
                   style={{
                     fontFamily:
-                      "var(--font-work-sans), ui-sans-serif, system-ui",
+                      "var(--font-public-sans), ui-sans-serif, system-ui",
                     fontSize: "11px",
                     color: "#4d5b6a",
                     backgroundColor: "#f6f7f9",
@@ -110,7 +110,7 @@ export default function MyRennersExample() {
 
       <p
         style={{
-          fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
           fontSize: "12px",
           color: "#7d8da0",
           marginTop: "24px",

@@ -103,7 +103,7 @@ function SampleTaskCard({ category }: { category: HeroCategory }) {
               alignItems: "center",
               backgroundColor: "#eaedf0",
               color: "#4d5b6a",
-              fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
               fontSize: "10px",
               fontWeight: 500,
               letterSpacing: "0.14em",
@@ -128,7 +128,7 @@ function SampleTaskCard({ category }: { category: HeroCategory }) {
         </div>
         <h3
           style={{
-            fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
             fontSize: "15px",
             fontWeight: 500,
             color: "#0d0f12",
@@ -140,7 +140,7 @@ function SampleTaskCard({ category }: { category: HeroCategory }) {
         </h3>
         <p
           style={{
-            fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
             fontSize: "13px",
             color: "#647589",
             margin: 0,
@@ -178,7 +178,7 @@ function CategoryPills({
             tabIndex={-1}
             onClick={() => onSelect(c.id)}
             style={{
-              fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
               fontSize: "12px",
               fontWeight: 500,
               color: isActive ? "#fbfbfc" : "#647589",

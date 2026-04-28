@@ -34,7 +34,7 @@ export default function ClientProfileExample() {
           </h2>
           <div
             style={{
-              fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
               fontSize: "13px",
               color: "#647589",
               marginBottom: "8px",
@@ -45,7 +45,7 @@ export default function ClientProfileExample() {
           </div>
           <p
             style={{
-              fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
               fontSize: "14px",
               color: "#0d0f12",
               lineHeight: 1.6,
@@ -82,7 +82,7 @@ export default function ClientProfileExample() {
                 <span
                   style={{
                     fontFamily:
-                      "var(--font-work-sans), ui-sans-serif, system-ui",
+                      "var(--font-public-sans), ui-sans-serif, system-ui",
                     fontSize: "14px",
                     fontWeight: 500,
                   }}
@@ -105,7 +105,7 @@ export default function ClientProfileExample() {
             <div
               style={{
                 fontFamily:
-                  "var(--font-work-sans), ui-sans-serif, system-ui",
+                  "var(--font-public-sans), ui-sans-serif, system-ui",
                 fontSize: "12px",
                 color: "#7d8da0",
               }}

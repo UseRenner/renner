@@ -39,7 +39,7 @@ export function NavLinks({ role }: { role?: "renner" | "client" | null }) {
             href={link.href}
             className="nav-link"
             style={{
-              fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
               fontSize: "13px",
               fontWeight: 500,
               padding: "8px 12px",

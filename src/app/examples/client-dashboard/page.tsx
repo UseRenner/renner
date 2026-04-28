@@ -101,7 +101,7 @@ function TaskRow({
       </div>
       <div
         style={{
-          fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
           fontSize: "15px",
           fontWeight: 500,
           marginBottom: "4px",
@@ -111,7 +111,7 @@ function TaskRow({
       </div>
       <div
         style={{
-          fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
           fontSize: "12px",
           color: "#7d8da0",
         }}
@@ -157,7 +157,7 @@ function Stat({
       {sub && (
         <div
           style={{
-            fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-public-sans), ui-sans-serif, system-ui",
             fontSize: "12px",
             color: "#7d8da0",
           }}
