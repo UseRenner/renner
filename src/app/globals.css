@@ -551,3 +551,24 @@ h4,
     animation: none;
   }
 }
+
+/* Interior page heading. The landing-page hero is the only thing
+   that scales beyond this — every other page (How it works, legal,
+   auth, contact, all (app) lists) uses the same Source Serif 4
+   400-weight heading at 36px desktop / 28px mobile so titles orient
+   the user without dominating the viewport. */
+.page-title {
+  font-family: var(--font-source-serif), Georgia, serif;
+  font-variation-settings: "opsz" 144;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--s-black);
+  margin: 0;
+}
+@media (max-width: 640px) {
+  .page-title {
+    font-size: 28px;
+  }
+}

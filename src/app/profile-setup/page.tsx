@@ -171,15 +171,7 @@ export default function ProfileSetupPage() {
       <MarketingHeader />
       <main className="pt-10 pb-20 px-6">
       <div className="mx-auto" style={{ maxWidth: "720px" }}>
-        <h1
-          className="font-display-tight"
-          style={{
-            fontSize: "48px",
-            lineHeight: 1.05,
-            color: "#0d0f12",
-            marginBottom: "32px",
-          }}
-        >
+        <h1 className="page-title" style={{ marginBottom: "20px" }}>
           Set up your <span className="headline-em">profile</span>
         </h1>
 

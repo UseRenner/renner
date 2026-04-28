@@ -79,7 +79,7 @@ export default function SignupPage() {
   return (
     <>
       <MarketingHeader />
-      <main className="flex flex-col items-center justify-start pt-16 px-6 pb-16">
+      <main className="flex flex-col items-center justify-start pt-10 px-6 pb-16">
       <div className="w-full max-w-[440px]">
         <div
           className="card"
