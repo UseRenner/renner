@@ -77,7 +77,7 @@ export default function ExamplesIndex() {
       </h1>
       <p
         style={{
-          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
           fontSize: "15px",
           color: "#647589",
           lineHeight: 1.65,
@@ -120,7 +120,7 @@ export default function ExamplesIndex() {
             </h3>
             <p
               style={{
-                fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+                fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
                 fontSize: "13px",
                 color: "#647589",
                 lineHeight: 1.55,

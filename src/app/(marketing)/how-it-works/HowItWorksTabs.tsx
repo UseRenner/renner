@@ -12,7 +12,7 @@ const CLIENT_STEPS: Step[] = [
     body: (
       <>
         Describe what you need — sign installation, lockbox swap, property
-        photos, guest check-in, courier run, or anything real estate. Set
+        visuals, guest check-in, courier run, or anything real estate. Set
         the location, time window, and price.
       </>
     ),
@@ -50,7 +50,7 @@ const RENNER_STEPS: Step[] = [
     body: (
       <>
         Sign up, verify your identity, and pass a background check. Add
-        your categories — signs, lockbox, courier, photos, guest access,
+        your categories — signs, lockbox, courier, visuals, guest access,
         showings, and more. Set your service area.
       </>
     ),
@@ -189,7 +189,7 @@ export function HowItWorksTabs({
             <li
               key={b}
               style={{
-                fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+                fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
                 fontSize: "15px",
                 color: "#0d0f12",
                 lineHeight: 1.55,
@@ -260,7 +260,7 @@ function TabButton({
         background: "none",
         border: "none",
         padding: "4px 0",
-        fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+        fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
         fontSize: "15px",
         fontWeight: active ? 600 : 500,
         color: active ? "#0d0f12" : "#647589",
@@ -310,7 +310,7 @@ function StepRow({ step }: { step: Step }) {
       </h3>
       <p
         style={{
-          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
           fontSize: "15px",
           color: "#4d5b6a",
           lineHeight: 1.6,

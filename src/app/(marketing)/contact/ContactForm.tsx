@@ -86,7 +86,7 @@ export function ContactForm() {
         </h2>
         <p
           style={{
-            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
             fontSize: "14px",
             color: "#647589",
             margin: "0 0 24px",
@@ -104,7 +104,7 @@ export function ContactForm() {
             border: "none",
             padding: 0,
             cursor: "pointer",
-            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
             fontSize: "13px",
             fontWeight: 500,
             color: "#0d0f12",

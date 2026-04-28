@@ -19,7 +19,7 @@ export type TaskCategory =
   | "Signs"
   | "Lockbox"
   | "Courier"
-  | "Photos"
+  | "Visuals"
   | "Property access"
   | "Guest access"
   | "Host assistance"
@@ -31,7 +31,7 @@ export const TASK_CATEGORIES: TaskCategory[] = [
   "Signs",
   "Lockbox",
   "Courier",
-  "Photos",
+  "Visuals",
   "Property access",
   "Guest access",
   "Host assistance",

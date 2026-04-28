@@ -293,7 +293,7 @@ export function ApprovalActions({
                   <div
                     style={{
                       fontFamily:
-                        "var(--font-inter), ui-sans-serif, system-ui",
+                        "var(--font-work-sans), ui-sans-serif, system-ui",
                       fontSize: "14px",
                       fontWeight: 500,
                       color: "#0d0f12",
@@ -305,7 +305,7 @@ export function ApprovalActions({
                   <div
                     style={{
                       fontFamily:
-                        "var(--font-inter), ui-sans-serif, system-ui",
+                        "var(--font-work-sans), ui-sans-serif, system-ui",
                       fontSize: "12px",
                       color: "#7d8da0",
                       lineHeight: 1.5,
@@ -388,7 +388,7 @@ export function ApprovalActions({
                     backgroundColor: "#f6f7f9",
                     cursor: "pointer",
                     fontFamily:
-                      "var(--font-inter), ui-sans-serif, system-ui",
+                      "var(--font-work-sans), ui-sans-serif, system-ui",
                     fontSize: "13px",
                     color: "#0d0f12",
                   }}
@@ -500,7 +500,7 @@ export function ApprovalActions({
         {damageMode && (
           <p
             style={{
-              fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
               fontSize: "12px",
               color: "#7d8da0",
               lineHeight: 1.55,
@@ -562,7 +562,7 @@ function StarPicker({
             border: "1px solid #cad1d8",
             backgroundColor: n <= value ? "#0d0f12" : "#fbfbfc",
             color: n <= value ? "#fbfbfc" : "#647589",
-            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
             fontSize: "16px",
             cursor: "pointer",
             transition: "background-color 120ms ease",

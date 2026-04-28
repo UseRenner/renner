@@ -173,7 +173,7 @@ export function BecomeARennerForm() {
                   fontSize: "13px",
                   fontWeight: 500,
                   fontFamily:
-                    "var(--font-inter), ui-sans-serif, system-ui",
+                    "var(--font-work-sans), ui-sans-serif, system-ui",
                   borderRadius: "999px",
                   border: selected
                     ? "1px solid #0d0f12"
@@ -212,7 +212,7 @@ export function BecomeARennerForm() {
         />
         <span
           style={{
-            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
             fontSize: "13px",
             color: "#0d0f12",
             lineHeight: 1.55,

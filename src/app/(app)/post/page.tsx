@@ -368,7 +368,7 @@ export default function PostTaskPage() {
                 <p
                   style={{
                     fontFamily:
-                      "var(--font-inter), ui-sans-serif, system-ui",
+                      "var(--font-work-sans), ui-sans-serif, system-ui",
                     fontSize: "12px",
                     color: "#7d8da0",
                     marginTop: "6px",
@@ -406,7 +406,7 @@ export default function PostTaskPage() {
                   <span
                     style={{
                       fontFamily:
-                        "var(--font-inter), ui-sans-serif, system-ui",
+                        "var(--font-work-sans), ui-sans-serif, system-ui",
                       fontSize: "13px",
                       color: "#7a5b09",
                       lineHeight: 1.6,
@@ -502,7 +502,7 @@ export default function PostTaskPage() {
                 <div
                   style={{
                     fontFamily:
-                      "var(--font-inter), ui-sans-serif, system-ui",
+                      "var(--font-work-sans), ui-sans-serif, system-ui",
                     fontSize: "13px",
                     fontWeight: 500,
                     color: "#0d0f12",
@@ -513,7 +513,7 @@ export default function PostTaskPage() {
                 <div
                   style={{
                     fontFamily:
-                      "var(--font-inter), ui-sans-serif, system-ui",
+                      "var(--font-work-sans), ui-sans-serif, system-ui",
                     fontSize: "12px",
                     color: "#7d8da0",
                     marginTop: "2px",
@@ -617,7 +617,7 @@ export default function PostTaskPage() {
               <p
                 style={{
                   fontFamily:
-                    "var(--font-inter), ui-sans-serif, system-ui",
+                    "var(--font-work-sans), ui-sans-serif, system-ui",
                   fontSize: "12px",
                   color: "#647589",
                   lineHeight: 1.6,
@@ -681,7 +681,7 @@ function LicenseAttestation({
       >
         <div
           style={{
-            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
             fontSize: "13px",
             fontWeight: 500,
             color: "#0d0f12",
@@ -692,7 +692,7 @@ function LicenseAttestation({
         </div>
         <div
           style={{
-            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
             fontSize: "12px",
             color: "#647589",
             lineHeight: 1.6,
@@ -778,7 +778,7 @@ function AttestationRow({
       />
       <span
         style={{
-          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
           fontSize: "14px",
           color: "#0d0f12",
           lineHeight: 1.55,
@@ -955,7 +955,7 @@ function TimingChoice({
     >
       <div
         style={{
-          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
           fontSize: "14px",
           fontWeight: 500,
           marginBottom: "2px",
@@ -965,7 +965,7 @@ function TimingChoice({
       </div>
       <div
         style={{
-          fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
           fontSize: "12px",
           color: selected ? "#cad1d8" : "#7d8da0",
           lineHeight: 1.5,

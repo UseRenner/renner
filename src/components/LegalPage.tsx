@@ -19,7 +19,7 @@ export function LegalPage({
         <div
           className="legal-prose"
           style={{
-            fontFamily: "var(--font-inter), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-work-sans), ui-sans-serif, system-ui",
             fontSize: "15px",
             color: "#4d5b6a",
             lineHeight: 1.7,
