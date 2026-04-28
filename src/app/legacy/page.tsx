@@ -81,7 +81,7 @@ function Hero() {
                   outline: "none",
                   padding: "10px 12px",
                   fontFamily:
-                    "var(--font-roboto), ui-sans-serif, system-ui",
+                    "var(--font-source-sans), ui-sans-serif, system-ui",
                   fontSize: "15px",
                   backgroundColor: "transparent",
                 }}
@@ -114,7 +114,7 @@ function Hero() {
                     className="ll-chip"
                     style={{
                       fontFamily:
-                        "var(--font-roboto), ui-sans-serif, system-ui",
+                        "var(--font-source-sans), ui-sans-serif, system-ui",
                       fontSize: "13px",
                       fontWeight: 500,
                       color: "#0d0f12",
@@ -164,7 +164,7 @@ function SampleTaskCard() {
             alignItems: "center",
             backgroundColor: "#eaedf0",
             color: "#4d5b6a",
-            fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
             fontSize: "10px",
             fontWeight: 500,
             letterSpacing: "0.14em",
@@ -189,7 +189,7 @@ function SampleTaskCard() {
       </div>
       <h3
         style={{
-          fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
           fontSize: "16px",
           fontWeight: 500,
           color: "#0d0f12",
@@ -201,7 +201,7 @@ function SampleTaskCard() {
       </h3>
       <p
         style={{
-          fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
           fontSize: "13px",
           color: "#647589",
           marginBottom: 0,
@@ -274,7 +274,7 @@ function TrustSignals() {
                 <div
                   style={{
                     fontFamily:
-                      "var(--font-roboto), ui-sans-serif, system-ui",
+                      "var(--font-source-sans), ui-sans-serif, system-ui",
                     fontSize: "14px",
                     fontWeight: 600,
                     color: "#0d0f12",
@@ -286,7 +286,7 @@ function TrustSignals() {
                 <div
                   style={{
                     fontFamily:
-                      "var(--font-roboto), ui-sans-serif, system-ui",
+                      "var(--font-source-sans), ui-sans-serif, system-ui",
                     fontSize: "13px",
                     color: "#647589",
                     lineHeight: 1.55,
@@ -389,7 +389,7 @@ function HowItWorks() {
                 <p
                   style={{
                     fontFamily:
-                      "var(--font-roboto), ui-sans-serif, system-ui",
+                      "var(--font-source-sans), ui-sans-serif, system-ui",
                     fontSize: "15px",
                     color: "#4d5b6a",
                     lineHeight: 1.55,
@@ -472,7 +472,7 @@ function Categories() {
               </h3>
               <p
                 style={{
-                  fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+                  fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
                   fontSize: "13px",
                   color: "#647589",
                   lineHeight: 1.55,
@@ -490,7 +490,7 @@ function Categories() {
 
 function DarkSplit() {
   const labelStyle: React.CSSProperties = {
-    fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+    fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
     fontSize: "11px",
     fontWeight: 500,
     letterSpacing: "0.14em",
@@ -498,7 +498,7 @@ function DarkSplit() {
     color: "#a7b2be",
   };
   const bodyStyle: React.CSSProperties = {
-    fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+    fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
     fontSize: "17px",
     color: "#cad1d8",
     lineHeight: 1.55,
@@ -625,7 +625,7 @@ function FAQ() {
                   className="faq-toggle"
                   style={{
                     fontFamily:
-                      "var(--font-roboto), ui-sans-serif, system-ui",
+                      "var(--font-source-sans), ui-sans-serif, system-ui",
                     fontSize: "20px",
                     color: "#7d8da0",
                     transition: "transform 120ms ease",
@@ -639,7 +639,7 @@ function FAQ() {
               <p
                 style={{
                   fontFamily:
-                    "var(--font-roboto), ui-sans-serif, system-ui",
+                    "var(--font-source-sans), ui-sans-serif, system-ui",
                   fontSize: "15px",
                   color: "#4d5b6a",
                   lineHeight: 1.6,

@@ -78,7 +78,7 @@ export function LandingSignupForm() {
     >
       <h2
         style={{
-          fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
           fontSize: "20px",
           fontWeight: 600,
           color: "#0d0f12",
@@ -90,7 +90,7 @@ export function LandingSignupForm() {
       </h2>
       <p
         style={{
-          fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
           fontSize: "13px",
           color: "#647589",
           marginBottom: "28px",
@@ -187,7 +187,7 @@ export function LandingSignupForm() {
           gap: "12px",
           margin: "20px 0",
           color: "#a7b2be",
-          fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
           fontSize: "11px",
           fontWeight: 500,
           letterSpacing: "0.14em",

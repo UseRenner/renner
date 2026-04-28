@@ -62,7 +62,7 @@ export function LicenseAttestationCard({
         </span>
         <span
           style={{
-            fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
             fontSize: "14px",
             color: "#0d0f12",
             lineHeight: 1.55,

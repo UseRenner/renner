@@ -80,7 +80,7 @@ export default function RennerDashboardExample() {
             </div>
             <div
               style={{
-                fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+                fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
                 fontSize: "15px",
                 fontWeight: 500,
                 marginBottom: "4px",
@@ -90,7 +90,7 @@ export default function RennerDashboardExample() {
             </div>
             <div
               style={{
-                fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+                fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
                 fontSize: "12px",
                 color: "#7d8da0",
               }}
@@ -120,7 +120,7 @@ export default function RennerDashboardExample() {
               <span
                 style={{
                   fontFamily:
-                    "var(--font-roboto), ui-sans-serif, system-ui",
+                    "var(--font-source-sans), ui-sans-serif, system-ui",
                   fontSize: "14px",
                   fontWeight: 500,
                 }}
@@ -131,7 +131,7 @@ export default function RennerDashboardExample() {
             <div
               style={{
                 fontFamily:
-                  "var(--font-roboto), ui-sans-serif, system-ui",
+                  "var(--font-source-sans), ui-sans-serif, system-ui",
                 fontSize: "13px",
                 color: "#647589",
               }}
@@ -174,7 +174,7 @@ function Stat({
       {sub && (
         <div
           style={{
-            fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
             fontSize: "12px",
             color: "#7d8da0",
           }}

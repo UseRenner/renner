@@ -21,7 +21,7 @@ export default function ExamplesLayout({
           borderBottom: "1px solid #facc15",
           padding: "10px 20px",
           textAlign: "center",
-          fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
           fontSize: "12px",
           color: "#713f12",
         }}

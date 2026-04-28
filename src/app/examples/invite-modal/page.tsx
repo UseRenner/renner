@@ -28,7 +28,7 @@ export default function InviteModalExample() {
 
       <p
         style={{
-          fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
           fontSize: "14px",
           color: "#647589",
           marginBottom: "32px",
@@ -84,7 +84,7 @@ export default function InviteModalExample() {
               <div
                 style={{
                   fontFamily:
-                    "var(--font-roboto), ui-sans-serif, system-ui",
+                    "var(--font-source-sans), ui-sans-serif, system-ui",
                   fontSize: "14px",
                   fontWeight: 500,
                 }}
@@ -94,7 +94,7 @@ export default function InviteModalExample() {
               <div
                 style={{
                   fontFamily:
-                    "var(--font-roboto), ui-sans-serif, system-ui",
+                    "var(--font-source-sans), ui-sans-serif, system-ui",
                   fontSize: "12px",
                   color: "#647589",
                 }}
@@ -122,7 +122,7 @@ export default function InviteModalExample() {
                 <div
                   style={{
                     fontFamily:
-                      "var(--font-roboto), ui-sans-serif, system-ui",
+                      "var(--font-source-sans), ui-sans-serif, system-ui",
                     fontSize: "14px",
                     fontWeight: 500,
                     color: "#0d0f12",
@@ -134,7 +134,7 @@ export default function InviteModalExample() {
                 <div
                   style={{
                     fontFamily:
-                      "var(--font-roboto), ui-sans-serif, system-ui",
+                      "var(--font-source-sans), ui-sans-serif, system-ui",
                     fontSize: "12px",
                     color: "#7d8da0",
                   }}
@@ -153,7 +153,7 @@ export default function InviteModalExample() {
                 backgroundColor: "#fbfbfc",
                 color: "#647589",
                 fontFamily:
-                  "var(--font-roboto), ui-sans-serif, system-ui",
+                  "var(--font-source-sans), ui-sans-serif, system-ui",
                 fontSize: "13px",
                 cursor: "pointer",
               }}

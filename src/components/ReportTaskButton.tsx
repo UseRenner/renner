@@ -64,7 +64,7 @@ export function ReportTaskButton({
           background: "none",
           border: "none",
           padding: 0,
-          fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
           fontSize: "12px",
           color: "#7d8da0",
           cursor: "pointer",
@@ -115,7 +115,7 @@ export function ReportTaskButton({
                 <p
                   style={{
                     fontFamily:
-                      "var(--font-roboto), ui-sans-serif, system-ui",
+                      "var(--font-source-sans), ui-sans-serif, system-ui",
                     fontSize: "14px",
                     color: "#4d5b6a",
                     lineHeight: 1.6,
@@ -147,7 +147,7 @@ export function ReportTaskButton({
                 <p
                   style={{
                     fontFamily:
-                      "var(--font-roboto), ui-sans-serif, system-ui",
+                      "var(--font-source-sans), ui-sans-serif, system-ui",
                     fontSize: "13px",
                     color: "#647589",
                     lineHeight: 1.6,

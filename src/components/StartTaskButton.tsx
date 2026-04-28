@@ -84,7 +84,7 @@ export function StartTaskButton({
           </h2>
           <p
             style={{
-              fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
               fontSize: "14px",
               color: "#4d5b6a",
               lineHeight: 1.6,

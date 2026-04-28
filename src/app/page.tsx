@@ -99,7 +99,7 @@ function RightPanel() {
         >
           <p
             style={{
-              fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
               fontSize: "13px",
               color: "#647589",
               margin: 0,
