@@ -41,6 +41,7 @@ export default function robots(): MetadataRoute.Robots {
           "/api/",
           "/examples",
           "/legacy",
+          "/preview",
         ],
       },
     ],

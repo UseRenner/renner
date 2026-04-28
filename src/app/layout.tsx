@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Source_Sans_3, Source_Serif_4 } from "next/font/google";
+import { Source_Code_Pro, Source_Sans_3, Source_Serif_4 } from "next/font/google";
 import { DSPreviewBadge } from "@/components/DSPreviewBadge";
 import "./globals.css";
 import "./preview-ds.css";
@@ -18,6 +18,13 @@ const sourceSerif = Source_Serif_4({
   variable: "--font-source-serif",
   style: ["normal", "italic"],
   axes: ["opsz"],
+});
+
+const sourceCode = Source_Code_Pro({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-source-code",
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -47,7 +54,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${sourceSans.variable} ${sourceSerif.variable}`}>
+    <html lang="en" className={`${sourceSans.variable} ${sourceSerif.variable} ${sourceCode.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: DS_TOGGLE_SCRIPT }} />
       </head>
