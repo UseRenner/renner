@@ -8,7 +8,8 @@ const sourceSans = Source_Sans_3({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-source-sans",
-  weight: ["400", "500", "600"],
+  weight: ["300", "400", "500", "600"],
+  style: ["normal", "italic"],
 });
 
 const sourceSerif = Source_Serif_4({

@@ -22,11 +22,21 @@
 }
 [data-ds="v2"] [aria-label="Renner"] > .wordmark {
   font-size: 22px !important;
+  font-weight: 500 !important;
+  font-variation-settings: "opsz" 144 !important;
+  letter-spacing: -0.025em !important;
 }
 
-/* ─── Page title ── 36 desktop / 28 mobile ───────────────────────── */
+/* ─── display-1 — Landing hero — opsz 144 / tracking -0.028 ──────── */
+[data-ds="v2"] .landing-left h1 {
+  font-variation-settings: "opsz" 144 !important;
+  letter-spacing: -0.028em !important;
+}
+
+/* ─── display-2 — Page title ── 36 / opsz 72 (sturdier strokes) ──── */
 [data-ds="v2"] .page-title {
   font-size: 36px;
+  font-variation-settings: "opsz" 72 !important;
   letter-spacing: -0.022em;
 }
 @media (max-width: 640px) {
@@ -35,21 +45,32 @@
   }
 }
 
-/* ─── Section / CTA heading ── 24 ────────────────────────────────── */
-/* Targets HowItWorksTabs CTA heading and any other h2.font-display */
+/* ─── display-3 — Section / CTA heading ── 24 / opsz 36 ──────────── */
 [data-ds="v2"] h2.font-display {
   font-size: 24px !important;
+  font-weight: 400 !important;
+  font-variation-settings: "opsz" 36 !important;
   letter-spacing: -0.018em !important;
   line-height: 1.2 !important;
 }
 
-/* ─── Step / sub heading ── 18 ───────────────────────────────────── */
-/* Targets HowItWorksTabs step titles and similar list-item h3s */
-[data-ds="v2"] li > h3.font-display {
+/* ─── display-4 — Step / sub heading ── 18 / opsz 14 / weight 500 ── */
+/* opsz 14 thickens strokes + lifts x-height for screen legibility,
+   weight 500 gives the small serif enough body to hold up. */
+[data-ds="v2"] li > h3.font-display,
+[data-ds="v2"] .card h3.font-display {
   font-size: 18px !important;
-  letter-spacing: -0.01em !important;
+  font-weight: 500 !important;
+  font-variation-settings: "opsz" 14 !important;
+  letter-spacing: -0.005em !important;
   line-height: 1.3 !important;
   margin-bottom: 8px !important;
+}
+
+/* ─── Italic emphasis ── weight 300 italic, the brand voice ──────── */
+[data-ds="v2"] .headline-em {
+  font-weight: 300 !important;
+  font-style: italic !important;
 }
 
 /* ─── Buttons ── 14px / pad 12×22 / 0.01em tracking / 6r ─────────── */
