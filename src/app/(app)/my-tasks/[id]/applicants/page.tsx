@@ -88,7 +88,7 @@ export default async function ApplicantsPage({
           href="/my-tasks"
           className="text-link"
           style={{
-            fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
             fontSize: "11px",
             fontWeight: 500,
             letterSpacing: "0.1em",
@@ -120,7 +120,7 @@ export default async function ApplicantsPage({
             <p
               style={{
                 fontFamily:
-                  "var(--font-roboto), ui-sans-serif, system-ui",
+                  "var(--font-source-sans), ui-sans-serif, system-ui",
                 fontSize: "13px",
                 color: "#647589",
               }}
@@ -217,7 +217,7 @@ function ApplicantRow({
             backgroundColor: "#0d0f12",
             color: "#fbfbfc",
             fontFamily:
-              "var(--font-roboto), ui-sans-serif, system-ui",
+              "var(--font-source-sans), ui-sans-serif, system-ui",
             fontSize: "14px",
             fontWeight: 500,
             flexShrink: 0,
@@ -234,7 +234,7 @@ function ApplicantRow({
             <span
               style={{
                 fontFamily:
-                  "var(--font-roboto), ui-sans-serif, system-ui",
+                  "var(--font-source-sans), ui-sans-serif, system-ui",
                 fontSize: "15px",
                 fontWeight: 500,
                 color: "#0d0f12",
@@ -257,7 +257,7 @@ function ApplicantRow({
           <div
             style={{
               fontFamily:
-                "var(--font-roboto), ui-sans-serif, system-ui",
+                "var(--font-source-sans), ui-sans-serif, system-ui",
               fontSize: "12px",
               color: "#7d8da0",
             }}
@@ -270,7 +270,7 @@ function ApplicantRow({
             <div
               style={{
                 fontFamily:
-                  "var(--font-roboto), ui-sans-serif, system-ui",
+                  "var(--font-source-sans), ui-sans-serif, system-ui",
                 fontSize: "12px",
                 color: "#647589",
                 marginTop: "2px",
@@ -287,7 +287,7 @@ function ApplicantRow({
             <span
               style={{
                 fontFamily:
-                  "var(--font-roboto), ui-sans-serif, system-ui",
+                  "var(--font-source-sans), ui-sans-serif, system-ui",
                 fontSize: "13px",
                 color: "#2d8a4e",
                 fontWeight: 500,
@@ -317,7 +317,7 @@ function ApplicantRow({
             <span
               style={{
                 fontFamily:
-                  "var(--font-roboto), ui-sans-serif, system-ui",
+                  "var(--font-source-sans), ui-sans-serif, system-ui",
                 fontSize: "12px",
                 color: "#7d8da0",
               }}
@@ -331,7 +331,7 @@ function ApplicantRow({
       {application.message && (
         <p
           style={{
-            fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+            fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
             fontSize: "13px",
             color: "#4d5b6a",
             marginTop: "16px",
@@ -363,7 +363,7 @@ function SmallBadge({
       style={{
         backgroundColor: palette.background,
         color: palette.color,
-        fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+        fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
         fontSize: "10px",
         fontWeight: 500,
         letterSpacing: "0.12em",

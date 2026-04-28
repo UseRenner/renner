@@ -32,7 +32,7 @@ export function SiteFooter() {
               <div
                 style={{
                   fontFamily:
-                    "var(--font-roboto), ui-sans-serif, system-ui",
+                    "var(--font-source-sans), ui-sans-serif, system-ui",
                   fontSize: "11px",
                   fontWeight: 500,
                   letterSpacing: "0.14em",
@@ -51,7 +51,7 @@ export function SiteFooter() {
                       className="footer-link"
                       style={{
                         fontFamily:
-                          "var(--font-roboto), ui-sans-serif, system-ui",
+                          "var(--font-source-sans), ui-sans-serif, system-ui",
                         fontSize: "14px",
                         color: "#cad1d8",
                         textDecoration: "none",

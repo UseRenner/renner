@@ -31,7 +31,7 @@ export function EmptyState({
     >
       <p
         style={{
-          fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
           fontSize: "15px",
           fontWeight: 500,
           color: "#0d0f12",

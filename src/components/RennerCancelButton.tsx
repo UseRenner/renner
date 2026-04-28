@@ -148,7 +148,7 @@ export function RennerCancelButton({
               <p
                 style={{
                   fontFamily:
-                    "var(--font-roboto), ui-sans-serif, system-ui",
+                    "var(--font-source-sans), ui-sans-serif, system-ui",
                   fontSize: "14px",
                   color: "#4d5b6a",
                   lineHeight: 1.65,
@@ -206,7 +206,7 @@ export function RennerCancelButton({
               <p
                 style={{
                   fontFamily:
-                    "var(--font-roboto), ui-sans-serif, system-ui",
+                    "var(--font-source-sans), ui-sans-serif, system-ui",
                   fontSize: "13px",
                   color: "#647589",
                   lineHeight: 1.6,
@@ -238,7 +238,7 @@ export function RennerCancelButton({
                           padding: "10px 14px",
                           cursor: "pointer",
                           fontFamily:
-                            "var(--font-roboto), ui-sans-serif, system-ui",
+                            "var(--font-source-sans), ui-sans-serif, system-ui",
                           fontSize: "14px",
                         }}
                       >
@@ -265,7 +265,7 @@ export function RennerCancelButton({
                 <div
                   style={{
                     fontFamily:
-                      "var(--font-roboto), ui-sans-serif, system-ui",
+                      "var(--font-source-sans), ui-sans-serif, system-ui",
                     fontSize: "11px",
                     color:
                       explanation.trim().length >= 50 ? "#647589" : "#c0392b",

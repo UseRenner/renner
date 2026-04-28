@@ -63,7 +63,7 @@ export default function RennerProfileExample() {
           </div>
           <div
             style={{
-              fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
               fontSize: "13px",
               color: "#647589",
               marginBottom: "12px",
@@ -74,7 +74,7 @@ export default function RennerProfileExample() {
           </div>
           <p
             style={{
-              fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
               fontSize: "14px",
               color: "#0d0f12",
               lineHeight: 1.6,
@@ -131,7 +131,7 @@ export default function RennerProfileExample() {
               <span
                 style={{
                   fontFamily:
-                    "var(--font-roboto), ui-sans-serif, system-ui",
+                    "var(--font-source-sans), ui-sans-serif, system-ui",
                   fontSize: "14px",
                   fontWeight: 500,
                 }}
@@ -141,7 +141,7 @@ export default function RennerProfileExample() {
               <span
                 style={{
                   fontFamily:
-                    "var(--font-roboto), ui-sans-serif, system-ui",
+                    "var(--font-source-sans), ui-sans-serif, system-ui",
                   fontSize: "12px",
                   color: "#7d8da0",
                 }}
@@ -151,7 +151,7 @@ export default function RennerProfileExample() {
             </div>
             <div
               style={{
-                fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+                fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
                 fontSize: "14px",
                 color: "#0d0f12",
                 marginBottom: "8px",
@@ -164,7 +164,7 @@ export default function RennerProfileExample() {
             </div>
             <p
               style={{
-                fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+                fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
                 fontSize: "14px",
                 color: "#4d5b6a",
                 lineHeight: 1.6,

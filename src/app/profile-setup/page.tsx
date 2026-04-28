@@ -182,7 +182,7 @@ export default function ProfileSetupPage() {
                 <label className="input-label">Legal name</label>
                 <div
                   style={{
-                    fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+                    fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
                     fontSize: "12px",
                     color: "#7d8da0",
                     marginTop: "-2px",
@@ -243,7 +243,7 @@ export default function ProfileSetupPage() {
                   <span
                     style={{
                       fontFamily:
-                        "var(--font-roboto), ui-sans-serif, system-ui",
+                        "var(--font-source-sans), ui-sans-serif, system-ui",
                       fontSize: "13px",
                       color: "#4d5b6a",
                       lineHeight: 1.5,
@@ -269,7 +269,7 @@ export default function ProfileSetupPage() {
                   <p
                     style={{
                       fontFamily:
-                        "var(--font-roboto), ui-sans-serif, system-ui",
+                        "var(--font-source-sans), ui-sans-serif, system-ui",
                       fontSize: "12px",
                       color: "#7d8da0",
                       marginTop: "6px",

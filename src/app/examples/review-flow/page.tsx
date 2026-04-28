@@ -21,7 +21,7 @@ export default function ReviewFlowExample() {
           >
             <span
               style={{
-                fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+                fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
                 fontSize: "15px",
                 fontWeight: 500,
               }}
@@ -32,7 +32,7 @@ export default function ReviewFlowExample() {
           </div>
           <div
             style={{
-              fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+              fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
               fontSize: "13px",
               color: "#647589",
             }}

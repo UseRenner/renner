@@ -189,7 +189,7 @@ export function HowItWorksTabs({
             <li
               key={b}
               style={{
-                fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+                fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
                 fontSize: "15px",
                 color: "#0d0f12",
                 lineHeight: 1.55,
@@ -260,7 +260,7 @@ function TabButton({
         background: "none",
         border: "none",
         padding: "4px 0",
-        fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+        fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
         fontSize: "15px",
         fontWeight: active ? 600 : 500,
         color: active ? "#0d0f12" : "#647589",
@@ -310,7 +310,7 @@ function StepRow({ step }: { step: Step }) {
       </h3>
       <p
         style={{
-          fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+          fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
           fontSize: "15px",
           color: "#4d5b6a",
           lineHeight: 1.6,

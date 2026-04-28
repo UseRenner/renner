@@ -97,7 +97,7 @@ export default async function MyRennersPage() {
                         backgroundColor: "#0d0f12",
                         color: "#fbfbfc",
                         fontFamily:
-                          "var(--font-roboto), ui-sans-serif, system-ui",
+                          "var(--font-source-sans), ui-sans-serif, system-ui",
                         fontSize: "14px",
                         fontWeight: 500,
                         flexShrink: 0,
@@ -113,7 +113,7 @@ export default async function MyRennersPage() {
                         <span
                           style={{
                             fontFamily:
-                              "var(--font-roboto), ui-sans-serif, system-ui",
+                              "var(--font-source-sans), ui-sans-serif, system-ui",
                             fontSize: "15px",
                             fontWeight: 500,
                             color: "#0d0f12",
@@ -130,7 +130,7 @@ export default async function MyRennersPage() {
                       <div
                         style={{
                           fontFamily:
-                            "var(--font-roboto), ui-sans-serif, system-ui",
+                            "var(--font-source-sans), ui-sans-serif, system-ui",
                           fontSize: "12px",
                           color: "#7d8da0",
                         }}
@@ -160,7 +160,7 @@ export default async function MyRennersPage() {
                     <p
                       style={{
                         fontFamily:
-                          "var(--font-roboto), ui-sans-serif, system-ui",
+                          "var(--font-source-sans), ui-sans-serif, system-ui",
                         fontSize: "13px",
                         color: "#4d5b6a",
                         lineHeight: 1.55,
@@ -212,7 +212,7 @@ function SmallTag({
       style={{
         backgroundColor: palette.background,
         color: palette.color,
-        fontFamily: "var(--font-roboto), ui-sans-serif, system-ui",
+        fontFamily: "var(--font-source-sans), ui-sans-serif, system-ui",
         fontSize: "10px",
         fontWeight: 500,
         letterSpacing: "0.12em",
