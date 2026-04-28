@@ -13,9 +13,9 @@ export default function TaskInProgressExample() {
   const renner = task.booked_runner!;
 
   const timeline = [
-    { label: "Posted", time: "Apr 26 · 7:14 PM", done: true },
-    { label: "Booked", time: "Apr 26 · 9:02 PM", done: true },
-    { label: "Started", time: "Apr 29 · 7:58 AM", done: true },
+    { label: "Posted", time: "Apr 26, 7:14 PM", done: true },
+    { label: "Booked", time: "Apr 26, 9:02 PM", done: true },
+    { label: "Started", time: "Apr 29, 7:58 AM", done: true },
     { label: "Completion submitted", time: "—", done: false },
     { label: "Confirmed", time: "—", done: false },
   ];

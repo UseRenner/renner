@@ -30,7 +30,7 @@ const CATEGORIES: HeroCategory[] = [
     label: "Showing",
     price: "$75",
     title: "Show property to buyer",
-    location: "Lincoln Park, Chicago 60614  ·  Tomorrow at 1:00 PM",
+    location: "Lincoln Park, Chicago 60614  ·  Tomorrow, 1:00 PM",
   },
   {
     id: "courier",
@@ -44,14 +44,14 @@ const CATEGORIES: HeroCategory[] = [
     label: "Visuals",
     price: "$60",
     title: "Photograph listing",
-    location: "West Hollywood, Los Angeles 90046  ·  Tomorrow, 8:00 – 10:00 AM",
+    location: "West Hollywood, Los Angeles 90046  ·  Tomorrow, 8:00 AM",
   },
   {
     id: "guest",
     label: "Guest access",
     price: "$40",
     title: "Guest check-in",
-    location: "South Beach, Miami 33139  ·  Today at 4:00 PM",
+    location: "South Beach, Miami 33139  ·  Today, 4:00 PM",
   },
 ];
 
