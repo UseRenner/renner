@@ -35,15 +35,15 @@ const CATEGORIES: HeroCategory[] = [
   {
     id: "courier",
     label: "Courier",
-    price: "$30",
+    price: "$45",
     title: "Deliver closing docs",
     location: "SoHo, New York 10012  ·  Today, 1:00 – 3:00 PM",
   },
   {
     id: "visuals",
     label: "Visuals",
-    price: "$60",
-    title: "Photograph listing",
+    price: "$75",
+    title: "Snap photos before showing",
     location: "West Hollywood, Los Angeles 90046  ·  Tomorrow, 8:00 AM",
   },
   {
