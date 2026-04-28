@@ -88,6 +88,65 @@
   letter-spacing: -0.025em !important;
 }
 
+/* ─── Lead paragraph ── 17 / 1.6 / steel slate ───────────────────── */
+/* Subtitle paragraph immediately after a .page-title, plus any
+   element explicitly tagged with .lead. Bumps from the default
+   15/1.55 to a generous 17/1.6 in steel — the breath under the
+   heading that signals refined editorial layout. */
+[data-ds="v2"] .page-title + p,
+[data-ds="v2"] .lead {
+  font-size: 17px !important;
+  line-height: 1.6 !important;
+  color: #4d5b6a !important;
+  font-weight: 400 !important;
+  max-width: 640px;
+}
+
+/* ─── Page padding ── 56/80 desktop · 32/48 mobile ───────────────── */
+/* Most pages wrap content in <main className="pt-10 pb-20 px-6">
+   (Tailwind = 40/80) or pt-12/pb-24 (48/96). v2 normalizes both
+   shapes to 56 desktop / 32 mobile top, 80 desktop / 48 mobile
+   bottom. */
+[data-ds="v2"] main.pt-10,
+[data-ds="v2"] main.pt-12 {
+  padding-top: 56px !important;
+}
+[data-ds="v2"] main.pb-20,
+[data-ds="v2"] main.pb-24 {
+  padding-bottom: 80px !important;
+}
+@media (max-width: 640px) {
+  [data-ds="v2"] main.pt-10,
+  [data-ds="v2"] main.pt-12 {
+    padding-top: 32px !important;
+  }
+  [data-ds="v2"] main.pb-20,
+  [data-ds="v2"] main.pb-24 {
+    padding-bottom: 48px !important;
+  }
+}
+
+/* ─── Body paragraph line-height ── 1.6 ──────────────────────────── */
+/* Cascades to <p> elements that don't override line-height inline.
+   Captions and small-text paragraphs that set their own line-height
+   inline (1.35, 1.5, 1.55, 1.65) are unaffected — inline wins. The
+   net effect: bump the silent paragraphs up to 1.6 for a slightly
+   more generous read. */
+[data-ds="v2"] p {
+  line-height: 1.6;
+}
+
+/* ─── FAQ questions ── opsz 14 + weight 500 ──────────────────────── */
+/* The FAQ questions on /how-it-works render as 18px Source Serif 4
+   inside a <span class="font-display">. They're effectively
+   "step / sub heading" tier in the new scale, so bring them onto the
+   same opsz 14 + weight 500 treatment for screen sturdiness. */
+[data-ds="v2"] .faq-item .font-display {
+  font-variation-settings: "opsz" 14 !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.005em !important;
+}
+
 /* ─── Buttons ── 14px / pad 12×22 / 0.01em tracking / 6r ─────────── */
 [data-ds="v2"] .btn-dark,
 [data-ds="v2"] .btn-light,
