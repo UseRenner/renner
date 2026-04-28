@@ -1,0 +1,126 @@
+/* Design system v2 — preview overrides.
+ *
+ * All rules here are scoped under [data-ds="v2"] on <html>. The
+ * attribute is set by an inline script in the root layout based on a
+ * `ds` cookie (toggled via ?ds=v2 / ?ds=off in the URL). When the
+ * attribute is absent, this file has zero effect — the live site
+ * renders exactly as before.
+ *
+ * !important is used where the live site sets values via inline
+ * styles (e.g. button font-size in globals.css already loses to inline
+ * styles on certain pages). Keep this file the single source of v2
+ * overrides so the rollback is one PR.
+ */
+
+/* ─── Brand lockup ── Logo 22 · Wordmark 22 · gap 10 ─────────────── */
+[data-ds="v2"] [aria-label="Renner"] {
+  gap: 10px !important;
+}
+[data-ds="v2"] [aria-label="Renner"] > svg:first-child {
+  width: 22px !important;
+  height: 22px !important;
+}
+[data-ds="v2"] [aria-label="Renner"] > .wordmark {
+  font-size: 22px !important;
+}
+
+/* ─── Page title ── 36 desktop / 28 mobile ───────────────────────── */
+[data-ds="v2"] .page-title {
+  font-size: 36px;
+  letter-spacing: -0.022em;
+}
+@media (max-width: 640px) {
+  [data-ds="v2"] .page-title {
+    font-size: 28px;
+  }
+}
+
+/* ─── Section / CTA heading ── 24 ────────────────────────────────── */
+/* Targets HowItWorksTabs CTA heading and any other h2.font-display */
+[data-ds="v2"] h2.font-display {
+  font-size: 24px !important;
+  letter-spacing: -0.018em !important;
+  line-height: 1.2 !important;
+}
+
+/* ─── Step / sub heading ── 18 ───────────────────────────────────── */
+/* Targets HowItWorksTabs step titles and similar list-item h3s */
+[data-ds="v2"] li > h3.font-display {
+  font-size: 18px !important;
+  letter-spacing: -0.01em !important;
+  line-height: 1.3 !important;
+  margin-bottom: 8px !important;
+}
+
+/* ─── Buttons ── 14px / pad 12×22 / 0.01em tracking / 6r ─────────── */
+[data-ds="v2"] .btn-dark,
+[data-ds="v2"] .btn-light,
+[data-ds="v2"] .btn-white-dark,
+[data-ds="v2"] .btn-outline-dark,
+[data-ds="v2"] .btn-danger,
+[data-ds="v2"] .btn-danger-outline,
+[data-ds="v2"] .btn-success {
+  font-size: 14px;
+  padding: 12px 22px;
+  letter-spacing: 0.01em;
+  border-radius: 6px;
+}
+
+/* ─── Inputs ── stay 15px / pad 12×14 / 6r (already aligned) ─────── */
+[data-ds="v2"] .input {
+  font-size: 15px;
+  padding: 12px 14px;
+  border-radius: 6px;
+}
+
+/* ─── Cards ── padding 24, radius 8 ──────────────────────────────── */
+[data-ds="v2"] .card {
+  padding: 24px;
+  border-radius: 8px;
+}
+
+/* ─── Micro label ── 11 / 500 / 0.14em uppercase (already aligned) */
+[data-ds="v2"] .micro-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+}
+
+/* ─── Floating toggle badge ──────────────────────────────────────── */
+.ds-preview-badge {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 10000;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px 8px 14px;
+  background-color: #0d0f12;
+  color: #fbfbfc;
+  border-radius: 999px;
+  font-family: var(--font-source-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 24px rgba(13, 15, 18, 0.18);
+  transition: background-color 150ms ease, transform 150ms ease;
+}
+.ds-preview-badge:hover {
+  background-color: #2a2f36;
+  transform: translateY(-1px);
+}
+.ds-preview-badge .ds-preview-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background-color: #6ee7a8;
+}
+.ds-preview-badge .ds-preview-x {
+  font-size: 14px;
+  line-height: 1;
+  opacity: 0.7;
+  margin-left: 2px;
+}
