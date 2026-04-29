@@ -42,20 +42,16 @@ export const FAQS: Array<{ q: string; a: string }> = [
 export type VariantKey =
   | "direct"
   | "brief"
-  | "spread"
   | "verse"
   | "chapter"
-  | "rail"
-  | "pane";
+  | "rail";
 
 export const VARIANTS: ReadonlyArray<{ href: string; key: VariantKey; label: string }> = [
   { href: "/preview/how-it-works", key: "direct", label: "Direct" },
   { href: "/preview/how-it-works/brief", key: "brief", label: "Brief" },
-  { href: "/preview/how-it-works/spread", key: "spread", label: "Spread" },
   { href: "/preview/how-it-works/verse", key: "verse", label: "Verse" },
   { href: "/preview/how-it-works/chapter", key: "chapter", label: "Chapter" },
   { href: "/preview/how-it-works-2", key: "rail", label: "Rail" },
-  { href: "/preview/how-it-works-5", key: "pane", label: "Pane" },
 ];
 
 // A thin review-only strip that lets the reviewer flip between the
