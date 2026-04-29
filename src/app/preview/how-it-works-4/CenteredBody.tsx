@@ -123,7 +123,7 @@ function Italic({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function CinematicBody({ showCta }: { showCta: boolean }) {
+export function CenteredBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
   const isClient = tab === "client";
   const steps = isClient ? CLIENT_STEPS : RENNER_STEPS;
@@ -142,135 +142,99 @@ export function CinematicBody({ showCta }: { showCta: boolean }) {
     : { label: "Become a Renner", href: "/become-a-renner" };
 
   return (
-    <>
-      {/* ─── Hero section — viewport-sized opening ─── */}
-      <section
+    <div style={{ textAlign: "center" }}>
+      {/* ─── Tab toggle ─── inline mono, centered */}
+      <div
+        role="tablist"
+        aria-label="Audience"
         style={{
-          minHeight: "calc(100vh - 80px)",
-          padding: "clamp(40px, 6vw, 96px) clamp(28px, 4vw, 64px)",
-          display: "flex",
-          flexDirection: "column",
+          display: "inline-flex",
           alignItems: "center",
-          justifyContent: "center",
-          textAlign: "center",
+          gap: 14,
+          fontFamily: MONO,
+          fontSize: 11,
+          fontWeight: 500,
+          letterSpacing: "0.22em",
+          textTransform: "uppercase",
+          marginBottom: 64,
         }}
       >
-        <div
-          role="tablist"
-          aria-label="Audience"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 14,
-            fontFamily: MONO,
-            fontSize: 11,
-            fontWeight: 500,
-            letterSpacing: "0.2em",
-            textTransform: "uppercase",
-            marginBottom: 56,
-          }}
-        >
-          <CinTab
-            label="For Clients"
-            active={isClient}
-            onClick={() => setTab("client")}
-          />
-          <span aria-hidden style={{ color: MIST }}>
-            /
-          </span>
-          <CinTab
-            label="For Renners"
-            active={!isClient}
-            onClick={() => setTab("renner")}
-          />
-        </div>
+        <CTab
+          label="For Clients"
+          active={isClient}
+          onClick={() => setTab("client")}
+        />
+        <span aria-hidden style={{ color: MIST }}>
+          /
+        </span>
+        <CTab
+          label="For Renners"
+          active={!isClient}
+          onClick={() => setTab("renner")}
+        />
+      </div>
 
-        <h1
-          style={{
-            fontFamily: SERIF,
-            fontWeight: 400,
-            fontSize: "clamp(64px, 11vw, 168px)",
-            lineHeight: 0.9,
-            letterSpacing: "-0.045em",
-            color: INK,
-            margin: 0,
-            maxWidth: "14ch",
-            fontVariationSettings: '"opsz" 144',
-          }}
-        >
-          How Renner <Italic>works</Italic>
-        </h1>
+      {/* ─── Page title ─── centered, big */}
+      <h1
+        style={{
+          fontFamily: SERIF,
+          fontWeight: 400,
+          fontSize: "clamp(56px, 8vw, 112px)",
+          lineHeight: 0.95,
+          letterSpacing: "-0.035em",
+          color: INK,
+          margin: 0,
+          marginBottom: "clamp(96px, 14vw, 168px)",
+          fontVariationSettings: '"opsz" 144',
+        }}
+      >
+        How Renner <Italic>works</Italic>
+      </h1>
 
-        <div
-          aria-hidden
-          style={{
-            marginTop: 80,
-            fontFamily: MONO,
-            fontSize: 10,
-            fontWeight: 500,
-            letterSpacing: "0.32em",
-            textTransform: "uppercase",
-            color: FOG,
-          }}
-        >
-          Scroll ↓
-        </div>
-      </section>
-
-      {/* ─── Steps — each its own chapter ─── */}
-      {steps.map((step, idx) => (
-        <section
-          key={step.number}
-          className="cin-step"
-          style={{
-            minHeight: "min(820px, 95vh)",
-            padding: "clamp(80px, 10vw, 160px) clamp(28px, 4vw, 64px)",
-            borderTop: `1px solid #eaedf0`,
-            display: "grid",
-            gridTemplateColumns: "5fr 7fr",
-            gap: "clamp(32px, 5vw, 80px)",
-            alignItems: "center",
-            maxWidth: 1400,
-            margin: "0 auto",
-            width: "100%",
-          }}
-        >
-          <div
+      {/* ─── Steps ─── vertically stacked, each centered */}
+      <div style={{ marginBottom: "clamp(96px, 14vw, 160px)" }}>
+        {steps.map((step, idx) => (
+          <article
+            key={step.number}
             style={{
-              fontFamily: SERIF,
-              fontStyle: "italic",
-              fontWeight: 300,
-              fontSize: "clamp(140px, 22vw, 320px)",
-              lineHeight: 0.85,
-              letterSpacing: "-0.05em",
-              color: MIST,
-              textAlign: "right",
-              fontVariationSettings: '"opsz" 144',
+              maxWidth: 560,
+              margin: "0 auto",
+              paddingTop: idx === 0 ? 0 : "clamp(48px, 6vw, 80px)",
+              paddingBottom: 0,
             }}
           >
-            {step.number}
-          </div>
-          <div style={{ maxWidth: 560 }}>
-            <h2
+            <div
+              style={{
+                fontFamily: MONO,
+                fontSize: 11,
+                fontWeight: 500,
+                letterSpacing: "0.22em",
+                color: FOG,
+                marginBottom: 20,
+              }}
+            >
+              {step.number}
+            </div>
+            <h3
               style={{
                 fontFamily: SERIF,
                 fontWeight: 400,
-                fontSize: "clamp(36px, 4.5vw, 56px)",
-                lineHeight: 1.05,
-                letterSpacing: "-0.025em",
+                fontSize: "clamp(28px, 3.4vw, 40px)",
+                lineHeight: 1.1,
+                letterSpacing: "-0.02em",
                 color: INK,
                 margin: 0,
-                marginBottom: 28,
+                marginBottom: 20,
                 fontVariationSettings: '"opsz" 72',
               }}
             >
               {step.title}
-            </h2>
+            </h3>
             <p
               style={{
                 fontFamily: SERIF,
                 fontWeight: 400,
-                fontSize: 19,
+                fontSize: 17,
                 lineHeight: 1.6,
                 color: SLATE,
                 margin: 0,
@@ -279,21 +243,14 @@ export function CinematicBody({ showCta }: { showCta: boolean }) {
             >
               {step.body}
             </p>
-          </div>
-        </section>
-      ))}
+          </article>
+        ))}
+      </div>
 
-      {/* ─── Benefits — italic stack, centered chapter ─── */}
-      <section
+      {/* ─── Benefits ─── italic stack, centered */}
+      <div
         style={{
-          minHeight: "min(640px, 80vh)",
-          padding: "clamp(96px, 10vw, 160px) clamp(28px, 4vw, 64px)",
-          borderTop: `1px solid #eaedf0`,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          textAlign: "center",
+          marginBottom: showCta ? "clamp(96px, 14vw, 160px)" : 0,
         }}
       >
         <ul
@@ -303,8 +260,9 @@ export function CinematicBody({ showCta }: { showCta: boolean }) {
             margin: 0,
             display: "flex",
             flexDirection: "column",
-            gap: 24,
-            maxWidth: 880,
+            gap: 20,
+            maxWidth: 720,
+            marginInline: "auto",
           }}
         >
           {benefits.map((b) => (
@@ -314,9 +272,9 @@ export function CinematicBody({ showCta }: { showCta: boolean }) {
                 fontFamily: SERIF,
                 fontStyle: "italic",
                 fontWeight: 300,
-                fontSize: "clamp(28px, 3.4vw, 44px)",
-                lineHeight: 1.25,
-                letterSpacing: "-0.018em",
+                fontSize: "clamp(20px, 2.4vw, 28px)",
+                lineHeight: 1.35,
+                letterSpacing: "-0.012em",
                 color: INK,
                 fontVariationSettings: '"opsz" 36',
               }}
@@ -325,33 +283,23 @@ export function CinematicBody({ showCta }: { showCta: boolean }) {
             </li>
           ))}
         </ul>
-      </section>
+      </div>
 
-      {/* ─── CTA — climax chapter ─── */}
+      {/* ─── CTA ─── centered heading + button */}
       {showCta && (
-        <section
-          style={{
-            minHeight: "min(560px, 70vh)",
-            padding: "clamp(80px, 10vw, 144px) clamp(28px, 4vw, 64px)",
-            borderTop: `1px solid #eaedf0`,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            textAlign: "center",
-          }}
-        >
+        <div>
           <h2
             style={{
               fontFamily: SERIF,
               fontWeight: 400,
-              fontSize: "clamp(40px, 6vw, 80px)",
+              fontSize: "clamp(36px, 5vw, 64px)",
               lineHeight: 1.05,
-              letterSpacing: "-0.03em",
+              letterSpacing: "-0.028em",
               color: INK,
               margin: 0,
-              marginBottom: 48,
+              marginBottom: 40,
               maxWidth: "16ch",
+              marginInline: "auto",
               fontVariationSettings: '"opsz" 144',
             }}
           >
@@ -362,16 +310,16 @@ export function CinematicBody({ showCta }: { showCta: boolean }) {
             style={{
               display: "inline-flex",
               alignItems: "center",
-              gap: 12,
+              gap: 10,
               fontFamily: SANS,
-              fontSize: 15,
+              fontSize: 14,
               fontWeight: 500,
               letterSpacing: "0.01em",
               color: PAPER,
               backgroundColor: INK,
               border: `1px solid ${INK}`,
               borderRadius: 4,
-              padding: "16px 32px",
+              padding: "14px 26px",
               textDecoration: "none",
               whiteSpace: "nowrap",
             }}
@@ -381,26 +329,13 @@ export function CinematicBody({ showCta }: { showCta: boolean }) {
               →
             </span>
           </Link>
-        </section>
+        </div>
       )}
-
-      <style jsx>{`
-        @media (max-width: 760px) {
-          .cin-step {
-            grid-template-columns: 1fr !important;
-            text-align: left !important;
-          }
-          .cin-step > :first-child {
-            text-align: left !important;
-            font-size: clamp(120px, 36vw, 200px) !important;
-          }
-        }
-      `}</style>
-    </>
+    </div>
   );
 }
 
-function CinTab({
+function CTab({
   label,
   active,
   onClick,
