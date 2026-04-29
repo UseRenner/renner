@@ -163,11 +163,11 @@ export function EditorialBody({ showCta }: { showCta: boolean }) {
   const dek = isClient ? CLIENT_DEK : RENNER_DEK;
   const ctaHeading: React.ReactNode = isClient ? (
     <>
-      Ready to get something <Italic>done?</Italic>
+      Get something <Italic>done.</Italic>
     </>
   ) : (
     <>
-      Ready to <Italic>run?</Italic>
+      Start <Italic>running.</Italic>
     </>
   );
   const ctaButton = isClient

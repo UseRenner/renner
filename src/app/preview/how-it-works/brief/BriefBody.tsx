@@ -148,7 +148,7 @@ export function BriefBody({ showCta }: { showCta: boolean }) {
       ]
     : [
         <>You <Em>get</Em> verified.</>,
-        <>You <Em>pick</Em> the task.</>,
+        <>You <Em>pick</Em> a task.</>,
         <>You get it <Em>done.</Em></>,
       ];
 
