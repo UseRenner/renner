@@ -123,8 +123,7 @@ function Italic({ children }: { children: React.ReactNode }) {
   );
 }
 
-
-export function EditorialBody({ showCta }: { showCta: boolean }) {
+export function ManifestoBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
   const isClient = tab === "client";
   const steps = isClient ? CLIENT_STEPS : RENNER_STEPS;
@@ -144,73 +143,71 @@ export function EditorialBody({ showCta }: { showCta: boolean }) {
 
   return (
     <>
-      {/* ─── Tab strip ─── inline mono */}
-      <div
-        role="tablist"
-        aria-label="Audience"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 16,
-          marginBottom: 96,
-          fontFamily: MONO,
-          fontSize: 12,
-          fontWeight: 500,
-          letterSpacing: "0.18em",
-          textTransform: "uppercase",
-        }}
-      >
-        <TabButton
-          label="For Clients"
-          active={isClient}
-          onClick={() => setTab("client")}
-        />
-        <span aria-hidden style={{ color: MIST }}>
-          /
-        </span>
-        <TabButton
-          label="For Renners"
-          active={!isClient}
-          onClick={() => setTab("renner")}
-        />
-      </div>
+      {/* ─── Hero band — title + tabs, no chrome ─── */}
+      <section className="manifesto-hero">
+        <h1
+          className="manifesto-title"
+          style={{
+            fontFamily: SERIF,
+            fontWeight: 400,
+            fontSize: "clamp(56px, 9vw, 128px)",
+            lineHeight: 0.92,
+            letterSpacing: "-0.04em",
+            color: INK,
+            margin: 0,
+            fontVariationSettings: '"opsz" 144',
+          }}
+        >
+          How Renner <Italic>works</Italic>
+        </h1>
 
-      {/* ─── Page title ─── left-aligned, massive */}
-      <h1
-        style={{
-          fontFamily: SERIF,
-          fontWeight: 400,
-          fontSize: "clamp(56px, 9vw, 120px)",
-          lineHeight: 0.95,
-          letterSpacing: "-0.035em",
-          color: INK,
-          margin: 0,
-          marginBottom: "clamp(96px, 14vw, 180px)",
-          maxWidth: "14ch",
-          fontVariationSettings: '"opsz" 144',
-        }}
-      >
-        How Renner <Italic>works</Italic>
-      </h1>
+        <div
+          role="tablist"
+          aria-label="Audience"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 14,
+            fontFamily: MONO,
+            fontSize: 12,
+            fontWeight: 500,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            marginTop: 24,
+          }}
+        >
+          <ManTab
+            label="For Clients"
+            active={isClient}
+            onClick={() => setTab("client")}
+          />
+          <span aria-hidden style={{ color: MIST }}>
+            /
+          </span>
+          <ManTab
+            label="For Renners"
+            active={!isClient}
+            onClick={() => setTab("renner")}
+          />
+        </div>
+      </section>
 
-      {/* ─── Steps ─── three columns, no rules, just air */}
-      <div
-        className="ed-steps"
-        style={{ marginBottom: "clamp(96px, 14vw, 180px)" }}
-      >
-        {steps.map((step) => (
-          <div key={step.number} className="ed-step">
+      {/* ─── Three steps — tight grid ─── */}
+      <section className="manifesto-steps">
+        {steps.map((step, idx) => (
+          <article
+            key={step.number}
+            className="manifesto-step"
+            data-first={idx === 0 ? "true" : "false"}
+          >
             <div
               style={{
-                fontFamily: SERIF,
-                fontStyle: "italic",
-                fontWeight: 300,
-                fontSize: "clamp(96px, 11vw, 160px)",
-                lineHeight: 0.85,
-                letterSpacing: "-0.05em",
-                color: MIST,
-                marginBottom: 32,
-                fontVariationSettings: '"opsz" 144',
+                fontFamily: MONO,
+                fontSize: 11,
+                fontWeight: 500,
+                letterSpacing: "0.18em",
+                color: FOG,
+                marginBottom: 16,
               }}
             >
               {step.number}
@@ -219,12 +216,12 @@ export function EditorialBody({ showCta }: { showCta: boolean }) {
               style={{
                 fontFamily: SERIF,
                 fontWeight: 400,
-                fontSize: 24,
-                lineHeight: 1.2,
+                fontSize: 22,
+                lineHeight: 1.15,
                 letterSpacing: "-0.012em",
                 color: INK,
                 margin: 0,
-                marginBottom: 16,
+                marginBottom: 14,
                 fontVariationSettings: '"opsz" 36',
               }}
             >
@@ -234,8 +231,8 @@ export function EditorialBody({ showCta }: { showCta: boolean }) {
               style={{
                 fontFamily: SERIF,
                 fontWeight: 400,
-                fontSize: 16,
-                lineHeight: 1.6,
+                fontSize: 15,
+                lineHeight: 1.55,
                 color: SLATE,
                 margin: 0,
                 fontVariationSettings: '"opsz" 14',
@@ -243,33 +240,35 @@ export function EditorialBody({ showCta }: { showCta: boolean }) {
             >
               {step.body}
             </p>
-          </div>
+          </article>
         ))}
-      </div>
+      </section>
 
-      {/* ─── Benefits ─── quiet typed list, generous spacing */}
-      <div style={{ marginBottom: showCta ? "clamp(96px, 14vw, 180px)" : 0 }}>
+      {/* ─── Benefits + CTA — single tight row ─── */}
+      <section className="manifesto-foot">
         <ul
+          className="manifesto-benefits"
           style={{
             listStyle: "none",
             padding: 0,
             margin: 0,
-            display: "flex",
-            flexDirection: "column",
-            gap: 24,
           }}
         >
-          {benefits.map((b) => (
+          {benefits.map((b, i) => (
             <li
               key={b}
               style={{
                 fontFamily: SERIF,
                 fontStyle: "italic",
                 fontWeight: 300,
-                fontSize: "clamp(22px, 2.6vw, 32px)",
-                lineHeight: 1.3,
-                letterSpacing: "-0.012em",
+                fontSize: 17,
+                lineHeight: 1.4,
+                letterSpacing: "-0.005em",
                 color: INK,
+                paddingRight: 20,
+                paddingLeft: i === 0 ? 0 : 20,
+                borderLeft:
+                  i === 0 ? "none" : `1px solid ${MIST}`,
                 fontVariationSettings: '"opsz" 36',
               }}
             >
@@ -277,66 +276,109 @@ export function EditorialBody({ showCta }: { showCta: boolean }) {
             </li>
           ))}
         </ul>
-      </div>
 
-      {/* ─── CTA ─── refined dark button, all steel monochrome */}
-      {showCta && (
-        <div>
-          <h2
-            style={{
-              fontFamily: SERIF,
-              fontWeight: 400,
-              fontSize: "clamp(40px, 6vw, 72px)",
-              lineHeight: 1.05,
-              letterSpacing: "-0.028em",
-              color: INK,
-              margin: 0,
-              marginBottom: 40,
-              maxWidth: "16ch",
-              fontVariationSettings: '"opsz" 144',
-            }}
-          >
-            {ctaHeading}
-          </h2>
-          <Link
-            href={ctaButton.href}
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 10,
-              fontFamily: SANS,
-              fontSize: 15,
-              fontWeight: 500,
-              letterSpacing: "0.01em",
-              color: PAPER,
-              backgroundColor: INK,
-              border: `1px solid ${INK}`,
-              borderRadius: 4,
-              padding: "16px 28px",
-              textDecoration: "none",
-              whiteSpace: "nowrap",
-              transition:
-                "background-color 150ms ease, border-color 150ms ease",
-            }}
-          >
-            {ctaButton.label}
-            <span aria-hidden style={{ opacity: 0.7 }}>
-              →
-            </span>
-          </Link>
-        </div>
-      )}
+        {showCta && (
+          <div className="manifesto-cta">
+            <h2
+              style={{
+                fontFamily: SERIF,
+                fontWeight: 400,
+                fontSize: "clamp(22px, 2.6vw, 30px)",
+                lineHeight: 1.15,
+                letterSpacing: "-0.018em",
+                color: INK,
+                margin: 0,
+                fontVariationSettings: '"opsz" 36',
+              }}
+            >
+              {ctaHeading}
+            </h2>
+            <Link
+              href={ctaButton.href}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 10,
+                fontFamily: SANS,
+                fontSize: 14,
+                fontWeight: 500,
+                letterSpacing: "0.01em",
+                color: PAPER,
+                backgroundColor: INK,
+                border: `1px solid ${INK}`,
+                borderRadius: 4,
+                padding: "13px 22px",
+                textDecoration: "none",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {ctaButton.label}
+              <span aria-hidden style={{ opacity: 0.7 }}>
+                →
+              </span>
+            </Link>
+          </div>
+        )}
+      </section>
 
       <style jsx>{`
-        .ed-steps {
+        .manifesto-hero {
+          padding-bottom: clamp(40px, 5vw, 64px);
+        }
+        .manifesto-steps {
           display: grid;
           grid-template-columns: 1fr 1fr 1fr;
-          gap: clamp(48px, 6vw, 96px);
+          gap: 0;
+          padding: clamp(40px, 5vw, 56px) 0;
+          border-top: 1px solid ${MIST};
+          border-bottom: 1px solid ${MIST};
         }
-        @media (max-width: 760px) {
-          .ed-steps {
+        .manifesto-step {
+          padding: 0 clamp(20px, 3vw, 40px);
+        }
+        .manifesto-step[data-first="false"] {
+          border-left: 1px solid ${MIST};
+        }
+        .manifesto-foot {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 32px;
+          flex-wrap: wrap;
+          padding-top: clamp(32px, 4vw, 48px);
+        }
+        .manifesto-benefits {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: baseline;
+          row-gap: 8px;
+        }
+        .manifesto-cta {
+          display: flex;
+          align-items: center;
+          gap: 24px;
+          flex-wrap: wrap;
+        }
+        @media (max-width: 880px) {
+          .manifesto-steps {
             grid-template-columns: 1fr;
-            gap: 80px;
+          }
+          .manifesto-step {
+            padding: 32px 0;
+          }
+          .manifesto-step[data-first="false"] {
+            border-left: none;
+            border-top: 1px solid ${MIST};
+          }
+          .manifesto-benefits li {
+            border-left: none !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            width: 100%;
+          }
+          .manifesto-foot {
+            flex-direction: column;
+            align-items: flex-start;
           }
         }
       `}</style>
@@ -344,7 +386,7 @@ export function EditorialBody({ showCta }: { showCta: boolean }) {
   );
 }
 
-function TabButton({
+function ManTab({
   label,
   active,
   onClick,
@@ -368,7 +410,7 @@ function TabButton({
         fontWeight: "inherit",
         letterSpacing: "inherit",
         textTransform: "inherit",
-        color: active ? "#0d0f12" : "#7d8da0",
+        color: active ? INK : FOG,
         cursor: "pointer",
         transition: "color 150ms ease",
       }}
