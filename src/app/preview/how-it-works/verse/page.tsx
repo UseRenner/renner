@@ -2,10 +2,10 @@ import Link from "next/link";
 import { Wordmark } from "@/components/Wordmark";
 import { getViewer } from "@/lib/role";
 import { FAQS, VariantSwitcher } from "../_shared";
-import { FrameBody } from "./FrameBody";
+import { VerseBody } from "./VerseBody";
 
 export const metadata = {
-  title: "How it works · Frame · Renner",
+  title: "How it works · Verse · Renner",
   robots: { index: false, follow: false },
 };
 export const dynamic = "force-dynamic";
@@ -22,13 +22,13 @@ const STEEL = "#647589";
 const FOG = "#7d8da0";
 const MIST = "#cad1d8";
 
-export default async function FrameHowItWorks() {
+export default async function VerseHowItWorks() {
   const viewer = await getViewer();
   const showCta = !viewer;
 
   return (
     <div style={{ backgroundColor: "#fbfbfc", color: INK, minHeight: "100vh" }}>
-      <VariantSwitcher active="frame" />
+      <VariantSwitcher active="verse" />
 
       {/* ─── Header ─── wordmark + sign-in / sign-up */}
       <header
@@ -99,106 +99,110 @@ export default async function FrameHowItWorks() {
       <main
         style={{
           padding:
-            "clamp(56px, 8vw, 96px) clamp(28px, 4vw, 64px) clamp(96px, 12vw, 160px)",
+            "clamp(64px, 9vw, 112px) clamp(28px, 4vw, 64px) clamp(96px, 12vw, 160px)",
         }}
       >
-        <div className="mx-auto" style={{ maxWidth: "1200px" }}>
-          <FrameBody showCta={showCta} />
+        <VerseBody showCta={showCta} />
 
-          {/* ─── FAQ ─── quiet hairline accordion */}
-          <section style={{ marginTop: "clamp(96px, 14vw, 168px)" }}>
-            <div
-              style={{
-                fontFamily: MONO,
-                fontSize: 10,
-                fontWeight: 500,
-                letterSpacing: "0.24em",
-                textTransform: "uppercase",
-                color: FOG,
-                marginBottom: 40,
-              }}
-            >
-              Common questions
-            </div>
+        {/* ─── FAQ ─── centered hairline accordion */}
+        <section
+          style={{
+            maxWidth: 760,
+            margin: "clamp(96px, 14vw, 168px) auto 0",
+          }}
+        >
+          <div
+            style={{
+              fontFamily: MONO,
+              fontSize: 10,
+              fontWeight: 500,
+              letterSpacing: "0.24em",
+              textTransform: "uppercase",
+              color: FOG,
+              marginBottom: 40,
+              textAlign: "center",
+            }}
+          >
+            Common questions
+          </div>
 
-            <div>
-              {FAQS.map((item, idx) => (
-                <details
-                  key={item.q}
-                  className="faq-item"
+          <div>
+            {FAQS.map((item, idx) => (
+              <details
+                key={item.q}
+                className="faq-item"
+                style={{
+                  padding: "24px 0",
+                  borderBottom: `1px solid #eaedf0`,
+                  borderTop: idx === 0 ? "1px solid #eaedf0" : "none",
+                }}
+              >
+                <summary
                   style={{
-                    padding: "24px 0",
-                    borderBottom: `1px solid #eaedf0`,
-                    borderTop: idx === 0 ? "1px solid #eaedf0" : "none",
+                    cursor: "pointer",
+                    listStyle: "none",
+                    display: "grid",
+                    gridTemplateColumns: "minmax(48px, 56px) 1fr auto",
+                    gap: 24,
+                    alignItems: "baseline",
                   }}
                 >
-                  <summary
+                  <span
                     style={{
-                      cursor: "pointer",
-                      listStyle: "none",
-                      display: "grid",
-                      gridTemplateColumns: "minmax(48px, 56px) 1fr auto",
-                      gap: 24,
-                      alignItems: "baseline",
+                      fontFamily: MONO,
+                      fontSize: 11,
+                      fontWeight: 500,
+                      letterSpacing: "0.2em",
+                      color: FOG,
                     }}
                   >
-                    <span
-                      style={{
-                        fontFamily: MONO,
-                        fontSize: 11,
-                        fontWeight: 500,
-                        letterSpacing: "0.2em",
-                        color: FOG,
-                      }}
-                    >
-                      {String(idx + 1).padStart(2, "0")}
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: SERIF,
-                        fontWeight: 400,
-                        fontSize: 19,
-                        lineHeight: 1.35,
-                        color: INK,
-                        letterSpacing: "-0.005em",
-                        fontVariationSettings: '"opsz" 14',
-                      }}
-                    >
-                      {item.q}
-                    </span>
-                    <span
-                      className="faq-toggle"
-                      style={{
-                        fontFamily: SANS,
-                        fontSize: 18,
-                        color: FOG,
-                        transition: "transform 120ms ease",
-                      }}
-                      aria-hidden
-                    >
-                      +
-                    </span>
-                  </summary>
-                  <p
+                    {String(idx + 1).padStart(2, "0")}
+                  </span>
+                  <span
                     style={{
                       fontFamily: SERIF,
-                      fontSize: 16,
-                      color: SLATE,
-                      lineHeight: 1.65,
-                      marginTop: 18,
-                      marginLeft: 80,
-                      marginBottom: 0,
-                      maxWidth: 680,
+                      fontWeight: 400,
+                      fontSize: 19,
+                      lineHeight: 1.35,
+                      color: INK,
+                      letterSpacing: "-0.005em",
                       fontVariationSettings: '"opsz" 14',
                     }}
                   >
-                    {item.a}
-                  </p>
-                </details>
-              ))}
-            </div>
-          </section>
-        </div>
+                    {item.q}
+                  </span>
+                  <span
+                    className="faq-toggle"
+                    style={{
+                      fontFamily: SANS,
+                      fontSize: 18,
+                      color: FOG,
+                      transition: "transform 120ms ease",
+                    }}
+                    aria-hidden
+                  >
+                    +
+                  </span>
+                </summary>
+                <p
+                  style={{
+                    fontFamily: SERIF,
+                    fontSize: 16,
+                    color: SLATE,
+                    lineHeight: 1.65,
+                    marginTop: 18,
+                    marginLeft: 80,
+                    marginBottom: 0,
+                    maxWidth: 680,
+                    fontVariationSettings: '"opsz" 14',
+                  }}
+                >
+                  {item.a}
+                </p>
+              </details>
+            ))}
+          </div>
+        </section>
       </main>
 
       {/* ─── Footer ─── wordmark + colophon */}

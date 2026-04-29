@@ -39,19 +39,21 @@ export const FAQS: Array<{ q: string; a: string }> = [
   },
 ];
 
-export const VARIANTS = [
-  { href: "/preview/how-it-works", index: "I", label: "Direct" },
-  { href: "/preview/how-it-works/brief", index: "II", label: "Brief" },
-  { href: "/preview/how-it-works/frame", index: "III", label: "Frame" },
-] as const;
+export type VariantKey = "direct" | "brief" | "spread" | "verse" | "notes";
+
+export const VARIANTS: ReadonlyArray<{ href: string; key: VariantKey; label: string }> = [
+  { href: "/preview/how-it-works", key: "direct", label: "Direct" },
+  { href: "/preview/how-it-works/brief", key: "brief", label: "Brief" },
+  { href: "/preview/how-it-works/spread", key: "spread", label: "Spread" },
+  { href: "/preview/how-it-works/verse", key: "verse", label: "Verse" },
+  { href: "/preview/how-it-works/notes", key: "notes", label: "Notes" },
+];
 
 // A thin review-only strip that lets the reviewer flip between the
-// three preview directions. Lives outside the design itself — fixed
-// to the very top of the viewport in mono with hairline rules — so
-// it never fights the page it sits above.
-export function VariantSwitcher({ active }: { active: "direct" | "brief" | "frame" }) {
-  const activeHref = `/preview/how-it-works${active === "direct" ? "" : `/${active}`}`;
-
+// preview directions. Lives outside the design itself — sticky to the
+// top in mono with hairline rules — so it never fights the page it
+// sits above. Wraps on narrow viewports.
+export function VariantSwitcher({ active }: { active: VariantKey }) {
   return (
     <div
       style={{
@@ -78,14 +80,25 @@ export function VariantSwitcher({ active }: { active: "direct" | "brief" | "fram
           letterSpacing: "0.22em",
           textTransform: "uppercase",
           color: "rgba(255,255,255,0.55)",
+          flexWrap: "wrap",
         }}
       >
         <span>Preview · How it works</span>
-        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 12,
+            flexWrap: "wrap",
+          }}
+        >
           {VARIANTS.map((v, i) => {
-            const isActive = v.href === activeHref;
+            const isActive = v.key === active;
             return (
-              <span key={v.href} style={{ display: "inline-flex", alignItems: "center", gap: 14 }}>
+              <span
+                key={v.href}
+                style={{ display: "inline-flex", alignItems: "center", gap: 12 }}
+              >
                 {i > 0 && <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>}
                 <Link
                   href={v.href}
@@ -95,7 +108,6 @@ export function VariantSwitcher({ active }: { active: "direct" | "brief" | "fram
                     transition: "color 150ms ease",
                   }}
                 >
-                  <span style={{ opacity: 0.55, marginRight: 8 }}>{v.index}</span>
                   {v.label}
                 </Link>
               </span>
