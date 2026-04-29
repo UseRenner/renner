@@ -96,8 +96,7 @@ const RENNER_BENEFITS = [
   "Build a reputation that earns repeat clients.",
 ];
 
-const SERIF =
-  "var(--font-source-serif), ui-serif, Georgia, serif";
+const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS =
   "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
 const MONO =
@@ -107,8 +106,10 @@ const INK = "#0d0f12";
 const SLATE = "#2a2f36";
 const STEEL = "#647589";
 const FOG = "#7d8da0";
+const MIST = "#cad1d8";
 const RULE = "#eaedf0";
 const RULE_STRONG = "#dce0e5";
+const PAPER = "#fbfbfc";
 
 function Italic({ children }: { children: React.ReactNode }) {
   return (
@@ -144,14 +145,13 @@ export function EditorialTabs({ showCta }: { showCta: boolean }) {
 
   return (
     <>
-      {/* ─── Tab switcher ─── */}
+      {/* ─── Tab strip ─── */}
       <div
         style={{
           display: "flex",
           gap: 32,
           borderBottom: `1px solid ${RULE_STRONG}`,
-          paddingBottom: 0,
-          marginBottom: 56,
+          marginBottom: 64,
         }}
         role="tablist"
         aria-label="Audience"
@@ -168,162 +168,158 @@ export function EditorialTabs({ showCta }: { showCta: boolean }) {
         />
       </div>
 
-      {/* ─── Page heading ─── */}
-      <div style={{ marginBottom: 64 }}>
+      {/* ─── Hero heading ─── */}
+      <div
+        style={{
+          textAlign: "center",
+          marginBottom: 80,
+          padding: "0 16px",
+        }}
+      >
         <h1
           style={{
             fontFamily: SERIF,
             fontWeight: 400,
-            fontSize: "clamp(36px, 5vw, 56px)",
+            fontSize: "clamp(44px, 6vw, 72px)",
             lineHeight: 1.05,
-            letterSpacing: "-0.025em",
+            letterSpacing: "-0.028em",
             color: INK,
             margin: 0,
-            fontVariationSettings: '"opsz" 72',
+            fontVariationSettings: '"opsz" 144',
           }}
         >
           How Renner <Italic>works</Italic>
         </h1>
       </div>
 
-      {/* ─── Steps ─── */}
-      <SectionRule label="In brief · three steps" />
-
-      <ol
-        style={{
-          listStyle: "none",
-          padding: 0,
-          margin: 0,
-        }}
-      >
+      {/* ─── Three-step horizontal grid ─── */}
+      <div className="ed-steps-grid" style={{ marginBottom: 96 }}>
         {steps.map((step, idx) => (
-          <li
+          <div
             key={step.number}
-            style={{
-              display: "grid",
-              gridTemplateColumns: "minmax(80px, 96px) 1fr",
-              gap: 32,
-              padding: "40px 0",
-              borderBottom:
-                idx === steps.length - 1
-                  ? "none"
-                  : `1px solid ${RULE}`,
-            }}
+            className="ed-step-col"
+            data-first={idx === 0 ? "true" : "false"}
           >
             <div
               style={{
-                fontFamily: MONO,
-                fontSize: 13,
-                fontWeight: 500,
-                letterSpacing: "0.16em",
-                color: STEEL,
-                paddingTop: 8,
+                fontFamily: SERIF,
+                fontStyle: "italic",
+                fontWeight: 300,
+                fontSize: "clamp(64px, 7vw, 88px)",
+                lineHeight: 0.9,
+                letterSpacing: "-0.04em",
+                color: MIST,
+                marginBottom: 24,
+                fontVariationSettings: '"opsz" 144',
               }}
             >
               {step.number}
             </div>
-            <div>
-              <h3
+            <h3
+              style={{
+                fontFamily: SERIF,
+                fontWeight: 400,
+                fontSize: 22,
+                lineHeight: 1.2,
+                letterSpacing: "-0.012em",
+                color: INK,
+                margin: 0,
+                marginBottom: 16,
+                fontVariationSettings: '"opsz" 36',
+              }}
+            >
+              {step.title}
+            </h3>
+            <p
+              style={{
+                fontFamily: SERIF,
+                fontWeight: 400,
+                fontSize: 16,
+                lineHeight: 1.6,
+                color: SLATE,
+                margin: 0,
+                fontVariationSettings: '"opsz" 14',
+              }}
+            >
+              {step.body}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      {/* ─── Benefits row ─── */}
+      <div style={{ marginBottom: showCta ? 96 : 0 }}>
+        <SectionRule label={isClient ? "Why Renner" : "What you get"} />
+        <div
+          className="ed-benefits-grid"
+          data-count={benefits.length}
+          style={{
+            borderTop: `1px solid ${RULE}`,
+            borderBottom: `1px solid ${RULE}`,
+          }}
+        >
+          {benefits.map((b, i) => (
+            <div
+              key={b}
+              className="ed-benefit-cell"
+              data-first={i === 0 ? "true" : "false"}
+              style={{
+                padding: "28px 24px",
+              }}
+            >
+              <span
                 style={{
-                  fontFamily: SERIF,
-                  fontWeight: 400,
-                  fontSize: 24,
-                  lineHeight: 1.2,
-                  letterSpacing: "-0.018em",
-                  color: INK,
-                  margin: 0,
-                  marginBottom: 14,
-                  fontVariationSettings: '"opsz" 36',
+                  fontFamily: MONO,
+                  fontSize: 11,
+                  fontWeight: 500,
+                  letterSpacing: "0.16em",
+                  color: FOG,
+                  display: "block",
+                  marginBottom: 10,
                 }}
               >
-                {step.title}
-              </h3>
+                {String(i + 1).padStart(2, "0")}
+              </span>
               <p
                 style={{
                   fontFamily: SERIF,
                   fontWeight: 400,
                   fontSize: 16,
-                  lineHeight: 1.6,
-                  color: SLATE,
-                  margin: 0,
-                  maxWidth: 620,
-                  fontVariationSettings: '"opsz" 14',
-                }}
-              >
-                {step.body}
-              </p>
-            </div>
-          </li>
-        ))}
-      </ol>
-
-      {/* ─── Benefits ─── */}
-      <div style={{ marginTop: 80, marginBottom: showCta ? 80 : 0 }}>
-        <SectionRule
-          label={isClient ? "Why Renner" : "What you get"}
-        />
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "minmax(80px, 96px) 1fr",
-            gap: 32,
-          }}
-        >
-          <div aria-hidden />
-          <ul
-            style={{
-              listStyle: "none",
-              padding: 0,
-              margin: 0,
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            {benefits.map((b, i) => (
-              <li
-                key={b}
-                style={{
-                  fontFamily: SERIF,
-                  fontWeight: 400,
-                  fontSize: 16,
-                  lineHeight: 1.5,
+                  lineHeight: 1.4,
                   color: INK,
-                  padding: "16px 0",
-                  borderBottom:
-                    i === benefits.length - 1
-                      ? "none"
-                      : `1px solid ${RULE}`,
+                  margin: 0,
                   fontVariationSettings: '"opsz" 14',
                 }}
               >
                 {b}
-              </li>
-            ))}
-          </ul>
+              </p>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* ─── CTA ─── */}
+      {/* ─── CTA — ink band ─── */}
       {showCta && (
         <div
           style={{
-            paddingTop: 48,
-            borderTop: `1px solid ${RULE_STRONG}`,
-            display: "grid",
-            gridTemplateColumns: "minmax(80px, 96px) 1fr auto",
-            gap: 32,
+            backgroundColor: INK,
+            color: PAPER,
+            padding: "56px clamp(28px, 4vw, 64px)",
+            display: "flex",
             alignItems: "center",
+            justifyContent: "space-between",
+            gap: 32,
+            flexWrap: "wrap",
           }}
         >
-          <div aria-hidden />
           <h2
             style={{
               fontFamily: SERIF,
               fontWeight: 400,
-              fontSize: 28,
-              lineHeight: 1.2,
-              letterSpacing: "-0.02em",
-              color: INK,
+              fontSize: "clamp(24px, 3vw, 32px)",
+              lineHeight: 1.15,
+              letterSpacing: "-0.018em",
+              color: PAPER,
               margin: 0,
               fontVariationSettings: '"opsz" 36',
             }}
@@ -332,20 +328,71 @@ export function EditorialTabs({ showCta }: { showCta: boolean }) {
           </h2>
           <Link
             href={ctaButton.href}
-            className="btn-dark"
             style={{
-              width: "auto",
-              padding: "12px 24px",
+              fontFamily: SANS,
               fontSize: 14,
+              fontWeight: 500,
               letterSpacing: "0.01em",
+              color: PAPER,
+              backgroundColor: "transparent",
+              border: `1px solid ${PAPER}`,
+              borderRadius: 6,
+              padding: "13px 28px",
               textDecoration: "none",
               whiteSpace: "nowrap",
+              transition:
+                "background-color 150ms ease, color 150ms ease",
             }}
           >
             {ctaButton.label}
           </Link>
         </div>
       )}
+
+      <style jsx>{`
+        .ed-steps-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          gap: 0;
+        }
+        .ed-step-col {
+          padding: 0 32px;
+          position: relative;
+        }
+        .ed-step-col[data-first="false"] {
+          border-left: 1px solid ${RULE};
+        }
+        .ed-benefits-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+        .ed-benefits-grid[data-count="4"] {
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+        .ed-benefit-cell[data-first="false"] {
+          border-left: 1px solid ${RULE};
+        }
+        @media (max-width: 760px) {
+          .ed-steps-grid {
+            grid-template-columns: 1fr;
+          }
+          .ed-step-col {
+            padding: 32px 0;
+          }
+          .ed-step-col[data-first="false"] {
+            border-left: none;
+            border-top: 1px solid ${RULE};
+          }
+          .ed-benefits-grid,
+          .ed-benefits-grid[data-count="4"] {
+            grid-template-columns: 1fr;
+          }
+          .ed-benefit-cell[data-first="false"] {
+            border-left: none;
+            border-top: 1px solid ${RULE};
+          }
+        }
+      `}</style>
     </>
   );
 }
@@ -376,7 +423,9 @@ function TabButton({
         letterSpacing: "0.18em",
         textTransform: "uppercase",
         color: active ? INK : FOG,
-        borderBottom: active ? `2px solid ${INK}` : "2px solid transparent",
+        borderBottom: active
+          ? `2px solid ${INK}`
+          : "2px solid transparent",
         cursor: "pointer",
         transition: "color 150ms ease, border-color 150ms ease",
       }}
@@ -393,7 +442,8 @@ export function SectionRule({ label }: { label: string }) {
         display: "flex",
         alignItems: "center",
         gap: 20,
-        marginBottom: 8,
+        marginBottom: 0,
+        paddingBottom: 16,
       }}
     >
       <span
