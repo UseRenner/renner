@@ -44,7 +44,10 @@ export type VariantKey =
   | "brief"
   | "verse"
   | "chapter"
-  | "rail";
+  | "rail"
+  | "suite"
+  | "atelier"
+  | "plate";
 
 export const VARIANTS: ReadonlyArray<{ href: string; key: VariantKey; label: string }> = [
   { href: "/preview/how-it-works", key: "direct", label: "Direct" },
@@ -52,6 +55,9 @@ export const VARIANTS: ReadonlyArray<{ href: string; key: VariantKey; label: str
   { href: "/preview/how-it-works/verse", key: "verse", label: "Verse" },
   { href: "/preview/how-it-works/chapter", key: "chapter", label: "Chapter" },
   { href: "/preview/how-it-works-2", key: "rail", label: "Rail" },
+  { href: "/preview/how-it-works/suite", key: "suite", label: "Suite" },
+  { href: "/preview/how-it-works/atelier", key: "atelier", label: "Atelier" },
+  { href: "/preview/how-it-works/plate", key: "plate", label: "Plate" },
 ];
 
 // Brief-only secondary row. The original Brief lives at the root
