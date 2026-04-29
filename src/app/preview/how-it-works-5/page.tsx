@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { Wordmark } from "@/components/Wordmark";
 import { getViewer } from "@/lib/role";
+import { VariantSwitcher } from "../how-it-works/_shared";
 import { SpreadBody } from "./SpreadBody";
 
 export const metadata = {
-  title: "How it works · Renner",
+  title: "How it works · Pane · Renner",
   robots: { index: false, follow: false },
 };
 export const dynamic = "force-dynamic";
@@ -26,6 +27,7 @@ export default async function PreviewHowItWorksSpread() {
 
   return (
     <div style={{ backgroundColor: "#fbfbfc", color: INK, minHeight: "100vh" }}>
+      <VariantSwitcher active="pane" />
       <header
         style={{
           padding: "clamp(20px, 2.5vw, 32px) clamp(28px, 4vw, 64px)",
