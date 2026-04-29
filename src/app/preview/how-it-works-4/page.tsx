@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Wordmark } from "@/components/Wordmark";
 import { getViewer } from "@/lib/role";
-import { DocumentBody } from "./DocumentBody";
+import { CenteredBody } from "./CenteredBody";
 
 export const metadata = {
   title: "How it works · Renner",
@@ -56,44 +56,30 @@ const STEEL = "#647589";
 const FOG = "#7d8da0";
 const MIST = "#cad1d8";
 
-export default async function PreviewHowItWorksDocument() {
+export default async function PreviewHowItWorksCentered() {
   const viewer = await getViewer();
   const showCta = !viewer;
 
   return (
     <div style={{ backgroundColor: "#fbfbfc", color: INK, minHeight: "100vh" }}>
-      {/* ─── Centered masthead-style header ─── */}
+      {/* ─── Header ─── three-up: action / brand center / action */}
       <header
         style={{
-          padding: "32px clamp(28px, 4vw, 64px)",
+          padding: "clamp(20px, 2.5vw, 32px) clamp(28px, 4vw, 64px)",
           display: "grid",
           gridTemplateColumns: "1fr auto 1fr",
           alignItems: "center",
           gap: 16,
-          borderBottom: `1px solid #eaedf0`,
         }}
       >
-        <span
-          style={{
-            fontFamily: MONO,
-            fontSize: 11,
-            fontWeight: 500,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: FOG,
-          }}
-        >
-          Vol. I — How it works
-        </span>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <Wordmark />
-        </div>
+        <div />
+        <Wordmark />
         <div
           style={{
             display: "flex",
-            justifyContent: "flex-end",
             alignItems: "center",
-            gap: 20,
+            justifyContent: "flex-end",
+            gap: 24,
           }}
         >
           {showCta ? (
@@ -153,65 +139,56 @@ export default async function PreviewHowItWorksDocument() {
       <main
         style={{
           padding: "clamp(72px, 9vw, 144px) clamp(28px, 4vw, 64px)",
+          maxWidth: "1100px",
+          margin: "0 auto",
         }}
       >
-        <DocumentBody showCta={showCta} />
+        <CenteredBody showCta={showCta} />
 
-        {/* ─── FAQ as footnote-style list ─── */}
-        <div
+        {/* ─── FAQ ─── centered narrow column, hairline accordion */}
+        <section
           style={{
-            maxWidth: 680,
-            margin: "0 auto",
-            marginTop: "clamp(96px, 12vw, 160px)",
-            paddingTop: 56,
+            marginTop: "clamp(96px, 14vw, 160px)",
+            paddingTop: "clamp(64px, 8vw, 96px)",
             borderTop: `1px solid ${MIST}`,
+            maxWidth: 720,
+            marginInline: "auto",
           }}
         >
           <div
             style={{
+              textAlign: "center",
               fontFamily: MONO,
               fontSize: 11,
               fontWeight: 500,
-              letterSpacing: "0.18em",
+              letterSpacing: "0.22em",
               textTransform: "uppercase",
               color: FOG,
-              marginBottom: 32,
-              textAlign: "center",
+              marginBottom: 40,
             }}
           >
-            Notes
+            Common questions
           </div>
           {FAQS.map((item, idx) => (
             <details
               key={item.q}
               className="faq-item"
               style={{
-                padding: "20px 0",
+                padding: "22px 0",
                 borderBottom: `1px solid #eaedf0`,
+                borderTop: idx === 0 ? `1px solid #eaedf0` : "none",
               }}
             >
               <summary
                 style={{
                   cursor: "pointer",
                   listStyle: "none",
-                  display: "grid",
-                  gridTemplateColumns: "minmax(40px, 48px) 1fr auto",
-                  gap: 16,
+                  display: "flex",
+                  justifyContent: "space-between",
                   alignItems: "baseline",
+                  gap: 16,
                 }}
               >
-                <span
-                  style={{
-                    fontFamily: SERIF,
-                    fontStyle: "italic",
-                    fontWeight: 300,
-                    fontSize: 14,
-                    color: STEEL,
-                    fontVariationSettings: '"opsz" 36',
-                  }}
-                >
-                  {String(idx + 1)}.
-                </span>
                 <span
                   style={{
                     fontFamily: SERIF,
@@ -243,12 +220,9 @@ export default async function PreviewHowItWorksDocument() {
                   fontFamily: SERIF,
                   fontSize: 16,
                   color: SLATE,
-                  lineHeight: 1.65,
+                  lineHeight: 1.6,
                   marginTop: 14,
-                  marginLeft: 64,
                   marginBottom: 0,
-                  textAlign: "justify",
-                  hyphens: "auto",
                   fontVariationSettings: '"opsz" 14',
                 }}
               >
@@ -256,15 +230,13 @@ export default async function PreviewHowItWorksDocument() {
               </p>
             </details>
           ))}
-        </div>
+        </section>
       </main>
 
-      {/* ─── Centered colophon footer ─── */}
+      {/* ─── Footer ─── centered colophon */}
       <footer
         style={{
           padding: "40px clamp(28px, 4vw, 64px) 56px",
-          borderTop: `1px solid #eaedf0`,
-          textAlign: "center",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -280,7 +252,7 @@ export default async function PreviewHowItWorksDocument() {
             fontFamily: MONO,
             fontSize: 11,
             fontWeight: 500,
-            letterSpacing: "0.16em",
+            letterSpacing: "0.18em",
             textTransform: "uppercase",
             color: FOG,
           }}

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Wordmark } from "@/components/Wordmark";
 import { getViewer } from "@/lib/role";
-import { CinematicBody } from "./CinematicBody";
+import { ArchitectBody } from "./ArchitectBody";
 
 export const metadata = {
   title: "How it works · Renner",
@@ -55,28 +55,24 @@ const SLATE = "#2a2f36";
 const STEEL = "#647589";
 const FOG = "#7d8da0";
 const MIST = "#cad1d8";
+const RULE = "#eaedf0";
 
-export default async function PreviewHowItWorksCinematic() {
+export default async function PreviewHowItWorksArchitect() {
   const viewer = await getViewer();
   const showCta = !viewer;
 
   return (
     <div style={{ backgroundColor: "#fbfbfc", color: INK, minHeight: "100vh" }}>
-      {/* ─── Sticky header ─── persistent while chapters scroll ─── */}
+      {/* ─── Header ─── sandwiched between two thin black rules ─── */}
       <header
         style={{
-          position: "sticky",
-          top: 0,
-          zIndex: 50,
-          padding: "16px clamp(28px, 4vw, 64px)",
+          padding: "clamp(16px, 2vw, 24px) clamp(28px, 4vw, 64px)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
           gap: 16,
-          backgroundColor: "rgba(251, 251, 252, 0.92)",
-          backdropFilter: "blur(8px)",
-          WebkitBackdropFilter: "blur(8px)",
-          borderBottom: `1px solid #eaedf0`,
+          borderTop: `1px solid ${INK}`,
+          borderBottom: `1px solid ${INK}`,
         }}
       >
         <Wordmark />
@@ -133,140 +129,175 @@ export default async function PreviewHowItWorksCinematic() {
         )}
       </header>
 
-      <CinematicBody showCta={showCta} />
-
-      {/* ─── FAQ ─── breaks the rhythm, returns to standard scroll ─── */}
-      <section
+      <main
         style={{
-          padding: "clamp(80px, 10vw, 144px) clamp(28px, 4vw, 64px)",
-          borderTop: `1px solid ${MIST}`,
-          maxWidth: 1100,
+          padding: "clamp(48px, 6vw, 96px) clamp(28px, 4vw, 64px) clamp(96px, 12vw, 144px)",
+          maxWidth: "1280px",
           margin: "0 auto",
         }}
       >
+        <ArchitectBody showCta={showCta} />
+
+        {/* ─── FAQ ─── numbered list framed by black rules ─── */}
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "minmax(160px, 220px) 1fr",
-            gap: "clamp(24px, 4vw, 56px)",
-            alignItems: "baseline",
-            marginBottom: 56,
+            marginTop: "clamp(96px, 12vw, 144px)",
+            borderTop: `1px solid ${INK}`,
+            paddingTop: "clamp(40px, 5vw, 64px)",
           }}
         >
           <div
             style={{
-              fontFamily: MONO,
-              fontSize: 11,
-              fontWeight: 500,
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              color: FOG,
+              display: "grid",
+              gridTemplateColumns: "minmax(180px, 220px) 1fr",
+              gap: "clamp(24px, 4vw, 56px)",
+              alignItems: "baseline",
+              marginBottom: 40,
             }}
+            className="arch-faq-header"
           >
-            Common questions
-          </div>
-          <h2
-            style={{
-              fontFamily: SERIF,
-              fontWeight: 400,
-              fontSize: "clamp(28px, 3.5vw, 44px)",
-              lineHeight: 1.1,
-              letterSpacing: "-0.022em",
-              color: INK,
-              margin: 0,
-              fontVariationSettings: '"opsz" 72',
-            }}
-          >
-            Everything else.
-          </h2>
-        </div>
-
-        {FAQS.map((item, idx) => (
-          <details
-            key={item.q}
-            className="faq-item"
-            style={{
-              padding: "24px 0",
-              borderTop: idx === 0 ? `1px solid #eaedf0` : "none",
-              borderBottom: `1px solid #eaedf0`,
-            }}
-          >
-            <summary
+            <div
               style={{
-                cursor: "pointer",
-                listStyle: "none",
-                display: "grid",
-                gridTemplateColumns: "minmax(56px, 64px) 1fr auto",
-                gap: 24,
-                alignItems: "baseline",
+                fontFamily: MONO,
+                fontSize: 11,
+                fontWeight: 500,
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                color: FOG,
               }}
             >
-              <span
-                style={{
-                  fontFamily: MONO,
-                  fontSize: 12,
-                  fontWeight: 500,
-                  letterSpacing: "0.16em",
-                  color: FOG,
-                }}
-              >
-                {String(idx + 1).padStart(2, "0")}
-              </span>
-              <span
-                style={{
-                  fontFamily: SERIF,
-                  fontWeight: 400,
-                  fontSize: 19,
-                  lineHeight: 1.3,
-                  color: INK,
-                  letterSpacing: "-0.005em",
-                  fontVariationSettings: '"opsz" 14',
-                }}
-              >
-                {item.q}
-              </span>
-              <span
-                className="faq-toggle"
-                style={{
-                  fontFamily: SANS,
-                  fontSize: 18,
-                  color: FOG,
-                  transition: "transform 120ms ease",
-                }}
-                aria-hidden
-              >
-                +
-              </span>
-            </summary>
-            <p
+              Common questions
+            </div>
+            <h2
               style={{
                 fontFamily: SERIF,
-                fontSize: 16,
-                color: SLATE,
-                lineHeight: 1.6,
-                marginTop: 16,
-                marginLeft: 88,
-                marginBottom: 0,
-                maxWidth: 680,
-                fontVariationSettings: '"opsz" 14',
+                fontWeight: 400,
+                fontSize: "clamp(28px, 3.5vw, 40px)",
+                lineHeight: 1.1,
+                letterSpacing: "-0.022em",
+                color: INK,
+                margin: 0,
+                fontVariationSettings: '"opsz" 72',
               }}
             >
-              {item.a}
-            </p>
-          </details>
-        ))}
-      </section>
+              Everything else.
+            </h2>
+          </div>
 
-      {/* ─── Footer ─── minimal colophon ─── */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "minmax(180px, 220px) 1fr",
+              gap: "clamp(24px, 4vw, 56px)",
+              alignItems: "start",
+            }}
+            className="arch-faq-body"
+          >
+            <div aria-hidden />
+            <div>
+              {FAQS.map((item, idx) => (
+                <details
+                  key={item.q}
+                  className="faq-item"
+                  style={{
+                    padding: "22px 0",
+                    borderTop: idx === 0 ? `1px solid ${RULE}` : "none",
+                    borderBottom: `1px solid ${RULE}`,
+                  }}
+                >
+                  <summary
+                    style={{
+                      cursor: "pointer",
+                      listStyle: "none",
+                      display: "grid",
+                      gridTemplateColumns: "minmax(48px, 56px) 1fr auto",
+                      gap: 20,
+                      alignItems: "baseline",
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontFamily: MONO,
+                        fontSize: 11,
+                        fontWeight: 500,
+                        letterSpacing: "0.22em",
+                        color: FOG,
+                      }}
+                    >
+                      {String(idx + 1).padStart(2, "0")}
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: SERIF,
+                        fontWeight: 400,
+                        fontSize: 18,
+                        lineHeight: 1.35,
+                        color: INK,
+                        letterSpacing: "-0.005em",
+                        fontVariationSettings: '"opsz" 14',
+                      }}
+                    >
+                      {item.q}
+                    </span>
+                    <span
+                      className="faq-toggle"
+                      style={{
+                        fontFamily: SANS,
+                        fontSize: 16,
+                        color: FOG,
+                        transition: "transform 120ms ease",
+                      }}
+                      aria-hidden
+                    >
+                      +
+                    </span>
+                  </summary>
+                  <p
+                    style={{
+                      fontFamily: SERIF,
+                      fontSize: 16,
+                      color: SLATE,
+                      lineHeight: 1.6,
+                      marginTop: 14,
+                      marginLeft: 76,
+                      marginBottom: 0,
+                      maxWidth: 640,
+                      fontVariationSettings: '"opsz" 14',
+                    }}
+                  >
+                    {item.a}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <style>{`
+          @media (max-width: 880px) {
+            .arch-faq-header,
+            .arch-faq-body {
+              grid-template-columns: 1fr !important;
+              gap: 20px !important;
+            }
+            .arch-faq-body > :first-child {
+              display: none;
+            }
+          }
+        `}</style>
+      </main>
+
+      {/* ─── Footer ─── sandwiched between thin black rules ─── */}
       <footer
         style={{
-          padding: "32px clamp(28px, 4vw, 64px)",
-          borderTop: `1px solid #eaedf0`,
+          padding: "clamp(16px, 2vw, 24px) clamp(28px, 4vw, 64px)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
           flexWrap: "wrap",
           gap: 20,
+          borderTop: `1px solid ${INK}`,
+          borderBottom: `1px solid ${INK}`,
         }}
       >
         <Wordmark />
@@ -278,7 +309,7 @@ export default async function PreviewHowItWorksCinematic() {
             fontFamily: MONO,
             fontSize: 11,
             fontWeight: 500,
-            letterSpacing: "0.16em",
+            letterSpacing: "0.18em",
             textTransform: "uppercase",
             color: FOG,
           }}

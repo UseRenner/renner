@@ -107,8 +107,9 @@ const SLATE = "#2a2f36";
 const STEEL = "#647589";
 const FOG = "#7d8da0";
 const MIST = "#cad1d8";
-const PAPER = "#fbfbfc";
 const RULE = "#eaedf0";
+const RULE_BLACK = "#0d0f12";
+const PAPER = "#fbfbfc";
 
 function Italic({ children }: { children: React.ReactNode }) {
   return (
@@ -124,7 +125,7 @@ function Italic({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function IndexBody({ showCta }: { showCta: boolean }) {
+export function ArchitectBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
   const isClient = tab === "client";
   const steps = isClient ? CLIENT_STEPS : RENNER_STEPS;
@@ -144,224 +145,249 @@ export function IndexBody({ showCta }: { showCta: boolean }) {
 
   return (
     <>
-      {/* ─── Page identifier row ─── */}
+      {/* ─── Frame: title + tabs sandwiched between thin black rules ─── */}
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "minmax(160px, 220px) 1fr auto",
-          gap: "clamp(24px, 4vw, 56px)",
-          alignItems: "baseline",
-          marginBottom: 64,
-          paddingBottom: 24,
-          borderBottom: `1px solid ${INK}`,
+          borderTop: `1px solid ${RULE_BLACK}`,
+          borderBottom: `1px solid ${RULE_BLACK}`,
+          padding: "clamp(48px, 6vw, 96px) 0",
+          marginBottom: "clamp(64px, 8vw, 112px)",
         }}
       >
         <div
           style={{
-            fontFamily: MONO,
-            fontSize: 11,
-            fontWeight: 500,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: FOG,
-          }}
-        >
-          §01 — Procedure
-        </div>
-        <h1
-          style={{
-            fontFamily: SERIF,
-            fontWeight: 400,
-            fontSize: "clamp(36px, 4.5vw, 56px)",
-            lineHeight: 1.05,
-            letterSpacing: "-0.025em",
-            color: INK,
-            margin: 0,
-            fontVariationSettings: '"opsz" 72',
-          }}
-        >
-          How Renner <Italic>works</Italic>
-        </h1>
-        <div
-          role="tablist"
-          aria-label="Audience"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 14,
-            fontFamily: MONO,
-            fontSize: 11,
-            fontWeight: 500,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-          }}
-        >
-          <IndexTab
-            label="Client"
-            active={isClient}
-            onClick={() => setTab("client")}
-          />
-          <span aria-hidden style={{ color: MIST }}>
-            /
-          </span>
-          <IndexTab
-            label="Renner"
-            active={!isClient}
-            onClick={() => setTab("renner")}
-          />
-        </div>
-      </div>
-
-      {/* ─── Steps table ─── */}
-      <Table>
-        {steps.map((step, idx) => (
-          <TableRow key={step.number} idx={idx} total={steps.length}>
-            <Cell width="80px">
-              <span
-                style={{
-                  fontFamily: MONO,
-                  fontSize: 12,
-                  fontWeight: 500,
-                  letterSpacing: "0.18em",
-                  color: FOG,
-                }}
-              >
-                {step.number}
-              </span>
-            </Cell>
-            <Cell width="minmax(200px, 280px)">
-              <h3
-                style={{
-                  fontFamily: SERIF,
-                  fontWeight: 400,
-                  fontSize: 22,
-                  lineHeight: 1.2,
-                  letterSpacing: "-0.012em",
-                  color: INK,
-                  margin: 0,
-                  fontVariationSettings: '"opsz" 36',
-                }}
-              >
-                {step.title}
-              </h3>
-            </Cell>
-            <Cell>
-              <p
-                style={{
-                  fontFamily: SERIF,
-                  fontWeight: 400,
-                  fontSize: 16,
-                  lineHeight: 1.55,
-                  color: SLATE,
-                  margin: 0,
-                  fontVariationSettings: '"opsz" 14',
-                }}
-              >
-                {step.body}
-              </p>
-            </Cell>
-          </TableRow>
-        ))}
-      </Table>
-
-      {/* ─── Benefits section ─── */}
-      <div style={{ marginTop: 96 }}>
-        <div
-          style={{
             display: "grid",
-            gridTemplateColumns: "minmax(160px, 220px) 1fr",
+            gridTemplateColumns: "minmax(180px, 220px) 1fr auto",
             gap: "clamp(24px, 4vw, 56px)",
             alignItems: "baseline",
-            marginBottom: 32,
-            paddingBottom: 16,
-            borderBottom: `1px solid ${INK}`,
           }}
+          className="arch-title-row"
         >
           <div
             style={{
               fontFamily: MONO,
               fontSize: 11,
               fontWeight: 500,
-              letterSpacing: "0.18em",
+              letterSpacing: "0.22em",
               textTransform: "uppercase",
               color: FOG,
             }}
           >
-            §02 — {isClient ? "Why Renner" : "What you get"}
+            Renner / Procedure
           </div>
-          <div aria-hidden />
+          <h1
+            style={{
+              fontFamily: SERIF,
+              fontWeight: 400,
+              fontSize: "clamp(48px, 6.5vw, 88px)",
+              lineHeight: 0.95,
+              letterSpacing: "-0.03em",
+              color: INK,
+              margin: 0,
+              fontVariationSettings: '"opsz" 144',
+            }}
+          >
+            How Renner <Italic>works</Italic>
+          </h1>
+          <div
+            role="tablist"
+            aria-label="Audience"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 14,
+              fontFamily: MONO,
+              fontSize: 11,
+              fontWeight: 500,
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+            }}
+          >
+            <ATab
+              label="Client"
+              active={isClient}
+              onClick={() => setTab("client")}
+            />
+            <span aria-hidden style={{ color: MIST }}>
+              /
+            </span>
+            <ATab
+              label="Renner"
+              active={!isClient}
+              onClick={() => setTab("renner")}
+            />
+          </div>
         </div>
-        <Table>
-          {benefits.map((b, idx) => (
-            <TableRow key={b} idx={idx} total={benefits.length}>
-              <Cell width="80px">
-                <span
-                  style={{
-                    fontFamily: MONO,
-                    fontSize: 12,
-                    fontWeight: 500,
-                    letterSpacing: "0.18em",
-                    color: FOG,
-                  }}
-                >
-                  {String(idx + 1).padStart(2, "0")}
-                </span>
-              </Cell>
-              <Cell>
-                <p
-                  style={{
-                    fontFamily: SERIF,
-                    fontStyle: "italic",
-                    fontWeight: 300,
-                    fontSize: 22,
-                    lineHeight: 1.4,
-                    letterSpacing: "-0.012em",
-                    color: INK,
-                    margin: 0,
-                    fontVariationSettings: '"opsz" 36',
-                  }}
-                >
-                  {b}
-                </p>
-              </Cell>
-            </TableRow>
-          ))}
-        </Table>
       </div>
 
-      {/* ─── CTA — standalone block ─── */}
+      {/* ─── Steps ─── three columns separated by vertical hairlines ─── */}
+      <div className="arch-steps">
+        {steps.map((step, idx) => (
+          <article
+            key={step.number}
+            className="arch-step"
+            data-first={idx === 0 ? "true" : "false"}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "baseline",
+                justifyContent: "space-between",
+                marginBottom: 32,
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: MONO,
+                  fontSize: 11,
+                  fontWeight: 500,
+                  letterSpacing: "0.22em",
+                  color: FOG,
+                }}
+              >
+                {step.number}
+              </span>
+              <span
+                style={{
+                  fontFamily: MONO,
+                  fontSize: 11,
+                  fontWeight: 500,
+                  letterSpacing: "0.22em",
+                  color: FOG,
+                }}
+              >
+                / 03
+              </span>
+            </div>
+            <h3
+              style={{
+                fontFamily: SERIF,
+                fontWeight: 400,
+                fontSize: 26,
+                lineHeight: 1.15,
+                letterSpacing: "-0.018em",
+                color: INK,
+                margin: 0,
+                marginBottom: 18,
+                fontVariationSettings: '"opsz" 36',
+              }}
+            >
+              {step.title}
+            </h3>
+            <p
+              style={{
+                fontFamily: SERIF,
+                fontWeight: 400,
+                fontSize: 16,
+                lineHeight: 1.6,
+                color: SLATE,
+                margin: 0,
+                fontVariationSettings: '"opsz" 14',
+              }}
+            >
+              {step.body}
+            </p>
+          </article>
+        ))}
+      </div>
+
+      {/* ─── Benefits ─── frame: thin black rules above and below ─── */}
+      <div
+        style={{
+          marginTop: "clamp(80px, 10vw, 144px)",
+          borderTop: `1px solid ${RULE_BLACK}`,
+          borderBottom: `1px solid ${RULE_BLACK}`,
+          padding: "clamp(40px, 5vw, 64px) 0",
+        }}
+      >
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "minmax(180px, 220px) 1fr",
+            gap: "clamp(24px, 4vw, 56px)",
+            alignItems: "baseline",
+          }}
+          className="arch-benefits-row"
+        >
+          <div
+            style={{
+              fontFamily: MONO,
+              fontSize: 11,
+              fontWeight: 500,
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              color: FOG,
+            }}
+          >
+            {isClient ? "Why Renner" : "What you get"}
+          </div>
+          <ul
+            style={{
+              listStyle: "none",
+              padding: 0,
+              margin: 0,
+              display: "flex",
+              flexDirection: "column",
+              gap: 14,
+            }}
+          >
+            {benefits.map((b) => (
+              <li
+                key={b}
+                style={{
+                  fontFamily: SERIF,
+                  fontStyle: "italic",
+                  fontWeight: 300,
+                  fontSize: "clamp(20px, 2.2vw, 26px)",
+                  lineHeight: 1.35,
+                  letterSpacing: "-0.012em",
+                  color: INK,
+                  fontVariationSettings: '"opsz" 36',
+                }}
+              >
+                {b}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {/* ─── CTA ─── architectural anchor row ─── */}
       {showCta && (
-        <div style={{ marginTop: 96 }}>
+        <div
+          style={{
+            marginTop: "clamp(80px, 10vw, 144px)",
+            borderTop: `1px solid ${RULE_BLACK}`,
+            paddingTop: "clamp(40px, 5vw, 64px)",
+          }}
+        >
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "minmax(160px, 220px) 1fr auto",
+              gridTemplateColumns: "minmax(180px, 220px) 1fr auto",
               gap: "clamp(24px, 4vw, 56px)",
               alignItems: "baseline",
-              paddingTop: 32,
-              paddingBottom: 32,
-              borderTop: `1px solid ${INK}`,
-              borderBottom: `1px solid ${INK}`,
             }}
+            className="arch-cta-row"
           >
             <div
               style={{
                 fontFamily: MONO,
                 fontSize: 11,
                 fontWeight: 500,
-                letterSpacing: "0.18em",
+                letterSpacing: "0.22em",
                 textTransform: "uppercase",
                 color: FOG,
               }}
             >
-              §03 — Begin
+              Begin
             </div>
             <h2
               style={{
                 fontFamily: SERIF,
                 fontWeight: 400,
-                fontSize: "clamp(28px, 3vw, 36px)",
-                lineHeight: 1.15,
+                fontSize: "clamp(28px, 3.5vw, 44px)",
+                lineHeight: 1.1,
                 letterSpacing: "-0.022em",
                 color: INK,
                 margin: 0,
@@ -397,81 +423,46 @@ export function IndexBody({ showCta }: { showCta: boolean }) {
           </div>
         </div>
       )}
+
+      <style jsx>{`
+        .arch-steps {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          gap: 0;
+        }
+        .arch-step {
+          padding: 0 clamp(24px, 3vw, 40px);
+        }
+        .arch-step[data-first="false"] {
+          border-left: 1px solid ${RULE};
+        }
+        @media (max-width: 880px) {
+          .arch-steps {
+            grid-template-columns: 1fr;
+          }
+          .arch-step {
+            padding: 32px 0;
+          }
+          .arch-step[data-first="false"] {
+            border-left: none;
+            border-top: 1px solid ${RULE};
+          }
+          .arch-title-row {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
+          }
+          .arch-benefits-row,
+          .arch-cta-row {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+          }
+        }
+      `}</style>
     </>
   );
 }
 
-function Table({ children }: { children: React.ReactNode }) {
-  return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      {children}
-    </div>
-  );
-}
-
-function TableRow({
-  idx,
-  total,
-  children,
-}: {
-  idx: number;
-  total: number;
-  children: React.ReactNode;
-}) {
-  return (
-    <div
-      className="idx-row"
-      style={{
-        display: "grid",
-        gridTemplateColumns: "80px minmax(200px, 280px) 1fr",
-        gap: "clamp(20px, 3vw, 48px)",
-        padding: "32px 0",
-        borderBottom: `1px solid ${RULE}`,
-        alignItems: "baseline",
-      }}
-    >
-      {children}
-      <style jsx>{`
-        @media (max-width: 760px) {
-          .idx-row {
-            grid-template-columns: 56px 1fr !important;
-            grid-template-rows: auto auto;
-          }
-          .idx-row > :nth-child(1) {
-            grid-row: 1;
-            grid-column: 1;
-          }
-          .idx-row > :nth-child(2) {
-            grid-row: 1;
-            grid-column: 2;
-          }
-          .idx-row > :nth-child(3) {
-            grid-row: 2;
-            grid-column: 2;
-            margin-top: 12px;
-          }
-        }
-      `}</style>
-    </div>
-  );
-}
-
-function Cell({
-  width,
-  children,
-}: {
-  width?: string;
-  children: React.ReactNode;
-}) {
-  return <div style={{ minWidth: 0 }}>{children}</div>;
-}
-
-function IndexTab({
+function ATab({
   label,
   active,
   onClick,
