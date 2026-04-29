@@ -139,17 +139,18 @@ export function BriefBody({ showCta }: { showCta: boolean }) {
     ? { label: "Sign up", href: "/signup" }
     : { label: "Become a Renner", href: "/become-a-renner" };
 
-  // Statement clauses — the answer, said as a sentence.
+  // Statement clauses — the answer, said as a sentence. Imperative
+  // voice on both sides; the closing noun/phrase carries the italic.
   const clauses: React.ReactNode[] = isClient
     ? [
-        <>You <Em>post</Em> a task.</>,
-        <>A vetted Renner <Em>applies.</Em></>,
-        <>It gets <Em>done.</Em></>,
+        <>Post a <Em>task.</Em></>,
+        <>Pick a <Em>vetted Renner.</Em></>,
+        <>Get it <Em>done.</Em></>,
       ]
     : [
-        <>You <Em>get</Em> verified.</>,
-        <>You <Em>pick</Em> a task.</>,
-        <>You get it <Em>done.</Em></>,
+        <>Get <Em>verified.</Em></>,
+        <>Pick a <Em>task.</Em></>,
+        <>Get it <Em>done.</Em></>,
       ];
 
   return (
@@ -186,7 +187,7 @@ export function BriefBody({ showCta }: { showCta: boolean }) {
           color: INK,
           margin: 0,
           marginBottom: "clamp(40px, 5vw, 64px)",
-          maxWidth: "18ch",
+          maxWidth: "26ch",
           fontVariationSettings: '"opsz" 144',
         }}
       >
