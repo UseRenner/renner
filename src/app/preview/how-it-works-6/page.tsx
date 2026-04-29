@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Wordmark } from "@/components/Wordmark";
 import { getViewer } from "@/lib/role";
-import { ArchitectBody } from "./ArchitectBody";
+import { ModernistBody } from "./ModernistBody";
 
 export const metadata = {
   title: "How it works · Renner",
@@ -55,24 +55,20 @@ const SLATE = "#2a2f36";
 const STEEL = "#647589";
 const FOG = "#7d8da0";
 const MIST = "#cad1d8";
-const RULE = "#eaedf0";
 
-export default async function PreviewHowItWorksArchitect() {
+export default async function PreviewHowItWorksModernist() {
   const viewer = await getViewer();
   const showCta = !viewer;
 
   return (
     <div style={{ backgroundColor: "#fbfbfc", color: INK, minHeight: "100vh" }}>
-      {/* ─── Header ─── sandwiched between two thin black rules ─── */}
       <header
         style={{
-          padding: "clamp(16px, 2vw, 24px) clamp(28px, 4vw, 64px)",
+          padding: "clamp(20px, 2.5vw, 32px) clamp(28px, 4vw, 64px)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
           gap: 16,
-          borderTop: `1px solid ${INK}`,
-          borderBottom: `1px solid ${INK}`,
         }}
       >
         <Wordmark />
@@ -131,31 +127,15 @@ export default async function PreviewHowItWorksArchitect() {
 
       <main
         style={{
-          padding: "clamp(48px, 6vw, 96px) clamp(28px, 4vw, 64px) clamp(96px, 12vw, 144px)",
-          maxWidth: "1280px",
-          margin: "0 auto",
+          padding:
+            "clamp(48px, 8vw, 120px) clamp(28px, 4vw, 64px) clamp(96px, 12vw, 160px)",
         }}
       >
-        <ArchitectBody showCta={showCta} />
+        <div className="mx-auto" style={{ maxWidth: "1280px" }}>
+          <ModernistBody showCta={showCta} />
 
-        {/* ─── FAQ ─── numbered list framed by black rules ─── */}
-        <div
-          style={{
-            marginTop: "clamp(96px, 12vw, 144px)",
-            borderTop: `1px solid ${INK}`,
-            paddingTop: "clamp(40px, 5vw, 64px)",
-          }}
-        >
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "minmax(180px, 220px) 1fr",
-              gap: "clamp(24px, 4vw, 56px)",
-              alignItems: "baseline",
-              marginBottom: 40,
-            }}
-            className="arch-faq-header"
-          >
+          {/* ─── FAQ ─── modernist accordion ─── */}
+          <div style={{ marginTop: "clamp(96px, 14vw, 180px)" }}>
             <div
               style={{
                 fontFamily: MONO,
@@ -164,140 +144,98 @@ export default async function PreviewHowItWorksArchitect() {
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
                 color: FOG,
+                marginBottom: 56,
               }}
             >
               Common questions
             </div>
-            <h2
-              style={{
-                fontFamily: SERIF,
-                fontWeight: 400,
-                fontSize: "clamp(28px, 3.5vw, 40px)",
-                lineHeight: 1.1,
-                letterSpacing: "-0.022em",
-                color: INK,
-                margin: 0,
-                fontVariationSettings: '"opsz" 72',
-              }}
-            >
-              Everything else.
-            </h2>
-          </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "minmax(180px, 220px) 1fr",
-              gap: "clamp(24px, 4vw, 56px)",
-              alignItems: "start",
-            }}
-            className="arch-faq-body"
-          >
-            <div aria-hidden />
-            <div>
-              {FAQS.map((item, idx) => (
-                <details
-                  key={item.q}
-                  className="faq-item"
+            {FAQS.map((item, idx) => (
+              <details
+                key={item.q}
+                className="faq-item"
+                style={{
+                  padding: "28px 0",
+                  borderBottom: `1px solid #eaedf0`,
+                  borderTop: idx === 0 ? "1px solid #eaedf0" : "none",
+                }}
+              >
+                <summary
                   style={{
-                    padding: "22px 0",
-                    borderTop: idx === 0 ? `1px solid ${RULE}` : "none",
-                    borderBottom: `1px solid ${RULE}`,
+                    cursor: "pointer",
+                    listStyle: "none",
+                    display: "grid",
+                    gridTemplateColumns: "minmax(56px, 64px) 1fr auto",
+                    gap: 24,
+                    alignItems: "baseline",
                   }}
                 >
-                  <summary
+                  <span
                     style={{
-                      cursor: "pointer",
-                      listStyle: "none",
-                      display: "grid",
-                      gridTemplateColumns: "minmax(48px, 56px) 1fr auto",
-                      gap: 20,
-                      alignItems: "baseline",
+                      fontFamily: MONO,
+                      fontSize: 12,
+                      fontWeight: 500,
+                      letterSpacing: "0.16em",
+                      color: FOG,
                     }}
                   >
-                    <span
-                      style={{
-                        fontFamily: MONO,
-                        fontSize: 11,
-                        fontWeight: 500,
-                        letterSpacing: "0.22em",
-                        color: FOG,
-                      }}
-                    >
-                      {String(idx + 1).padStart(2, "0")}
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: SERIF,
-                        fontWeight: 400,
-                        fontSize: 18,
-                        lineHeight: 1.35,
-                        color: INK,
-                        letterSpacing: "-0.005em",
-                        fontVariationSettings: '"opsz" 14',
-                      }}
-                    >
-                      {item.q}
-                    </span>
-                    <span
-                      className="faq-toggle"
-                      style={{
-                        fontFamily: SANS,
-                        fontSize: 16,
-                        color: FOG,
-                        transition: "transform 120ms ease",
-                      }}
-                      aria-hidden
-                    >
-                      +
-                    </span>
-                  </summary>
-                  <p
+                    {String(idx + 1).padStart(2, "0")}
+                  </span>
+                  <span
                     style={{
-                      fontFamily: SERIF,
-                      fontSize: 16,
-                      color: SLATE,
-                      lineHeight: 1.6,
-                      marginTop: 14,
-                      marginLeft: 76,
-                      marginBottom: 0,
-                      maxWidth: 640,
-                      fontVariationSettings: '"opsz" 14',
+                      fontFamily: SANS,
+                      fontWeight: 400,
+                      fontSize: 19,
+                      lineHeight: 1.35,
+                      color: INK,
+                      letterSpacing: "-0.005em",
                     }}
                   >
-                    {item.a}
-                  </p>
-                </details>
-              ))}
-            </div>
+                    {item.q}
+                  </span>
+                  <span
+                    className="faq-toggle"
+                    style={{
+                      fontFamily: SANS,
+                      fontSize: 18,
+                      color: FOG,
+                      transition: "transform 120ms ease",
+                    }}
+                    aria-hidden
+                  >
+                    +
+                  </span>
+                </summary>
+                <p
+                  style={{
+                    fontFamily: SERIF,
+                    fontSize: 16,
+                    color: SLATE,
+                    lineHeight: 1.6,
+                    marginTop: 16,
+                    marginLeft: 88,
+                    marginBottom: 0,
+                    maxWidth: 680,
+                    fontVariationSettings: '"opsz" 14',
+                  }}
+                >
+                  {item.a}
+                </p>
+              </details>
+            ))}
           </div>
         </div>
-
-        <style>{`
-          @media (max-width: 880px) {
-            .arch-faq-header,
-            .arch-faq-body {
-              grid-template-columns: 1fr !important;
-              gap: 20px !important;
-            }
-            .arch-faq-body > :first-child {
-              display: none;
-            }
-          }
-        `}</style>
       </main>
 
-      {/* ─── Footer ─── sandwiched between thin black rules ─── */}
       <footer
         style={{
-          padding: "clamp(16px, 2vw, 24px) clamp(28px, 4vw, 64px)",
+          padding: "40px clamp(28px, 4vw, 64px) 56px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
           flexWrap: "wrap",
           gap: 20,
-          borderTop: `1px solid ${INK}`,
-          borderBottom: `1px solid ${INK}`,
+          borderTop: `1px solid #eaedf0`,
         }}
       >
         <Wordmark />
@@ -314,22 +252,13 @@ export default async function PreviewHowItWorksArchitect() {
             color: FOG,
           }}
         >
-          <Link
-            href="/contact"
-            style={{ color: STEEL, textDecoration: "none" }}
-          >
+          <Link href="/contact" style={{ color: STEEL, textDecoration: "none" }}>
             Contact
           </Link>
-          <Link
-            href="/terms"
-            style={{ color: STEEL, textDecoration: "none" }}
-          >
+          <Link href="/terms" style={{ color: STEEL, textDecoration: "none" }}>
             Terms
           </Link>
-          <Link
-            href="/privacy"
-            style={{ color: STEEL, textDecoration: "none" }}
-          >
+          <Link href="/privacy" style={{ color: STEEL, textDecoration: "none" }}>
             Privacy
           </Link>
           <span style={{ color: MIST }}>·</span>
