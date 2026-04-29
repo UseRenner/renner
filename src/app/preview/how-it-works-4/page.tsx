@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Wordmark } from "@/components/Wordmark";
 import { getViewer } from "@/lib/role";
-import { CenteredBody } from "./CenteredBody";
+import { NocturneBody } from "./NocturneBody";
 
 export const metadata = {
   title: "How it works · Renner",
@@ -51,234 +51,234 @@ const MONO =
   "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
 const INK = "#0d0f12";
-const SLATE = "#2a2f36";
-const STEEL = "#647589";
-const FOG = "#7d8da0";
-const MIST = "#cad1d8";
+const PAPER = "#fbfbfc";
+const BODY = "#cad1d8";
+const STEEL = "#7d8da0";
+const FOG = "#647589";
+const GHOST = "#38414d";
+const RULE_DARK = "#272d35";
+const GREEN = "#2d8a4e";
+const GREEN_HOVER = "#246e3e";
 
-export default async function PreviewHowItWorksCentered() {
+export default async function PreviewHowItWorksNocturne() {
   const viewer = await getViewer();
   const showCta = !viewer;
 
   return (
-    <div style={{ backgroundColor: "#fbfbfc", color: INK, minHeight: "100vh" }}>
-      {/* ─── Header ─── three-up: action / brand center / action */}
+    <div style={{ backgroundColor: INK, color: PAPER, minHeight: "100vh" }}>
+      {/* ─── Header ─── dark with light Wordmark + green Sign up ─── */}
       <header
         style={{
           padding: "clamp(20px, 2.5vw, 32px) clamp(28px, 4vw, 64px)",
-          display: "grid",
-          gridTemplateColumns: "1fr auto 1fr",
+          display: "flex",
           alignItems: "center",
+          justifyContent: "space-between",
           gap: 16,
         }}
       >
-        <div />
-        <Wordmark />
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-end",
-            gap: 24,
-          }}
-        >
-          {showCta ? (
-            <>
-              <Link
-                href="/signin"
-                style={{
-                  fontFamily: MONO,
-                  fontSize: 11,
-                  fontWeight: 500,
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                  color: STEEL,
-                  textDecoration: "none",
-                }}
-              >
-                Sign in
-              </Link>
-              <Link
-                href="/signup"
-                style={{
-                  fontFamily: SANS,
-                  fontSize: 13,
-                  fontWeight: 500,
-                  letterSpacing: "0.01em",
-                  color: "#fbfbfc",
-                  backgroundColor: INK,
-                  border: `1px solid ${INK}`,
-                  borderRadius: 4,
-                  padding: "9px 16px",
-                  textDecoration: "none",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                Sign up
-              </Link>
-            </>
-          ) : (
+        <Wordmark tone="light" slotColor={INK} />
+        {showCta ? (
+          <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
             <Link
-              href="/dashboard"
+              href="/signin"
               style={{
                 fontFamily: MONO,
                 fontSize: 11,
                 fontWeight: 500,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
-                color: INK,
+                color: STEEL,
                 textDecoration: "none",
               }}
             >
-              Dashboard →
+              Sign in
             </Link>
-          )}
-        </div>
+            <Link
+              href="/signup"
+              className="noc-header-btn"
+              style={{
+                fontFamily: SANS,
+                fontSize: 13,
+                fontWeight: 500,
+                letterSpacing: "0.01em",
+                color: PAPER,
+                backgroundColor: GREEN,
+                border: `1px solid ${GREEN}`,
+                borderRadius: 4,
+                padding: "9px 16px",
+                textDecoration: "none",
+                whiteSpace: "nowrap",
+                transition:
+                  "background-color 150ms ease, border-color 150ms ease",
+              }}
+            >
+              Sign up
+            </Link>
+          </div>
+        ) : (
+          <Link
+            href="/dashboard"
+            style={{
+              fontFamily: MONO,
+              fontSize: 11,
+              fontWeight: 500,
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: PAPER,
+              textDecoration: "none",
+            }}
+          >
+            Dashboard →
+          </Link>
+        )}
       </header>
 
       <main
         style={{
-          padding: "clamp(72px, 9vw, 144px) clamp(28px, 4vw, 64px)",
-          maxWidth: "1100px",
-          margin: "0 auto",
+          padding:
+            "clamp(48px, 8vw, 120px) clamp(28px, 4vw, 64px) clamp(96px, 12vw, 160px)",
         }}
       >
-        <CenteredBody showCta={showCta} />
+        <div className="mx-auto" style={{ maxWidth: "1280px" }}>
+          <NocturneBody showCta={showCta} />
 
-        {/* ─── FAQ ─── centered narrow column, hairline accordion */}
-        <section
-          style={{
-            marginTop: "clamp(96px, 14vw, 160px)",
-            paddingTop: "clamp(64px, 8vw, 96px)",
-            borderTop: `1px solid ${MIST}`,
-            maxWidth: 720,
-            marginInline: "auto",
-          }}
-        >
-          <div
-            style={{
-              textAlign: "center",
-              fontFamily: MONO,
-              fontSize: 11,
-              fontWeight: 500,
-              letterSpacing: "0.22em",
-              textTransform: "uppercase",
-              color: FOG,
-              marginBottom: 40,
-            }}
-          >
-            Common questions
-          </div>
-          {FAQS.map((item, idx) => (
-            <details
-              key={item.q}
-              className="faq-item"
+          {/* ─── FAQ ─── dark accordion ─── */}
+          <div style={{ marginTop: "clamp(96px, 14vw, 180px)" }}>
+            <div
               style={{
-                padding: "22px 0",
-                borderBottom: `1px solid #eaedf0`,
-                borderTop: idx === 0 ? `1px solid #eaedf0` : "none",
+                fontFamily: MONO,
+                fontSize: 11,
+                fontWeight: 500,
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                color: STEEL,
+                marginBottom: 56,
               }}
             >
-              <summary
+              Common questions
+            </div>
+
+            {FAQS.map((item, idx) => (
+              <details
+                key={item.q}
+                className="faq-item"
                 style={{
-                  cursor: "pointer",
-                  listStyle: "none",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "baseline",
-                  gap: 16,
+                  padding: "28px 0",
+                  borderBottom: `1px solid ${RULE_DARK}`,
+                  borderTop: idx === 0 ? `1px solid ${RULE_DARK}` : "none",
                 }}
               >
-                <span
+                <summary
+                  style={{
+                    cursor: "pointer",
+                    listStyle: "none",
+                    display: "grid",
+                    gridTemplateColumns: "minmax(56px, 64px) 1fr auto",
+                    gap: 24,
+                    alignItems: "baseline",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: MONO,
+                      fontSize: 12,
+                      fontWeight: 500,
+                      letterSpacing: "0.16em",
+                      color: STEEL,
+                    }}
+                  >
+                    {String(idx + 1).padStart(2, "0")}
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: SERIF,
+                      fontWeight: 400,
+                      fontSize: 20,
+                      lineHeight: 1.3,
+                      color: PAPER,
+                      letterSpacing: "-0.005em",
+                      fontVariationSettings: '"opsz" 14',
+                    }}
+                  >
+                    {item.q}
+                  </span>
+                  <span
+                    className="faq-toggle"
+                    style={{
+                      fontFamily: SANS,
+                      fontSize: 18,
+                      color: STEEL,
+                      transition: "transform 120ms ease",
+                    }}
+                    aria-hidden
+                  >
+                    +
+                  </span>
+                </summary>
+                <p
                   style={{
                     fontFamily: SERIF,
-                    fontWeight: 400,
-                    fontSize: 18,
-                    lineHeight: 1.35,
-                    color: INK,
-                    letterSpacing: "-0.005em",
+                    fontSize: 16,
+                    color: BODY,
+                    lineHeight: 1.6,
+                    marginTop: 16,
+                    marginLeft: 88,
+                    marginBottom: 0,
+                    maxWidth: 680,
                     fontVariationSettings: '"opsz" 14',
                   }}
                 >
-                  {item.q}
-                </span>
-                <span
-                  className="faq-toggle"
-                  style={{
-                    fontFamily: SANS,
-                    fontSize: 16,
-                    color: FOG,
-                    transition: "transform 120ms ease",
-                  }}
-                  aria-hidden
-                >
-                  +
-                </span>
-              </summary>
-              <p
-                style={{
-                  fontFamily: SERIF,
-                  fontSize: 16,
-                  color: SLATE,
-                  lineHeight: 1.6,
-                  marginTop: 14,
-                  marginBottom: 0,
-                  fontVariationSettings: '"opsz" 14',
-                }}
-              >
-                {item.a}
-              </p>
-            </details>
-          ))}
-        </section>
+                  {item.a}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
       </main>
 
-      {/* ─── Footer ─── centered colophon */}
+      {/* ─── Footer ─── dark colophon ─── */}
       <footer
         style={{
           padding: "40px clamp(28px, 4vw, 64px) 56px",
           display: "flex",
-          flexDirection: "column",
           alignItems: "center",
-          gap: 16,
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: 20,
+          borderTop: `1px solid ${RULE_DARK}`,
         }}
       >
-        <Wordmark />
+        <Wordmark tone="light" slotColor={INK} />
         <div
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 20,
+            gap: 24,
             fontFamily: MONO,
             fontSize: 11,
             fontWeight: 500,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
-            color: FOG,
+            color: STEEL,
           }}
         >
-          <Link
-            href="/contact"
-            style={{ color: STEEL, textDecoration: "none" }}
-          >
+          <Link href="/contact" style={{ color: STEEL, textDecoration: "none" }}>
             Contact
           </Link>
-          <Link
-            href="/terms"
-            style={{ color: STEEL, textDecoration: "none" }}
-          >
+          <Link href="/terms" style={{ color: STEEL, textDecoration: "none" }}>
             Terms
           </Link>
-          <Link
-            href="/privacy"
-            style={{ color: STEEL, textDecoration: "none" }}
-          >
+          <Link href="/privacy" style={{ color: STEEL, textDecoration: "none" }}>
             Privacy
           </Link>
-          <span style={{ color: MIST }}>·</span>
+          <span style={{ color: GHOST }}>·</span>
           <span>© 2026</span>
         </div>
       </footer>
+
+      <style>{`
+        .noc-header-btn:hover { background-color: ${GREEN_HOVER}; border-color: ${GREEN_HOVER}; }
+      `}</style>
     </div>
   );
 }

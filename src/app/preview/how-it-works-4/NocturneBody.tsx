@@ -103,11 +103,15 @@ const MONO =
   "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
 const INK = "#0d0f12";
-const SLATE = "#2a2f36";
-const STEEL = "#647589";
-const FOG = "#7d8da0";
-const MIST = "#cad1d8";
 const PAPER = "#fbfbfc";
+const BODY = "#cad1d8";
+const STEEL = "#7d8da0";
+const FOG = "#647589";
+const GHOST = "#38414d";
+const RULE_DARK = "#272d35";
+const ACCENT_LIGHT = "#a7b2be";
+const GREEN = "#2d8a4e";
+const GREEN_HOVER = "#246e3e";
 
 function Italic({ children }: { children: React.ReactNode }) {
   return (
@@ -115,7 +119,7 @@ function Italic({ children }: { children: React.ReactNode }) {
       style={{
         fontStyle: "italic",
         fontWeight: 300,
-        color: STEEL,
+        color: ACCENT_LIGHT,
       }}
     >
       {children}
@@ -123,7 +127,7 @@ function Italic({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function CenteredBody({ showCta }: { showCta: boolean }) {
+export function NocturneBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
   const isClient = tab === "client";
   const steps = isClient ? CLIENT_STEPS : RENNER_STEPS;
@@ -142,75 +146,71 @@ export function CenteredBody({ showCta }: { showCta: boolean }) {
     : { label: "Become a Renner", href: "/become-a-renner" };
 
   return (
-    <div style={{ textAlign: "center" }}>
-      {/* ─── Tab toggle ─── inline mono, centered */}
+    <>
+      {/* ─── Tab strip ─── */}
       <div
         role="tablist"
         aria-label="Audience"
         style={{
-          display: "inline-flex",
+          display: "flex",
           alignItems: "center",
-          gap: 14,
+          gap: 16,
+          marginBottom: 96,
           fontFamily: MONO,
-          fontSize: 11,
+          fontSize: 12,
           fontWeight: 500,
           letterSpacing: "0.22em",
           textTransform: "uppercase",
-          marginBottom: 64,
         }}
       >
-        <CTab
+        <NTab
           label="For Clients"
           active={isClient}
           onClick={() => setTab("client")}
         />
-        <span aria-hidden style={{ color: MIST }}>
+        <span aria-hidden style={{ color: GHOST }}>
           /
         </span>
-        <CTab
+        <NTab
           label="For Renners"
           active={!isClient}
           onClick={() => setTab("renner")}
         />
       </div>
 
-      {/* ─── Page title ─── centered, big */}
+      {/* ─── Page title ─── */}
       <h1
         style={{
           fontFamily: SERIF,
           fontWeight: 400,
-          fontSize: "clamp(56px, 8vw, 112px)",
+          fontSize: "clamp(56px, 9vw, 120px)",
           lineHeight: 0.95,
           letterSpacing: "-0.035em",
-          color: INK,
+          color: PAPER,
           margin: 0,
           marginBottom: "clamp(96px, 14vw, 168px)",
+          maxWidth: "14ch",
           fontVariationSettings: '"opsz" 144',
         }}
       >
         How Renner <Italic>works</Italic>
       </h1>
 
-      {/* ─── Steps ─── vertically stacked, each centered */}
-      <div style={{ marginBottom: "clamp(96px, 14vw, 160px)" }}>
-        {steps.map((step, idx) => (
-          <article
-            key={step.number}
-            style={{
-              maxWidth: 560,
-              margin: "0 auto",
-              paddingTop: idx === 0 ? 0 : "clamp(48px, 6vw, 80px)",
-              paddingBottom: 0,
-            }}
-          >
+      {/* ─── Steps ─── three columns, ghost numerals ─── */}
+      <div className="noc-steps" style={{ marginBottom: "clamp(96px, 14vw, 168px)" }}>
+        {steps.map((step) => (
+          <div key={step.number} className="noc-step">
             <div
               style={{
-                fontFamily: MONO,
-                fontSize: 11,
-                fontWeight: 500,
-                letterSpacing: "0.22em",
-                color: FOG,
-                marginBottom: 20,
+                fontFamily: SERIF,
+                fontStyle: "italic",
+                fontWeight: 300,
+                fontSize: "clamp(96px, 11vw, 160px)",
+                lineHeight: 0.85,
+                letterSpacing: "-0.05em",
+                color: GHOST,
+                marginBottom: 32,
+                fontVariationSettings: '"opsz" 144',
               }}
             >
               {step.number}
@@ -219,13 +219,13 @@ export function CenteredBody({ showCta }: { showCta: boolean }) {
               style={{
                 fontFamily: SERIF,
                 fontWeight: 400,
-                fontSize: "clamp(28px, 3.4vw, 40px)",
-                lineHeight: 1.1,
-                letterSpacing: "-0.02em",
-                color: INK,
+                fontSize: 24,
+                lineHeight: 1.2,
+                letterSpacing: "-0.012em",
+                color: PAPER,
                 margin: 0,
-                marginBottom: 20,
-                fontVariationSettings: '"opsz" 72',
+                marginBottom: 16,
+                fontVariationSettings: '"opsz" 36',
               }}
             >
               {step.title}
@@ -234,25 +234,21 @@ export function CenteredBody({ showCta }: { showCta: boolean }) {
               style={{
                 fontFamily: SERIF,
                 fontWeight: 400,
-                fontSize: 17,
+                fontSize: 16,
                 lineHeight: 1.6,
-                color: SLATE,
+                color: BODY,
                 margin: 0,
                 fontVariationSettings: '"opsz" 14',
               }}
             >
               {step.body}
             </p>
-          </article>
+          </div>
         ))}
       </div>
 
-      {/* ─── Benefits ─── italic stack, centered */}
-      <div
-        style={{
-          marginBottom: showCta ? "clamp(96px, 14vw, 160px)" : 0,
-        }}
-      >
+      {/* ─── Benefits ─── italic stack ─── */}
+      <div style={{ marginBottom: showCta ? "clamp(96px, 14vw, 160px)" : 0 }}>
         <ul
           style={{
             listStyle: "none",
@@ -260,9 +256,7 @@ export function CenteredBody({ showCta }: { showCta: boolean }) {
             margin: 0,
             display: "flex",
             flexDirection: "column",
-            gap: 20,
-            maxWidth: 720,
-            marginInline: "auto",
+            gap: 24,
           }}
         >
           {benefits.map((b) => (
@@ -272,10 +266,10 @@ export function CenteredBody({ showCta }: { showCta: boolean }) {
                 fontFamily: SERIF,
                 fontStyle: "italic",
                 fontWeight: 300,
-                fontSize: "clamp(20px, 2.4vw, 28px)",
-                lineHeight: 1.35,
+                fontSize: "clamp(22px, 2.6vw, 32px)",
+                lineHeight: 1.3,
                 letterSpacing: "-0.012em",
-                color: INK,
+                color: PAPER,
                 fontVariationSettings: '"opsz" 36',
               }}
             >
@@ -285,21 +279,20 @@ export function CenteredBody({ showCta }: { showCta: boolean }) {
         </ul>
       </div>
 
-      {/* ─── CTA ─── centered heading + button */}
+      {/* ─── CTA ─── green button on dark ─── */}
       {showCta && (
         <div>
           <h2
             style={{
               fontFamily: SERIF,
               fontWeight: 400,
-              fontSize: "clamp(36px, 5vw, 64px)",
+              fontSize: "clamp(40px, 6vw, 72px)",
               lineHeight: 1.05,
               letterSpacing: "-0.028em",
-              color: INK,
+              color: PAPER,
               margin: 0,
               marginBottom: 40,
               maxWidth: "16ch",
-              marginInline: "auto",
               fontVariationSettings: '"opsz" 144',
             }}
           >
@@ -307,6 +300,7 @@ export function CenteredBody({ showCta }: { showCta: boolean }) {
           </h2>
           <Link
             href={ctaButton.href}
+            className="noc-cta-btn"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -316,26 +310,46 @@ export function CenteredBody({ showCta }: { showCta: boolean }) {
               fontWeight: 500,
               letterSpacing: "0.01em",
               color: PAPER,
-              backgroundColor: INK,
-              border: `1px solid ${INK}`,
+              backgroundColor: GREEN,
+              border: `1px solid ${GREEN}`,
               borderRadius: 4,
               padding: "14px 26px",
               textDecoration: "none",
               whiteSpace: "nowrap",
+              transition:
+                "background-color 150ms ease, border-color 150ms ease",
             }}
           >
             {ctaButton.label}
-            <span aria-hidden style={{ opacity: 0.7 }}>
+            <span aria-hidden style={{ opacity: 0.85 }}>
               →
             </span>
           </Link>
         </div>
       )}
-    </div>
+
+      <style jsx>{`
+        .noc-cta-btn:hover {
+          background-color: ${GREEN_HOVER};
+          border-color: ${GREEN_HOVER};
+        }
+        .noc-steps {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          gap: clamp(48px, 6vw, 96px);
+        }
+        @media (max-width: 760px) {
+          .noc-steps {
+            grid-template-columns: 1fr;
+            gap: 80px;
+          }
+        }
+      `}</style>
+    </>
   );
 }
 
-function CTab({
+function NTab({
   label,
   active,
   onClick,
@@ -359,7 +373,7 @@ function CTab({
         fontWeight: "inherit",
         letterSpacing: "inherit",
         textTransform: "inherit",
-        color: active ? INK : FOG,
+        color: active ? PAPER : FOG,
         cursor: "pointer",
         transition: "color 150ms ease",
       }}
