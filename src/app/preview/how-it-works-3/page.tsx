@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Wordmark } from "@/components/Wordmark";
 import { getViewer } from "@/lib/role";
-import { ManifestoBody } from "./ManifestoBody";
+import { MarginaliaBody } from "./MarginaliaBody";
 
 export const metadata = {
   title: "How it works · Renner",
@@ -9,7 +9,7 @@ export const metadata = {
 };
 export const dynamic = "force-dynamic";
 
-const FAQS: Array<{ q: string; a: string }> = [
+const FAQS = [
   {
     q: "What is Renner?",
     a: "Renner is a marketplace built specifically for real-estate task work. Clients post short jobs — sign placement, document delivery, property prep, guest check-ins, showings — and background-checked Renners apply, get booked, and get paid through the platform.",
@@ -56,21 +56,19 @@ const STEEL = "#647589";
 const FOG = "#7d8da0";
 const MIST = "#cad1d8";
 
-export default async function PreviewHowItWorksManifesto() {
+export default async function PreviewHowItWorksMarginalia() {
   const viewer = await getViewer();
   const showCta = !viewer;
 
   return (
     <div style={{ backgroundColor: "#fbfbfc", color: INK, minHeight: "100vh" }}>
-      {/* ─── Compact header ─── */}
       <header
         style={{
-          padding: "20px clamp(28px, 4vw, 64px)",
+          padding: "clamp(20px, 2.5vw, 32px) clamp(28px, 4vw, 64px)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
           gap: 16,
-          borderBottom: `1px solid #eaedf0`,
         }}
       >
         <Wordmark />
@@ -127,76 +125,45 @@ export default async function PreviewHowItWorksManifesto() {
         )}
       </header>
 
-      {/* ─── Above-the-fold core ─── */}
-      <section
+      <main
         style={{
-          padding: "clamp(40px, 5vw, 72px) clamp(28px, 4vw, 64px)",
-          maxWidth: "1280px",
-          margin: "0 auto",
+          padding:
+            "clamp(56px, 8vw, 120px) clamp(28px, 4vw, 64px) clamp(96px, 12vw, 160px)",
         }}
       >
-        <ManifestoBody showCta={showCta} />
-      </section>
+        <MarginaliaBody showCta={showCta} />
 
-      {/* ─── FAQ — below the fold ─── */}
-      <section
-        style={{
-          padding: "clamp(72px, 8vw, 120px) clamp(28px, 4vw, 64px)",
-          maxWidth: "1280px",
-          margin: "0 auto",
-          borderTop: `1px solid ${MIST}`,
-        }}
-      >
+        {/* ─── FAQ ─── centered, footnote-style ─── */}
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "minmax(160px, 220px) 1fr",
-            gap: "clamp(24px, 4vw, 56px)",
-            alignItems: "baseline",
+            maxWidth: 720,
+            margin: "0 auto",
+            marginTop: "clamp(96px, 12vw, 160px)",
           }}
-          className="manifesto-faq-header"
         >
-          <h2
-            style={{
-              fontFamily: SERIF,
-              fontWeight: 400,
-              fontSize: "clamp(28px, 3vw, 36px)",
-              lineHeight: 1.1,
-              letterSpacing: "-0.022em",
-              color: INK,
-              margin: 0,
-              fontVariationSettings: '"opsz" 72',
-            }}
-          >
-            Common questions
-          </h2>
           <div
             style={{
               fontFamily: MONO,
               fontSize: 11,
               fontWeight: 500,
-              letterSpacing: "0.18em",
+              letterSpacing: "0.22em",
               textTransform: "uppercase",
               color: FOG,
-              gridColumn: 1,
-              gridRow: 1,
-              alignSelf: "baseline",
-              paddingTop: 4,
+              marginBottom: 40,
+              textAlign: "center",
             }}
           >
-            FAQ
+            Common questions
           </div>
-        </div>
 
-        <div style={{ marginTop: 56 }}>
           {FAQS.map((item, idx) => (
             <details
               key={item.q}
               className="faq-item"
               style={{
                 padding: "24px 0",
-                borderTop: idx === 0 ? `1px solid #eaedf0` : "none",
-                borderBottom: `1px solid #eaedf0`,
+                borderTop: idx === 0 ? "1px solid #eaedf0" : "none",
+                borderBottom: "1px solid #eaedf0",
               }}
             >
               <summary
@@ -204,8 +171,7 @@ export default async function PreviewHowItWorksManifesto() {
                   cursor: "pointer",
                   listStyle: "none",
                   display: "grid",
-                  gridTemplateColumns:
-                    "minmax(56px, 64px) 1fr auto",
+                  gridTemplateColumns: "minmax(48px, 56px) 1fr auto",
                   gap: 24,
                   alignItems: "baseline",
                 }}
@@ -213,9 +179,9 @@ export default async function PreviewHowItWorksManifesto() {
                 <span
                   style={{
                     fontFamily: MONO,
-                    fontSize: 12,
+                    fontSize: 11,
                     fontWeight: 500,
-                    letterSpacing: "0.16em",
+                    letterSpacing: "0.2em",
                     color: FOG,
                   }}
                 >
@@ -226,7 +192,7 @@ export default async function PreviewHowItWorksManifesto() {
                     fontFamily: SERIF,
                     fontWeight: 400,
                     fontSize: 19,
-                    lineHeight: 1.3,
+                    lineHeight: 1.35,
                     color: INK,
                     letterSpacing: "-0.005em",
                     fontVariationSettings: '"opsz" 14',
@@ -252,11 +218,10 @@ export default async function PreviewHowItWorksManifesto() {
                   fontFamily: SERIF,
                   fontSize: 16,
                   color: SLATE,
-                  lineHeight: 1.6,
+                  lineHeight: 1.65,
                   marginTop: 16,
-                  marginLeft: 88,
+                  marginLeft: 80,
                   marginBottom: 0,
-                  maxWidth: 680,
                   fontVariationSettings: '"opsz" 14',
                 }}
               >
@@ -265,18 +230,17 @@ export default async function PreviewHowItWorksManifesto() {
             </details>
           ))}
         </div>
-      </section>
+      </main>
 
-      {/* ─── Compact footer ─── */}
       <footer
         style={{
           padding: "32px clamp(28px, 4vw, 64px)",
-          borderTop: `1px solid #eaedf0`,
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
           flexWrap: "wrap",
           gap: 20,
+          borderTop: "1px solid #eaedf0",
         }}
       >
         <Wordmark />
@@ -288,27 +252,18 @@ export default async function PreviewHowItWorksManifesto() {
             fontFamily: MONO,
             fontSize: 11,
             fontWeight: 500,
-            letterSpacing: "0.16em",
+            letterSpacing: "0.18em",
             textTransform: "uppercase",
             color: FOG,
           }}
         >
-          <Link
-            href="/contact"
-            style={{ color: STEEL, textDecoration: "none" }}
-          >
+          <Link href="/contact" style={{ color: STEEL, textDecoration: "none" }}>
             Contact
           </Link>
-          <Link
-            href="/terms"
-            style={{ color: STEEL, textDecoration: "none" }}
-          >
+          <Link href="/terms" style={{ color: STEEL, textDecoration: "none" }}>
             Terms
           </Link>
-          <Link
-            href="/privacy"
-            style={{ color: STEEL, textDecoration: "none" }}
-          >
+          <Link href="/privacy" style={{ color: STEEL, textDecoration: "none" }}>
             Privacy
           </Link>
           <span style={{ color: MIST }}>·</span>

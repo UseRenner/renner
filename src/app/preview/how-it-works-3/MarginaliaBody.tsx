@@ -103,15 +103,12 @@ const MONO =
   "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
 const INK = "#0d0f12";
+const SLATE = "#2a2f36";
+const STEEL = "#647589";
+const FOG = "#7d8da0";
+const MIST = "#cad1d8";
+const RULE = "#eaedf0";
 const PAPER = "#fbfbfc";
-const BODY = "#cad1d8";
-const STEEL = "#7d8da0";
-const FOG = "#647589";
-const GHOST = "#38414d";
-const RULE_DARK = "#272d35";
-const ACCENT_LIGHT = "#a7b2be";
-const GREEN = "#2d8a4e";
-const GREEN_HOVER = "#246e3e";
 
 function Italic({ children }: { children: React.ReactNode }) {
   return (
@@ -119,7 +116,7 @@ function Italic({ children }: { children: React.ReactNode }) {
       style={{
         fontStyle: "italic",
         fontWeight: 300,
-        color: ACCENT_LIGHT,
+        color: STEEL,
       }}
     >
       {children}
@@ -127,7 +124,7 @@ function Italic({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function NocturneBody({ showCta }: { showCta: boolean }) {
+export function MarginaliaBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
   const isClient = tab === "client";
   const steps = isClient ? CLIENT_STEPS : RENNER_STEPS;
@@ -147,108 +144,122 @@ export function NocturneBody({ showCta }: { showCta: boolean }) {
 
   return (
     <>
-      {/* ─── Tab strip ─── */}
+      {/* ─── Tab strip ─── centered ─── */}
       <div
         role="tablist"
         aria-label="Audience"
         style={{
           display: "flex",
           alignItems: "center",
-          gap: 16,
-          marginBottom: 96,
+          justifyContent: "center",
+          gap: 14,
+          marginBottom: 56,
           fontFamily: MONO,
-          fontSize: 12,
+          fontSize: 11,
           fontWeight: 500,
           letterSpacing: "0.22em",
           textTransform: "uppercase",
         }}
       >
-        <NTab
+        <MTab
           label="For Clients"
           active={isClient}
           onClick={() => setTab("client")}
         />
-        <span aria-hidden style={{ color: GHOST }}>
+        <span aria-hidden style={{ color: MIST }}>
           /
         </span>
-        <NTab
+        <MTab
           label="For Renners"
           active={!isClient}
           onClick={() => setTab("renner")}
         />
       </div>
 
-      {/* ─── Page title ─── */}
+      {/* ─── Page title ─── centered ─── */}
       <h1
         style={{
           fontFamily: SERIF,
           fontWeight: 400,
-          fontSize: "clamp(56px, 9vw, 120px)",
-          lineHeight: 0.95,
-          letterSpacing: "-0.035em",
-          color: PAPER,
+          fontSize: "clamp(48px, 7vw, 88px)",
+          lineHeight: 1,
+          letterSpacing: "-0.03em",
+          color: INK,
           margin: 0,
-          marginBottom: "clamp(96px, 14vw, 168px)",
-          maxWidth: "14ch",
+          marginBottom: "clamp(96px, 12vw, 144px)",
+          textAlign: "center",
           fontVariationSettings: '"opsz" 144',
         }}
       >
         How Renner <Italic>works</Italic>
       </h1>
 
-      {/* ─── Steps ─── three columns, ghost numerals ─── */}
-      <div className="noc-steps" style={{ marginBottom: "clamp(96px, 14vw, 168px)" }}>
-        {steps.map((step) => (
-          <div key={step.number} className="noc-step">
-            <div
+      {/* ─── Steps ─── marginalia layout ─── */}
+      <div className="mar-stack">
+        {steps.map((step, idx) => (
+          <article
+            key={step.number}
+            className="mar-row"
+            style={{
+              borderTop: `1px solid ${RULE}`,
+              borderBottom:
+                idx === steps.length - 1 ? `1px solid ${RULE}` : "none",
+            }}
+          >
+            <aside
               style={{
-                fontFamily: SERIF,
-                fontStyle: "italic",
-                fontWeight: 300,
-                fontSize: "clamp(96px, 11vw, 160px)",
-                lineHeight: 0.85,
-                letterSpacing: "-0.05em",
-                color: GHOST,
-                marginBottom: 32,
-                fontVariationSettings: '"opsz" 144',
+                fontFamily: MONO,
+                fontSize: 11,
+                fontWeight: 500,
+                letterSpacing: "0.2em",
+                color: FOG,
+                paddingTop: 6,
               }}
             >
               {step.number}
+            </aside>
+            <div>
+              <h3
+                style={{
+                  fontFamily: SERIF,
+                  fontWeight: 400,
+                  fontSize: 26,
+                  lineHeight: 1.15,
+                  letterSpacing: "-0.018em",
+                  color: INK,
+                  margin: 0,
+                  marginBottom: 16,
+                  fontVariationSettings: '"opsz" 36',
+                }}
+              >
+                {step.title}
+              </h3>
+              <p
+                style={{
+                  fontFamily: SERIF,
+                  fontWeight: 400,
+                  fontSize: 17,
+                  lineHeight: 1.65,
+                  color: SLATE,
+                  margin: 0,
+                  fontVariationSettings: '"opsz" 14',
+                }}
+              >
+                {step.body}
+              </p>
             </div>
-            <h3
-              style={{
-                fontFamily: SERIF,
-                fontWeight: 400,
-                fontSize: 24,
-                lineHeight: 1.2,
-                letterSpacing: "-0.012em",
-                color: PAPER,
-                margin: 0,
-                marginBottom: 16,
-                fontVariationSettings: '"opsz" 36',
-              }}
-            >
-              {step.title}
-            </h3>
-            <p
-              style={{
-                fontFamily: SERIF,
-                fontWeight: 400,
-                fontSize: 16,
-                lineHeight: 1.6,
-                color: BODY,
-                margin: 0,
-                fontVariationSettings: '"opsz" 14',
-              }}
-            >
-              {step.body}
-            </p>
-          </div>
+          </article>
         ))}
       </div>
 
-      {/* ─── Benefits ─── italic stack ─── */}
-      <div style={{ marginBottom: showCta ? "clamp(96px, 14vw, 160px)" : 0 }}>
+      {/* ─── Benefits ─── italic stack, centered ─── */}
+      <div
+        style={{
+          marginTop: "clamp(96px, 12vw, 144px)",
+          marginBottom: showCta ? "clamp(96px, 12vw, 144px)" : 0,
+          textAlign: "center",
+        }}
+      >
         <ul
           style={{
             listStyle: "none",
@@ -256,7 +267,7 @@ export function NocturneBody({ showCta }: { showCta: boolean }) {
             margin: 0,
             display: "flex",
             flexDirection: "column",
-            gap: 24,
+            gap: 18,
           }}
         >
           {benefits.map((b) => (
@@ -266,10 +277,10 @@ export function NocturneBody({ showCta }: { showCta: boolean }) {
                 fontFamily: SERIF,
                 fontStyle: "italic",
                 fontWeight: 300,
-                fontSize: "clamp(22px, 2.6vw, 32px)",
+                fontSize: "clamp(22px, 2.6vw, 30px)",
                 lineHeight: 1.3,
                 letterSpacing: "-0.012em",
-                color: PAPER,
+                color: INK,
                 fontVariationSettings: '"opsz" 36',
               }}
             >
@@ -279,20 +290,19 @@ export function NocturneBody({ showCta }: { showCta: boolean }) {
         </ul>
       </div>
 
-      {/* ─── CTA ─── green button on dark ─── */}
+      {/* ─── CTA ─── centered, refined ─── */}
       {showCta && (
-        <div>
+        <div style={{ textAlign: "center" }}>
           <h2
             style={{
               fontFamily: SERIF,
               fontWeight: 400,
-              fontSize: "clamp(40px, 6vw, 72px)",
-              lineHeight: 1.05,
-              letterSpacing: "-0.028em",
-              color: PAPER,
+              fontSize: "clamp(36px, 5vw, 56px)",
+              lineHeight: 1.1,
+              letterSpacing: "-0.025em",
+              color: INK,
               margin: 0,
               marginBottom: 40,
-              maxWidth: "16ch",
               fontVariationSettings: '"opsz" 144',
             }}
           >
@@ -300,7 +310,6 @@ export function NocturneBody({ showCta }: { showCta: boolean }) {
           </h2>
           <Link
             href={ctaButton.href}
-            className="noc-cta-btn"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -310,18 +319,16 @@ export function NocturneBody({ showCta }: { showCta: boolean }) {
               fontWeight: 500,
               letterSpacing: "0.01em",
               color: PAPER,
-              backgroundColor: GREEN,
-              border: `1px solid ${GREEN}`,
+              backgroundColor: INK,
+              border: `1px solid ${INK}`,
               borderRadius: 4,
               padding: "14px 26px",
               textDecoration: "none",
               whiteSpace: "nowrap",
-              transition:
-                "background-color 150ms ease, border-color 150ms ease",
             }}
           >
             {ctaButton.label}
-            <span aria-hidden style={{ opacity: 0.85 }}>
+            <span aria-hidden style={{ opacity: 0.7 }}>
               →
             </span>
           </Link>
@@ -329,19 +336,22 @@ export function NocturneBody({ showCta }: { showCta: boolean }) {
       )}
 
       <style jsx>{`
-        .noc-cta-btn:hover {
-          background-color: ${GREEN_HOVER};
-          border-color: ${GREEN_HOVER};
+        .mar-stack {
+          max-width: 720px;
+          margin: 0 auto;
         }
-        .noc-steps {
+        .mar-row {
           display: grid;
-          grid-template-columns: 1fr 1fr 1fr;
-          gap: clamp(48px, 6vw, 96px);
+          grid-template-columns: 56px 1fr;
+          gap: 32px;
+          padding: 40px 0;
+          align-items: baseline;
         }
-        @media (max-width: 760px) {
-          .noc-steps {
-            grid-template-columns: 1fr;
-            gap: 80px;
+        @media (max-width: 640px) {
+          .mar-row {
+            grid-template-columns: 40px 1fr;
+            gap: 20px;
+            padding: 32px 0;
           }
         }
       `}</style>
@@ -349,7 +359,7 @@ export function NocturneBody({ showCta }: { showCta: boolean }) {
   );
 }
 
-function NTab({
+function MTab({
   label,
   active,
   onClick,
@@ -373,7 +383,7 @@ function NTab({
         fontWeight: "inherit",
         letterSpacing: "inherit",
         textTransform: "inherit",
-        color: active ? PAPER : FOG,
+        color: active ? INK : FOG,
         cursor: "pointer",
         transition: "color 150ms ease",
       }}
