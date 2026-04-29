@@ -175,51 +175,43 @@ export function SpreadBody({ showCta }: { showCta: boolean }) {
         <TabButton label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
-      {/* ─── Statement + dek ─── side-by-side at the top */}
-      <div
-        className="spread-lede"
+      {/* ─── Statement + dek ─── statement first, dek below; the
+          side-by-side ratio kept clipping "Pick a vetted Renner." */}
+      <h1
         style={{
-          display: "grid",
-          gridTemplateColumns: "minmax(0, 1.1fr) minmax(0, 1fr)",
-          gap: "clamp(40px, 6vw, 96px)",
-          alignItems: "end",
-          marginBottom: "clamp(72px, 9vw, 120px)",
+          fontFamily: SERIF,
+          fontWeight: 400,
+          fontSize: "clamp(40px, 6vw, 80px)",
+          lineHeight: 1.05,
+          letterSpacing: "-0.028em",
+          color: INK,
+          margin: 0,
+          marginBottom: "clamp(32px, 4vw, 48px)",
+          maxWidth: "26ch",
+          fontVariationSettings: '"opsz" 144',
         }}
       >
-        <h1
-          style={{
-            fontFamily: SERIF,
-            fontWeight: 400,
-            fontSize: "clamp(40px, 6vw, 80px)",
-            lineHeight: 1.05,
-            letterSpacing: "-0.028em",
-            color: INK,
-            margin: 0,
-            maxWidth: "26ch",
-            fontVariationSettings: '"opsz" 144',
-          }}
-        >
-          {clauses.map((c, i) => (
-            <span key={i} style={{ display: "block" }}>
-              {c}
-            </span>
-          ))}
-        </h1>
-        <p
-          style={{
-            fontFamily: SERIF,
-            fontWeight: 400,
-            fontSize: "clamp(16px, 1.4vw, 18px)",
-            lineHeight: 1.6,
-            color: SLATE,
-            margin: 0,
-            maxWidth: "44ch",
-            fontVariationSettings: '"opsz" 14',
-          }}
-        >
-          {dek}
-        </p>
-      </div>
+        {clauses.map((c, i) => (
+          <span key={i} style={{ display: "block" }}>
+            {c}
+          </span>
+        ))}
+      </h1>
+      <p
+        style={{
+          fontFamily: SERIF,
+          fontWeight: 400,
+          fontSize: "clamp(17px, 1.5vw, 19px)",
+          lineHeight: 1.6,
+          color: SLATE,
+          margin: 0,
+          marginBottom: "clamp(72px, 9vw, 120px)",
+          maxWidth: "56ch",
+          fontVariationSettings: '"opsz" 14',
+        }}
+      >
+        {dek}
+      </p>
 
       {/* ─── Spread ─── three columns of detail under the statement */}
       <div
@@ -385,13 +377,6 @@ export function SpreadBody({ showCta }: { showCta: boolean }) {
       )}
 
       <style jsx>{`
-        @media (max-width: 880px) {
-          .spread-lede {
-            grid-template-columns: 1fr !important;
-            gap: 32px !important;
-            align-items: start !important;
-          }
-        }
         @media (max-width: 720px) {
           .spread-grid {
             grid-template-columns: 1fr !important;

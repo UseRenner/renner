@@ -2,10 +2,10 @@ import Link from "next/link";
 import { Wordmark } from "@/components/Wordmark";
 import { getViewer } from "@/lib/role";
 import { FAQS, VariantSwitcher } from "../_shared";
-import { NotesBody } from "./NotesBody";
+import { ChapterBody } from "./ChapterBody";
 
 export const metadata = {
-  title: "How it works · Notes · Renner",
+  title: "How it works · Chapter · Renner",
   robots: { index: false, follow: false },
 };
 export const dynamic = "force-dynamic";
@@ -22,13 +22,13 @@ const STEEL = "#647589";
 const FOG = "#7d8da0";
 const MIST = "#cad1d8";
 
-export default async function NotesHowItWorks() {
+export default async function ChapterHowItWorks() {
   const viewer = await getViewer();
   const showCta = !viewer;
 
   return (
     <div style={{ backgroundColor: "#fbfbfc", color: INK, minHeight: "100vh" }}>
-      <VariantSwitcher active="notes" />
+      <VariantSwitcher active="chapter" />
 
       {/* ─── Header ─── wordmark + sign-in / sign-up */}
       <header
@@ -103,7 +103,7 @@ export default async function NotesHowItWorks() {
         }}
       >
         <div className="mx-auto" style={{ maxWidth: "1200px" }}>
-          <NotesBody showCta={showCta} />
+          <ChapterBody showCta={showCta} />
 
           {/* ─── FAQ ─── quiet hairline accordion */}
           <section style={{ marginTop: "clamp(96px, 14vw, 168px)" }}>
