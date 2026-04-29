@@ -66,7 +66,9 @@ export type BriefFontKey =
   | "dm-serif"
   | "castoro"
   | "merriweather"
-  | "instrument-serif";
+  | "instrument-serif"
+  | "tinos"
+  | "gelasio";
 
 export const BRIEF_FONTS: ReadonlyArray<{
   href: string;
@@ -81,6 +83,8 @@ export const BRIEF_FONTS: ReadonlyArray<{
   { href: "/preview/how-it-works/brief/castoro", key: "castoro", label: "Castoro" },
   { href: "/preview/how-it-works/brief/merriweather", key: "merriweather", label: "Merriweather" },
   { href: "/preview/how-it-works/brief/instrument-serif", key: "instrument-serif", label: "Instrument Serif" },
+  { href: "/preview/how-it-works/brief/tinos", key: "tinos", label: "Tinos" },
+  { href: "/preview/how-it-works/brief/gelasio", key: "gelasio", label: "Gelasio" },
 ];
 
 // A thin review-only strip that lets the reviewer flip between the
