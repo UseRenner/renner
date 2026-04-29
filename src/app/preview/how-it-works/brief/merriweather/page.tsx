@@ -1,29 +1,29 @@
-import { Roboto_Serif } from "next/font/google";
+import { Merriweather } from "next/font/google";
 import { FontBriefPage } from "../_FontBriefPage";
 
-// Roboto Serif is a variable font (opsz, wght, wdth, GRAD). Lean
-// into the lighter end of the weight axis — 300 for the H1 / display
-// elements, 400 for body, 400 for labels (instead of the default
-// 500). Italic-300 closer.
-const roboto = Roboto_Serif({
+// Merriweather ships 300 / 400 / 700 / 900 with matching italics.
+// Lean light: 300 on the H1 / wordmark / display elements, 400 on
+// body and labels, 300 italic on the closer emphasis.
+const merriweather = Merriweather({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-test",
+  weight: ["300", "400", "700"],
   style: ["normal", "italic"],
 });
 
 export const metadata = {
-  title: "How it works · Brief · Roboto Serif · Renner",
+  title: "How it works · Brief · Merriweather · Renner",
   robots: { index: false, follow: false },
 };
 export const dynamic = "force-dynamic";
 
-export default async function BriefRobotoSerifPage() {
+export default async function BriefMerriweatherPage() {
   const family = "var(--font-test), Georgia, serif";
   return (
     <FontBriefPage
-      fontKey="roboto-serif"
-      fontVariableClass={roboto.variable}
+      fontKey="merriweather"
+      fontVariableClass={merriweather.variable}
       font={{
         display: family,
         body: family,

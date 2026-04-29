@@ -29,6 +29,10 @@ export async function FontBriefPage({
   const viewer = await getViewer();
   const showCta = !viewer;
 
+  const displayWeight = font.displayWeight ?? 400;
+  const bodyWeight = font.bodyWeight ?? 400;
+  const labelWeight = font.labelWeight ?? 500;
+
   return (
     <div
       className={fontVariableClass}
@@ -67,7 +71,7 @@ export async function FontBriefPage({
             style={{
               fontFamily: font.display,
               fontSize: 22,
-              fontWeight: 500,
+              fontWeight: displayWeight,
               letterSpacing: "-0.02em",
               color: INK,
               lineHeight: 1,
@@ -84,7 +88,7 @@ export async function FontBriefPage({
               style={{
                 fontFamily: font.body,
                 fontSize: 11,
-                fontWeight: 500,
+                fontWeight: labelWeight,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
                 color: STEEL,
@@ -98,7 +102,7 @@ export async function FontBriefPage({
               style={{
                 fontFamily: font.body,
                 fontSize: 13,
-                fontWeight: 500,
+                fontWeight: bodyWeight,
                 letterSpacing: "0.01em",
                 color: PAPER,
                 backgroundColor: INK,
@@ -120,7 +124,7 @@ export async function FontBriefPage({
             style={{
               fontFamily: font.body,
               fontSize: 11,
-              fontWeight: 500,
+              fontWeight: labelWeight,
               letterSpacing: "0.18em",
               textTransform: "uppercase",
               color: INK,
@@ -147,7 +151,7 @@ export async function FontBriefPage({
               style={{
                 fontFamily: font.body,
                 fontSize: 10,
-                fontWeight: 500,
+                fontWeight: labelWeight,
                 letterSpacing: "0.24em",
                 textTransform: "uppercase",
                 color: FOG,
@@ -182,7 +186,7 @@ export async function FontBriefPage({
                       style={{
                         fontFamily: font.body,
                         fontSize: 11,
-                        fontWeight: 500,
+                        fontWeight: labelWeight,
                         letterSpacing: "0.2em",
                         color: FOG,
                       }}
@@ -192,7 +196,7 @@ export async function FontBriefPage({
                     <span
                       style={{
                         fontFamily: font.body,
-                        fontWeight: 400,
+                        fontWeight: bodyWeight,
                         fontSize: 19,
                         lineHeight: 1.35,
                         color: INK,
@@ -262,7 +266,7 @@ export async function FontBriefPage({
             style={{
               fontFamily: font.display,
               fontSize: 22,
-              fontWeight: 500,
+              fontWeight: displayWeight,
               letterSpacing: "-0.02em",
               color: INK,
               lineHeight: 1,
@@ -278,7 +282,7 @@ export async function FontBriefPage({
             gap: 24,
             fontFamily: font.body,
             fontSize: 10,
-            fontWeight: 500,
+            fontWeight: labelWeight,
             letterSpacing: "0.22em",
             textTransform: "uppercase",
             color: FOG,

@@ -10,8 +10,7 @@ import { useState } from "react";
 
 export type FontStack = {
   // Used for the H1 statement (and CTA heading). For most families
-  // this matches `body`; DM Serif and Castoro pair Display + Text so
-  // they pass distinct strings.
+  // this matches `body`.
   display: string;
   // Used for the dek, detail body, FAQ, footer, audience tabs, button
   // labels, mono-style labels, and proof lines — i.e. everything that
@@ -20,6 +19,11 @@ export type FontStack = {
   // Italic weight for the closer emphasis ("done.", "vetted Renner.").
   // 300 where the family ships a light italic, 400 elsewhere.
   italicWeight: number;
+  // Optional weight overrides. Defaults: 400 / 400 / 500. Variants
+  // pass lighter values where the family has the range.
+  displayWeight?: number; // H1, detail row titles, CTA heading
+  bodyWeight?: number;    // dek, detail body, FAQ answer, button text
+  labelWeight?: number;   // small uppercase labels, FAQ question, footer
 };
 
 type Detail = {
@@ -162,6 +166,10 @@ export function FontBriefBody({
     ? { label: "Sign up", href: "/signup" }
     : { label: "Become a Renner", href: "/become-a-renner" };
 
+  const displayWeight = font.displayWeight ?? 400;
+  const bodyWeight = font.bodyWeight ?? 400;
+  const labelWeight = font.labelWeight ?? 500;
+
   // Closer-italic emphasis. Always uses font.body so families that
   // pair a display cut without italic (e.g. Castoro Titling) still
   // get a real italic from their text cut on the closer word.
@@ -201,7 +209,7 @@ export function FontBriefBody({
           marginBottom: 56,
           fontFamily: font.body,
           fontSize: 11,
-          fontWeight: 500,
+          fontWeight: labelWeight,
           letterSpacing: "0.22em",
           textTransform: "uppercase",
         }}
@@ -215,7 +223,7 @@ export function FontBriefBody({
       <h1
         style={{
           fontFamily: font.display,
-          fontWeight: 400,
+          fontWeight: displayWeight,
           fontSize: "clamp(40px, 6vw, 80px)",
           lineHeight: 1.05,
           letterSpacing: "-0.028em",
@@ -236,7 +244,7 @@ export function FontBriefBody({
       <p
         style={{
           fontFamily: font.body,
-          fontWeight: 400,
+          fontWeight: bodyWeight,
           fontSize: "clamp(17px, 1.5vw, 19px)",
           lineHeight: 1.55,
           color: SLATE,
@@ -269,7 +277,7 @@ export function FontBriefBody({
               style={{
                 fontFamily: font.body,
                 fontSize: 11,
-                fontWeight: 500,
+                fontWeight: labelWeight,
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
                 color: FOG,
@@ -281,7 +289,7 @@ export function FontBriefBody({
               <h3
                 style={{
                   fontFamily: font.display,
-                  fontWeight: 400,
+                  fontWeight: displayWeight,
                   fontSize: "clamp(22px, 2.2vw, 28px)",
                   lineHeight: 1.2,
                   letterSpacing: "-0.018em",
@@ -295,6 +303,7 @@ export function FontBriefBody({
               <p
                 style={{
                   fontFamily: font.body,
+                  fontWeight: bodyWeight,
                   fontSize: 16,
                   lineHeight: 1.6,
                   color: SLATE,
@@ -310,7 +319,7 @@ export function FontBriefBody({
               style={{
                 fontFamily: font.body,
                 fontSize: 10,
-                fontWeight: 500,
+                fontWeight: labelWeight,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
                 color: STEEL,
@@ -334,7 +343,7 @@ export function FontBriefBody({
           style={{
             fontFamily: font.body,
             fontSize: 10,
-            fontWeight: 500,
+            fontWeight: labelWeight,
             letterSpacing: "0.24em",
             textTransform: "uppercase",
             color: FOG,
@@ -409,7 +418,7 @@ export function FontBriefBody({
           <h2
             style={{
               fontFamily: font.display,
-              fontWeight: 400,
+              fontWeight: displayWeight,
               fontSize: "clamp(28px, 3.5vw, 44px)",
               lineHeight: 1.1,
               letterSpacing: "-0.022em",
@@ -436,7 +445,7 @@ export function FontBriefBody({
               gap: 10,
               fontFamily: font.body,
               fontSize: 15,
-              fontWeight: 500,
+              fontWeight: bodyWeight,
               letterSpacing: "0.01em",
               color: PAPER,
               backgroundColor: INK,
