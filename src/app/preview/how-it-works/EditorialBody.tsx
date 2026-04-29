@@ -107,7 +107,7 @@ const SLATE = "#2a2f36";
 const STEEL = "#647589";
 const FOG = "#7d8da0";
 const MIST = "#cad1d8";
-const GREEN = "#2d8a4e";
+const PAPER = "#fbfbfc";
 
 function Italic({ children }: { children: React.ReactNode }) {
   return (
@@ -120,6 +120,24 @@ function Italic({ children }: { children: React.ReactNode }) {
     >
       {children}
     </span>
+  );
+}
+
+function Kicker({ children }: { children: React.ReactNode }) {
+  return (
+    <div
+      style={{
+        fontFamily: MONO,
+        fontSize: 11,
+        fontWeight: 500,
+        letterSpacing: "0.18em",
+        textTransform: "uppercase",
+        color: FOG,
+        marginBottom: 32,
+      }}
+    >
+      {children}
+    </div>
   );
 }
 
@@ -193,6 +211,7 @@ export function EditorialBody({ showCta }: { showCta: boolean }) {
       </h1>
 
       {/* ─── Steps ─── three columns, no rules, just air */}
+      <Kicker>How it works</Kicker>
       <div
         className="ed-steps"
         style={{ marginBottom: "clamp(96px, 14vw, 180px)" }}
@@ -248,6 +267,7 @@ export function EditorialBody({ showCta }: { showCta: boolean }) {
 
       {/* ─── Benefits ─── quiet typed list, generous spacing */}
       <div style={{ marginBottom: showCta ? "clamp(96px, 14vw, 180px)" : 0 }}>
+        <Kicker>{isClient ? "Why Renner" : "What you get"}</Kicker>
         <ul
           style={{
             listStyle: "none",
@@ -278,9 +298,10 @@ export function EditorialBody({ showCta }: { showCta: boolean }) {
         </ul>
       </div>
 
-      {/* ─── CTA ─── single green moment */}
+      {/* ─── CTA ─── refined dark button, all steel monochrome */}
       {showCta && (
         <div>
+          <Kicker>Get started</Kicker>
           <h2
             style={{
               fontFamily: SERIF,
@@ -299,20 +320,29 @@ export function EditorialBody({ showCta }: { showCta: boolean }) {
           </h2>
           <Link
             href={ctaButton.href}
-            className="ed-cta-link"
             style={{
-              fontFamily: SERIF,
-              fontStyle: "italic",
-              fontWeight: 400,
-              fontSize: "clamp(20px, 2.4vw, 28px)",
-              color: GREEN,
-              textDecoration: "underline",
-              textUnderlineOffset: "6px",
-              textDecorationThickness: "1.5px",
-              fontVariationSettings: '"opsz" 36',
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 10,
+              fontFamily: SANS,
+              fontSize: 15,
+              fontWeight: 500,
+              letterSpacing: "0.01em",
+              color: PAPER,
+              backgroundColor: INK,
+              border: `1px solid ${INK}`,
+              borderRadius: 4,
+              padding: "16px 28px",
+              textDecoration: "none",
+              whiteSpace: "nowrap",
+              transition:
+                "background-color 150ms ease, border-color 150ms ease",
             }}
           >
-            {ctaButton.label} →
+            {ctaButton.label}
+            <span aria-hidden style={{ opacity: 0.7 }}>
+              →
+            </span>
           </Link>
         </div>
       )}
