@@ -7,15 +7,15 @@ import Link from "next/link";
 export const FAQS: Array<{ q: string; a: string }> = [
   {
     q: "What is Renner?",
-    a: "Renner is a marketplace built specifically for real-estate task work. Clients post short jobs — sign placement, document delivery, property prep, guest check-ins, showings — and background-checked Renners apply, get booked, and get paid through the platform.",
+    a: "Renner is a marketplace built specifically for real-estate task work. Clients post short jobs — sign placement, document delivery, property prep, guest check-ins, showings — and Renners apply, get booked, and get paid through the platform. Both clients and Renners are ID-verified and background-checked before they can post or book.",
   },
   {
     q: "How much does it cost?",
-    a: "Renner adds a 10% service fee for clients. Renners keep 90% of the task pay. Both numbers are shown to both parties before a booking is confirmed — no hidden charges.",
+    a: "Renner adds a 10% service fee for clients. Renners keep 100% of the task pay. Both numbers are shown to both parties before a booking is confirmed — no hidden charges.",
   },
   {
-    q: "Who can become a Renner?",
-    a: "Independent contractors who can pass a background check. Every Renner clears a Checkr background check before booking any task — licensed or not. Showings and other license-required tasks additionally require a verified real-estate license.",
+    q: "Who is on the platform?",
+    a: "People who work in real estate, or want to. Renner is built for the industry, not for gig-hopping. Every party — clients and Renners alike — is ID-verified and clears a Checkr background check before posting or booking. Showings and other license-required tasks additionally require a verified real-estate license on the Renner side.",
   },
   {
     q: "Are Renners employees?",
@@ -47,7 +47,9 @@ export type VariantKey =
   | "rail"
   | "suite"
   | "atelier"
-  | "plate";
+  | "plate"
+  | "marketplace"
+  | "network";
 
 export const VARIANTS: ReadonlyArray<{ href: string; key: VariantKey; label: string }> = [
   { href: "/preview/how-it-works", key: "direct", label: "Direct" },
@@ -58,6 +60,8 @@ export const VARIANTS: ReadonlyArray<{ href: string; key: VariantKey; label: str
   { href: "/preview/how-it-works/suite", key: "suite", label: "Suite" },
   { href: "/preview/how-it-works/atelier", key: "atelier", label: "Atelier" },
   { href: "/preview/how-it-works/plate", key: "plate", label: "Plate" },
+  { href: "/preview/how-it-works/marketplace", key: "marketplace", label: "Marketplace" },
+  { href: "/preview/how-it-works/network", key: "network", label: "Network" },
 ];
 
 // Brief-only secondary row. The original Brief lives at the root

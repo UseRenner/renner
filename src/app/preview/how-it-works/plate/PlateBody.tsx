@@ -86,7 +86,7 @@ const RENNER_PLATES: Plate[] = [
         platform. Build a reputation that earns repeat clients.
       </>
     ),
-    proof: "Payout · 90% of task pay",
+    proof: "Payout · 100% of task pay",
   },
 ];
 
@@ -146,7 +146,7 @@ export function PlateBody({ showCta }: { showCta: boolean }) {
       >
         <TabButton label="For clients" active={isClient} onClick={() => setTab("client")} />
         <span aria-hidden style={{ color: STEEL_300, fontStyle: "normal" }}>·</span>
-        <TabButton label="For renners" active={!isClient} onClick={() => setTab("renner")} />
+        <TabButton label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
       {/* ─── Lede ─── headline + dek side by side */}

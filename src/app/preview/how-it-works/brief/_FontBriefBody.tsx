@@ -112,7 +112,7 @@ const RENNER_DETAILS: Detail[] = [
         platform. Build a reputation that earns repeat clients.
       </>
     ),
-    proof: "Payout · 90% of task pay",
+    proof: "Payout · 100% of task pay",
   },
 ];
 
@@ -142,7 +142,7 @@ const RENNER_TRUST: Array<{ label: string; body: string }> = [
   },
   {
     label: "Paid",
-    body: "Renners keep 90%. Escrow releases through Stripe on confirmation.",
+    body: "Renners keep 100%. Escrow releases through Stripe on confirmation.",
   },
 ];
 

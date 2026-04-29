@@ -88,7 +88,7 @@ const CLIENT_TRUST: string[] = [
 
 const RENNER_TRUST: string[] = [
   "Local tasks only",
-  "90% payout",
+  "100% payout",
   "Repeat clients",
 ];
 

@@ -80,7 +80,7 @@ const RENNER_STEPS: Step[] = [
         platform. Build a reputation that earns repeat clients.
       </>
     ),
-    spec: "Payout · 90% of task pay",
+    spec: "Payout · 100% of task pay",
   },
 ];
 
@@ -93,7 +93,7 @@ const CLIENT_TRUST: Array<[string, string]> = [
 const RENNER_TRUST: Array<[string, string]> = [
   ["Independence", "Set your own schedule. Pick the work."],
   ["Local", "Tasks come from agents, brokers, and managers in your area."],
-  ["Payout", "Renners keep 90 percent. Escrow releases through Stripe."],
+  ["Payout", "Renners keep 100 percent. Escrow releases through Stripe."],
 ];
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
@@ -173,7 +173,7 @@ export function AtelierBody({ showCta }: { showCta: boolean }) {
           >
             <TabButton label="For clients" active={isClient} onClick={() => setTab("client")} />
             <span aria-hidden style={{ color: STEEL_300, fontStyle: "normal" }}>·</span>
-            <TabButton label="For renners" active={!isClient} onClick={() => setTab("renner")} />
+            <TabButton label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
           </div>
 
           <p

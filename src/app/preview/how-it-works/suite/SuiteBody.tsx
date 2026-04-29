@@ -162,7 +162,7 @@ export function SuiteBody({ showCta }: { showCta: boolean }) {
       >
         <TabButton label="For clients" active={isClient} onClick={() => setTab("client")} />
         <span aria-hidden style={{ color: STEEL_300, fontStyle: "normal" }}>·</span>
-        <TabButton label="For renners" active={!isClient} onClick={() => setTab("renner")} />
+        <TabButton label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
       {/* ─── Statement ─── smaller, centered, three lines */}

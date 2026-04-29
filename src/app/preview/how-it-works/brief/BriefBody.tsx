@@ -85,7 +85,7 @@ const RENNER_DETAILS: Detail[] = [
         platform. Build a reputation that earns repeat clients.
       </>
     ),
-    proof: "Payout · 90% of task pay",
+    proof: "Payout · 100% of task pay",
   },
 ];
 
@@ -98,7 +98,7 @@ const CLIENT_TRUST: Array<[string, string]> = [
 const RENNER_TRUST: Array<[string, string]> = [
   ["Independent", "Set your own schedule. Pick the work. Decline anything that doesn't fit."],
   ["Local", "Tasks come from agents, brokers, and managers in your area."],
-  ["Paid", "Renners keep 90%. Escrow releases through Stripe on confirmation."],
+  ["Paid", "Renners keep 100%. Escrow releases through Stripe on confirmation."],
 ];
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
