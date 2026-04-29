@@ -142,14 +142,14 @@ export function BriefBody({ showCta }: { showCta: boolean }) {
   // Statement clauses — the answer, said as a sentence.
   const clauses: React.ReactNode[] = isClient
     ? [
-        <>You <Em>post</Em> the task.</>,
+        <>You <Em>post</Em> a task.</>,
         <>A vetted Renner <Em>applies.</Em></>,
         <>It gets <Em>done.</Em></>,
       ]
     : [
         <>You <Em>get</Em> verified.</>,
-        <>You <Em>pick</Em> the work.</>,
-        <>It gets <Em>done.</Em></>,
+        <>You <Em>pick</Em> the task.</>,
+        <>You get it <Em>done.</Em></>,
       ];
 
   return (
@@ -383,7 +383,7 @@ export function BriefBody({ showCta }: { showCta: boolean }) {
           >
             {isClient ? (
               <>
-                Post the <Em>first task.</Em>
+                Get something <Em>done.</Em>
               </>
             ) : (
               <>
