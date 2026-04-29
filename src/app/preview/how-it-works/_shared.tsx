@@ -41,15 +41,15 @@ export const FAQS: Array<{ q: string; a: string }> = [
 
 export const VARIANTS = [
   { href: "/preview/how-it-works", index: "I", label: "Direct" },
-  { href: "/preview/how-it-works/field-note", index: "II", label: "Field Note" },
-  { href: "/preview/how-it-works/dossier", index: "III", label: "Dossier" },
+  { href: "/preview/how-it-works/brief", index: "II", label: "Brief" },
+  { href: "/preview/how-it-works/frame", index: "III", label: "Frame" },
 ] as const;
 
 // A thin review-only strip that lets the reviewer flip between the
 // three preview directions. Lives outside the design itself — fixed
 // to the very top of the viewport in mono with hairline rules — so
 // it never fights the page it sits above.
-export function VariantSwitcher({ active }: { active: "direct" | "field-note" | "dossier" }) {
+export function VariantSwitcher({ active }: { active: "direct" | "brief" | "frame" }) {
   const activeHref = `/preview/how-it-works${active === "direct" ? "" : `/${active}`}`;
 
   return (
