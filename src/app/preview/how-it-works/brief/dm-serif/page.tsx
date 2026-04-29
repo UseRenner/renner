@@ -32,6 +32,9 @@ export default async function BriefDmSerifPage() {
         displayWeight: 400,
         bodyWeight: 400,
         labelWeight: 400,
+        // DM Serif Text only ships at weight 400, so we shrink the
+        // H1 to make the page read lighter overall.
+        displaySize: "clamp(32px, 4.4vw, 56px)",
       }}
     />
   );

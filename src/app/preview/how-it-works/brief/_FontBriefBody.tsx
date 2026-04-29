@@ -24,6 +24,10 @@ export type FontStack = {
   displayWeight?: number; // H1, detail row titles, CTA heading
   bodyWeight?: number;    // dek, detail body, FAQ answer, button text
   labelWeight?: number;   // small uppercase labels, FAQ question, footer
+  // Optional H1 size override. Default is clamp(40px, 6vw, 80px).
+  // Heavy faces (DM Serif at 400 is the only weight available) read
+  // visually lighter when the H1 is shrunk.
+  displaySize?: string;
 };
 
 type Detail = {
@@ -169,6 +173,7 @@ export function FontBriefBody({
   const displayWeight = font.displayWeight ?? 400;
   const bodyWeight = font.bodyWeight ?? 400;
   const labelWeight = font.labelWeight ?? 500;
+  const displaySize = font.displaySize ?? "clamp(40px, 6vw, 80px)";
 
   // Closer-italic emphasis. Always uses font.body so families that
   // pair a display cut without italic (e.g. Castoro Titling) still
@@ -224,7 +229,7 @@ export function FontBriefBody({
         style={{
           fontFamily: font.display,
           fontWeight: displayWeight,
-          fontSize: "clamp(40px, 6vw, 80px)",
+          fontSize: displaySize,
           lineHeight: 1.05,
           letterSpacing: "-0.028em",
           color: INK,

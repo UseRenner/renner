@@ -60,13 +60,9 @@ export const VARIANTS: ReadonlyArray<{ href: string; key: VariantKey; label: str
 // at /brief/<slug>.
 export type BriefFontKey =
   | "source-serif"
-  | "roboto-serif"
-  | "noto-serif"
   | "charis-sil"
   | "dm-serif"
   | "castoro"
-  | "merriweather"
-  | "instrument-serif"
   | "tinos"
   | "gelasio";
 
@@ -76,13 +72,9 @@ export const BRIEF_FONTS: ReadonlyArray<{
   label: string;
 }> = [
   { href: "/preview/how-it-works/brief", key: "source-serif", label: "Source Serif" },
-  { href: "/preview/how-it-works/brief/roboto-serif", key: "roboto-serif", label: "Roboto Serif" },
-  { href: "/preview/how-it-works/brief/noto-serif", key: "noto-serif", label: "Noto Serif" },
   { href: "/preview/how-it-works/brief/charis-sil", key: "charis-sil", label: "Charis SIL" },
   { href: "/preview/how-it-works/brief/dm-serif", key: "dm-serif", label: "DM Serif" },
   { href: "/preview/how-it-works/brief/castoro", key: "castoro", label: "Castoro" },
-  { href: "/preview/how-it-works/brief/merriweather", key: "merriweather", label: "Merriweather" },
-  { href: "/preview/how-it-works/brief/instrument-serif", key: "instrument-serif", label: "Instrument Serif" },
   { href: "/preview/how-it-works/brief/tinos", key: "tinos", label: "Tinos" },
   { href: "/preview/how-it-works/brief/gelasio", key: "gelasio", label: "Gelasio" },
 ];
