@@ -2,47 +2,13 @@ import Link from "next/link";
 import { Wordmark } from "@/components/Wordmark";
 import { getViewer } from "@/lib/role";
 import { EditorialBody } from "./EditorialBody";
+import { FAQS, VariantSwitcher } from "./_shared";
 
 export const metadata = {
   title: "How it works · Renner",
   robots: { index: false, follow: false },
 };
 export const dynamic = "force-dynamic";
-
-const FAQS: Array<{ q: string; a: string }> = [
-  {
-    q: "What is Renner?",
-    a: "Renner is a marketplace built specifically for real-estate task work. Clients post short jobs — sign placement, document delivery, property prep, guest check-ins, showings — and background-checked Renners apply, get booked, and get paid through the platform.",
-  },
-  {
-    q: "How much does it cost?",
-    a: "Renner adds a 10% service fee for clients. Renners keep 90% of the task pay. Both numbers are shown to both parties before a booking is confirmed — no hidden charges.",
-  },
-  {
-    q: "Who can become a Renner?",
-    a: "Independent contractors who can pass a background check. Every Renner clears a Checkr background check before booking any task — licensed or not. Showings and other license-required tasks additionally require a verified real-estate license.",
-  },
-  {
-    q: "Are Renners employees?",
-    a: "No. Renner is a marketplace and Renners are independent contractors. They set their own schedule, choose which tasks to apply to, and aren't directed in how the work gets done.",
-  },
-  {
-    q: "What types of tasks can I post?",
-    a: "Anything real estate — sign installs, lockbox swaps, courier runs, property prep, photo-ready setup, guest check-ins, host assistance, property access for inspectors and contractors, showings, open houses, and more. If it's a short, location-based job tied to a listing or property, it fits.",
-  },
-  {
-    q: "How do payments work?",
-    a: "When you book a Renner, your card is charged and the funds are held in escrow by Stripe. After the Renner submits proof of completion, you have 48 hours to confirm or open a dispute. Confirmed funds release immediately to the Renner; if the 48 hours pass with no action, payment auto-releases.",
-  },
-  {
-    q: "What if something is damaged or stolen during a task?",
-    a: "Document the damage with photos and file a report within 48 hours. The Renner has 48 hours to accept, counter, or dispute the claim. We facilitate resolution using completion photos and the message thread as evidence; unresolved claims escalate to Renner support.",
-  },
-  {
-    q: "What if I need to cancel a task?",
-    a: "Clients can cancel before the Renner starts — full refund, task reopens. After the Renner starts, the task pay is split 50/50. Renners can cancel before starting with no penalty; after starting the same 50/50 split applies regardless of reason.",
-  },
-];
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS =
@@ -62,10 +28,12 @@ export default async function PreviewHowItWorks() {
 
   return (
     <div style={{ backgroundColor: "#fbfbfc", color: INK, minHeight: "100vh" }}>
-      {/* ─── Minimal header ─── wordmark + sign-in + small CTA */}
+      <VariantSwitcher active="direct" />
+
+      {/* ─── Header ─── wordmark + sign-in / sign-up */}
       <header
         style={{
-          padding: "clamp(24px, 3vw, 40px) clamp(28px, 4vw, 64px)",
+          padding: "clamp(20px, 2.5vw, 32px) clamp(28px, 4vw, 64px)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
@@ -74,13 +42,7 @@ export default async function PreviewHowItWorks() {
       >
         <Wordmark />
         {showCta ? (
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 24,
-            }}
-          >
+          <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
             <Link
               href="/signin"
               style={{
@@ -136,23 +98,24 @@ export default async function PreviewHowItWorks() {
 
       <main
         style={{
-          padding: "clamp(48px, 8vw, 120px) clamp(28px, 4vw, 64px) clamp(96px, 12vw, 160px)",
+          padding:
+            "clamp(40px, 6vw, 80px) clamp(28px, 4vw, 64px) clamp(96px, 12vw, 160px)",
         }}
       >
-        <div className="mx-auto" style={{ maxWidth: "1280px" }}>
+        <div className="mx-auto" style={{ maxWidth: "1200px" }}>
           <EditorialBody showCta={showCta} />
 
-          {/* ─── FAQ ─── quiet, hairline-only, accordion */}
-          <div style={{ marginTop: "clamp(96px, 14vw, 180px)" }}>
+          {/* ─── FAQ ─── quiet hairline accordion */}
+          <section style={{ marginTop: "clamp(96px, 14vw, 168px)" }}>
             <div
               style={{
                 fontFamily: MONO,
-                fontSize: 11,
+                fontSize: 10,
                 fontWeight: 500,
-                letterSpacing: "0.18em",
+                letterSpacing: "0.24em",
                 textTransform: "uppercase",
                 color: FOG,
-                marginBottom: 56,
+                marginBottom: 40,
               }}
             >
               Common questions
@@ -164,10 +127,9 @@ export default async function PreviewHowItWorks() {
                   key={item.q}
                   className="faq-item"
                   style={{
-                    padding: "28px 0",
+                    padding: "24px 0",
                     borderBottom: `1px solid #eaedf0`,
-                    borderTop:
-                      idx === 0 ? "1px solid #eaedf0" : "none",
+                    borderTop: idx === 0 ? "1px solid #eaedf0" : "none",
                   }}
                 >
                   <summary
@@ -175,7 +137,7 @@ export default async function PreviewHowItWorks() {
                       cursor: "pointer",
                       listStyle: "none",
                       display: "grid",
-                      gridTemplateColumns: "minmax(56px, 64px) 1fr auto",
+                      gridTemplateColumns: "minmax(48px, 56px) 1fr auto",
                       gap: 24,
                       alignItems: "baseline",
                     }}
@@ -183,9 +145,9 @@ export default async function PreviewHowItWorks() {
                     <span
                       style={{
                         fontFamily: MONO,
-                        fontSize: 12,
+                        fontSize: 11,
                         fontWeight: 500,
-                        letterSpacing: "0.16em",
+                        letterSpacing: "0.2em",
                         color: FOG,
                       }}
                     >
@@ -195,8 +157,8 @@ export default async function PreviewHowItWorks() {
                       style={{
                         fontFamily: SERIF,
                         fontWeight: 400,
-                        fontSize: 20,
-                        lineHeight: 1.3,
+                        fontSize: 19,
+                        lineHeight: 1.35,
                         color: INK,
                         letterSpacing: "-0.005em",
                         fontVariationSettings: '"opsz" 14',
@@ -222,9 +184,9 @@ export default async function PreviewHowItWorks() {
                       fontFamily: SERIF,
                       fontSize: 16,
                       color: SLATE,
-                      lineHeight: 1.6,
-                      marginTop: 20,
-                      marginLeft: 88,
+                      lineHeight: 1.65,
+                      marginTop: 18,
+                      marginLeft: 80,
                       marginBottom: 0,
                       maxWidth: 680,
                       fontVariationSettings: '"opsz" 14',
@@ -235,11 +197,11 @@ export default async function PreviewHowItWorks() {
                 </details>
               ))}
             </div>
-          </div>
+          </section>
         </div>
       </main>
 
-      {/* ─── Minimal footer ─── wordmark + colophon */}
+      {/* ─── Footer ─── wordmark + colophon */}
       <footer
         style={{
           padding: "clamp(40px, 5vw, 64px) clamp(28px, 4vw, 64px)",
@@ -257,9 +219,9 @@ export default async function PreviewHowItWorks() {
             alignItems: "center",
             gap: 24,
             fontFamily: MONO,
-            fontSize: 11,
+            fontSize: 10,
             fontWeight: 500,
-            letterSpacing: "0.16em",
+            letterSpacing: "0.22em",
             textTransform: "uppercase",
             color: FOG,
           }}
