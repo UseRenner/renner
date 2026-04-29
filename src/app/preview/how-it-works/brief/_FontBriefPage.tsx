@@ -1,36 +1,47 @@
 import Link from "next/link";
-import { Wordmark } from "@/components/Wordmark";
+import { Logo } from "@/components/Logo";
 import { getViewer } from "@/lib/role";
-import { FAQS, VariantSwitcher } from "../_shared";
-import { BriefBody } from "./BriefBody";
-
-export const metadata = {
-  title: "How it works · Brief · Renner",
-  robots: { index: false, follow: false },
-};
-export const dynamic = "force-dynamic";
-
-const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
-const SANS =
-  "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
-const MONO =
-  "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
+import { FAQS, VariantSwitcher, type BriefFontKey } from "../_shared";
+import { FontBriefBody, type FontStack } from "./_FontBriefBody";
 
 const INK = "#0d0f12";
 const SLATE = "#2a2f36";
 const STEEL = "#647589";
 const FOG = "#7d8da0";
 const MIST = "#cad1d8";
+const PAPER = "#fbfbfc";
 
-export default async function BriefHowItWorks() {
+// Server-side wrapper for the 8 font test variants. Renders the full
+// Brief page chrome — header, body, FAQ, footer — with every typeface
+// inherited from the FontStack the variant page passes in. The
+// wordmark text is drawn inline (rather than via the shared Wordmark
+// component) so the variant's font controls it too.
+
+export async function FontBriefPage({
+  font,
+  fontKey,
+  fontVariableClass,
+}: {
+  font: FontStack;
+  fontKey: BriefFontKey;
+  fontVariableClass: string;
+}) {
   const viewer = await getViewer();
   const showCta = !viewer;
 
   return (
-    <div style={{ backgroundColor: "#fbfbfc", color: INK, minHeight: "100vh" }}>
-      <VariantSwitcher active="brief" briefFont="source-serif" />
+    <div
+      className={fontVariableClass}
+      style={{
+        backgroundColor: PAPER,
+        color: INK,
+        minHeight: "100vh",
+        fontFamily: font.body,
+      }}
+    >
+      <VariantSwitcher active="brief" briefFont={fontKey} />
 
-      {/* ─── Header ─── wordmark + sign-in / sign-up */}
+      {/* ─── Header ─── inline wordmark + sign-in / sign-up */}
       <header
         style={{
           padding: "clamp(20px, 2.5vw, 32px) clamp(28px, 4vw, 64px)",
@@ -40,13 +51,38 @@ export default async function BriefHowItWorks() {
           gap: 16,
         }}
       >
-        <Wordmark />
+        <Link
+          href="/"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 12,
+            textDecoration: "none",
+            color: INK,
+          }}
+          aria-label="Renner"
+        >
+          <Logo size={24} fill={INK} slotColor={PAPER} />
+          <span
+            style={{
+              fontFamily: font.display,
+              fontSize: 22,
+              fontWeight: 500,
+              letterSpacing: "-0.02em",
+              color: INK,
+              lineHeight: 1,
+            }}
+          >
+            Renner
+          </span>
+        </Link>
+
         {showCta ? (
           <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
             <Link
               href="/signin"
               style={{
-                fontFamily: MONO,
+                fontFamily: font.body,
                 fontSize: 11,
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -60,11 +96,11 @@ export default async function BriefHowItWorks() {
             <Link
               href="/signup"
               style={{
-                fontFamily: SANS,
+                fontFamily: font.body,
                 fontSize: 13,
                 fontWeight: 500,
                 letterSpacing: "0.01em",
-                color: "#fbfbfc",
+                color: PAPER,
                 backgroundColor: INK,
                 border: `1px solid ${INK}`,
                 borderRadius: 4,
@@ -82,7 +118,7 @@ export default async function BriefHowItWorks() {
           <Link
             href="/dashboard"
             style={{
-              fontFamily: MONO,
+              fontFamily: font.body,
               fontSize: 11,
               fontWeight: 500,
               letterSpacing: "0.18em",
@@ -103,13 +139,13 @@ export default async function BriefHowItWorks() {
         }}
       >
         <div className="mx-auto" style={{ maxWidth: "960px" }}>
-          <BriefBody showCta={showCta} />
+          <FontBriefBody showCta={showCta} font={font} />
 
           {/* ─── FAQ ─── quiet hairline accordion */}
           <section style={{ marginTop: "clamp(96px, 14vw, 168px)" }}>
             <div
               style={{
-                fontFamily: MONO,
+                fontFamily: font.body,
                 fontSize: 10,
                 fontWeight: 500,
                 letterSpacing: "0.24em",
@@ -144,7 +180,7 @@ export default async function BriefHowItWorks() {
                   >
                     <span
                       style={{
-                        fontFamily: MONO,
+                        fontFamily: font.body,
                         fontSize: 11,
                         fontWeight: 500,
                         letterSpacing: "0.2em",
@@ -155,13 +191,12 @@ export default async function BriefHowItWorks() {
                     </span>
                     <span
                       style={{
-                        fontFamily: SERIF,
+                        fontFamily: font.body,
                         fontWeight: 400,
                         fontSize: 19,
                         lineHeight: 1.35,
                         color: INK,
                         letterSpacing: "-0.005em",
-                        fontVariationSettings: '"opsz" 14',
                       }}
                     >
                       {item.q}
@@ -169,7 +204,7 @@ export default async function BriefHowItWorks() {
                     <span
                       className="faq-toggle"
                       style={{
-                        fontFamily: SANS,
+                        fontFamily: font.body,
                         fontSize: 18,
                         color: FOG,
                         transition: "transform 120ms ease",
@@ -181,7 +216,7 @@ export default async function BriefHowItWorks() {
                   </summary>
                   <p
                     style={{
-                      fontFamily: SERIF,
+                      fontFamily: font.body,
                       fontSize: 16,
                       color: SLATE,
                       lineHeight: 1.65,
@@ -189,7 +224,6 @@ export default async function BriefHowItWorks() {
                       marginLeft: 80,
                       marginBottom: 0,
                       maxWidth: 680,
-                      fontVariationSettings: '"opsz" 14',
                     }}
                   >
                     {item.a}
@@ -201,7 +235,7 @@ export default async function BriefHowItWorks() {
         </div>
       </main>
 
-      {/* ─── Footer ─── wordmark + colophon */}
+      {/* ─── Footer ─── inline wordmark + colophon */}
       <footer
         style={{
           padding: "clamp(40px, 5vw, 64px) clamp(28px, 4vw, 64px)",
@@ -212,13 +246,37 @@ export default async function BriefHowItWorks() {
           gap: 20,
         }}
       >
-        <Wordmark />
+        <Link
+          href="/"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 12,
+            textDecoration: "none",
+            color: INK,
+          }}
+          aria-label="Renner"
+        >
+          <Logo size={24} fill={INK} slotColor={PAPER} />
+          <span
+            style={{
+              fontFamily: font.display,
+              fontSize: 22,
+              fontWeight: 500,
+              letterSpacing: "-0.02em",
+              color: INK,
+              lineHeight: 1,
+            }}
+          >
+            Renner
+          </span>
+        </Link>
         <div
           style={{
             display: "flex",
             alignItems: "center",
             gap: 24,
-            fontFamily: MONO,
+            fontFamily: font.body,
             fontSize: 10,
             fontWeight: 500,
             letterSpacing: "0.22em",

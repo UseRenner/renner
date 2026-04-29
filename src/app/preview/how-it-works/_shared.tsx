@@ -54,11 +54,51 @@ export const VARIANTS: ReadonlyArray<{ href: string; key: VariantKey; label: str
   { href: "/preview/how-it-works-2", key: "rail", label: "Rail" },
 ];
 
+// Brief-only secondary row. The original Brief lives at the root
+// `/brief` URL and is keyed `source-serif` here so the active state
+// tracks correctly across the font test set. The 8 fonts are siblings
+// at /brief/<slug>.
+export type BriefFontKey =
+  | "source-serif"
+  | "inria-serif"
+  | "roboto-serif"
+  | "noto-serif"
+  | "pt-serif"
+  | "charis-sil"
+  | "dm-serif"
+  | "judson"
+  | "castoro";
+
+export const BRIEF_FONTS: ReadonlyArray<{
+  href: string;
+  key: BriefFontKey;
+  label: string;
+}> = [
+  { href: "/preview/how-it-works/brief", key: "source-serif", label: "Source Serif" },
+  { href: "/preview/how-it-works/brief/inria-serif", key: "inria-serif", label: "Inria Serif" },
+  { href: "/preview/how-it-works/brief/roboto-serif", key: "roboto-serif", label: "Roboto Serif" },
+  { href: "/preview/how-it-works/brief/noto-serif", key: "noto-serif", label: "Noto Serif" },
+  { href: "/preview/how-it-works/brief/pt-serif", key: "pt-serif", label: "PT Serif" },
+  { href: "/preview/how-it-works/brief/charis-sil", key: "charis-sil", label: "Charis SIL" },
+  { href: "/preview/how-it-works/brief/dm-serif", key: "dm-serif", label: "DM Serif" },
+  { href: "/preview/how-it-works/brief/judson", key: "judson", label: "Judson" },
+  { href: "/preview/how-it-works/brief/castoro", key: "castoro", label: "Castoro" },
+];
+
 // A thin review-only strip that lets the reviewer flip between the
 // preview directions. Lives outside the design itself — sticky to the
 // top in mono with hairline rules — so it never fights the page it
 // sits above. Wraps on narrow viewports.
-export function VariantSwitcher({ active }: { active: VariantKey }) {
+//
+// When `briefFont` is provided the strip shows a secondary row of the
+// 8 font test variants and highlights the active font.
+export function VariantSwitcher({
+  active,
+  briefFont,
+}: {
+  active: VariantKey;
+  briefFont?: BriefFontKey;
+}) {
   return (
     <div
       style={{
@@ -120,6 +160,65 @@ export function VariantSwitcher({ active }: { active: VariantKey }) {
           })}
         </div>
       </div>
+
+      {briefFont !== undefined && (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 16,
+            padding: "8px clamp(20px, 4vw, 64px)",
+            borderTop: "1px solid rgba(255,255,255,0.06)",
+            fontFamily:
+              "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+            fontSize: 10,
+            fontWeight: 500,
+            letterSpacing: "0.22em",
+            textTransform: "uppercase",
+            color: "rgba(255,255,255,0.4)",
+            flexWrap: "wrap",
+          }}
+        >
+          <span>Brief · Font</span>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              flexWrap: "wrap",
+            }}
+          >
+            {BRIEF_FONTS.map((f, i) => {
+              const isActive = f.key === briefFont;
+              return (
+                <span
+                  key={f.href}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 10,
+                  }}
+                >
+                  {i > 0 && (
+                    <span style={{ color: "rgba(255,255,255,0.18)" }}>·</span>
+                  )}
+                  <Link
+                    href={f.href}
+                    style={{
+                      color: isActive ? "#fbfbfc" : "rgba(255,255,255,0.42)",
+                      textDecoration: "none",
+                      transition: "color 150ms ease",
+                    }}
+                  >
+                    {f.label}
+                  </Link>
+                </span>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
