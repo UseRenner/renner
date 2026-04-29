@@ -144,40 +144,25 @@ export function SuiteBody({ showCta }: { showCta: boolean }) {
 
   return (
     <div style={{ maxWidth: 600, margin: "0 auto", textAlign: "center" }}>
-      {/* ─── Volume mark ─── above the audience switch */}
-      <div
-        style={{
-          fontFamily: MONO,
-          fontSize: 10,
-          fontWeight: 500,
-          letterSpacing: "0.32em",
-          textTransform: "uppercase",
-          color: STEEL_500,
-          marginBottom: 28,
-        }}
-      >
-        Vol. I · How it works
-      </div>
-
-      {/* ─── Audience switch ─── centered mono */}
+      {/* ─── Audience switch ─── italic, centered, restrained */}
       <div
         role="tablist"
         aria-label="Audience"
         style={{
           display: "inline-flex",
-          alignItems: "center",
+          alignItems: "baseline",
           gap: 14,
-          marginBottom: 56,
-          fontFamily: MONO,
-          fontSize: 10,
-          fontWeight: 500,
-          letterSpacing: "0.24em",
-          textTransform: "uppercase",
+          marginBottom: 72,
+          fontFamily: SERIF,
+          fontStyle: "italic",
+          fontWeight: 300,
+          fontSize: 16,
+          letterSpacing: 0,
         }}
       >
-        <TabButton label="For Clients" active={isClient} onClick={() => setTab("client")} />
-        <span aria-hidden style={{ color: STEEL_300 }}>·</span>
-        <TabButton label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
+        <TabButton label="For clients" active={isClient} onClick={() => setTab("client")} />
+        <span aria-hidden style={{ color: STEEL_300, fontStyle: "normal" }}>·</span>
+        <TabButton label="For renners" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
       {/* ─── Statement ─── smaller, centered, three lines */}
@@ -202,35 +187,22 @@ export function SuiteBody({ showCta }: { showCta: boolean }) {
         ))}
       </h1>
 
-      {/* ─── Dek ─── italic-300 across the entire dek for "stationery" feel */}
+      {/* ─── Dek ─── upright, regular, calm */}
       <p
         style={{
           fontFamily: SERIF,
-          fontStyle: "italic",
-          fontWeight: 300,
-          fontSize: "clamp(15px, 1.4vw, 17px)",
+          fontWeight: 400,
+          fontSize: "clamp(16px, 1.4vw, 18px)",
           lineHeight: 1.6,
-          color: STEEL_600,
+          color: STEEL_700,
           margin: "0 auto",
-          marginBottom: "clamp(56px, 7vw, 80px)",
+          marginBottom: "clamp(72px, 9vw, 112px)",
           maxWidth: "44ch",
           fontVariationSettings: '"opsz" 14',
         }}
       >
         {dek}
       </p>
-
-      {/* ─── Hairline rule ─── steel-300 for material weight */}
-      <div
-        aria-hidden
-        style={{
-          width: 64,
-          height: 1,
-          backgroundColor: STEEL_300,
-          margin: "0 auto",
-          marginBottom: "clamp(48px, 6vw, 72px)",
-        }}
-      />
 
       {/* ─── Notes ─── numbered paragraphs, left-aligned in centered column */}
       <div
@@ -297,18 +269,6 @@ export function SuiteBody({ showCta }: { showCta: boolean }) {
         ))}
       </div>
 
-      {/* ─── Hairline rule ─── */}
-      <div
-        aria-hidden
-        style={{
-          width: 64,
-          height: 1,
-          backgroundColor: STEEL_300,
-          margin: "0 auto",
-          marginBottom: "clamp(48px, 6vw, 72px)",
-        }}
-      />
-
       {/* ─── Trust ─── italic-300 stack, centered, larger than the dek */}
       <ul
         style={{
@@ -342,17 +302,7 @@ export function SuiteBody({ showCta }: { showCta: boolean }) {
 
       {/* ─── CTA ─── small centered closer */}
       {showCta && (
-        <div>
-          <div
-            aria-hidden
-            style={{
-              width: 64,
-              height: 1,
-              backgroundColor: STEEL_300,
-              margin: "0 auto",
-              marginBottom: "clamp(40px, 5vw, 56px)",
-            }}
-          />
+        <div style={{ marginTop: "clamp(72px, 9vw, 112px)" }}>
           <h2
             style={{
               fontFamily: SERIF,
@@ -427,6 +377,7 @@ function TabButton({
         border: "none",
         padding: 0,
         fontFamily: "inherit",
+        fontStyle: "inherit",
         fontSize: "inherit",
         fontWeight: "inherit",
         letterSpacing: "inherit",

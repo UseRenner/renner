@@ -4,10 +4,10 @@ import Link from "next/link";
 import { useState } from "react";
 
 type Plate = {
-  catalog: string;
+  number: string;
   title: string;
   body: React.ReactNode;
-  spec: Array<[string, string]>;
+  proof: string;
 };
 
 const CLIENT_DEK =
@@ -18,7 +18,7 @@ const RENNER_DEK =
 
 const CLIENT_PLATES: Plate[] = [
   {
-    catalog: "Plate 01 · Posting",
+    number: "01",
     title: "Post a task.",
     body: (
       <>
@@ -27,81 +27,58 @@ const CLIENT_PLATES: Plate[] = [
         price.
       </>
     ),
-    spec: [
-      ["Party", "Client"],
-      ["Time", "Under 2 minutes"],
-      ["Output", "Public brief"],
-    ],
+    proof: "Avg. post · under 2 minutes",
   },
   {
-    catalog: "Plate 02 · Selection",
+    number: "02",
     title: "Pick a vetted Renner.",
     body: (
       <>
         Background-checked Renners in your area apply with their bio,
-        ratings, and tenure. Read what they have done. Book the right
-        hand for the work.
+        ratings, and tenure. Book the right hand for the work.
       </>
     ),
-    spec: [
-      ["Vetting", "Checkr-verified"],
-      ["Booking", "Single Renner"],
-      ["Discretion", "Yours"],
-    ],
+    proof: "Every Renner · Checkr-verified",
   },
   {
-    catalog: "Plate 03 · Completion",
+    number: "03",
     title: "Get it done.",
     body: (
       <>
-        Your Renner finishes the task and submits completion photos
-        with a written confirmation. You confirm. Stripe releases the
-        funds from escrow.
+        Your Renner finishes the task and submits completion photos.
+        You confirm. Funds release through Stripe.
       </>
     ),
-    spec: [
-      ["Evidence", "Photo · message thread"],
-      ["Settlement", "Stripe escrow"],
-      ["Window", "48 hours"],
-    ],
+    proof: "Funds held · escrow until confirmed",
   },
 ];
 
 const RENNER_PLATES: Plate[] = [
   {
-    catalog: "Plate 01 · Verification",
+    number: "01",
     title: "Get verified.",
     body: (
       <>
-        Sign up, confirm your identity, clear a Checkr background
+        Sign up, verify your identity, clear a Checkr background
         check. Pick your categories, set your service area, name your
         rate.
       </>
     ),
-    spec: [
-      ["Vetting", "Checkr"],
-      ["Onboarding", "Same-day in most states"],
-      ["Output", "Active Renner"],
-    ],
+    proof: "Onboarding · same-day in most states",
   },
   {
-    catalog: "Plate 02 · Selection",
+    number: "02",
     title: "Pick a task.",
     body: (
       <>
         See briefs posted by agents, brokers, and managers nearby.
-        Apply to the ones that fit your schedule and skills. Decline
-        anything that doesn&rsquo;t.
+        Apply to the ones that fit your schedule and skills.
       </>
     ),
-    spec: [
-      ["Discretion", "Yours"],
-      ["Marketplace", "Local"],
-      ["Booking", "Mutual"],
-    ],
+    proof: "Marketplace · live in your area",
   },
   {
-    catalog: "Plate 03 · Completion",
+    number: "03",
     title: "Get it done.",
     body: (
       <>
@@ -109,11 +86,7 @@ const RENNER_PLATES: Plate[] = [
         platform. Build a reputation that earns repeat clients.
       </>
     ),
-    spec: [
-      ["Payout", "90% of task pay"],
-      ["Settlement", "Stripe"],
-      ["Reputation", "Ratings · reviews"],
-    ],
+    proof: "Payout · 90% of task pay",
   },
 ];
 
@@ -155,25 +128,25 @@ export function PlateBody({ showCta }: { showCta: boolean }) {
 
   return (
     <>
-      {/* ─── Audience switch ─── */}
+      {/* ─── Audience switch ─── italic, restrained */}
       <div
         role="tablist"
         aria-label="Audience"
         style={{
           display: "flex",
-          alignItems: "center",
+          alignItems: "baseline",
           gap: 14,
           marginBottom: 56,
-          fontFamily: MONO,
-          fontSize: 11,
-          fontWeight: 500,
-          letterSpacing: "0.22em",
-          textTransform: "uppercase",
+          fontFamily: SERIF,
+          fontStyle: "italic",
+          fontWeight: 300,
+          fontSize: 16,
+          letterSpacing: 0,
         }}
       >
-        <TabButton label="For Clients" active={isClient} onClick={() => setTab("client")} />
-        <span aria-hidden style={{ color: STEEL_300 }}>/</span>
-        <TabButton label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
+        <TabButton label="For clients" active={isClient} onClick={() => setTab("client")} />
+        <span aria-hidden style={{ color: STEEL_300, fontStyle: "normal" }}>·</span>
+        <TabButton label="For renners" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
       {/* ─── Lede ─── headline + dek side by side */}
@@ -223,47 +196,45 @@ export function PlateBody({ showCta }: { showCta: boolean }) {
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: "clamp(24px, 3vw, 40px)",
+          gap: "clamp(20px, 2.5vw, 32px)",
           marginBottom: showCta ? "clamp(72px, 9vw, 120px)" : 0,
         }}
       >
         {plates.map((plate) => (
           <article
-            key={plate.catalog}
+            key={plate.number}
             style={{
               border: `1px solid ${STEEL_300}`,
-              padding: "clamp(28px, 4vw, 48px)",
+              padding: "clamp(32px, 4.5vw, 56px)",
               display: "grid",
-              gridTemplateColumns: "minmax(0, 1.1fr) minmax(0, 1fr)",
-              gap: "clamp(28px, 4vw, 56px)",
-              alignItems: "start",
+              gridTemplateColumns: "minmax(56px, 64px) minmax(0, 1fr) minmax(0, auto)",
+              gap: "clamp(20px, 3vw, 40px)",
+              alignItems: "baseline",
             }}
             className="plate-card"
           >
+            <div
+              style={{
+                fontFamily: MONO,
+                fontSize: 11,
+                fontWeight: 500,
+                letterSpacing: "0.22em",
+                color: STEEL_500,
+              }}
+            >
+              {plate.number}
+            </div>
             <div>
-              <div
-                style={{
-                  fontFamily: MONO,
-                  fontSize: 10,
-                  fontWeight: 500,
-                  letterSpacing: "0.28em",
-                  textTransform: "uppercase",
-                  color: STEEL_500,
-                  marginBottom: 24,
-                }}
-              >
-                {plate.catalog}
-              </div>
               <h3
                 style={{
                   fontFamily: SERIF,
                   fontWeight: 400,
-                  fontSize: "clamp(28px, 3.2vw, 40px)",
-                  lineHeight: 1.1,
-                  letterSpacing: "-0.022em",
+                  fontSize: "clamp(24px, 2.8vw, 32px)",
+                  lineHeight: 1.15,
+                  letterSpacing: "-0.018em",
                   color: INK,
                   margin: 0,
-                  marginBottom: 20,
+                  marginBottom: 14,
                   fontVariationSettings: '"opsz" 60',
                 }}
               >
@@ -276,62 +247,28 @@ export function PlateBody({ showCta }: { showCta: boolean }) {
                   lineHeight: 1.65,
                   color: STEEL_700,
                   margin: 0,
-                  maxWidth: "52ch",
+                  maxWidth: "56ch",
                   fontVariationSettings: '"opsz" 14',
                 }}
               >
                 {plate.body}
               </p>
             </div>
-            <dl
+            <div
+              className="plate-proof"
               style={{
-                margin: 0,
-                paddingLeft: "clamp(20px, 3vw, 40px)",
-                borderLeft: `1px solid ${STEEL_300}`,
-                display: "flex",
-                flexDirection: "column",
-                gap: 14,
-                alignSelf: "stretch",
+                fontFamily: MONO,
+                fontSize: 10,
+                fontWeight: 500,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: STEEL_600,
+                whiteSpace: "nowrap",
+                textAlign: "right",
               }}
-              className="plate-spec"
             >
-              {plate.spec.map(([k, v]) => (
-                <div
-                  key={k}
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "minmax(80px, 96px) 1fr",
-                    gap: 12,
-                    alignItems: "baseline",
-                  }}
-                >
-                  <dt
-                    style={{
-                      fontFamily: MONO,
-                      fontSize: 10,
-                      fontWeight: 500,
-                      letterSpacing: "0.24em",
-                      textTransform: "uppercase",
-                      color: STEEL_500,
-                    }}
-                  >
-                    {k}
-                  </dt>
-                  <dd
-                    style={{
-                      fontFamily: SERIF,
-                      fontSize: 15,
-                      lineHeight: 1.5,
-                      color: INK,
-                      margin: 0,
-                      fontVariationSettings: '"opsz" 14',
-                    }}
-                  >
-                    {v}
-                  </dd>
-                </div>
-              ))}
-            </dl>
+              {plate.proof}
+            </div>
           </article>
         ))}
       </div>
@@ -405,13 +342,11 @@ export function PlateBody({ showCta }: { showCta: boolean }) {
         @media (max-width: 720px) {
           :global(.plate-card) {
             grid-template-columns: 1fr !important;
-            gap: clamp(20px, 4vw, 32px) !important;
+            gap: 12px !important;
           }
-          :global(.plate-spec) {
-            padding-left: 0 !important;
-            border-left: none !important;
-            border-top: 1px solid ${STEEL_300};
-            padding-top: clamp(20px, 4vw, 28px);
+          :global(.plate-proof) {
+            text-align: left !important;
+            white-space: normal !important;
           }
         }
       `}</style>
@@ -439,6 +374,7 @@ function TabButton({
         border: "none",
         padding: 0,
         fontFamily: "inherit",
+        fontStyle: "inherit",
         fontSize: "inherit",
         fontWeight: "inherit",
         letterSpacing: "inherit",

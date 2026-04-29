@@ -132,19 +132,6 @@ export function AtelierBody({ showCta }: { showCta: boolean }) {
       <div className="atelier-grid">
         {/* ─── Left ─── italic-display statement, sticky on desktop */}
         <aside className="atelier-left">
-          <div
-            style={{
-              fontFamily: MONO,
-              fontSize: 10,
-              fontWeight: 500,
-              letterSpacing: "0.32em",
-              textTransform: "uppercase",
-              color: STEEL_500,
-              marginBottom: 32,
-            }}
-          >
-            How Renner works
-          </div>
           <h1
             style={{
               fontFamily: SERIF,
@@ -174,19 +161,19 @@ export function AtelierBody({ showCta }: { showCta: boolean }) {
             aria-label="Audience"
             style={{
               display: "flex",
-              alignItems: "center",
+              alignItems: "baseline",
               gap: 14,
               marginBottom: 48,
-              fontFamily: MONO,
-              fontSize: 11,
-              fontWeight: 500,
-              letterSpacing: "0.22em",
-              textTransform: "uppercase",
+              fontFamily: SERIF,
+              fontStyle: "italic",
+              fontWeight: 300,
+              fontSize: 16,
+              letterSpacing: 0,
             }}
           >
-            <TabButton label="For Clients" active={isClient} onClick={() => setTab("client")} />
-            <span aria-hidden style={{ color: STEEL_300 }}>/</span>
-            <TabButton label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
+            <TabButton label="For clients" active={isClient} onClick={() => setTab("client")} />
+            <span aria-hidden style={{ color: STEEL_300, fontStyle: "normal" }}>·</span>
+            <TabButton label="For renners" active={!isClient} onClick={() => setTab("renner")} />
           </div>
 
           <p
@@ -286,25 +273,12 @@ export function AtelierBody({ showCta }: { showCta: boolean }) {
             ))}
           </ol>
 
-          {/* Trust — short label-led pairs */}
+          {/* Trust — label-led pairs, no kicker */}
           <section
             style={{
               marginBottom: showCta ? "clamp(56px, 7vw, 88px)" : 0,
             }}
           >
-            <div
-              style={{
-                fontFamily: MONO,
-                fontSize: 10,
-                fontWeight: 500,
-                letterSpacing: "0.32em",
-                textTransform: "uppercase",
-                color: STEEL_500,
-                marginBottom: 24,
-              }}
-            >
-              {isClient ? "On the record" : "What you get"}
-            </div>
             <dl style={{ margin: 0 }}>
               {trust.map(([label, body], idx) => (
                 <div
@@ -459,6 +433,7 @@ function TabButton({
         border: "none",
         padding: 0,
         fontFamily: "inherit",
+        fontStyle: "inherit",
         fontSize: "inherit",
         fontWeight: "inherit",
         letterSpacing: "inherit",

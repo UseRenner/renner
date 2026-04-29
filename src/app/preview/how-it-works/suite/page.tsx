@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Logo } from "@/components/Logo";
 import { Wordmark } from "@/components/Wordmark";
 import { getViewer } from "@/lib/role";
 import { FAQS, VariantSwitcher } from "../_shared";
@@ -31,7 +32,7 @@ export default async function SuiteHowItWorks() {
     <div style={{ backgroundColor: PAPER, color: INK, minHeight: "100vh" }}>
       <VariantSwitcher active="suite" />
 
-      {/* ─── Header ─── centered Wordmark, minimal */}
+      {/* ─── Header ─── symbol only on the left, no wordmark */}
       <header
         style={{
           padding: "clamp(20px, 2.5vw, 32px) clamp(28px, 4vw, 48px)",
@@ -39,10 +40,15 @@ export default async function SuiteHowItWorks() {
           alignItems: "center",
           justifyContent: "space-between",
           gap: 16,
-          borderBottom: `1px solid ${STEEL_300}`,
         }}
       >
-        <Wordmark />
+        <Link
+          href="/"
+          aria-label="Renner"
+          style={{ display: "inline-flex", alignItems: "center" }}
+        >
+          <Logo size={28} fill={INK} slotColor={PAPER} />
+        </Link>
         {showCta ? (
           <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
             <Link
