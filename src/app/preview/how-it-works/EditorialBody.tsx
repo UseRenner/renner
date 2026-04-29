@@ -107,9 +107,7 @@ const SLATE = "#2a2f36";
 const STEEL = "#647589";
 const FOG = "#7d8da0";
 const MIST = "#cad1d8";
-const RULE = "#eaedf0";
-const RULE_STRONG = "#dce0e5";
-const PAPER = "#fbfbfc";
+const GREEN = "#2d8a4e";
 
 function Italic({ children }: { children: React.ReactNode }) {
   return (
@@ -125,7 +123,7 @@ function Italic({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function EditorialTabs({ showCta }: { showCta: boolean }) {
+export function EditorialBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
   const isClient = tab === "client";
   const steps = isClient ? CLIENT_STEPS : RENNER_STEPS;
@@ -145,22 +143,30 @@ export function EditorialTabs({ showCta }: { showCta: boolean }) {
 
   return (
     <>
-      {/* ─── Tab strip ─── */}
+      {/* ─── Tab strip ─── inline mono */}
       <div
-        style={{
-          display: "flex",
-          gap: 32,
-          borderBottom: `1px solid ${RULE_STRONG}`,
-          marginBottom: 64,
-        }}
         role="tablist"
         aria-label="Audience"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 16,
+          marginBottom: 96,
+          fontFamily: MONO,
+          fontSize: 12,
+          fontWeight: 500,
+          letterSpacing: "0.18em",
+          textTransform: "uppercase",
+        }}
       >
         <TabButton
           label="For Clients"
           active={isClient}
           onClick={() => setTab("client")}
         />
+        <span aria-hidden style={{ color: MIST }}>
+          /
+        </span>
         <TabButton
           label="For Renners"
           active={!isClient}
@@ -168,48 +174,41 @@ export function EditorialTabs({ showCta }: { showCta: boolean }) {
         />
       </div>
 
-      {/* ─── Hero heading ─── */}
-      <div
+      {/* ─── Page title ─── left-aligned, massive */}
+      <h1
         style={{
-          textAlign: "center",
-          marginBottom: 80,
-          padding: "0 16px",
+          fontFamily: SERIF,
+          fontWeight: 400,
+          fontSize: "clamp(56px, 9vw, 120px)",
+          lineHeight: 0.95,
+          letterSpacing: "-0.035em",
+          color: INK,
+          margin: 0,
+          marginBottom: "clamp(96px, 14vw, 180px)",
+          maxWidth: "14ch",
+          fontVariationSettings: '"opsz" 144',
         }}
       >
-        <h1
-          style={{
-            fontFamily: SERIF,
-            fontWeight: 400,
-            fontSize: "clamp(44px, 6vw, 72px)",
-            lineHeight: 1.05,
-            letterSpacing: "-0.028em",
-            color: INK,
-            margin: 0,
-            fontVariationSettings: '"opsz" 144',
-          }}
-        >
-          How Renner <Italic>works</Italic>
-        </h1>
-      </div>
+        How Renner <Italic>works</Italic>
+      </h1>
 
-      {/* ─── Three-step horizontal grid ─── */}
-      <div className="ed-steps-grid" style={{ marginBottom: 96 }}>
-        {steps.map((step, idx) => (
-          <div
-            key={step.number}
-            className="ed-step-col"
-            data-first={idx === 0 ? "true" : "false"}
-          >
+      {/* ─── Steps ─── three columns, no rules, just air */}
+      <div
+        className="ed-steps"
+        style={{ marginBottom: "clamp(96px, 14vw, 180px)" }}
+      >
+        {steps.map((step) => (
+          <div key={step.number} className="ed-step">
             <div
               style={{
                 fontFamily: SERIF,
                 fontStyle: "italic",
                 fontWeight: 300,
-                fontSize: "clamp(64px, 7vw, 88px)",
-                lineHeight: 0.9,
-                letterSpacing: "-0.04em",
+                fontSize: "clamp(96px, 11vw, 160px)",
+                lineHeight: 0.85,
+                letterSpacing: "-0.05em",
                 color: MIST,
-                marginBottom: 24,
+                marginBottom: 32,
                 fontVariationSettings: '"opsz" 144',
               }}
             >
@@ -219,7 +218,7 @@ export function EditorialTabs({ showCta }: { showCta: boolean }) {
               style={{
                 fontFamily: SERIF,
                 fontWeight: 400,
-                fontSize: 22,
+                fontSize: 24,
                 lineHeight: 1.2,
                 letterSpacing: "-0.012em",
                 color: INK,
@@ -247,149 +246,87 @@ export function EditorialTabs({ showCta }: { showCta: boolean }) {
         ))}
       </div>
 
-      {/* ─── Benefits row ─── */}
-      <div style={{ marginBottom: showCta ? 96 : 0 }}>
-        <SectionRule label={isClient ? "Why Renner" : "What you get"} />
-        <div
-          className="ed-benefits-grid"
-          data-count={benefits.length}
+      {/* ─── Benefits ─── quiet typed list, generous spacing */}
+      <div style={{ marginBottom: showCta ? "clamp(96px, 14vw, 180px)" : 0 }}>
+        <ul
           style={{
-            borderTop: `1px solid ${RULE}`,
-            borderBottom: `1px solid ${RULE}`,
+            listStyle: "none",
+            padding: 0,
+            margin: 0,
+            display: "flex",
+            flexDirection: "column",
+            gap: 24,
           }}
         >
-          {benefits.map((b, i) => (
-            <div
+          {benefits.map((b) => (
+            <li
               key={b}
-              className="ed-benefit-cell"
-              data-first={i === 0 ? "true" : "false"}
               style={{
-                padding: "28px 24px",
+                fontFamily: SERIF,
+                fontStyle: "italic",
+                fontWeight: 300,
+                fontSize: "clamp(22px, 2.6vw, 32px)",
+                lineHeight: 1.3,
+                letterSpacing: "-0.012em",
+                color: INK,
+                fontVariationSettings: '"opsz" 36',
               }}
             >
-              <span
-                style={{
-                  fontFamily: MONO,
-                  fontSize: 11,
-                  fontWeight: 500,
-                  letterSpacing: "0.16em",
-                  color: FOG,
-                  display: "block",
-                  marginBottom: 10,
-                }}
-              >
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <p
-                style={{
-                  fontFamily: SERIF,
-                  fontWeight: 400,
-                  fontSize: 16,
-                  lineHeight: 1.4,
-                  color: INK,
-                  margin: 0,
-                  fontVariationSettings: '"opsz" 14',
-                }}
-              >
-                {b}
-              </p>
-            </div>
+              {b}
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
 
-      {/* ─── CTA — ink band ─── */}
+      {/* ─── CTA ─── single green moment */}
       {showCta && (
-        <div
-          style={{
-            backgroundColor: INK,
-            color: PAPER,
-            padding: "56px clamp(28px, 4vw, 64px)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 32,
-            flexWrap: "wrap",
-          }}
-        >
+        <div>
           <h2
             style={{
               fontFamily: SERIF,
               fontWeight: 400,
-              fontSize: "clamp(24px, 3vw, 32px)",
-              lineHeight: 1.15,
-              letterSpacing: "-0.018em",
-              color: PAPER,
+              fontSize: "clamp(40px, 6vw, 72px)",
+              lineHeight: 1.05,
+              letterSpacing: "-0.028em",
+              color: INK,
               margin: 0,
-              fontVariationSettings: '"opsz" 36',
+              marginBottom: 40,
+              maxWidth: "16ch",
+              fontVariationSettings: '"opsz" 144',
             }}
           >
             {ctaHeading}
           </h2>
           <Link
             href={ctaButton.href}
+            className="ed-cta-link"
             style={{
-              fontFamily: SANS,
-              fontSize: 14,
-              fontWeight: 500,
-              letterSpacing: "0.01em",
-              color: PAPER,
-              backgroundColor: "transparent",
-              border: `1px solid ${PAPER}`,
-              borderRadius: 6,
-              padding: "13px 28px",
-              textDecoration: "none",
-              whiteSpace: "nowrap",
-              transition:
-                "background-color 150ms ease, color 150ms ease",
+              fontFamily: SERIF,
+              fontStyle: "italic",
+              fontWeight: 400,
+              fontSize: "clamp(20px, 2.4vw, 28px)",
+              color: GREEN,
+              textDecoration: "underline",
+              textUnderlineOffset: "6px",
+              textDecorationThickness: "1.5px",
+              fontVariationSettings: '"opsz" 36',
             }}
           >
-            {ctaButton.label}
+            {ctaButton.label} →
           </Link>
         </div>
       )}
 
       <style jsx>{`
-        .ed-steps-grid {
+        .ed-steps {
           display: grid;
           grid-template-columns: 1fr 1fr 1fr;
-          gap: 0;
-        }
-        .ed-step-col {
-          padding: 0 32px;
-          position: relative;
-        }
-        .ed-step-col[data-first="false"] {
-          border-left: 1px solid ${RULE};
-        }
-        .ed-benefits-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr 1fr;
-        }
-        .ed-benefits-grid[data-count="4"] {
-          grid-template-columns: 1fr 1fr 1fr 1fr;
-        }
-        .ed-benefit-cell[data-first="false"] {
-          border-left: 1px solid ${RULE};
+          gap: clamp(48px, 6vw, 96px);
         }
         @media (max-width: 760px) {
-          .ed-steps-grid {
+          .ed-steps {
             grid-template-columns: 1fr;
-          }
-          .ed-step-col {
-            padding: 32px 0;
-          }
-          .ed-step-col[data-first="false"] {
-            border-left: none;
-            border-top: 1px solid ${RULE};
-          }
-          .ed-benefits-grid,
-          .ed-benefits-grid[data-count="4"] {
-            grid-template-columns: 1fr;
-          }
-          .ed-benefit-cell[data-first="false"] {
-            border-left: none;
-            border-top: 1px solid ${RULE};
+            gap: 80px;
           }
         }
       `}</style>
@@ -415,54 +352,18 @@ function TabButton({
       style={{
         background: "none",
         border: "none",
-        padding: "16px 0",
-        marginBottom: -1,
-        fontFamily: MONO,
-        fontSize: 12,
-        fontWeight: 500,
-        letterSpacing: "0.18em",
-        textTransform: "uppercase",
-        color: active ? INK : FOG,
-        borderBottom: active
-          ? `2px solid ${INK}`
-          : "2px solid transparent",
+        padding: 0,
+        fontFamily: "inherit",
+        fontSize: "inherit",
+        fontWeight: "inherit",
+        letterSpacing: "inherit",
+        textTransform: "inherit",
+        color: active ? "#0d0f12" : "#7d8da0",
         cursor: "pointer",
-        transition: "color 150ms ease, border-color 150ms ease",
+        transition: "color 150ms ease",
       }}
     >
       {label}
     </button>
-  );
-}
-
-export function SectionRule({ label }: { label: string }) {
-  return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: 20,
-        marginBottom: 0,
-        paddingBottom: 16,
-      }}
-    >
-      <span
-        style={{
-          fontFamily: MONO,
-          fontSize: 11,
-          fontWeight: 500,
-          letterSpacing: "0.18em",
-          textTransform: "uppercase",
-          color: FOG,
-          whiteSpace: "nowrap",
-        }}
-      >
-        {label}
-      </span>
-      <span
-        aria-hidden
-        style={{ flex: 1, height: 1, backgroundColor: RULE }}
-      />
-    </div>
   );
 }
