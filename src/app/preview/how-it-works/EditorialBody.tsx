@@ -3,29 +3,42 @@
 import Link from "next/link";
 import { useState } from "react";
 
-type Step = { number: string; title: React.ReactNode; body: React.ReactNode };
+type Step = {
+  number: string;
+  title: React.ReactNode;
+  body: React.ReactNode;
+  proof: string;
+};
+
+const CLIENT_DEK =
+  "A marketplace for real-estate task work — sign installs, lockbox swaps, showings, courier runs, property prep — handled by background-checked Renners and paid through escrow.";
+
+const RENNER_DEK =
+  "Independent contractors running short real-estate tasks for agents, brokers, and property managers — on your schedule, in your area, paid through escrow.";
 
 const CLIENT_STEPS: Step[] = [
   {
     number: "01",
-    title: "Post a task.",
+    title: "Post the task.",
     body: (
       <>
-        Describe what you need — sign installation, lockbox swap, property
-        visuals, guest check-in, courier run, or anything real estate. Set
-        the location, time window, and price.
+        Describe what you need — a sign install, a lockbox swap, property
+        visuals, a guest check-in. Set the location, the window, and the
+        price.
       </>
     ),
+    proof: "Avg. post time · under 2 minutes",
   },
   {
     number: "02",
-    title: "A vetted Renner applies.",
+    title: "Pick a vetted Renner.",
     body: (
       <>
-        Background-checked Renners in your area see your task and apply.
-        Review their profile, ratings, and experience. Pick the right fit.
+        Background-checked Renners in your area apply. Read their bio,
+        ratings, and tenure. Book the right fit for the work.
       </>
     ),
+    proof: "Every Renner · Checkr-verified",
   },
   {
     number: "03",
@@ -36,35 +49,36 @@ const CLIENT_STEPS: Step[] = [
     ),
     body: (
       <>
-        Your Renner handles it. You get confirmation with completion
-        photos. Pay securely through the platform. That&rsquo;s it.
+        Your Renner finishes the task and submits completion photos. You
+        confirm. Funds release through Stripe.
       </>
     ),
+    proof: "Funds held · escrow until confirmed",
   },
 ];
 
 const RENNER_STEPS: Step[] = [
   {
     number: "01",
-    title: "Create your profile.",
+    title: "Get verified.",
     body: (
       <>
-        Sign up, verify your identity, and pass a background check. Add
-        your categories — signs, lockbox, courier, visuals, guest access,
-        showings, and more. Set your service area.
+        Sign up, verify your identity, clear a Checkr background check.
+        Pick your categories, set your service area, name your rate.
       </>
     ),
+    proof: "Onboarding · same-day in most states",
   },
   {
     number: "02",
     title: "Browse and apply.",
     body: (
       <>
-        See tasks posted by agents, brokers, property managers, leasing
-        agents, and landlords in your area. Apply to the ones that fit
-        your schedule and skills.
+        See tasks posted by agents, brokers, and property managers nearby.
+        Apply to the ones that fit your schedule and skills.
       </>
     ),
+    proof: "Marketplace · live in your area",
   },
   {
     number: "03",
@@ -75,25 +89,42 @@ const RENNER_STEPS: Step[] = [
     ),
     body: (
       <>
-        Complete the task, upload confirmation photos, and get paid
-        securely through the platform. Build your reputation with ratings
-        and reviews.
+        Run the task, upload completion photos, get paid through the
+        platform. Build a reputation that earns repeat clients.
       </>
     ),
+    proof: "Payout · 90% of task pay",
   },
 ];
 
-const CLIENT_BENEFITS = [
-  "Every Renner is background-checked.",
-  "Secure payments through the platform.",
-  "Rate and review after every task.",
+const CLIENT_BENEFITS: Array<{ label: string; body: string }> = [
+  {
+    label: "Vetted",
+    body: "Every Renner clears a Checkr background check before booking any task.",
+  },
+  {
+    label: "Escrowed",
+    body: "Funds are held by Stripe until you confirm completion or 48 hours pass.",
+  },
+  {
+    label: "Documented",
+    body: "Completion photos and a written confirmation arrive with every task.",
+  },
 ];
 
-const RENNER_BENEFITS = [
-  "Set your own schedule.",
-  "Work in your area.",
-  "Get paid for every completed task.",
-  "Build a reputation that earns repeat clients.",
+const RENNER_BENEFITS: Array<{ label: string; body: string }> = [
+  {
+    label: "Independent",
+    body: "Set your own schedule. Pick the work that fits. Decline anything that doesn't.",
+  },
+  {
+    label: "Local",
+    body: "Tasks come to you — only from agents, brokers, and managers in your area.",
+  },
+  {
+    label: "Paid",
+    body: "Renners keep 90% of the task pay. Escrow releases through Stripe on confirmation.",
+  },
 ];
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
@@ -107,6 +138,7 @@ const SLATE = "#2a2f36";
 const STEEL = "#647589";
 const FOG = "#7d8da0";
 const MIST = "#cad1d8";
+const RULE = "#eaedf0";
 const PAPER = "#fbfbfc";
 
 function Italic({ children }: { children: React.ReactNode }) {
@@ -123,12 +155,12 @@ function Italic({ children }: { children: React.ReactNode }) {
   );
 }
 
-
 export function EditorialBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
   const isClient = tab === "client";
   const steps = isClient ? CLIENT_STEPS : RENNER_STEPS;
   const benefits = isClient ? CLIENT_BENEFITS : RENNER_BENEFITS;
+  const dek = isClient ? CLIENT_DEK : RENNER_DEK;
   const ctaHeading: React.ReactNode = isClient ? (
     <>
       Ready to get something <Italic>done?</Italic>
@@ -144,19 +176,19 @@ export function EditorialBody({ showCta }: { showCta: boolean }) {
 
   return (
     <>
-      {/* ─── Tab strip ─── inline mono */}
+      {/* ─── Audience switch ─── inline mono, hairline-thin */}
       <div
         role="tablist"
         aria-label="Audience"
         style={{
           display: "flex",
           alignItems: "center",
-          gap: 16,
-          marginBottom: 96,
+          gap: 14,
+          marginBottom: 56,
           fontFamily: MONO,
-          fontSize: 12,
+          fontSize: 11,
           fontWeight: 500,
-          letterSpacing: "0.18em",
+          letterSpacing: "0.22em",
           textTransform: "uppercase",
         }}
       >
@@ -175,57 +207,92 @@ export function EditorialBody({ showCta }: { showCta: boolean }) {
         />
       </div>
 
-      {/* ─── Page title ─── left-aligned, massive */}
-      <h1
+      {/* ─── Lede ─── headline + one-sentence dek, the answer arrives now */}
+      <div
         style={{
-          fontFamily: SERIF,
-          fontWeight: 400,
-          fontSize: "clamp(56px, 9vw, 120px)",
-          lineHeight: 0.95,
-          letterSpacing: "-0.035em",
-          color: INK,
-          margin: 0,
-          marginBottom: "clamp(96px, 14vw, 180px)",
-          maxWidth: "14ch",
-          fontVariationSettings: '"opsz" 144',
+          display: "grid",
+          gridTemplateColumns: "minmax(0, 1.05fr) minmax(0, 1fr)",
+          gap: "clamp(40px, 6vw, 96px)",
+          alignItems: "end",
+          marginBottom: "clamp(72px, 10vw, 120px)",
         }}
+        className="ed-lede"
       >
-        How Renner <Italic>works</Italic>
-      </h1>
+        <h1
+          style={{
+            fontFamily: SERIF,
+            fontWeight: 400,
+            fontSize: "clamp(48px, 7vw, 88px)",
+            lineHeight: 0.98,
+            letterSpacing: "-0.03em",
+            color: INK,
+            margin: 0,
+            maxWidth: "10ch",
+            fontVariationSettings: '"opsz" 144',
+          }}
+        >
+          How Renner <Italic>works</Italic>
+        </h1>
+        <p
+          style={{
+            fontFamily: SERIF,
+            fontWeight: 400,
+            fontSize: "clamp(17px, 1.5vw, 20px)",
+            lineHeight: 1.55,
+            color: SLATE,
+            margin: 0,
+            maxWidth: "44ch",
+            fontVariationSettings: '"opsz" 14',
+          }}
+        >
+          {dek}
+        </p>
+      </div>
 
-      {/* ─── Steps ─── three columns, no rules, just air */}
+      {/* ─── Steps ─── three columns, mono numeral inline above title */}
       <div
         className="ed-steps"
-        style={{ marginBottom: "clamp(96px, 14vw, 180px)" }}
+        style={{ marginBottom: "clamp(96px, 12vw, 144px)" }}
       >
-        {steps.map((step) => (
-          <div key={step.number} className="ed-step">
+        {steps.map((step, idx) => (
+          <article
+            key={step.number}
+            className="ed-step"
+            style={{
+              borderTop: `1px solid ${RULE}`,
+              paddingTop: 28,
+            }}
+          >
             <div
               style={{
-                fontFamily: SERIF,
-                fontStyle: "italic",
-                fontWeight: 300,
-                fontSize: "clamp(96px, 11vw, 160px)",
-                lineHeight: 0.85,
-                letterSpacing: "-0.05em",
-                color: MIST,
-                marginBottom: 32,
-                fontVariationSettings: '"opsz" 144',
+                display: "flex",
+                alignItems: "baseline",
+                justifyContent: "space-between",
+                marginBottom: 24,
+                fontFamily: MONO,
+                fontSize: 11,
+                fontWeight: 500,
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                color: FOG,
               }}
             >
-              {step.number}
+              <span>Step {step.number}</span>
+              <span aria-hidden style={{ color: MIST }}>
+                {String(idx + 1).padStart(2, "0")} / {steps.length.toString().padStart(2, "0")}
+              </span>
             </div>
             <h3
               style={{
                 fontFamily: SERIF,
                 fontWeight: 400,
-                fontSize: 24,
-                lineHeight: 1.2,
-                letterSpacing: "-0.012em",
+                fontSize: "clamp(28px, 3vw, 36px)",
+                lineHeight: 1.1,
+                letterSpacing: "-0.022em",
                 color: INK,
                 margin: 0,
                 marginBottom: 16,
-                fontVariationSettings: '"opsz" 36',
+                fontVariationSettings: '"opsz" 60',
               }}
             >
               {step.title}
@@ -238,60 +305,115 @@ export function EditorialBody({ showCta }: { showCta: boolean }) {
                 lineHeight: 1.6,
                 color: SLATE,
                 margin: 0,
+                marginBottom: 24,
                 fontVariationSettings: '"opsz" 14',
               }}
             >
               {step.body}
             </p>
-          </div>
+            <div
+              style={{
+                fontFamily: MONO,
+                fontSize: 10,
+                fontWeight: 500,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: STEEL,
+              }}
+            >
+              {step.proof}
+            </div>
+          </article>
         ))}
       </div>
 
-      {/* ─── Benefits ─── quiet typed list, generous spacing */}
-      <div style={{ marginBottom: showCta ? "clamp(96px, 14vw, 180px)" : 0 }}>
-        <ul
+      {/* ─── Why Renner ─── label-led pairs, sharp not poetic */}
+      <section
+        style={{
+          marginBottom: showCta ? "clamp(96px, 12vw, 144px)" : 0,
+        }}
+      >
+        <div
           style={{
-            listStyle: "none",
-            padding: 0,
-            margin: 0,
-            display: "flex",
-            flexDirection: "column",
-            gap: 24,
+            fontFamily: MONO,
+            fontSize: 10,
+            fontWeight: 500,
+            letterSpacing: "0.24em",
+            textTransform: "uppercase",
+            color: FOG,
+            marginBottom: 32,
           }}
         >
-          {benefits.map((b) => (
-            <li
-              key={b}
+          {isClient ? "Why Renner" : "What you get"}
+        </div>
+        <dl
+          className="ed-benefits"
+          style={{
+            margin: 0,
+            display: "grid",
+            gap: 0,
+          }}
+        >
+          {benefits.map((b, idx) => (
+            <div
+              key={b.label}
               style={{
-                fontFamily: SERIF,
-                fontStyle: "italic",
-                fontWeight: 300,
-                fontSize: "clamp(22px, 2.6vw, 32px)",
-                lineHeight: 1.3,
-                letterSpacing: "-0.012em",
-                color: INK,
-                fontVariationSettings: '"opsz" 36',
+                display: "grid",
+                gridTemplateColumns: "minmax(160px, 200px) 1fr",
+                gap: 32,
+                padding: "24px 0",
+                borderTop: `1px solid ${RULE}`,
+                borderBottom:
+                  idx === benefits.length - 1
+                    ? `1px solid ${RULE}`
+                    : "none",
+                alignItems: "baseline",
               }}
             >
-              {b}
-            </li>
+              <dt
+                style={{
+                  fontFamily: SERIF,
+                  fontStyle: "italic",
+                  fontWeight: 300,
+                  fontSize: 22,
+                  color: STEEL,
+                  letterSpacing: "-0.005em",
+                  fontVariationSettings: '"opsz" 36',
+                }}
+              >
+                {b.label}.
+              </dt>
+              <dd
+                style={{
+                  fontFamily: SERIF,
+                  fontSize: 17,
+                  lineHeight: 1.55,
+                  color: INK,
+                  margin: 0,
+                  maxWidth: "60ch",
+                  fontVariationSettings: '"opsz" 14',
+                }}
+              >
+                {b.body}
+              </dd>
+            </div>
           ))}
-        </ul>
-      </div>
+        </dl>
+      </section>
 
-      {/* ─── CTA ─── refined dark button, all steel monochrome */}
+      {/* ─── CTA ─── hairline rule + heading + single button */}
       {showCta && (
-        <div>
+        <section>
           <h2
             style={{
               fontFamily: SERIF,
               fontWeight: 400,
-              fontSize: "clamp(40px, 6vw, 72px)",
+              fontSize: "clamp(36px, 5vw, 56px)",
               lineHeight: 1.05,
-              letterSpacing: "-0.028em",
+              letterSpacing: "-0.025em",
               color: INK,
               margin: 0,
-              marginBottom: 40,
+              marginBottom: 32,
               maxWidth: "16ch",
               fontVariationSettings: '"opsz" 144',
             }}
@@ -324,19 +446,25 @@ export function EditorialBody({ showCta }: { showCta: boolean }) {
               →
             </span>
           </Link>
-        </div>
+        </section>
       )}
 
       <style jsx>{`
         .ed-steps {
           display: grid;
           grid-template-columns: 1fr 1fr 1fr;
-          gap: clamp(48px, 6vw, 96px);
+          gap: clamp(32px, 4vw, 64px);
+        }
+        @media (max-width: 880px) {
+          .ed-lede {
+            grid-template-columns: 1fr !important;
+            gap: 32px !important;
+          }
         }
         @media (max-width: 760px) {
           .ed-steps {
             grid-template-columns: 1fr;
-            gap: 80px;
+            gap: 56px;
           }
         }
       `}</style>
