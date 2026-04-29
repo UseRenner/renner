@@ -52,7 +52,6 @@ const INK = "#0d0f12";
 const SLATE = "#2a2f36";
 const FOG = "#7d8da0";
 const RULE = "#eaedf0";
-const RULE_STRONG = "#dce0e5";
 
 export default async function PreviewHowItWorks() {
   const viewer = await getViewer();
@@ -60,111 +59,113 @@ export default async function PreviewHowItWorks() {
 
   return (
     <main className="pt-10 pb-24 px-6">
-      <div className="mx-auto" style={{ maxWidth: "880px" }}>
+      <div className="mx-auto" style={{ maxWidth: "1200px" }}>
         <EditorialTabs showCta={showCta} />
 
         {/* ─── FAQ ─── */}
         <div style={{ marginTop: 96 }}>
           <SectionRule label="FAQ · common questions" />
-          <h2
+
+          <div
+            className="ed-faq-grid"
             style={{
-              fontFamily: SERIF,
-              fontWeight: 400,
-              fontSize: 36,
-              lineHeight: 1.1,
-              letterSpacing: "-0.022em",
-              color: INK,
-              margin: 0,
-              marginBottom: 40,
-              fontVariationSettings: '"opsz" 72',
+              borderTop: `1px solid ${RULE}`,
             }}
           >
-            Common questions
-          </h2>
-
-          <div>
             {FAQS.map((item, idx) => (
               <details
                 key={item.q}
-                className="faq-item"
+                className="faq-item ed-faq-item"
+                data-col={idx % 2}
                 style={{
-                  display: "grid",
-                  gridTemplateColumns: "minmax(80px, 96px) 1fr",
-                  gap: 32,
-                  padding: "24px 0",
-                  borderBottom:
-                    idx === FAQS.length - 1 ? "none" : `1px solid ${RULE}`,
+                  padding: "24px 24px",
+                  borderBottom: `1px solid ${RULE}`,
                 }}
               >
-                <div
+                <summary
                   style={{
-                    fontFamily: MONO,
-                    fontSize: 12,
-                    fontWeight: 500,
-                    letterSpacing: "0.16em",
-                    color: FOG,
-                    paddingTop: 6,
+                    cursor: "pointer",
+                    listStyle: "none",
+                    display: "grid",
+                    gridTemplateColumns: "auto 1fr auto",
+                    gap: 16,
+                    alignItems: "baseline",
                   }}
                 >
-                  {String(idx + 1).padStart(2, "0")}
-                </div>
-                <div>
-                  <summary
+                  <span
                     style={{
-                      cursor: "pointer",
-                      listStyle: "none",
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "baseline",
-                      gap: 16,
+                      fontFamily: MONO,
+                      fontSize: 11,
+                      fontWeight: 500,
+                      letterSpacing: "0.16em",
+                      color: FOG,
                     }}
                   >
-                    <span
-                      style={{
-                        fontFamily: SERIF,
-                        fontWeight: 400,
-                        fontSize: 19,
-                        lineHeight: 1.35,
-                        color: INK,
-                        letterSpacing: "-0.005em",
-                        fontVariationSettings: '"opsz" 14',
-                      }}
-                    >
-                      {item.q}
-                    </span>
-                    <span
-                      className="faq-toggle"
-                      style={{
-                        fontFamily: SANS,
-                        fontSize: 18,
-                        color: FOG,
-                        transition: "transform 120ms ease",
-                        flexShrink: 0,
-                      }}
-                      aria-hidden
-                    >
-                      +
-                    </span>
-                  </summary>
-                  <p
+                    {String(idx + 1).padStart(2, "0")}
+                  </span>
+                  <span
                     style={{
                       fontFamily: SERIF,
-                      fontSize: 16,
-                      color: SLATE,
-                      lineHeight: 1.6,
-                      marginTop: 16,
-                      marginBottom: 0,
-                      maxWidth: 620,
+                      fontWeight: 400,
+                      fontSize: 18,
+                      lineHeight: 1.35,
+                      color: INK,
+                      letterSpacing: "-0.005em",
                       fontVariationSettings: '"opsz" 14',
                     }}
                   >
-                    {item.a}
-                  </p>
-                </div>
+                    {item.q}
+                  </span>
+                  <span
+                    className="faq-toggle"
+                    style={{
+                      fontFamily: SANS,
+                      fontSize: 18,
+                      color: FOG,
+                      transition: "transform 120ms ease",
+                    }}
+                    aria-hidden
+                  >
+                    +
+                  </span>
+                </summary>
+                <p
+                  style={{
+                    fontFamily: SERIF,
+                    fontSize: 15,
+                    color: SLATE,
+                    lineHeight: 1.6,
+                    marginTop: 14,
+                    marginLeft: 32,
+                    marginBottom: 0,
+                    fontVariationSettings: '"opsz" 14',
+                  }}
+                >
+                  {item.a}
+                </p>
               </details>
             ))}
           </div>
         </div>
+
+        <style>{`
+          .ed-faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 0;
+          }
+          .ed-faq-item[data-col="0"] {
+            border-right: 1px solid ${RULE};
+          }
+          @media (max-width: 760px) {
+            .ed-faq-grid {
+              grid-template-columns: 1fr;
+            }
+            .ed-faq-item[data-col="0"] {
+              border-right: none;
+            }
+          }
+        `}</style>
       </div>
     </main>
   );
