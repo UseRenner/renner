@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Wordmark } from "@/components/Wordmark";
 import { getViewer } from "@/lib/role";
-import { ModernistBody } from "./ModernistBody";
+import { QuoteBody } from "./QuoteBody";
 
 export const metadata = {
   title: "How it works · Renner",
@@ -56,7 +56,7 @@ const STEEL = "#647589";
 const FOG = "#7d8da0";
 const MIST = "#cad1d8";
 
-export default async function PreviewHowItWorksModernist() {
+export default async function PreviewHowItWorksQuote() {
   const viewer = await getViewer();
   const showCta = !viewer;
 
@@ -128,114 +128,119 @@ export default async function PreviewHowItWorksModernist() {
       <main
         style={{
           padding:
-            "clamp(48px, 8vw, 120px) clamp(28px, 4vw, 64px) clamp(96px, 12vw, 160px)",
+            "clamp(56px, 8vw, 120px) clamp(28px, 4vw, 64px) clamp(96px, 12vw, 160px)",
         }}
       >
-        <div className="mx-auto" style={{ maxWidth: "1280px" }}>
-          <ModernistBody showCta={showCta} />
+        <QuoteBody showCta={showCta} />
 
-          {/* ─── FAQ ─── modernist accordion ─── */}
-          <div style={{ marginTop: "clamp(96px, 14vw, 180px)" }}>
-            <div
+        {/* ─── FAQ ─── */}
+        <div
+          style={{
+            maxWidth: 720,
+            margin: "0 auto",
+            marginTop: "clamp(96px, 12vw, 160px)",
+          }}
+        >
+          <div
+            style={{
+              fontFamily: MONO,
+              fontSize: 11,
+              fontWeight: 500,
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              color: FOG,
+              marginBottom: 40,
+              textAlign: "center",
+            }}
+          >
+            Common questions
+          </div>
+
+          {FAQS.map((item, idx) => (
+            <details
+              key={item.q}
+              className="faq-item"
               style={{
-                fontFamily: MONO,
-                fontSize: 11,
-                fontWeight: 500,
-                letterSpacing: "0.22em",
-                textTransform: "uppercase",
-                color: FOG,
-                marginBottom: 56,
+                padding: "24px 0",
+                borderTop: idx === 0 ? "1px solid #eaedf0" : "none",
+                borderBottom: "1px solid #eaedf0",
               }}
             >
-              Common questions
-            </div>
-
-            {FAQS.map((item, idx) => (
-              <details
-                key={item.q}
-                className="faq-item"
+              <summary
                 style={{
-                  padding: "28px 0",
-                  borderBottom: `1px solid #eaedf0`,
-                  borderTop: idx === 0 ? "1px solid #eaedf0" : "none",
+                  cursor: "pointer",
+                  listStyle: "none",
+                  display: "grid",
+                  gridTemplateColumns: "minmax(48px, 56px) 1fr auto",
+                  gap: 24,
+                  alignItems: "baseline",
                 }}
               >
-                <summary
+                <span
                   style={{
-                    cursor: "pointer",
-                    listStyle: "none",
-                    display: "grid",
-                    gridTemplateColumns: "minmax(56px, 64px) 1fr auto",
-                    gap: 24,
-                    alignItems: "baseline",
+                    fontFamily: MONO,
+                    fontSize: 11,
+                    fontWeight: 500,
+                    letterSpacing: "0.2em",
+                    color: FOG,
                   }}
                 >
-                  <span
-                    style={{
-                      fontFamily: MONO,
-                      fontSize: 12,
-                      fontWeight: 500,
-                      letterSpacing: "0.16em",
-                      color: FOG,
-                    }}
-                  >
-                    {String(idx + 1).padStart(2, "0")}
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: SANS,
-                      fontWeight: 400,
-                      fontSize: 19,
-                      lineHeight: 1.35,
-                      color: INK,
-                      letterSpacing: "-0.005em",
-                    }}
-                  >
-                    {item.q}
-                  </span>
-                  <span
-                    className="faq-toggle"
-                    style={{
-                      fontFamily: SANS,
-                      fontSize: 18,
-                      color: FOG,
-                      transition: "transform 120ms ease",
-                    }}
-                    aria-hidden
-                  >
-                    +
-                  </span>
-                </summary>
-                <p
+                  {String(idx + 1).padStart(2, "0")}
+                </span>
+                <span
                   style={{
                     fontFamily: SERIF,
-                    fontSize: 16,
-                    color: SLATE,
-                    lineHeight: 1.6,
-                    marginTop: 16,
-                    marginLeft: 88,
-                    marginBottom: 0,
-                    maxWidth: 680,
+                    fontWeight: 400,
+                    fontSize: 19,
+                    lineHeight: 1.35,
+                    color: INK,
+                    letterSpacing: "-0.005em",
                     fontVariationSettings: '"opsz" 14',
                   }}
                 >
-                  {item.a}
-                </p>
-              </details>
-            ))}
-          </div>
+                  {item.q}
+                </span>
+                <span
+                  className="faq-toggle"
+                  style={{
+                    fontFamily: SANS,
+                    fontSize: 18,
+                    color: FOG,
+                    transition: "transform 120ms ease",
+                  }}
+                  aria-hidden
+                >
+                  +
+                </span>
+              </summary>
+              <p
+                style={{
+                  fontFamily: SERIF,
+                  fontSize: 16,
+                  color: SLATE,
+                  lineHeight: 1.65,
+                  marginTop: 16,
+                  marginLeft: 80,
+                  marginBottom: 0,
+                  fontVariationSettings: '"opsz" 14',
+                }}
+              >
+                {item.a}
+              </p>
+            </details>
+          ))}
         </div>
       </main>
 
       <footer
         style={{
-          padding: "40px clamp(28px, 4vw, 64px) 56px",
+          padding: "32px clamp(28px, 4vw, 64px)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
           flexWrap: "wrap",
           gap: 20,
-          borderTop: `1px solid #eaedf0`,
+          borderTop: "1px solid #eaedf0",
         }}
       >
         <Wordmark />

@@ -31,7 +31,7 @@ const CLIENT_STEPS: Step[] = [
     number: "03",
     title: (
       <>
-        It gets <SerifEm>done.</SerifEm>
+        It gets <Italic>done.</Italic>
       </>
     ),
     body: (
@@ -70,7 +70,7 @@ const RENNER_STEPS: Step[] = [
     number: "03",
     title: (
       <>
-        Get it <SerifEm>done.</SerifEm>
+        Get it <Italic>done.</Italic>
       </>
     ),
     body: (
@@ -107,17 +107,16 @@ const SLATE = "#2a2f36";
 const STEEL = "#647589";
 const FOG = "#7d8da0";
 const MIST = "#cad1d8";
+const RULE = "#dce0e5";
 const PAPER = "#fbfbfc";
 
-function SerifEm({ children }: { children: React.ReactNode }) {
+function Italic({ children }: { children: React.ReactNode }) {
   return (
     <span
       style={{
-        fontFamily: SERIF,
         fontStyle: "italic",
         fontWeight: 300,
         color: STEEL,
-        fontVariationSettings: '"opsz" 144',
       }}
     >
       {children}
@@ -125,18 +124,18 @@ function SerifEm({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function ModernistBody({ showCta }: { showCta: boolean }) {
+export function SpineBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
   const isClient = tab === "client";
   const steps = isClient ? CLIENT_STEPS : RENNER_STEPS;
   const benefits = isClient ? CLIENT_BENEFITS : RENNER_BENEFITS;
   const ctaHeading: React.ReactNode = isClient ? (
     <>
-      Ready to get something <SerifEm>done?</SerifEm>
+      Ready to get something <Italic>done?</Italic>
     </>
   ) : (
     <>
-      Ready to <SerifEm>run?</SerifEm>
+      Ready to <Italic>run?</Italic>
     </>
   );
   const ctaButton = isClient
@@ -161,7 +160,7 @@ export function ModernistBody({ showCta }: { showCta: boolean }) {
           textTransform: "uppercase",
         }}
       >
-        <MTab
+        <STab
           label="For Clients"
           active={isClient}
           onClick={() => setTab("client")}
@@ -169,85 +168,110 @@ export function ModernistBody({ showCta }: { showCta: boolean }) {
         <span aria-hidden style={{ color: MIST }}>
           /
         </span>
-        <MTab
+        <STab
           label="For Renners"
           active={!isClient}
           onClick={() => setTab("renner")}
         />
       </div>
 
-      {/* ─── Page title ─── SANS 200, big ─── */}
+      {/* ─── Page title ─── */}
       <h1
         style={{
-          fontFamily: SANS,
-          fontWeight: 200,
-          fontSize: "clamp(56px, 9vw, 128px)",
-          lineHeight: 0.95,
-          letterSpacing: "-0.04em",
+          fontFamily: SERIF,
+          fontWeight: 400,
+          fontSize: "clamp(48px, 8vw, 104px)",
+          lineHeight: 0.98,
+          letterSpacing: "-0.032em",
           color: INK,
           margin: 0,
-          marginBottom: "clamp(96px, 14vw, 180px)",
+          marginBottom: "clamp(96px, 12vw, 144px)",
           maxWidth: "14ch",
+          fontVariationSettings: '"opsz" 144',
         }}
       >
-        How Renner <SerifEm>works</SerifEm>
+        How Renner <Italic>works</Italic>
       </h1>
 
-      {/* ─── Steps ─── modernist 3-col grid ─── */}
-      <div
-        className="mod-steps"
-        style={{ marginBottom: "clamp(96px, 14vw, 168px)" }}
-      >
-        {steps.map((step) => (
-          <div key={step.number} className="mod-step">
+      {/* ─── Spine + steps ─── continuous vertical hairline ─── */}
+      <div className="spine-wrap">
+        <div className="spine-rule" aria-hidden />
+        {steps.map((step, idx) => (
+          <article
+            key={step.number}
+            className="spine-row"
+            style={{
+              padding:
+                idx === 0
+                  ? "0 0 64px 0"
+                  : idx === steps.length - 1
+                    ? "64px 0 0 0"
+                    : "64px 0",
+            }}
+          >
             <div
               style={{
-                fontFamily: SANS,
-                fontWeight: 200,
-                fontSize: "clamp(72px, 9vw, 112px)",
-                lineHeight: 0.9,
-                letterSpacing: "-0.04em",
-                color: INK,
-                marginBottom: 32,
+                display: "flex",
+                alignItems: "baseline",
+                gap: 24,
               }}
             >
-              {step.number}
+              <span
+                aria-hidden
+                className="spine-mark"
+              />
+              <span
+                style={{
+                  fontFamily: MONO,
+                  fontSize: 12,
+                  fontWeight: 500,
+                  letterSpacing: "0.18em",
+                  color: FOG,
+                }}
+              >
+                {step.number}
+              </span>
             </div>
-            <h3
-              style={{
-                fontFamily: SANS,
-                fontWeight: 500,
-                fontSize: 22,
-                lineHeight: 1.2,
-                letterSpacing: "-0.012em",
-                color: INK,
-                margin: 0,
-                marginBottom: 16,
-              }}
-            >
-              {step.title}
-            </h3>
-            <p
-              style={{
-                fontFamily: SERIF,
-                fontWeight: 400,
-                fontSize: 16,
-                lineHeight: 1.6,
-                color: SLATE,
-                margin: 0,
-                fontVariationSettings: '"opsz" 14',
-              }}
-            >
-              {step.body}
-            </p>
-          </div>
+            <div style={{ marginTop: 24, maxWidth: 640 }}>
+              <h3
+                style={{
+                  fontFamily: SERIF,
+                  fontWeight: 400,
+                  fontSize: "clamp(28px, 3.4vw, 40px)",
+                  lineHeight: 1.1,
+                  letterSpacing: "-0.022em",
+                  color: INK,
+                  margin: 0,
+                  marginBottom: 20,
+                  fontVariationSettings: '"opsz" 72',
+                }}
+              >
+                {step.title}
+              </h3>
+              <p
+                style={{
+                  fontFamily: SERIF,
+                  fontWeight: 400,
+                  fontSize: 17,
+                  lineHeight: 1.6,
+                  color: SLATE,
+                  margin: 0,
+                  fontVariationSettings: '"opsz" 14',
+                }}
+              >
+                {step.body}
+              </p>
+            </div>
+          </article>
         ))}
       </div>
 
-      {/* ─── Benefits ─── sans 200 stack ─── */}
+      {/* ─── Benefits ─── italic stack offset to the right ─── */}
       <div
         style={{
-          marginBottom: showCta ? "clamp(96px, 14vw, 160px)" : 0,
+          marginTop: "clamp(96px, 12vw, 144px)",
+          marginBottom: showCta ? "clamp(96px, 12vw, 144px)" : 0,
+          paddingLeft: "clamp(0px, 4vw, 80px)",
         }}
       >
         <ul
@@ -257,19 +281,21 @@ export function ModernistBody({ showCta }: { showCta: boolean }) {
             margin: 0,
             display: "flex",
             flexDirection: "column",
-            gap: 20,
+            gap: 22,
           }}
         >
           {benefits.map((b) => (
             <li
               key={b}
               style={{
-                fontFamily: SANS,
-                fontWeight: 200,
-                fontSize: "clamp(24px, 3vw, 40px)",
-                lineHeight: 1.25,
-                letterSpacing: "-0.022em",
+                fontFamily: SERIF,
+                fontStyle: "italic",
+                fontWeight: 300,
+                fontSize: "clamp(22px, 2.6vw, 32px)",
+                lineHeight: 1.3,
+                letterSpacing: "-0.012em",
                 color: INK,
+                fontVariationSettings: '"opsz" 36',
               }}
             >
               {b}
@@ -278,20 +304,25 @@ export function ModernistBody({ showCta }: { showCta: boolean }) {
         </ul>
       </div>
 
-      {/* ─── CTA ─── */}
+      {/* ─── CTA ─── refined dark button ─── */}
       {showCta && (
-        <div>
+        <div
+          style={{
+            paddingLeft: "clamp(0px, 4vw, 80px)",
+          }}
+        >
           <h2
             style={{
-              fontFamily: SANS,
-              fontWeight: 200,
-              fontSize: "clamp(40px, 6vw, 80px)",
+              fontFamily: SERIF,
+              fontWeight: 400,
+              fontSize: "clamp(36px, 5.5vw, 64px)",
               lineHeight: 1.05,
-              letterSpacing: "-0.035em",
+              letterSpacing: "-0.028em",
               color: INK,
               margin: 0,
               marginBottom: 40,
               maxWidth: "16ch",
+              fontVariationSettings: '"opsz" 144',
             }}
           >
             {ctaHeading}
@@ -324,15 +355,46 @@ export function ModernistBody({ showCta }: { showCta: boolean }) {
       )}
 
       <style jsx>{`
-        .mod-steps {
-          display: grid;
-          grid-template-columns: 1fr 1fr 1fr;
-          gap: clamp(48px, 6vw, 96px);
+        .spine-wrap {
+          position: relative;
+          padding-left: clamp(40px, 6vw, 80px);
         }
-        @media (max-width: 760px) {
-          .mod-steps {
-            grid-template-columns: 1fr;
-            gap: 80px;
+        .spine-rule {
+          position: absolute;
+          left: 12px;
+          top: 6px;
+          bottom: 6px;
+          width: 1px;
+          background: linear-gradient(
+            to bottom,
+            transparent 0%,
+            ${RULE} 8%,
+            ${RULE} 92%,
+            transparent 100%
+          );
+        }
+        .spine-row {
+          position: relative;
+        }
+        .spine-mark {
+          position: absolute;
+          left: -clamp(40px, 6vw, 80px);
+          margin-left: 7px;
+          margin-top: 4px;
+          width: 11px;
+          height: 11px;
+          border: 1px solid ${INK};
+          background: ${PAPER};
+          border-radius: 999px;
+          box-sizing: border-box;
+        }
+        @media (max-width: 640px) {
+          .spine-wrap {
+            padding-left: 36px;
+          }
+          .spine-mark {
+            left: -36px;
+            margin-left: 7px;
           }
         }
       `}</style>
@@ -340,7 +402,7 @@ export function ModernistBody({ showCta }: { showCta: boolean }) {
   );
 }
 
-function MTab({
+function STab({
   label,
   active,
   onClick,

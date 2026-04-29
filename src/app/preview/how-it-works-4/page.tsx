@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Wordmark } from "@/components/Wordmark";
 import { getViewer } from "@/lib/role";
-import { NocturneBody } from "./NocturneBody";
+import { SpineBody } from "./SpineBody";
 
 export const metadata = {
   title: "How it works · Renner",
@@ -51,22 +51,17 @@ const MONO =
   "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
 const INK = "#0d0f12";
-const PAPER = "#fbfbfc";
-const BODY = "#cad1d8";
-const STEEL = "#7d8da0";
-const FOG = "#647589";
-const GHOST = "#38414d";
-const RULE_DARK = "#272d35";
-const GREEN = "#2d8a4e";
-const GREEN_HOVER = "#246e3e";
+const SLATE = "#2a2f36";
+const STEEL = "#647589";
+const FOG = "#7d8da0";
+const MIST = "#cad1d8";
 
-export default async function PreviewHowItWorksNocturne() {
+export default async function PreviewHowItWorksSpine() {
   const viewer = await getViewer();
   const showCta = !viewer;
 
   return (
-    <div style={{ backgroundColor: INK, color: PAPER, minHeight: "100vh" }}>
-      {/* ─── Header ─── dark with light Wordmark + green Sign up ─── */}
+    <div style={{ backgroundColor: "#fbfbfc", color: INK, minHeight: "100vh" }}>
       <header
         style={{
           padding: "clamp(20px, 2.5vw, 32px) clamp(28px, 4vw, 64px)",
@@ -76,7 +71,7 @@ export default async function PreviewHowItWorksNocturne() {
           gap: 16,
         }}
       >
-        <Wordmark tone="light" slotColor={INK} />
+        <Wordmark />
         {showCta ? (
           <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
             <Link
@@ -95,21 +90,18 @@ export default async function PreviewHowItWorksNocturne() {
             </Link>
             <Link
               href="/signup"
-              className="noc-header-btn"
               style={{
                 fontFamily: SANS,
                 fontSize: 13,
                 fontWeight: 500,
                 letterSpacing: "0.01em",
-                color: PAPER,
-                backgroundColor: GREEN,
-                border: `1px solid ${GREEN}`,
+                color: "#fbfbfc",
+                backgroundColor: INK,
+                border: `1px solid ${INK}`,
                 borderRadius: 4,
                 padding: "9px 16px",
                 textDecoration: "none",
                 whiteSpace: "nowrap",
-                transition:
-                  "background-color 150ms ease, border-color 150ms ease",
               }}
             >
               Sign up
@@ -124,7 +116,7 @@ export default async function PreviewHowItWorksNocturne() {
               fontWeight: 500,
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: PAPER,
+              color: INK,
               textDecoration: "none",
             }}
           >
@@ -136,119 +128,118 @@ export default async function PreviewHowItWorksNocturne() {
       <main
         style={{
           padding:
-            "clamp(48px, 8vw, 120px) clamp(28px, 4vw, 64px) clamp(96px, 12vw, 160px)",
+            "clamp(56px, 8vw, 120px) clamp(28px, 4vw, 64px) clamp(96px, 12vw, 160px)",
+          maxWidth: "1200px",
+          margin: "0 auto",
         }}
       >
-        <div className="mx-auto" style={{ maxWidth: "1280px" }}>
-          <NocturneBody showCta={showCta} />
+        <SpineBody showCta={showCta} />
 
-          {/* ─── FAQ ─── dark accordion ─── */}
-          <div style={{ marginTop: "clamp(96px, 14vw, 180px)" }}>
-            <div
+        {/* ─── FAQ ─── ─── */}
+        <div style={{ marginTop: "clamp(96px, 12vw, 160px)" }}>
+          <div
+            style={{
+              fontFamily: MONO,
+              fontSize: 11,
+              fontWeight: 500,
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              color: FOG,
+              marginBottom: 56,
+            }}
+          >
+            Common questions
+          </div>
+
+          {FAQS.map((item, idx) => (
+            <details
+              key={item.q}
+              className="faq-item"
               style={{
-                fontFamily: MONO,
-                fontSize: 11,
-                fontWeight: 500,
-                letterSpacing: "0.22em",
-                textTransform: "uppercase",
-                color: STEEL,
-                marginBottom: 56,
+                padding: "24px 0",
+                borderTop: idx === 0 ? "1px solid #eaedf0" : "none",
+                borderBottom: "1px solid #eaedf0",
               }}
             >
-              Common questions
-            </div>
-
-            {FAQS.map((item, idx) => (
-              <details
-                key={item.q}
-                className="faq-item"
+              <summary
                 style={{
-                  padding: "28px 0",
-                  borderBottom: `1px solid ${RULE_DARK}`,
-                  borderTop: idx === 0 ? `1px solid ${RULE_DARK}` : "none",
+                  cursor: "pointer",
+                  listStyle: "none",
+                  display: "grid",
+                  gridTemplateColumns: "minmax(56px, 64px) 1fr auto",
+                  gap: 24,
+                  alignItems: "baseline",
                 }}
               >
-                <summary
+                <span
                   style={{
-                    cursor: "pointer",
-                    listStyle: "none",
-                    display: "grid",
-                    gridTemplateColumns: "minmax(56px, 64px) 1fr auto",
-                    gap: 24,
-                    alignItems: "baseline",
+                    fontFamily: MONO,
+                    fontSize: 12,
+                    fontWeight: 500,
+                    letterSpacing: "0.18em",
+                    color: FOG,
                   }}
                 >
-                  <span
-                    style={{
-                      fontFamily: MONO,
-                      fontSize: 12,
-                      fontWeight: 500,
-                      letterSpacing: "0.16em",
-                      color: STEEL,
-                    }}
-                  >
-                    {String(idx + 1).padStart(2, "0")}
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: SERIF,
-                      fontWeight: 400,
-                      fontSize: 20,
-                      lineHeight: 1.3,
-                      color: PAPER,
-                      letterSpacing: "-0.005em",
-                      fontVariationSettings: '"opsz" 14',
-                    }}
-                  >
-                    {item.q}
-                  </span>
-                  <span
-                    className="faq-toggle"
-                    style={{
-                      fontFamily: SANS,
-                      fontSize: 18,
-                      color: STEEL,
-                      transition: "transform 120ms ease",
-                    }}
-                    aria-hidden
-                  >
-                    +
-                  </span>
-                </summary>
-                <p
+                  {String(idx + 1).padStart(2, "0")}
+                </span>
+                <span
                   style={{
                     fontFamily: SERIF,
-                    fontSize: 16,
-                    color: BODY,
-                    lineHeight: 1.6,
-                    marginTop: 16,
-                    marginLeft: 88,
-                    marginBottom: 0,
-                    maxWidth: 680,
+                    fontWeight: 400,
+                    fontSize: 19,
+                    lineHeight: 1.35,
+                    color: INK,
+                    letterSpacing: "-0.005em",
                     fontVariationSettings: '"opsz" 14',
                   }}
                 >
-                  {item.a}
-                </p>
-              </details>
-            ))}
-          </div>
+                  {item.q}
+                </span>
+                <span
+                  className="faq-toggle"
+                  style={{
+                    fontFamily: SANS,
+                    fontSize: 18,
+                    color: FOG,
+                    transition: "transform 120ms ease",
+                  }}
+                  aria-hidden
+                >
+                  +
+                </span>
+              </summary>
+              <p
+                style={{
+                  fontFamily: SERIF,
+                  fontSize: 16,
+                  color: SLATE,
+                  lineHeight: 1.65,
+                  marginTop: 16,
+                  marginLeft: 88,
+                  marginBottom: 0,
+                  maxWidth: 680,
+                  fontVariationSettings: '"opsz" 14',
+                }}
+              >
+                {item.a}
+              </p>
+            </details>
+          ))}
         </div>
       </main>
 
-      {/* ─── Footer ─── dark colophon ─── */}
       <footer
         style={{
-          padding: "40px clamp(28px, 4vw, 64px) 56px",
+          padding: "32px clamp(28px, 4vw, 64px)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
           flexWrap: "wrap",
           gap: 20,
-          borderTop: `1px solid ${RULE_DARK}`,
+          borderTop: "1px solid #eaedf0",
         }}
       >
-        <Wordmark tone="light" slotColor={INK} />
+        <Wordmark />
         <div
           style={{
             display: "flex",
@@ -259,7 +250,7 @@ export default async function PreviewHowItWorksNocturne() {
             fontWeight: 500,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
-            color: STEEL,
+            color: FOG,
           }}
         >
           <Link href="/contact" style={{ color: STEEL, textDecoration: "none" }}>
@@ -271,14 +262,10 @@ export default async function PreviewHowItWorksNocturne() {
           <Link href="/privacy" style={{ color: STEEL, textDecoration: "none" }}>
             Privacy
           </Link>
-          <span style={{ color: GHOST }}>·</span>
+          <span style={{ color: MIST }}>·</span>
           <span>© 2026</span>
         </div>
       </footer>
-
-      <style>{`
-        .noc-header-btn:hover { background-color: ${GREEN_HOVER}; border-color: ${GREEN_HOVER}; }
-      `}</style>
     </div>
   );
 }
