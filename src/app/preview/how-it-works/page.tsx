@@ -62,30 +62,76 @@ export default async function PreviewHowItWorks() {
 
   return (
     <div style={{ backgroundColor: "#fbfbfc", color: INK, minHeight: "100vh" }}>
-      {/* ─── Minimal header ─── wordmark + sign-in */}
+      {/* ─── Minimal header ─── wordmark + sign-in + small CTA */}
       <header
         style={{
           padding: "clamp(24px, 3vw, 40px) clamp(28px, 4vw, 64px)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
+          gap: 16,
         }}
       >
         <Wordmark />
-        <Link
-          href="/signin"
-          style={{
-            fontFamily: MONO,
-            fontSize: 11,
-            fontWeight: 500,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: INK,
-            textDecoration: "none",
-          }}
-        >
-          Sign in →
-        </Link>
+        {showCta ? (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 24,
+            }}
+          >
+            <Link
+              href="/signin"
+              style={{
+                fontFamily: MONO,
+                fontSize: 11,
+                fontWeight: 500,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: STEEL,
+                textDecoration: "none",
+              }}
+            >
+              Sign in
+            </Link>
+            <Link
+              href="/signup"
+              style={{
+                fontFamily: SANS,
+                fontSize: 13,
+                fontWeight: 500,
+                letterSpacing: "0.01em",
+                color: "#fbfbfc",
+                backgroundColor: INK,
+                border: `1px solid ${INK}`,
+                borderRadius: 4,
+                padding: "10px 18px",
+                textDecoration: "none",
+                whiteSpace: "nowrap",
+                transition:
+                  "background-color 150ms ease, border-color 150ms ease",
+              }}
+            >
+              Sign up
+            </Link>
+          </div>
+        ) : (
+          <Link
+            href="/dashboard"
+            style={{
+              fontFamily: MONO,
+              fontSize: 11,
+              fontWeight: 500,
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: INK,
+              textDecoration: "none",
+            }}
+          >
+            Dashboard →
+          </Link>
+        )}
       </header>
 
       <main
