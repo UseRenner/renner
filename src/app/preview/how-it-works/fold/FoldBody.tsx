@@ -48,62 +48,114 @@ const RENNER_TRUST = [
   ["Repeat work", "A reputation paid in repeat clients."],
 ] as const;
 
+type FontPalette = {
+  key: string;
+  label: string;
+  dek: React.CSSProperties;
+  title: React.CSSProperties;
+  body: React.CSSProperties;
+  trustLabel: React.CSSProperties;
+  trustBody: React.CSSProperties;
+};
+
+const PALETTES: FontPalette[] = [
+  {
+    key: "italic",
+    label: "Italic serif",
+    dek: { fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(22px, 2.4vw, 30px)", lineHeight: 1.35, color: INK, fontVariationSettings: '"opsz" 36' },
+    title: { fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(28px, 3.4vw, 44px)", lineHeight: 1.05, letterSpacing: "-0.018em", color: INK, fontVariationSettings: '"opsz" 96' },
+    body: { fontFamily: SERIF, fontWeight: 400, fontSize: 17, lineHeight: 1.55, color: STEEL_700, fontVariationSettings: '"opsz" 14' },
+    trustLabel: { fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 18, color: INK, fontVariationSettings: '"opsz" 36' },
+    trustBody: { fontFamily: SERIF, fontWeight: 400, fontSize: 14, lineHeight: 1.55, color: STEEL_700, fontVariationSettings: '"opsz" 14' },
+  },
+  {
+    key: "display",
+    label: "Display serif",
+    dek: { fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(22px, 2.4vw, 30px)", lineHeight: 1.35, color: INK, fontVariationSettings: '"opsz" 60' },
+    title: { fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(28px, 3.4vw, 44px)", lineHeight: 1.0, letterSpacing: "-0.03em", color: INK, fontVariationSettings: '"opsz" 144' },
+    body: { fontFamily: SANS, fontWeight: 400, fontSize: 16, lineHeight: 1.55, color: STEEL_700 },
+    trustLabel: { fontFamily: SERIF, fontWeight: 400, fontSize: 18, color: INK, fontVariationSettings: '"opsz" 60' },
+    trustBody: { fontFamily: SANS, fontWeight: 400, fontSize: 14, lineHeight: 1.55, color: STEEL_700 },
+  },
+  {
+    key: "sans",
+    label: "Modern sans",
+    dek: { fontFamily: SANS, fontWeight: 400, fontSize: "clamp(20px, 2.2vw, 26px)", lineHeight: 1.4, color: INK, letterSpacing: "-0.005em" },
+    title: { fontFamily: SANS, fontWeight: 500, fontSize: "clamp(26px, 3.2vw, 40px)", lineHeight: 1.1, letterSpacing: "-0.025em", color: INK },
+    body: { fontFamily: SANS, fontWeight: 400, fontSize: 15, lineHeight: 1.55, color: STEEL_700 },
+    trustLabel: { fontFamily: SANS, fontWeight: 500, fontSize: 16, color: INK, letterSpacing: "-0.005em" },
+    trustBody: { fontFamily: SANS, fontWeight: 400, fontSize: 14, lineHeight: 1.55, color: STEEL_700 },
+  },
+];
+
 export function FoldBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
+  const [paletteIndex, setPaletteIndex] = useState(0);
   const isClient = tab === "client";
   const dek = isClient ? CLIENT_DEK : RENNER_DEK;
   const steps = isClient ? CLIENT_STEPS : RENNER_STEPS;
   const trust = isClient ? CLIENT_TRUST : RENNER_TRUST;
+  const palette = PALETTES[paletteIndex];
   const cta = isClient
     ? { label: "Sign up", href: "/signup" }
     : { label: "Become a Renner", href: "/become-a-renner" };
 
   return (
     <>
-      {/* Audience switch */}
-      <div
-        role="tablist"
-        aria-label="Audience"
-        style={{
-          display: "flex",
-          alignItems: "baseline",
-          gap: 14,
-          marginBottom: "clamp(40px, 5vw, 56px)",
-          fontFamily: SERIF,
-          fontStyle: "italic",
-          fontWeight: 300,
-          fontSize: 16,
-        }}
-      >
-        <Tab label="For clients" active={isClient} onClick={() => setTab("client")} />
-        <span aria-hidden style={{ color: STEEL_300, fontStyle: "normal" }}>·</span>
-        <Tab label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
+      {/* Top row — audience switch + font-palette switcher */}
+      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 24, flexWrap: "wrap", marginBottom: "clamp(48px, 6vw, 72px)" }}>
+        <div role="tablist" aria-label="Audience" style={{ display: "flex", alignItems: "baseline", gap: 14, fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 16 }}>
+          <Tab label="For clients" active={isClient} onClick={() => setTab("client")} />
+          <span aria-hidden style={{ color: STEEL_300, fontStyle: "normal" }}>·</span>
+          <Tab label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
+        </div>
+        <div role="tablist" aria-label="Font palette" style={{ display: "flex", alignItems: "baseline", gap: 12, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
+          <span aria-hidden>Type</span>
+          {PALETTES.map((p, i) => (
+            <button
+              key={p.key}
+              type="button"
+              role="tab"
+              aria-selected={i === paletteIndex}
+              onClick={() => setPaletteIndex(i)}
+              style={{
+                background: "none",
+                border: "none",
+                padding: 0,
+                fontFamily: "inherit",
+                fontSize: "inherit",
+                fontWeight: "inherit",
+                letterSpacing: "inherit",
+                textTransform: "inherit",
+                color: i === paletteIndex ? INK : STEEL_500,
+                cursor: "pointer",
+              }}
+            >
+              {p.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Lede */}
       <p
         style={{
-          fontFamily: SERIF,
-          fontWeight: 400,
-          fontSize: "clamp(22px, 2.4vw, 30px)",
-          lineHeight: 1.35,
-          color: INK,
+          ...palette.dek,
           margin: 0,
-          marginBottom: "clamp(56px, 7vw, 88px)",
+          marginBottom: "clamp(64px, 8vw, 96px)",
           maxWidth: "32ch",
-          fontVariationSettings: '"opsz" 60',
         }}
       >
         {dek}
       </p>
 
-      {/* The fold — three tall panels divided by vertical hairlines that touch top and bottom */}
+      {/* The fold — three tall panels */}
       <div
         className="fold"
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1px 1fr 1px 1fr",
-          marginBottom: "clamp(56px, 7vw, 88px)",
+          marginBottom: "clamp(64px, 8vw, 96px)",
         }}
       >
         {steps.flatMap((s, i) => {
@@ -113,68 +165,26 @@ export function FoldBody({ showCta }: { showCta: boolean }) {
               className="fold-panel"
               style={{
                 padding: i === 0
-                  ? "0 clamp(20px, 2.5vw, 32px) 0 0"
+                  ? "0 clamp(24px, 3vw, 40px) 0 0"
                   : i === steps.length - 1
-                    ? "0 0 0 clamp(20px, 2.5vw, 32px)"
-                    : "0 clamp(20px, 2.5vw, 32px)",
+                    ? "0 0 0 clamp(24px, 3vw, 40px)"
+                    : "0 clamp(24px, 3vw, 40px)",
                 display: "flex",
                 flexDirection: "column",
-                gap: 18,
+                gap: 20,
                 minHeight: 360,
               }}
             >
-              <div
-                style={{
-                  fontFamily: MONO,
-                  fontSize: 11,
-                  fontWeight: 500,
-                  letterSpacing: "0.24em",
-                  color: STEEL_500,
-                }}
-              >
+              <div style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.24em", color: STEEL_500 }}>
                 {s.number}
               </div>
-              <h3
-                style={{
-                  fontFamily: SERIF,
-                  fontWeight: 400,
-                  fontSize: "clamp(28px, 3.4vw, 44px)",
-                  lineHeight: 1.05,
-                  letterSpacing: "-0.025em",
-                  color: INK,
-                  margin: 0,
-                  fontVariationSettings: '"opsz" 96',
-                }}
-              >
+              <h3 style={{ ...palette.title, margin: 0 }}>
                 {s.title}
               </h3>
-              <p
-                style={{
-                  fontFamily: SERIF,
-                  fontStyle: "italic",
-                  fontWeight: 300,
-                  fontSize: 18,
-                  lineHeight: 1.45,
-                  color: STEEL_700,
-                  margin: 0,
-                  fontVariationSettings: '"opsz" 36',
-                }}
-              >
+              <p style={{ ...palette.body, margin: 0 }}>
                 {s.body}
               </p>
-              <div
-                style={{
-                  marginTop: "auto",
-                  paddingTop: 14,
-                  borderTop: `1px solid ${RULE}`,
-                  fontFamily: MONO,
-                  fontSize: 10,
-                  fontWeight: 500,
-                  letterSpacing: "0.22em",
-                  textTransform: "uppercase",
-                  color: STEEL_600,
-                }}
-              >
+              <div style={{ marginTop: "auto", paddingTop: 16, borderTop: `1px solid ${RULE}`, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_600 }}>
                 {s.proof}
               </div>
             </section>
@@ -182,12 +192,7 @@ export function FoldBody({ showCta }: { showCta: boolean }) {
           if (i === steps.length - 1) return [panel];
           return [
             panel,
-            <div
-              key={`crease-${s.number}`}
-              className="fold-crease"
-              style={{ backgroundColor: INK }}
-              aria-hidden
-            />,
+            <div key={`crease-${s.number}`} className="fold-crease" style={{ backgroundColor: INK }} aria-hidden />,
           ];
         })}
       </div>
@@ -196,20 +201,20 @@ export function FoldBody({ showCta }: { showCta: boolean }) {
       <section
         className="fold-trust"
         style={{
-          paddingTop: "clamp(20px, 2.5vw, 28px)",
+          paddingTop: "clamp(28px, 3.5vw, 36px)",
           borderTop: `1px solid ${INK}`,
           display: "grid",
           gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "clamp(20px, 3vw, 40px)",
-          marginBottom: showCta ? "clamp(48px, 6vw, 80px)" : 0,
+          gap: "clamp(24px, 3vw, 48px)",
+          marginBottom: showCta ? "clamp(56px, 7vw, 88px)" : 0,
         }}
       >
         {trust.map(([label, body]) => (
           <div key={label}>
-            <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 18, color: INK, marginBottom: 6, fontVariationSettings: '"opsz" 36' }}>
+            <div style={{ ...palette.trustLabel, marginBottom: 8 }}>
               {label}.
             </div>
-            <div style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.55, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>
+            <div style={palette.trustBody}>
               {body}
             </div>
           </div>
@@ -217,13 +222,7 @@ export function FoldBody({ showCta }: { showCta: boolean }) {
       </section>
 
       {showCta && (
-        <section
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            paddingTop: "clamp(40px, 5vw, 64px)",
-          }}
-        >
+        <section style={{ display: "flex", justifyContent: "center" }}>
           <Link
             href={cta.href}
             style={{
@@ -258,7 +257,7 @@ export function FoldBody({ showCta }: { showCta: boolean }) {
             margin-bottom: clamp(24px, 4vw, 40px);
           }
           .fold-panel:not(:first-child) {
-            padding-top: clamp(20px, 2.5vw, 28px) !important;
+            padding-top: clamp(24px, 3vw, 36px) !important;
             border-top: 1px solid ${RULE};
           }
           .fold-crease {
@@ -266,7 +265,7 @@ export function FoldBody({ showCta }: { showCta: boolean }) {
           }
           .fold-trust {
             grid-template-columns: 1fr !important;
-            gap: 20px !important;
+            gap: 24px !important;
           }
         }
       `}</style>
@@ -281,17 +280,7 @@ function Tab({ label, active, onClick }: { label: string; active: boolean; onCli
       role="tab"
       aria-selected={active}
       onClick={onClick}
-      style={{
-        background: "none",
-        border: "none",
-        padding: 0,
-        fontFamily: "inherit",
-        fontStyle: "inherit",
-        fontSize: "inherit",
-        fontWeight: "inherit",
-        color: active ? INK : STEEL_500,
-        cursor: "pointer",
-      }}
+      style={{ background: "none", border: "none", padding: 0, fontFamily: "inherit", fontStyle: "inherit", fontSize: "inherit", fontWeight: "inherit", color: active ? INK : STEEL_500, cursor: "pointer" }}
     >
       {label}
     </button>

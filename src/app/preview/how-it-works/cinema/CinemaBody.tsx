@@ -41,26 +41,25 @@ export function CinemaBody({ showCta }: { showCta: boolean }) {
 
   return (
     <>
-      {/* Audience switch sits above the hero so context is set first */}
-      <div role="tablist" aria-label="Audience" style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: "clamp(20px, 2.5vw, 28px)", fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 16 }}>
+      {/* Audience switch — sets context before the hero */}
+      <div role="tablist" aria-label="Audience" style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: "clamp(32px, 4vw, 44px)", fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 16 }}>
         <Tab label="For clients" active={isClient} onClick={() => setTab("client")} />
         <span aria-hidden style={{ color: STEEL_300, fontStyle: "normal" }}>·</span>
         <Tab label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
-      {/* Letterbox hero — 2.39:1 ratio, ink panel with italic dek */}
+      {/* Letterbox hero */}
       <section
         style={{
           backgroundColor: INK,
           color: PAPER,
           aspectRatio: "2.39 / 1",
-          minHeight: 280,
-          padding: "clamp(32px, 4.5vw, 72px)",
+          minHeight: 320,
+          padding: "clamp(40px, 5vw, 72px)",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          gap: "clamp(20px, 2.5vw, 32px)",
-          marginBottom: "clamp(48px, 6vw, 72px)",
+          marginBottom: "clamp(72px, 9vw, 112px)",
         }}
       >
         <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: PAPER_DIM }}>
@@ -72,7 +71,7 @@ export function CinemaBody({ showCta }: { showCta: boolean }) {
             fontFamily: SERIF,
             fontStyle: "italic",
             fontWeight: 300,
-            fontSize: "clamp(22px, 2.6vw, 34px)",
+            fontSize: "clamp(22px, 2.6vw, 32px)",
             lineHeight: 1.35,
             color: PAPER,
             margin: 0,
@@ -85,17 +84,17 @@ export function CinemaBody({ showCta }: { showCta: boolean }) {
       </section>
 
       {/* Step rows */}
-      <div style={{ marginBottom: "clamp(56px, 7vw, 88px)" }}>
+      <div style={{ marginBottom: "clamp(72px, 9vw, 112px)" }}>
         {steps.map((s, i) => (
           <article
             key={s.number}
             style={{
-              padding: "clamp(28px, 3.5vw, 44px) 0",
+              padding: "clamp(32px, 4vw, 52px) 0",
               borderTop: i === 0 ? `1px solid ${INK}` : "none",
               borderBottom: i === steps.length - 1 ? `1px solid ${INK}` : `1px solid ${RULE}`,
               display: "grid",
-              gridTemplateColumns: "80px minmax(0, 1fr) minmax(140px, 200px)",
-              gap: "clamp(24px, 3.5vw, 56px)",
+              gridTemplateColumns: "80px minmax(0, 1fr) minmax(140px, 180px)",
+              gap: "clamp(28px, 4vw, 64px)",
               alignItems: "baseline",
             }}
             className="cinema-row"
@@ -104,7 +103,7 @@ export function CinemaBody({ showCta }: { showCta: boolean }) {
               {s.number}
             </div>
             <div>
-              <h3 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(24px, 2.8vw, 34px)", lineHeight: 1.1, letterSpacing: "-0.018em", color: INK, margin: 0, marginBottom: 10, fontVariationSettings: '"opsz" 60' }}>
+              <h3 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(26px, 3vw, 36px)", lineHeight: 1.1, letterSpacing: "-0.018em", color: INK, margin: 0, marginBottom: 12, fontVariationSettings: '"opsz" 60' }}>
                 {s.title}
               </h3>
               <p style={{ fontFamily: SERIF, fontSize: 16, lineHeight: 1.6, color: STEEL_700, margin: 0, maxWidth: "52ch", fontVariationSettings: '"opsz" 14' }}>
@@ -118,80 +117,89 @@ export function CinemaBody({ showCta }: { showCta: boolean }) {
         ))}
       </div>
 
-      {/* Trust strip + credits CTA */}
+      {/* Closing credits — trust + CTA in one ink panel */}
       <section
         className="cinema-credits"
         style={{
           backgroundColor: INK,
           color: PAPER,
-          padding: "clamp(28px, 3.5vw, 48px) clamp(28px, 4vw, 64px)",
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "clamp(20px, 3vw, 48px)",
-          marginBottom: showCta ? "clamp(28px, 3.5vw, 40px)" : 0,
+          padding: "clamp(40px, 5vw, 64px) clamp(36px, 4.5vw, 64px)",
         }}
       >
-        {(isClient
-          ? [
-              ["Both sides vetted", "ID and Checkr before any booking."],
-              ["Funds in escrow", "Held by Stripe until you confirm."],
-              ["On the record", "Photos and a note on every task."],
-            ]
-          : [
-              ["Real work", "From agents, brokers, managers."],
-              ["Vetted clients", "ID and Checkr, same as you."],
-              ["Repeat work", "A reputation paid in repeat clients."],
-            ]
-        ).map(([label, body]) => (
-          <div key={label}>
-            <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 17, color: PAPER, marginBottom: 6, fontVariationSettings: '"opsz" 36' }}>
-              {label}.
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "clamp(28px, 3.5vw, 56px)",
+            marginBottom: showCta ? "clamp(36px, 4.5vw, 56px)" : 0,
+          }}
+          className="cinema-credits-grid"
+        >
+          {(isClient
+            ? [
+                ["Both sides vetted", "ID and Checkr before any booking."],
+                ["Funds in escrow", "Held by Stripe until you confirm."],
+                ["On the record", "Photos and a note on every task."],
+              ]
+            : [
+                ["Real work", "From agents, brokers, managers."],
+                ["Vetted clients", "ID and Checkr, same as you."],
+                ["Repeat work", "A reputation paid in repeat clients."],
+              ]
+          ).map(([label, body]) => (
+            <div key={label}>
+              <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 18, color: PAPER, marginBottom: 8, fontVariationSettings: '"opsz" 36' }}>
+                {label}.
+              </div>
+              <div style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.55, color: PAPER_DIM, fontVariationSettings: '"opsz" 14' }}>
+                {body}
+              </div>
             </div>
-            <div style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.55, color: PAPER_DIM, fontVariationSettings: '"opsz" 14' }}>
-              {body}
-            </div>
-          </div>
-        ))}
-      </section>
+          ))}
+        </div>
 
-      {showCta && (
-        <section style={{ display: "flex", justifyContent: "center", paddingTop: "clamp(20px, 2.5vw, 28px)" }}>
-          <Link
-            href={cta.href}
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 10,
-              fontFamily: SANS,
-              fontSize: 14,
-              fontWeight: 500,
-              color: PAPER,
-              backgroundColor: INK,
-              border: `1px solid ${INK}`,
-              borderRadius: 4,
-              padding: "14px 22px",
-              textDecoration: "none",
-            }}
-          >
-            {cta.label}
-            <span aria-hidden style={{ opacity: 0.7 }}>→</span>
-          </Link>
-        </section>
-      )}
+        {showCta && (
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, paddingTop: "clamp(28px, 3.5vw, 40px)", borderTop: `1px solid rgba(251,251,252,0.18)`, flexWrap: "wrap" }}>
+            <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: PAPER_DIM }}>
+              Both sides screened to join
+            </span>
+            <Link
+              href={cta.href}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 10,
+                fontFamily: SANS,
+                fontSize: 14,
+                fontWeight: 500,
+                color: INK,
+                backgroundColor: PAPER,
+                border: `1px solid ${PAPER}`,
+                borderRadius: 4,
+                padding: "12px 20px",
+                textDecoration: "none",
+              }}
+            >
+              {cta.label}
+              <span aria-hidden style={{ opacity: 0.7 }}>→</span>
+            </Link>
+          </div>
+        )}
+      </section>
 
       <style jsx>{`
         @media (max-width: 720px) {
           .cinema-row {
-            grid-template-columns: 80px 1fr !important;
-            gap: 8px 16px !important;
+            grid-template-columns: 56px 1fr !important;
+            gap: 12px 18px !important;
           }
           .cinema-row > :nth-child(3) {
             grid-column: 2;
             text-align: left !important;
           }
-          .cinema-credits {
+          .cinema-credits-grid {
             grid-template-columns: 1fr !important;
-            gap: 20px !important;
+            gap: 22px !important;
           }
         }
       `}</style>

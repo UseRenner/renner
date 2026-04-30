@@ -11,9 +11,10 @@ const INK = "#0d0f12";
 const STEEL_700 = "#4d5b6a";
 const STEEL_600 = "#647589";
 const STEEL_500 = "#7d8da0";
+const STEEL_400 = "#a7b2be";
 const STEEL_300 = "#cad1d8";
-const STEEL_200 = "#dfe4e9";
 const RULE = "#eaedf0";
+const BONE = "#f6f7f9";
 const PAPER = "#fbfbfc";
 
 const CLIENT_DEK = "A marketplace for real-estate work. Post a task, pick a Renner, get it done. Both sides are screened to join.";
@@ -24,13 +25,13 @@ type Step = {
   title: string;
   body: string;
   proof: string;
-  illustration: "post" | "pick" | "done" | "verify" | "browse";
+  illustration: "post" | "pick" | "done" | "verify" | "browse" | "completion";
 };
 
 const CLIENT_STEPS: Step[] = [
   { number: "01", title: "Post a task.", body: "Where, when, what, how much. Two minutes.", proof: "Under 2 min", illustration: "post" },
   { number: "02", title: "Pick a Renner.", body: "Vetted Renners apply. Read the file. Book one.", proof: "Checkr-vetted", illustration: "pick" },
-  { number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Stripe pays.", proof: "Stripe escrow", illustration: "done" },
+  { number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Stripe pays.", proof: "Stripe escrow", illustration: "completion" },
 ];
 const RENNER_STEPS: Step[] = [
   { number: "01", title: "Get verified.", body: "ID, background check, area, rate. Same day.", proof: "Same-day", illustration: "verify" },
@@ -38,135 +39,249 @@ const RENNER_STEPS: Step[] = [
   { number: "03", title: "Get it done.", body: "Run the task. Send photos. Get paid.", proof: "100% of pay", illustration: "done" },
 ];
 
-function Frame({ children, label }: { children: React.ReactNode; label: string }) {
+function InitialsDisc({ initials, size = 40, fontSize = 14 }: { initials: string; size?: number; fontSize?: number }) {
   return (
     <div
+      aria-hidden
       style={{
-        border: `1px solid ${INK}`,
-        backgroundColor: PAPER,
-        padding: 18,
-        display: "flex",
-        flexDirection: "column",
-        gap: 10,
-        aspectRatio: "5 / 4",
-        minHeight: 220,
+        width: size,
+        height: size,
+        borderRadius: "50%",
+        backgroundColor: STEEL_300,
+        color: INK,
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontFamily: SANS,
+        fontSize,
+        fontWeight: 500,
+        flexShrink: 0,
       }}
     >
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingBottom: 8, borderBottom: `1px solid ${RULE}`, fontFamily: MONO, fontSize: 9, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
-        <span>{label}</span>
-        <span aria-hidden style={{ display: "flex", gap: 4 }}>
-          <span style={{ width: 5, height: 5, borderRadius: 5, border: `1px solid ${STEEL_300}` }} />
-          <span style={{ width: 5, height: 5, borderRadius: 5, border: `1px solid ${STEEL_300}` }} />
-          <span style={{ width: 5, height: 5, borderRadius: 5, border: `1px solid ${STEEL_300}` }} />
+      {initials}
+    </div>
+  );
+}
+
+function VerifiedRow({ label }: { label: string }) {
+  return (
+    <div style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: MONO, fontSize: 9, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_600 }}>
+      <span aria-hidden style={{ display: "inline-block", width: 6, height: 6, borderRadius: "50%", backgroundColor: INK }} />
+      {label}
+    </div>
+  );
+}
+
+function PhotoSlot({ aspect = "1 / 1" }: { aspect?: string }) {
+  return (
+    <div
+      aria-hidden
+      style={{
+        aspectRatio: aspect,
+        backgroundColor: BONE,
+        border: `1px solid ${RULE}`,
+        position: "relative",
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: STEEL_400,
+          fontFamily: MONO,
+          fontSize: 9,
+          fontWeight: 500,
+          letterSpacing: "0.22em",
+          textTransform: "uppercase",
+        }}
+      >
+        Photo
+      </div>
+    </div>
+  );
+}
+
+function CardShell({ kicker, children }: { kicker: string; children: React.ReactNode }) {
+  return (
+    <article style={{ border: `1px solid ${STEEL_300}`, backgroundColor: PAPER, display: "flex", flexDirection: "column" }}>
+      <div style={{ padding: "16px 20px", borderBottom: `1px solid ${RULE}`, fontFamily: MONO, fontSize: 9, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
+        {kicker}
+      </div>
+      <div style={{ padding: "clamp(24px, 2.6vw, 32px)", display: "flex", flexDirection: "column", flex: 1, gap: 16 }}>
+        {children}
+      </div>
+    </article>
+  );
+}
+
+function PostCard() {
+  return (
+    <CardShell kicker="01 · Posted brief">
+      <h4 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 24, lineHeight: 1.15, color: INK, margin: 0, fontVariationSettings: '"opsz" 36' }}>
+        Install sign rider.
+      </h4>
+      <div style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.08em", color: STEEL_600, lineHeight: 1.5 }}>
+        Cherry Creek, CO · 80205
+        <br />
+        Today 14:00–17:00 · $45
+      </div>
+      <p style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+        Standard rider on a corner lot in RiNo. Bring a 6 ft ladder.
+        Photographic confirmation on completion.
+      </p>
+      <div style={{ marginTop: "auto", paddingTop: 16, borderTop: `1px solid ${RULE}`, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: SANS, fontSize: 13, fontWeight: 500, color: INK }}>
+          <InitialsDisc initials="SK" size={24} fontSize={10} />
+          Sarah K.
         </span>
+        <VerifiedRow label="Verified client" />
       </div>
-      <div style={{ display: "flex", flexDirection: "column", gap: 8, flex: 1 }}>{children}</div>
-    </div>
+    </CardShell>
   );
 }
 
-function FieldRow({ label, value, mono }: { label: string; value: string; mono?: boolean }) {
+function PickCard() {
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 3, paddingBottom: 6, borderBottom: `1px solid ${RULE}` }}>
-      <span style={{ fontFamily: MONO, fontSize: 8, fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: STEEL_500 }}>{label}</span>
-      <span style={{ fontFamily: mono ? MONO : SERIF, fontSize: mono ? 12 : 13, color: INK, lineHeight: 1.2, fontVariationSettings: mono ? undefined : '"opsz" 14' }}>{value}</span>
-    </div>
-  );
-}
-
-function Avatar({ initial, name, rating }: { initial: string; name: string; rating: string }) {
-  return (
-    <div style={{ display: "flex", alignItems: "center", gap: 10, paddingBottom: 8, borderBottom: `1px solid ${RULE}` }}>
-      <span style={{ width: 22, height: 22, borderRadius: 22, border: `1px solid ${INK}`, display: "inline-flex", alignItems: "center", justifyContent: "center", fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 11, color: INK, fontVariationSettings: '"opsz" 14' }}>
-        {initial}
-      </span>
-      <span style={{ fontFamily: SERIF, fontSize: 12, color: INK, flex: 1, fontVariationSettings: '"opsz" 14' }}>{name}</span>
-      <span style={{ fontFamily: MONO, fontSize: 9, fontWeight: 500, letterSpacing: "0.18em", color: STEEL_600 }}>{rating}</span>
-    </div>
-  );
-}
-
-function PostIllustration() {
-  return (
-    <Frame label="New task">
-      <FieldRow label="What" value="Sign install — front yard" />
-      <FieldRow label="Where" value="1842 Oak Ave, Austin TX" />
-      <FieldRow label="When" value="Sat 14 Jun · 10–11 am" mono />
-      <FieldRow label="Pay" value="$45" mono />
-    </Frame>
-  );
-}
-
-function PickIllustration() {
-  return (
-    <Frame label="Applicants · 3">
-      <Avatar initial="M" name="Maya R." rating="4.97 · 142" />
-      <Avatar initial="J" name="Jordan T." rating="4.92 · 88" />
-      <Avatar initial="L" name="Leo S." rating="4.89 · 213" />
-    </Frame>
-  );
-}
-
-function DoneIllustration() {
-  return (
-    <Frame label="Completion">
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6, flex: 1 }}>
-        <div style={{ aspectRatio: "1", backgroundColor: STEEL_200, border: `1px solid ${RULE}` }} aria-hidden />
-        <div style={{ aspectRatio: "1", backgroundColor: STEEL_200, border: `1px solid ${RULE}` }} aria-hidden />
-        <div style={{ aspectRatio: "1", backgroundColor: STEEL_200, border: `1px solid ${RULE}` }} aria-hidden />
-        <div style={{ aspectRatio: "1", backgroundColor: STEEL_200, border: `1px solid ${RULE}` }} aria-hidden />
-      </div>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 6, borderTop: `1px solid ${RULE}`, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: INK }}>
-        <span>✓ Confirmed</span>
-        <span style={{ color: STEEL_600 }}>$45 · paid</span>
-      </div>
-    </Frame>
-  );
-}
-
-function VerifyIllustration() {
-  return (
-    <Frame label="Onboarding">
-      <FieldRow label="Identity" value="Verified · driver's license" />
-      <FieldRow label="Background" value="Checkr · cleared" />
-      <FieldRow label="Area" value="Austin · 25 mi radius" />
-      <FieldRow label="Rate" value="$45 / task" mono />
-    </Frame>
-  );
-}
-
-function BrowseIllustration() {
-  return (
-    <Frame label="Briefs nearby · 4">
-      <div style={{ display: "flex", flexDirection: "column", gap: 6, flex: 1 }}>
-        {[
-          ["Sign install", "Oak Ave · $45"],
-          ["Lockbox swap", "5th St · $30"],
-          ["Property prep", "Bell Dr · $90"],
-          ["Guest check-in", "Main St · $40"],
-        ].map(([t, m]) => (
-          <div key={t} style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", paddingBottom: 6, borderBottom: `1px solid ${RULE}` }}>
-            <span style={{ fontFamily: SERIF, fontSize: 12, color: INK, fontVariationSettings: '"opsz" 14' }}>{t}</span>
-            <span style={{ fontFamily: MONO, fontSize: 9, fontWeight: 500, letterSpacing: "0.18em", color: STEEL_600 }}>{m}</span>
+    <CardShell kicker="02 · Application">
+      <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+        <InitialsDisc initials="JM" size={48} fontSize={16} />
+        <div>
+          <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 22, lineHeight: 1.1, color: INK, fontVariationSettings: '"opsz" 36' }}>
+            James M.
           </div>
-        ))}
+          <div style={{ marginTop: 4, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: STEEL_500 }}>
+            Denver · 2.4 mi away
+          </div>
+        </div>
       </div>
-    </Frame>
+      <div style={{ display: "flex", alignItems: "baseline", gap: 16, fontFamily: SANS, fontSize: 14, color: INK, fontWeight: 400 }}>
+        <span style={{ fontFamily: SERIF, fontSize: 22, fontWeight: 400, color: INK }}>4.96</span>
+        <span style={{ color: STEEL_600 }}>· 142 tasks completed</span>
+      </div>
+      <p style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 15, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+        &ldquo;Five years in real estate operations. Punctual, courteous,
+        photo-thorough.&rdquo;
+      </p>
+      <div style={{ marginTop: "auto", paddingTop: 16, borderTop: `1px solid ${RULE}`, display: "flex", flexDirection: "column", gap: 6 }}>
+        <VerifiedRow label="ID-verified" />
+        <VerifiedRow label="Background-checked" />
+      </div>
+    </CardShell>
+  );
+}
+
+function CompletionCard() {
+  return (
+    <CardShell kicker="03 · Completion">
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6 }}>
+        <PhotoSlot />
+        <PhotoSlot />
+        <PhotoSlot />
+      </div>
+      <div>
+        <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 22, lineHeight: 1.15, color: INK, marginBottom: 6, fontVariationSettings: '"opsz" 36' }}>
+          Confirmed.
+        </div>
+        <div style={{ fontFamily: SANS, fontSize: 13, color: STEEL_600, lineHeight: 1.55 }}>
+          Sarah K. confirmed the work and released payment.
+        </div>
+      </div>
+      <div style={{ marginTop: "auto", paddingTop: 16, borderTop: `1px solid ${RULE}`, display: "grid", gridTemplateColumns: "auto 1fr", columnGap: 12, alignItems: "baseline", fontFamily: SANS, fontSize: 13, color: INK }}>
+        <span style={{ color: STEEL_500, fontFamily: MONO, fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 500 }}>
+          Released
+        </span>
+        <span>$45 through Stripe escrow</span>
+      </div>
+    </CardShell>
+  );
+}
+
+function VerifyCard() {
+  return (
+    <CardShell kicker="01 · Onboarding">
+      <h4 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 24, lineHeight: 1.15, color: INK, margin: 0, fontVariationSettings: '"opsz" 36' }}>
+        James M.
+      </h4>
+      <div style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.08em", color: STEEL_600, lineHeight: 1.5 }}>
+        Denver, CO · 25 mi radius
+        <br />
+        Signs · Lockbox · Courier
+      </div>
+      <div style={{ display: "flex", alignItems: "baseline", gap: 16, fontFamily: SANS, fontSize: 14, color: INK }}>
+        <span style={{ fontFamily: SERIF, fontSize: 22, fontWeight: 400, color: INK }}>$45</span>
+        <span style={{ color: STEEL_600 }}>· task minimum</span>
+      </div>
+      <div style={{ marginTop: "auto", paddingTop: 16, borderTop: `1px solid ${RULE}`, display: "flex", flexDirection: "column", gap: 6 }}>
+        <VerifiedRow label="ID-verified" />
+        <VerifiedRow label="Background-checked" />
+      </div>
+    </CardShell>
+  );
+}
+
+function BrowseCard() {
+  return (
+    <CardShell kicker="02 · Briefs nearby">
+      {[
+        ["Install sign rider.", "Cherry Creek · 2.4 mi · $45"],
+        ["Lockbox swap.", "Capitol Hill · 4.1 mi · $30"],
+        ["Property prep.", "Highlands · 5.8 mi · $90"],
+      ].map(([t, m]) => (
+        <div key={t} style={{ display: "flex", flexDirection: "column", gap: 4, paddingBottom: 12, borderBottom: `1px solid ${RULE}` }}>
+          <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 18, color: INK, fontVariationSettings: '"opsz" 36' }}>{t}</span>
+          <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.16em", color: STEEL_600 }}>{m}</span>
+        </div>
+      ))}
+      <div style={{ marginTop: "auto", paddingTop: 8, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: STEEL_500 }}>
+        4 more in your area
+      </div>
+    </CardShell>
+  );
+}
+
+function DoneCard() {
+  return (
+    <CardShell kicker="03 · Payout">
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6 }}>
+        <PhotoSlot />
+        <PhotoSlot />
+        <PhotoSlot />
+      </div>
+      <div>
+        <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 22, lineHeight: 1.15, color: INK, marginBottom: 6, fontVariationSettings: '"opsz" 36' }}>
+          Paid.
+        </div>
+        <div style={{ fontFamily: SANS, fontSize: 13, color: STEEL_600, lineHeight: 1.55 }}>
+          Confirmed by Sarah K. Funds released through Stripe.
+        </div>
+      </div>
+      <div style={{ marginTop: "auto", paddingTop: 16, borderTop: `1px solid ${RULE}`, display: "grid", gridTemplateColumns: "auto 1fr", columnGap: 12, alignItems: "baseline", fontFamily: SANS, fontSize: 13, color: INK }}>
+        <span style={{ color: STEEL_500, fontFamily: MONO, fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 500 }}>
+          Earned
+        </span>
+        <span>$45 · 100% of task pay</span>
+      </div>
+    </CardShell>
   );
 }
 
 function Illustration({ kind }: { kind: Step["illustration"] }) {
   switch (kind) {
     case "post":
-      return <PostIllustration />;
+      return <PostCard />;
     case "pick":
-      return <PickIllustration />;
-    case "done":
-      return <DoneIllustration />;
+      return <PickCard />;
+    case "completion":
+      return <CompletionCard />;
     case "verify":
-      return <VerifyIllustration />;
+      return <VerifyCard />;
     case "browse":
-      return <BrowseIllustration />;
+      return <BrowseCard />;
+    case "done":
+      return <DoneCard />;
   }
 }
 
@@ -185,102 +300,89 @@ export function SceneBody({ showCta }: { showCta: boolean }) {
         <Tab label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
-      <h1
+      <p
         style={{
           fontFamily: SERIF,
           fontStyle: "italic",
           fontWeight: 300,
-          fontSize: "clamp(40px, 5.5vw, 72px)",
-          lineHeight: 1.0,
-          letterSpacing: "-0.025em",
+          fontSize: "clamp(24px, 3vw, 36px)",
+          lineHeight: 1.35,
           color: INK,
           margin: 0,
-          marginBottom: 24,
-          maxWidth: "20ch",
-          fontVariationSettings: '"opsz" 144',
-        }}
-      >
-        {isClient ? "Post a task. Pick a Renner. Get it done." : "Get verified. Pick a task. Get it done."}
-      </h1>
-      <p
-        style={{
-          fontFamily: SERIF,
-          fontSize: "clamp(17px, 1.5vw, 19px)",
-          lineHeight: 1.55,
-          color: STEEL_700,
-          margin: 0,
-          marginBottom: "clamp(56px, 7vw, 96px)",
-          maxWidth: "52ch",
-          fontVariationSettings: '"opsz" 14',
+          marginBottom: "clamp(72px, 9vw, 112px)",
+          maxWidth: "32ch",
+          fontVariationSettings: '"opsz" 36',
         }}
       >
         {dek}
       </p>
 
-      {/* Each step: illustration on the left, copy on the right */}
-      <div style={{ display: "flex", flexDirection: "column", marginBottom: "clamp(56px, 7vw, 88px)" }}>
-        {steps.map((s, i) => (
-          <article
-            key={s.number}
-            className="scene-row"
-            style={{
-              display: "grid",
-              gridTemplateColumns: i % 2 === 0 ? "minmax(260px, 360px) minmax(0, 1fr)" : "minmax(0, 1fr) minmax(260px, 360px)",
-              gap: "clamp(28px, 4vw, 64px)",
-              padding: "clamp(40px, 5vw, 64px) 0",
-              borderTop: i === 0 ? `1px solid ${INK}` : `1px solid ${RULE}`,
-              borderBottom: i === steps.length - 1 ? `1px solid ${INK}` : "none",
-              alignItems: "center",
-            }}
-          >
-            <div className={i % 2 === 0 ? "scene-art-left" : "scene-art-right"} style={{ order: i % 2 === 0 ? 0 : 1 }}>
-              <Illustration kind={s.illustration} />
-            </div>
-            <div style={{ order: i % 2 === 0 ? 1 : 0 }}>
-              <div style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.24em", color: STEEL_500, marginBottom: 14 }}>
-                {s.number} · {s.proof}
+      {/* Each step: substantial card on one side, copy on the other; alternating */}
+      <div style={{ display: "flex", flexDirection: "column", gap: "clamp(56px, 7vw, 96px)", marginBottom: "clamp(72px, 9vw, 112px)" }}>
+        {steps.map((s, i) => {
+          const cardLeft = i % 2 === 0;
+          return (
+            <article
+              key={s.number}
+              className="scene-row"
+              style={{
+                display: "grid",
+                gridTemplateColumns: cardLeft ? "minmax(320px, 480px) minmax(0, 1fr)" : "minmax(0, 1fr) minmax(320px, 480px)",
+                gap: "clamp(36px, 5vw, 80px)",
+                alignItems: "center",
+              }}
+            >
+              <div className="scene-illustration" style={{ order: cardLeft ? 0 : 1 }}>
+                <Illustration kind={s.illustration} />
               </div>
-              <h3
-                style={{
-                  fontFamily: SERIF,
-                  fontStyle: "italic",
-                  fontWeight: 300,
-                  fontSize: "clamp(28px, 3.4vw, 44px)",
-                  lineHeight: 1.05,
-                  letterSpacing: "-0.018em",
-                  color: INK,
-                  margin: 0,
-                  marginBottom: 14,
-                  fontVariationSettings: '"opsz" 60',
-                }}
-              >
-                {s.title}
-              </h3>
-              <p
-                style={{
-                  fontFamily: SERIF,
-                  fontSize: "clamp(16px, 1.4vw, 18px)",
-                  lineHeight: 1.6,
-                  color: STEEL_700,
-                  margin: 0,
-                  maxWidth: "44ch",
-                  fontVariationSettings: '"opsz" 14',
-                }}
-              >
-                {s.body}
-              </p>
-            </div>
-          </article>
-        ))}
+              <div className="scene-copy" style={{ order: cardLeft ? 1 : 0 }}>
+                <div style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.24em", color: STEEL_500, marginBottom: 16 }}>
+                  {s.number} · {s.proof}
+                </div>
+                <h3
+                  style={{
+                    fontFamily: SERIF,
+                    fontStyle: "italic",
+                    fontWeight: 300,
+                    fontSize: "clamp(28px, 3.4vw, 44px)",
+                    lineHeight: 1.05,
+                    letterSpacing: "-0.018em",
+                    color: INK,
+                    margin: 0,
+                    marginBottom: 16,
+                    fontVariationSettings: '"opsz" 60',
+                  }}
+                >
+                  {s.title}
+                </h3>
+                <p
+                  style={{
+                    fontFamily: SERIF,
+                    fontSize: "clamp(16px, 1.4vw, 18px)",
+                    lineHeight: 1.6,
+                    color: STEEL_700,
+                    margin: 0,
+                    maxWidth: "44ch",
+                    fontVariationSettings: '"opsz" 14',
+                  }}
+                >
+                  {s.body}
+                </p>
+              </div>
+            </article>
+          );
+        })}
       </div>
 
       {/* Trust */}
       <section
         style={{
-          marginBottom: showCta ? "clamp(48px, 6vw, 72px)" : 0,
+          marginBottom: showCta ? "clamp(56px, 7vw, 88px)" : 0,
           display: "grid",
           gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "clamp(20px, 3vw, 48px)",
+          gap: "clamp(24px, 3vw, 48px)",
+          paddingTop: "clamp(28px, 3.5vw, 36px)",
+          borderTop: `1px solid ${INK}`,
         }}
         className="scene-trust"
       >
@@ -296,8 +398,8 @@ export function SceneBody({ showCta }: { showCta: boolean }) {
               ["Repeat work", "A reputation paid in repeat clients."],
             ]
         ).map(([label, body]) => (
-          <div key={label} style={{ paddingTop: 20, borderTop: `1px solid ${RULE}` }}>
-            <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 18, color: INK, marginBottom: 6, fontVariationSettings: '"opsz" 36' }}>
+          <div key={label}>
+            <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 18, color: INK, marginBottom: 8, fontVariationSettings: '"opsz" 36' }}>
               {label}.
             </div>
             <div style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.55, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>
@@ -308,7 +410,7 @@ export function SceneBody({ showCta }: { showCta: boolean }) {
       </section>
 
       {showCta && (
-        <section style={{ display: "flex", justifyContent: "flex-start", paddingTop: "clamp(40px, 5vw, 64px)" }}>
+        <section style={{ display: "flex", justifyContent: "flex-start" }}>
           <Link
             href={cta.href}
             style={{
@@ -333,18 +435,18 @@ export function SceneBody({ showCta }: { showCta: boolean }) {
       )}
 
       <style jsx>{`
-        @media (max-width: 720px) {
+        @media (max-width: 880px) {
           .scene-row {
             grid-template-columns: 1fr !important;
-            gap: 24px !important;
+            gap: 28px !important;
           }
-          .scene-row > :first-child,
-          .scene-row > :last-child {
+          .scene-illustration,
+          .scene-copy {
             order: 0 !important;
           }
           .scene-trust {
             grid-template-columns: 1fr !important;
-            gap: 20px !important;
+            gap: 24px !important;
           }
         }
       `}</style>
