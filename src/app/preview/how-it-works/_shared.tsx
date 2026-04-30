@@ -45,11 +45,13 @@ export type VariantKey =
   | "plate"
   | "marketplace"
   | "network"
+  | "showcase"
+  | "frame"
+  | "scene"
   | "mast"
   | "pivot"
   | "tape"
   | "fold"
-  | "scene"
   | "cinema"
   | "anchor"
   | "quarter";
@@ -60,11 +62,13 @@ export const VARIANTS: ReadonlyArray<{ href: string; key: VariantKey; label: str
   { href: "/preview/how-it-works/plate", key: "plate", label: "Plate" },
   { href: "/preview/how-it-works/marketplace", key: "marketplace", label: "Marketplace" },
   { href: "/preview/how-it-works/network", key: "network", label: "Network" },
+  { href: "/preview/how-it-works/showcase", key: "showcase", label: "Showcase" },
+  { href: "/preview/how-it-works/frame", key: "frame", label: "Frame" },
+  { href: "/preview/how-it-works/scene", key: "scene", label: "Scene" },
   { href: "/preview/how-it-works/mast", key: "mast", label: "Mast" },
   { href: "/preview/how-it-works/pivot", key: "pivot", label: "Pivot" },
   { href: "/preview/how-it-works/tape", key: "tape", label: "Tape" },
   { href: "/preview/how-it-works/fold", key: "fold", label: "Fold" },
-  { href: "/preview/how-it-works/scene", key: "scene", label: "Scene" },
   { href: "/preview/how-it-works/cinema", key: "cinema", label: "Cinema" },
   { href: "/preview/how-it-works/anchor", key: "anchor", label: "Anchor" },
   { href: "/preview/how-it-works/quarter", key: "quarter", label: "Quarter" },

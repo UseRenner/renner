@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { Mini, CLIENT_KINDS, RENNER_KINDS } from "../_illustrations";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
@@ -13,10 +14,8 @@ const STEEL_600 = "#647589";
 const STEEL_500 = "#7d8da0";
 const STEEL_300 = "#cad1d8";
 const RULE = "#eaedf0";
+const BONE = "#f6f7f9";
 const PAPER = "#fbfbfc";
-
-const CLIENT_DEK = "A marketplace for real-estate work. Post a task, pick a Renner, get it done. Both sides are screened to join.";
-const RENNER_DEK = "Real-estate work, paid through the platform. Set your area, set your rate, pick what you take. Both sides are screened to join.";
 
 const CLIENT_STEPS = [
   { number: "01", title: "Post a task.", body: "Where, when, what, how much. Two minutes.", proof: "Under 2 min" },
@@ -32,7 +31,6 @@ const RENNER_STEPS = [
 export function QuarterBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
   const isClient = tab === "client";
-  const dek = isClient ? CLIENT_DEK : RENNER_DEK;
   const steps = isClient ? CLIENT_STEPS : RENNER_STEPS;
   const cta = isClient ? { label: "Sign up", href: "/signup" } : { label: "Become a Renner", href: "/become-a-renner" };
 
@@ -77,22 +75,9 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
 
         <div aria-hidden style={{ backgroundColor: INK }} className="quarter-vrule" />
 
-        {/* Top-right: dek */}
-        <section className="quarter-cell" style={{ padding: "clamp(32px, 4.5vw, 64px)", display: "flex", alignItems: "center" }}>
-          <p
-            style={{
-              fontFamily: SERIF,
-              fontWeight: 400,
-              fontSize: "clamp(17px, 1.5vw, 19px)",
-              lineHeight: 1.6,
-              color: STEEL_700,
-              margin: 0,
-              maxWidth: "44ch",
-              fontVariationSettings: '"opsz" 14',
-            }}
-          >
-            {dek}
-          </p>
+        {/* Top-right: a UI illustration — see the product first */}
+        <section className="quarter-cell" style={{ padding: "clamp(28px, 3.5vw, 48px)", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: BONE }}>
+          <Mini kind={isClient ? "brief" : "inbox"} />
         </section>
 
         {/* Horizontal rule across all three columns */}

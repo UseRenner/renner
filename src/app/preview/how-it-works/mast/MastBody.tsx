@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { Mini, CLIENT_KINDS, RENNER_KINDS } from "../_illustrations";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS =
@@ -172,7 +173,7 @@ export function MastBody({ showCta }: { showCta: boolean }) {
               borderBottom:
                 idx === steps.length - 1 ? `1px solid ${INK}` : "none",
               padding: "clamp(40px, 5vw, 72px) 0",
-              alignItems: "baseline",
+              alignItems: "center",
             }}
           >
             <div
@@ -233,6 +234,9 @@ export function MastBody({ showCta }: { showCta: boolean }) {
               >
                 {step.proof}
               </div>
+            </div>
+            <div className="counter-illustration" style={{ display: "flex", justifyContent: "flex-end" }}>
+              <Mini kind={(isClient ? CLIENT_KINDS : RENNER_KINDS)[idx]} />
             </div>
           </li>
         ))}
@@ -368,13 +372,21 @@ export function MastBody({ showCta }: { showCta: boolean }) {
       <style jsx>{`
         .counter-row {
           display: grid;
-          grid-template-columns: minmax(160px, 280px) minmax(0, 1fr);
-          gap: clamp(24px, 4vw, 64px);
+          grid-template-columns: minmax(140px, 220px) minmax(0, 1fr) minmax(260px, 320px);
+          gap: clamp(24px, 3.5vw, 56px);
         }
         .counter-trust-row {
           display: grid;
           grid-template-columns: minmax(180px, 280px) minmax(0, 1fr);
           gap: clamp(24px, 4vw, 64px);
+        }
+        @media (max-width: 1024px) {
+          .counter-row {
+            grid-template-columns: minmax(140px, 220px) minmax(0, 1fr);
+          }
+          .counter-illustration {
+            display: none !important;
+          }
         }
         @media (max-width: 720px) {
           .counter-row {

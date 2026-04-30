@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { Mini, CLIENT_KINDS, RENNER_KINDS } from "../_illustrations";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS =
@@ -173,9 +174,13 @@ export function PivotBody({ showCta }: { showCta: boolean }) {
                     letterSpacing: "0.2em",
                     textTransform: "uppercase",
                     color: STEEL_600,
+                    marginBottom: 24,
                   }}
                 >
                   {s.proof}
+                </div>
+                <div className="pivot-illustration" style={{ display: "flex", justifyContent: bodySide === "left" ? "flex-end" : "flex-start" }}>
+                  <Mini kind={(isClient ? CLIENT_KINDS : RENNER_KINDS)[i]} />
                 </div>
               </div>
             </div>

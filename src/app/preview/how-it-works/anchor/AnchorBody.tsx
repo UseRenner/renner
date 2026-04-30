@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { Card, CLIENT_KINDS, RENNER_KINDS } from "../_illustrations";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
@@ -55,8 +56,19 @@ export function AnchorBody({ showCta }: { showCta: boolean }) {
         {dek}
       </p>
 
+      {/* See it — three product cards lift the page off the type */}
+      <div className="anchor-cards" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "clamp(20px, 2.4vw, 32px)", marginTop: "clamp(56px, 7vw, 88px)" }}>
+        {(isClient ? CLIENT_KINDS : RENNER_KINDS).map((kind) => (
+          <div key={kind} style={{ display: "flex" }}>
+            <div style={{ flex: 1 }}>
+              <Card kind={kind} />
+            </div>
+          </div>
+        ))}
+      </div>
+
       {/* Spacer rises into the anchored steps below */}
-      <div style={{ flex: 1, minHeight: "clamp(96px, 12vw, 160px)" }} />
+      <div style={{ flex: 1, minHeight: "clamp(64px, 8vw, 112px)" }} />
 
       {/* Anchored bottom — the steps land here, the page rests on them */}
       <ol style={{ listStyle: "none", margin: 0, padding: 0, borderTop: `1px solid ${INK}` }}>
@@ -107,6 +119,12 @@ export function AnchorBody({ showCta }: { showCta: boolean }) {
       )}
 
       <style jsx>{`
+        @media (max-width: 880px) {
+          .anchor-cards {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
+          }
+        }
         @media (max-width: 760px) {
           .anchor-row {
             grid-template-columns: 40px 1fr !important;

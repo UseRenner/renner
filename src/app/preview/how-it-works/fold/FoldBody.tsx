@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { Mini, CLIENT_KINDS, RENNER_KINDS } from "../_illustrations";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS =
@@ -159,6 +160,7 @@ export function FoldBody({ showCta }: { showCta: boolean }) {
         }}
       >
         {steps.flatMap((s, i) => {
+          const kind = (isClient ? CLIENT_KINDS : RENNER_KINDS)[i];
           const panel = (
             <section
               key={`panel-${s.number}`}
@@ -172,9 +174,11 @@ export function FoldBody({ showCta }: { showCta: boolean }) {
                 display: "flex",
                 flexDirection: "column",
                 gap: 20,
-                minHeight: 360,
               }}
             >
+              <div style={{ marginBottom: 4 }}>
+                <Mini kind={kind} />
+              </div>
               <div style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.24em", color: STEEL_500 }}>
                 {s.number}
               </div>

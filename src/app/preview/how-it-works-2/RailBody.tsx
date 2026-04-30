@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { RennerMark } from "../how-it-works/_shared";
+import { Mini, CLIENT_KINDS, RENNER_KINDS } from "../how-it-works/_illustrations";
 
 type Step = { number: string; title: React.ReactNode; body: React.ReactNode };
 
@@ -317,12 +318,14 @@ export function RailBody({ showCta }: { showCta: boolean }) {
                       lineHeight: 1.6,
                       color: SLATE,
                       margin: 0,
+                      marginBottom: 24,
                       maxWidth: 640,
                       fontVariationSettings: '"opsz" 14',
                     }}
                   >
                     {step.body}
                   </p>
+                  <Mini kind={(isClient ? CLIENT_KINDS : RENNER_KINDS)[idx]} />
                 </div>
               </article>
             ))}

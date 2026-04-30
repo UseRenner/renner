@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { Mini, CLIENT_KINDS, RENNER_KINDS } from "../_illustrations";
 
 type Step = { number: string; title: string; body: React.ReactNode; spec: string };
 
@@ -262,10 +263,12 @@ export function AtelierBody({ showCta }: { showCta: boolean }) {
                       letterSpacing: "0.22em",
                       textTransform: "uppercase",
                       color: STEEL_600,
+                      marginBottom: 18,
                     }}
                   >
                     {step.spec}
                   </div>
+                  <Mini kind={(isClient ? CLIENT_KINDS : RENNER_KINDS)[idx]} />
                 </div>
               </li>
             ))}

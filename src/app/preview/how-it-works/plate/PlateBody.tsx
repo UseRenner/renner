@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { Mini, CLIENT_KINDS, RENNER_KINDS } from "../_illustrations";
 
 type Plate = {
   number: string;
@@ -200,16 +201,16 @@ export function PlateBody({ showCta }: { showCta: boolean }) {
           marginBottom: showCta ? "clamp(72px, 9vw, 120px)" : 0,
         }}
       >
-        {plates.map((plate) => (
+        {plates.map((plate, idx) => (
           <article
             key={plate.number}
             style={{
               border: `1px solid ${STEEL_300}`,
               padding: "clamp(32px, 4.5vw, 56px)",
               display: "grid",
-              gridTemplateColumns: "minmax(56px, 64px) minmax(0, 1fr) minmax(0, auto)",
-              gap: "clamp(20px, 3vw, 40px)",
-              alignItems: "baseline",
+              gridTemplateColumns: "minmax(56px, 64px) minmax(0, 1fr) minmax(260px, 320px)",
+              gap: "clamp(24px, 3.5vw, 56px)",
+              alignItems: "center",
             }}
             className="plate-card"
           >
@@ -255,20 +256,11 @@ export function PlateBody({ showCta }: { showCta: boolean }) {
                 {plate.body}
               </p>
             </div>
-            <div
-              className="plate-proof"
-              style={{
-                fontFamily: MONO,
-                fontSize: 10,
-                fontWeight: 500,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                color: STEEL_600,
-                whiteSpace: "nowrap",
-                textAlign: "right",
-              }}
-            >
-              {plate.proof}
+            <div className="plate-illustration" style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "flex-end" }}>
+              <Mini kind={(isClient ? CLIENT_KINDS : RENNER_KINDS)[idx]} />
+              <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: STEEL_600 }}>
+                {plate.proof}
+              </span>
             </div>
           </article>
         ))}
@@ -336,14 +328,18 @@ export function PlateBody({ showCta }: { showCta: boolean }) {
             align-items: start !important;
           }
         }
+        @media (max-width: 1024px) {
+          :global(.plate-card) {
+            grid-template-columns: minmax(56px, 64px) minmax(0, 1fr) !important;
+          }
+          :global(.plate-illustration) {
+            display: none !important;
+          }
+        }
         @media (max-width: 720px) {
           :global(.plate-card) {
             grid-template-columns: 1fr !important;
             gap: 12px !important;
-          }
-          :global(.plate-proof) {
-            text-align: left !important;
-            white-space: normal !important;
           }
         }
       `}</style>

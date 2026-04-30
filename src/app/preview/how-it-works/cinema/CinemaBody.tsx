@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { Card, CLIENT_KINDS, RENNER_KINDS } from "../_illustrations";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
@@ -82,6 +83,17 @@ export function CinemaBody({ showCta }: { showCta: boolean }) {
           {dek}
         </p>
       </section>
+
+      {/* See-before-read — three product cards directly below the hero */}
+      <div className="cinema-cards" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "clamp(20px, 2.4vw, 32px)", marginBottom: "clamp(72px, 9vw, 112px)" }}>
+        {(isClient ? CLIENT_KINDS : RENNER_KINDS).map((kind) => (
+          <div key={kind} style={{ display: "flex" }}>
+            <div style={{ flex: 1 }}>
+              <Card kind={kind} />
+            </div>
+          </div>
+        ))}
+      </div>
 
       {/* Step rows */}
       <div style={{ marginBottom: "clamp(72px, 9vw, 112px)" }}>
@@ -188,6 +200,12 @@ export function CinemaBody({ showCta }: { showCta: boolean }) {
       </section>
 
       <style jsx>{`
+        @media (max-width: 880px) {
+          .cinema-cards {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
+          }
+        }
         @media (max-width: 720px) {
           .cinema-row {
             grid-template-columns: 56px 1fr !important;

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { Mini, CLIENT_KINDS, RENNER_KINDS } from "../_illustrations";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS =
@@ -147,38 +148,42 @@ export function TapeBody({ showCta }: { showCta: boolean }) {
           {dek}
         </p>
 
-        {steps.map((s, i) => (
-          <article
-            id={s.id}
-            key={s.id}
-            style={{
-              scrollMarginTop: "80px",
-              display: "grid",
-              gridTemplateColumns: "minmax(56px, 64px) minmax(0, 1fr)",
-              columnGap: "clamp(20px, 2.5vw, 32px)",
-              padding: "clamp(28px, 3.5vw, 44px) 0",
-              borderTop: `1px solid ${RULE}`,
-              borderBottom: i === steps.length - 1 ? `1px solid ${RULE}` : "none",
-            }}
-          >
-            <div style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.24em", color: STEEL_500, paddingTop: 4 }}>
-              {s.number}
-            </div>
-            <div>
-              <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16, marginBottom: 10, flexWrap: "wrap" }}>
-                <h3 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(24px, 2.6vw, 30px)", lineHeight: 1.1, color: INK, margin: 0, fontVariationSettings: '"opsz" 60' }}>
-                  {s.title}
-                </h3>
-                <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_600 }}>
-                  {s.proof}
-                </span>
+        {steps.map((s, i) => {
+          const kind = (isClient ? CLIENT_KINDS : RENNER_KINDS)[i];
+          return (
+            <article
+              id={s.id}
+              key={s.id}
+              style={{
+                scrollMarginTop: "80px",
+                display: "grid",
+                gridTemplateColumns: "minmax(56px, 64px) minmax(0, 1fr)",
+                columnGap: "clamp(20px, 2.5vw, 32px)",
+                padding: "clamp(28px, 3.5vw, 44px) 0",
+                borderTop: `1px solid ${RULE}`,
+                borderBottom: i === steps.length - 1 ? `1px solid ${RULE}` : "none",
+              }}
+            >
+              <div style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.24em", color: STEEL_500, paddingTop: 4 }}>
+                {s.number}
               </div>
-              <p style={{ fontFamily: SERIF, fontSize: 17, lineHeight: 1.65, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
-                {s.body}
-              </p>
-            </div>
-          </article>
-        ))}
+              <div>
+                <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16, marginBottom: 10, flexWrap: "wrap" }}>
+                  <h3 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(24px, 2.6vw, 30px)", lineHeight: 1.1, color: INK, margin: 0, fontVariationSettings: '"opsz" 60' }}>
+                    {s.title}
+                  </h3>
+                  <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_600 }}>
+                    {s.proof}
+                  </span>
+                </div>
+                <p style={{ fontFamily: SERIF, fontSize: 17, lineHeight: 1.65, color: STEEL_700, margin: 0, marginBottom: 24, fontVariationSettings: '"opsz" 14' }}>
+                  {s.body}
+                </p>
+                <Mini kind={kind} />
+              </div>
+            </article>
+          );
+        })}
       </div>
 
       {/* Trust as an inline mono row — quiet, in keeping with the column above */}
