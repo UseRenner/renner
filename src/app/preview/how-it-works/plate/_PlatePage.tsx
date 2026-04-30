@@ -121,6 +121,33 @@ function MarkLockup({ mark }: { mark: PlateMarkKey }) {
     );
   }
 
+  // Same wordmark, weight 400 — regular italic. The fallback if 200
+  // and 300 read too delicate at small sizes or low-DPI displays.
+  if (mark === "lowercase-italic-only-400") {
+    return (
+      <Link
+        href="/"
+        aria-label="renner"
+        style={{ display: "inline-flex", alignItems: "center", textDecoration: "none", color: INK }}
+      >
+        <span
+          style={{
+            fontFamily: SERIF,
+            fontStyle: "italic",
+            fontWeight: 400,
+            fontSize: 48,
+            letterSpacing: "-0.02em",
+            color: INK,
+            lineHeight: 1,
+            fontVariationSettings: '"opsz" 144',
+          }}
+        >
+          renner
+        </span>
+      </Link>
+    );
+  }
+
   if (mark === "sans-caps-only") {
     return (
       <Link
@@ -286,6 +313,39 @@ function MarkLockup({ mark }: { mark: PlateMarkKey }) {
             fontFamily: SERIF,
             fontStyle: "italic",
             fontWeight: 200,
+            fontSize: 38,
+            letterSpacing: "-0.018em",
+            color: INK,
+            lineHeight: 1,
+            fontVariationSettings: '"opsz" 60',
+          }}
+        >
+          renner
+        </span>
+      </Link>
+    );
+  }
+
+  // Same lockup, weight 400 — regular italic, the fallback.
+  if (mark === "lowercase-italic-400") {
+    return (
+      <Link
+        href="/"
+        aria-label="renner"
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 16,
+          textDecoration: "none",
+          color: INK,
+        }}
+      >
+        <Logo size={36} fill={INK} slotColor={PAPER} />
+        <span
+          style={{
+            fontFamily: SERIF,
+            fontStyle: "italic",
+            fontWeight: 400,
             fontSize: 38,
             letterSpacing: "-0.018em",
             color: INK,
