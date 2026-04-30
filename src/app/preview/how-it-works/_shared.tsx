@@ -42,73 +42,43 @@ export const FAQS: Array<{ q: string; a: string }> = [
 export type VariantKey =
   | "direct"
   | "brief"
-  | "verse"
   | "chapter"
   | "rail"
-  | "suite"
   | "atelier"
   | "plate"
   | "marketplace"
   | "network"
-  | "console"
   | "mast"
-  | "ledger"
-  | "slab"
   | "pivot"
-  | "spread"
-  | "strata"
   | "tape"
   | "window"
-  | "print"
   | "fold"
   | "list"
   | "plat"
-  | "cover"
-  | "punch"
-  | "receipt"
-  | "beam"
   | "diagram"
   | "cinema"
-  | "margin"
-  | "sheet"
   | "anchor"
-  | "form"
   | "quarter";
 
 export const VARIANTS: ReadonlyArray<{ href: string; key: VariantKey; label: string }> = [
   { href: "/preview/how-it-works", key: "direct", label: "Direct" },
   { href: "/preview/how-it-works/brief", key: "brief", label: "Brief" },
-  { href: "/preview/how-it-works/verse", key: "verse", label: "Verse" },
   { href: "/preview/how-it-works/chapter", key: "chapter", label: "Chapter" },
   { href: "/preview/how-it-works-2", key: "rail", label: "Rail" },
-  { href: "/preview/how-it-works/suite", key: "suite", label: "Suite" },
   { href: "/preview/how-it-works/atelier", key: "atelier", label: "Atelier" },
   { href: "/preview/how-it-works/plate", key: "plate", label: "Plate" },
   { href: "/preview/how-it-works/marketplace", key: "marketplace", label: "Marketplace" },
   { href: "/preview/how-it-works/network", key: "network", label: "Network" },
-  { href: "/preview/how-it-works/console", key: "console", label: "Console" },
   { href: "/preview/how-it-works/mast", key: "mast", label: "Mast" },
-  { href: "/preview/how-it-works/ledger", key: "ledger", label: "Ledger" },
-  { href: "/preview/how-it-works/slab", key: "slab", label: "Slab" },
   { href: "/preview/how-it-works/pivot", key: "pivot", label: "Pivot" },
-  { href: "/preview/how-it-works/spread", key: "spread", label: "Spread" },
-  { href: "/preview/how-it-works/strata", key: "strata", label: "Strata" },
   { href: "/preview/how-it-works/tape", key: "tape", label: "Tape" },
   { href: "/preview/how-it-works/window", key: "window", label: "Window" },
-  { href: "/preview/how-it-works/print", key: "print", label: "Print" },
   { href: "/preview/how-it-works/fold", key: "fold", label: "Fold" },
   { href: "/preview/how-it-works/list", key: "list", label: "List" },
   { href: "/preview/how-it-works/plat", key: "plat", label: "Plat" },
-  { href: "/preview/how-it-works/cover", key: "cover", label: "Cover" },
-  { href: "/preview/how-it-works/punch", key: "punch", label: "Punch" },
-  { href: "/preview/how-it-works/receipt", key: "receipt", label: "Receipt" },
-  { href: "/preview/how-it-works/beam", key: "beam", label: "Beam" },
   { href: "/preview/how-it-works/diagram", key: "diagram", label: "Diagram" },
   { href: "/preview/how-it-works/cinema", key: "cinema", label: "Cinema" },
-  { href: "/preview/how-it-works/margin", key: "margin", label: "Margin" },
-  { href: "/preview/how-it-works/sheet", key: "sheet", label: "Sheet" },
   { href: "/preview/how-it-works/anchor", key: "anchor", label: "Anchor" },
-  { href: "/preview/how-it-works/form", key: "form", label: "Form" },
   { href: "/preview/how-it-works/quarter", key: "quarter", label: "Quarter" },
 ];
 
