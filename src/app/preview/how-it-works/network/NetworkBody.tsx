@@ -32,7 +32,7 @@ const CLIENT_DEK =
   "A vetted network of real-estate operators. Both parties — clients and Renners — are ID-verified and background-checked before posting or booking.";
 
 const RENNER_DEK =
-  "Built for people who work in real estate. Renners keep 100% of task pay; the clients you book with are ID-verified and background-checked, the same as you.";
+  "A network for the people who keep real estate moving — and the people who want to. The agents, brokers, and managers who post tasks are ID-verified and background-checked, the same as you.";
 
 type Operator = {
   initials: string;
@@ -292,14 +292,15 @@ export function NetworkBody({ showCta }: { showCta: boolean }) {
         </div>
         <div
           style={{
-            fontFamily: SANS,
+            fontFamily: SERIF,
             fontStyle: "italic",
-            fontWeight: 400,
-            fontSize: 14,
+            fontWeight: 300,
+            fontSize: 15,
             color: STEEL_600,
+            fontVariationSettings: '"opsz" 14',
           }}
         >
-          A sample · 6 of 1,400+ active operators
+          Illustrative · names and figures are examples
         </div>
       </div>
 
@@ -452,13 +453,13 @@ export function NetworkBody({ showCta }: { showCta: boolean }) {
         {(isClient
           ? [
               ["Both sides verified", "Clients and Renners are ID-checked and background-checked before they can post or book."],
-              ["For the industry", "Renner attracts people who work in real estate — not gig-hopping."],
               ["Stripe escrow", "Funds are held by Stripe until the work is confirmed or 48 hours pass."],
+              ["On the record", "Completion photos and a written confirmation arrive with every task."],
             ]
           : [
-              ["100% to the Renner", "Every dollar of the task pay is yours. The 10% service fee comes from the client side."],
+              ["Real-estate work", "Run tasks for the agents, brokers, and property managers who keep listings moving."],
               ["Verified clients", "The agents, brokers, and managers who book you are ID-checked and background-checked."],
-              ["For the industry", "Renner is built for people motivated by real estate work — not by quick-buck gigs."],
+              ["A real reputation", "Build a name in an industry that remembers. Repeat clients find their way back."],
             ]
         ).map(([label, body]) => (
           <div key={label}>

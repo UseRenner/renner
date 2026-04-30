@@ -34,7 +34,7 @@ const CLIENT_DEK =
   "A marketplace built only for real-estate task work. You post the brief, a vetted operator applies, the work gets done. Both parties — clients and Renners — are ID-verified and background-checked.";
 
 const RENNER_DEK =
-  "Real-estate operators running short tasks for agents, brokers, and property managers. You keep 100% of the task pay. The clients who book you are ID-verified and background-checked, the same as you.";
+  "Real-estate work, brief by brief. Run tasks for the agents, brokers, and property managers who keep listings moving. The clients you book with are ID-verified and background-checked, the same as you.";
 
 function Em({ children }: { children: React.ReactNode }) {
   return (
@@ -196,50 +196,82 @@ export function MarketplaceBody({ showCta }: { showCta: boolean }) {
         <TabButton label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
-      {/* ─── Statement + dek ─── side-by-side editorial lede */}
-      <div
-        className="mp-lede"
+      {/* ─── Statement ─── stacked, full width so each clause fits one line */}
+      <h1
         style={{
-          display: "grid",
-          gridTemplateColumns: "minmax(0, 1.05fr) minmax(0, 1fr)",
-          gap: "clamp(40px, 6vw, 96px)",
-          alignItems: "end",
-          marginBottom: "clamp(72px, 9vw, 120px)",
+          fontFamily: SERIF,
+          fontWeight: 400,
+          fontSize: "clamp(40px, 6vw, 80px)",
+          lineHeight: 1.05,
+          letterSpacing: "-0.028em",
+          color: INK,
+          margin: 0,
+          marginBottom: "clamp(32px, 4vw, 48px)",
+          maxWidth: "26ch",
+          fontVariationSettings: '"opsz" 144',
         }}
       >
-        <h1
+        {clauses.map((c, i) => (
+          <span key={i} style={{ display: "block" }}>
+            {c}
+          </span>
+        ))}
+      </h1>
+
+      {/* ─── Dek ─── one sentence framing the platform */}
+      <p
+        style={{
+          fontFamily: SERIF,
+          fontWeight: 400,
+          fontSize: "clamp(17px, 1.5vw, 19px)",
+          lineHeight: 1.55,
+          color: STEEL_700,
+          margin: 0,
+          marginBottom: "clamp(72px, 9vw, 120px)",
+          maxWidth: "56ch",
+          fontVariationSettings: '"opsz" 14',
+        }}
+      >
+        {dek}
+      </p>
+
+      {/* ─── Illustrative framing ─── above the cards */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "baseline",
+          justifyContent: "space-between",
+          paddingBottom: 16,
+          marginBottom: 24,
+          borderBottom: `1px solid ${STEEL_300}`,
+          gap: 16,
+          flexWrap: "wrap",
+        }}
+      >
+        <div
           style={{
-            fontFamily: SERIF,
-            fontWeight: 400,
-            fontSize: "clamp(40px, 6vw, 80px)",
-            lineHeight: 1.05,
-            letterSpacing: "-0.028em",
-            color: INK,
-            margin: 0,
-            maxWidth: "26ch",
-            fontVariationSettings: '"opsz" 144',
+            fontFamily: MONO,
+            fontSize: 10,
+            fontWeight: 500,
+            letterSpacing: "0.24em",
+            textTransform: "uppercase",
+            color: STEEL_600,
           }}
         >
-          {clauses.map((c, i) => (
-            <span key={i} style={{ display: "block" }}>
-              {c}
-            </span>
-          ))}
-        </h1>
-        <p
+          A brief, end to end
+        </div>
+        <div
           style={{
             fontFamily: SERIF,
-            fontWeight: 400,
-            fontSize: "clamp(16px, 1.4vw, 18px)",
-            lineHeight: 1.6,
-            color: STEEL_700,
-            margin: 0,
-            maxWidth: "44ch",
+            fontStyle: "italic",
+            fontWeight: 300,
+            fontSize: 15,
+            color: STEEL_600,
             fontVariationSettings: '"opsz" 14',
           }}
         >
-          {dek}
-        </p>
+          Illustrative · names and details are examples
+        </div>
       </div>
 
       {/* ─── Three product cards ─── posted brief / application / completion */}
@@ -265,9 +297,6 @@ export function MarketplaceBody({ showCta }: { showCta: boolean }) {
         >
           <div
             style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
               padding: "16px 20px",
               borderBottom: `1px solid ${RULE}`,
               fontFamily: MONO,
@@ -278,8 +307,7 @@ export function MarketplaceBody({ showCta }: { showCta: boolean }) {
               color: STEEL_500,
             }}
           >
-            <span>Posted brief · 01</span>
-            <span>14 min ago</span>
+            01 · Posted brief
           </div>
           <div
             style={{
@@ -373,9 +401,6 @@ export function MarketplaceBody({ showCta }: { showCta: boolean }) {
         >
           <div
             style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
               padding: "16px 20px",
               borderBottom: `1px solid ${RULE}`,
               fontFamily: MONO,
@@ -386,8 +411,7 @@ export function MarketplaceBody({ showCta }: { showCta: boolean }) {
               color: STEEL_500,
             }}
           >
-            <span>Application · 02</span>
-            <span>4 min ago</span>
+            02 · Application
           </div>
           <div
             style={{
@@ -494,9 +518,6 @@ export function MarketplaceBody({ showCta }: { showCta: boolean }) {
         >
           <div
             style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
               padding: "16px 20px",
               borderBottom: `1px solid ${RULE}`,
               fontFamily: MONO,
@@ -507,8 +528,7 @@ export function MarketplaceBody({ showCta }: { showCta: boolean }) {
               color: STEEL_500,
             }}
           >
-            <span>Completion · 03</span>
-            <span>Just now</span>
+            03 · Completion
           </div>
           <div
             style={{
@@ -563,7 +583,6 @@ export function MarketplaceBody({ showCta }: { showCta: boolean }) {
                 borderTop: `1px solid ${RULE}`,
                 display: "grid",
                 gridTemplateColumns: "auto 1fr",
-                rowGap: 4,
                 columnGap: 12,
                 alignItems: "baseline",
                 fontFamily: SANS,
@@ -571,16 +590,19 @@ export function MarketplaceBody({ showCta }: { showCta: boolean }) {
                 color: INK,
               }}
             >
-              <span style={{ color: STEEL_500, fontFamily: MONO, fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 500 }}>
+              <span
+                style={{
+                  color: STEEL_500,
+                  fontFamily: MONO,
+                  fontSize: 10,
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  fontWeight: 500,
+                }}
+              >
                 Released
               </span>
-              <span style={{ fontWeight: 500 }}>$45.00 to James M.</span>
-              <span style={{ color: STEEL_500, fontFamily: MONO, fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 500 }}>
-                Payout
-              </span>
-              <span>
-                <Em>100%</Em> to the Renner
-              </span>
+              <span>$45 through Stripe escrow</span>
             </div>
           </div>
         </article>
@@ -600,14 +622,14 @@ export function MarketplaceBody({ showCta }: { showCta: boolean }) {
       >
         {(isClient
           ? [
-              ["Both sides verified", "Clients and Renners are ID-checked and background-checked."],
+              ["Both sides verified", "Clients and Renners are ID-checked and background-checked before any booking."],
               ["Stripe escrow", "Funds held until you confirm the work, or 48 hours pass."],
-              ["For the industry", "Built for real estate operators, not gig-hopping."],
+              ["On the record", "Completion photos and a written confirmation arrive with every task."],
             ]
           : [
-              ["100% to the Renner", "Renners keep every dollar of the task pay."],
+              ["Real-estate work", "Tasks come from agents, brokers, and property managers — the people who keep listings moving."],
               ["Both sides verified", "The clients who book you are ID-checked and background-checked, the same as you."],
-              ["For the industry", "Renner attracts people who work in real estate, not quick-buck gigs."],
+              ["A real reputation", "Repeat clients find their way back to the Renners they trust."],
             ]
         ).map(([label, body]) => (
           <div key={label}>
@@ -699,11 +721,6 @@ export function MarketplaceBody({ showCta }: { showCta: boolean }) {
 
       <style jsx>{`
         @media (max-width: 880px) {
-          .mp-lede {
-            grid-template-columns: 1fr !important;
-            gap: 28px !important;
-            align-items: start !important;
-          }
           .mp-cards {
             grid-template-columns: 1fr !important;
             gap: clamp(16px, 3vw, 24px) !important;

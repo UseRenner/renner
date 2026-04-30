@@ -73,8 +73,8 @@ const RENNER_NOTES: Note[] = [
     body: (
       <>
         Run the task, upload completion photos, get paid through the
-        platform. Renners keep ninety percent. Repeat clients find their
-        way back to the Renners they trust.
+        platform. Build a reputation that earns repeat clients in an
+        industry that remembers.
       </>
     ),
   },
@@ -88,8 +88,8 @@ const CLIENT_TRUST: string[] = [
 
 const RENNER_TRUST: string[] = [
   "Local tasks only",
-  "100% payout",
   "Repeat clients",
+  "A real reputation",
 ];
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";

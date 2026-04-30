@@ -155,7 +155,7 @@ const RENNER_CHAPTERS: Chapter[] = [
         trust through the My Renners directory.
       </>
     ),
-    proof: "Payout · 100% of task pay",
+    proof: "Reputation · built task by task",
   },
 ];
 
@@ -167,8 +167,8 @@ const CLIENT_TRUST = [
 
 const RENNER_TRUST = [
   "Local tasks only",
-  "100% payout",
   "Repeat clients",
+  "A real reputation",
 ];
 
 export function ChapterBody({ showCta }: { showCta: boolean }) {

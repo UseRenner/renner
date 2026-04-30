@@ -86,7 +86,7 @@ const RENNER_PLATES: Plate[] = [
         platform. Build a reputation that earns repeat clients.
       </>
     ),
-    proof: "Payout · 100% of task pay",
+    proof: "Reputation · built task by task",
   },
 ];
 

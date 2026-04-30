@@ -93,7 +93,7 @@ const RENNER_STEPS: Step[] = [
         platform. Build a reputation that earns repeat clients.
       </>
     ),
-    proof: "Payout · 100% of task pay",
+    proof: "Reputation · built task by task",
   },
 ];
 
@@ -123,7 +123,7 @@ const RENNER_BENEFITS: Array<{ label: string; body: string }> = [
   },
   {
     label: "Paid",
-    body: "Renners keep 100% of the task pay. Escrow releases through Stripe on confirmation.",
+    body: "Through Stripe escrow on confirmation. No surprise fees.",
   },
 ];
 

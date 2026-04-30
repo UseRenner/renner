@@ -15,7 +15,7 @@ export const FAQS: Array<{ q: string; a: string }> = [
   },
   {
     q: "Who is on the platform?",
-    a: "People who work in real estate, or want to. Renner is built for the industry, not for gig-hopping. Every party — clients and Renners alike — is ID-verified and clears a Checkr background check before posting or booking. Showings and other license-required tasks additionally require a verified real-estate license on the Renner side.",
+    a: "People who work in real estate, or who want to. Every party — clients and Renners alike — is ID-verified and clears a Checkr background check before posting or booking. Showings and other license-required tasks additionally require a verified real-estate license on the Renner side.",
   },
   {
     q: "Are Renners employees?",
