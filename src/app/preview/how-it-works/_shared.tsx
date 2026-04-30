@@ -111,6 +111,44 @@ export const NETWORK_MARKS: ReadonlyArray<{
   { href: "/preview/how-it-works/network/italic-only", key: "italic-only", label: "Italic, no symbol" },
 ];
 
+// Plate-only secondary row for testing wordmark/symbol treatments
+// across the full Source family (Serif / Sans / Code Pro), in
+// title-case and small-caps registers, paired and standalone, large
+// and small. The default Plate page lives at /plate and is keyed
+// `serif`; eleven sibling routes cover the rest of the search space.
+export type PlateMarkKey =
+  | "serif"
+  | "italic"
+  | "sans"
+  | "mono"
+  | "serif-caps"
+  | "sans-caps"
+  | "mono-caps"
+  | "italic-only"
+  | "sans-caps-only"
+  | "tiny-mono"
+  | "massive-serif"
+  | "symbol";
+
+export const PLATE_MARKS: ReadonlyArray<{
+  href: string;
+  key: PlateMarkKey;
+  label: string;
+}> = [
+  { href: "/preview/how-it-works/plate", key: "serif", label: "Serif" },
+  { href: "/preview/how-it-works/plate/italic", key: "italic", label: "Italic serif" },
+  { href: "/preview/how-it-works/plate/sans", key: "sans", label: "Sans" },
+  { href: "/preview/how-it-works/plate/mono", key: "mono", label: "Mono" },
+  { href: "/preview/how-it-works/plate/serif-caps", key: "serif-caps", label: "Serif caps" },
+  { href: "/preview/how-it-works/plate/sans-caps", key: "sans-caps", label: "Sans caps" },
+  { href: "/preview/how-it-works/plate/mono-caps", key: "mono-caps", label: "Mono caps" },
+  { href: "/preview/how-it-works/plate/italic-only", key: "italic-only", label: "Italic, no symbol" },
+  { href: "/preview/how-it-works/plate/sans-caps-only", key: "sans-caps-only", label: "Sans caps, no symbol" },
+  { href: "/preview/how-it-works/plate/tiny-mono", key: "tiny-mono", label: "Tiny mono" },
+  { href: "/preview/how-it-works/plate/massive-serif", key: "massive-serif", label: "Massive serif" },
+  { href: "/preview/how-it-works/plate/symbol", key: "symbol", label: "Symbol only" },
+];
+
 // A thin review-only strip that lets the reviewer flip between the
 // preview directions. Lives outside the design itself — sticky to the
 // top in mono with hairline rules — so it never fights the page it
@@ -119,14 +157,18 @@ export const NETWORK_MARKS: ReadonlyArray<{
 // When `briefFont` is provided the strip shows a secondary row of the
 // font test variants and highlights the active font. When `networkMark`
 // is provided the strip shows the wordmark/symbol comparison row.
+// When `plateMark` is provided the strip shows the Plate wordmark
+// search across the Source family.
 export function VariantSwitcher({
   active,
   briefFont,
   networkMark,
+  plateMark,
 }: {
   active: VariantKey;
   briefFont?: BriefFontKey;
   networkMark?: NetworkMarkKey;
+  plateMark?: PlateMarkKey;
 }) {
   return (
     <div
@@ -279,6 +321,65 @@ export function VariantSwitcher({
           >
             {NETWORK_MARKS.map((m, i) => {
               const isActive = m.key === networkMark;
+              return (
+                <span
+                  key={m.href}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 10,
+                  }}
+                >
+                  {i > 0 && (
+                    <span style={{ color: "rgba(255,255,255,0.18)" }}>·</span>
+                  )}
+                  <Link
+                    href={m.href}
+                    style={{
+                      color: isActive ? "#fbfbfc" : "rgba(255,255,255,0.42)",
+                      textDecoration: "none",
+                      transition: "color 150ms ease",
+                    }}
+                  >
+                    {m.label}
+                  </Link>
+                </span>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {plateMark !== undefined && (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 16,
+            padding: "8px clamp(20px, 4vw, 64px)",
+            borderTop: "1px solid rgba(255,255,255,0.06)",
+            fontFamily:
+              "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+            fontSize: 10,
+            fontWeight: 500,
+            letterSpacing: "0.22em",
+            textTransform: "uppercase",
+            color: "rgba(255,255,255,0.4)",
+            flexWrap: "wrap",
+          }}
+        >
+          <span>Plate · Mark</span>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              flexWrap: "wrap",
+            }}
+          >
+            {PLATE_MARKS.map((m, i) => {
+              const isActive = m.key === plateMark;
               return (
                 <span
                   key={m.href}
