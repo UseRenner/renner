@@ -48,17 +48,17 @@ export function CinemaBody({ showCta }: { showCta: boolean }) {
         <Tab label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
-      {/* Letterbox hero — 2.39:1 ratio, ink panel with italic serif H1 */}
+      {/* Letterbox hero — 2.39:1 ratio, ink panel with italic dek */}
       <section
         style={{
           backgroundColor: INK,
           color: PAPER,
           aspectRatio: "2.39 / 1",
-          minHeight: 340,
+          minHeight: 280,
           padding: "clamp(32px, 4.5vw, 72px)",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
+          justifyContent: "space-between",
           gap: "clamp(20px, 2.5vw, 32px)",
           marginBottom: "clamp(48px, 6vw, 72px)",
         }}
@@ -67,33 +67,17 @@ export function CinemaBody({ showCta }: { showCta: boolean }) {
           How it works
         </div>
 
-        <h1
+        <p
           style={{
             fontFamily: SERIF,
             fontStyle: "italic",
             fontWeight: 300,
-            fontSize: "clamp(40px, 6vw, 88px)",
-            lineHeight: 1.0,
-            letterSpacing: "-0.028em",
+            fontSize: "clamp(22px, 2.6vw, 34px)",
+            lineHeight: 1.35,
             color: PAPER,
             margin: 0,
-            maxWidth: "16ch",
-            fontVariationSettings: '"opsz" 144',
-          }}
-        >
-          {isClient ? "Post a task. Pick a Renner. Get it done." : "Get verified. Pick a task. Get it done."}
-        </h1>
-
-        <p
-          style={{
-            fontFamily: SERIF,
-            fontWeight: 400,
-            fontSize: "clamp(15px, 1.4vw, 18px)",
-            lineHeight: 1.55,
-            color: PAPER_DIM,
-            margin: 0,
-            maxWidth: "52ch",
-            fontVariationSettings: '"opsz" 14',
+            maxWidth: "44ch",
+            fontVariationSettings: '"opsz" 36',
           }}
         >
           {dek}

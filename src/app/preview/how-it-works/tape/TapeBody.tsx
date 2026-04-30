@@ -213,31 +213,36 @@ export function TapeBody({ showCta }: { showCta: boolean }) {
         ))}
       </div>
 
-      {/* Trust */}
-      <section style={{ marginBottom: showCta ? "clamp(56px, 7vw, 88px)" : 0 }}>
-        <div
-          className="tape-trust"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "clamp(24px, 3vw, 48px)",
-          }}
-        >
-          {trust.map(([label, body]) => (
-            <div key={label} style={{ paddingTop: 20, borderTop: `1px solid ${RULE}` }}>
-              <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 18, color: INK, marginBottom: 6, fontVariationSettings: '"opsz" 36' }}>
-                {label}.
-              </div>
-              <div style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.55, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>
-                {body}
-              </div>
+      {/* Bottom tape — mirrors the top tape: 2px inked top and bottom, three cells */}
+      <div
+        className="tape tape-bottom"
+        style={{
+          borderTop: `2px solid ${INK}`,
+          borderBottom: `2px solid ${INK}`,
+          marginBottom: showCta ? "clamp(40px, 5vw, 64px)" : 0,
+        }}
+      >
+        {trust.map(([label, body]) => (
+          <div
+            key={label}
+            className="tape-cell tape-cell-bottom"
+            style={{
+              padding: "clamp(24px, 3vw, 36px) clamp(20px, 2.5vw, 32px)",
+              color: INK,
+            }}
+          >
+            <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(18px, 1.8vw, 22px)", lineHeight: 1.15, color: INK, marginBottom: 10, fontVariationSettings: '"opsz" 36' }}>
+              {label}.
             </div>
-          ))}
-        </div>
-      </section>
+            <div style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.55, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>
+              {body}
+            </div>
+          </div>
+        ))}
+      </div>
 
       {showCta && (
-        <section style={{ display: "flex", justifyContent: "flex-end", paddingTop: "clamp(40px, 5vw, 64px)", borderTop: `2px solid ${INK}` }}>
+        <section style={{ display: "flex", justifyContent: "flex-end" }}>
           <Link
             href={cta.href}
             style={{
@@ -276,6 +281,9 @@ export function TapeBody({ showCta }: { showCta: boolean }) {
         .tape-cell:hover {
           background: rgba(13, 15, 18, 0.03);
         }
+        .tape-cell-bottom:hover {
+          background: transparent;
+        }
         @media (max-width: 720px) {
           .tape {
             grid-template-columns: 1fr;
@@ -293,10 +301,6 @@ export function TapeBody({ showCta }: { showCta: boolean }) {
           }
           .tape-article > :nth-child(3) {
             text-align: left !important;
-          }
-          .tape-trust {
-            grid-template-columns: 1fr !important;
-            gap: 20px !important;
           }
         }
       `}</style>

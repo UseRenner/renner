@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { getViewer } from "@/lib/role";
 import { FAQS, RennerMark, VariantSwitcher } from "../_shared";
-import { CinemaBody } from "./CinemaBody";
+import { SceneBody } from "./SceneBody";
 
 export const metadata = {
-  title: "How it works · Cinema · Renner",
+  title: "How it works · Scene · Renner",
   robots: { index: false, follow: false },
 };
 export const dynamic = "force-dynamic";
@@ -21,12 +21,12 @@ const MIST = "#cad1d8";
 const RULE = "#eaedf0";
 const PAPER = "#fbfbfc";
 
-export default async function CinemaHowItWorks() {
+export default async function SceneHowItWorks() {
   const viewer = await getViewer();
   const showCta = !viewer;
   return (
     <div style={{ backgroundColor: PAPER, color: INK, minHeight: "100vh" }}>
-      <VariantSwitcher active="cinema" />
+      <VariantSwitcher active="scene" />
       <header style={{ padding: "clamp(28px, 3.5vw, 48px) clamp(28px, 4vw, 64px)", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
         <RennerMark />
         {showCta ? (
@@ -39,9 +39,9 @@ export default async function CinemaHowItWorks() {
         )}
       </header>
 
-      <main style={{ padding: "clamp(40px, 6vw, 80px) clamp(28px, 4vw, 64px) clamp(48px, 6vw, 80px)" }}>
+      <main style={{ padding: "clamp(40px, 6vw, 80px) clamp(28px, 4vw, 64px) clamp(64px, 8vw, 112px)" }}>
         <div className="mx-auto" style={{ maxWidth: 1200 }}>
-          <CinemaBody showCta={showCta} />
+          <SceneBody showCta={showCta} />
         </div>
       </main>
 

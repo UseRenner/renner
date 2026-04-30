@@ -89,16 +89,16 @@ export function AnchorBody({ showCta }: { showCta: boolean }) {
             fontFamily: SERIF,
             fontStyle: "italic",
             fontWeight: 300,
-            fontSize: "clamp(48px, 8vw, 128px)",
-            lineHeight: 0.95,
-            letterSpacing: "-0.03em",
+            fontSize: "clamp(40px, 6vw, 88px)",
+            lineHeight: 1.0,
+            letterSpacing: "-0.025em",
             color: INK,
             margin: 0,
-            maxWidth: "16ch",
+            maxWidth: "20ch",
             fontVariationSettings: '"opsz" 144',
           }}
         >
-          {isClient ? "Post. Pick. Done." : "Verify. Pick. Done."}
+          {isClient ? "Post a task. Pick a Renner. Get it done." : "Get verified. Pick a task. Get it done."}
         </h1>
         {showCta && (
           <Link

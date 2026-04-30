@@ -20,7 +20,7 @@ const CLIENT_STEPS: Step[] = [
   },
   {
     number: "02",
-    title: "A Renner applies.",
+    title: "Pick a Renner.",
     body: (
       <>
         Background-checked Renners in your area see your task and apply.
@@ -30,11 +30,7 @@ const CLIENT_STEPS: Step[] = [
   },
   {
     number: "03",
-    title: (
-      <>
-        It gets <Italic>done.</Italic>
-      </>
-    ),
+    title: "Get it done.",
     body: (
       <>
         Your Renner handles it. You get confirmation with completion
@@ -69,11 +65,7 @@ const RENNER_STEPS: Step[] = [
   },
   {
     number: "03",
-    title: (
-      <>
-        Get it <Italic>done.</Italic>
-      </>
-    ),
+    title: "Get it done.",
     body: (
       <>
         Complete the task, upload confirmation photos, and get paid
@@ -146,20 +138,6 @@ const MIST = "#cad1d8";
 const PAPER = "#fbfbfc";
 const BONE = "#f6f7f9";
 const RULE = "#eaedf0";
-
-function Italic({ children }: { children: React.ReactNode }) {
-  return (
-    <span
-      style={{
-        fontStyle: "italic",
-        fontWeight: 300,
-        color: STEEL,
-      }}
-    >
-      {children}
-    </span>
-  );
-}
 
 export function RailBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
