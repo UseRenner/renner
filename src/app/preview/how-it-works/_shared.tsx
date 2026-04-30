@@ -93,19 +93,39 @@ export const BRIEF_FONTS: ReadonlyArray<{
   { href: "/preview/how-it-works/brief/georgia", key: "georgia", label: "Georgia" },
 ];
 
+// Network-only secondary row for testing wordmark/symbol treatments.
+// The default Network page lives at /network and is keyed `serif`;
+// the three sibling routes test italic-serif, sans, and symbol-only
+// versions of the brand mark in the header and footer.
+export type NetworkMarkKey = "serif" | "italic" | "sans" | "symbol";
+
+export const NETWORK_MARKS: ReadonlyArray<{
+  href: string;
+  key: NetworkMarkKey;
+  label: string;
+}> = [
+  { href: "/preview/how-it-works/network", key: "serif", label: "Serif" },
+  { href: "/preview/how-it-works/network/italic", key: "italic", label: "Italic serif" },
+  { href: "/preview/how-it-works/network/sans", key: "sans", label: "Sans" },
+  { href: "/preview/how-it-works/network/symbol", key: "symbol", label: "Symbol only" },
+];
+
 // A thin review-only strip that lets the reviewer flip between the
 // preview directions. Lives outside the design itself — sticky to the
 // top in mono with hairline rules — so it never fights the page it
 // sits above. Wraps on narrow viewports.
 //
 // When `briefFont` is provided the strip shows a secondary row of the
-// 8 font test variants and highlights the active font.
+// font test variants and highlights the active font. When `networkMark`
+// is provided the strip shows the wordmark/symbol comparison row.
 export function VariantSwitcher({
   active,
   briefFont,
+  networkMark,
 }: {
   active: VariantKey;
   briefFont?: BriefFontKey;
+  networkMark?: NetworkMarkKey;
 }) {
   return (
     <div
@@ -220,6 +240,65 @@ export function VariantSwitcher({
                     }}
                   >
                     {f.label}
+                  </Link>
+                </span>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {networkMark !== undefined && (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 16,
+            padding: "8px clamp(20px, 4vw, 64px)",
+            borderTop: "1px solid rgba(255,255,255,0.06)",
+            fontFamily:
+              "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+            fontSize: 10,
+            fontWeight: 500,
+            letterSpacing: "0.22em",
+            textTransform: "uppercase",
+            color: "rgba(255,255,255,0.4)",
+            flexWrap: "wrap",
+          }}
+        >
+          <span>Network · Mark</span>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              flexWrap: "wrap",
+            }}
+          >
+            {NETWORK_MARKS.map((m, i) => {
+              const isActive = m.key === networkMark;
+              return (
+                <span
+                  key={m.href}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 10,
+                  }}
+                >
+                  {i > 0 && (
+                    <span style={{ color: "rgba(255,255,255,0.18)" }}>·</span>
+                  )}
+                  <Link
+                    href={m.href}
+                    style={{
+                      color: isActive ? "#fbfbfc" : "rgba(255,255,255,0.42)",
+                      textDecoration: "none",
+                      transition: "color 150ms ease",
+                    }}
+                  >
+                    {m.label}
                   </Link>
                 </span>
               );
