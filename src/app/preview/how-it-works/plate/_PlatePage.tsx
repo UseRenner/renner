@@ -62,6 +62,35 @@ function MarkLockup({ mark }: { mark: PlateMarkKey }) {
     );
   }
 
+  // ─── Lowercase italic, no symbol ─── the open-territory move:
+  // lowercase tier in real estate is uniformly sans (realtor.com,
+  // redfin, trulia). Lowercase italic serif is unoccupied and pairs
+  // with the mark's 12° italic-axis tilt and Renner's motion concept.
+  if (mark === "lowercase-italic-only") {
+    return (
+      <Link
+        href="/"
+        aria-label="renner"
+        style={{ display: "inline-flex", alignItems: "center", textDecoration: "none", color: INK }}
+      >
+        <span
+          style={{
+            fontFamily: SERIF,
+            fontStyle: "italic",
+            fontWeight: 400,
+            fontSize: 48,
+            letterSpacing: "-0.022em",
+            color: INK,
+            lineHeight: 1,
+            fontVariationSettings: '"opsz" 144',
+          }}
+        >
+          renner
+        </span>
+      </Link>
+    );
+  }
+
   if (mark === "sans-caps-only") {
     return (
       <Link
@@ -167,6 +196,40 @@ function MarkLockup({ mark }: { mark: PlateMarkKey }) {
           }}
         >
           Renner
+        </span>
+      </Link>
+    );
+  }
+
+  // Lowercase italic serif paired — disc + lowercase wordmark. The
+  // symbol's 12° tilt and the wordmark's italic slant move together.
+  if (mark === "lowercase-italic") {
+    return (
+      <Link
+        href="/"
+        aria-label="renner"
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 16,
+          textDecoration: "none",
+          color: INK,
+        }}
+      >
+        <Logo size={36} fill={INK} slotColor={PAPER} />
+        <span
+          style={{
+            fontFamily: SERIF,
+            fontStyle: "italic",
+            fontWeight: 400,
+            fontSize: 38,
+            letterSpacing: "-0.02em",
+            color: INK,
+            lineHeight: 1,
+            fontVariationSettings: '"opsz" 60',
+          }}
+        >
+          renner
         </span>
       </Link>
     );

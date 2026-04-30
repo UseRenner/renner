@@ -129,7 +129,9 @@ export type PlateMarkKey =
   | "tiny-mono"
   | "massive-serif"
   | "symbol"
-  | "italic-weights";
+  | "italic-weights"
+  | "lowercase-italic"
+  | "lowercase-italic-only";
 
 export const PLATE_MARKS: ReadonlyArray<{
   href: string;
@@ -145,6 +147,8 @@ export const PLATE_MARKS: ReadonlyArray<{
   { href: "/preview/how-it-works/plate/mono-caps", key: "mono-caps", label: "Mono caps" },
   { href: "/preview/how-it-works/plate/italic-only", key: "italic-only", label: "Italic, no symbol" },
   { href: "/preview/how-it-works/plate/italic-weights", key: "italic-weights", label: "Italic weights" },
+  { href: "/preview/how-it-works/plate/lowercase-italic", key: "lowercase-italic", label: "Lowercase italic" },
+  { href: "/preview/how-it-works/plate/lowercase-italic-only", key: "lowercase-italic-only", label: "Lowercase italic, no symbol" },
   { href: "/preview/how-it-works/plate/sans-caps-only", key: "sans-caps-only", label: "Sans caps, no symbol" },
   { href: "/preview/how-it-works/plate/tiny-mono", key: "tiny-mono", label: "Tiny mono" },
   { href: "/preview/how-it-works/plate/massive-serif", key: "massive-serif", label: "Massive serif" },
