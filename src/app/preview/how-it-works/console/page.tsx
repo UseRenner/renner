@@ -94,9 +94,16 @@ export default async function ConsoleHowItWorks() {
         )}
       </header>
 
-      <div className="console-shell">
-        <ConsoleBody showCta={showCta} />
-      </div>
+      <main
+        style={{
+          padding:
+            "clamp(64px, 9vw, 120px) clamp(28px, 4vw, 64px) clamp(96px, 12vw, 160px)",
+        }}
+      >
+        <div className="mx-auto" style={{ maxWidth: 1200 }}>
+          <ConsoleBody showCta={showCta} />
+        </div>
+      </main>
 
       {/* ─── FAQ ─── full-width below the two-column shell */}
       <section
@@ -234,31 +241,6 @@ export default async function ConsoleHowItWorks() {
         </div>
       </footer>
 
-      <style>{`
-        .console-shell {
-          display: grid;
-          grid-template-columns: 280px minmax(0, 1fr);
-          gap: clamp(48px, 6vw, 96px);
-          padding: clamp(48px, 7vw, 96px) clamp(28px, 4vw, 64px);
-          max-width: 1280px;
-          margin: 0 auto;
-        }
-        .console-side {
-          position: sticky;
-          top: 80px;
-          align-self: start;
-          display: flex;
-          flex-direction: column;
-        }
-        @media (max-width: 880px) {
-          .console-shell {
-            grid-template-columns: 1fr;
-          }
-          .console-side {
-            position: static;
-          }
-        }
-      `}</style>
     </div>
   );
 }

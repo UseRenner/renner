@@ -1,10 +1,5 @@
 "use client";
 
-// Console — sticky left sidebar holds renner, audience switch, table
-// of contents (jump-links), and CTA. Right column is the scrolling
-// reading content. Stripe-docs / Linear-marketing feel — workspace
-// structure under the lowercase italic wordmark.
-
 import Link from "next/link";
 import { useState } from "react";
 
@@ -23,11 +18,11 @@ const STEEL_300 = "#cad1d8";
 const RULE = "#eaedf0";
 const PAPER = "#fbfbfc";
 
-type Step = {
-  id: string;
+type Row = {
   number: string;
-  title: React.ReactNode;
+  title: string;
   body: React.ReactNode;
+  detail: string;
   proof: string;
 };
 
@@ -37,87 +32,72 @@ const CLIENT_DEK =
 const RENNER_DEK =
   "Real-estate work, brief by brief. Run tasks for the agents, brokers, and property managers who keep listings moving. Both parties are ID-verified and background-checked.";
 
-function Em({ children }: { children: React.ReactNode }) {
-  return (
-    <span
-      style={{
-        fontStyle: "italic",
-        fontWeight: 300,
-        color: STEEL_600,
-      }}
-    >
-      {children}
-    </span>
-  );
-}
-
-const CLIENT_STEPS: Step[] = [
+const CLIENT_ROWS: Row[] = [
   {
-    id: "post",
     number: "01",
     title: "Post a task.",
     body: (
       <>
         Describe what you need — sign install, lockbox swap, property
         visuals, guest check-in. Set the location, the window, and the
-        price. Posts go live in under two minutes.
+        price.
       </>
     ),
-    proof: "Avg. post · under 2 minutes",
+    detail: "Under 2 minutes",
+    proof: "Live to vetted Renners",
   },
   {
-    id: "pick",
     number: "02",
     title: "Pick a Renner.",
     body: (
       <>
-        Background-checked Renners in your area apply. Read their bio,
+        Background-checked Renners in your area apply with bios,
         ratings, and tenure. Book the right hand for the work.
       </>
     ),
-    proof: "Every Renner · Checkr-verified",
+    detail: "Checkr-verified",
+    proof: "Single-Renner booking",
   },
   {
-    id: "done",
     number: "03",
     title: "Get it done.",
     body: (
       <>
         Your Renner finishes the task and submits completion photos.
-        You confirm. Funds release through Stripe.
+        You confirm. Funds release through Stripe escrow.
       </>
     ),
-    proof: "Funds held · escrow until confirmed",
+    detail: "48-hour window",
+    proof: "Auto-release on time-out",
   },
 ];
 
-const RENNER_STEPS: Step[] = [
+const RENNER_ROWS: Row[] = [
   {
-    id: "post",
     number: "01",
     title: "Get verified.",
     body: (
       <>
-        Sign up, verify your identity, clear a Checkr background check.
-        Pick your categories, set your service area, name your rate.
+        Sign up, confirm your identity, clear a Checkr background
+        check. Pick categories, set service area, name your rate.
       </>
     ),
-    proof: "Onboarding · same-day in most states",
+    detail: "Same-day in most states",
+    proof: "Identity + background",
   },
   {
-    id: "pick",
     number: "02",
     title: "Pick a task.",
     body: (
       <>
         Briefs come in from agents, brokers, and managers nearby.
-        Apply to the ones that fit your schedule and skills.
+        Apply to what fits your schedule and skills.
       </>
     ),
-    proof: "Marketplace · live in your area",
+    detail: "Local marketplace",
+    proof: "Apply and decline at will",
   },
   {
-    id: "done",
     number: "03",
     title: "Get it done.",
     body: (
@@ -126,35 +106,37 @@ const RENNER_STEPS: Step[] = [
         platform. Build a reputation that earns repeat clients.
       </>
     ),
-    proof: "Reputation · built task by task",
+    detail: "Stripe payout",
+    proof: "100% of task pay",
   },
+];
+
+const CLIENT_TRUST: Array<[string, string, string]> = [
+  ["Vetting", "ID + Checkr background", "Both sides"],
+  ["Custody", "Stripe escrow", "Held until confirmed"],
+  ["Record", "Photos + written confirmation", "On every task"],
+];
+
+const RENNER_TRUST: Array<[string, string, string]> = [
+  ["Source", "Real-estate work", "Agents · brokers · managers"],
+  ["Vetting", "Clients ID + background-checked", "Same as you"],
+  ["Reputation", "Ratings + reviews", "Repeat clients return"],
 ];
 
 export function ConsoleBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
   const isClient = tab === "client";
   const dek = isClient ? CLIENT_DEK : RENNER_DEK;
-  const steps = isClient ? CLIENT_STEPS : RENNER_STEPS;
+  const rows = isClient ? CLIENT_ROWS : RENNER_ROWS;
+  const trust = isClient ? CLIENT_TRUST : RENNER_TRUST;
   const ctaButton = isClient
     ? { label: "Sign up", href: "/signup" }
     : { label: "Become a Renner", href: "/become-a-renner" };
 
-  const clauses: string[] = isClient
-    ? [
-        "Post a task.",
-        "Pick a Renner.",
-        "Get it done.",
-      ]
-    : [
-        "Get verified.",
-        "Pick a task.",
-        "Get it done.",
-      ];
-
   return (
     <>
-      {/* Sidebar: TOC, audience switch, CTA */}
-      <aside className="console-side">
+      {/* Lede — small kicker, settled headline, dek */}
+      <div style={{ marginBottom: "clamp(56px, 7vw, 88px)", maxWidth: 880 }}>
         <div
           role="tablist"
           aria-label="Audience"
@@ -176,118 +158,267 @@ export function ConsoleBody({ showCta }: { showCta: boolean }) {
 
         <div
           style={{
-            paddingTop: 20,
-            borderTop: `1px solid ${RULE}`,
+            fontFamily: MONO,
+            fontSize: 10,
+            fontWeight: 500,
+            letterSpacing: "0.28em",
+            textTransform: "uppercase",
+            color: STEEL_500,
+            marginBottom: 28,
+          }}
+        >
+          Specification · v.2026
+        </div>
+
+        <h1
+          style={{
+            fontFamily: SERIF,
+            fontWeight: 400,
+            fontSize: "clamp(32px, 3.6vw, 48px)",
+            lineHeight: 1.1,
+            letterSpacing: "-0.018em",
+            color: INK,
+            margin: 0,
+            marginBottom: 28,
+            maxWidth: "22ch",
+            fontVariationSettings: '"opsz" 60',
+          }}
+        >
+          {isClient ? "Post a task. Pick a Renner. Get it done." : "Get verified. Pick a task. Get it done."}
+        </h1>
+
+        <p
+          style={{
+            fontFamily: SERIF,
+            fontWeight: 400,
+            fontSize: "clamp(16px, 1.4vw, 18px)",
+            lineHeight: 1.6,
+            color: STEEL_700,
+            margin: 0,
+            maxWidth: "60ch",
+            fontVariationSettings: '"opsz" 14',
+          }}
+        >
+          {dek}
+        </p>
+      </div>
+
+      {/* Specification table */}
+      <div
+        className="tabular"
+        role="table"
+        aria-label="How it works"
+        style={{
+          borderTop: `1px solid ${INK}`,
+          borderBottom: `1px solid ${INK}`,
+          marginBottom: "clamp(64px, 8vw, 96px)",
+        }}
+      >
+        {/* Column header */}
+        <div
+          role="row"
+          className="tabular-row tabular-head"
+          style={{
             fontFamily: MONO,
             fontSize: 10,
             fontWeight: 500,
             letterSpacing: "0.24em",
             textTransform: "uppercase",
             color: STEEL_500,
-            marginBottom: 14,
+            padding: "16px 0",
+            borderBottom: `1px solid ${RULE}`,
           }}
         >
-          On this page
+          <div role="columnheader">Step</div>
+          <div role="columnheader">Action</div>
+          <div role="columnheader">What it looks like</div>
+          <div role="columnheader">Detail</div>
+          <div role="columnheader" style={{ textAlign: "right" }}>Proof</div>
         </div>
 
-        <ol
+        {rows.map((row, idx) => (
+          <div
+            role="row"
+            key={row.number}
+            className="tabular-row tabular-body"
+            style={{
+              padding: "clamp(28px, 3vw, 40px) 0",
+              borderBottom:
+                idx === rows.length - 1 ? "none" : `1px solid ${RULE}`,
+              alignItems: "baseline",
+            }}
+          >
+            <div
+              role="cell"
+              style={{
+                fontFamily: MONO,
+                fontSize: 12,
+                fontWeight: 500,
+                letterSpacing: "0.22em",
+                color: STEEL_500,
+              }}
+            >
+              {row.number}
+            </div>
+            <div
+              role="cell"
+              style={{
+                fontFamily: SERIF,
+                fontStyle: "italic",
+                fontWeight: 300,
+                fontSize: "clamp(20px, 2vw, 24px)",
+                lineHeight: 1.2,
+                letterSpacing: "-0.012em",
+                color: INK,
+                fontVariationSettings: '"opsz" 36',
+              }}
+            >
+              {row.title}
+            </div>
+            <div
+              role="cell"
+              style={{
+                fontFamily: SERIF,
+                fontSize: 15,
+                lineHeight: 1.6,
+                color: STEEL_700,
+                fontVariationSettings: '"opsz" 14',
+              }}
+            >
+              {row.body}
+            </div>
+            <div
+              role="cell"
+              style={{
+                fontFamily: SERIF,
+                fontSize: 14,
+                color: SLATE,
+                lineHeight: 1.45,
+                fontVariationSettings: '"opsz" 14',
+              }}
+            >
+              {row.detail}
+            </div>
+            <div
+              role="cell"
+              style={{
+                fontFamily: MONO,
+                fontSize: 10,
+                fontWeight: 500,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: STEEL_600,
+                textAlign: "right",
+              }}
+            >
+              {row.proof}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Trust — continuation table, same column logic at smaller scale */}
+      <section style={{ marginBottom: showCta ? "clamp(64px, 8vw, 96px)" : 0 }}>
+        <div
           style={{
-            listStyle: "none",
-            padding: 0,
-            margin: 0,
-            display: "flex",
-            flexDirection: "column",
-            gap: 12,
-            marginBottom: 40,
+            fontFamily: MONO,
+            fontSize: 10,
+            fontWeight: 500,
+            letterSpacing: "0.24em",
+            textTransform: "uppercase",
+            color: STEEL_500,
+            marginBottom: 20,
           }}
         >
-          {steps.map((s) => (
-            <li key={s.id}>
-              <Link
-                href={`#${s.id}`}
-                style={{
-                  display: "flex",
-                  gap: 12,
-                  alignItems: "baseline",
-                  fontFamily: SANS,
-                  fontSize: 14,
-                  color: STEEL_700,
-                  textDecoration: "none",
-                  transition: "color 150ms ease",
-                }}
-              >
-                <span
-                  style={{
-                    fontFamily: MONO,
-                    fontSize: 10,
-                    fontWeight: 500,
-                    letterSpacing: "0.18em",
-                    color: STEEL_500,
-                  }}
-                >
-                  {s.number}
-                </span>
-                <span>{s.title}</span>
-              </Link>
-            </li>
-          ))}
-          <li>
-            <Link
-              href="#trust"
-              style={{
-                display: "flex",
-                gap: 12,
-                alignItems: "baseline",
-                fontFamily: SANS,
-                fontSize: 14,
-                color: STEEL_700,
-                textDecoration: "none",
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: MONO,
-                  fontSize: 10,
-                  fontWeight: 500,
-                  letterSpacing: "0.18em",
-                  color: STEEL_500,
-                }}
-              >
-                §
-              </span>
-              <span>{isClient ? "Why Renner" : "What you get"}</span>
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="#faq"
-              style={{
-                display: "flex",
-                gap: 12,
-                alignItems: "baseline",
-                fontFamily: SANS,
-                fontSize: 14,
-                color: STEEL_700,
-                textDecoration: "none",
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: MONO,
-                  fontSize: 10,
-                  fontWeight: 500,
-                  letterSpacing: "0.18em",
-                  color: STEEL_500,
-                }}
-              >
-                §
-              </span>
-              <span>Common questions</span>
-            </Link>
-          </li>
-        </ol>
+          {isClient ? "Why Renner" : "What you get"}
+        </div>
 
-        {showCta && (
+        <div
+          className="tabular-trust"
+          style={{
+            borderTop: `1px solid ${RULE}`,
+            borderBottom: `1px solid ${RULE}`,
+          }}
+        >
+          {trust.map(([label, value, foot], idx) => (
+            <div
+              key={label}
+              className="tabular-trust-row"
+              style={{
+                padding: "20px 0",
+                borderBottom:
+                  idx === trust.length - 1 ? "none" : `1px solid ${RULE}`,
+                alignItems: "baseline",
+              }}
+            >
+              <div
+                style={{
+                  fontFamily: MONO,
+                  fontSize: 10,
+                  fontWeight: 500,
+                  letterSpacing: "0.24em",
+                  textTransform: "uppercase",
+                  color: STEEL_500,
+                }}
+              >
+                {label}
+              </div>
+              <div
+                style={{
+                  fontFamily: SERIF,
+                  fontStyle: "italic",
+                  fontWeight: 300,
+                  fontSize: 19,
+                  color: INK,
+                  fontVariationSettings: '"opsz" 36',
+                }}
+              >
+                {value}.
+              </div>
+              <div
+                style={{
+                  fontFamily: SERIF,
+                  fontSize: 14,
+                  lineHeight: 1.5,
+                  color: STEEL_700,
+                  textAlign: "right",
+                  fontVariationSettings: '"opsz" 14',
+                }}
+              >
+                {foot}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA — final row in the same logic */}
+      {showCta && (
+        <section
+          style={{
+            display: "flex",
+            alignItems: "baseline",
+            justifyContent: "space-between",
+            gap: 24,
+            flexWrap: "wrap",
+            paddingTop: "clamp(40px, 5vw, 64px)",
+            borderTop: `1px solid ${INK}`,
+          }}
+        >
+          <div
+            style={{
+              fontFamily: SERIF,
+              fontStyle: "italic",
+              fontWeight: 300,
+              fontSize: "clamp(22px, 2.4vw, 28px)",
+              color: INK,
+              maxWidth: "26ch",
+              lineHeight: 1.2,
+              fontVariationSettings: '"opsz" 36',
+            }}
+          >
+            {isClient ? "Ready when you are." : "Ready to run."}
+          </div>
           <Link
             href={ctaButton.href}
             style={{
@@ -302,10 +433,9 @@ export function ConsoleBody({ showCta }: { showCta: boolean }) {
               backgroundColor: INK,
               border: `1px solid ${INK}`,
               borderRadius: 4,
-              padding: "12px 20px",
+              padding: "14px 22px",
               textDecoration: "none",
               whiteSpace: "nowrap",
-              alignSelf: "flex-start",
               transition:
                 "background-color 150ms ease, border-color 150ms ease",
             }}
@@ -313,197 +443,45 @@ export function ConsoleBody({ showCta }: { showCta: boolean }) {
             {ctaButton.label}
             <span aria-hidden style={{ opacity: 0.7 }}>→</span>
           </Link>
-        )}
-      </aside>
-
-      {/* Main column: statement, dek, steps, trust */}
-      <div className="console-main">
-        <h1
-          style={{
-            fontFamily: SANS,
-            fontWeight: 400,
-            fontSize: "clamp(40px, 5.5vw, 72px)",
-            lineHeight: 1.05,
-            letterSpacing: "-0.022em",
-            color: INK,
-            margin: 0,
-            marginBottom: 32,
-            maxWidth: "26ch",
-          }}
-        >
-          {clauses.map((c, i) => (
-            <span key={i}>{i > 0 ? " " : ""}{c}</span>
-          ))}
-        </h1>
-        <p
-          style={{
-            fontFamily: SERIF,
-            fontWeight: 400,
-            fontSize: "clamp(17px, 1.5vw, 19px)",
-            lineHeight: 1.55,
-            color: SLATE,
-            margin: 0,
-            marginBottom: "clamp(72px, 9vw, 112px)",
-            maxWidth: "56ch",
-            fontVariationSettings: '"opsz" 14',
-          }}
-        >
-          {dek}
-        </p>
-
-        {/* Step sections, anchored */}
-        {steps.map((step, idx) => (
-          <article
-            id={step.id}
-            key={step.id}
-            style={{
-              scrollMarginTop: "80px",
-              paddingTop: 32,
-              paddingBottom: 32,
-              borderTop: `1px solid ${RULE}`,
-              borderBottom:
-                idx === steps.length - 1 ? `1px solid ${RULE}` : "none",
-              display: "grid",
-              gridTemplateColumns: "minmax(60px, 80px) 1fr",
-              gap: "clamp(20px, 3vw, 40px)",
-              alignItems: "baseline",
-            }}
-            className="console-step"
-          >
-            <div
-              style={{
-                fontFamily: MONO,
-                fontSize: 11,
-                fontWeight: 500,
-                letterSpacing: "0.22em",
-                color: STEEL_500,
-              }}
-            >
-              {step.number}
-            </div>
-            <div>
-              <h2
-                style={{
-                  fontFamily: SERIF,
-                  fontWeight: 400,
-                  fontSize: "clamp(24px, 2.6vw, 32px)",
-                  lineHeight: 1.15,
-                  letterSpacing: "-0.018em",
-                  color: INK,
-                  margin: 0,
-                  marginBottom: 12,
-                  fontVariationSettings: '"opsz" 60',
-                }}
-              >
-                {step.title}
-              </h2>
-              <p
-                style={{
-                  fontFamily: SERIF,
-                  fontSize: 16,
-                  lineHeight: 1.65,
-                  color: STEEL_700,
-                  margin: 0,
-                  marginBottom: 20,
-                  maxWidth: "56ch",
-                  fontVariationSettings: '"opsz" 14',
-                }}
-              >
-                {step.body}
-              </p>
-              <div
-                style={{
-                  fontFamily: MONO,
-                  fontSize: 10,
-                  fontWeight: 500,
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                  color: STEEL_600,
-                }}
-              >
-                {step.proof}
-              </div>
-            </div>
-          </article>
-        ))}
-
-        {/* Trust */}
-        <section
-          id="trust"
-          style={{
-            scrollMarginTop: "80px",
-            marginTop: "clamp(64px, 8vw, 96px)",
-          }}
-        >
-          <div
-            style={{
-              fontFamily: MONO,
-              fontSize: 10,
-              fontWeight: 500,
-              letterSpacing: "0.24em",
-              textTransform: "uppercase",
-              color: STEEL_500,
-              marginBottom: 28,
-            }}
-          >
-            {isClient ? "Why Renner" : "What you get"}
-          </div>
-          <dl style={{ margin: 0 }}>
-            {(isClient
-              ? [
-                  ["Both sides verified", "Clients and Renners are ID-checked and background-checked before any booking."],
-                  ["Stripe escrow", "Funds held until you confirm the work, or 48 hours pass."],
-                  ["On the record", "Completion photos and a written confirmation arrive with every task."],
-                ]
-              : [
-                  ["Real-estate work", "Tasks come from agents, brokers, and property managers — the people who keep listings moving."],
-                  ["Both sides verified", "The clients who book you are ID-checked and background-checked, the same as you."],
-                  ["A real reputation", "Repeat clients find their way back to the Renners they trust."],
-                ]
-            ).map(([label, body], idx, arr) => (
-              <div
-                key={label}
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "minmax(160px, 200px) 1fr",
-                  gap: 32,
-                  padding: "22px 0",
-                  borderTop: `1px solid ${RULE}`,
-                  borderBottom:
-                    idx === arr.length - 1 ? `1px solid ${RULE}` : "none",
-                  alignItems: "baseline",
-                }}
-              >
-                <dt
-                  style={{
-                    fontFamily: SERIF,
-                    fontStyle: "italic",
-                    fontWeight: 300,
-                    fontSize: 20,
-                    color: STEEL_700,
-                    fontVariationSettings: '"opsz" 36',
-                  }}
-                >
-                  {label}.
-                </dt>
-                <dd
-                  style={{
-                    fontFamily: SERIF,
-                    fontSize: 16,
-                    lineHeight: 1.6,
-                    color: INK,
-                    margin: 0,
-                    maxWidth: "60ch",
-                    fontVariationSettings: '"opsz" 14',
-                  }}
-                >
-                  {body}
-                </dd>
-              </div>
-            ))}
-          </dl>
         </section>
-      </div>
+      )}
+
+      <style jsx>{`
+        .tabular-row {
+          display: grid;
+          grid-template-columns: 56px minmax(160px, 1.1fr) minmax(0, 2.2fr) minmax(120px, 1fr) minmax(140px, 1.1fr);
+          gap: clamp(20px, 2.5vw, 40px);
+        }
+        .tabular-trust-row {
+          display: grid;
+          grid-template-columns: minmax(120px, 0.9fr) minmax(0, 1.4fr) minmax(0, 1fr);
+          gap: clamp(20px, 2.5vw, 40px);
+        }
+        @media (max-width: 880px) {
+          .tabular-row {
+            grid-template-columns: 40px 1fr;
+            gap: 12px 20px;
+          }
+          .tabular-row > :nth-child(3),
+          .tabular-row > :nth-child(4),
+          .tabular-row > :nth-child(5) {
+            grid-column: 2;
+          }
+          .tabular-head {
+            display: none !important;
+          }
+          .tabular-row > :nth-child(5) {
+            text-align: left !important;
+          }
+          .tabular-trust-row {
+            grid-template-columns: 1fr;
+            gap: 6px;
+          }
+          .tabular-trust-row > :nth-child(3) {
+            text-align: left !important;
+          }
+        }
+      `}</style>
     </>
   );
 }

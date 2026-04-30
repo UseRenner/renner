@@ -1,10 +1,5 @@
 "use client";
 
-// Ledger — main reading column on the left at ~720px, marginalia rail
-// on the right at ~200px holding mono section IDs and annotation
-// proofs. Editorial-meets-spec-sheet. The marginalia is the rail's
-// soul: small, in mono, doing technical work next to the prose.
-
 import Link from "next/link";
 import { useState } from "react";
 
@@ -23,12 +18,11 @@ const STEEL_300 = "#cad1d8";
 const RULE = "#eaedf0";
 const PAPER = "#fbfbfc";
 
-type Step = {
-  id: string;
+type Banner = {
   number: string;
-  title: React.ReactNode;
+  title: string;
   body: React.ReactNode;
-  margin: { label: string; value: string }[];
+  proof: string;
 };
 
 const CLIENT_DEK =
@@ -37,106 +31,72 @@ const CLIENT_DEK =
 const RENNER_DEK =
   "Real-estate work, brief by brief. Run tasks for the agents, brokers, and property managers who keep listings moving. Both parties are ID-verified and background-checked.";
 
-function Em({ children }: { children: React.ReactNode }) {
-  return (
-    <span
-      style={{
-        fontStyle: "italic",
-        fontWeight: 300,
-        color: STEEL_600,
-      }}
-    >
-      {children}
-    </span>
-  );
-}
-
-const CLIENT_STEPS: Step[] = [
+const CLIENT_BANNERS: Banner[] = [
   {
-    id: "post",
-    number: "§ 01",
+    number: "01",
     title: "Post a task.",
     body: (
       <>
         Describe what you need — sign install, lockbox swap, property
-        visuals, guest check-in. Set the location, the time window, and
-        the price. Posts go live to Renners only.
+        visuals, guest check-in. Set the location, the time window,
+        and the price. Posts go live to vetted Renners only.
       </>
     ),
-    margin: [
-      { label: "Time", value: "Under 2 minutes" },
-      { label: "Audience", value: "Vetted Renners" },
-    ],
+    proof: "Under 2 minutes",
   },
   {
-    id: "pick",
-    number: "§ 02",
+    number: "02",
     title: "Pick a Renner.",
     body: (
       <>
-        Background-checked Renners in your area apply. Read their bio,
-        ratings, and tenure. Book the right hand for the work.
+        Background-checked Renners in your area apply with bios,
+        ratings, and tenure. Read the file, book the right hand for
+        the work.
       </>
     ),
-    margin: [
-      { label: "Vetting", value: "Checkr-verified" },
-      { label: "Booking", value: "Single Renner" },
-    ],
+    proof: "Checkr-verified",
   },
   {
-    id: "done",
-    number: "§ 03",
+    number: "03",
     title: "Get it done.",
     body: (
       <>
-        Your Renner finishes the task and submits completion photos
-        with a written confirmation. You confirm. Funds release through
-        Stripe. If 48 hours pass without action, payment auto-releases.
+        Photos and a written confirmation arrive on completion. You
+        confirm; Stripe releases the funds. After 48 hours without a
+        response, payment auto-releases.
       </>
     ),
-    margin: [
-      { label: "Custody", value: "Stripe escrow" },
-      { label: "Window", value: "48 hours" },
-    ],
+    proof: "Stripe escrow",
   },
 ];
 
-const RENNER_STEPS: Step[] = [
+const RENNER_BANNERS: Banner[] = [
   {
-    id: "post",
-    number: "§ 01",
+    number: "01",
     title: "Get verified.",
     body: (
       <>
-        Sign up, confirm your identity, clear a Checkr background check.
-        Pick the categories you run, set your service area, name your
-        rate.
+        Sign up, confirm your identity, clear a Checkr background
+        check. Pick the categories you run, set your service area,
+        name your rate.
       </>
     ),
-    margin: [
-      { label: "Vetting", value: "Checkr" },
-      { label: "Onboarding", value: "Same-day in most states" },
-    ],
+    proof: "Same-day onboarding",
   },
   {
-    id: "pick",
-    number: "§ 02",
+    number: "02",
     title: "Pick a task.",
     body: (
       <>
-        Briefs come in from agents, brokers, and managers nearby. Apply
-        to what fits your schedule and skills. Decline anything that
-        doesn&rsquo;t.
+        Briefs come in from agents, brokers, and managers nearby.
+        Apply to what fits your schedule and skills. Decline anything
+        that doesn&rsquo;t.
       </>
     ),
-    margin: [
-      { label: "Marketplace", value: "Local" },
-      { label: "Discretion", value: "Yours" },
-    ],
+    proof: "Local marketplace",
   },
   {
-    id: "done",
-    number: "§ 03",
+    number: "03",
     title: "Get it done.",
     body: (
       <>
@@ -145,10 +105,7 @@ const RENNER_STEPS: Step[] = [
         industry that remembers.
       </>
     ),
-    margin: [
-      { label: "Settlement", value: "Stripe" },
-      { label: "Reputation", value: "Ratings · reviews" },
-    ],
+    proof: "100% of task pay",
   },
 ];
 
@@ -156,22 +113,10 @@ export function LedgerBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
   const isClient = tab === "client";
   const dek = isClient ? CLIENT_DEK : RENNER_DEK;
-  const steps = isClient ? CLIENT_STEPS : RENNER_STEPS;
+  const banners = isClient ? CLIENT_BANNERS : RENNER_BANNERS;
   const ctaButton = isClient
     ? { label: "Sign up", href: "/signup" }
     : { label: "Become a Renner", href: "/become-a-renner" };
-
-  const clauses: string[] = isClient
-    ? [
-        "Post a task.",
-        "Pick a Renner.",
-        "Get it done.",
-      ]
-    : [
-        "Get verified.",
-        "Pick a task.",
-        "Get it done.",
-      ];
 
   return (
     <>
@@ -195,195 +140,194 @@ export function LedgerBody({ showCta }: { showCta: boolean }) {
         <TabButton label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
-      {/* Lede with marginalia */}
-      <article className="ledger-row" style={{ marginBottom: "clamp(56px, 7vw, 88px)" }}>
-        <div className="ledger-main">
-          <h1
-            style={{
-              fontFamily: SANS,
-              fontWeight: 400,
-              fontSize: "clamp(40px, 5.5vw, 72px)",
-              lineHeight: 1.05,
-              letterSpacing: "-0.022em",
-              color: INK,
-              margin: 0,
-              marginBottom: 32,
-              maxWidth: "26ch",
-            }}
-          >
-            {clauses.map((c, i) => (
-              <span key={i}>{i > 0 ? " " : ""}{c}</span>
-            ))}
-          </h1>
-          <p
-            style={{
-              fontFamily: SERIF,
-              fontWeight: 400,
-              fontSize: "clamp(17px, 1.5vw, 19px)",
-              lineHeight: 1.55,
-              color: SLATE,
-              margin: 0,
-              maxWidth: "56ch",
-              fontVariationSettings: '"opsz" 14',
-            }}
-          >
-            {dek}
-          </p>
-        </div>
-        <aside className="ledger-margin">
-          <div
-            style={{
-              fontFamily: MONO,
-              fontSize: 10,
-              fontWeight: 500,
-              letterSpacing: "0.24em",
-              textTransform: "uppercase",
-              color: STEEL_500,
-              marginBottom: 8,
-            }}
-          >
-            Issued
-          </div>
-          <div
-            style={{
-              fontFamily: SERIF,
-              fontStyle: "italic",
-              fontWeight: 300,
-              fontSize: 16,
-              color: STEEL_700,
-              lineHeight: 1.5,
-              fontVariationSettings: '"opsz" 36',
-            }}
-          >
-            renner protocol — for both parties of a real-estate task
-          </div>
-        </aside>
-      </article>
-
-      {/* Step articles */}
-      {steps.map((step, idx) => (
-        <article
-          key={step.id}
-          id={step.id}
-          className="ledger-row"
+      {/* Lede */}
+      <div style={{ marginBottom: "clamp(64px, 8vw, 96px)", maxWidth: 760 }}>
+        <p
           style={{
-            scrollMarginTop: "80px",
-            paddingTop: 32,
-            paddingBottom: 32,
-            borderTop: `1px solid ${RULE}`,
-            borderBottom:
-              idx === steps.length - 1 ? `1px solid ${RULE}` : "none",
+            fontFamily: SERIF,
+            fontWeight: 400,
+            fontSize: "clamp(20px, 1.9vw, 24px)",
+            lineHeight: 1.5,
+            color: INK,
+            margin: 0,
+            fontVariationSettings: '"opsz" 14',
           }}
         >
-          <div className="ledger-main">
+          {dek}
+        </p>
+      </div>
+
+      {/* Banners — full-width plates separated by thick rules */}
+      <div style={{ marginBottom: "clamp(80px, 10vw, 128px)" }}>
+        {banners.map((banner, idx) => (
+          <article
+            key={banner.number}
+            className="banner"
+            style={{
+              borderTop: `2px solid ${INK}`,
+              borderBottom:
+                idx === banners.length - 1 ? `2px solid ${INK}` : "none",
+              padding: "clamp(40px, 5vw, 72px) 0",
+            }}
+          >
             <div
+              className="banner-meta"
               style={{
+                display: "flex",
+                alignItems: "baseline",
+                justifyContent: "space-between",
+                gap: 24,
+                marginBottom: "clamp(28px, 3vw, 40px)",
                 fontFamily: MONO,
                 fontSize: 11,
                 fontWeight: 500,
-                letterSpacing: "0.22em",
-                color: STEEL_600,
-                marginBottom: 16,
+                letterSpacing: "0.24em",
+                textTransform: "uppercase",
+                color: STEEL_500,
               }}
             >
-              {step.number}
+              <span>{banner.number}</span>
+              <span>{banner.proof}</span>
             </div>
+
             <h2
+              className="banner-title"
               style={{
                 fontFamily: SERIF,
                 fontWeight: 400,
-                fontSize: "clamp(24px, 2.6vw, 32px)",
-                lineHeight: 1.15,
-                letterSpacing: "-0.018em",
+                fontSize: "clamp(56px, 10vw, 144px)",
+                lineHeight: 0.95,
+                letterSpacing: "-0.035em",
                 color: INK,
                 margin: 0,
-                marginBottom: 14,
-                fontVariationSettings: '"opsz" 60',
+                marginBottom: "clamp(28px, 3vw, 40px)",
+                fontVariationSettings: '"opsz" 144',
               }}
             >
-              {step.title}
+              {banner.title}
             </h2>
+
             <p
+              className="banner-body"
               style={{
                 fontFamily: SERIF,
-                fontSize: 16,
-                lineHeight: 1.65,
+                fontSize: "clamp(17px, 1.5vw, 19px)",
+                lineHeight: 1.6,
                 color: STEEL_700,
                 margin: 0,
-                maxWidth: "56ch",
+                marginLeft: "auto",
+                maxWidth: "52ch",
                 fontVariationSettings: '"opsz" 14',
               }}
             >
-              {step.body}
+              {banner.body}
             </p>
-          </div>
-          <aside className="ledger-margin">
-            <dl style={{ margin: 0, display: "flex", flexDirection: "column", gap: 14 }}>
-              {step.margin.map((m) => (
-                <div key={m.label}>
-                  <dt
-                    style={{
-                      fontFamily: MONO,
-                      fontSize: 10,
-                      fontWeight: 500,
-                      letterSpacing: "0.22em",
-                      textTransform: "uppercase",
-                      color: STEEL_500,
-                      marginBottom: 4,
-                    }}
-                  >
-                    {m.label}
-                  </dt>
-                  <dd
-                    style={{
-                      fontFamily: SERIF,
-                      fontSize: 14,
-                      lineHeight: 1.45,
-                      color: INK,
-                      margin: 0,
-                      fontVariationSettings: '"opsz" 14',
-                    }}
-                  >
-                    {m.value}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </aside>
-        </article>
-      ))}
+          </article>
+        ))}
+      </div>
+
+      {/* Trust */}
+      <section
+        style={{
+          marginBottom: showCta ? "clamp(64px, 8vw, 96px)" : 0,
+        }}
+      >
+        <div
+          style={{
+            fontFamily: MONO,
+            fontSize: 10,
+            fontWeight: 500,
+            letterSpacing: "0.24em",
+            textTransform: "uppercase",
+            color: STEEL_500,
+            marginBottom: 28,
+          }}
+        >
+          {isClient ? "Why Renner" : "What you get"}
+        </div>
+        <div
+          className="banner-trust"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "clamp(24px, 3vw, 48px)",
+          }}
+        >
+          {(isClient
+            ? [
+                ["Both sides verified", "Clients and Renners are ID-checked and background-checked before any booking."],
+                ["Stripe escrow", "Funds held until you confirm the work, or 48 hours pass."],
+                ["On the record", "Completion photos and a written confirmation on every task."],
+              ]
+            : [
+                ["Real-estate work", "Tasks come from agents, brokers, and property managers — the people who keep listings moving."],
+                ["Both sides verified", "The clients who book you are ID-checked and background-checked, the same as you."],
+                ["A real reputation", "Repeat clients find their way back to the Renners they trust."],
+              ]
+          ).map(([label, body]) => (
+            <div
+              key={label}
+              style={{
+                paddingTop: 20,
+                borderTop: `1px solid ${RULE}`,
+              }}
+            >
+              <div
+                style={{
+                  fontFamily: SERIF,
+                  fontStyle: "italic",
+                  fontWeight: 300,
+                  fontSize: 20,
+                  color: INK,
+                  marginBottom: 8,
+                  fontVariationSettings: '"opsz" 36',
+                }}
+              >
+                {label}.
+              </div>
+              <div
+                style={{
+                  fontFamily: SERIF,
+                  fontSize: 15,
+                  lineHeight: 1.6,
+                  color: STEEL_700,
+                  fontVariationSettings: '"opsz" 14',
+                }}
+              >
+                {body}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* CTA */}
       {showCta && (
         <section
           style={{
             display: "flex",
-            alignItems: "center",
+            alignItems: "baseline",
             justifyContent: "space-between",
-            gap: 32,
+            gap: 24,
             flexWrap: "wrap",
-            paddingTop: "clamp(64px, 8vw, 96px)",
-            marginTop: "clamp(64px, 8vw, 96px)",
-            borderTop: `1px solid ${INK}`,
+            paddingTop: "clamp(48px, 6vw, 80px)",
+            borderTop: `2px solid ${INK}`,
           }}
         >
           <h2
             style={{
-              fontFamily: SANS,
+              fontFamily: SERIF,
               fontWeight: 400,
-              fontSize: "clamp(28px, 3.5vw, 44px)",
-              lineHeight: 1.1,
-              letterSpacing: "-0.02em",
+              fontSize: "clamp(36px, 5vw, 64px)",
+              lineHeight: 1.05,
+              letterSpacing: "-0.025em",
               color: INK,
               margin: 0,
-              maxWidth: "20ch",
+              maxWidth: "16ch",
+              fontVariationSettings: '"opsz" 96',
             }}
           >
-            {isClient ? (
-              "Get something done."
-            ) : (
-              "Start running."
-            )}
+            {isClient ? "Get something done." : "Start running."}
           </h2>
           <Link
             href={ctaButton.href}
@@ -412,19 +356,10 @@ export function LedgerBody({ showCta }: { showCta: boolean }) {
       )}
 
       <style jsx>{`
-        .ledger-row {
-          display: grid;
-          grid-template-columns: minmax(0, 1fr) minmax(180px, 220px);
-          gap: clamp(24px, 4vw, 64px);
-          align-items: start;
-        }
-        @media (max-width: 880px) {
-          .ledger-row {
+        @media (max-width: 720px) {
+          .banner-trust {
             grid-template-columns: 1fr !important;
-            gap: 28px !important;
-          }
-          .ledger-margin {
-            order: -1;
+            gap: 20px !important;
           }
         }
       `}</style>

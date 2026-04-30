@@ -1,11 +1,5 @@
 "use client";
 
-// Mast — sticky horizontal top mast bar holds renner, audience switch,
-// and CTA. Below the mast, the page is full-width with a single big
-// statement + dek lede, then a structured horizontal step flow with
-// hairline separators between numbered cells. Stripe-marketing /
-// Vercel-feature-page register.
-
 import Link from "next/link";
 import { useState } from "react";
 
@@ -20,7 +14,9 @@ const SLATE = "#2a2f36";
 const STEEL_700 = "#4d5b6a";
 const STEEL_600 = "#647589";
 const STEEL_500 = "#7d8da0";
+const STEEL_400 = "#9aa6b4";
 const STEEL_300 = "#cad1d8";
+const STEEL_200 = "#dfe4e9";
 const RULE = "#eaedf0";
 const PAPER = "#fbfbfc";
 
@@ -37,28 +33,14 @@ const CLIENT_DEK =
 const RENNER_DEK =
   "Real-estate work, brief by brief. Run tasks for the agents, brokers, and property managers who keep listings moving. The clients you book with are ID-verified and background-checked, the same as you.";
 
-function Em({ children }: { children: React.ReactNode }) {
-  return (
-    <span
-      style={{
-        fontStyle: "italic",
-        fontWeight: 300,
-        color: STEEL_600,
-      }}
-    >
-      {children}
-    </span>
-  );
-}
-
 const CLIENT_STEPS: Step[] = [
   {
     number: "01",
     title: "Post a task.",
     body: (
       <>
-        Address, window, price. Posts go live to Renners in
-        under two minutes.
+        Address, window, price. Posts go live to background-checked
+        Renners in your area in under two minutes.
       </>
     ),
     proof: "Avg. post · under 2 minutes",
@@ -68,8 +50,8 @@ const CLIENT_STEPS: Step[] = [
     title: "Pick a Renner.",
     body: (
       <>
-        Background-checked Renners apply with bios, ratings, and
-        tenure. Book the right hand for the work.
+        Renners apply with bios, ratings, and tenure. Read the file,
+        book the right hand for the work.
       </>
     ),
     proof: "Every Renner · Checkr-verified",
@@ -132,21 +114,9 @@ export function MastBody({ showCta }: { showCta: boolean }) {
     ? { label: "Sign up", href: "/signup" }
     : { label: "Become a Renner", href: "/become-a-renner" };
 
-  const clauses: string[] = isClient
-    ? [
-        "Post a task.",
-        "Pick a Renner.",
-        "Get it done.",
-      ]
-    : [
-        "Get verified.",
-        "Pick a task.",
-        "Get it done.",
-      ];
-
   return (
     <>
-      {/* Audience switch — sits inside the body, just under the mast */}
+      {/* Audience switch */}
       <div
         role="tablist"
         aria-label="Audience"
@@ -166,170 +136,178 @@ export function MastBody({ showCta }: { showCta: boolean }) {
         <TabButton label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
-      {/* Statement + dek — wide, full-width, anchored left */}
-      <h1
-        style={{
-          fontFamily: SANS,
-          fontWeight: 400,
-          fontSize: "clamp(44px, 6.5vw, 88px)",
-          lineHeight: 1.02,
-          letterSpacing: "-0.025em",
-          color: INK,
-          margin: 0,
-          marginBottom: 32,
-          maxWidth: "26ch",
-        }}
-      >
-        {clauses.map((c, i) => (
-          <span key={i}>{i > 0 ? " " : ""}{c}</span>
-        ))}
-      </h1>
-      <p
-        style={{
-          fontFamily: SERIF,
-          fontWeight: 400,
-          fontSize: "clamp(17px, 1.6vw, 20px)",
-          lineHeight: 1.55,
-          color: SLATE,
-          margin: 0,
-          marginBottom: "clamp(96px, 12vw, 144px)",
-          maxWidth: "60ch",
-          fontVariationSettings: '"opsz" 14',
-        }}
-      >
-        {dek}
-      </p>
+      {/* Lede — kept small so the counters carry the page */}
+      <div style={{ marginBottom: "clamp(80px, 10vw, 128px)", maxWidth: 720 }}>
+        <p
+          style={{
+            fontFamily: SERIF,
+            fontWeight: 400,
+            fontSize: "clamp(20px, 1.9vw, 24px)",
+            lineHeight: 1.5,
+            color: INK,
+            margin: 0,
+            fontVariationSettings: '"opsz" 14',
+          }}
+        >
+          {dek}
+        </p>
+      </div>
 
-      {/* Step flow — three numbered cells separated by vertical hairlines */}
-      <div
-        className="mast-steps"
+      {/* The counters */}
+      <ol
+        className="counter-list"
         style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr",
-          borderTop: `1px solid ${INK}`,
-          borderBottom: `1px solid ${INK}`,
-          marginBottom: "clamp(72px, 9vw, 112px)",
+          listStyle: "none",
+          margin: 0,
+          padding: 0,
+          marginBottom: "clamp(80px, 10vw, 128px)",
         }}
       >
         {steps.map((step, idx) => (
-          <article
+          <li
             key={step.number}
-            className="mast-step"
+            className="counter-row"
             style={{
-              padding: "clamp(28px, 3vw, 40px) clamp(20px, 2.5vw, 32px)",
-              borderRight: idx === steps.length - 1 ? "none" : `1px solid ${RULE}`,
-              display: "flex",
-              flexDirection: "column",
-              gap: 16,
+              borderTop: `1px solid ${INK}`,
+              borderBottom:
+                idx === steps.length - 1 ? `1px solid ${INK}` : "none",
+              padding: "clamp(40px, 5vw, 72px) 0",
+              alignItems: "baseline",
             }}
           >
             <div
+              className="counter-numeral"
+              aria-hidden
               style={{
                 fontFamily: MONO,
-                fontSize: 11,
-                fontWeight: 500,
-                letterSpacing: "0.22em",
-                color: STEEL_500,
+                fontWeight: 400,
+                fontSize: "clamp(96px, 16vw, 200px)",
+                lineHeight: 0.95,
+                letterSpacing: "-0.04em",
+                color: STEEL_200,
+                userSelect: "none",
               }}
             >
               {step.number}
             </div>
-            <h3
-              style={{
-                fontFamily: SERIF,
-                fontWeight: 400,
-                fontSize: "clamp(22px, 2.4vw, 28px)",
-                lineHeight: 1.15,
-                letterSpacing: "-0.018em",
-                color: INK,
-                margin: 0,
-                fontVariationSettings: '"opsz" 36',
-              }}
-            >
-              {step.title}
-            </h3>
-            <p
-              style={{
-                fontFamily: SERIF,
-                fontSize: 15,
-                lineHeight: 1.65,
-                color: STEEL_700,
-                margin: 0,
-                fontVariationSettings: '"opsz" 14',
-              }}
-            >
-              {step.body}
-            </p>
-            <div
-              style={{
-                marginTop: "auto",
-                paddingTop: 14,
-                borderTop: `1px solid ${RULE}`,
-                fontFamily: MONO,
-                fontSize: 10,
-                fontWeight: 500,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                color: STEEL_600,
-              }}
-            >
-              {step.proof}
+            <div className="counter-content">
+              <h3
+                style={{
+                  fontFamily: SERIF,
+                  fontWeight: 400,
+                  fontSize: "clamp(28px, 3.2vw, 40px)",
+                  lineHeight: 1.1,
+                  letterSpacing: "-0.02em",
+                  color: INK,
+                  margin: 0,
+                  marginBottom: 18,
+                  fontVariationSettings: '"opsz" 60',
+                }}
+              >
+                {step.title}
+              </h3>
+              <p
+                style={{
+                  fontFamily: SERIF,
+                  fontSize: 17,
+                  lineHeight: 1.6,
+                  color: STEEL_700,
+                  margin: 0,
+                  marginBottom: 24,
+                  maxWidth: "52ch",
+                  fontVariationSettings: '"opsz" 14',
+                }}
+              >
+                {step.body}
+              </p>
+              <div
+                style={{
+                  fontFamily: MONO,
+                  fontSize: 10,
+                  fontWeight: 500,
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  color: STEEL_600,
+                }}
+              >
+                {step.proof}
+              </div>
             </div>
-          </article>
+          </li>
         ))}
-      </div>
+      </ol>
 
-      {/* Trust */}
+      {/* Trust — three quiet lines, no boxes */}
       <section
+        className="counter-trust"
         style={{
-          marginBottom: showCta ? "clamp(56px, 7vw, 88px)" : 0,
-          paddingTop: 28,
-          borderTop: `1px solid ${RULE}`,
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "clamp(20px, 3vw, 48px)",
+          marginBottom: showCta ? "clamp(64px, 8vw, 96px)" : 0,
         }}
-        className="mast-trust"
       >
-        {(isClient
-          ? [
-              ["Both sides verified", "Clients and Renners are ID-checked and background-checked before any booking."],
-              ["Stripe escrow", "Funds held until you confirm the work, or 48 hours pass."],
-              ["On the record", "Completion photos and a written confirmation on every task."],
-            ]
-          : [
-              ["Real-estate work", "Tasks come from agents, brokers, and property managers — the people who keep listings moving."],
-              ["Both sides verified", "The clients who book you are ID-checked and background-checked, the same as you."],
-              ["A real reputation", "Repeat clients find their way back to the Renners they trust."],
-            ]
-        ).map(([label, body]) => (
-          <div key={label}>
+        <div
+          style={{
+            fontFamily: MONO,
+            fontSize: 10,
+            fontWeight: 500,
+            letterSpacing: "0.24em",
+            textTransform: "uppercase",
+            color: STEEL_500,
+            marginBottom: 24,
+          }}
+        >
+          {isClient ? "Why Renner" : "What you get"}
+        </div>
+        <dl style={{ margin: 0 }}>
+          {(isClient
+            ? [
+                ["Both sides verified", "Clients and Renners are ID-checked and background-checked before any booking."],
+                ["Stripe escrow", "Funds held until you confirm the work, or 48 hours pass."],
+                ["On the record", "Completion photos and a written confirmation on every task."],
+              ]
+            : [
+                ["Real-estate work", "Tasks come from agents, brokers, and property managers — the people who keep listings moving."],
+                ["Both sides verified", "The clients who book you are ID-checked and background-checked, the same as you."],
+                ["A real reputation", "Repeat clients find their way back to the Renners they trust."],
+              ]
+          ).map(([label, body], idx, arr) => (
             <div
+              key={label}
+              className="counter-trust-row"
               style={{
-                fontFamily: SERIF,
-                fontStyle: "italic",
-                fontWeight: 300,
-                fontSize: 22,
-                color: STEEL_700,
-                marginBottom: 10,
-                fontVariationSettings: '"opsz" 36',
+                padding: "20px 0",
+                borderTop: `1px solid ${RULE}`,
+                borderBottom:
+                  idx === arr.length - 1 ? `1px solid ${RULE}` : "none",
+                alignItems: "baseline",
               }}
             >
-              {label}.
+              <dt
+                style={{
+                  fontFamily: SERIF,
+                  fontStyle: "italic",
+                  fontWeight: 300,
+                  fontSize: 20,
+                  color: INK,
+                  fontVariationSettings: '"opsz" 36',
+                }}
+              >
+                {label}.
+              </dt>
+              <dd
+                style={{
+                  fontFamily: SERIF,
+                  fontSize: 16,
+                  lineHeight: 1.55,
+                  color: STEEL_700,
+                  margin: 0,
+                  fontVariationSettings: '"opsz" 14',
+                }}
+              >
+                {body}
+              </dd>
             </div>
-            <div
-              style={{
-                fontFamily: SERIF,
-                fontSize: 15,
-                lineHeight: 1.6,
-                color: INK,
-                fontVariationSettings: '"opsz" 14',
-              }}
-            >
-              {body}
-            </div>
-          </div>
-        ))}
+          ))}
+        </dl>
       </section>
 
       {/* CTA */}
@@ -337,31 +315,28 @@ export function MastBody({ showCta }: { showCta: boolean }) {
         <section
           style={{
             display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 32,
+            alignItems: "baseline",
+            gap: 24,
             flexWrap: "wrap",
             paddingTop: "clamp(48px, 6vw, 80px)",
-            borderTop: `1px solid ${RULE}`,
+            borderTop: `1px solid ${INK}`,
+            justifyContent: "space-between",
           }}
         >
           <h2
             style={{
-              fontFamily: SANS,
+              fontFamily: SERIF,
               fontWeight: 400,
-              fontSize: "clamp(28px, 3.5vw, 44px)",
+              fontSize: "clamp(28px, 3.2vw, 40px)",
               lineHeight: 1.1,
               letterSpacing: "-0.02em",
               color: INK,
               margin: 0,
               maxWidth: "20ch",
+              fontVariationSettings: '"opsz" 60',
             }}
           >
-            {isClient ? (
-              "Get something done."
-            ) : (
-              "Start running."
-            )}
+            {isClient ? "Get something done." : "Start running."}
           </h2>
           <Link
             href={ctaButton.href}
@@ -390,20 +365,24 @@ export function MastBody({ showCta }: { showCta: boolean }) {
       )}
 
       <style jsx>{`
-        @media (max-width: 880px) {
-          .mast-steps {
-            grid-template-columns: 1fr !important;
+        .counter-row {
+          display: grid;
+          grid-template-columns: minmax(160px, 280px) minmax(0, 1fr);
+          gap: clamp(24px, 4vw, 64px);
+        }
+        .counter-trust-row {
+          display: grid;
+          grid-template-columns: minmax(180px, 280px) minmax(0, 1fr);
+          gap: clamp(24px, 4vw, 64px);
+        }
+        @media (max-width: 720px) {
+          .counter-row {
+            grid-template-columns: 1fr;
+            gap: 12px;
           }
-          .mast-step {
-            border-right: none !important;
-            border-bottom: 1px solid ${RULE};
-          }
-          .mast-step:last-child {
-            border-bottom: none;
-          }
-          .mast-trust {
-            grid-template-columns: 1fr !important;
-            gap: 24px !important;
+          .counter-trust-row {
+            grid-template-columns: 1fr;
+            gap: 4px;
           }
         }
       `}</style>

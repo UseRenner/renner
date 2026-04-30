@@ -31,22 +31,17 @@ export default async function MastHowItWorks() {
     <div style={{ backgroundColor: PAPER, color: INK, minHeight: "100vh" }}>
       <VariantSwitcher active="mast" />
 
-      {/* Sticky horizontal mast — renner left, sign-in/up right */}
       <header
         style={{
-          position: "sticky",
-          top: 36,
-          zIndex: 40,
-          backgroundColor: PAPER,
-          padding: "clamp(20px, 2.4vw, 32px) clamp(28px, 4vw, 64px)",
+          padding: "clamp(28px, 3.5vw, 48px) clamp(28px, 4vw, 64px)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
           gap: 16,
-          borderBottom: `1px solid ${INK}`,
+          borderBottom: `1px solid ${RULE}`,
         }}
       >
-        <RennerMark size={32} />
+        <RennerMark />
         {showCta ? (
           <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
             <Link
