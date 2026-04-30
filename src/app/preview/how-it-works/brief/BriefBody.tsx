@@ -192,9 +192,7 @@ export function BriefBody({ showCta }: { showCta: boolean }) {
         }}
       >
         {clauses.map((clause, i) => (
-          <span key={i} style={{ display: "block" }}>
-            {clause}
-          </span>
+          <span key={i}>{i > 0 ? " " : ""}{clause}</span>
         ))}
       </h1>
 

@@ -181,9 +181,7 @@ export function SuiteBody({ showCta }: { showCta: boolean }) {
         }}
       >
         {clauses.map((c, i) => (
-          <span key={i} style={{ display: "block" }}>
-            {c}
-          </span>
+          <span key={i}>{i > 0 ? " " : ""}{c}</span>
         ))}
       </h1>
 
