@@ -303,8 +303,7 @@ export function SceneBody({ showCta }: { showCta: boolean }) {
       <p
         style={{
           fontFamily: SERIF,
-          fontStyle: "italic",
-          fontWeight: 300,
+          fontWeight: 400,
           fontSize: "clamp(24px, 3vw, 36px)",
           lineHeight: 1.35,
           color: INK,
