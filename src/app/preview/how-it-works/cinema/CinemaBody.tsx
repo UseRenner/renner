@@ -41,32 +41,40 @@ export function CinemaBody({ showCta }: { showCta: boolean }) {
 
   return (
     <>
-      {/* Letterbox hero — 2.39:1 ratio, ink panel with serif H1 */}
+      {/* Audience switch sits above the hero so context is set first */}
+      <div role="tablist" aria-label="Audience" style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: "clamp(20px, 2.5vw, 28px)", fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 16 }}>
+        <Tab label="For clients" active={isClient} onClick={() => setTab("client")} />
+        <span aria-hidden style={{ color: STEEL_300, fontStyle: "normal" }}>·</span>
+        <Tab label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
+      </div>
+
+      {/* Letterbox hero — 2.39:1 ratio, ink panel with italic serif H1 */}
       <section
         style={{
           backgroundColor: INK,
           color: PAPER,
           aspectRatio: "2.39 / 1",
-          minHeight: 320,
-          padding: "clamp(28px, 4vw, 64px)",
+          minHeight: 340,
+          padding: "clamp(32px, 4.5vw, 72px)",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
-          marginBottom: "clamp(40px, 5vw, 64px)",
+          justifyContent: "center",
+          gap: "clamp(20px, 2.5vw, 32px)",
+          marginBottom: "clamp(48px, 6vw, 72px)",
         }}
       >
-        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: PAPER_DIM, flexWrap: "wrap" }}>
-          <span>How it works</span>
-          <span>Both sides screened to join</span>
+        <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: PAPER_DIM }}>
+          How it works
         </div>
 
         <h1
           style={{
             fontFamily: SERIF,
-            fontWeight: 400,
+            fontStyle: "italic",
+            fontWeight: 300,
             fontSize: "clamp(40px, 6vw, 88px)",
             lineHeight: 1.0,
-            letterSpacing: "-0.03em",
+            letterSpacing: "-0.028em",
             color: PAPER,
             margin: 0,
             maxWidth: "16ch",
@@ -79,38 +87,31 @@ export function CinemaBody({ showCta }: { showCta: boolean }) {
         <p
           style={{
             fontFamily: SERIF,
-            fontStyle: "italic",
-            fontWeight: 300,
+            fontWeight: 400,
             fontSize: "clamp(15px, 1.4vw, 18px)",
-            lineHeight: 1.5,
+            lineHeight: 1.55,
             color: PAPER_DIM,
             margin: 0,
-            maxWidth: "44ch",
-            fontVariationSettings: '"opsz" 36',
+            maxWidth: "52ch",
+            fontVariationSettings: '"opsz" 14',
           }}
         >
           {dek}
         </p>
       </section>
 
-      <div role="tablist" aria-label="Audience" style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: "clamp(40px, 5vw, 56px)", fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 16 }}>
-        <Tab label="For clients" active={isClient} onClick={() => setTab("client")} />
-        <span aria-hidden style={{ color: STEEL_300, fontStyle: "normal" }}>·</span>
-        <Tab label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
-      </div>
-
       {/* Step rows */}
-      <div style={{ marginBottom: "clamp(48px, 6vw, 80px)" }}>
+      <div style={{ marginBottom: "clamp(56px, 7vw, 88px)" }}>
         {steps.map((s, i) => (
           <article
             key={s.number}
             style={{
-              padding: "clamp(28px, 3.5vw, 40px) 0",
+              padding: "clamp(28px, 3.5vw, 44px) 0",
               borderTop: i === 0 ? `1px solid ${INK}` : "none",
               borderBottom: i === steps.length - 1 ? `1px solid ${INK}` : `1px solid ${RULE}`,
               display: "grid",
-              gridTemplateColumns: "minmax(120px, 160px) minmax(0, 1fr) minmax(140px, 200px)",
-              gap: "clamp(20px, 3vw, 48px)",
+              gridTemplateColumns: "80px minmax(0, 1fr) minmax(140px, 200px)",
+              gap: "clamp(24px, 3.5vw, 56px)",
               alignItems: "baseline",
             }}
             className="cinema-row"
@@ -119,14 +120,14 @@ export function CinemaBody({ showCta }: { showCta: boolean }) {
               {s.number}
             </div>
             <div>
-              <h3 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(24px, 2.8vw, 36px)", lineHeight: 1.05, letterSpacing: "-0.022em", color: INK, margin: 0, marginBottom: 10, fontVariationSettings: '"opsz" 60' }}>
+              <h3 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(24px, 2.8vw, 34px)", lineHeight: 1.1, letterSpacing: "-0.018em", color: INK, margin: 0, marginBottom: 10, fontVariationSettings: '"opsz" 60' }}>
                 {s.title}
               </h3>
-              <p style={{ fontFamily: SERIF, fontSize: 16, lineHeight: 1.6, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+              <p style={{ fontFamily: SERIF, fontSize: 16, lineHeight: 1.6, color: STEEL_700, margin: 0, maxWidth: "52ch", fontVariationSettings: '"opsz" 14' }}>
                 {s.body}
               </p>
             </div>
-            <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: STEEL_600, textAlign: "right" }}>
+            <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_600, textAlign: "right" }}>
               {s.proof}
             </div>
           </article>

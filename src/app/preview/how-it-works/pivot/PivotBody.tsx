@@ -136,10 +136,11 @@ export function PivotBody({ showCta }: { showCta: boolean }) {
                 <h3
                   style={{
                     fontFamily: SERIF,
-                    fontWeight: 400,
+                    fontStyle: "italic",
+                    fontWeight: 300,
                     fontSize: "clamp(28px, 3.4vw, 44px)",
                     lineHeight: 1.05,
-                    letterSpacing: "-0.02em",
+                    letterSpacing: "-0.018em",
                     color: INK,
                     margin: 0,
                     fontVariationSettings: '"opsz" 60',

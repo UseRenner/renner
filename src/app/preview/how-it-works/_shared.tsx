@@ -51,7 +51,6 @@ export type VariantKey =
   | "mast"
   | "pivot"
   | "tape"
-  | "window"
   | "fold"
   | "list"
   | "plat"
@@ -72,7 +71,6 @@ export const VARIANTS: ReadonlyArray<{ href: string; key: VariantKey; label: str
   { href: "/preview/how-it-works/mast", key: "mast", label: "Mast" },
   { href: "/preview/how-it-works/pivot", key: "pivot", label: "Pivot" },
   { href: "/preview/how-it-works/tape", key: "tape", label: "Tape" },
-  { href: "/preview/how-it-works/window", key: "window", label: "Window" },
   { href: "/preview/how-it-works/fold", key: "fold", label: "Fold" },
   { href: "/preview/how-it-works/list", key: "list", label: "List" },
   { href: "/preview/how-it-works/plat", key: "plat", label: "Plat" },

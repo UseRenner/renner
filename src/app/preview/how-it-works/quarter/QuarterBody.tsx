@@ -56,17 +56,18 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
         }}
       >
         {/* Top-left: statement */}
-        <section className="quarter-cell" style={{ padding: "clamp(28px, 4vw, 56px)" }}>
+        <section className="quarter-cell" style={{ padding: "clamp(32px, 4.5vw, 64px)", display: "flex", alignItems: "center" }}>
           <h1
             style={{
               fontFamily: SERIF,
-              fontWeight: 400,
+              fontStyle: "italic",
+              fontWeight: 300,
               fontSize: "clamp(32px, 4.5vw, 56px)",
-              lineHeight: 1.0,
-              letterSpacing: "-0.025em",
+              lineHeight: 1.05,
+              letterSpacing: "-0.022em",
               color: INK,
               margin: 0,
-              maxWidth: "16ch",
+              maxWidth: "14ch",
               fontVariationSettings: '"opsz" 96',
             }}
           >
@@ -77,18 +78,17 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
         <div aria-hidden style={{ backgroundColor: INK }} className="quarter-vrule" />
 
         {/* Top-right: dek */}
-        <section className="quarter-cell" style={{ padding: "clamp(28px, 4vw, 56px)" }}>
+        <section className="quarter-cell" style={{ padding: "clamp(32px, 4.5vw, 64px)", display: "flex", alignItems: "center" }}>
           <p
             style={{
               fontFamily: SERIF,
-              fontStyle: "italic",
-              fontWeight: 300,
-              fontSize: "clamp(18px, 1.7vw, 22px)",
-              lineHeight: 1.5,
-              color: INK,
+              fontWeight: 400,
+              fontSize: "clamp(17px, 1.5vw, 19px)",
+              lineHeight: 1.6,
+              color: STEEL_700,
               margin: 0,
               maxWidth: "44ch",
-              fontVariationSettings: '"opsz" 36',
+              fontVariationSettings: '"opsz" 14',
             }}
           >
             {dek}
@@ -99,30 +99,32 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
         <div aria-hidden style={{ backgroundColor: INK, gridColumn: "1 / -1" }} />
 
         {/* Bottom-left: steps */}
-        <section className="quarter-cell" style={{ padding: "clamp(28px, 4vw, 56px)" }}>
+        <section className="quarter-cell" style={{ padding: "clamp(32px, 4.5vw, 64px)" }}>
           <ol style={{ listStyle: "none", margin: 0, padding: 0 }}>
             {steps.map((s, i) => (
               <li
                 key={s.number}
                 style={{
-                  padding: "14px 0",
+                  padding: "20px 0",
                   borderBottom: i === steps.length - 1 ? "none" : `1px solid ${RULE}`,
                   display: "grid",
-                  gridTemplateColumns: "40px minmax(0, 1fr) auto",
-                  gap: 12,
+                  gridTemplateColumns: "44px minmax(0, 1fr)",
+                  gap: 16,
                   alignItems: "baseline",
                 }}
               >
                 <span style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.22em", color: STEEL_500 }}>{s.number}</span>
-                <span>
-                  <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 18, color: INK, fontVariationSettings: '"opsz" 36' }}>
-                    {s.title}{" "}
-                  </span>
-                  <span style={{ fontFamily: SERIF, fontSize: 14, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>
+                <div>
+                  <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12, marginBottom: 6 }}>
+                    <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 19, color: INK, fontVariationSettings: '"opsz" 36' }}>
+                      {s.title}
+                    </span>
+                    <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: STEEL_600, whiteSpace: "nowrap" }}>{s.proof}</span>
+                  </div>
+                  <div style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.55, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>
                     {s.body}
-                  </span>
-                </span>
-                <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: STEEL_600, whiteSpace: "nowrap" }}>{s.proof}</span>
+                  </div>
+                </div>
               </li>
             ))}
           </ol>
@@ -131,8 +133,8 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
         <div aria-hidden style={{ backgroundColor: INK }} className="quarter-vrule" />
 
         {/* Bottom-right: trust */}
-        <section className="quarter-cell" style={{ padding: "clamp(28px, 4vw, 56px)" }}>
-          <dl style={{ margin: 0, display: "flex", flexDirection: "column", gap: 14 }}>
+        <section className="quarter-cell" style={{ padding: "clamp(32px, 4.5vw, 64px)" }}>
+          <dl style={{ margin: 0, display: "flex", flexDirection: "column", gap: 20 }}>
             {(isClient
               ? [
                   ["Both sides vetted", "ID and Checkr before any booking."],
@@ -146,10 +148,10 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
                 ]
             ).map(([label, body]) => (
               <div key={label}>
-                <dt style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 17, color: INK, fontVariationSettings: '"opsz" 36' }}>
+                <dt style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 19, color: INK, marginBottom: 4, fontVariationSettings: '"opsz" 36' }}>
                   {label}.
                 </dt>
-                <dd style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+                <dd style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
                   {body}
                 </dd>
               </div>

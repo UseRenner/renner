@@ -52,7 +52,7 @@ const TICK = 14;
 
 function Bracket({ children, label }: { children: React.ReactNode; label?: string }) {
   return (
-    <div className="plat-bracket" style={{ position: "relative", padding: "clamp(20px, 2.5vw, 32px) clamp(16px, 2vw, 28px)" }}>
+    <div className="plat-bracket" style={{ position: "relative", padding: "clamp(28px, 3.5vw, 48px) clamp(24px, 3vw, 40px)" }}>
       <span aria-hidden style={{ position: "absolute", top: 0, left: 0, width: TICK, height: 1, backgroundColor: INK }} />
       <span aria-hidden style={{ position: "absolute", top: 0, left: 0, width: 1, height: TICK, backgroundColor: INK }} />
       <span aria-hidden style={{ position: "absolute", top: 0, right: 0, width: TICK, height: 1, backgroundColor: INK }} />
@@ -67,13 +67,13 @@ function Bracket({ children, label }: { children: React.ReactNode; label?: strin
           style={{
             position: "absolute",
             top: -7,
-            left: 28,
+            left: 32,
             backgroundColor: PAPER,
-            padding: "0 8px",
+            padding: "0 10px",
             fontFamily: MONO,
             fontSize: 10,
             fontWeight: 500,
-            letterSpacing: "0.24em",
+            letterSpacing: "0.28em",
             textTransform: "uppercase",
             color: STEEL_500,
           }}
@@ -124,13 +124,14 @@ export function PlatBody({ showCta }: { showCta: boolean }) {
           <h1
             style={{
               fontFamily: SERIF,
-              fontWeight: 400,
+              fontStyle: "italic",
+              fontWeight: 300,
               fontSize: "clamp(36px, 5vw, 64px)",
               lineHeight: 1.05,
-              letterSpacing: "-0.025em",
+              letterSpacing: "-0.022em",
               color: INK,
               margin: 0,
-              marginBottom: 18,
+              marginBottom: 20,
               maxWidth: "20ch",
               fontVariationSettings: '"opsz" 96',
             }}
@@ -141,7 +142,7 @@ export function PlatBody({ showCta }: { showCta: boolean }) {
             style={{
               fontFamily: SERIF,
               fontSize: "clamp(16px, 1.4vw, 18px)",
-              lineHeight: 1.55,
+              lineHeight: 1.6,
               color: STEEL_700,
               margin: 0,
               maxWidth: "52ch",
@@ -153,39 +154,38 @@ export function PlatBody({ showCta }: { showCta: boolean }) {
         </Bracket>
       </div>
 
-      {/* Step plats */}
+      {/* Step plats — title above, body below */}
       <div style={{ display: "flex", flexDirection: "column", gap: "clamp(24px, 3vw, 40px)", marginBottom: "clamp(40px, 5vw, 64px)" }}>
         {steps.map((s) => (
           <Bracket key={s.number} label={`${s.number} · ${s.proof}`}>
-            <div className="plat-step">
-              <div
-                style={{
-                  fontFamily: SERIF,
-                  fontStyle: "italic",
-                  fontWeight: 300,
-                  fontSize: "clamp(28px, 3.4vw, 40px)",
-                  lineHeight: 1.05,
-                  letterSpacing: "-0.02em",
-                  color: INK,
-                  fontVariationSettings: '"opsz" 60',
-                }}
-              >
-                {s.title}
-              </div>
-              <p
-                style={{
-                  fontFamily: SERIF,
-                  fontSize: 16,
-                  lineHeight: 1.6,
-                  color: STEEL_700,
-                  margin: 0,
-                  maxWidth: "48ch",
-                  fontVariationSettings: '"opsz" 14',
-                }}
-              >
-                {s.body}
-              </p>
+            <div
+              style={{
+                fontFamily: SERIF,
+                fontStyle: "italic",
+                fontWeight: 300,
+                fontSize: "clamp(26px, 3.2vw, 36px)",
+                lineHeight: 1.1,
+                letterSpacing: "-0.018em",
+                color: INK,
+                marginBottom: 14,
+                fontVariationSettings: '"opsz" 60',
+              }}
+            >
+              {s.title}
             </div>
+            <p
+              style={{
+                fontFamily: SERIF,
+                fontSize: "clamp(15px, 1.4vw, 17px)",
+                lineHeight: 1.6,
+                color: STEEL_700,
+                margin: 0,
+                maxWidth: "56ch",
+                fontVariationSettings: '"opsz" 14',
+              }}
+            >
+              {s.body}
+            </p>
           </Bracket>
         ))}
       </div>
@@ -254,20 +254,10 @@ export function PlatBody({ showCta }: { showCta: boolean }) {
       )}
 
       <style jsx>{`
-        .plat-step {
-          display: grid;
-          grid-template-columns: minmax(220px, 1fr) minmax(0, 2fr);
-          gap: clamp(20px, 3vw, 48px);
-          align-items: baseline;
-        }
         @media (max-width: 720px) {
-          .plat-step {
-            grid-template-columns: 1fr;
-            gap: 8px;
-          }
           .plat-trust {
             grid-template-columns: 1fr !important;
-            gap: 16px !important;
+            gap: 20px !important;
           }
         }
       `}</style>

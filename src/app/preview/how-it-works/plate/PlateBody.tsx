@@ -228,10 +228,11 @@ export function PlateBody({ showCta }: { showCta: boolean }) {
               <h3
                 style={{
                   fontFamily: SERIF,
-                  fontWeight: 400,
+                  fontStyle: "italic",
+                  fontWeight: 300,
                   fontSize: "clamp(24px, 2.8vw, 32px)",
                   lineHeight: 1.15,
-                  letterSpacing: "-0.018em",
+                  letterSpacing: "-0.014em",
                   color: INK,
                   margin: 0,
                   marginBottom: 14,

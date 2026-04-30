@@ -194,10 +194,11 @@ export function MastBody({ showCta }: { showCta: boolean }) {
               <h3
                 style={{
                   fontFamily: SERIF,
-                  fontWeight: 400,
+                  fontStyle: "italic",
+                  fontWeight: 300,
                   fontSize: "clamp(28px, 3.2vw, 40px)",
                   lineHeight: 1.1,
-                  letterSpacing: "-0.02em",
+                  letterSpacing: "-0.018em",
                   color: INK,
                   margin: 0,
                   marginBottom: 18,

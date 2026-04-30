@@ -193,7 +193,7 @@ export function RailBody({ showCta }: { showCta: boolean }) {
                 fontVariationSettings: '"opsz" 144',
               }}
             >
-              How Renner <Italic>works</Italic>
+              How Renner works
             </h1>
 
             <div
@@ -318,10 +318,11 @@ export function RailBody({ showCta }: { showCta: boolean }) {
                   <h3
                     style={{
                       fontFamily: SERIF,
-                      fontWeight: 400,
+                      fontStyle: "italic",
+                      fontWeight: 300,
                       fontSize: "clamp(28px, 3vw, 36px)",
                       lineHeight: 1.1,
-                      letterSpacing: "-0.022em",
+                      letterSpacing: "-0.018em",
                       color: INK,
                       margin: 0,
                       marginBottom: 20,
