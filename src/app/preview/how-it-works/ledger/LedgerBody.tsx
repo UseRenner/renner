@@ -200,16 +200,15 @@ export function LedgerBody({ showCta }: { showCta: boolean }) {
         <div className="ledger-main">
           <h1
             style={{
-              fontFamily: SERIF,
+              fontFamily: SANS,
               fontWeight: 400,
               fontSize: "clamp(40px, 5.5vw, 72px)",
               lineHeight: 1.05,
-              letterSpacing: "-0.025em",
+              letterSpacing: "-0.022em",
               color: INK,
               margin: 0,
               marginBottom: 32,
               maxWidth: "26ch",
-              fontVariationSettings: '"opsz" 144',
             }}
           >
             {clauses.map((c, i) => (
@@ -370,15 +369,14 @@ export function LedgerBody({ showCta }: { showCta: boolean }) {
         >
           <h2
             style={{
-              fontFamily: SERIF,
+              fontFamily: SANS,
               fontWeight: 400,
               fontSize: "clamp(28px, 3.5vw, 44px)",
               lineHeight: 1.1,
-              letterSpacing: "-0.022em",
+              letterSpacing: "-0.02em",
               color: INK,
               margin: 0,
               maxWidth: "20ch",
-              fontVariationSettings: '"opsz" 144',
             }}
           >
             {isClient ? (

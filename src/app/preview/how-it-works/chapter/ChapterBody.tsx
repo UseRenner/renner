@@ -204,16 +204,15 @@ export function ChapterBody({ showCta }: { showCta: boolean }) {
       {/* ─── Statement ─── prominent, three rows */}
       <h1
         style={{
-          fontFamily: SERIF,
+          fontFamily: SANS,
           fontWeight: 400,
           fontSize: "clamp(40px, 6vw, 80px)",
           lineHeight: 1.05,
-          letterSpacing: "-0.028em",
+          letterSpacing: "-0.025em",
           color: INK,
           margin: 0,
           marginBottom: "clamp(32px, 4vw, 48px)",
           maxWidth: "26ch",
-          fontVariationSettings: '"opsz" 144',
         }}
       >
         {clauses.map((c, i) => (
@@ -290,15 +289,14 @@ export function ChapterBody({ showCta }: { showCta: boolean }) {
             <div>
               <h2
                 style={{
-                  fontFamily: SERIF,
+                  fontFamily: SANS,
                   fontWeight: 400,
                   fontSize: "clamp(36px, 5vw, 64px)",
                   lineHeight: 1.05,
-                  letterSpacing: "-0.025em",
+                  letterSpacing: "-0.022em",
                   color: INK,
                   margin: 0,
                   marginBottom: "clamp(24px, 3vw, 40px)",
-                  fontVariationSettings: '"opsz" 144',
                 }}
               >
                 {chapter.heading}
@@ -404,15 +402,14 @@ export function ChapterBody({ showCta }: { showCta: boolean }) {
         >
           <h2
             style={{
-              fontFamily: SERIF,
+              fontFamily: SANS,
               fontWeight: 400,
               fontSize: "clamp(36px, 5vw, 56px)",
               lineHeight: 1.05,
-              letterSpacing: "-0.025em",
+              letterSpacing: "-0.022em",
               color: INK,
               margin: 0,
               maxWidth: "20ch",
-              fontVariationSettings: '"opsz" 144',
             }}
           >
             {isClient ? (

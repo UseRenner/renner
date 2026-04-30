@@ -168,16 +168,15 @@ export function SuiteBody({ showCta }: { showCta: boolean }) {
       {/* ─── Statement ─── smaller, centered, three lines */}
       <h1
         style={{
-          fontFamily: SERIF,
+          fontFamily: SANS,
           fontWeight: 400,
           fontSize: "clamp(32px, 4.5vw, 56px)",
           lineHeight: 1.1,
-          letterSpacing: "-0.022em",
+          letterSpacing: "-0.02em",
           color: INK,
           margin: "0 auto",
           marginBottom: 32,
           maxWidth: "20ch",
-          fontVariationSettings: '"opsz" 60',
         }}
       >
         {clauses.map((c, i) => (
@@ -303,16 +302,15 @@ export function SuiteBody({ showCta }: { showCta: boolean }) {
         <div style={{ marginTop: "clamp(72px, 9vw, 112px)" }}>
           <h2
             style={{
-              fontFamily: SERIF,
+              fontFamily: SANS,
               fontWeight: 400,
               fontSize: "clamp(26px, 3.2vw, 36px)",
               lineHeight: 1.15,
-              letterSpacing: "-0.02em",
+              letterSpacing: "-0.018em",
               color: INK,
               margin: "0 auto",
               marginBottom: 28,
               maxWidth: "16ch",
-              fontVariationSettings: '"opsz" 60',
             }}
           >
             {isClient ? (

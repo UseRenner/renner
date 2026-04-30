@@ -42,14 +42,12 @@ export const FAQS: Array<{ q: string; a: string }> = [
 export type VariantKey =
   | "direct"
   | "brief"
-  | "brief-sans"
   | "verse"
   | "chapter"
   | "rail"
   | "suite"
   | "atelier"
   | "plate"
-  | "plate-sans"
   | "marketplace"
   | "network"
   | "console"
@@ -59,14 +57,12 @@ export type VariantKey =
 export const VARIANTS: ReadonlyArray<{ href: string; key: VariantKey; label: string }> = [
   { href: "/preview/how-it-works", key: "direct", label: "Direct" },
   { href: "/preview/how-it-works/brief", key: "brief", label: "Brief" },
-  { href: "/preview/how-it-works/brief-sans", key: "brief-sans", label: "Brief sans" },
   { href: "/preview/how-it-works/verse", key: "verse", label: "Verse" },
   { href: "/preview/how-it-works/chapter", key: "chapter", label: "Chapter" },
   { href: "/preview/how-it-works-2", key: "rail", label: "Rail" },
   { href: "/preview/how-it-works/suite", key: "suite", label: "Suite" },
   { href: "/preview/how-it-works/atelier", key: "atelier", label: "Atelier" },
   { href: "/preview/how-it-works/plate", key: "plate", label: "Plate" },
-  { href: "/preview/how-it-works/plate-sans", key: "plate-sans", label: "Plate sans" },
   { href: "/preview/how-it-works/marketplace", key: "marketplace", label: "Marketplace" },
   { href: "/preview/how-it-works/network", key: "network", label: "Network" },
   { href: "/preview/how-it-works/console", key: "console", label: "Console" },

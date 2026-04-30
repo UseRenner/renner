@@ -179,16 +179,15 @@ export function BriefBody({ showCta }: { showCta: boolean }) {
       {/* ─── Statement ─── three clauses, each its own line; the answer up front */}
       <h1
         style={{
-          fontFamily: SERIF,
+          fontFamily: SANS,
           fontWeight: 400,
           fontSize: "clamp(40px, 6vw, 80px)",
           lineHeight: 1.05,
-          letterSpacing: "-0.028em",
+          letterSpacing: "-0.025em",
           color: INK,
           margin: 0,
           marginBottom: "clamp(40px, 5vw, 64px)",
           maxWidth: "26ch",
-          fontVariationSettings: '"opsz" 144',
         }}
       >
         {clauses.map((clause, i) => (
@@ -369,15 +368,14 @@ export function BriefBody({ showCta }: { showCta: boolean }) {
         >
           <h2
             style={{
-              fontFamily: SERIF,
+              fontFamily: SANS,
               fontWeight: 400,
               fontSize: "clamp(28px, 3.5vw, 44px)",
               lineHeight: 1.1,
-              letterSpacing: "-0.022em",
+              letterSpacing: "-0.02em",
               color: INK,
               margin: 0,
               maxWidth: "20ch",
-              fontVariationSettings: '"opsz" 144',
             }}
           >
             {isClient ? (

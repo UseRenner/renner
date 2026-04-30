@@ -169,16 +169,15 @@ export function VerseBody({ showCta }: { showCta: boolean }) {
       {/* ─── Statement ─── centered, oversized, three rows */}
       <h1
         style={{
-          fontFamily: SERIF,
+          fontFamily: SANS,
           fontWeight: 400,
           fontSize: "clamp(44px, 7vw, 92px)",
           lineHeight: 1.02,
-          letterSpacing: "-0.03em",
+          letterSpacing: "-0.025em",
           color: INK,
           margin: "0 auto",
           marginBottom: 40,
           maxWidth: "20ch",
-          fontVariationSettings: '"opsz" 144',
         }}
       >
         {clauses.map((c, i) => (
@@ -303,16 +302,15 @@ export function VerseBody({ showCta }: { showCta: boolean }) {
         <div>
           <h2
             style={{
-              fontFamily: SERIF,
+              fontFamily: SANS,
               fontWeight: 400,
               fontSize: "clamp(32px, 4vw, 52px)",
               lineHeight: 1.05,
-              letterSpacing: "-0.025em",
+              letterSpacing: "-0.022em",
               color: INK,
               margin: "0 auto",
               marginBottom: 32,
               maxWidth: "16ch",
-              fontVariationSettings: '"opsz" 144',
             }}
           >
             {isClient ? (

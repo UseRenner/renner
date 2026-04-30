@@ -169,16 +169,15 @@ export function MastBody({ showCta }: { showCta: boolean }) {
       {/* Statement + dek — wide, full-width, anchored left */}
       <h1
         style={{
-          fontFamily: SERIF,
+          fontFamily: SANS,
           fontWeight: 400,
           fontSize: "clamp(44px, 6.5vw, 88px)",
           lineHeight: 1.02,
-          letterSpacing: "-0.03em",
+          letterSpacing: "-0.025em",
           color: INK,
           margin: 0,
           marginBottom: 32,
           maxWidth: "26ch",
-          fontVariationSettings: '"opsz" 144',
         }}
       >
         {clauses.map((c, i) => (
@@ -348,15 +347,14 @@ export function MastBody({ showCta }: { showCta: boolean }) {
         >
           <h2
             style={{
-              fontFamily: SERIF,
+              fontFamily: SANS,
               fontWeight: 400,
               fontSize: "clamp(28px, 3.5vw, 44px)",
               lineHeight: 1.1,
-              letterSpacing: "-0.022em",
+              letterSpacing: "-0.02em",
               color: INK,
               margin: 0,
               maxWidth: "20ch",
-              fontVariationSettings: '"opsz" 144',
             }}
           >
             {isClient ? (
