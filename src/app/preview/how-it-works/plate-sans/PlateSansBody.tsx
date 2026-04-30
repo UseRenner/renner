@@ -1,5 +1,10 @@
 "use client";
 
+// Plate Sans — clone of Plate with the H1 ("How Renner works") set in
+// Source Sans instead of Source Serif. Plate cards, dek, FAQ, footer
+// chrome stay in serif so the test isolates the headline's
+// typographic register.
+
 import Link from "next/link";
 import { useState } from "react";
 
@@ -103,21 +108,7 @@ const STEEL_500 = "#7d8da0";
 const STEEL_300 = "#cad1d8";
 const PAPER = "#fbfbfc";
 
-function Em({ children }: { children: React.ReactNode }) {
-  return (
-    <span
-      style={{
-        fontStyle: "italic",
-        fontWeight: 300,
-        color: STEEL_600,
-      }}
-    >
-      {children}
-    </span>
-  );
-}
-
-export function PlateBody({ showCta }: { showCta: boolean }) {
+export function PlateSansBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
   const isClient = tab === "client";
   const dek = isClient ? CLIENT_DEK : RENNER_DEK;
@@ -149,7 +140,7 @@ export function PlateBody({ showCta }: { showCta: boolean }) {
         <TabButton label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
-      {/* ─── Lede ─── headline + dek side by side */}
+      {/* ─── Lede ─── headline + dek side by side, headline in sans */}
       <div
         className="plate-lede"
         style={{
@@ -162,15 +153,14 @@ export function PlateBody({ showCta }: { showCta: boolean }) {
       >
         <h1
           style={{
-            fontFamily: SERIF,
+            fontFamily: SANS,
             fontWeight: 400,
             fontSize: "clamp(40px, 6vw, 80px)",
             lineHeight: 1.05,
-            letterSpacing: "-0.028em",
+            letterSpacing: "-0.025em",
             color: INK,
             margin: 0,
             maxWidth: "12ch",
-            fontVariationSettings: '"opsz" 144',
           }}
         >
           How Renner works
@@ -285,22 +275,17 @@ export function PlateBody({ showCta }: { showCta: boolean }) {
         >
           <h2
             style={{
-              fontFamily: SERIF,
+              fontFamily: SANS,
               fontWeight: 400,
               fontSize: "clamp(28px, 3.5vw, 44px)",
               lineHeight: 1.1,
-              letterSpacing: "-0.022em",
+              letterSpacing: "-0.02em",
               color: INK,
               margin: 0,
               maxWidth: "20ch",
-              fontVariationSettings: '"opsz" 144',
             }}
           >
-            {isClient ? (
-              "Get something done."
-            ) : (
-              "Start running."
-            )}
+            {isClient ? "Get something done." : "Start running."}
           </h2>
           <Link
             href={ctaButton.href}
