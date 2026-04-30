@@ -1,8 +1,7 @@
 import Link from "next/link";
-import { Wordmark } from "@/components/Wordmark";
 import { getViewer } from "@/lib/role";
 import { EditorialBody } from "./EditorialBody";
-import { FAQS, VariantSwitcher } from "./_shared";
+import { FAQS, RennerMark, VariantSwitcher } from "./_shared";
 
 export const metadata = {
   title: "How it works · Renner",
@@ -40,7 +39,7 @@ export default async function PreviewHowItWorks() {
           gap: 16,
         }}
       >
-        <Wordmark size={32} />
+        <RennerMark />
         {showCta ? (
           <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
             <Link
@@ -212,7 +211,7 @@ export default async function PreviewHowItWorks() {
           gap: 20,
         }}
       >
-        <Wordmark size={32} />
+        <RennerMark />
         <div
           style={{
             display: "flex",

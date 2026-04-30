@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { Wordmark } from "@/components/Wordmark";
 import { getViewer } from "@/lib/role";
-import { FAQS, VariantSwitcher } from "../_shared";
+import { FAQS, RennerMark, VariantSwitcher } from "../_shared";
 import { MarketplaceBody } from "./MarketplaceBody";
 
 export const metadata = {
@@ -39,7 +38,7 @@ export default async function MarketplaceHowItWorks() {
           gap: 16,
         }}
       >
-        <Wordmark size={32} />
+        <RennerMark />
         {showCta ? (
           <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
             <Link
@@ -208,7 +207,7 @@ export default async function MarketplaceHowItWorks() {
           gap: 20,
         }}
       >
-        <Wordmark size={32} />
+        <RennerMark />
         <div
           style={{
             display: "flex",

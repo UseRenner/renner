@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Wordmark } from "@/components/Wordmark";
+import { RennerMark } from "../how-it-works/_shared";
 
 type Step = { number: string; title: React.ReactNode; body: React.ReactNode };
 
@@ -176,7 +176,7 @@ export function RailBody({ showCta }: { showCta: boolean }) {
         {/* ─── Sticky left rail ─── */}
         <aside className="rail">
           <div>
-            <Wordmark />
+            <RennerMark />
           </div>
 
           <div style={{ marginTop: 80 }}>

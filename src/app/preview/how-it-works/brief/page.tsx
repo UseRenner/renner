@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { Wordmark } from "@/components/Wordmark";
 import { getViewer } from "@/lib/role";
-import { FAQS, VariantSwitcher } from "../_shared";
+import { FAQS, RennerMark, VariantSwitcher } from "../_shared";
 import { BriefBody } from "./BriefBody";
 
 export const metadata = {
@@ -28,7 +27,7 @@ export default async function BriefHowItWorks() {
 
   return (
     <div style={{ backgroundColor: "#fbfbfc", color: INK, minHeight: "100vh" }}>
-      <VariantSwitcher active="brief" briefFont="source-serif" />
+      <VariantSwitcher active="brief" />
 
       {/* ─── Header ─── wordmark + sign-in / sign-up */}
       <header
@@ -40,7 +39,7 @@ export default async function BriefHowItWorks() {
           gap: 16,
         }}
       >
-        <Wordmark size={32} />
+        <RennerMark />
         {showCta ? (
           <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
             <Link
@@ -212,7 +211,7 @@ export default async function BriefHowItWorks() {
           gap: 20,
         }}
       >
-        <Wordmark size={32} />
+        <RennerMark />
         <div
           style={{
             display: "flex",

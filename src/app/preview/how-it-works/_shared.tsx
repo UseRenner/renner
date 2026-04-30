@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-// Faqs are stable across all three preview variants — they are the
-// same product. Step copy and CTA voice live inside each variant so
-// each direction can speak in its own register without leaking.
+// Faqs are stable across all preview variants — they are the same
+// product. Step copy and CTA voice live inside each variant so each
+// direction can speak in its own register without leaking.
 
 export const FAQS: Array<{ q: string; a: string }> = [
   {
@@ -64,126 +64,52 @@ export const VARIANTS: ReadonlyArray<{ href: string; key: VariantKey; label: str
   { href: "/preview/how-it-works/network", key: "network", label: "Network" },
 ];
 
-// Brief-only secondary row. The original Brief lives at the root
-// `/brief` URL and is keyed `source-serif` here so the active state
-// tracks correctly across the font test set. The 8 fonts are siblings
-// at /brief/<slug>.
-export type BriefFontKey =
-  | "source-serif"
-  | "charis-sil"
-  | "dm-serif"
-  | "castoro"
-  | "tinos"
-  | "gelasio"
-  | "baskerville"
-  | "georgia";
-
-export const BRIEF_FONTS: ReadonlyArray<{
-  href: string;
-  key: BriefFontKey;
-  label: string;
-}> = [
-  { href: "/preview/how-it-works/brief", key: "source-serif", label: "Source Serif" },
-  { href: "/preview/how-it-works/brief/charis-sil", key: "charis-sil", label: "Charis SIL" },
-  { href: "/preview/how-it-works/brief/dm-serif", key: "dm-serif", label: "DM Serif" },
-  { href: "/preview/how-it-works/brief/castoro", key: "castoro", label: "Castoro" },
-  { href: "/preview/how-it-works/brief/tinos", key: "tinos", label: "Tinos" },
-  { href: "/preview/how-it-works/brief/gelasio", key: "gelasio", label: "Gelasio" },
-  { href: "/preview/how-it-works/brief/baskerville", key: "baskerville", label: "Baskerville" },
-  { href: "/preview/how-it-works/brief/georgia", key: "georgia", label: "Georgia" },
-];
-
-// Network-only secondary row for testing wordmark/symbol treatments.
-// The default Network page lives at /network and is keyed `serif`;
-// the three sibling routes test italic-serif, sans, and symbol-only
-// versions of the brand mark in the header and footer.
-export type NetworkMarkKey = "serif" | "italic" | "sans" | "symbol" | "italic-only";
-
-export const NETWORK_MARKS: ReadonlyArray<{
-  href: string;
-  key: NetworkMarkKey;
-  label: string;
-}> = [
-  { href: "/preview/how-it-works/network", key: "serif", label: "Serif" },
-  { href: "/preview/how-it-works/network/italic", key: "italic", label: "Italic serif" },
-  { href: "/preview/how-it-works/network/sans", key: "sans", label: "Sans" },
-  { href: "/preview/how-it-works/network/symbol", key: "symbol", label: "Symbol only" },
-  { href: "/preview/how-it-works/network/italic-only", key: "italic-only", label: "Italic, no symbol" },
-];
-
-// Plate-only secondary row for testing wordmark/symbol treatments
-// across the full Source family (Serif / Sans / Code Pro), in
-// title-case and small-caps registers, paired and standalone, large
-// and small. The default Plate page lives at /plate and is keyed
-// `serif`; eleven sibling routes cover the rest of the search space.
-export type PlateMarkKey =
-  | "serif"
-  | "italic"
-  | "sans"
-  | "mono"
-  | "serif-caps"
-  | "sans-caps"
-  | "mono-caps"
-  | "italic-only"
-  | "sans-caps-only"
-  | "tiny-mono"
-  | "massive-serif"
-  | "symbol"
-  | "italic-weights"
-  | "lowercase-italic"
-  | "lowercase-italic-200"
-  | "lowercase-italic-400"
-  | "lowercase-italic-only"
-  | "lowercase-italic-only-200"
-  | "lowercase-italic-only-400";
-
-export const PLATE_MARKS: ReadonlyArray<{
-  href: string;
-  key: PlateMarkKey;
-  label: string;
-}> = [
-  { href: "/preview/how-it-works/plate", key: "serif", label: "Serif" },
-  { href: "/preview/how-it-works/plate/italic", key: "italic", label: "Italic serif" },
-  { href: "/preview/how-it-works/plate/sans", key: "sans", label: "Sans" },
-  { href: "/preview/how-it-works/plate/mono", key: "mono", label: "Mono" },
-  { href: "/preview/how-it-works/plate/serif-caps", key: "serif-caps", label: "Serif caps" },
-  { href: "/preview/how-it-works/plate/sans-caps", key: "sans-caps", label: "Sans caps" },
-  { href: "/preview/how-it-works/plate/mono-caps", key: "mono-caps", label: "Mono caps" },
-  { href: "/preview/how-it-works/plate/italic-only", key: "italic-only", label: "Italic, no symbol" },
-  { href: "/preview/how-it-works/plate/italic-weights", key: "italic-weights", label: "Italic weights" },
-  { href: "/preview/how-it-works/plate/lowercase-italic", key: "lowercase-italic", label: "Lowercase italic 300" },
-  { href: "/preview/how-it-works/plate/lowercase-italic-200", key: "lowercase-italic-200", label: "Lowercase italic 200" },
-  { href: "/preview/how-it-works/plate/lowercase-italic-400", key: "lowercase-italic-400", label: "Lowercase italic 400" },
-  { href: "/preview/how-it-works/plate/lowercase-italic-only", key: "lowercase-italic-only", label: "Lowercase italic 300, no symbol" },
-  { href: "/preview/how-it-works/plate/lowercase-italic-only-200", key: "lowercase-italic-only-200", label: "Lowercase italic 200, no symbol" },
-  { href: "/preview/how-it-works/plate/lowercase-italic-only-400", key: "lowercase-italic-only-400", label: "Lowercase italic 400, no symbol" },
-  { href: "/preview/how-it-works/plate/sans-caps-only", key: "sans-caps-only", label: "Sans caps, no symbol" },
-  { href: "/preview/how-it-works/plate/tiny-mono", key: "tiny-mono", label: "Tiny mono" },
-  { href: "/preview/how-it-works/plate/massive-serif", key: "massive-serif", label: "Massive serif" },
-  { href: "/preview/how-it-works/plate/symbol", key: "symbol", label: "Symbol only" },
-];
+// The canonical Renner wordmark across every preview variant:
+// lowercase italic Source Serif 4, weight 300, no symbol. Pass `size`
+// to scale the wordmark in headers, footers, mastheads. The italic
+// slant tracks the brand symbol's 12° tilt so even when the disc
+// isn't on the page its geometry is in every letter.
+export function RennerMark({
+  size = 36,
+  weight = 300,
+}: {
+  size?: number;
+  weight?: number;
+}) {
+  return (
+    <Link
+      href="/"
+      aria-label="renner"
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        textDecoration: "none",
+        color: "#0d0f12",
+      }}
+    >
+      <span
+        style={{
+          fontFamily: "var(--font-source-serif), ui-serif, Georgia, serif",
+          fontStyle: "italic",
+          fontWeight: weight,
+          fontSize: `${size}px`,
+          letterSpacing: "-0.02em",
+          color: "#0d0f12",
+          lineHeight: 1,
+          fontVariationSettings: '"opsz" 60',
+        }}
+      >
+        renner
+      </span>
+    </Link>
+  );
+}
 
 // A thin review-only strip that lets the reviewer flip between the
-// preview directions. Lives outside the design itself — sticky to the
-// top in mono with hairline rules — so it never fights the page it
-// sits above. Wraps on narrow viewports.
-//
-// When `briefFont` is provided the strip shows a secondary row of the
-// font test variants and highlights the active font. When `networkMark`
-// is provided the strip shows the wordmark/symbol comparison row.
-// When `plateMark` is provided the strip shows the Plate wordmark
-// search across the Source family.
-export function VariantSwitcher({
-  active,
-  briefFont,
-  networkMark,
-  plateMark,
-}: {
-  active: VariantKey;
-  briefFont?: BriefFontKey;
-  networkMark?: NetworkMarkKey;
-  plateMark?: PlateMarkKey;
-}) {
+// preview directions. Lives outside the design itself — sticky to
+// the top in mono with hairline rules — so it never fights the page
+// it sits above. Wraps on narrow viewports.
+export function VariantSwitcher({ active }: { active: VariantKey }) {
   return (
     <div
       style={{
@@ -245,183 +171,6 @@ export function VariantSwitcher({
           })}
         </div>
       </div>
-
-      {briefFont !== undefined && (
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 16,
-            padding: "8px clamp(20px, 4vw, 64px)",
-            borderTop: "1px solid rgba(255,255,255,0.06)",
-            fontFamily:
-              "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
-            fontSize: 10,
-            fontWeight: 500,
-            letterSpacing: "0.22em",
-            textTransform: "uppercase",
-            color: "rgba(255,255,255,0.4)",
-            flexWrap: "wrap",
-          }}
-        >
-          <span>Brief · Font</span>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 10,
-              flexWrap: "wrap",
-            }}
-          >
-            {BRIEF_FONTS.map((f, i) => {
-              const isActive = f.key === briefFont;
-              return (
-                <span
-                  key={f.href}
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: 10,
-                  }}
-                >
-                  {i > 0 && (
-                    <span style={{ color: "rgba(255,255,255,0.18)" }}>·</span>
-                  )}
-                  <Link
-                    href={f.href}
-                    style={{
-                      color: isActive ? "#fbfbfc" : "rgba(255,255,255,0.42)",
-                      textDecoration: "none",
-                      transition: "color 150ms ease",
-                    }}
-                  >
-                    {f.label}
-                  </Link>
-                </span>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
-      {networkMark !== undefined && (
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 16,
-            padding: "8px clamp(20px, 4vw, 64px)",
-            borderTop: "1px solid rgba(255,255,255,0.06)",
-            fontFamily:
-              "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
-            fontSize: 10,
-            fontWeight: 500,
-            letterSpacing: "0.22em",
-            textTransform: "uppercase",
-            color: "rgba(255,255,255,0.4)",
-            flexWrap: "wrap",
-          }}
-        >
-          <span>Network · Mark</span>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 10,
-              flexWrap: "wrap",
-            }}
-          >
-            {NETWORK_MARKS.map((m, i) => {
-              const isActive = m.key === networkMark;
-              return (
-                <span
-                  key={m.href}
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: 10,
-                  }}
-                >
-                  {i > 0 && (
-                    <span style={{ color: "rgba(255,255,255,0.18)" }}>·</span>
-                  )}
-                  <Link
-                    href={m.href}
-                    style={{
-                      color: isActive ? "#fbfbfc" : "rgba(255,255,255,0.42)",
-                      textDecoration: "none",
-                      transition: "color 150ms ease",
-                    }}
-                  >
-                    {m.label}
-                  </Link>
-                </span>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
-      {plateMark !== undefined && (
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 16,
-            padding: "8px clamp(20px, 4vw, 64px)",
-            borderTop: "1px solid rgba(255,255,255,0.06)",
-            fontFamily:
-              "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
-            fontSize: 10,
-            fontWeight: 500,
-            letterSpacing: "0.22em",
-            textTransform: "uppercase",
-            color: "rgba(255,255,255,0.4)",
-            flexWrap: "wrap",
-          }}
-        >
-          <span>Plate · Mark</span>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 10,
-              flexWrap: "wrap",
-            }}
-          >
-            {PLATE_MARKS.map((m, i) => {
-              const isActive = m.key === plateMark;
-              return (
-                <span
-                  key={m.href}
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: 10,
-                  }}
-                >
-                  {i > 0 && (
-                    <span style={{ color: "rgba(255,255,255,0.18)" }}>·</span>
-                  )}
-                  <Link
-                    href={m.href}
-                    style={{
-                      color: isActive ? "#fbfbfc" : "rgba(255,255,255,0.42)",
-                      textDecoration: "none",
-                      transition: "color 150ms ease",
-                    }}
-                  >
-                    {m.label}
-                  </Link>
-                </span>
-              );
-            })}
-          </div>
-        </div>
-      )}
     </div>
   );
 }
