@@ -97,7 +97,7 @@ export const BRIEF_FONTS: ReadonlyArray<{
 // The default Network page lives at /network and is keyed `serif`;
 // the three sibling routes test italic-serif, sans, and symbol-only
 // versions of the brand mark in the header and footer.
-export type NetworkMarkKey = "serif" | "italic" | "sans" | "symbol";
+export type NetworkMarkKey = "serif" | "italic" | "sans" | "symbol" | "italic-only";
 
 export const NETWORK_MARKS: ReadonlyArray<{
   href: string;
@@ -108,6 +108,7 @@ export const NETWORK_MARKS: ReadonlyArray<{
   { href: "/preview/how-it-works/network/italic", key: "italic", label: "Italic serif" },
   { href: "/preview/how-it-works/network/sans", key: "sans", label: "Sans" },
   { href: "/preview/how-it-works/network/symbol", key: "symbol", label: "Symbol only" },
+  { href: "/preview/how-it-works/network/italic-only", key: "italic-only", label: "Italic, no symbol" },
 ];
 
 // A thin review-only strip that lets the reviewer flip between the

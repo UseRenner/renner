@@ -268,40 +268,18 @@ export function NetworkBody({ showCta }: { showCta: boolean }) {
       {/* ─── Section label ─── above the operator grid */}
       <div
         style={{
-          display: "flex",
-          alignItems: "baseline",
-          justifyContent: "space-between",
           paddingBottom: 16,
           marginBottom: 24,
           borderBottom: `1px solid ${STEEL_300}`,
-          gap: 16,
-          flexWrap: "wrap",
+          fontFamily: MONO,
+          fontSize: 10,
+          fontWeight: 500,
+          letterSpacing: "0.24em",
+          textTransform: "uppercase",
+          color: STEEL_600,
         }}
       >
-        <div
-          style={{
-            fontFamily: MONO,
-            fontSize: 10,
-            fontWeight: 500,
-            letterSpacing: "0.24em",
-            textTransform: "uppercase",
-            color: STEEL_600,
-          }}
-        >
-          On the network
-        </div>
-        <div
-          style={{
-            fontFamily: SERIF,
-            fontStyle: "italic",
-            fontWeight: 300,
-            fontSize: 15,
-            color: STEEL_600,
-            fontVariationSettings: '"opsz" 14',
-          }}
-        >
-          Illustrative · names and figures are examples
-        </div>
+        Renners
       </div>
 
       {/* ─── Operator grid ─── 3 × 2 on desktop, stacks on mobile */}

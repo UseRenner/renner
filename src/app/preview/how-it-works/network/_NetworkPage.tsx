@@ -20,8 +20,9 @@ const PAPER = "#fbfbfc";
 
 // MarkLockup renders the brand mark for the header / footer per the
 // active treatment. Serif and Italic-serif use the standard logo +
-// wordmark lockup at the same size; Sans swaps the wordmark family;
-// Symbol-only drops the wordmark text and bumps the disc to 30px.
+// wordmark lockup; Sans swaps the wordmark family; Symbol-only drops
+// the wordmark text; Italic-only drops the symbol and runs the
+// wordmark in italic serif by itself.
 function MarkLockup({ mark }: { mark: NetworkMarkKey }) {
   if (mark === "symbol") {
     return (
@@ -31,6 +32,36 @@ function MarkLockup({ mark }: { mark: NetworkMarkKey }) {
         style={{ display: "inline-flex", alignItems: "center" }}
       >
         <Logo size={30} fill={INK} slotColor={PAPER} />
+      </Link>
+    );
+  }
+
+  if (mark === "italic-only") {
+    return (
+      <Link
+        href="/"
+        aria-label="Renner"
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          textDecoration: "none",
+          color: INK,
+        }}
+      >
+        <span
+          style={{
+            fontFamily: SERIF,
+            fontStyle: "italic",
+            fontWeight: 400,
+            fontSize: 28,
+            letterSpacing: "-0.01em",
+            color: INK,
+            lineHeight: 1,
+            fontVariationSettings: '"opsz" 36',
+          }}
+        >
+          Renner
+        </span>
       </Link>
     );
   }

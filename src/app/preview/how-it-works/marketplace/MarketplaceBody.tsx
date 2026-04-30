@@ -235,43 +235,21 @@ export function MarketplaceBody({ showCta }: { showCta: boolean }) {
         {dek}
       </p>
 
-      {/* ─── Illustrative framing ─── above the cards */}
+      {/* ─── Section label ─── above the cards */}
       <div
         style={{
-          display: "flex",
-          alignItems: "baseline",
-          justifyContent: "space-between",
           paddingBottom: 16,
           marginBottom: 24,
           borderBottom: `1px solid ${STEEL_300}`,
-          gap: 16,
-          flexWrap: "wrap",
+          fontFamily: MONO,
+          fontSize: 10,
+          fontWeight: 500,
+          letterSpacing: "0.24em",
+          textTransform: "uppercase",
+          color: STEEL_600,
         }}
       >
-        <div
-          style={{
-            fontFamily: MONO,
-            fontSize: 10,
-            fontWeight: 500,
-            letterSpacing: "0.24em",
-            textTransform: "uppercase",
-            color: STEEL_600,
-          }}
-        >
-          A brief, end to end
-        </div>
-        <div
-          style={{
-            fontFamily: SERIF,
-            fontStyle: "italic",
-            fontWeight: 300,
-            fontSize: 15,
-            color: STEEL_600,
-            fontVariationSettings: '"opsz" 14',
-          }}
-        >
-          Illustrative · names and details are examples
-        </div>
+        A brief, end to end
       </div>
 
       {/* ─── Three product cards ─── posted brief / application / completion */}
