@@ -33,14 +33,14 @@ export default async function ChapterHowItWorks() {
       {/* ─── Header ─── wordmark + sign-in / sign-up */}
       <header
         style={{
-          padding: "clamp(20px, 2.5vw, 32px) clamp(28px, 4vw, 64px)",
+          padding: "clamp(28px, 3.5vw, 48px) clamp(28px, 4vw, 64px)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
           gap: 16,
         }}
       >
-        <Wordmark />
+        <Wordmark size={32} />
         {showCta ? (
           <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
             <Link
@@ -212,7 +212,7 @@ export default async function ChapterHowItWorks() {
           gap: 20,
         }}
       >
-        <Wordmark />
+        <Wordmark size={32} />
         <div
           style={{
             display: "flex",

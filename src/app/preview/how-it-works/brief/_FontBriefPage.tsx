@@ -48,7 +48,7 @@ export async function FontBriefPage({
       {/* ─── Header ─── inline wordmark + sign-in / sign-up */}
       <header
         style={{
-          padding: "clamp(20px, 2.5vw, 32px) clamp(28px, 4vw, 64px)",
+          padding: "clamp(28px, 3.5vw, 48px) clamp(28px, 4vw, 64px)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
@@ -60,17 +60,17 @@ export async function FontBriefPage({
           style={{
             display: "inline-flex",
             alignItems: "center",
-            gap: 12,
+            gap: 16,
             textDecoration: "none",
             color: INK,
           }}
           aria-label="Renner"
         >
-          <Logo size={24} fill={INK} slotColor={PAPER} />
+          <Logo size={34} fill={INK} slotColor={PAPER} />
           <span
             style={{
               fontFamily: font.display,
-              fontSize: 22,
+              fontSize: 32,
               fontWeight: displayWeight,
               letterSpacing: "-0.02em",
               color: INK,
@@ -255,17 +255,17 @@ export async function FontBriefPage({
           style={{
             display: "inline-flex",
             alignItems: "center",
-            gap: 12,
+            gap: 16,
             textDecoration: "none",
             color: INK,
           }}
           aria-label="Renner"
         >
-          <Logo size={24} fill={INK} slotColor={PAPER} />
+          <Logo size={34} fill={INK} slotColor={PAPER} />
           <span
             style={{
               fontFamily: font.display,
-              fontSize: 22,
+              fontSize: 32,
               fontWeight: displayWeight,
               letterSpacing: "-0.02em",
               color: INK,

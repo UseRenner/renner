@@ -31,7 +31,7 @@ function MarkLockup({ mark }: { mark: NetworkMarkKey }) {
         aria-label="Renner"
         style={{ display: "inline-flex", alignItems: "center" }}
       >
-        <Logo size={30} fill={INK} slotColor={PAPER} />
+        <Logo size={44} fill={INK} slotColor={PAPER} />
       </Link>
     );
   }
@@ -53,8 +53,8 @@ function MarkLockup({ mark }: { mark: NetworkMarkKey }) {
             fontFamily: SERIF,
             fontStyle: "italic",
             fontWeight: 400,
-            fontSize: 28,
-            letterSpacing: "-0.01em",
+            fontSize: 40,
+            letterSpacing: "-0.015em",
             color: INK,
             lineHeight: 1,
             fontVariationSettings: '"opsz" 36',
@@ -67,7 +67,7 @@ function MarkLockup({ mark }: { mark: NetworkMarkKey }) {
   }
 
   if (mark === "serif") {
-    return <Wordmark />;
+    return <Wordmark size={32} />;
   }
 
   // Italic-serif and Sans share a custom lockup since the shared
@@ -80,19 +80,19 @@ function MarkLockup({ mark }: { mark: NetworkMarkKey }) {
       style={{
         display: "inline-flex",
         alignItems: "center",
-        gap: 12,
+        gap: 16,
         textDecoration: "none",
         color: INK,
       }}
     >
-      <Logo size={24} fill={INK} slotColor={PAPER} />
+      <Logo size={34} fill={INK} slotColor={PAPER} />
       <span
         style={{
           fontFamily: isItalic ? SERIF : SANS,
           fontStyle: isItalic ? "italic" : "normal",
           fontWeight: isItalic ? 400 : 500,
-          fontSize: isItalic ? 24 : 22,
-          letterSpacing: isItalic ? "-0.01em" : "-0.02em",
+          fontSize: isItalic ? 34 : 32,
+          letterSpacing: isItalic ? "-0.015em" : "-0.025em",
           color: INK,
           lineHeight: 1,
           fontVariationSettings: isItalic ? '"opsz" 36' : undefined,
@@ -114,7 +114,7 @@ export async function NetworkPage({ mark }: { mark: NetworkMarkKey }) {
 
       <header
         style={{
-          padding: "clamp(20px, 2.5vw, 32px) clamp(28px, 4vw, 64px)",
+          padding: "clamp(28px, 3.5vw, 48px) clamp(28px, 4vw, 64px)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",

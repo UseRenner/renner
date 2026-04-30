@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { Logo } from "./Logo";
 
-// Wordmark + logo lockup. The Logo sits to the left of the wordmark
-// at 24px with a 12px gap. The wordmark size defaults to 22px to
+// Wordmark + logo lockup. The wordmark size defaults to 22px to
 // match the lockup sizing in the spec; pass a different size to
-// scale both pieces together.
+// scale the lockup (the disc tracks `size + 2` so the symbol stays
+// proportionally just heavier than the wordmark, and the gap scales
+// with size as well).
 //
 // `tone` toggles dark- vs light-on-* variants:
 //   - "dark"  → black disc, light slot (default; pass slotColor to
@@ -23,19 +24,21 @@ export function Wordmark({
   const logoFill = tone === "light" ? "#fbfbfc" : "#0d0f12";
   const resolvedSlot = slotColor ?? (tone === "light" ? "#0d0f12" : "#fbfbfc");
   const wordColor = tone === "light" ? "#fbfbfc" : "#0d0f12";
+  const logoSize = size + 2;
+  const gap = Math.max(10, Math.round(size * 0.5));
 
   return (
     <Link
       href="/"
       className="inline-flex items-center"
       style={{
-        gap: "12px",
+        gap: `${gap}px`,
         textDecoration: "none",
         color: wordColor,
       }}
       aria-label="Renner"
     >
-      <Logo size={24} fill={logoFill} slotColor={resolvedSlot} />
+      <Logo size={logoSize} fill={logoFill} slotColor={resolvedSlot} />
       <span
         className="wordmark"
         style={{

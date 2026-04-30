@@ -33,7 +33,7 @@ export default async function PlateHowItWorks() {
 
       <header
         style={{
-          padding: "clamp(20px, 2.5vw, 32px) clamp(28px, 4vw, 64px)",
+          padding: "clamp(28px, 3.5vw, 48px) clamp(28px, 4vw, 64px)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
@@ -41,7 +41,7 @@ export default async function PlateHowItWorks() {
           borderBottom: `1px solid ${STEEL_300}`,
         }}
       >
-        <Wordmark />
+        <Wordmark size={32} />
         {showCta ? (
           <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
             <Link
@@ -212,7 +212,7 @@ export default async function PlateHowItWorks() {
           gap: 20,
         }}
       >
-        <Wordmark />
+        <Wordmark size={32} />
         <div
           style={{
             display: "flex",

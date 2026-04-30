@@ -47,7 +47,7 @@ export default async function SuiteHowItWorks() {
           aria-label="Renner"
           style={{ display: "inline-flex", alignItems: "center" }}
         >
-          <Logo size={28} fill={INK} slotColor={PAPER} />
+          <Logo size={44} fill={INK} slotColor={PAPER} />
         </Link>
         {showCta ? (
           <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
