@@ -116,8 +116,8 @@ export function PrintBody({ showCta }: { showCta: boolean }) {
           flexWrap: "wrap",
         }}
       >
-        <span>The Renner Record</span>
-        <span>How it works · Edition 2026</span>
+        <span>How it works</span>
+        <span>Both sides screened to join</span>
       </div>
 
       {/* Audience switch */}
@@ -196,7 +196,7 @@ export function PrintBody({ showCta }: { showCta: boolean }) {
                 marginBottom: 14,
               }}
             >
-              Part {s.number} · {s.proof}
+              {s.number} · {s.proof}
             </div>
             <h2
               style={{
@@ -254,20 +254,6 @@ export function PrintBody({ showCta }: { showCta: boolean }) {
           borderTop: `1px solid ${INK}`,
         }}
       >
-        <div
-          style={{
-            fontFamily: MONO,
-            fontSize: 10,
-            fontWeight: 500,
-            letterSpacing: "0.28em",
-            textTransform: "uppercase",
-            color: STEEL_500,
-            marginBottom: 16,
-            textAlign: "center",
-          }}
-        >
-          Of note
-        </div>
         <div
           className="print-trust"
           style={{

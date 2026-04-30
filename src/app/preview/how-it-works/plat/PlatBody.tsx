@@ -120,7 +120,7 @@ export function PlatBody({ showCta }: { showCta: boolean }) {
 
       {/* Lede plat */}
       <div style={{ marginBottom: "clamp(40px, 5vw, 56px)" }}>
-        <Bracket label="Plat 00 · How it works">
+        <Bracket label="How it works">
           <h1
             style={{
               fontFamily: SERIF,
@@ -156,7 +156,7 @@ export function PlatBody({ showCta }: { showCta: boolean }) {
       {/* Step plats */}
       <div style={{ display: "flex", flexDirection: "column", gap: "clamp(24px, 3vw, 40px)", marginBottom: "clamp(40px, 5vw, 64px)" }}>
         {steps.map((s) => (
-          <Bracket key={s.number} label={`Plat ${s.number} · ${s.proof}`}>
+          <Bracket key={s.number} label={`${s.number} · ${s.proof}`}>
             <div className="plat-step">
               <div
                 style={{
@@ -192,7 +192,7 @@ export function PlatBody({ showCta }: { showCta: boolean }) {
 
       {/* Trust plat */}
       <div style={{ marginBottom: showCta ? "clamp(32px, 4vw, 48px)" : 0 }}>
-        <Bracket label="Note">
+        <Bracket label={isClient ? "Why Renner" : "What you get"}>
           <div
             className="plat-trust"
             style={{

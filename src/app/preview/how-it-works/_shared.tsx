@@ -62,7 +62,18 @@ export type VariantKey =
   | "print"
   | "fold"
   | "list"
-  | "plat";
+  | "plat"
+  | "cover"
+  | "punch"
+  | "receipt"
+  | "beam"
+  | "diagram"
+  | "cinema"
+  | "margin"
+  | "sheet"
+  | "anchor"
+  | "form"
+  | "quarter";
 
 export const VARIANTS: ReadonlyArray<{ href: string; key: VariantKey; label: string }> = [
   { href: "/preview/how-it-works", key: "direct", label: "Direct" },
@@ -88,6 +99,17 @@ export const VARIANTS: ReadonlyArray<{ href: string; key: VariantKey; label: str
   { href: "/preview/how-it-works/fold", key: "fold", label: "Fold" },
   { href: "/preview/how-it-works/list", key: "list", label: "List" },
   { href: "/preview/how-it-works/plat", key: "plat", label: "Plat" },
+  { href: "/preview/how-it-works/cover", key: "cover", label: "Cover" },
+  { href: "/preview/how-it-works/punch", key: "punch", label: "Punch" },
+  { href: "/preview/how-it-works/receipt", key: "receipt", label: "Receipt" },
+  { href: "/preview/how-it-works/beam", key: "beam", label: "Beam" },
+  { href: "/preview/how-it-works/diagram", key: "diagram", label: "Diagram" },
+  { href: "/preview/how-it-works/cinema", key: "cinema", label: "Cinema" },
+  { href: "/preview/how-it-works/margin", key: "margin", label: "Margin" },
+  { href: "/preview/how-it-works/sheet", key: "sheet", label: "Sheet" },
+  { href: "/preview/how-it-works/anchor", key: "anchor", label: "Anchor" },
+  { href: "/preview/how-it-works/form", key: "form", label: "Form" },
+  { href: "/preview/how-it-works/quarter", key: "quarter", label: "Quarter" },
 ];
 
 // The canonical Renner wordmark across every preview variant:
