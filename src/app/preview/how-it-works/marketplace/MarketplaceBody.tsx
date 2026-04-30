@@ -235,23 +235,6 @@ export function MarketplaceBody({ showCta }: { showCta: boolean }) {
         {dek}
       </p>
 
-      {/* ─── Section label ─── above the cards */}
-      <div
-        style={{
-          paddingBottom: 16,
-          marginBottom: 24,
-          borderBottom: `1px solid ${STEEL_300}`,
-          fontFamily: MONO,
-          fontSize: 10,
-          fontWeight: 500,
-          letterSpacing: "0.24em",
-          textTransform: "uppercase",
-          color: STEEL_600,
-        }}
-      >
-        A brief, end to end
-      </div>
-
       {/* ─── Three product cards ─── posted brief / application / completion */}
       <div
         className="mp-cards"
