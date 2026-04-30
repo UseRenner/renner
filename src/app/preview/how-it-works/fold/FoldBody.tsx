@@ -48,7 +48,7 @@ const RENNER_TRUST = [
   ["Repeat work", "A reputation paid in repeat clients."],
 ] as const;
 
-export function SlabBody({ showCta }: { showCta: boolean }) {
+export function FoldBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
   const isClient = tab === "client";
   const dek = isClient ? CLIENT_DEK : RENNER_DEK;
@@ -58,12 +58,9 @@ export function SlabBody({ showCta }: { showCta: boolean }) {
     ? { label: "Sign up", href: "/signup" }
     : { label: "Become a Renner", href: "/become-a-renner" };
 
-  const clauses = isClient
-    ? ["Post a task.", "Pick a Renner.", "Get it done."]
-    : ["Get verified.", "Pick a task.", "Get it done."];
-
   return (
     <>
+      {/* Audience switch */}
       <div
         role="tablist"
         aria-label="Audience"
@@ -71,7 +68,7 @@ export function SlabBody({ showCta }: { showCta: boolean }) {
           display: "flex",
           alignItems: "baseline",
           gap: 14,
-          marginBottom: "clamp(48px, 6vw, 80px)",
+          marginBottom: "clamp(40px, 5vw, 56px)",
           fontFamily: SERIF,
           fontStyle: "italic",
           fontWeight: 300,
@@ -83,83 +80,133 @@ export function SlabBody({ showCta }: { showCta: boolean }) {
         <Tab label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
-      {/* The slab — three clauses, each on its own line, scaled to fill */}
-      <h1
-        style={{
-          fontFamily: SERIF,
-          fontWeight: 400,
-          fontSize: "clamp(64px, 13vw, 220px)",
-          lineHeight: 0.92,
-          letterSpacing: "-0.04em",
-          color: INK,
-          margin: 0,
-          marginBottom: "clamp(64px, 9vw, 128px)",
-          fontVariationSettings: '"opsz" 144',
-        }}
-      >
-        {clauses.map((c, i) => (
-          <span key={i} style={{ display: "block" }}>{c}</span>
-        ))}
-      </h1>
-
-      {/* Dek as a single short paragraph */}
+      {/* Lede */}
       <p
         style={{
           fontFamily: SERIF,
           fontWeight: 400,
-          fontSize: "clamp(20px, 1.9vw, 24px)",
-          lineHeight: 1.45,
-          color: STEEL_700,
+          fontSize: "clamp(22px, 2.4vw, 30px)",
+          lineHeight: 1.35,
+          color: INK,
           margin: 0,
-          marginBottom: "clamp(56px, 7vw, 96px)",
-          maxWidth: "44ch",
-          fontVariationSettings: '"opsz" 14',
+          marginBottom: "clamp(56px, 7vw, 88px)",
+          maxWidth: "32ch",
+          fontVariationSettings: '"opsz" 60',
         }}
       >
         {dek}
       </p>
 
-      {/* Three thin rows. Everything supports the slab above. */}
-      <div style={{ borderTop: `1px solid ${INK}`, marginBottom: "clamp(56px, 7vw, 96px)" }}>
-        {steps.map((s, i) => (
-          <div
-            key={s.number}
-            className="slab-row"
-            style={{
-              padding: "clamp(20px, 2.4vw, 32px) 0",
-              borderBottom: i === steps.length - 1 ? `1px solid ${INK}` : `1px solid ${RULE}`,
-              alignItems: "baseline",
-            }}
-          >
-            <span style={{ fontFamily: MONO, fontSize: 12, fontWeight: 500, letterSpacing: "0.22em", color: STEEL_500 }}>
-              {s.number}
-            </span>
-            <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(20px, 2vw, 24px)", color: INK, fontVariationSettings: '"opsz" 36' }}>
-              {s.title}
-            </span>
-            <span style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.5, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>
-              {s.body}
-            </span>
-            <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: STEEL_600, textAlign: "right" }}>
-              {s.proof}
-            </span>
-          </div>
-        ))}
+      {/* The fold — three tall panels divided by vertical hairlines that touch top and bottom */}
+      <div
+        className="fold"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1px 1fr 1px 1fr",
+          marginBottom: "clamp(56px, 7vw, 88px)",
+        }}
+      >
+        {steps.flatMap((s, i) => {
+          const panel = (
+            <section
+              key={`panel-${s.number}`}
+              className="fold-panel"
+              style={{
+                padding: i === 0
+                  ? "0 clamp(20px, 2.5vw, 32px) 0 0"
+                  : i === steps.length - 1
+                    ? "0 0 0 clamp(20px, 2.5vw, 32px)"
+                    : "0 clamp(20px, 2.5vw, 32px)",
+                display: "flex",
+                flexDirection: "column",
+                gap: 18,
+                minHeight: 360,
+              }}
+            >
+              <div
+                style={{
+                  fontFamily: MONO,
+                  fontSize: 11,
+                  fontWeight: 500,
+                  letterSpacing: "0.24em",
+                  color: STEEL_500,
+                }}
+              >
+                {s.number}
+              </div>
+              <h3
+                style={{
+                  fontFamily: SERIF,
+                  fontWeight: 400,
+                  fontSize: "clamp(28px, 3.4vw, 44px)",
+                  lineHeight: 1.05,
+                  letterSpacing: "-0.025em",
+                  color: INK,
+                  margin: 0,
+                  fontVariationSettings: '"opsz" 96',
+                }}
+              >
+                {s.title}
+              </h3>
+              <p
+                style={{
+                  fontFamily: SERIF,
+                  fontStyle: "italic",
+                  fontWeight: 300,
+                  fontSize: 18,
+                  lineHeight: 1.45,
+                  color: STEEL_700,
+                  margin: 0,
+                  fontVariationSettings: '"opsz" 36',
+                }}
+              >
+                {s.body}
+              </p>
+              <div
+                style={{
+                  marginTop: "auto",
+                  paddingTop: 14,
+                  borderTop: `1px solid ${RULE}`,
+                  fontFamily: MONO,
+                  fontSize: 10,
+                  fontWeight: 500,
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  color: STEEL_600,
+                }}
+              >
+                {s.proof}
+              </div>
+            </section>
+          );
+          if (i === steps.length - 1) return [panel];
+          return [
+            panel,
+            <div
+              key={`crease-${s.number}`}
+              className="fold-crease"
+              style={{ backgroundColor: INK }}
+              aria-hidden
+            />,
+          ];
+        })}
       </div>
 
-      {/* Trust as one mono band, no boxes */}
-      <div
-        className="slab-trust"
+      {/* Trust band */}
+      <section
+        className="fold-trust"
         style={{
-          display: "flex",
-          gap: "clamp(24px, 4vw, 64px)",
-          flexWrap: "wrap",
-          marginBottom: showCta ? "clamp(56px, 7vw, 88px)" : 0,
+          paddingTop: "clamp(20px, 2.5vw, 28px)",
+          borderTop: `1px solid ${INK}`,
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "clamp(20px, 3vw, 40px)",
+          marginBottom: showCta ? "clamp(48px, 6vw, 80px)" : 0,
         }}
       >
         {trust.map(([label, body]) => (
-          <div key={label} style={{ flex: "1 1 220px" }}>
-            <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 18, color: INK, marginBottom: 4, fontVariationSettings: '"opsz" 36' }}>
+          <div key={label}>
+            <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 18, color: INK, marginBottom: 6, fontVariationSettings: '"opsz" 36' }}>
               {label}.
             </div>
             <div style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.55, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>
@@ -167,15 +214,14 @@ export function SlabBody({ showCta }: { showCta: boolean }) {
             </div>
           </div>
         ))}
-      </div>
+      </section>
 
       {showCta && (
         <section
           style={{
             display: "flex",
-            justifyContent: "flex-end",
+            justifyContent: "center",
             paddingTop: "clamp(40px, 5vw, 64px)",
-            borderTop: `1px solid ${INK}`,
           }}
         >
           <Link
@@ -202,22 +248,25 @@ export function SlabBody({ showCta }: { showCta: boolean }) {
       )}
 
       <style jsx>{`
-        .slab-row {
-          display: grid;
-          grid-template-columns: 56px minmax(160px, 1fr) minmax(0, 2.4fr) minmax(120px, 1fr);
-          gap: clamp(16px, 2.4vw, 32px);
-        }
-        @media (max-width: 720px) {
-          .slab-row {
-            grid-template-columns: 40px 1fr;
-            gap: 8px 16px;
+        @media (max-width: 880px) {
+          .fold {
+            grid-template-columns: 1fr !important;
           }
-          .slab-row > :nth-child(3),
-          .slab-row > :nth-child(4) {
-            grid-column: 2;
+          .fold-panel {
+            padding: 0 !important;
+            min-height: 0 !important;
+            margin-bottom: clamp(24px, 4vw, 40px);
           }
-          .slab-row > :nth-child(4) {
-            text-align: left !important;
+          .fold-panel:not(:first-child) {
+            padding-top: clamp(20px, 2.5vw, 28px) !important;
+            border-top: 1px solid ${RULE};
+          }
+          .fold-crease {
+            display: none !important;
+          }
+          .fold-trust {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
           }
         }
       `}</style>

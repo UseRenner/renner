@@ -48,7 +48,7 @@ const RENNER_TRUST = [
   ["Repeat work", "A reputation paid in repeat clients."],
 ] as const;
 
-export function SlabBody({ showCta }: { showCta: boolean }) {
+export function WindowBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
   const isClient = tab === "client";
   const dek = isClient ? CLIENT_DEK : RENNER_DEK;
@@ -58,12 +58,37 @@ export function SlabBody({ showCta }: { showCta: boolean }) {
     ? { label: "Sign up", href: "/signup" }
     : { label: "Become a Renner", href: "/become-a-renner" };
 
-  const clauses = isClient
-    ? ["Post a task.", "Pick a Renner.", "Get it done."]
-    : ["Get verified.", "Pick a task.", "Get it done."];
-
   return (
-    <>
+    <div
+      style={{
+        border: `1px solid ${INK}`,
+        padding: "clamp(28px, 4vw, 56px)",
+      }}
+    >
+      {/* Header strip inside the window */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "baseline",
+          justifyContent: "space-between",
+          gap: 16,
+          paddingBottom: "clamp(20px, 2.5vw, 28px)",
+          borderBottom: `1px solid ${RULE}`,
+          marginBottom: "clamp(28px, 3.5vw, 48px)",
+          fontFamily: MONO,
+          fontSize: 10,
+          fontWeight: 500,
+          letterSpacing: "0.24em",
+          textTransform: "uppercase",
+          color: STEEL_500,
+          flexWrap: "wrap",
+        }}
+      >
+        <span>How it works</span>
+        <span>2026</span>
+      </div>
+
+      {/* Audience switch */}
       <div
         role="tablist"
         aria-label="Audience"
@@ -71,7 +96,7 @@ export function SlabBody({ showCta }: { showCta: boolean }) {
           display: "flex",
           alignItems: "baseline",
           gap: 14,
-          marginBottom: "clamp(48px, 6vw, 80px)",
+          marginBottom: "clamp(28px, 3vw, 40px)",
           fontFamily: SERIF,
           fontStyle: "italic",
           fontWeight: 300,
@@ -83,51 +108,54 @@ export function SlabBody({ showCta }: { showCta: boolean }) {
         <Tab label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
-      {/* The slab — three clauses, each on its own line, scaled to fill */}
+      {/* Statement + dek */}
       <h1
         style={{
           fontFamily: SERIF,
           fontWeight: 400,
-          fontSize: "clamp(64px, 13vw, 220px)",
-          lineHeight: 0.92,
-          letterSpacing: "-0.04em",
+          fontSize: "clamp(36px, 5vw, 64px)",
+          lineHeight: 1.05,
+          letterSpacing: "-0.025em",
           color: INK,
           margin: 0,
-          marginBottom: "clamp(64px, 9vw, 128px)",
-          fontVariationSettings: '"opsz" 144',
+          marginBottom: 24,
+          maxWidth: "20ch",
+          fontVariationSettings: '"opsz" 96',
         }}
       >
-        {clauses.map((c, i) => (
-          <span key={i} style={{ display: "block" }}>{c}</span>
-        ))}
+        {isClient ? "Post a task. Pick a Renner. Get it done." : "Get verified. Pick a task. Get it done."}
       </h1>
-
-      {/* Dek as a single short paragraph */}
       <p
         style={{
           fontFamily: SERIF,
-          fontWeight: 400,
-          fontSize: "clamp(20px, 1.9vw, 24px)",
-          lineHeight: 1.45,
+          fontSize: "clamp(17px, 1.5vw, 19px)",
+          lineHeight: 1.55,
           color: STEEL_700,
           margin: 0,
-          marginBottom: "clamp(56px, 7vw, 96px)",
-          maxWidth: "44ch",
+          marginBottom: "clamp(40px, 5vw, 64px)",
+          maxWidth: "52ch",
           fontVariationSettings: '"opsz" 14',
         }}
       >
         {dek}
       </p>
 
-      {/* Three thin rows. Everything supports the slab above. */}
-      <div style={{ borderTop: `1px solid ${INK}`, marginBottom: "clamp(56px, 7vw, 96px)" }}>
+      {/* Step rows — hairlines stretch to the window edges */}
+      <div
+        style={{
+          marginLeft: "calc(-1 * clamp(28px, 4vw, 56px))",
+          marginRight: "calc(-1 * clamp(28px, 4vw, 56px))",
+          marginBottom: "clamp(40px, 5vw, 64px)",
+        }}
+      >
         {steps.map((s, i) => (
           <div
             key={s.number}
-            className="slab-row"
+            className="window-row"
             style={{
-              padding: "clamp(20px, 2.4vw, 32px) 0",
-              borderBottom: i === steps.length - 1 ? `1px solid ${INK}` : `1px solid ${RULE}`,
+              padding: "clamp(20px, 2.4vw, 32px) clamp(28px, 4vw, 56px)",
+              borderTop: `1px solid ${RULE}`,
+              borderBottom: i === steps.length - 1 ? `1px solid ${RULE}` : "none",
               alignItems: "baseline",
             }}
           >
@@ -137,7 +165,7 @@ export function SlabBody({ showCta }: { showCta: boolean }) {
             <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(20px, 2vw, 24px)", color: INK, fontVariationSettings: '"opsz" 36' }}>
               {s.title}
             </span>
-            <span style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.5, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>
+            <span style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.55, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>
               {s.body}
             </span>
             <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: STEEL_600, textAlign: "right" }}>
@@ -147,19 +175,19 @@ export function SlabBody({ showCta }: { showCta: boolean }) {
         ))}
       </div>
 
-      {/* Trust as one mono band, no boxes */}
+      {/* Trust */}
       <div
-        className="slab-trust"
+        className="window-trust"
         style={{
-          display: "flex",
-          gap: "clamp(24px, 4vw, 64px)",
-          flexWrap: "wrap",
-          marginBottom: showCta ? "clamp(56px, 7vw, 88px)" : 0,
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "clamp(20px, 3vw, 40px)",
+          marginBottom: showCta ? "clamp(40px, 5vw, 64px)" : 0,
         }}
       >
         {trust.map(([label, body]) => (
-          <div key={label} style={{ flex: "1 1 220px" }}>
-            <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 18, color: INK, marginBottom: 4, fontVariationSettings: '"opsz" 36' }}>
+          <div key={label}>
+            <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 18, color: INK, marginBottom: 6, fontVariationSettings: '"opsz" 36' }}>
               {label}.
             </div>
             <div style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.55, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>
@@ -169,15 +197,25 @@ export function SlabBody({ showCta }: { showCta: boolean }) {
         ))}
       </div>
 
+      {/* CTA pinned to the bottom edge of the window */}
       {showCta && (
-        <section
+        <div
           style={{
-            display: "flex",
-            justifyContent: "flex-end",
-            paddingTop: "clamp(40px, 5vw, 64px)",
+            marginLeft: "calc(-1 * clamp(28px, 4vw, 56px))",
+            marginRight: "calc(-1 * clamp(28px, 4vw, 56px))",
+            marginBottom: "calc(-1 * clamp(28px, 4vw, 56px))",
+            padding: "clamp(20px, 2.5vw, 28px) clamp(28px, 4vw, 56px)",
             borderTop: `1px solid ${INK}`,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 16,
+            flexWrap: "wrap",
           }}
         >
+          <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(18px, 1.6vw, 20px)", color: INK, fontVariationSettings: '"opsz" 36' }}>
+            {isClient ? "Get something done." : "Start running."}
+          </span>
           <Link
             href={cta.href}
             style={{
@@ -191,37 +229,40 @@ export function SlabBody({ showCta }: { showCta: boolean }) {
               backgroundColor: INK,
               border: `1px solid ${INK}`,
               borderRadius: 4,
-              padding: "14px 22px",
+              padding: "12px 20px",
               textDecoration: "none",
             }}
           >
             {cta.label}
             <span aria-hidden style={{ opacity: 0.7 }}>→</span>
           </Link>
-        </section>
+        </div>
       )}
 
       <style jsx>{`
-        .slab-row {
+        .window-row {
           display: grid;
           grid-template-columns: 56px minmax(160px, 1fr) minmax(0, 2.4fr) minmax(120px, 1fr);
           gap: clamp(16px, 2.4vw, 32px);
         }
         @media (max-width: 720px) {
-          .slab-row {
+          .window-row {
             grid-template-columns: 40px 1fr;
             gap: 8px 16px;
           }
-          .slab-row > :nth-child(3),
-          .slab-row > :nth-child(4) {
+          .window-row > :nth-child(3),
+          .window-row > :nth-child(4) {
             grid-column: 2;
           }
-          .slab-row > :nth-child(4) {
+          .window-row > :nth-child(4) {
             text-align: left !important;
+          }
+          .window-trust {
+            grid-template-columns: 1fr !important;
           }
         }
       `}</style>
-    </>
+    </div>
   );
 }
 

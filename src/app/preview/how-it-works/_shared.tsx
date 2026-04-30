@@ -57,7 +57,12 @@ export type VariantKey =
   | "pivot"
   | "spread"
   | "strata"
-  | "tape";
+  | "tape"
+  | "window"
+  | "print"
+  | "fold"
+  | "list"
+  | "plat";
 
 export const VARIANTS: ReadonlyArray<{ href: string; key: VariantKey; label: string }> = [
   { href: "/preview/how-it-works", key: "direct", label: "Direct" },
@@ -78,6 +83,11 @@ export const VARIANTS: ReadonlyArray<{ href: string; key: VariantKey; label: str
   { href: "/preview/how-it-works/spread", key: "spread", label: "Spread" },
   { href: "/preview/how-it-works/strata", key: "strata", label: "Strata" },
   { href: "/preview/how-it-works/tape", key: "tape", label: "Tape" },
+  { href: "/preview/how-it-works/window", key: "window", label: "Window" },
+  { href: "/preview/how-it-works/print", key: "print", label: "Print" },
+  { href: "/preview/how-it-works/fold", key: "fold", label: "Fold" },
+  { href: "/preview/how-it-works/list", key: "list", label: "List" },
+  { href: "/preview/how-it-works/plat", key: "plat", label: "Plat" },
 ];
 
 // The canonical Renner wordmark across every preview variant:

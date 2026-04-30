@@ -20,9 +20,9 @@ const PAPER = "#fbfbfc";
 type Step = { id: string; number: string; title: string; body: string; proof: string };
 
 const CLIENT_DEK =
-  "A marketplace for real-estate work. Post a task, pick a vetted Renner, get it done.";
+  "A marketplace for real-estate work. Post a task, pick a Renner, get it done. Both sides are screened to join.";
 const RENNER_DEK =
-  "Real-estate work, paid through the platform. Set your area, set your rate, pick what you take.";
+  "Real-estate work, paid through the platform. Set your area, set your rate, pick what you take. Both sides are screened to join.";
 
 const CLIENT_STEPS: Step[] = [
   { id: "post", number: "01", title: "Post a task.", body: "Where, when, what, how much. Two minutes.", proof: "Under 2 min" },
