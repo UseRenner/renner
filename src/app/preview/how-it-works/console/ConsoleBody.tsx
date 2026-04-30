@@ -68,7 +68,7 @@ const CLIENT_STEPS: Step[] = [
   {
     id: "pick",
     number: "02",
-    title: "Pick a vetted Renner.",
+    title: "Pick a Renner.",
     body: (
       <>
         Background-checked Renners in your area apply. Read their bio,
@@ -139,16 +139,16 @@ export function ConsoleBody({ showCta }: { showCta: boolean }) {
     ? { label: "Sign up", href: "/signup" }
     : { label: "Become a Renner", href: "/become-a-renner" };
 
-  const clauses: React.ReactNode[] = isClient
+  const clauses: string[] = isClient
     ? [
-        <>Post a <Em>task.</Em></>,
-        <>Pick a <Em>vetted Renner.</Em></>,
-        <>Get it <Em>done.</Em></>,
+        "Post a task.",
+        "Pick a Renner.",
+        "Get it done.",
       ]
     : [
-        <>Get <Em>verified.</Em></>,
-        <>Pick a <Em>task.</Em></>,
-        <>Get it <Em>done.</Em></>,
+        "Get verified.",
+        "Pick a task.",
+        "Get it done.",
       ];
 
   return (

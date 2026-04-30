@@ -31,7 +31,7 @@ const CLIENT_STEPS: Step[] = [
   },
   {
     number: "02",
-    title: "Pick a vetted Renner.",
+    title: "Pick a Renner.",
     body: (
       <>
         Background-checked Renners in your area apply. Read their bio,
@@ -42,11 +42,7 @@ const CLIENT_STEPS: Step[] = [
   },
   {
     number: "03",
-    title: (
-      <>
-        It gets <Italic>done.</Italic>
-      </>
-    ),
+    title: "It gets done.",
     body: (
       <>
         Your Renner finishes the task and submits completion photos. You
@@ -82,11 +78,7 @@ const RENNER_STEPS: Step[] = [
   },
   {
     number: "03",
-    title: (
-      <>
-        Get it <Italic>done.</Italic>
-      </>
-    ),
+    title: "Get it done.",
     body: (
       <>
         Run the task, upload completion photos, get paid through the
@@ -162,13 +154,9 @@ export function EditorialBody({ showCta }: { showCta: boolean }) {
   const benefits = isClient ? CLIENT_BENEFITS : RENNER_BENEFITS;
   const dek = isClient ? CLIENT_DEK : RENNER_DEK;
   const ctaHeading: React.ReactNode = isClient ? (
-    <>
-      Get something <Italic>done.</Italic>
-    </>
+    "Get something done."
   ) : (
-    <>
-      Start <Italic>running.</Italic>
-    </>
+    "Start running."
   );
   const ctaButton = isClient
     ? { label: "Sign up", href: "/signup" }
@@ -231,7 +219,7 @@ export function EditorialBody({ showCta }: { showCta: boolean }) {
             fontVariationSettings: '"opsz" 144',
           }}
         >
-          How Renner <Italic>works</Italic>
+          How Renner works
         </h1>
         <p
           style={{

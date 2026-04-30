@@ -20,7 +20,7 @@ const CLIENT_STEPS: Step[] = [
   },
   {
     number: "02",
-    title: "A vetted Renner applies.",
+    title: "A Renner applies.",
     body: (
       <>
         Background-checked Renners in your area see your task and apply.

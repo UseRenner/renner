@@ -49,11 +49,7 @@ const CLIENT_CHAPTERS: Chapter[] = [
   {
     number: "01",
     theme: "Posting",
-    heading: (
-      <>
-        Post a <Em>task.</Em>
-      </>
-    ),
+    heading: "Post a task.",
     body: (
       <>
         Describe what you need — sign install, lockbox swap, property
@@ -67,11 +63,7 @@ const CLIENT_CHAPTERS: Chapter[] = [
   {
     number: "02",
     theme: "Selection",
-    heading: (
-      <>
-        Pick a <Em>vetted Renner.</Em>
-      </>
-    ),
+    heading: "Pick a Renner.",
     body: (
       <>
         Renners in your area apply with their bio, ratings, and tenure.
@@ -85,11 +77,7 @@ const CLIENT_CHAPTERS: Chapter[] = [
   {
     number: "03",
     theme: "Completion",
-    heading: (
-      <>
-        Get it <Em>done.</Em>
-      </>
-    ),
+    heading: "Get it done.",
     body: (
       <>
         Your Renner finishes the task and submits completion photos with
@@ -106,11 +94,7 @@ const RENNER_CHAPTERS: Chapter[] = [
   {
     number: "01",
     theme: "Verification",
-    heading: (
-      <>
-        Get <Em>verified.</Em>
-      </>
-    ),
+    heading: "Get verified.",
     body: (
       <>
         Sign up, confirm your identity, clear a Checkr background check.
@@ -124,11 +108,7 @@ const RENNER_CHAPTERS: Chapter[] = [
   {
     number: "02",
     theme: "Selection",
-    heading: (
-      <>
-        Pick a <Em>task.</Em>
-      </>
-    ),
+    heading: "Pick a task.",
     body: (
       <>
         Briefs come in from agents, brokers, and property managers
@@ -142,11 +122,7 @@ const RENNER_CHAPTERS: Chapter[] = [
   {
     number: "03",
     theme: "Completion",
-    heading: (
-      <>
-        Get it <Em>done.</Em>
-      </>
-    ),
+    heading: "Get it done.",
     body: (
       <>
         Run the task. Upload completion photos. The client confirms;
@@ -182,16 +158,16 @@ export function ChapterBody({ showCta }: { showCta: boolean }) {
     : { label: "Become a Renner", href: "/become-a-renner" };
 
   // Statement clauses — imperative voice, the closer carries the italic.
-  const clauses: React.ReactNode[] = isClient
+  const clauses: string[] = isClient
     ? [
-        <>Post a <Em>task.</Em></>,
-        <>Pick a <Em>vetted Renner.</Em></>,
-        <>Get it <Em>done.</Em></>,
+        "Post a task.",
+        "Pick a Renner.",
+        "Get it done.",
       ]
     : [
-        <>Get <Em>verified.</Em></>,
-        <>Pick a <Em>task.</Em></>,
-        <>Get it <Em>done.</Em></>,
+        "Get verified.",
+        "Pick a task.",
+        "Get it done.",
       ];
 
   return (
@@ -440,13 +416,9 @@ export function ChapterBody({ showCta }: { showCta: boolean }) {
             }}
           >
             {isClient ? (
-              <>
-                Get something <Em>done.</Em>
-              </>
+              "Get something done."
             ) : (
-              <>
-                Start <Em>running.</Em>
-              </>
+              "Start running."
             )}
           </h2>
           <Link

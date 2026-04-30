@@ -32,7 +32,7 @@ type Step = {
 };
 
 const CLIENT_DEK =
-  "A marketplace built only for real-estate task work. You post the brief, a vetted Renner applies, the work gets done. Both parties — clients and Renners — are ID-verified and background-checked.";
+  "A marketplace built only for real-estate task work. You post the brief, a Renner applies, the work gets done. Both parties — clients and Renners — are ID-verified and background-checked.";
 
 const RENNER_DEK =
   "Real-estate work, brief by brief. Run tasks for the agents, brokers, and property managers who keep listings moving. The clients you book with are ID-verified and background-checked, the same as you.";
@@ -57,7 +57,7 @@ const CLIENT_STEPS: Step[] = [
     title: "Post a task.",
     body: (
       <>
-        Address, window, price. Posts go live to vetted Renners in
+        Address, window, price. Posts go live to Renners in
         under two minutes.
       </>
     ),
@@ -65,7 +65,7 @@ const CLIENT_STEPS: Step[] = [
   },
   {
     number: "02",
-    title: "Pick a vetted Renner.",
+    title: "Pick a Renner.",
     body: (
       <>
         Background-checked Renners apply with bios, ratings, and
@@ -132,16 +132,16 @@ export function MastBody({ showCta }: { showCta: boolean }) {
     ? { label: "Sign up", href: "/signup" }
     : { label: "Become a Renner", href: "/become-a-renner" };
 
-  const clauses: React.ReactNode[] = isClient
+  const clauses: string[] = isClient
     ? [
-        <>Post a <Em>task.</Em></>,
-        <>Pick a <Em>vetted Renner.</Em></>,
-        <>Get it <Em>done.</Em></>,
+        "Post a task.",
+        "Pick a Renner.",
+        "Get it done.",
       ]
     : [
-        <>Get <Em>verified.</Em></>,
-        <>Pick a <Em>task.</Em></>,
-        <>Get it <Em>done.</Em></>,
+        "Get verified.",
+        "Pick a task.",
+        "Get it done.",
       ];
 
   return (
@@ -360,9 +360,9 @@ export function MastBody({ showCta }: { showCta: boolean }) {
             }}
           >
             {isClient ? (
-              <>Get something <Em>done.</Em></>
+              "Get something done."
             ) : (
-              <>Start <Em>running.</Em></>
+              "Start running."
             )}
           </h2>
           <Link

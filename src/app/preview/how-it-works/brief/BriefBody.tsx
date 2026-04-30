@@ -31,7 +31,7 @@ const CLIENT_DETAILS: Detail[] = [
   },
   {
     number: "02",
-    title: "Pick a vetted Renner.",
+    title: "Pick a Renner.",
     body: (
       <>
         Background-checked Renners in your area apply. Read their bio,
@@ -141,16 +141,16 @@ export function BriefBody({ showCta }: { showCta: boolean }) {
 
   // Statement clauses — the answer, said as a sentence. Imperative
   // voice on both sides; the closing noun/phrase carries the italic.
-  const clauses: React.ReactNode[] = isClient
+  const clauses: string[] = isClient
     ? [
-        <>Post a <Em>task.</Em></>,
-        <>Pick a <Em>vetted Renner.</Em></>,
-        <>Get it <Em>done.</Em></>,
+        "Post a task.",
+        "Pick a Renner.",
+        "Get it done.",
       ]
     : [
-        <>Get <Em>verified.</Em></>,
-        <>Pick a <Em>task.</Em></>,
-        <>Get it <Em>done.</Em></>,
+        "Get verified.",
+        "Pick a task.",
+        "Get it done.",
       ];
 
   return (
@@ -381,13 +381,9 @@ export function BriefBody({ showCta }: { showCta: boolean }) {
             }}
           >
             {isClient ? (
-              <>
-                Get something <Em>done.</Em>
-              </>
+              "Get something done."
             ) : (
-              <>
-                Start <Em>running.</Em>
-              </>
+              "Start running."
             )}
           </h2>
           <Link

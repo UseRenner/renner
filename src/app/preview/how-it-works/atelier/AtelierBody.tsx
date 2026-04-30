@@ -26,7 +26,7 @@ const CLIENT_STEPS: Step[] = [
   },
   {
     number: "02",
-    title: "Pick a vetted Renner.",
+    title: "Pick a Renner.",
     body: (
       <>
         Background-checked Renners in your area apply. Read their bio,
@@ -124,7 +124,7 @@ export function AtelierBody({ showCta }: { showCta: boolean }) {
   // all three clauses set in italic-300, lit in steel-800 instead of
   // pure ink so the editorial register reads cooler.
   const clauses: string[] = isClient
-    ? ["Post a task.", "Pick a vetted Renner.", "Get it done."]
+    ? ["Post a task.", "Pick a Renner.", "Get it done."]
     : ["Get verified.", "Pick a task.", "Get it done."];
 
   return (
@@ -137,13 +137,13 @@ export function AtelierBody({ showCta }: { showCta: boolean }) {
               fontFamily: SERIF,
               fontStyle: "italic",
               fontWeight: 300,
-              fontSize: "clamp(40px, 5.5vw, 72px)",
-              lineHeight: 1.05,
-              letterSpacing: "-0.025em",
+              fontSize: "clamp(32px, 4.4vw, 56px)",
+              lineHeight: 1.1,
+              letterSpacing: "-0.022em",
               color: STEEL_800,
               margin: 0,
-              maxWidth: "12ch",
-              fontVariationSettings: '"opsz" 144',
+              maxWidth: "22ch",
+              fontVariationSettings: '"opsz" 60',
             }}
           >
             {clauses.map((c, i) => (

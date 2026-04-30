@@ -60,7 +60,7 @@ const CLIENT_STEPS: Step[] = [
       <>
         Describe what you need — sign install, lockbox swap, property
         visuals, guest check-in. Set the location, the time window, and
-        the price. Posts go live to vetted Renners only.
+        the price. Posts go live to Renners only.
       </>
     ),
     margin: [
@@ -71,7 +71,7 @@ const CLIENT_STEPS: Step[] = [
   {
     id: "pick",
     number: "§ 02",
-    title: "Pick a vetted Renner.",
+    title: "Pick a Renner.",
     body: (
       <>
         Background-checked Renners in your area apply. Read their bio,
@@ -161,16 +161,16 @@ export function LedgerBody({ showCta }: { showCta: boolean }) {
     ? { label: "Sign up", href: "/signup" }
     : { label: "Become a Renner", href: "/become-a-renner" };
 
-  const clauses: React.ReactNode[] = isClient
+  const clauses: string[] = isClient
     ? [
-        <>Post a <Em>task.</Em></>,
-        <>Pick a <Em>vetted Renner.</Em></>,
-        <>Get it <Em>done.</Em></>,
+        "Post a task.",
+        "Pick a Renner.",
+        "Get it done.",
       ]
     : [
-        <>Get <Em>verified.</Em></>,
-        <>Pick a <Em>task.</Em></>,
-        <>Get it <Em>done.</Em></>,
+        "Get verified.",
+        "Pick a task.",
+        "Get it done.",
       ];
 
   return (
@@ -382,9 +382,9 @@ export function LedgerBody({ showCta }: { showCta: boolean }) {
             }}
           >
             {isClient ? (
-              <>Get something <Em>done.</Em></>
+              "Get something done."
             ) : (
-              <>Start <Em>running.</Em></>
+              "Start running."
             )}
           </h2>
           <Link

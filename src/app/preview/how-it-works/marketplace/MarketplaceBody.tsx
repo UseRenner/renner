@@ -161,16 +161,16 @@ export function MarketplaceBody({ showCta }: { showCta: boolean }) {
     : { label: "Become a Renner", href: "/become-a-renner" };
 
   // Statement clauses — same imperative voice as the canonical Brief.
-  const clauses: React.ReactNode[] = isClient
+  const clauses: string[] = isClient
     ? [
-        <>Post a <Em>task.</Em></>,
-        <>Pick a <Em>vetted Renner.</Em></>,
-        <>Get it <Em>done.</Em></>,
+        "Post a task.",
+        "Pick a Renner.",
+        "Get it done.",
       ]
     : [
-        <>Get <Em>verified.</Em></>,
-        <>Pick a <Em>task.</Em></>,
-        <>Get it <Em>done.</Em></>,
+        "Get verified.",
+        "Pick a task.",
+        "Get it done.",
       ];
 
   return (
@@ -647,9 +647,9 @@ export function MarketplaceBody({ showCta }: { showCta: boolean }) {
             }}
           >
             {isClient ? (
-              <>Get something <Em>done.</Em></>
+              "Get something done."
             ) : (
-              <>Start <Em>running.</Em></>
+              "Start running."
             )}
           </h2>
           <Link

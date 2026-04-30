@@ -31,7 +31,7 @@ const CLIENT_PLATES: Plate[] = [
   },
   {
     number: "02",
-    title: "Pick a vetted Renner.",
+    title: "Pick a Renner.",
     body: (
       <>
         Background-checked Renners in your area apply with their bio,
@@ -173,7 +173,7 @@ export function PlateBody({ showCta }: { showCta: boolean }) {
             fontVariationSettings: '"opsz" 144',
           }}
         >
-          How Renner <Em>works.</Em>
+          How Renner works.
         </h1>
         <p
           style={{
@@ -297,13 +297,9 @@ export function PlateBody({ showCta }: { showCta: boolean }) {
             }}
           >
             {isClient ? (
-              <>
-                Get something <Em>done.</Em>
-              </>
+              "Get something done."
             ) : (
-              <>
-                Start <Em>running.</Em>
-              </>
+              "Start running."
             )}
           </h2>
           <Link
