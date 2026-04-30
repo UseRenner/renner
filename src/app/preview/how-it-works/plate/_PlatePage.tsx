@@ -66,6 +66,8 @@ function MarkLockup({ mark }: { mark: PlateMarkKey }) {
   // lowercase tier in real estate is uniformly sans (realtor.com,
   // redfin, trulia). Lowercase italic serif is unoccupied and pairs
   // with the mark's 12° italic-axis tilt and Renner's motion concept.
+  // At weight 300 the wordmark reads as if it were dashed off, not
+  // set — effort drops out of it.
   if (mark === "lowercase-italic-only") {
     return (
       <Link
@@ -77,9 +79,37 @@ function MarkLockup({ mark }: { mark: PlateMarkKey }) {
           style={{
             fontFamily: SERIF,
             fontStyle: "italic",
-            fontWeight: 400,
+            fontWeight: 300,
             fontSize: 48,
-            letterSpacing: "-0.022em",
+            letterSpacing: "-0.02em",
+            color: INK,
+            lineHeight: 1,
+            fontVariationSettings: '"opsz" 144',
+          }}
+        >
+          renner
+        </span>
+      </Link>
+    );
+  }
+
+  // Same wordmark, weight 200 — extralight. Closer to handwriting,
+  // furthest from "set." May be too thin at small sizes; included for
+  // comparison.
+  if (mark === "lowercase-italic-only-200") {
+    return (
+      <Link
+        href="/"
+        aria-label="renner"
+        style={{ display: "inline-flex", alignItems: "center", textDecoration: "none", color: INK }}
+      >
+        <span
+          style={{
+            fontFamily: SERIF,
+            fontStyle: "italic",
+            fontWeight: 200,
+            fontSize: 48,
+            letterSpacing: "-0.02em",
             color: INK,
             lineHeight: 1,
             fontVariationSettings: '"opsz" 144',
@@ -203,6 +233,7 @@ function MarkLockup({ mark }: { mark: PlateMarkKey }) {
 
   // Lowercase italic serif paired — disc + lowercase wordmark. The
   // symbol's 12° tilt and the wordmark's italic slant move together.
+  // Weight 300 — the lockup reads handed-off rather than set.
   if (mark === "lowercase-italic") {
     return (
       <Link
@@ -221,9 +252,42 @@ function MarkLockup({ mark }: { mark: PlateMarkKey }) {
           style={{
             fontFamily: SERIF,
             fontStyle: "italic",
-            fontWeight: 400,
+            fontWeight: 300,
             fontSize: 38,
-            letterSpacing: "-0.02em",
+            letterSpacing: "-0.018em",
+            color: INK,
+            lineHeight: 1,
+            fontVariationSettings: '"opsz" 60',
+          }}
+        >
+          renner
+        </span>
+      </Link>
+    );
+  }
+
+  // Same lockup, weight 200 — the extralight test.
+  if (mark === "lowercase-italic-200") {
+    return (
+      <Link
+        href="/"
+        aria-label="renner"
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 16,
+          textDecoration: "none",
+          color: INK,
+        }}
+      >
+        <Logo size={36} fill={INK} slotColor={PAPER} />
+        <span
+          style={{
+            fontFamily: SERIF,
+            fontStyle: "italic",
+            fontWeight: 200,
+            fontSize: 38,
+            letterSpacing: "-0.018em",
             color: INK,
             lineHeight: 1,
             fontVariationSettings: '"opsz" 60',
