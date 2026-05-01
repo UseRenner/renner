@@ -10,8 +10,8 @@ const MONO = "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Cons
 
 const INK = "var(--c-text, #0d0f12)";
 const STEEL_700 = "var(--c-700, #38414d)";
-const STEEL_600 = "var(--c-600, #647589)";
-const STEEL_300 = "var(--c-300, #a7b2be)";
+const STEEL_500 = "var(--c-500, #7d8da0)";
+const STEEL_300 = "var(--c-300, #cad1d8)";
 const RULE = "var(--c-rule, #eaedf0)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 
@@ -19,24 +19,15 @@ const CLIENT_DEK = "A marketplace for real-estate work. Post a task, pick a Renn
 const RENNER_DEK = "Real-estate work, paid through the platform. Set your area, set your rate, pick what you take. Both sides are screened to join.";
 
 const CLIENT_STEPS = [
-  { number: "01", title: "Post a task", body: "Where, when, what, how much. Two minutes.", proof: "Under 2 min" },
-  { number: "02", title: "Pick a Renner", body: "Vetted Renners apply. Read the file. Book one.", proof: "Checkr-vetted" },
-  { number: "03", title: "Get it done", body: "Photos arrive. You confirm. Stripe pays.", proof: "Stripe escrow" },
+  { number: "01", title: "Post a task.", body: "Where, when, what, how much. Two minutes.", proof: "Under 2 min" },
+  { number: "02", title: "Pick a Renner.", body: "Vetted Renners apply. Read the file. Book one.", proof: "Checkr-vetted" },
+  { number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Stripe pays.", proof: "Stripe escrow" },
 ];
 const RENNER_STEPS = [
-  { number: "01", title: "Get verified", body: "ID, background check, area, rate. Same day.", proof: "Same-day" },
-  { number: "02", title: "Pick a task", body: "Briefs from agents and managers nearby. Apply.", proof: "Local" },
-  { number: "03", title: "Get it done", body: "Run the task. Send photos. Get paid.", proof: "100% of pay" },
+  { number: "01", title: "Get verified.", body: "ID, background check, area, rate. Same day.", proof: "Same-day" },
+  { number: "02", title: "Pick a task.", body: "Briefs from agents and managers nearby. Apply.", proof: "Local" },
+  { number: "03", title: "Get it done.", body: "Run the task. Send photos. Get paid.", proof: "100% of pay" },
 ];
-
-const SECTION_LABEL: React.CSSProperties = {
-  fontFamily: SANS,
-  fontSize: 11,
-  fontWeight: 600,
-  letterSpacing: "0.28em",
-  textTransform: "uppercase",
-  color: INK,
-};
 
 export function BureauBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
@@ -48,63 +39,101 @@ export function BureauBody({ showCta }: { showCta: boolean }) {
 
   return (
     <>
-      <div style={{ borderTop: `2px solid ${INK}`, borderBottom: `1px solid ${INK}`, padding: "16px 0", marginBottom: "clamp(48px, 6vw, 72px)", display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16, flexWrap: "wrap" }}>
-        <span style={SECTION_LABEL}>How it works</span>
-        <div role="tablist" aria-label="Audience" style={{ display: "flex", alignItems: "baseline", gap: 18, ...SECTION_LABEL, color: STEEL_600 }}>
+      {/* Top — meta line + audience switch */}
+      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 24, flexWrap: "wrap", marginBottom: "clamp(40px, 5vw, 56px)" }}>
+        <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500 }}>
+          How it works
+        </span>
+        <div role="tablist" aria-label="Audience" style={{ display: "flex", alignItems: "baseline", gap: 14, fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 16 }}>
           <Tab label="For clients" active={isClient} onClick={() => setTab("client")} />
-          <span aria-hidden style={{ color: STEEL_300 }}>/</span>
+          <span aria-hidden style={{ color: STEEL_300, fontStyle: "normal" }}>·</span>
           <Tab label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
         </div>
       </div>
 
-      <p style={{ fontFamily: SANS, fontWeight: 500, fontSize: "clamp(24px, 3vw, 36px)", lineHeight: 1.3, letterSpacing: "-0.012em", color: INK, margin: 0, marginBottom: "clamp(64px, 8vw, 96px)", maxWidth: "32ch" }}>
-        {dek}
-      </p>
+      {/* Lede on the left, illustration of step 1 on the right — set
+          the voice and show the product in one read. */}
+      <div className="bureau-lede" style={{ display: "grid", gridTemplateColumns: "minmax(0, 1.1fr) minmax(0, 1fr)", gap: "clamp(40px, 5vw, 80px)", alignItems: "end", marginBottom: "clamp(72px, 9vw, 112px)" }}>
+        <p style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.25, letterSpacing: "-0.012em", color: INK, margin: 0, maxWidth: "32ch", fontVariationSettings: '"opsz" 60' }}>
+          {dek}
+        </p>
+        <div className="bureau-lede-illustration" style={{ display: "flex", justifyContent: "flex-end" }}>
+          <Mini kind={kinds[0]} />
+        </div>
+      </div>
 
+      {/* Steps as a single hairline table — number, title, body, proof */}
       <div style={{ borderTop: `1px solid ${INK}`, borderBottom: `1px solid ${INK}`, marginBottom: "clamp(56px, 7vw, 88px)" }}>
         {steps.map((s, i) => (
-          <article key={s.number} className="bureau-row" style={{ display: "grid", gridTemplateColumns: "60px minmax(160px, 1fr) minmax(0, 2.4fr) minmax(140px, auto) minmax(280px, 320px)", gap: "clamp(20px, 2.4vw, 32px)", padding: "clamp(28px, 3.5vw, 40px) 0", borderBottom: i === steps.length - 1 ? "none" : `1px solid ${RULE}`, alignItems: "center" }}>
-            <span style={{ fontFamily: MONO, fontSize: 13, fontWeight: 500, color: INK }}>{s.number}</span>
-            <h3 style={{ fontFamily: SANS, fontWeight: 600, fontSize: "clamp(20px, 2.2vw, 26px)", lineHeight: 1.15, letterSpacing: "-0.012em", color: INK, margin: 0 }}>
+          <article key={s.number} className="bureau-row" style={{ display: "grid", gridTemplateColumns: "56px minmax(180px, 1fr) minmax(0, 2.2fr) minmax(160px, auto)", gap: "clamp(20px, 2.4vw, 32px)", padding: "clamp(28px, 3.5vw, 40px) 0", borderBottom: i === steps.length - 1 ? "none" : `1px solid ${RULE}`, alignItems: "baseline" }}>
+            <span style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.22em", color: STEEL_500 }}>{s.number}</span>
+            <h3 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(22px, 2.4vw, 28px)", lineHeight: 1.1, letterSpacing: "-0.012em", color: INK, margin: 0, fontVariationSettings: '"opsz" 36' }}>
               {s.title}
             </h3>
-            <p style={{ fontFamily: SERIF, fontWeight: 400, fontSize: 16, lineHeight: 1.65, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+            <p style={{ fontFamily: SERIF, fontWeight: 400, fontSize: 16, lineHeight: 1.6, color: STEEL_700, margin: 0, maxWidth: "44ch", fontVariationSettings: '"opsz" 14' }}>
               {s.body}
             </p>
-            <span style={{ ...SECTION_LABEL, color: INK, textAlign: "right" }}>
+            <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: STEEL_500, textAlign: "right" }}>
               {s.proof}
             </span>
-            <div className="bureau-illustration" style={{ display: "flex", justifyContent: "flex-end" }}>
-              <Mini kind={kinds[i]} />
-            </div>
           </article>
         ))}
       </div>
 
-      <div style={{ borderTop: `1px solid ${INK}`, borderBottom: `1px solid ${INK}`, marginBottom: showCta ? "clamp(56px, 7vw, 88px)" : 0 }}>
+      {/* Trust */}
+      <section
+        className="bureau-trust"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "clamp(20px, 2.4vw, 32px)",
+          paddingTop: "clamp(28px, 3.5vw, 36px)",
+          borderTop: `1px solid ${INK}`,
+          marginBottom: showCta ? "clamp(48px, 6vw, 72px)" : 0,
+        }}
+      >
         {(isClient
           ? [
-              ["01", "Both sides vetted", "ID and Checkr before any booking."],
-              ["02", "Funds in escrow", "Held by Stripe until you confirm."],
-              ["03", "On the record", "Photos and a note on every task."],
+              ["Both sides vetted", "ID and Checkr before any booking."],
+              ["Funds in escrow", "Held by Stripe until you confirm."],
+              ["On the record", "Photos and a note on every task."],
             ]
           : [
-              ["01", "Real work", "From agents, brokers, managers."],
-              ["02", "Vetted clients", "ID and Checkr, same as you."],
-              ["03", "Repeat work", "A reputation paid in repeat clients."],
+              ["Real work", "From agents, brokers, managers."],
+              ["Vetted clients", "ID and Checkr, same as you."],
+              ["Repeat work", "A reputation paid in repeat clients."],
             ]
-        ).map(([num, label, body], i, arr) => (
-          <div key={num} className="bureau-provisions" style={{ display: "grid", gridTemplateColumns: "80px minmax(180px, 240px) minmax(0, 1fr)", gap: "clamp(20px, 2.4vw, 36px)", padding: "20px 0", borderBottom: i === arr.length - 1 ? "none" : `1px solid ${RULE}`, alignItems: "baseline" }}>
-            <span style={{ fontFamily: MONO, fontSize: 12, fontWeight: 500, color: STEEL_600, letterSpacing: "0.08em" }}>{num}</span>
-            <span style={{ fontFamily: SANS, fontWeight: 600, fontSize: 16, color: INK, letterSpacing: "-0.005em" }}>{label}</span>
-            <span style={{ fontFamily: SERIF, fontSize: 16, lineHeight: 1.6, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>{body}</span>
+        ).map(([label, body]) => (
+          <div key={label}>
+            <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 18, color: INK, marginBottom: 8, fontVariationSettings: '"opsz" 36' }}>
+              {label}.
+            </div>
+            <div style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.55, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>
+              {body}
+            </div>
           </div>
         ))}
-      </div>
+      </section>
 
       {showCta && (
         <section style={{ display: "flex", justifyContent: "flex-start" }}>
-          <Link href={cta.href} style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: SANS, fontSize: 14, fontWeight: 600, color: PAPER, backgroundColor: INK, border: `1px solid ${INK}`, borderRadius: 0, padding: "16px 28px", textDecoration: "none", letterSpacing: "0.02em" }}>
+          <Link
+            href={cta.href}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 10,
+              fontFamily: SANS,
+              fontSize: 14,
+              fontWeight: 500,
+              color: PAPER,
+              backgroundColor: INK,
+              border: `1px solid ${INK}`,
+              borderRadius: 4,
+              padding: "14px 22px",
+              textDecoration: "none",
+            }}
+          >
             {cta.label}
             <span aria-hidden style={{ opacity: 0.7 }}>→</span>
           </Link>
@@ -114,16 +143,8 @@ export function BureauBody({ showCta }: { showCta: boolean }) {
       <style jsx>{`
         @media (max-width: 1024px) {
           .bureau-row {
-            grid-template-columns: 60px minmax(160px, 1fr) minmax(0, 2.4fr) minmax(140px, auto) !important;
-          }
-          .bureau-illustration {
-            display: none !important;
-          }
-        }
-        @media (max-width: 720px) {
-          .bureau-row {
-            grid-template-columns: 44px 1fr !important;
-            gap: 8px 14px !important;
+            grid-template-columns: 56px 1fr !important;
+            gap: 8px 16px !important;
           }
           .bureau-row > :nth-child(3),
           .bureau-row > :nth-child(4) {
@@ -132,9 +153,19 @@ export function BureauBody({ showCta }: { showCta: boolean }) {
           .bureau-row > :nth-child(4) {
             text-align: left !important;
           }
-          .bureau-provisions {
+        }
+        @media (max-width: 880px) {
+          .bureau-lede {
             grid-template-columns: 1fr !important;
-            gap: 4px !important;
+            gap: 32px !important;
+            align-items: start !important;
+          }
+          .bureau-lede-illustration {
+            justify-content: flex-start !important;
+          }
+          .bureau-trust {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
           }
         }
       `}</style>
@@ -144,7 +175,13 @@ export function BureauBody({ showCta }: { showCta: boolean }) {
 
 function Tab({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) {
   return (
-    <button type="button" role="tab" aria-selected={active} onClick={onClick} style={{ background: "none", border: "none", padding: 0, fontFamily: "inherit", fontSize: "inherit", fontWeight: "inherit", letterSpacing: "inherit", textTransform: "inherit", color: active ? "var(--c-text, #0d0f12)" : "var(--c-500, #647589)", cursor: "pointer" }}>
+    <button
+      type="button"
+      role="tab"
+      aria-selected={active}
+      onClick={onClick}
+      style={{ background: "none", border: "none", padding: 0, fontFamily: "inherit", fontStyle: "inherit", fontSize: "inherit", fontWeight: "inherit", color: active ? INK : STEEL_500, cursor: "pointer" }}
+    >
       {label}
     </button>
   );
