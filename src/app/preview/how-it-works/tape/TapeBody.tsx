@@ -186,26 +186,27 @@ export function TapeBody({ showCta }: { showCta: boolean }) {
         })}
       </div>
 
-      {/* Trust as an inline mono row — quiet, in keeping with the column above */}
+      {/* Trust — centered three-up grid */}
       <div
         className="tape-trust"
         style={{
-          maxWidth: 720,
-          margin: "0 auto",
           marginBottom: showCta ? "clamp(40px, 5vw, 64px)" : 0,
-          display: "flex",
-          flexDirection: "column",
-          gap: 12,
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "clamp(20px, 2.4vw, 32px)",
+          paddingTop: "clamp(28px, 3.5vw, 36px)",
+          borderTop: `1px solid ${INK}`,
+          textAlign: "center",
         }}
       >
         {trust.map(([label, body]) => (
-          <div key={label} style={{ display: "flex", alignItems: "baseline", gap: 14, flexWrap: "wrap" }}>
-            <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 17, color: INK, minWidth: 180, fontVariationSettings: '"opsz" 36' }}>
+          <div key={label}>
+            <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 18, color: INK, marginBottom: 8, fontVariationSettings: '"opsz" 36' }}>
               {label}.
-            </span>
-            <span style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.55, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>
+            </div>
+            <div style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.55, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>
               {body}
-            </span>
+            </div>
           </div>
         ))}
       </div>

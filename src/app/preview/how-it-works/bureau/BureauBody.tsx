@@ -90,6 +90,7 @@ export function BureauBody({ showCta }: { showCta: boolean }) {
           paddingTop: "clamp(28px, 3.5vw, 36px)",
           borderTop: `1px solid ${INK}`,
           marginBottom: showCta ? "clamp(48px, 6vw, 72px)" : 0,
+          textAlign: "center",
         }}
       >
         {(isClient

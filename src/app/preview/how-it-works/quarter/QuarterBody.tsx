@@ -141,6 +141,9 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
             borderLeft: `3px solid ${INK}`,
             display: "flex",
             flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center",
           }}
         >
           <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500, marginBottom: 28 }}>

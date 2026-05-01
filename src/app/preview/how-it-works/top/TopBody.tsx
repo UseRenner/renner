@@ -79,7 +79,7 @@ export function TopBody({ showCta }: { showCta: boolean }) {
         ))}
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "clamp(24px, 3vw, 48px)", paddingTop: "clamp(28px, 3.5vw, 36px)", borderTop: `1px solid ${INK}`, marginBottom: showCta ? "clamp(48px, 6vw, 72px)" : 0 }} className="top-trust">
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "clamp(24px, 3vw, 48px)", paddingTop: "clamp(28px, 3.5vw, 36px)", borderTop: `1px solid ${INK}`, marginBottom: showCta ? "clamp(48px, 6vw, 72px)" : 0, textAlign: "center" }} className="top-trust">
         {(isClient
           ? [
               ["Both sides vetted", "ID and Checkr before any booking."],

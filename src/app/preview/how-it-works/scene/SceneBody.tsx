@@ -382,6 +382,7 @@ export function SceneBody({ showCta }: { showCta: boolean }) {
           gap: "clamp(24px, 3vw, 48px)",
           paddingTop: "clamp(28px, 3.5vw, 36px)",
           borderTop: `1px solid ${INK}`,
+          textAlign: "center",
         }}
         className="scene-trust"
       >

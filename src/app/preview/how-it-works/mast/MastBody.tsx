@@ -182,77 +182,40 @@ export function MastBody({ showCta }: { showCta: boolean }) {
         ))}
       </ol>
 
-      {/* Trust — three quiet lines, no boxes */}
+      {/* Trust — centered three-up grid */}
       <section
         className="counter-trust"
         style={{
           marginBottom: showCta ? "clamp(64px, 8vw, 96px)" : 0,
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "clamp(20px, 2.4vw, 32px)",
+          paddingTop: "clamp(28px, 3.5vw, 36px)",
+          borderTop: `1px solid ${INK}`,
+          textAlign: "center",
         }}
       >
-        <div
-          style={{
-            fontFamily: MONO,
-            fontSize: 10,
-            fontWeight: 500,
-            letterSpacing: "0.24em",
-            textTransform: "uppercase",
-            color: STEEL_500,
-            marginBottom: 24,
-          }}
-        >
-          {isClient ? "Why Renner" : "What you get"}
-        </div>
-        <dl style={{ margin: 0 }}>
-          {(isClient
-            ? [
-                ["Both sides vetted", "ID and Checkr before any booking."],
-                ["Funds in escrow", "Held by Stripe until you confirm."],
-                ["Photos on every task", "A photo and a note when it's done."],
-              ]
-            : [
-                ["Real work", "From agents, brokers, managers."],
-                ["Vetted clients", "ID and Checkr, same as you."],
-                ["Repeat work", "Good work earns repeat clients."],
-              ]
-          ).map(([label, body], idx, arr) => (
-            <div
-              key={label}
-              className="counter-trust-row"
-              style={{
-                padding: "20px 0",
-                borderTop: `1px solid ${RULE}`,
-                borderBottom:
-                  idx === arr.length - 1 ? `1px solid ${RULE}` : "none",
-                alignItems: "baseline",
-              }}
-            >
-              <dt
-                style={{
-                  fontFamily: SERIF,
-                  fontStyle: "italic",
-                  fontWeight: 300,
-                  fontSize: 20,
-                  color: INK,
-                  fontVariationSettings: '"opsz" 36',
-                }}
-              >
-                {label}.
-              </dt>
-              <dd
-                style={{
-                  fontFamily: SERIF,
-                  fontSize: 16,
-                  lineHeight: 1.55,
-                  color: STEEL_700,
-                  margin: 0,
-                  fontVariationSettings: '"opsz" 14',
-                }}
-              >
-                {body}
-              </dd>
+        {(isClient
+          ? [
+              ["Both sides vetted", "ID and Checkr before any booking."],
+              ["Funds in escrow", "Held by Stripe until you confirm."],
+              ["Photos on every task", "A photo and a note when it's done."],
+            ]
+          : [
+              ["Real work", "From agents, brokers, managers."],
+              ["Vetted clients", "ID and Checkr, same as you."],
+              ["Repeat work", "Good work earns repeat clients."],
+            ]
+        ).map(([label, body]) => (
+          <div key={label}>
+            <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 18, color: INK, marginBottom: 8, fontVariationSettings: '"opsz" 36' }}>
+              {label}.
             </div>
-          ))}
-        </dl>
+            <div style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.55, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>
+              {body}
+            </div>
+          </div>
+        ))}
       </section>
 
       {/* CTA */}

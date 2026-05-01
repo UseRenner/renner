@@ -188,26 +188,24 @@ export function PivotBody({ showCta }: { showCta: boolean }) {
         })}
       </div>
 
-      {/* Trust — three rows pinned to the axis */}
-      <section style={{ marginTop: "clamp(64px, 8vw, 96px)", marginBottom: showCta ? "clamp(64px, 8vw, 96px)" : 0 }}>
+      {/* Trust — centered three-up grid */}
+      <section style={{
+        marginTop: "clamp(64px, 8vw, 96px)",
+        marginBottom: showCta ? "clamp(64px, 8vw, 96px)" : 0,
+        display: "grid",
+        gridTemplateColumns: "repeat(3, 1fr)",
+        gap: "clamp(20px, 2.4vw, 32px)",
+        paddingTop: "clamp(28px, 3.5vw, 36px)",
+        borderTop: `1px solid ${INK}`,
+        textAlign: "center",
+      }}>
         {trust.map(([label, body]) => (
-          <div
-            key={label}
-            className="pivot-axis-row"
-            style={{
-              padding: "20px 0",
-              borderTop: `1px solid ${RULE}`,
-            }}
-          >
-            <div className="pivot-left" style={{ textAlign: "right", paddingRight: 28 }}>
-              <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 18, color: INK, fontVariationSettings: '"opsz" 36' }}>
-                {label}.
-              </span>
+          <div key={label}>
+            <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 18, color: INK, marginBottom: 8, fontVariationSettings: '"opsz" 36' }}>
+              {label}.
             </div>
-            <div className="pivot-right" style={{ textAlign: "left", paddingLeft: 28 }}>
-              <span style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.5, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>
-                {body}
-              </span>
+            <div style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.55, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>
+              {body}
             </div>
           </div>
         ))}

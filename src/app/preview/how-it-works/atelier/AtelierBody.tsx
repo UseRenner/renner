@@ -188,57 +188,28 @@ export function AtelierBody({ showCta }: { showCta: boolean }) {
             ))}
           </ol>
 
-          {/* Trust — label-led pairs, no kicker */}
+          {/* Trust — centered three-up grid */}
           <section
             style={{
               marginBottom: showCta ? "clamp(56px, 7vw, 88px)" : 0,
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: "clamp(20px, 2.4vw, 32px)",
+              paddingTop: "clamp(28px, 3.5vw, 36px)",
+              borderTop: `1px solid ${STEEL_300}`,
+              textAlign: "center",
             }}
           >
-            <dl style={{ margin: 0 }}>
-              {trust.map(([label, body], idx) => (
-                <div
-                  key={label}
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "minmax(120px, 160px) 1fr",
-                    gap: 24,
-                    padding: "20px 0",
-                    borderTop: `1px solid ${STEEL_300}`,
-                    borderBottom:
-                      idx === trust.length - 1 ? `1px solid ${STEEL_300}` : "none",
-                    alignItems: "baseline",
-                  }}
-                  className="atelier-trust-row"
-                >
-                  <dt
-                    style={{
-                      fontFamily: SERIF,
-                      fontStyle: "italic",
-                      fontWeight: 300,
-                      fontSize: 19,
-                      color: STEEL_600,
-                      letterSpacing: "-0.005em",
-                      fontVariationSettings: '"opsz" 36',
-                    }}
-                  >
-                    {label}.
-                  </dt>
-                  <dd
-                    style={{
-                      fontFamily: SERIF,
-                      fontSize: 16,
-                      lineHeight: 1.55,
-                      color: STEEL_700,
-                      margin: 0,
-                      maxWidth: "52ch",
-                      fontVariationSettings: '"opsz" 14',
-                    }}
-                  >
-                    {body}
-                  </dd>
+            {trust.map(([label, body]) => (
+              <div key={label}>
+                <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 18, color: INK, marginBottom: 8, fontVariationSettings: '"opsz" 36' }}>
+                  {label}.
                 </div>
-              ))}
-            </dl>
+                <div style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.55, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>
+                  {body}
+                </div>
+              </div>
+            ))}
           </section>
 
           {showCta && (
