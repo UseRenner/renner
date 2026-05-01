@@ -66,7 +66,7 @@ export function ShowcaseBody({ showCta }: { showCta: boolean }) {
         {kinds.map((kind, i) => {
           const [title, body, proof] = steps[i];
           return (
-            <article key={kind} style={{ display: "flex", flexDirection: "column", gap: "clamp(20px, 2.4vw, 28px)", textAlign: "center", alignItems: "center" }}>
+            <article key={kind} style={{ display: "flex", flexDirection: "column", gap: "clamp(20px, 2.4vw, 28px)" }}>
               <Card kind={kind} />
               <div style={{ paddingTop: "clamp(16px, 2vw, 20px)", borderTop: `1px solid ${RULE}`, width: "100%" }}>
                 <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500, marginBottom: 10 }}>
@@ -75,7 +75,7 @@ export function ShowcaseBody({ showCta }: { showCta: boolean }) {
                 <h3 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(22px, 2.4vw, 28px)", lineHeight: 1.1, letterSpacing: "-0.012em", color: INK, margin: 0, marginBottom: 8, fontVariationSettings: '"opsz" 36' }}>
                   {title}
                 </h3>
-                <p style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.55, color: STEEL_700, margin: "0 auto", maxWidth: "26ch", fontVariationSettings: '"opsz" 14' }}>
+                <p style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.55, color: STEEL_700, margin: 0, maxWidth: "26ch", fontVariationSettings: '"opsz" 14' }}>
                   {body}
                 </p>
               </div>

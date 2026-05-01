@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Mini, CLIENT_KINDS, RENNER_KINDS } from "../_illustrations";
+import { Card } from "../_illustrations";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
@@ -91,7 +91,7 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
 
         {/* Top-right: a UI illustration — see the product first */}
         <section className="quarter-cell" style={{ padding: "clamp(28px, 3.5vw, 48px)", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: BONE }}>
-          <Mini kind={isClient ? "task" : "inbox"} />
+          <Card kind={isClient ? "task" : "inbox"} />
         </section>
 
         {/* Horizontal rule across all three columns */}

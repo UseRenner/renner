@@ -44,35 +44,27 @@ export const FAQS: Array<{ q: string; a: string }> = [
 
 export type VariantKey =
   | "rail"
-  | "atelier"
   | "plate"
   | "showcase"
   | "scene"
-  | "mast"
   | "pivot"
   | "tape"
   | "anchor"
   | "quarter"
   | "lead"
-  | "top"
   | "compact"
   | "center"
-  | "bureau"
-  | "counsel";
+  | "bureau";
 
 export const VARIANTS: ReadonlyArray<{ href: string; key: VariantKey; label: string }> = [
   { href: "/preview/how-it-works/bureau", key: "bureau", label: "Bureau" },
-  { href: "/preview/how-it-works/counsel", key: "counsel", label: "Counsel" },
   { href: "/preview/how-it-works/lead", key: "lead", label: "Lead" },
-  { href: "/preview/how-it-works/top", key: "top", label: "Top" },
   { href: "/preview/how-it-works/compact", key: "compact", label: "Compact" },
   { href: "/preview/how-it-works/center", key: "center", label: "Center" },
   { href: "/preview/how-it-works-2", key: "rail", label: "Rail" },
-  { href: "/preview/how-it-works/atelier", key: "atelier", label: "Atelier" },
   { href: "/preview/how-it-works/plate", key: "plate", label: "Plate" },
   { href: "/preview/how-it-works/showcase", key: "showcase", label: "Showcase" },
   { href: "/preview/how-it-works/scene", key: "scene", label: "Scene" },
-  { href: "/preview/how-it-works/mast", key: "mast", label: "Mast" },
   { href: "/preview/how-it-works/pivot", key: "pivot", label: "Pivot" },
   { href: "/preview/how-it-works/tape", key: "tape", label: "Tape" },
   { href: "/preview/how-it-works/anchor", key: "anchor", label: "Anchor" },
