@@ -150,47 +150,23 @@ export function PlateBody({ showCta }: { showCta: boolean }) {
         <TabButton label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
-      {/* ─── Lede ─── headline + dek side by side */}
-      <div
-        className="plate-lede"
+      {/* ─── Lede ─── */}
+      <p
         style={{
-          display: "grid",
-          gridTemplateColumns: "minmax(0, 1.05fr) minmax(0, 1fr)",
-          gap: "clamp(40px, 6vw, 96px)",
-          alignItems: "end",
+          fontFamily: SERIF,
+          fontWeight: 400,
+          fontSize: "clamp(28px, 3.5vw, 44px)",
+          lineHeight: 1.25,
+          letterSpacing: "-0.012em",
+          color: INK,
+          margin: 0,
           marginBottom: "clamp(72px, 9vw, 120px)",
+          maxWidth: "32ch",
+          fontVariationSettings: '"opsz" 60',
         }}
       >
-        <h1
-          style={{
-            fontFamily: SERIF,
-            fontWeight: 400,
-            fontSize: "clamp(40px, 6vw, 80px)",
-            lineHeight: 1.05,
-            letterSpacing: "-0.028em",
-            color: INK,
-            margin: 0,
-            maxWidth: "12ch",
-            fontVariationSettings: '"opsz" 144',
-          }}
-        >
-          How Renner works
-        </h1>
-        <p
-          style={{
-            fontFamily: SERIF,
-            fontWeight: 400,
-            fontSize: "clamp(16px, 1.4vw, 18px)",
-            lineHeight: 1.6,
-            color: STEEL_700,
-            margin: 0,
-            maxWidth: "44ch",
-            fontVariationSettings: '"opsz" 14',
-          }}
-        >
-          {dek}
-        </p>
-      </div>
+        {dek}
+      </p>
 
       {/* ─── Plates ─── three hairline-bordered cards stacked vertically */}
       <div
@@ -321,13 +297,6 @@ export function PlateBody({ showCta }: { showCta: boolean }) {
       )}
 
       <style jsx>{`
-        @media (max-width: 880px) {
-          .plate-lede {
-            grid-template-columns: 1fr !important;
-            gap: 28px !important;
-            align-items: start !important;
-          }
-        }
         @media (max-width: 1024px) {
           :global(.plate-card) {
             grid-template-columns: minmax(56px, 64px) minmax(0, 1fr) !important;

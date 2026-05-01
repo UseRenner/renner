@@ -18,13 +18,13 @@ const PAPER = "var(--c-bg, #fbfbfc)";
 const CLIENT_DEK = "A marketplace for real-estate work. Post a task, pick a Renner, get it done. Both sides are screened to join.";
 const RENNER_DEK = "Real-estate work, paid through the platform. Set your area, set your rate, pick what you take. Both sides are screened to join.";
 
-const CLIENT_CAPTIONS: Array<[string, string, string]> = [
+const CLIENT_STEPS: Array<[string, string, string]> = [
   ["Post a task.", "Where, when, what, how much. Two minutes.", "Under 2 min"],
   ["Pick a Renner.", "Vetted Renners apply. Read the file. Book one.", "Checkr-vetted"],
   ["Get it done.", "Photos arrive. You confirm. Stripe pays.", "Stripe escrow"],
 ];
 
-const RENNER_CAPTIONS: Array<[string, string, string]> = [
+const RENNER_STEPS: Array<[string, string, string]> = [
   ["Get verified.", "ID, background check, area, rate. Same day.", "Same-day"],
   ["Pick a task.", "Briefs from agents and managers nearby. Apply.", "Local"],
   ["Get it done.", "Run the task. Send photos. Get paid.", "100% of pay"],
@@ -35,7 +35,7 @@ export function ShowcaseBody({ showCta }: { showCta: boolean }) {
   const isClient = tab === "client";
   const dek = isClient ? CLIENT_DEK : RENNER_DEK;
   const kinds = isClient ? CLIENT_KINDS : RENNER_KINDS;
-  const captions = isClient ? CLIENT_CAPTIONS : RENNER_CAPTIONS;
+  const steps = isClient ? CLIENT_STEPS : RENNER_STEPS;
   const cta = isClient ? { label: "Sign up", href: "/signup" } : { label: "Become a Renner", href: "/become-a-renner" };
 
   return (
@@ -52,46 +52,44 @@ export function ShowcaseBody({ showCta }: { showCta: boolean }) {
         </div>
       </div>
 
-      {/* Three full UI cards lead the page — see before reading */}
-      <div className="showcase-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "clamp(20px, 2.4vw, 32px)", marginBottom: "clamp(40px, 5vw, 56px)" }}>
-        {kinds.map((kind) => (
-          <div key={kind} style={{ display: "flex" }}>
-            <div style={{ flex: 1 }}>
-              <Card kind={kind} />
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Captions row — one quiet line per card */}
-      <div className="showcase-captions" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "clamp(20px, 2.4vw, 32px)", marginBottom: "clamp(64px, 8vw, 96px)" }}>
-        {captions.map(([title, body, proof]) => (
-          <div key={title}>
-            <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500, marginBottom: 10 }}>
-              {proof}
-            </div>
-            <h3 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(22px, 2.4vw, 28px)", lineHeight: 1.1, color: INK, margin: 0, marginBottom: 8, fontVariationSettings: '"opsz" 36' }}>
-              {title}
-            </h3>
-            <p style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
-              {body}
-            </p>
-          </div>
-        ))}
-      </div>
-
-      {/* Dek — read about it after seeing it */}
-      <p style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(20px, 2vw, 24px)", lineHeight: 1.5, color: INK, margin: 0, marginBottom: "clamp(48px, 6vw, 72px)", maxWidth: "52ch", fontVariationSettings: '"opsz" 14' }}>
+      {/* Lede — sets the page's voice. Sits above the cards as a single
+          confident sentence so the page reads top-down. */}
+      <p style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.25, letterSpacing: "-0.012em", color: INK, margin: 0, marginBottom: "clamp(64px, 8vw, 96px)", maxWidth: "32ch", fontVariationSettings: '"opsz" 60' }}>
         {dek}
       </p>
 
-      {/* Trust */}
+      {/* Three card+caption columns — each step lives in one column,
+          card on top, caption directly beneath, no row gap between
+          card and caption. The eye reads card → caption → next step. */}
+      <div className="showcase-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "clamp(20px, 2.4vw, 32px)", marginBottom: "clamp(64px, 8vw, 96px)" }}>
+        {kinds.map((kind, i) => {
+          const [title, body, proof] = steps[i];
+          return (
+            <article key={kind} style={{ display: "flex", flexDirection: "column", gap: "clamp(20px, 2.4vw, 28px)" }}>
+              <Card kind={kind} />
+              <div style={{ paddingTop: "clamp(16px, 2vw, 20px)", borderTop: `1px solid ${RULE}` }}>
+                <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500, marginBottom: 10 }}>
+                  {String(i + 1).padStart(2, "0")} · {proof}
+                </div>
+                <h3 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(22px, 2.4vw, 28px)", lineHeight: 1.1, letterSpacing: "-0.012em", color: INK, margin: 0, marginBottom: 8, fontVariationSettings: '"opsz" 36' }}>
+                  {title}
+                </h3>
+                <p style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+                  {body}
+                </p>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+
+      {/* Trust — three reinforcing pairs in the same three-column rhythm */}
       <section
         className="showcase-trust"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "clamp(24px, 3vw, 48px)",
+          gap: "clamp(20px, 2.4vw, 32px)",
           paddingTop: "clamp(28px, 3.5vw, 36px)",
           borderTop: `1px solid ${INK}`,
           marginBottom: showCta ? "clamp(48px, 6vw, 72px)" : 0,
@@ -148,10 +146,9 @@ export function ShowcaseBody({ showCta }: { showCta: boolean }) {
       <style jsx>{`
         @media (max-width: 880px) {
           .showcase-grid,
-          .showcase-captions,
           .showcase-trust {
             grid-template-columns: 1fr !important;
-            gap: 24px !important;
+            gap: 32px !important;
           }
         }
       `}</style>
