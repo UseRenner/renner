@@ -9,7 +9,7 @@ export default async function AnchorHowItWorks() {
   const viewer = await getViewer();
   const showCta = !viewer;
   return (
-    <PageShell active="anchor" showCta={showCta}>
+    <PageShell active="anchor" showCta={showCta} tone="ink">
       <AnchorBody showCta={showCta} />
     </PageShell>
   );

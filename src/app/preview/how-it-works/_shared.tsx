@@ -115,7 +115,7 @@ export function RennerMark({
         display: "inline-flex",
         alignItems: "center",
         textDecoration: "none",
-        color: "#0d0f12",
+        color: "inherit",
       }}
     >
       <span
@@ -125,7 +125,7 @@ export function RennerMark({
           fontWeight: weight,
           fontSize: `${size}px`,
           letterSpacing: "-0.02em",
-          color: "#0d0f12",
+          color: "inherit",
           lineHeight: 1,
           fontVariationSettings: '"opsz" 60',
         }}
@@ -154,39 +154,56 @@ const SANS_FONT = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif
 const MONO_FONT = "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
 const SHELL_INK = "#0d0f12";
+const SHELL_STEEL_800 = "#38414d";
 const SHELL_SLATE = "#2a2f36";
 const SHELL_STEEL = "#647589";
 const SHELL_FOG = "#7d8da0";
+const SHELL_400 = "#a7b2be";
 const SHELL_MIST = "#cad1d8";
 const SHELL_RULE = "#eaedf0";
+const SHELL_100 = "#eaedf0";
 const SHELL_PAPER = "#fbfbfc";
+
+export type ShellTone = "paper" | "steel" | "ink";
 
 export function PageShell({
   active,
   showCta,
   children,
   maxWidth = 1280,
+  tone = "paper",
 }: {
   active: VariantKey;
   showCta: boolean;
   children: React.ReactNode;
   maxWidth?: number;
+  tone?: ShellTone;
 }) {
   const GUTTER = "clamp(28px, 4vw, 64px)";
+  const isInk = tone === "ink";
+  const isSteel = tone === "steel";
+  const pageBg = isInk ? SHELL_INK : isSteel ? SHELL_100 : SHELL_PAPER;
+  const textInk = isInk ? SHELL_PAPER : SHELL_INK;
+  const textMuted = isInk ? "rgba(251,251,252,0.62)" : SHELL_STEEL;
+  const textFog = isInk ? "rgba(251,251,252,0.42)" : SHELL_FOG;
+  const ruleColor = isInk ? "rgba(251,251,252,0.16)" : SHELL_RULE;
+  const ctaBg = isInk ? SHELL_PAPER : SHELL_INK;
+  const ctaFg = isInk ? SHELL_INK : SHELL_PAPER;
+
   return (
-    <div style={{ backgroundColor: SHELL_PAPER, color: SHELL_INK, minHeight: "100vh" }}>
+    <div style={{ backgroundColor: pageBg, color: textInk, minHeight: "100vh" }}>
       <VariantSwitcher active={active} />
 
       <header style={{ paddingTop: "clamp(28px, 3.5vw, 48px)", paddingBottom: "clamp(28px, 3.5vw, 48px)", paddingLeft: GUTTER, paddingRight: GUTTER }}>
         <div className="mx-auto" style={{ maxWidth, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
-          <RennerMark />
+          <RennerMark size={36} weight={300} />
           {showCta ? (
             <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
-              <Link href="/signin" style={{ fontFamily: SANS_FONT, fontSize: 13, fontWeight: 500, color: SHELL_STEEL, textDecoration: "none" }}>Sign in</Link>
-              <Link href="/signup" style={{ fontFamily: SANS_FONT, fontSize: 13, fontWeight: 500, color: SHELL_PAPER, backgroundColor: SHELL_INK, border: `1px solid ${SHELL_INK}`, borderRadius: 4, padding: "10px 18px", textDecoration: "none", whiteSpace: "nowrap" }}>Sign up</Link>
+              <Link href="/signin" style={{ fontFamily: SANS_FONT, fontSize: 13, fontWeight: 500, color: textMuted, textDecoration: "none" }}>Sign in</Link>
+              <Link href="/signup" style={{ fontFamily: SANS_FONT, fontSize: 13, fontWeight: 500, color: ctaFg, backgroundColor: ctaBg, border: `1px solid ${ctaBg}`, borderRadius: 4, padding: "10px 18px", textDecoration: "none", whiteSpace: "nowrap" }}>Sign up</Link>
             </div>
           ) : (
-            <Link href="/dashboard" style={{ fontFamily: SANS_FONT, fontSize: 13, fontWeight: 500, color: SHELL_INK, textDecoration: "none" }}>Dashboard →</Link>
+            <Link href="/dashboard" style={{ fontFamily: SANS_FONT, fontSize: 13, fontWeight: 500, color: textInk, textDecoration: "none" }}>Dashboard →</Link>
           )}
         </div>
       </header>
@@ -197,30 +214,30 @@ export function PageShell({
         </div>
       </main>
 
-      <section style={{ paddingTop: "clamp(48px, 6vw, 80px)", paddingBottom: "clamp(96px, 12vw, 160px)", paddingLeft: GUTTER, paddingRight: GUTTER, borderTop: `1px solid ${SHELL_RULE}` }}>
+      <section style={{ paddingTop: "clamp(48px, 6vw, 80px)", paddingBottom: "clamp(96px, 12vw, 160px)", paddingLeft: GUTTER, paddingRight: GUTTER, borderTop: `1px solid ${ruleColor}` }}>
         <div className="mx-auto" style={{ maxWidth: 720 }}>
-          <div style={{ fontFamily: MONO_FONT, fontSize: 10, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: SHELL_FOG, marginBottom: 40 }}>Common questions</div>
+          <div style={{ fontFamily: MONO_FONT, fontSize: 10, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: textFog, marginBottom: 40 }}>Common questions</div>
           {FAQS.map((item, idx) => (
-            <details key={item.q} className="faq-item" style={{ padding: "24px 0", borderBottom: `1px solid ${SHELL_RULE}`, borderTop: idx === 0 ? `1px solid ${SHELL_RULE}` : "none" }}>
+            <details key={item.q} className="faq-item" style={{ padding: "24px 0", borderBottom: `1px solid ${ruleColor}`, borderTop: idx === 0 ? `1px solid ${ruleColor}` : "none" }}>
               <summary style={{ cursor: "pointer", listStyle: "none", display: "grid", gridTemplateColumns: "minmax(48px, 56px) 1fr auto", gap: 24, alignItems: "baseline" }}>
-                <span style={{ fontFamily: MONO_FONT, fontSize: 11, fontWeight: 500, letterSpacing: "0.2em", color: SHELL_FOG }}>{String(idx + 1).padStart(2, "0")}</span>
-                <span style={{ fontFamily: SERIF_FONT, fontWeight: 400, fontSize: 19, lineHeight: 1.35, color: SHELL_INK, fontVariationSettings: '"opsz" 14' }}>{item.q}</span>
-                <span className="faq-toggle" style={{ fontFamily: SANS_FONT, fontSize: 18, color: SHELL_FOG }} aria-hidden>+</span>
+                <span style={{ fontFamily: MONO_FONT, fontSize: 11, fontWeight: 500, letterSpacing: "0.2em", color: textFog }}>{String(idx + 1).padStart(2, "0")}</span>
+                <span style={{ fontFamily: SERIF_FONT, fontWeight: 400, fontSize: 19, lineHeight: 1.35, color: textInk, fontVariationSettings: '"opsz" 14' }}>{item.q}</span>
+                <span className="faq-toggle" style={{ fontFamily: SANS_FONT, fontSize: 18, color: textFog }} aria-hidden>+</span>
               </summary>
-              <p style={{ fontFamily: SERIF_FONT, fontSize: 16, color: SHELL_SLATE, lineHeight: 1.65, marginTop: 18, marginLeft: 80, marginBottom: 0, maxWidth: 600, fontVariationSettings: '"opsz" 14' }}>{item.a}</p>
+              <p style={{ fontFamily: SERIF_FONT, fontSize: 16, color: isInk ? "rgba(251,251,252,0.78)" : SHELL_SLATE, lineHeight: 1.65, marginTop: 18, marginLeft: 80, marginBottom: 0, maxWidth: 600, fontVariationSettings: '"opsz" 14' }}>{item.a}</p>
             </details>
           ))}
         </div>
       </section>
 
-      <footer style={{ paddingTop: "clamp(40px, 5vw, 64px)", paddingBottom: "clamp(40px, 5vw, 64px)", paddingLeft: GUTTER, paddingRight: GUTTER, borderTop: `1px solid ${SHELL_RULE}` }}>
+      <footer style={{ paddingTop: "clamp(40px, 5vw, 64px)", paddingBottom: "clamp(40px, 5vw, 64px)", paddingLeft: GUTTER, paddingRight: GUTTER, borderTop: `1px solid ${ruleColor}` }}>
         <div className="mx-auto" style={{ maxWidth, display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 20 }}>
-          <RennerMark />
-          <div style={{ display: "flex", alignItems: "center", gap: 24, fontFamily: MONO_FONT, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: SHELL_FOG }}>
-            <Link href="/contact" style={{ color: SHELL_STEEL, textDecoration: "none" }}>Contact</Link>
-            <Link href="/terms" style={{ color: SHELL_STEEL, textDecoration: "none" }}>Terms</Link>
-            <Link href="/privacy" style={{ color: SHELL_STEEL, textDecoration: "none" }}>Privacy</Link>
-            <span style={{ color: SHELL_MIST }}>·</span>
+          <RennerMark size={36} weight={300} />
+          <div style={{ display: "flex", alignItems: "center", gap: 24, fontFamily: MONO_FONT, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: textFog }}>
+            <Link href="/contact" style={{ color: textMuted, textDecoration: "none" }}>Contact</Link>
+            <Link href="/terms" style={{ color: textMuted, textDecoration: "none" }}>Terms</Link>
+            <Link href="/privacy" style={{ color: textMuted, textDecoration: "none" }}>Privacy</Link>
+            <span style={{ color: textFog }}>·</span>
             <span>© 2026</span>
           </div>
         </div>

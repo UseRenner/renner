@@ -9,7 +9,7 @@ export default async function TopHowItWorks() {
   const viewer = await getViewer();
   const showCta = !viewer;
   return (
-    <PageShell active="top" showCta={showCta}>
+    <PageShell active="top" showCta={showCta} tone="steel">
       <TopBody showCta={showCta} />
     </PageShell>
   );

@@ -9,7 +9,7 @@ export default async function NetworkHowItWorks() {
   const viewer = await getViewer();
   const showCta = !viewer;
   return (
-    <PageShell active="network" showCta={showCta}>
+    <PageShell active="network" showCta={showCta} tone="steel">
       <NetworkBody showCta={showCta} />
     </PageShell>
   );

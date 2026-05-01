@@ -9,7 +9,7 @@ export default async function BureauHowItWorks() {
   const viewer = await getViewer();
   const showCta = !viewer;
   return (
-    <PageShell active="bureau" showCta={showCta}>
+    <PageShell active="bureau" showCta={showCta} tone="steel">
       <BureauBody showCta={showCta} />
     </PageShell>
   );

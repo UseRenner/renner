@@ -9,7 +9,7 @@ export default async function MarketplaceHowItWorks() {
   const viewer = await getViewer();
   const showCta = !viewer;
   return (
-    <PageShell active="marketplace" showCta={showCta}>
+    <PageShell active="marketplace" showCta={showCta} tone="steel">
       <MarketplaceBody showCta={showCta} />
     </PageShell>
   );

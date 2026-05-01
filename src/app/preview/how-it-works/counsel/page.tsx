@@ -9,7 +9,7 @@ export default async function CounselHowItWorks() {
   const viewer = await getViewer();
   const showCta = !viewer;
   return (
-    <PageShell active="counsel" showCta={showCta}>
+    <PageShell active="counsel" showCta={showCta} tone="ink">
       <CounselBody showCta={showCta} />
     </PageShell>
   );

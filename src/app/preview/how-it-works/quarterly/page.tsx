@@ -9,7 +9,7 @@ export default async function QuarterlyHowItWorks() {
   const viewer = await getViewer();
   const showCta = !viewer;
   return (
-    <PageShell active="quarterly" showCta={showCta}>
+    <PageShell active="quarterly" showCta={showCta} tone="steel">
       <QuarterlyBody showCta={showCta} />
     </PageShell>
   );

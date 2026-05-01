@@ -9,7 +9,7 @@ export default async function FrameHowItWorks() {
   const viewer = await getViewer();
   const showCta = !viewer;
   return (
-    <PageShell active="frame" showCta={showCta}>
+    <PageShell active="frame" showCta={showCta} tone="steel">
       <FrameBody showCta={showCta} />
     </PageShell>
   );

@@ -9,7 +9,7 @@ export default async function CharterHowItWorks() {
   const viewer = await getViewer();
   const showCta = !viewer;
   return (
-    <PageShell active="charter" showCta={showCta}>
+    <PageShell active="charter" showCta={showCta} tone="steel">
       <CharterBody showCta={showCta} />
     </PageShell>
   );

@@ -9,7 +9,7 @@ export default async function ShowcaseHowItWorks() {
   const viewer = await getViewer();
   const showCta = !viewer;
   return (
-    <PageShell active="showcase" showCta={showCta}>
+    <PageShell active="showcase" showCta={showCta} tone="steel">
       <ShowcaseBody showCta={showCta} />
     </PageShell>
   );

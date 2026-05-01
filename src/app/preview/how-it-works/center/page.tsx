@@ -9,7 +9,7 @@ export default async function CenterHowItWorks() {
   const viewer = await getViewer();
   const showCta = !viewer;
   return (
-    <PageShell active="center" showCta={showCta}>
+    <PageShell active="center" showCta={showCta} tone="steel">
       <CenterBody showCta={showCta} />
     </PageShell>
   );

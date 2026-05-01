@@ -17,7 +17,7 @@ const STEEL_600 = "#647589";
 const STEEL_500 = "#7d8da0";
 const STEEL_400 = "#9aa6b4";
 const STEEL_300 = "#cad1d8";
-const STEEL_200 = "#dfe4e9";
+const STEEL_200 = "#a7b2be";
 const RULE = "#eaedf0";
 const PAPER = "#fbfbfc";
 
