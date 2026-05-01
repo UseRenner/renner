@@ -14,12 +14,12 @@ const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
 const MONO = "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
-const INK = "#0a0c0f";
-const STEEL_700 = "#363c46";
-const STEEL_500 = "#5a6470";
-const STEEL_300 = "#bcc4cd";
-const RULE = "#cdd3da";
-const PAPER = "#fbfaf6";
+const INK = "#0d0f12";
+const STEEL_700 = "#38414d";
+const STEEL_500 = "#647589";
+const STEEL_300 = "#a7b2be";
+const RULE = "#eaedf0";
+const PAPER = "#fbfbfc";
 
 const CLIENT_DEK = "A marketplace for real-estate work. Post a task, pick a Renner, get it done. Both sides are screened to join.";
 const RENNER_DEK = "Real-estate work, paid through the platform. Set your area, set your rate, pick what you take. Both sides are screened to join.";
@@ -139,7 +139,7 @@ export function CounselBody({ showCta }: { showCta: boolean }) {
 
 function Tab({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) {
   return (
-    <button type="button" role="tab" aria-selected={active} onClick={onClick} style={{ background: "none", border: "none", padding: 0, fontFamily: "inherit", fontStyle: "inherit", fontSize: "inherit", fontWeight: "inherit", letterSpacing: "inherit", textTransform: "inherit", color: active ? "#0a0c0f" : "#5a6470", cursor: "pointer" }}>
+    <button type="button" role="tab" aria-selected={active} onClick={onClick} style={{ background: "none", border: "none", padding: 0, fontFamily: "inherit", fontStyle: "inherit", fontSize: "inherit", fontWeight: "inherit", letterSpacing: "inherit", textTransform: "inherit", color: active ? "#0d0f12" : "#647589", cursor: "pointer" }}>
       {label}
     </button>
   );
