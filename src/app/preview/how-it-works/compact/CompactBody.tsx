@@ -41,31 +41,27 @@ export function CompactBody({ showCta }: { showCta: boolean }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "clamp(28px, 3.5vw, 40px)" }}>
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 24, flexWrap: "wrap" }}>
-        <h1
+        <p
           style={{
             fontFamily: SERIF,
             fontWeight: 400,
-            fontSize: "clamp(32px, 4.5vw, 56px)",
-            lineHeight: 1.0,
-            letterSpacing: "-0.025em",
+            fontSize: "clamp(24px, 2.8vw, 32px)",
+            lineHeight: 1.3,
+            letterSpacing: "-0.008em",
             color: INK,
             margin: 0,
-            maxWidth: "20ch",
-            fontVariationSettings: '"opsz" 96',
+            maxWidth: "32ch",
+            fontVariationSettings: '"opsz" 60',
           }}
         >
-          {isClient ? "Post a task. Pick a Renner. Get it done." : "Get verified. Pick a task. Get it done."}
-        </h1>
+          {dek}
+        </p>
         <div role="tablist" aria-label="Audience" style={{ display: "flex", alignItems: "baseline", gap: 14, fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 16 }}>
           <Tab label="For clients" active={isClient} onClick={() => setTab("client")} />
           <span aria-hidden style={{ color: STEEL_300, fontStyle: "normal" }}>·</span>
           <Tab label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
         </div>
       </div>
-
-      <p style={{ fontFamily: SERIF, fontSize: "clamp(17px, 1.5vw, 19px)", lineHeight: 1.55, color: STEEL_700, margin: 0, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-        {dek}
-      </p>
 
       {/* Three rows; each holds number + title + body + proof + Mini, in line */}
       <div style={{ borderTop: `1px solid ${INK}`, borderBottom: `1px solid ${INK}` }}>

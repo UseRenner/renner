@@ -55,22 +55,21 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
       >
         {/* Top-left: statement */}
         <section className="quarter-cell" style={{ padding: "clamp(32px, 4.5vw, 64px)", display: "flex", alignItems: "center" }}>
-          <h1
+          <p
             style={{
               fontFamily: SERIF,
-              fontStyle: "italic",
-              fontWeight: 300,
-              fontSize: "clamp(32px, 4.5vw, 56px)",
-              lineHeight: 1.05,
-              letterSpacing: "-0.022em",
+              fontWeight: 400,
+              fontSize: "clamp(22px, 2.6vw, 30px)",
+              lineHeight: 1.35,
+              letterSpacing: "-0.005em",
               color: INK,
               margin: 0,
-              maxWidth: "14ch",
-              fontVariationSettings: '"opsz" 96',
+              maxWidth: "32ch",
+              fontVariationSettings: '"opsz" 60',
             }}
           >
-            {isClient ? "Post a task. Pick a Renner. Get it done." : "Get verified. Pick a task. Get it done."}
-          </h1>
+            A marketplace for real-estate work. Post a task, pick a Renner, get it done. Both sides are screened to join.
+          </p>
         </section>
 
         <div aria-hidden style={{ backgroundColor: INK }} className="quarter-vrule" />

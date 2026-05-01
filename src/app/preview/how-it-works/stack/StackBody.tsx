@@ -45,23 +45,20 @@ export function StackBody({ showCta }: { showCta: boolean }) {
         <Tab label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
-      <h1
+      <p
         style={{
           fontFamily: SERIF,
           fontWeight: 400,
-          fontSize: "clamp(40px, 5.5vw, 72px)",
-          lineHeight: 1.0,
-          letterSpacing: "-0.025em",
+          fontSize: "clamp(28px, 3.5vw, 44px)",
+          lineHeight: 1.25,
+          letterSpacing: "-0.012em",
           color: INK,
           margin: 0,
-          marginBottom: 24,
-          maxWidth: "20ch",
-          fontVariationSettings: '"opsz" 144',
+          marginBottom: "clamp(72px, 9vw, 112px)",
+          maxWidth: "32ch",
+          fontVariationSettings: '"opsz" 60',
         }}
       >
-        {isClient ? "Post a task. Pick a Renner. Get it done." : "Get verified. Pick a task. Get it done."}
-      </h1>
-      <p style={{ fontFamily: SERIF, fontSize: "clamp(17px, 1.5vw, 19px)", lineHeight: 1.55, color: STEEL_700, margin: 0, marginBottom: "clamp(72px, 9vw, 112px)", maxWidth: "52ch", fontVariationSettings: '"opsz" 14' }}>
         {dek}
       </p>
 

@@ -46,22 +46,22 @@ export function TopBody({ showCta }: { showCta: boolean }) {
         <Tab label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
-      <h1
+      <p
         style={{
           fontFamily: SERIF,
           fontWeight: 400,
-          fontSize: "clamp(48px, 7vw, 96px)",
-          lineHeight: 0.98,
-          letterSpacing: "-0.03em",
+          fontSize: "clamp(28px, 3.5vw, 44px)",
+          lineHeight: 1.25,
+          letterSpacing: "-0.012em",
           color: INK,
           margin: 0,
           marginBottom: "clamp(56px, 7vw, 88px)",
-          maxWidth: "16ch",
-          fontVariationSettings: '"opsz" 144',
+          maxWidth: "32ch",
+          fontVariationSettings: '"opsz" 60',
         }}
       >
-        {isClient ? "Post a task. Pick a Renner. Get it done." : "Get verified. Pick a task. Get it done."}
-      </h1>
+        {dek}
+      </p>
 
       <div className="top-row" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "clamp(24px, 3vw, 44px)", marginBottom: "clamp(48px, 6vw, 72px)" }}>
         {kinds.map((kind, i) => (
@@ -78,10 +78,6 @@ export function TopBody({ showCta }: { showCta: boolean }) {
           </div>
         ))}
       </div>
-
-      <p style={{ fontFamily: SERIF, fontSize: "clamp(18px, 1.7vw, 22px)", lineHeight: 1.55, color: STEEL_700, margin: 0, marginBottom: "clamp(48px, 6vw, 72px)", maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-        {dek}
-      </p>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "clamp(24px, 3vw, 48px)", paddingTop: "clamp(28px, 3.5vw, 36px)", borderTop: `1px solid ${INK}`, marginBottom: showCta ? "clamp(48px, 6vw, 72px)" : 0 }} className="top-trust">
         {(isClient

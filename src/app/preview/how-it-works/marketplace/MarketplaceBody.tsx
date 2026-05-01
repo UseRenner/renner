@@ -160,18 +160,6 @@ export function MarketplaceBody({ showCta }: { showCta: boolean }) {
     ? { label: "Sign up", href: "/signup" }
     : { label: "Become a Renner", href: "/become-a-renner" };
 
-  // Statement clauses — same imperative voice as the canonical Brief.
-  const clauses: string[] = isClient
-    ? [
-        "Post a task.",
-        "Pick a Renner.",
-        "Get it done.",
-      ]
-    : [
-        "Get verified.",
-        "Pick a task.",
-        "Get it done.",
-      ];
 
   return (
     <>
@@ -196,37 +184,19 @@ export function MarketplaceBody({ showCta }: { showCta: boolean }) {
         <TabButton label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
-      {/* ─── Statement ─── stacked, full width so each clause fits one line */}
-      <h1
-        style={{
-          fontFamily: SANS,
-          fontWeight: 400,
-          fontSize: "clamp(40px, 6vw, 80px)",
-          lineHeight: 1.05,
-          letterSpacing: "-0.025em",
-          color: INK,
-          margin: 0,
-          marginBottom: "clamp(32px, 4vw, 48px)",
-          maxWidth: "26ch",
-        }}
-      >
-        {clauses.map((c, i) => (
-          <span key={i}>{i > 0 ? " " : ""}{c}</span>
-        ))}
-      </h1>
-
       {/* ─── Dek ─── one sentence framing the platform */}
       <p
         style={{
           fontFamily: SERIF,
           fontWeight: 400,
-          fontSize: "clamp(17px, 1.5vw, 19px)",
-          lineHeight: 1.55,
-          color: STEEL_700,
+          fontSize: "clamp(28px, 3.5vw, 44px)",
+          lineHeight: 1.3,
+          letterSpacing: "-0.012em",
+          color: INK,
           margin: 0,
           marginBottom: "clamp(72px, 9vw, 120px)",
-          maxWidth: "56ch",
-          fontVariationSettings: '"opsz" 14',
+          maxWidth: "32ch",
+          fontVariationSettings: '"opsz" 60',
         }}
       >
         {dek}

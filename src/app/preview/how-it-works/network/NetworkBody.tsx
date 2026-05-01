@@ -183,21 +183,6 @@ export function NetworkBody({ showCta }: { showCta: boolean }) {
     ? { label: "Sign up", href: "/signup" }
     : { label: "Become a Renner", href: "/become-a-renner" };
 
-  // Statement clauses — sans-led, with the closing emphasis word set
-  // in italic-300 serif. The single-line italic punch is the editorial
-  // accent that keeps a sans-led page from reading purely SaaS.
-  const clauses: string[] = isClient
-    ? [
-        "Post a task.",
-        "Pick a Renner.",
-        "Get it done.",
-      ]
-    : [
-        "Get verified.",
-        "Pick a task.",
-        "Get it done.",
-      ];
-
   return (
     <>
       {/* ─── Audience switch ─── italic, restrained */}
@@ -221,47 +206,22 @@ export function NetworkBody({ showCta }: { showCta: boolean }) {
         <TabButton label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
-      {/* ─── Statement + dek ─── sans-led with italic-serif accents */}
-      <div
-        className="net-lede"
+      {/* ─── Dek — sans-led, scaled up to lead the page ─── */}
+      <p
         style={{
-          display: "grid",
-          gridTemplateColumns: "minmax(0, 1.1fr) minmax(0, 1fr)",
-          gap: "clamp(40px, 6vw, 96px)",
-          alignItems: "end",
+          fontFamily: SANS,
+          fontWeight: 400,
+          fontSize: "clamp(24px, 2.8vw, 32px)",
+          lineHeight: 1.3,
+          letterSpacing: "-0.005em",
+          color: INK,
+          margin: 0,
           marginBottom: "clamp(64px, 8vw, 96px)",
+          maxWidth: "44ch",
         }}
       >
-        <h1
-          style={{
-            fontFamily: SANS,
-            fontWeight: 400,
-            fontSize: "clamp(36px, 5.4vw, 64px)",
-            lineHeight: 1.05,
-            letterSpacing: "-0.018em",
-            color: INK,
-            margin: 0,
-            maxWidth: "22ch",
-          }}
-        >
-          {clauses.map((c, i) => (
-            <span key={i}>{i > 0 ? " " : ""}{c}</span>
-          ))}
-        </h1>
-        <p
-          style={{
-            fontFamily: SANS,
-            fontWeight: 400,
-            fontSize: "clamp(15px, 1.3vw, 17px)",
-            lineHeight: 1.6,
-            color: STEEL_700,
-            margin: 0,
-            maxWidth: "44ch",
-          }}
-        >
-          {dek}
-        </p>
-      </div>
+        {dek}
+      </p>
 
       {/* ─── Section label ─── above the operator grid */}
       <div

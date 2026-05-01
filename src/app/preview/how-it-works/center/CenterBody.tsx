@@ -46,23 +46,20 @@ export function CenterBody({ showCta }: { showCta: boolean }) {
         <Tab label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
-      <h1
+      <p
         style={{
           fontFamily: SERIF,
           fontWeight: 400,
-          fontSize: "clamp(40px, 6vw, 88px)",
-          lineHeight: 0.98,
-          letterSpacing: "-0.028em",
+          fontSize: "clamp(28px, 3.5vw, 44px)",
+          lineHeight: 1.3,
+          letterSpacing: "-0.012em",
           color: INK,
           margin: "0 auto",
-          marginBottom: 24,
-          maxWidth: "20ch",
-          fontVariationSettings: '"opsz" 144',
+          marginBottom: "clamp(64px, 8vw, 96px)",
+          maxWidth: "32ch",
+          fontVariationSettings: '"opsz" 60',
         }}
       >
-        {isClient ? "Post a task. Pick a Renner. Get it done." : "Get verified. Pick a task. Get it done."}
-      </h1>
-      <p style={{ fontFamily: SERIF, fontSize: "clamp(17px, 1.5vw, 19px)", lineHeight: 1.55, color: STEEL_700, margin: "0 auto", marginBottom: "clamp(64px, 8vw, 96px)", maxWidth: "44ch", fontVariationSettings: '"opsz" 14' }}>
         {dek}
       </p>
 

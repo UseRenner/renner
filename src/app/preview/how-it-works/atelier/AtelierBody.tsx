@@ -121,36 +121,27 @@ export function AtelierBody({ showCta }: { showCta: boolean }) {
     ? { label: "Sign up", href: "/signup" }
     : { label: "Become a Renner", href: "/become-a-renner" };
 
-  // The italic-display statement is the page's typographic moment —
-  // all three clauses set in italic-300, lit in steel-800 instead of
-  // pure ink so the editorial register reads cooler.
-  const clauses: string[] = isClient
-    ? ["Post a task.", "Pick a Renner.", "Get it done."]
-    : ["Get verified.", "Pick a task.", "Get it done."];
-
   return (
     <>
       <div className="atelier-grid">
-        {/* ─── Left ─── italic-display statement, sticky on desktop */}
+        {/* ─── Left ─── italic-display dek, sticky on desktop */}
         <aside className="atelier-left">
-          <h1
+          <p
             style={{
               fontFamily: SERIF,
               fontStyle: "italic",
               fontWeight: 300,
-              fontSize: "clamp(32px, 4.4vw, 56px)",
-              lineHeight: 1.1,
-              letterSpacing: "-0.022em",
+              fontSize: "clamp(28px, 3.6vw, 44px)",
+              lineHeight: 1.25,
+              letterSpacing: "-0.012em",
               color: STEEL_800,
               margin: 0,
-              maxWidth: "22ch",
+              maxWidth: "26ch",
               fontVariationSettings: '"opsz" 60',
             }}
           >
-            {clauses.map((c, i) => (
-              <span key={i}>{i > 0 ? " " : ""}{c}</span>
-            ))}
-          </h1>
+            {dek}
+          </p>
         </aside>
 
         {/* ─── Right ─── upright content column */}
@@ -174,22 +165,6 @@ export function AtelierBody({ showCta }: { showCta: boolean }) {
             <span aria-hidden style={{ color: STEEL_300, fontStyle: "normal" }}>·</span>
             <TabButton label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
           </div>
-
-          <p
-            style={{
-              fontFamily: SERIF,
-              fontWeight: 400,
-              fontSize: "clamp(18px, 1.7vw, 22px)",
-              lineHeight: 1.5,
-              color: INK,
-              margin: 0,
-              marginBottom: "clamp(48px, 6vw, 72px)",
-              maxWidth: "44ch",
-              fontVariationSettings: '"opsz" 14',
-            }}
-          >
-            {dek}
-          </p>
 
           {/* Numbered steps */}
           <ol

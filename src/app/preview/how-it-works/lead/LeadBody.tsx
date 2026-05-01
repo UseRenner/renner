@@ -46,29 +46,23 @@ export function LeadBody({ showCta }: { showCta: boolean }) {
         <Tab label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
-      <div className="lead-hero" style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1.4fr)", gap: "clamp(36px, 5vw, 80px)", alignItems: "center", marginBottom: "clamp(72px, 9vw, 112px)" }}>
-        <div>
-          <h1
-            style={{
-              fontFamily: SERIF,
-              fontWeight: 400,
-              fontSize: "clamp(40px, 5.5vw, 72px)",
-              lineHeight: 1.0,
-              letterSpacing: "-0.025em",
-              color: INK,
-              margin: 0,
-              marginBottom: 24,
-              maxWidth: "16ch",
-              fontVariationSettings: '"opsz" 144',
-            }}
-          >
-            {isClient ? "Post a task. Pick a Renner. Get it done." : "Get verified. Pick a task. Get it done."}
-          </h1>
-          <p style={{ fontFamily: SERIF, fontSize: "clamp(17px, 1.5vw, 19px)", lineHeight: 1.6, color: STEEL_700, margin: 0, maxWidth: "44ch", fontVariationSettings: '"opsz" 14' }}>
-            {dek}
-          </p>
-        </div>
-        <div>
+      <div className="lead-hero" style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1fr)", gap: "clamp(40px, 5vw, 80px)", alignItems: "center", marginBottom: "clamp(72px, 9vw, 112px)" }}>
+        <p
+          style={{
+            fontFamily: SERIF,
+            fontWeight: 400,
+            fontSize: "clamp(28px, 3.5vw, 44px)",
+            lineHeight: 1.25,
+            letterSpacing: "-0.012em",
+            color: INK,
+            margin: 0,
+            maxWidth: "26ch",
+            fontVariationSettings: '"opsz" 60',
+          }}
+        >
+          {dek}
+        </p>
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <Card kind={kinds[0]} />
         </div>
       </div>
