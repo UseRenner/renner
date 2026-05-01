@@ -55,20 +55,18 @@ export type VariantKey =
   | "cinema"
   | "anchor"
   | "quarter"
-  | "atlas"
-  | "letter"
-  | "hours"
-  | "triptych"
-  | "watermark"
-  | "pair";
+  | "lead"
+  | "stack"
+  | "top"
+  | "compact"
+  | "center";
 
 export const VARIANTS: ReadonlyArray<{ href: string; key: VariantKey; label: string }> = [
-  { href: "/preview/how-it-works/atlas", key: "atlas", label: "Atlas" },
-  { href: "/preview/how-it-works/letter", key: "letter", label: "Letter" },
-  { href: "/preview/how-it-works/hours", key: "hours", label: "Hours" },
-  { href: "/preview/how-it-works/triptych", key: "triptych", label: "Triptych" },
-  { href: "/preview/how-it-works/watermark", key: "watermark", label: "Watermark" },
-  { href: "/preview/how-it-works/pair", key: "pair", label: "Pair" },
+  { href: "/preview/how-it-works/lead", key: "lead", label: "Lead" },
+  { href: "/preview/how-it-works/stack", key: "stack", label: "Stack" },
+  { href: "/preview/how-it-works/top", key: "top", label: "Top" },
+  { href: "/preview/how-it-works/compact", key: "compact", label: "Compact" },
+  { href: "/preview/how-it-works/center", key: "center", label: "Center" },
   { href: "/preview/how-it-works-2", key: "rail", label: "Rail" },
   { href: "/preview/how-it-works/atelier", key: "atelier", label: "Atelier" },
   { href: "/preview/how-it-works/plate", key: "plate", label: "Plate" },

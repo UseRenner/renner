@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { getViewer } from "@/lib/role";
 import { FAQS, RennerMark, VariantSwitcher } from "../_shared";
-import { LetterBody } from "./LetterBody";
+import { StackBody } from "./StackBody";
 
-export const metadata = { title: "How it works · Letter · Renner", robots: { index: false, follow: false } };
+export const metadata = { title: "How it works · Stack · Renner", robots: { index: false, follow: false } };
 export const dynamic = "force-dynamic";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
@@ -18,14 +18,14 @@ const MIST = "#cad1d8";
 const RULE = "#eaedf0";
 const PAPER = "#fbfbfc";
 
-export default async function LetterHowItWorks() {
+export default async function StackHowItWorks() {
   const viewer = await getViewer();
   const showCta = !viewer;
   return (
     <div style={{ backgroundColor: PAPER, color: INK, minHeight: "100vh" }}>
-      <VariantSwitcher active="letter" />
+      <VariantSwitcher active="stack" />
       <header style={{ padding: "clamp(28px, 3.5vw, 48px) clamp(28px, 4vw, 64px)", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
-        <RennerMark size={32} weight={300} />
+        <RennerMark />
         {showCta ? (
           <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
             <Link href="/signin" style={{ fontFamily: SANS, fontSize: 13, fontWeight: 500, color: STEEL, textDecoration: "none" }}>Sign in</Link>
@@ -37,7 +37,9 @@ export default async function LetterHowItWorks() {
       </header>
 
       <main style={{ padding: "clamp(40px, 6vw, 80px) clamp(28px, 4vw, 64px) clamp(64px, 8vw, 112px)" }}>
-        <LetterBody showCta={showCta} />
+        <div className="mx-auto" style={{ maxWidth: 1280 }}>
+          <StackBody showCta={showCta} />
+        </div>
       </main>
 
       <section style={{ padding: "clamp(48px, 6vw, 80px) clamp(28px, 4vw, 64px) clamp(96px, 12vw, 160px)", borderTop: `1px solid ${RULE}` }}>

@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { getViewer } from "@/lib/role";
 import { FAQS, RennerMark, VariantSwitcher } from "../_shared";
-import { AtlasBody } from "./AtlasBody";
+import { LeadBody } from "./LeadBody";
 
-export const metadata = { title: "How it works · Atlas · Renner", robots: { index: false, follow: false } };
+export const metadata = { title: "How it works · Lead · Renner", robots: { index: false, follow: false } };
 export const dynamic = "force-dynamic";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
@@ -18,14 +18,14 @@ const MIST = "#cad1d8";
 const RULE = "#eaedf0";
 const PAPER = "#fbfbfc";
 
-export default async function AtlasHowItWorks() {
+export default async function LeadHowItWorks() {
   const viewer = await getViewer();
   const showCta = !viewer;
   return (
     <div style={{ backgroundColor: PAPER, color: INK, minHeight: "100vh" }}>
-      <VariantSwitcher active="atlas" />
+      <VariantSwitcher active="lead" />
       <header style={{ padding: "clamp(28px, 3.5vw, 48px) clamp(28px, 4vw, 64px)", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
-        <RennerMark size={32} weight={300} />
+        <RennerMark />
         {showCta ? (
           <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
             <Link href="/signin" style={{ fontFamily: SANS, fontSize: 13, fontWeight: 500, color: STEEL, textDecoration: "none" }}>Sign in</Link>
@@ -37,8 +37,8 @@ export default async function AtlasHowItWorks() {
       </header>
 
       <main style={{ padding: "clamp(40px, 6vw, 80px) clamp(28px, 4vw, 64px) clamp(64px, 8vw, 112px)" }}>
-        <div className="mx-auto" style={{ maxWidth: 1280 }}>
-          <AtlasBody showCta={showCta} />
+        <div className="mx-auto" style={{ maxWidth: 1200 }}>
+          <LeadBody showCta={showCta} />
         </div>
       </main>
 
