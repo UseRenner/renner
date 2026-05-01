@@ -54,9 +54,21 @@ export type VariantKey =
   | "fold"
   | "cinema"
   | "anchor"
-  | "quarter";
+  | "quarter"
+  | "atlas"
+  | "letter"
+  | "hours"
+  | "triptych"
+  | "watermark"
+  | "pair";
 
 export const VARIANTS: ReadonlyArray<{ href: string; key: VariantKey; label: string }> = [
+  { href: "/preview/how-it-works/atlas", key: "atlas", label: "Atlas" },
+  { href: "/preview/how-it-works/letter", key: "letter", label: "Letter" },
+  { href: "/preview/how-it-works/hours", key: "hours", label: "Hours" },
+  { href: "/preview/how-it-works/triptych", key: "triptych", label: "Triptych" },
+  { href: "/preview/how-it-works/watermark", key: "watermark", label: "Watermark" },
+  { href: "/preview/how-it-works/pair", key: "pair", label: "Pair" },
   { href: "/preview/how-it-works-2", key: "rail", label: "Rail" },
   { href: "/preview/how-it-works/atelier", key: "atelier", label: "Atelier" },
   { href: "/preview/how-it-works/plate", key: "plate", label: "Plate" },
