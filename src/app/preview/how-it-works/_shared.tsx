@@ -140,7 +140,7 @@ const SHELL_RULE = "#eaedf0";
 const SHELL_100 = "#eaedf0";
 const SHELL_PAPER = "#fbfbfc";
 
-export type ShellTone = "paper" | "mist" | "haze" | "steel" | "ink";
+export type ShellTone = "paper" | "chalk" | "mist" | "haze" | "steel" | "ink";
 
 export function getToneVars(tone: ShellTone): React.CSSProperties {
   return TOKENS[tone] as React.CSSProperties;
@@ -178,6 +178,35 @@ const TOKENS: Record<ShellTone, Record<string, string>> = {
     "--ill-disc-bg": "#cad1d8",
     "--ill-disc-text": "#0d0f12",
     // Callout — always a high-contrast dark panel
+    "--c-callout-bg": "#0d0f12",
+    "--c-callout-text": "#fbfbfc",
+    "--c-callout-fog": "rgba(251,251,252,0.6)",
+    "--c-callout-dim": "rgba(251,251,252,0.78)",
+  },
+  chalk: {
+    // Chalk tone — Steel 100 page (#eaedf0) with ink text. The
+    // lightest non-paper tone, just a step off the page.
+    "--c-text": "#0d0f12",
+    "--c-bg": "#eaedf0",
+    "--c-700": "#38414d",
+    "--c-600": "#647589",
+    "--c-500": "#7d8da0",
+    "--c-300": "#cad1d8",
+    "--c-rule": "#cad1d8",
+    "--c-panel": "#cad1d8",
+    "--c-hover": "#cad1d8",
+    "--c-paper": "#fbfbfc",
+    "--c-ink": "#0d0f12",
+    "--ill-bg": "#eaedf0",
+    "--ill-text": "#0d0f12",
+    "--ill-text-dim": "#4d5b6a",
+    "--ill-text-fog": "#7d8da0",
+    "--ill-border": "#cad1d8",
+    "--ill-rule": "#cad1d8",
+    "--ill-photo-bg": "#cad1d8",
+    "--ill-photo-text": "#7d8da0",
+    "--ill-disc-bg": "#647589",
+    "--ill-disc-text": "#fbfbfc",
     "--c-callout-bg": "#0d0f12",
     "--c-callout-text": "#fbfbfc",
     "--c-callout-fog": "rgba(251,251,252,0.6)",

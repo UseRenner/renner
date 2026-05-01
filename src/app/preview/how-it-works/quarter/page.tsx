@@ -6,7 +6,7 @@ export const metadata = { title: "How it works · Quarter · Renner", robots: { 
 export const dynamic = "force-dynamic";
 
 function readTone(v: unknown): ShellTone {
-  return v === "ink" || v === "steel" || v === "haze" || v === "mist" || v === "paper" ? v : "paper";
+  return v === "ink" || v === "steel" || v === "haze" || v === "mist" || v === "chalk" || v === "paper" ? v : "paper";
 }
 
 export default async function QuarterHowItWorks({ searchParams }: { searchParams: Promise<{ tone?: string }> }) {
