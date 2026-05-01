@@ -138,12 +138,9 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
           className="quarter-cell quarter-trust"
           style={{
             padding: "clamp(32px, 4.5vw, 64px)",
-            borderLeft: `3px solid ${INK}`,
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            alignItems: "center",
-            textAlign: "center",
           }}
         >
           <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500, marginBottom: 28 }}>
