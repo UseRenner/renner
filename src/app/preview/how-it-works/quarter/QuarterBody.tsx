@@ -8,14 +8,14 @@ const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
 const MONO = "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
-const INK = "#0d0f12";
-const STEEL_700 = "#4d5b6a";
-const STEEL_600 = "#647589";
-const STEEL_500 = "#7d8da0";
-const STEEL_300 = "#cad1d8";
-const RULE = "#eaedf0";
+const INK = "var(--c-text, #0d0f12)";
+const STEEL_700 = "var(--c-700, #38414d)";
+const STEEL_600 = "var(--c-600, #647589)";
+const STEEL_500 = "var(--c-500, #7d8da0)";
+const STEEL_300 = "var(--c-300, #cad1d8)";
+const RULE = "var(--c-rule, #eaedf0)";
 const BONE = "#f6f7f9";
-const PAPER = "#fbfbfc";
+const PAPER = "var(--c-bg, #fbfbfc)";
 
 const CLIENT_STEPS = [
   { number: "01", title: "Post a task.", body: "Where, when, what, how much. Two minutes.", proof: "Under 2 min" },

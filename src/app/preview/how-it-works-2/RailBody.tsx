@@ -131,14 +131,14 @@ const SANS =
 const MONO =
   "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
-const INK = "#0d0f12";
+const INK = "var(--c-text, #0d0f12)";
 const SLATE = "#2a2f36";
 const STEEL = "#647589";
 const FOG = "#7d8da0";
 const MIST = "#cad1d8";
-const PAPER = "#fbfbfc";
+const PAPER = "var(--c-bg, #fbfbfc)";
 const BONE = "#f6f7f9";
-const RULE = "#eaedf0";
+const RULE = "var(--c-rule, #eaedf0)";
 
 export function RailBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");

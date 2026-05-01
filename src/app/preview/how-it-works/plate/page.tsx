@@ -1,15 +1,21 @@
 import { getViewer } from "@/lib/role";
-import { PageShell } from "../_shared";
+import { PageShell, type ShellTone } from "../_shared";
 import { PlateBody } from "./PlateBody";
 
 export const metadata = { title: "How it works · Plate · Renner", robots: { index: false, follow: false } };
 export const dynamic = "force-dynamic";
 
-export default async function PlateHowItWorks() {
+function readTone(v: unknown): ShellTone {
+  return v === "ink" || v === "steel" || v === "paper" ? v : "paper";
+}
+
+export default async function PlateHowItWorks({ searchParams }: { searchParams: Promise<{ tone?: string }> }) {
   const viewer = await getViewer();
   const showCta = !viewer;
+  const sp = await searchParams;
+  const tone = readTone(sp?.tone);
   return (
-    <PageShell active="plate" showCta={showCta}>
+    <PageShell active="plate" showCta={showCta} tone={tone}>
       <PlateBody showCta={showCta} />
     </PageShell>
   );

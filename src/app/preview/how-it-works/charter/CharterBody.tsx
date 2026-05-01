@@ -14,12 +14,12 @@ const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
 const MONO = "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
-const INK = "#0d0f12";
-const STEEL_700 = "#38414d";
-const STEEL_500 = "#647589";
-const STEEL_300 = "#a7b2be";
-const RULE = "#eaedf0";
-const PAPER = "#fbfbfc";
+const INK = "var(--c-text, #0d0f12)";
+const STEEL_700 = "var(--c-700, #38414d)";
+const STEEL_500 = "var(--c-500, #7d8da0)";
+const STEEL_300 = "var(--c-300, #a7b2be)";
+const RULE = "var(--c-rule, #eaedf0)";
+const PAPER = "var(--c-bg, #fbfbfc)";
 
 const CLIENT_DEK = "A marketplace for real-estate work. Post a task, pick a Renner, get it done. Both sides are screened to join.";
 const RENNER_DEK = "Real-estate work, paid through the platform. Set your area, set your rate, pick what you take. Both sides are screened to join.";

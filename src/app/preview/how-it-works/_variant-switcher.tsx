@@ -1,20 +1,30 @@
 "use client";
 
-// A floating, almost-invisible variant switcher. By default it sits
-// as a small mono pill at the bottom-right of the viewport, no
-// background, no border, just the active variant name. Click to
-// expand into a panel listing every direction. Click outside or
-// hit Esc to collapse. Page chrome stays unobstructed.
+// A floating, almost-invisible variant + tone switcher. By default
+// it sits as a small mono pill at the bottom-right of the viewport.
+// The pill shows the active variant; click to expand a panel that
+// also offers Paper / Steel / Ink tones via query param. Click
+// outside or hit Esc to collapse.
 
 import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { VARIANTS, type VariantKey } from "./_shared";
 
 const MONO = "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
+const TONES: Array<{ key: "paper" | "steel" | "ink"; label: string }> = [
+  { key: "paper", label: "Paper" },
+  { key: "steel", label: "Steel" },
+  { key: "ink", label: "Ink" },
+];
+
 export function VariantSwitcher({ active }: { active: VariantKey }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const currentTone = (searchParams?.get("tone") as "paper" | "steel" | "ink" | null) ?? "paper";
   const activeLabel = VARIANTS.find((v) => v.key === active)?.label ?? "";
 
   useEffect(() => {
@@ -32,6 +42,17 @@ export function VariantSwitcher({ active }: { active: VariantKey }) {
       document.removeEventListener("keydown", onKey);
     };
   }, [open]);
+
+  function hrefForVariant(href: string) {
+    if (currentTone === "paper") return href;
+    return `${href}?tone=${currentTone}`;
+  }
+
+  function hrefForTone(tone: "paper" | "steel" | "ink") {
+    const base = pathname || "/";
+    if (tone === "paper") return base;
+    return `${base}?tone=${tone}`;
+  }
 
   return (
     <div
@@ -60,14 +81,42 @@ export function VariantSwitcher({ active }: { active: VariantKey }) {
             border: "1px solid rgba(255,255,255,0.08)",
             borderRadius: 6,
             padding: "10px 4px",
-            minWidth: 200,
-            maxHeight: "min(70vh, 520px)",
+            minWidth: 220,
+            maxHeight: "min(72vh, 560px)",
             overflowY: "auto",
             boxShadow: "0 12px 32px rgba(0,0,0,0.18)",
           }}
         >
-          <div style={{ padding: "6px 14px 8px", color: "rgba(255,255,255,0.4)" }}>
-            Preview · {VARIANTS.length} variants
+          {/* Tone toggle */}
+          <div style={{ padding: "6px 14px 4px", color: "rgba(255,255,255,0.4)" }}>Tone</div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 0, padding: "0 8px 8px" }}>
+            {TONES.map((t) => {
+              const isActive = t.key === currentTone;
+              return (
+                <Link
+                  key={t.key}
+                  href={hrefForTone(t.key)}
+                  style={{
+                    display: "block",
+                    padding: "8px 6px",
+                    textAlign: "center",
+                    color: isActive ? "#fbfbfc" : "rgba(255,255,255,0.55)",
+                    backgroundColor: isActive ? "rgba(255,255,255,0.08)" : "transparent",
+                    textDecoration: "none",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                  }}
+                >
+                  {t.label}
+                </Link>
+              );
+            })}
+          </div>
+
+          <div style={{ height: 1, backgroundColor: "rgba(255,255,255,0.06)", margin: "4px 0 8px" }} />
+
+          {/* Variant list */}
+          <div style={{ padding: "0 14px 6px", color: "rgba(255,255,255,0.4)" }}>
+            {VARIANTS.length} variants
           </div>
           <div role="menu">
             {VARIANTS.map((v) => {
@@ -75,7 +124,7 @@ export function VariantSwitcher({ active }: { active: VariantKey }) {
               return (
                 <Link
                   key={v.href}
-                  href={v.href}
+                  href={hrefForVariant(v.href)}
                   role="menuitem"
                   style={{
                     display: "block",
@@ -122,6 +171,8 @@ export function VariantSwitcher({ active }: { active: VariantKey }) {
         <span style={{ color: "rgba(255,255,255,0.4)" }}>Preview</span>
         <span aria-hidden style={{ color: "rgba(255,255,255,0.18)" }}>·</span>
         <span style={{ color: "#fbfbfc" }}>{activeLabel}</span>
+        <span aria-hidden style={{ color: "rgba(255,255,255,0.4)" }}>·</span>
+        <span style={{ color: "rgba(255,255,255,0.78)" }}>{TONES.find((t) => t.key === currentTone)?.label}</span>
         <span aria-hidden style={{ marginLeft: 2, color: "rgba(255,255,255,0.4)", transform: open ? "rotate(180deg)" : "none", transition: "transform 150ms ease" }}>↑</span>
       </button>
     </div>

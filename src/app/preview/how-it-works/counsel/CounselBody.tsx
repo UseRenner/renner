@@ -8,8 +8,8 @@ const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
 const MONO = "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
-const INK = "#0d0f12";
-const PAPER = "#fbfbfc";
+const INK = "var(--c-text, #0d0f12)";
+const PAPER = "var(--c-bg, #fbfbfc)";
 const PAPER_DIM = "rgba(251,251,252,0.78)";
 const PAPER_FOG = "rgba(251,251,252,0.52)";
 const PAPER_RULE = "rgba(251,251,252,0.18)";

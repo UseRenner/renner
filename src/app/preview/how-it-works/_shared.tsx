@@ -166,6 +166,45 @@ const SHELL_PAPER = "#fbfbfc";
 
 export type ShellTone = "paper" | "steel" | "ink";
 
+// Token map per tone. Bodies reference these via var(--c-…); the
+// PageShell sets the values on its outer container so a single
+// prop flips every body's palette in step.
+const TOKENS: Record<ShellTone, Record<string, string>> = {
+  paper: {
+    "--c-text": "#0d0f12",
+    "--c-bg": "#fbfbfc",
+    "--c-700": "#38414d",
+    "--c-600": "#647589",
+    "--c-500": "#7d8da0",
+    "--c-300": "#cad1d8",
+    "--c-rule": "#eaedf0",
+    "--c-paper": "#fbfbfc",
+    "--c-ink": "#0d0f12",
+  },
+  steel: {
+    "--c-text": "#0d0f12",
+    "--c-bg": "#eaedf0",
+    "--c-700": "#38414d",
+    "--c-600": "#647589",
+    "--c-500": "#7d8da0",
+    "--c-300": "#a7b2be",
+    "--c-rule": "#cad1d8",
+    "--c-paper": "#fbfbfc",
+    "--c-ink": "#0d0f12",
+  },
+  ink: {
+    "--c-text": "#fbfbfc",
+    "--c-bg": "#0d0f12",
+    "--c-700": "#eaedf0",
+    "--c-600": "#cad1d8",
+    "--c-500": "#a7b2be",
+    "--c-300": "#647589",
+    "--c-rule": "rgba(251,251,252,0.18)",
+    "--c-paper": "#0d0f12",
+    "--c-ink": "#fbfbfc",
+  },
+};
+
 export function PageShell({
   active,
   showCta,
@@ -189,9 +228,10 @@ export function PageShell({
   const ruleColor = isInk ? "rgba(251,251,252,0.16)" : SHELL_RULE;
   const ctaBg = isInk ? SHELL_PAPER : SHELL_INK;
   const ctaFg = isInk ? SHELL_INK : SHELL_PAPER;
+  const cssVars = TOKENS[tone] as React.CSSProperties;
 
   return (
-    <div style={{ backgroundColor: pageBg, color: textInk, minHeight: "100vh" }}>
+    <div style={{ ...cssVars, backgroundColor: pageBg, color: textInk, minHeight: "100vh" }}>
       <VariantSwitcher active={active} />
 
       <header style={{ paddingTop: "clamp(28px, 3.5vw, 48px)", paddingBottom: "clamp(28px, 3.5vw, 48px)", paddingLeft: GUTTER, paddingRight: GUTTER }}>
