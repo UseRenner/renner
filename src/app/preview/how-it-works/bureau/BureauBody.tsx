@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Mini, CLIENT_KINDS, RENNER_KINDS } from "../_illustrations";
+import { Card, CLIENT_KINDS, RENNER_KINDS } from "../_illustrations";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
@@ -58,7 +58,7 @@ export function BureauBody({ showCta }: { showCta: boolean }) {
           {dek}
         </p>
         <div className="bureau-lede-illustration" style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Mini kind={kinds[0]} />
+          <Card kind={kinds[0]} />
         </div>
       </div>
 
