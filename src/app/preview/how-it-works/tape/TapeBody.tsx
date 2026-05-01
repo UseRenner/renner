@@ -156,29 +156,26 @@ export function TapeBody({ showCta }: { showCta: boolean }) {
               key={s.id}
               style={{
                 scrollMarginTop: "80px",
-                display: "grid",
-                gridTemplateColumns: "minmax(56px, 64px) minmax(0, 1fr)",
-                columnGap: "clamp(20px, 2.5vw, 32px)",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: 14,
                 padding: "clamp(28px, 3.5vw, 44px) 0",
                 borderTop: `1px solid ${RULE}`,
                 borderBottom: i === steps.length - 1 ? `1px solid ${RULE}` : "none",
+                textAlign: "center",
               }}
             >
-              <div style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.24em", color: STEEL_500, paddingTop: 4 }}>
-                {s.number}
+              <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
+                {s.number} · {s.proof}
               </div>
-              <div>
-                <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16, marginBottom: 10, flexWrap: "wrap" }}>
-                  <h3 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(24px, 2.6vw, 30px)", lineHeight: 1.1, color: INK, margin: 0, fontVariationSettings: '"opsz" 60' }}>
-                    {s.title}
-                  </h3>
-                  <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_600 }}>
-                    {s.proof}
-                  </span>
-                </div>
-                <p style={{ fontFamily: SERIF, fontSize: 17, lineHeight: 1.65, color: STEEL_700, margin: 0, marginBottom: 24, fontVariationSettings: '"opsz" 14' }}>
-                  {s.body}
-                </p>
+              <h3 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(24px, 2.6vw, 30px)", lineHeight: 1.1, color: INK, margin: 0, fontVariationSettings: '"opsz" 60' }}>
+                {s.title}
+              </h3>
+              <p style={{ fontFamily: SERIF, fontSize: 17, lineHeight: 1.65, color: STEEL_700, margin: 0, maxWidth: "44ch", fontVariationSettings: '"opsz" 14' }}>
+                {s.body}
+              </p>
+              <div style={{ marginTop: 10 }}>
                 <Mini kind={kind} />
               </div>
             </article>
