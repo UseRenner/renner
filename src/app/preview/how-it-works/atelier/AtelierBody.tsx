@@ -195,8 +195,6 @@ export function AtelierBody({ showCta }: { showCta: boolean }) {
               display: "grid",
               gridTemplateColumns: "repeat(3, 1fr)",
               gap: "clamp(20px, 2.4vw, 32px)",
-              paddingTop: "clamp(28px, 3.5vw, 36px)",
-              borderTop: `1px solid ${STEEL_300}`,
               textAlign: "center",
             }}
           >
