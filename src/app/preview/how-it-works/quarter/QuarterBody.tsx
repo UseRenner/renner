@@ -30,7 +30,7 @@ const RENNER_STEPS = [
 
 export function QuarterBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
-  const [trustVariant, setTrustVariant] = useState<"C" | "D" | "E">("C");
+  const [trustVariant, setTrustVariant] = useState<"C" | "E">("C");
   const isClient = tab === "client";
   const steps = isClient ? CLIENT_STEPS : RENNER_STEPS;
   const cta = isClient ? { label: "Sign up", href: "/signup" } : { label: "Become a Renner", href: "/become-a-renner" };
@@ -172,7 +172,7 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
               aria-label="Design option"
               style={{ display: "flex", alignItems: "baseline", gap: 8, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase" }}
             >
-              {(["C", "D", "E"] as const).map((v) => (
+              {(["C", "E"] as const).map((v) => (
                 <button
                   key={v}
                   type="button"
@@ -280,54 +280,6 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
             </dl>
           )}
 
-          {trustVariant === "D" && (
-            // D — Hairline schedule. Full-width hairline rules with italic
-            //     label on the left and mono proof flushed right.
-            <dl style={{ margin: 0, borderTop: `1px solid ${INK}` }}>
-              {trustPairs.map(([label, , kicker], i, arr) => (
-                <div
-                  key={label}
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "minmax(0, 1fr) minmax(0, auto)",
-                    gap: 16,
-                    alignItems: "baseline",
-                    padding: "clamp(18px, 2.2vw, 24px) 0",
-                    borderBottom: i === arr.length - 1 ? `1px solid ${INK}` : `1px solid ${RULE}`,
-                  }}
-                >
-                  <dt
-                    style={{
-                      fontFamily: SERIF,
-                      fontStyle: "italic",
-                      fontWeight: 300,
-                      fontSize: "clamp(20px, 2.2vw, 24px)",
-                      lineHeight: 1.1,
-                      letterSpacing: "-0.012em",
-                      color: INK,
-                      fontVariationSettings: '"opsz" 36',
-                    }}
-                  >
-                    {label}
-                  </dt>
-                  <dd
-                    style={{
-                      fontFamily: MONO,
-                      fontSize: 10,
-                      fontWeight: 500,
-                      letterSpacing: "0.22em",
-                      textTransform: "uppercase",
-                      color: STEEL_500,
-                      margin: 0,
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    {kicker}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          )}
         </section>
       </div>
 
