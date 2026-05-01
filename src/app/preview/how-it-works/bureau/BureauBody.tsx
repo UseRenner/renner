@@ -40,7 +40,7 @@ export function BureauBody({ showCta }: { showCta: boolean }) {
   return (
     <>
       {/* Top — meta line + audience switch */}
-      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 24, flexWrap: "wrap", marginBottom: "clamp(40px, 5vw, 56px)" }}>
+      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 24, flexWrap: "wrap", marginBottom: "clamp(24px, 3vw, 36px)" }}>
         <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500 }}>
           How it works
         </span>

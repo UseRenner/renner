@@ -300,7 +300,7 @@ export function PageShell({
         </div>
       </header>
 
-      <main style={{ paddingTop: "clamp(40px, 6vw, 80px)", paddingBottom: "clamp(64px, 8vw, 112px)", paddingLeft: GUTTER, paddingRight: GUTTER }}>
+      <main style={{ paddingTop: "clamp(24px, 3vw, 48px)", paddingBottom: "clamp(64px, 8vw, 112px)", paddingLeft: GUTTER, paddingRight: GUTTER }}>
         <div className="mx-auto" style={{ maxWidth }}>
           {children}
         </div>
