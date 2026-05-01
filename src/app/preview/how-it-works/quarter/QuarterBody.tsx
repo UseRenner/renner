@@ -200,16 +200,16 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
 
           {trustVariant === "C" && (
             // C — Card stack. Three small steel-panel cards stacked.
-            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               {trustPairs.map(([label, body]) => (
                 <div
                   key={label}
                   style={{
                     backgroundColor: "var(--c-panel, #eaedf0)",
-                    padding: "clamp(20px, 2.4vw, 28px)",
+                    padding: "clamp(14px, 1.8vw, 18px) clamp(16px, 2vw, 20px)",
                     display: "flex",
                     flexDirection: "column",
-                    gap: 6,
+                    gap: 4,
                   }}
                 >
                   <span
@@ -217,7 +217,7 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
                       fontFamily: SERIF,
                       fontStyle: "italic",
                       fontWeight: 300,
-                      fontSize: "clamp(20px, 2.2vw, 24px)",
+                      fontSize: "clamp(17px, 1.8vw, 20px)",
                       lineHeight: 1.1,
                       letterSpacing: "-0.012em",
                       color: INK,
@@ -229,8 +229,8 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
                   <span
                     style={{
                       fontFamily: SERIF,
-                      fontSize: 14,
-                      lineHeight: 1.55,
+                      fontSize: 13,
+                      lineHeight: 1.5,
                       color: STEEL_700,
                       fontVariationSettings: '"opsz" 14',
                     }}
