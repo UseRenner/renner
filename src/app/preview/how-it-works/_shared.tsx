@@ -194,3 +194,94 @@ export function VariantSwitcher({ active }: { active: VariantKey }) {
     </div>
   );
 }
+
+// A unified page shell so every variant shares one horizontal datum:
+// the wordmark, body content, FAQ, and footer all align to the same
+// left edge at every viewport, set by `gutter` (matches the wordmark
+// padding) and capped by `maxWidth` (1280 across the system).
+//
+// The body's children are dropped into the main slot. The FAQ is
+// constrained to a 720px reading column but left-aligned within the
+// page's max-width so its left edge matches the wordmark.
+
+const SERIF_FONT = "var(--font-source-serif), ui-serif, Georgia, serif";
+const SANS_FONT = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
+const MONO_FONT = "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
+
+const SHELL_INK = "#0d0f12";
+const SHELL_SLATE = "#2a2f36";
+const SHELL_STEEL = "#647589";
+const SHELL_FOG = "#7d8da0";
+const SHELL_MIST = "#cad1d8";
+const SHELL_RULE = "#eaedf0";
+const SHELL_PAPER = "#fbfbfc";
+
+export function PageShell({
+  active,
+  showCta,
+  children,
+  maxWidth = 1280,
+}: {
+  active: VariantKey;
+  showCta: boolean;
+  children: React.ReactNode;
+  maxWidth?: number;
+}) {
+  const GUTTER = "clamp(28px, 4vw, 64px)";
+  return (
+    <div style={{ backgroundColor: SHELL_PAPER, color: SHELL_INK, minHeight: "100vh" }}>
+      <VariantSwitcher active={active} />
+
+      <header style={{ paddingTop: "clamp(28px, 3.5vw, 48px)", paddingBottom: "clamp(28px, 3.5vw, 48px)", paddingLeft: GUTTER, paddingRight: GUTTER }}>
+        <div className="mx-auto" style={{ maxWidth, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
+          <RennerMark />
+          {showCta ? (
+            <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
+              <Link href="/signin" style={{ fontFamily: SANS_FONT, fontSize: 13, fontWeight: 500, color: SHELL_STEEL, textDecoration: "none" }}>Sign in</Link>
+              <Link href="/signup" style={{ fontFamily: SANS_FONT, fontSize: 13, fontWeight: 500, color: SHELL_PAPER, backgroundColor: SHELL_INK, border: `1px solid ${SHELL_INK}`, borderRadius: 4, padding: "10px 18px", textDecoration: "none", whiteSpace: "nowrap" }}>Sign up</Link>
+            </div>
+          ) : (
+            <Link href="/dashboard" style={{ fontFamily: SANS_FONT, fontSize: 13, fontWeight: 500, color: SHELL_INK, textDecoration: "none" }}>Dashboard →</Link>
+          )}
+        </div>
+      </header>
+
+      <main style={{ paddingTop: "clamp(40px, 6vw, 80px)", paddingBottom: "clamp(64px, 8vw, 112px)", paddingLeft: GUTTER, paddingRight: GUTTER }}>
+        <div className="mx-auto" style={{ maxWidth }}>
+          {children}
+        </div>
+      </main>
+
+      <section style={{ paddingTop: "clamp(48px, 6vw, 80px)", paddingBottom: "clamp(96px, 12vw, 160px)", paddingLeft: GUTTER, paddingRight: GUTTER, borderTop: `1px solid ${SHELL_RULE}` }}>
+        <div className="mx-auto" style={{ maxWidth }}>
+          <div style={{ maxWidth: 720 }}>
+            <div style={{ fontFamily: MONO_FONT, fontSize: 10, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: SHELL_FOG, marginBottom: 40 }}>Common questions</div>
+            {FAQS.map((item, idx) => (
+              <details key={item.q} className="faq-item" style={{ padding: "24px 0", borderBottom: `1px solid ${SHELL_RULE}`, borderTop: idx === 0 ? `1px solid ${SHELL_RULE}` : "none" }}>
+                <summary style={{ cursor: "pointer", listStyle: "none", display: "grid", gridTemplateColumns: "minmax(48px, 56px) 1fr auto", gap: 24, alignItems: "baseline" }}>
+                  <span style={{ fontFamily: MONO_FONT, fontSize: 11, fontWeight: 500, letterSpacing: "0.2em", color: SHELL_FOG }}>{String(idx + 1).padStart(2, "0")}</span>
+                  <span style={{ fontFamily: SERIF_FONT, fontWeight: 400, fontSize: 19, lineHeight: 1.35, color: SHELL_INK, fontVariationSettings: '"opsz" 14' }}>{item.q}</span>
+                  <span className="faq-toggle" style={{ fontFamily: SANS_FONT, fontSize: 18, color: SHELL_FOG }} aria-hidden>+</span>
+                </summary>
+                <p style={{ fontFamily: SERIF_FONT, fontSize: 16, color: SHELL_SLATE, lineHeight: 1.65, marginTop: 18, marginLeft: 80, marginBottom: 0, maxWidth: 600, fontVariationSettings: '"opsz" 14' }}>{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <footer style={{ paddingTop: "clamp(40px, 5vw, 64px)", paddingBottom: "clamp(40px, 5vw, 64px)", paddingLeft: GUTTER, paddingRight: GUTTER, borderTop: `1px solid ${SHELL_RULE}` }}>
+        <div className="mx-auto" style={{ maxWidth, display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 20 }}>
+          <RennerMark />
+          <div style={{ display: "flex", alignItems: "center", gap: 24, fontFamily: MONO_FONT, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: SHELL_FOG }}>
+            <Link href="/contact" style={{ color: SHELL_STEEL, textDecoration: "none" }}>Contact</Link>
+            <Link href="/terms" style={{ color: SHELL_STEEL, textDecoration: "none" }}>Terms</Link>
+            <Link href="/privacy" style={{ color: SHELL_STEEL, textDecoration: "none" }}>Privacy</Link>
+            <span style={{ color: SHELL_MIST }}>·</span>
+            <span>© 2026</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
