@@ -30,7 +30,7 @@ const RENNER_STEPS = [
 
 export function QuarterBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
-  const [trustVariant, setTrustVariant] = useState<"A" | "B" | "C" | "D" | "E">("A");
+  const [trustVariant, setTrustVariant] = useState<"C" | "D" | "E">("C");
   const isClient = tab === "client";
   const steps = isClient ? CLIENT_STEPS : RENNER_STEPS;
   const cta = isClient ? { label: "Sign up", href: "/signup" } : { label: "Become a Renner", href: "/become-a-renner" };
@@ -58,14 +58,17 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
         <Tab label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
-      {/* 2 × 2 grid divided by an ink crosshair */}
+      {/* 2 × 2 grid divided by an ink crosshair — every cell shares
+          the same width and height so the page reads as four equal
+          quadrants rather than a top/bottom split. */}
       <div
         className="quarter"
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1px 1fr",
-          gridTemplateRows: "auto 1px auto",
+          gridTemplateRows: "1fr 1px 1fr",
           border: `1px solid ${INK}`,
+          minHeight: "clamp(640px, 70vw, 820px)",
           marginBottom: showCta ? "clamp(40px, 5vw, 56px)" : 0,
         }}
       >
@@ -132,13 +135,14 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
 
         <div aria-hidden style={{ backgroundColor: INK }} className="quarter-vrule" />
 
-        {/* Bottom-right: trust — four design options switch in place. */}
+        {/* Bottom-right: trust — three design options switch in place. */}
         <section
           className="quarter-cell quarter-trust"
           style={{
-            position: "relative",
-            padding: trustVariant === "B" ? 0 : "clamp(32px, 4.5vw, 64px)",
-            borderLeft: trustVariant === "A" || trustVariant === "D" || trustVariant === "E" ? `3px solid ${INK}` : "none",
+            padding: "clamp(32px, 4.5vw, 64px)",
+            borderLeft: trustVariant === "C" ? "none" : `3px solid ${INK}`,
+            display: "flex",
+            flexDirection: "column",
           }}
         >
           <div
@@ -148,13 +152,7 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
               justifyContent: "space-between",
               gap: 16,
               flexWrap: "wrap",
-              padding: trustVariant === "B" ? "clamp(20px, 2.4vw, 28px) clamp(20px, 2.4vw, 28px) 0" : 0,
-              marginBottom: trustVariant === "B" ? 0 : 28,
-              position: trustVariant === "B" ? "absolute" : "static",
-              top: trustVariant === "B" ? 0 : undefined,
-              left: trustVariant === "B" ? 0 : undefined,
-              right: trustVariant === "B" ? 0 : undefined,
-              zIndex: 1,
+              marginBottom: 28,
             }}
           >
             <span
@@ -164,7 +162,7 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
                 fontWeight: 500,
                 letterSpacing: "0.28em",
                 textTransform: "uppercase",
-                color: trustVariant === "B" ? "rgba(251,251,252,0.55)" : STEEL_500,
+                color: STEEL_500,
               }}
             >
               {isClient ? "Why Renner" : "What you get"}
@@ -174,134 +172,31 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
               aria-label="Design option"
               style={{ display: "flex", alignItems: "baseline", gap: 8, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase" }}
             >
-              {(["A", "B", "C", "D", "E"] as const).map((v) => {
-                const onPlaque = trustVariant === "B";
-                const inactiveColor = onPlaque ? "rgba(251,251,252,0.55)" : STEEL_500;
-                const activeColor = onPlaque ? "var(--c-paper, #fbfbfc)" : INK;
-                const activeBorder = onPlaque ? "var(--c-paper, #fbfbfc)" : INK;
-                const inactiveBorder = onPlaque ? "rgba(251,251,252,0.32)" : STEEL_300;
-                return (
-                  <button
-                    key={v}
-                    type="button"
-                    role="tab"
-                    aria-selected={trustVariant === v}
-                    onClick={() => setTrustVariant(v)}
-                    style={{
-                      background: "none",
-                      border: `1px solid ${trustVariant === v ? activeBorder : inactiveBorder}`,
-                      padding: "4px 8px",
-                      color: trustVariant === v ? activeColor : inactiveColor,
-                      cursor: "pointer",
-                      fontFamily: "inherit",
-                      fontSize: "inherit",
-                      fontWeight: "inherit",
-                      letterSpacing: "inherit",
-                      textTransform: "inherit",
-                    }}
-                  >
-                    {v}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {trustVariant === "A" && (
-            // A — Receipt. Pure mono ledger lines with leader dots.
-            <dl style={{ margin: 0, display: "flex", flexDirection: "column", gap: 0 }}>
-              {trustPairs.map(([label, , kicker], i, arr) => (
-                <div
-                  key={label}
+              {(["C", "D", "E"] as const).map((v) => (
+                <button
+                  key={v}
+                  type="button"
+                  role="tab"
+                  aria-selected={trustVariant === v}
+                  onClick={() => setTrustVariant(v)}
                   style={{
-                    display: "grid",
-                    gridTemplateColumns: "minmax(0, auto) minmax(40px, 1fr) minmax(0, auto)",
-                    gap: 12,
-                    alignItems: "baseline",
-                    padding: "16px 0",
-                    borderBottom: i === arr.length - 1 ? "none" : `1px dashed ${RULE}`,
+                    background: "none",
+                    border: `1px solid ${trustVariant === v ? INK : STEEL_300}`,
+                    padding: "4px 8px",
+                    color: trustVariant === v ? INK : STEEL_500,
+                    cursor: "pointer",
+                    fontFamily: "inherit",
+                    fontSize: "inherit",
+                    fontWeight: "inherit",
+                    letterSpacing: "inherit",
+                    textTransform: "inherit",
                   }}
                 >
-                  <dt
-                    style={{
-                      fontFamily: MONO,
-                      fontSize: 12,
-                      fontWeight: 500,
-                      letterSpacing: "0.18em",
-                      textTransform: "uppercase",
-                      color: INK,
-                    }}
-                  >
-                    {label}
-                  </dt>
-                  <span aria-hidden style={{ borderBottom: `1px dotted ${STEEL_300}`, alignSelf: "center", marginBottom: 4 }} />
-                  <dd
-                    style={{
-                      fontFamily: MONO,
-                      fontSize: 11,
-                      fontWeight: 500,
-                      letterSpacing: "0.16em",
-                      textTransform: "uppercase",
-                      color: STEEL_700,
-                      margin: 0,
-                    }}
-                  >
-                    {kicker}
-                  </dd>
-                </div>
+                  {v}
+                </button>
               ))}
-            </dl>
-          )}
-
-          {trustVariant === "B" && (
-            // B — Plaque. A single ink-filled plaque bleeds to the cell
-            //     edges; paper italic claims stack inside it.
-            <div
-              style={{
-                backgroundColor: "var(--c-ink, #0d0f12)",
-                color: "var(--c-paper, #fbfbfc)",
-                padding: "clamp(56px, 7vw, 96px) clamp(32px, 4.5vw, 64px) clamp(32px, 4.5vw, 64px)",
-                minHeight: "100%",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <dl style={{ margin: 0, display: "flex", flexDirection: "column", gap: "clamp(20px, 2.4vw, 28px)", width: "100%" }}>
-                {trustPairs.map(([label, , kicker]) => (
-                  <div key={label}>
-                    <dt
-                      style={{
-                        fontFamily: SERIF,
-                        fontStyle: "italic",
-                        fontWeight: 300,
-                        fontSize: "clamp(26px, 3vw, 36px)",
-                        lineHeight: 1.1,
-                        letterSpacing: "-0.014em",
-                        color: "var(--c-paper, #fbfbfc)",
-                        marginBottom: 6,
-                        fontVariationSettings: '"opsz" 60',
-                      }}
-                    >
-                      {label}.
-                    </dt>
-                    <dd
-                      style={{
-                        fontFamily: MONO,
-                        fontSize: 10,
-                        fontWeight: 500,
-                        letterSpacing: "0.22em",
-                        textTransform: "uppercase",
-                        color: "rgba(251,251,252,0.62)",
-                        margin: 0,
-                      }}
-                    >
-                      {kicker}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
             </div>
-          )}
+          </div>
 
           {trustVariant === "C" && (
             // C — Card stack. Three small steel-panel cards stacked.
@@ -466,6 +361,7 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
           .quarter {
             grid-template-columns: 1fr !important;
             grid-template-rows: auto !important;
+            min-height: 0 !important;
           }
           .quarter-vrule {
             display: none !important;
