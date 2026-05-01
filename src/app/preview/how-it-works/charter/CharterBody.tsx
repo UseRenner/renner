@@ -25,14 +25,14 @@ const CLIENT_DEK = "A marketplace for real-estate work. Post a task, pick a Renn
 const RENNER_DEK = "Real-estate work, paid through the platform. Set your area, set your rate, pick what you take. Both sides are screened to join.";
 
 const CLIENT_ARTICLES = [
-  { numeral: "I", title: "Post a task.", body: "Where, when, what, how much. Two minutes to set the brief — your address, your window, your price. Posts go live to vetted Renners only.", proof: "Under 2 minutes" },
-  { numeral: "II", title: "Pick a Renner.", body: "Vetted Renners apply with bios, ratings, and tenure on the platform. Read the file, weigh the file, and book the right hand for the work.", proof: "Checkr-vetted" },
-  { numeral: "III", title: "Get it done.", body: "Photos and a written note arrive on completion. The client confirms; Stripe releases the funds in full. After 48 hours without a response, payment auto-releases.", proof: "Stripe escrow" },
+  { numeral: "01", title: "Post a task.", body: "Where, when, what, how much. Two minutes to set the brief — your address, your window, your price. Posts go live to vetted Renners only.", proof: "Under 2 minutes" },
+  { numeral: "02", title: "Pick a Renner.", body: "Vetted Renners apply with bios, ratings, and tenure on the platform. Read the file, weigh the file, and book the right hand for the work.", proof: "Checkr-vetted" },
+  { numeral: "03", title: "Get it done.", body: "Photos and a written note arrive on completion. The client confirms; Stripe releases the funds in full. After 48 hours without a response, payment auto-releases.", proof: "Stripe escrow" },
 ];
 const RENNER_ARTICLES = [
-  { numeral: "I", title: "Get verified.", body: "Identity verified, Checkr background check cleared, service area drawn, rate named, categories chosen. Onboarding usually clears the same day in most states.", proof: "Same-day" },
-  { numeral: "II", title: "Pick a task.", body: "Briefs come in from agents, brokers, and property managers nearby. Apply to the ones that fit your schedule and skills. Decline anything that does not.", proof: "Local marketplace" },
-  { numeral: "III", title: "Get it done.", body: "Run the task, upload completion photos, and get paid through the platform. 100% of the task pay is yours. Build a reputation that earns repeat clients.", proof: "100% of task pay" },
+  { numeral: "01", title: "Get verified.", body: "Identity verified, Checkr background check cleared, service area drawn, rate named, categories chosen. Onboarding usually clears the same day in most states.", proof: "Same-day" },
+  { numeral: "02", title: "Pick a task.", body: "Briefs come in from agents, brokers, and property managers nearby. Apply to the ones that fit your schedule and skills. Decline anything that does not.", proof: "Local marketplace" },
+  { numeral: "03", title: "Get it done.", body: "Run the task, upload completion photos, and get paid through the platform. 100% of the task pay is yours. Build a reputation that earns repeat clients.", proof: "100% of task pay" },
 ];
 
 export function CharterBody({ showCta }: { showCta: boolean }) {
@@ -46,14 +46,11 @@ export function CharterBody({ showCta }: { showCta: boolean }) {
   return (
     <div style={{ backgroundColor: PAPER }}>
       {/* Title plate */}
-      <div style={{ borderTop: `2px solid ${INK}`, borderBottom: `1px solid ${INK}`, padding: "28px 0", marginBottom: "clamp(64px, 8vw, 96px)", textAlign: "center" }}>
-        <div style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 13, letterSpacing: "0.32em", textTransform: "uppercase", color: STEEL_500, marginBottom: 16, fontVariationSettings: '"opsz" 14' }}>
-          On Procedure
-        </div>
-        <div style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "clamp(36px, 5vw, 64px)", lineHeight: 1.1, letterSpacing: "-0.022em", color: INK, marginBottom: 12, fontVariationSettings: '"opsz" 96' }}>
-          Three Articles
-        </div>
-        <div role="tablist" aria-label="Audience" style={{ display: "flex", alignItems: "baseline", justifyContent: "center", gap: 16, fontFamily: SERIF, fontWeight: 500, fontSize: 13, letterSpacing: "0.16em", textTransform: "uppercase", color: STEEL_500, fontVariationSettings: '"opsz" 14' }}>
+      <div style={{ borderTop: `2px solid ${INK}`, borderBottom: `1px solid ${INK}`, padding: "20px 0", marginBottom: "clamp(64px, 8vw, 96px)", display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16, flexWrap: "wrap" }}>
+        <span style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 13, letterSpacing: "0.16em", textTransform: "uppercase", color: INK, fontVariationSettings: '"opsz" 14' }}>
+          How it works
+        </span>
+        <div role="tablist" aria-label="Audience" style={{ display: "flex", alignItems: "baseline", gap: 18, fontFamily: SERIF, fontWeight: 500, fontSize: 13, letterSpacing: "0.12em", textTransform: "uppercase", color: STEEL_500, fontVariationSettings: '"opsz" 14' }}>
           <Tab label="For clients" active={isClient} onClick={() => setTab("client")} />
           <span aria-hidden style={{ color: STEEL_300 }}>·</span>
           <Tab label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
@@ -72,7 +69,7 @@ export function CharterBody({ showCta }: { showCta: boolean }) {
             <div>
               <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16, marginBottom: 22, flexWrap: "wrap" }}>
                 <span style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 14, letterSpacing: "0.16em", textTransform: "uppercase", color: STEEL_500, fontVariationSettings: '"opsz" 14' }}>
-                  Article {a.numeral}
+                  {a.numeral}
                 </span>
                 <span style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 13, letterSpacing: "0.12em", textTransform: "uppercase", color: INK, fontVariationSettings: '"opsz" 14' }}>
                   {a.proof}
@@ -95,22 +92,18 @@ export function CharterBody({ showCta }: { showCta: boolean }) {
         ))}
       </div>
 
-      {/* Provisions */}
       <div style={{ marginBottom: showCta ? "clamp(56px, 7vw, 88px)" : 0 }}>
-        <div style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 13, letterSpacing: "0.16em", textTransform: "uppercase", color: INK, marginBottom: 18, textAlign: "center", fontVariationSettings: '"opsz" 14' }}>
-          Provisions
-        </div>
         <dl style={{ margin: 0, borderTop: `1px solid ${INK}`, borderBottom: `1px solid ${INK}` }}>
           {(isClient
             ? [
-                ["Vetting", "Both clients and Renners are ID-verified and Checkr-cleared before any booking."],
-                ["Custody", "Funds are held in Stripe escrow until the client confirms; auto-release at 48 hours."],
-                ["Record", "Each task closes with completion photos and a written confirmation on file."],
+                ["Both sides vetted", "ID and Checkr before any booking."],
+                ["Funds in escrow", "Held by Stripe until you confirm."],
+                ["On the record", "Photos and a note on every task."],
               ]
             : [
-                ["Source", "Briefs originate from agents, brokers, and property managers within the platform."],
-                ["Equity", "Clients are ID-verified and Checkr-cleared on the same standard as Renners."],
-                ["Payment", "100% of task pay is released to the Renner through Stripe upon confirmation."],
+                ["Real work", "From agents, brokers, managers."],
+                ["Vetted clients", "ID and Checkr, same as you."],
+                ["Repeat work", "A reputation paid in repeat clients."],
               ]
           ).map(([label, body], i, arr) => (
             <div key={label} className="charter-prov" style={{ display: "grid", gridTemplateColumns: "minmax(160px, 220px) minmax(0, 1fr)", gap: "clamp(24px, 3.5vw, 48px)", padding: "22px 0", borderBottom: i === arr.length - 1 ? "none" : `1px solid ${RULE}`, alignItems: "baseline" }}>

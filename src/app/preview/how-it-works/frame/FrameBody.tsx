@@ -94,7 +94,7 @@ export function FrameBody({ showCta }: { showCta: boolean }) {
       {/* Top — meta line + audience switch */}
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 24, flexWrap: "wrap", marginBottom: "clamp(40px, 5vw, 56px)" }}>
         <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500 }}>
-          Inside Renner
+          How it works
         </span>
         <div role="tablist" aria-label="Audience" style={{ display: "flex", alignItems: "baseline", gap: 14, fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 16 }}>
           <Tab label="For clients" active={isClient} onClick={() => setTab("client")} />

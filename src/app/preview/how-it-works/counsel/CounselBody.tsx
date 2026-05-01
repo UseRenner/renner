@@ -25,14 +25,14 @@ const CLIENT_DEK = "A marketplace for real-estate work. Post a task, pick a Renn
 const RENNER_DEK = "Real-estate work, paid through the platform. Set your area, set your rate, pick what you take. Both sides are screened to join.";
 
 const CLIENT_STEPS = [
-  { number: "I.", title: "Post a task.", body: "Where, when, what, how much. Two minutes.", proof: "Under 2 minutes" },
-  { number: "II.", title: "Pick a Renner.", body: "Vetted Renners apply. Read the file. Book one.", proof: "Checkr-vetted" },
-  { number: "III.", title: "Get it done.", body: "Photos arrive. You confirm. Stripe pays.", proof: "Stripe escrow" },
+  { number: "01", title: "Post a task.", body: "Where, when, what, how much. Two minutes.", proof: "Under 2 minutes" },
+  { number: "02", title: "Pick a Renner.", body: "Vetted Renners apply. Read the file. Book one.", proof: "Checkr-vetted" },
+  { number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Stripe pays.", proof: "Stripe escrow" },
 ];
 const RENNER_STEPS = [
-  { number: "I.", title: "Get verified.", body: "ID, background check, area, rate. Same day.", proof: "Same-day" },
-  { number: "II.", title: "Pick a task.", body: "Briefs from agents and managers nearby. Apply.", proof: "Local marketplace" },
-  { number: "III.", title: "Get it done.", body: "Run the task. Send photos. Get paid.", proof: "100% of task pay" },
+  { number: "01", title: "Get verified.", body: "ID, background check, area, rate. Same day.", proof: "Same-day" },
+  { number: "02", title: "Pick a task.", body: "Briefs from agents and managers nearby. Apply.", proof: "Local marketplace" },
+  { number: "03", title: "Get it done.", body: "Run the task. Send photos. Get paid.", proof: "100% of task pay" },
 ];
 
 export function CounselBody({ showCta }: { showCta: boolean }) {
@@ -47,7 +47,7 @@ export function CounselBody({ showCta }: { showCta: boolean }) {
     <div style={{ backgroundColor: PAPER }}>
       <div style={{ borderTop: `2px solid ${INK}`, borderBottom: `1px solid ${INK}`, padding: "18px 0", marginBottom: "clamp(64px, 8vw, 96px)", display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16, flexWrap: "wrap" }}>
         <span style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 13, letterSpacing: "0.16em", textTransform: "uppercase", color: INK, fontVariationSettings: '"opsz" 14' }}>
-          A note on procedure
+          How it works
         </span>
         <div role="tablist" aria-label="Audience" style={{ display: "flex", alignItems: "baseline", gap: 18, fontFamily: SERIF, fontWeight: 500, fontSize: 13, letterSpacing: "0.12em", textTransform: "uppercase", color: STEEL_500, fontVariationSettings: '"opsz" 14' }}>
           <Tab label="For clients" active={isClient} onClick={() => setTab("client")} />
@@ -66,7 +66,7 @@ export function CounselBody({ showCta }: { showCta: boolean }) {
             <div>
               <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16, marginBottom: 18, flexWrap: "wrap" }}>
                 <span style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 14, letterSpacing: "0.12em", textTransform: "uppercase", color: STEEL_500, fontVariationSettings: '"opsz" 14' }}>
-                  Section {s.number}
+                  {s.number}
                 </span>
                 <span style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 13, letterSpacing: "0.12em", textTransform: "uppercase", color: INK, fontVariationSettings: '"opsz" 14' }}>
                   {s.proof}
@@ -87,20 +87,17 @@ export function CounselBody({ showCta }: { showCta: boolean }) {
       </div>
 
       <div style={{ marginBottom: showCta ? "clamp(56px, 7vw, 88px)" : 0 }}>
-        <div style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 13, letterSpacing: "0.16em", textTransform: "uppercase", color: INK, marginBottom: 24, fontVariationSettings: '"opsz" 14' }}>
-          Provisions
-        </div>
         <dl style={{ margin: 0, borderTop: `1px solid ${INK}` }}>
           {(isClient
             ? [
-                ["Vetting", "Both clients and Renners are ID-verified and Checkr-cleared before any booking."],
-                ["Custody", "Funds are held in Stripe escrow until the client confirms; auto-release at 48 hours."],
-                ["Record", "Each task closes with completion photos and a written confirmation on file."],
+                ["Both sides vetted", "ID and Checkr before any booking."],
+                ["Funds in escrow", "Held by Stripe until you confirm."],
+                ["On the record", "Photos and a note on every task."],
               ]
             : [
-                ["Source", "Briefs originate from agents, brokers, and property managers within the platform."],
-                ["Equity", "Clients are ID-verified and Checkr-cleared on the same standard as Renners."],
-                ["Payment", "100% of task pay is released to the Renner through Stripe upon confirmation."],
+                ["Real work", "From agents, brokers, managers."],
+                ["Vetted clients", "ID and Checkr, same as you."],
+                ["Repeat work", "A reputation paid in repeat clients."],
               ]
           ).map(([label, body], i, arr) => (
             <div key={label} className="counsel-prov" style={{ display: "grid", gridTemplateColumns: "minmax(180px, 240px) minmax(0, 1fr)", gap: "clamp(24px, 3.5vw, 56px)", padding: "22px 0", borderBottom: i === arr.length - 1 ? `1px solid ${INK}` : `1px solid ${RULE}`, alignItems: "baseline" }}>

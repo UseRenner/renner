@@ -49,7 +49,7 @@ export function BureauBody({ showCta }: { showCta: boolean }) {
   return (
     <>
       <div style={{ borderTop: `2px solid ${INK}`, borderBottom: `1px solid ${INK}`, padding: "16px 0", marginBottom: "clamp(48px, 6vw, 72px)", display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16, flexWrap: "wrap" }}>
-        <span style={SECTION_LABEL}>Operations · Procedure</span>
+        <span style={SECTION_LABEL}>How it works</span>
         <div role="tablist" aria-label="Audience" style={{ display: "flex", alignItems: "baseline", gap: 18, ...SECTION_LABEL, color: STEEL_600 }}>
           <Tab label="For clients" active={isClient} onClick={() => setTab("client")} />
           <span aria-hidden style={{ color: STEEL_300 }}>/</span>
@@ -61,15 +61,7 @@ export function BureauBody({ showCta }: { showCta: boolean }) {
         {dek}
       </p>
 
-      <div style={SECTION_LABEL}>Procedure</div>
-      <div style={{ borderTop: `1px solid ${INK}`, borderBottom: `1px solid ${INK}`, marginTop: 14, marginBottom: "clamp(56px, 7vw, 88px)" }}>
-        <div className="bureau-row" style={{ display: "grid", gridTemplateColumns: "60px minmax(160px, 1fr) minmax(0, 2.4fr) minmax(140px, auto) minmax(280px, 320px)", gap: "clamp(20px, 2.4vw, 32px)", padding: "14px 0", borderBottom: `1px solid ${RULE}`, ...SECTION_LABEL, color: STEEL_600 }}>
-          <span>No.</span>
-          <span>Step</span>
-          <span>Description</span>
-          <span style={{ textAlign: "right" }}>Detail</span>
-          <span style={{ textAlign: "right" }}>Reference</span>
-        </div>
+      <div style={{ borderTop: `1px solid ${INK}`, borderBottom: `1px solid ${INK}`, marginBottom: "clamp(56px, 7vw, 88px)" }}>
         {steps.map((s, i) => (
           <article key={s.number} className="bureau-row" style={{ display: "grid", gridTemplateColumns: "60px minmax(160px, 1fr) minmax(0, 2.4fr) minmax(140px, auto) minmax(280px, 320px)", gap: "clamp(20px, 2.4vw, 32px)", padding: "clamp(28px, 3.5vw, 40px) 0", borderBottom: i === steps.length - 1 ? "none" : `1px solid ${RULE}`, alignItems: "center" }}>
             <span style={{ fontFamily: MONO, fontSize: 13, fontWeight: 500, color: INK }}>{s.number}</span>
@@ -89,18 +81,17 @@ export function BureauBody({ showCta }: { showCta: boolean }) {
         ))}
       </div>
 
-      <div style={SECTION_LABEL}>Provisions</div>
-      <div style={{ borderTop: `1px solid ${INK}`, borderBottom: `1px solid ${INK}`, marginTop: 14, marginBottom: showCta ? "clamp(56px, 7vw, 88px)" : 0 }}>
+      <div style={{ borderTop: `1px solid ${INK}`, borderBottom: `1px solid ${INK}`, marginBottom: showCta ? "clamp(56px, 7vw, 88px)" : 0 }}>
         {(isClient
           ? [
-              ["§ 01", "Vetting", "Both clients and Renners are ID-verified and Checkr-cleared before any booking."],
-              ["§ 02", "Custody", "Funds are held in Stripe escrow until the client confirms; auto-release at 48 hours."],
-              ["§ 03", "Record", "Each task closes with completion photos and a written confirmation on file."],
+              ["01", "Both sides vetted", "ID and Checkr before any booking."],
+              ["02", "Funds in escrow", "Held by Stripe until you confirm."],
+              ["03", "On the record", "Photos and a note on every task."],
             ]
           : [
-              ["§ 01", "Source", "Briefs originate from agents, brokers, and property managers within the platform."],
-              ["§ 02", "Equity", "Clients are ID-verified and Checkr-cleared on the same standard as Renners."],
-              ["§ 03", "Payment", "100% of task pay is released to the Renner through Stripe upon confirmation."],
+              ["01", "Real work", "From agents, brokers, managers."],
+              ["02", "Vetted clients", "ID and Checkr, same as you."],
+              ["03", "Repeat work", "A reputation paid in repeat clients."],
             ]
         ).map(([num, label, body], i, arr) => (
           <div key={num} className="bureau-provisions" style={{ display: "grid", gridTemplateColumns: "80px minmax(180px, 240px) minmax(0, 1fr)", gap: "clamp(20px, 2.4vw, 36px)", padding: "20px 0", borderBottom: i === arr.length - 1 ? "none" : `1px solid ${RULE}`, alignItems: "baseline" }}>

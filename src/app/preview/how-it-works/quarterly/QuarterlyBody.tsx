@@ -53,13 +53,12 @@ export function QuarterlyBody({ showCta }: { showCta: boolean }) {
 
   return (
     <>
-      <div style={{ borderTop: `2px solid ${INK}`, padding: "16px 0 14px", marginBottom: "clamp(40px, 5vw, 64px)", display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, ...KICKER, color: STEEL_500 }} className="quarterly-mast">
-        <span style={{ color: INK }}>Procedure</span>
-        <span style={{ textAlign: "center" }}>Edition 26</span>
-        <div role="tablist" aria-label="Audience" style={{ display: "flex", alignItems: "baseline", justifyContent: "flex-end", gap: 18 }}>
-          <Tab label="Clients" active={isClient} onClick={() => setTab("client")} />
+      <div style={{ borderTop: `2px solid ${INK}`, borderBottom: `1px solid ${INK}`, padding: "16px 0", marginBottom: "clamp(48px, 6vw, 72px)", display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16, flexWrap: "wrap", ...KICKER, color: STEEL_500 }}>
+        <span style={{ color: INK }}>How it works</span>
+        <div role="tablist" aria-label="Audience" style={{ display: "flex", alignItems: "baseline", gap: 18 }}>
+          <Tab label="For clients" active={isClient} onClick={() => setTab("client")} />
           <span aria-hidden style={{ color: STEEL_300 }}>/</span>
-          <Tab label="Renners" active={!isClient} onClick={() => setTab("renner")} />
+          <Tab label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
         </div>
       </div>
 
@@ -89,18 +88,17 @@ export function QuarterlyBody({ showCta }: { showCta: boolean }) {
         ))}
       </div>
 
-      <div style={{ ...KICKER, marginBottom: 14 }}>Provisions</div>
       <dl className="quarterly-prov" style={{ margin: 0, borderTop: `1px solid ${INK}`, marginBottom: showCta ? "clamp(56px, 7vw, 88px)" : 0 }}>
         {(isClient
           ? [
-              ["Vetting", "ID-verified and Checkr-cleared. Both sides."],
-              ["Custody", "Stripe escrow until you confirm."],
-              ["Record", "Photos and a written confirmation on every task."],
+              ["Both sides vetted", "ID and Checkr before any booking."],
+              ["Funds in escrow", "Held by Stripe until you confirm."],
+              ["On the record", "Photos and a note on every task."],
             ]
           : [
-              ["Source", "Real-estate briefs from agents, brokers, managers."],
-              ["Equity", "Clients vetted to the same standard as Renners."],
-              ["Payment", "100% of task pay, released through Stripe."],
+              ["Real work", "From agents, brokers, managers."],
+              ["Vetted clients", "ID and Checkr, same as you."],
+              ["Repeat work", "A reputation paid in repeat clients."],
             ]
         ).map(([label, body], i, arr) => (
           <div key={label} className="quarterly-prov-row" style={{ display: "grid", gridTemplateColumns: "minmax(180px, 240px) minmax(0, 1fr)", gap: "clamp(24px, 3.5vw, 56px)", padding: "20px 0", borderBottom: `1px solid ${i === arr.length - 1 ? INK : RULE}`, alignItems: "baseline" }}>
