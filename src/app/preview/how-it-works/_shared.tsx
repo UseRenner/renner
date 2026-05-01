@@ -217,14 +217,16 @@ const TOKENS: Record<ShellTone, Record<string, string>> = {
     "--c-rule": "rgba(251,251,252,0.18)",
     "--c-paper": "#fbfbfc",
     "--c-ink": "#0d0f12",
-    // Illustration sits a step lighter than page (Steel 700ish)
-    "--ill-bg": "#4d5b6a",
+    // Illustration follows the steel colorway — card surface stays
+    // Steel 800 (matches page), defined by a paper-tinted border.
+    // Photo placeholder lifts to Steel 700 so it's still legible.
+    "--ill-bg": "#38414d",
     "--ill-text": "#fbfbfc",
     "--ill-text-dim": "rgba(251,251,252,0.78)",
     "--ill-text-fog": "rgba(251,251,252,0.55)",
-    "--ill-border": "rgba(251,251,252,0.18)",
-    "--ill-rule": "rgba(251,251,252,0.10)",
-    "--ill-photo-bg": "#38414d",
+    "--ill-border": "rgba(251,251,252,0.22)",
+    "--ill-rule": "rgba(251,251,252,0.12)",
+    "--ill-photo-bg": "#4d5b6a",
     "--ill-photo-text": "rgba(251,251,252,0.42)",
     "--ill-disc-bg": "#647589",
     "--ill-disc-text": "#fbfbfc",
