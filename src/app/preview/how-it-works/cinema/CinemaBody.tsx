@@ -15,7 +15,12 @@ const STEEL_500 = "var(--c-500, #7d8da0)";
 const STEEL_300 = "var(--c-300, #cad1d8)";
 const RULE = "var(--c-rule, #eaedf0)";
 const PAPER = "var(--c-bg, #fbfbfc)";
-const PAPER_DIM = "rgba(251,251,252,0.62)";
+// Callout tokens — for the dark hero / credits panels that need to
+// flip polarity cleanly on every tone.
+const CALLOUT_BG = "var(--c-callout-bg, #0d0f12)";
+const CALLOUT_FG = "var(--c-callout-text, #fbfbfc)";
+const CALLOUT_DIM = "var(--c-callout-dim, rgba(251,251,252,0.78))";
+const CALLOUT_FOG = "var(--c-callout-fog, rgba(251,251,252,0.6))";
 
 type Step = { number: string; title: string; body: string; proof: string };
 
@@ -52,8 +57,8 @@ export function CinemaBody({ showCta }: { showCta: boolean }) {
       {/* Letterbox hero */}
       <section
         style={{
-          backgroundColor: INK,
-          color: PAPER,
+          backgroundColor: CALLOUT_BG,
+          color: CALLOUT_FG,
           aspectRatio: "2.39 / 1",
           minHeight: 320,
           padding: "clamp(40px, 5vw, 72px)",
@@ -63,7 +68,7 @@ export function CinemaBody({ showCta }: { showCta: boolean }) {
           marginBottom: "clamp(72px, 9vw, 112px)",
         }}
       >
-        <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: PAPER_DIM }}>
+        <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: CALLOUT_FOG }}>
           How it works
         </div>
 
@@ -74,7 +79,7 @@ export function CinemaBody({ showCta }: { showCta: boolean }) {
             fontWeight: 300,
             fontSize: "clamp(22px, 2.6vw, 32px)",
             lineHeight: 1.35,
-            color: PAPER,
+            color: CALLOUT_FG,
             margin: 0,
             maxWidth: "44ch",
             fontVariationSettings: '"opsz" 36',
@@ -129,12 +134,12 @@ export function CinemaBody({ showCta }: { showCta: boolean }) {
         ))}
       </div>
 
-      {/* Closing credits — trust + CTA in one ink panel */}
+      {/* Closing credits — trust + CTA in one callout panel */}
       <section
         className="cinema-credits"
         style={{
-          backgroundColor: INK,
-          color: PAPER,
+          backgroundColor: CALLOUT_BG,
+          color: CALLOUT_FG,
           padding: "clamp(40px, 5vw, 64px) clamp(36px, 4.5vw, 64px)",
         }}
       >
@@ -160,10 +165,10 @@ export function CinemaBody({ showCta }: { showCta: boolean }) {
               ]
           ).map(([label, body]) => (
             <div key={label}>
-              <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 18, color: PAPER, marginBottom: 8, fontVariationSettings: '"opsz" 36' }}>
+              <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 18, color: CALLOUT_FG, marginBottom: 8, fontVariationSettings: '"opsz" 36' }}>
                 {label}.
               </div>
-              <div style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.55, color: PAPER_DIM, fontVariationSettings: '"opsz" 14' }}>
+              <div style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.55, color: CALLOUT_DIM, fontVariationSettings: '"opsz" 14' }}>
                 {body}
               </div>
             </div>
@@ -171,8 +176,8 @@ export function CinemaBody({ showCta }: { showCta: boolean }) {
         </div>
 
         {showCta && (
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, paddingTop: "clamp(28px, 3.5vw, 40px)", borderTop: `1px solid rgba(251,251,252,0.18)`, flexWrap: "wrap" }}>
-            <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: PAPER_DIM }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, paddingTop: "clamp(28px, 3.5vw, 40px)", borderTop: `1px solid rgba(127,127,127,0.18)`, flexWrap: "wrap" }}>
+            <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: CALLOUT_FOG }}>
               Both sides screened to join
             </span>
             <Link
@@ -184,9 +189,9 @@ export function CinemaBody({ showCta }: { showCta: boolean }) {
                 fontFamily: SANS,
                 fontSize: 14,
                 fontWeight: 500,
-                color: INK,
-                backgroundColor: PAPER,
-                border: `1px solid ${PAPER}`,
+                color: CALLOUT_BG,
+                backgroundColor: CALLOUT_FG,
+                border: `1px solid ${CALLOUT_FG}`,
                 borderRadius: 4,
                 padding: "12px 20px",
                 textDecoration: "none",

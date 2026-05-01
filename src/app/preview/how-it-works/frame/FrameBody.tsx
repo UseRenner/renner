@@ -34,7 +34,7 @@ function PhoneFrame({ children }: { children: React.ReactNode }) {
   return (
     <div
       style={{
-        backgroundColor: INK,
+        backgroundColor: "var(--c-ink, #0d0f12)",
         borderRadius: 36,
         padding: 8,
         boxShadow: "0 0 0 1px rgba(13,15,18,0.08)",
@@ -64,7 +64,7 @@ function PhoneFrame({ children }: { children: React.ReactNode }) {
             transform: "translateX(-50%)",
             width: 88,
             height: 22,
-            backgroundColor: INK,
+            backgroundColor: "var(--c-ink, #0d0f12)",
             borderRadius: 14,
           }}
         />

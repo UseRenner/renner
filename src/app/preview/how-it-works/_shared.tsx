@@ -199,6 +199,11 @@ const TOKENS: Record<ShellTone, Record<string, string>> = {
     "--ill-photo-text": "#a7b2be",
     "--ill-disc-bg": "#cad1d8",
     "--ill-disc-text": "#0d0f12",
+    // Callout — always a high-contrast dark panel
+    "--c-callout-bg": "#0d0f12",
+    "--c-callout-text": "#fbfbfc",
+    "--c-callout-fog": "rgba(251,251,252,0.6)",
+    "--c-callout-dim": "rgba(251,251,252,0.78)",
   },
   steel: {
     // Steel tone — Steel 800 page (#38414d) with paper text. A mid-
@@ -223,6 +228,10 @@ const TOKENS: Record<ShellTone, Record<string, string>> = {
     "--ill-photo-text": "rgba(251,251,252,0.42)",
     "--ill-disc-bg": "#647589",
     "--ill-disc-text": "#fbfbfc",
+    "--c-callout-bg": "#0d0f12",
+    "--c-callout-text": "#fbfbfc",
+    "--c-callout-fog": "rgba(251,251,252,0.6)",
+    "--c-callout-dim": "rgba(251,251,252,0.78)",
   },
   ink: {
     "--c-text": "#fbfbfc",
@@ -234,17 +243,24 @@ const TOKENS: Record<ShellTone, Record<string, string>> = {
     "--c-rule": "rgba(251,251,252,0.18)",
     "--c-paper": "#fbfbfc",
     "--c-ink": "#0d0f12",
-    // Illustration sits a step lighter than page (Steel 800)
-    "--ill-bg": "#38414d",
+    // Illustration follows the ink colorway — card surface stays
+    // ink, defined by a slightly stronger paper-tinted border so
+    // the card reads as a card without lifting to a lighter shade.
+    "--ill-bg": "#0d0f12",
     "--ill-text": "#fbfbfc",
     "--ill-text-dim": "rgba(251,251,252,0.78)",
     "--ill-text-fog": "rgba(251,251,252,0.55)",
-    "--ill-border": "rgba(251,251,252,0.18)",
-    "--ill-rule": "rgba(251,251,252,0.10)",
+    "--ill-border": "rgba(251,251,252,0.22)",
+    "--ill-rule": "rgba(251,251,252,0.12)",
     "--ill-photo-bg": "#2a2f36",
     "--ill-photo-text": "rgba(251,251,252,0.42)",
-    "--ill-disc-bg": "#647589",
+    "--ill-disc-bg": "#38414d",
     "--ill-disc-text": "#fbfbfc",
+    // On ink mode the callout flips polarity — lighter than page
+    "--c-callout-bg": "#fbfbfc",
+    "--c-callout-text": "#0d0f12",
+    "--c-callout-fog": "rgba(13,15,18,0.6)",
+    "--c-callout-dim": "rgba(13,15,18,0.78)",
   },
 };
 

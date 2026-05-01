@@ -116,9 +116,9 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
 
         <div aria-hidden style={{ backgroundColor: INK }} className="quarter-vrule" />
 
-        {/* Bottom-right: trust — inverted ink panel as the page's typographic counterpoint */}
-        <section className="quarter-cell quarter-trust" style={{ padding: "clamp(32px, 4.5vw, 64px)", backgroundColor: INK, color: PAPER }}>
-          <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: "rgba(251,251,252,0.6)", marginBottom: 24 }}>
+        {/* Bottom-right: trust — high-contrast callout that flips polarity */}
+        <section className="quarter-cell quarter-trust" style={{ padding: "clamp(32px, 4.5vw, 64px)", backgroundColor: "var(--c-callout-bg)", color: "var(--c-callout-text)" }}>
+          <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--c-callout-fog)", marginBottom: 24 }}>
             {isClient ? "Why Renner" : "What you get"}
           </div>
           <dl style={{ margin: 0, display: "flex", flexDirection: "column", gap: 20 }}>
@@ -135,10 +135,10 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
                 ]
             ).map(([label, body]) => (
               <div key={label}>
-                <dt style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 20, color: PAPER, marginBottom: 4, fontVariationSettings: '"opsz" 36' }}>
+                <dt style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 20, color: "var(--c-callout-text)", marginBottom: 4, fontVariationSettings: '"opsz" 36' }}>
                   {label}.
                 </dt>
-                <dd style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.55, color: "rgba(251,251,252,0.72)", margin: 0, fontVariationSettings: '"opsz" 14' }}>
+                <dd style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.55, color: "var(--c-callout-dim)", margin: 0, fontVariationSettings: '"opsz" 14' }}>
                   {body}
                 </dd>
               </div>
