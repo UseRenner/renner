@@ -30,12 +30,12 @@ type Step = {
 
 const CLIENT_STEPS: Step[] = [
   { number: "01", title: "Post a task.", body: "Where, when, what, how much. Two minutes.", proof: "Under 2 min", illustration: "post" },
-  { number: "02", title: "Pick a Renner.", body: "Vetted Renners apply. Read the file. Book one.", proof: "Checkr-vetted", illustration: "pick" },
+  { number: "02", title: "Pick a Renner.", body: "Vetted Renners apply. Read their profile. Book one.", proof: "Checkr-vetted", illustration: "pick" },
   { number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Stripe pays.", proof: "Stripe escrow", illustration: "completion" },
 ];
 const RENNER_STEPS: Step[] = [
   { number: "01", title: "Get verified.", body: "ID, background check, area, rate. Same day.", proof: "Same-day", illustration: "verify" },
-  { number: "02", title: "Pick a task.", body: "Briefs from agents and managers nearby. Apply.", proof: "Local", illustration: "browse" },
+  { number: "02", title: "Pick a task.", body: "Tasks from agents and managers nearby. Apply.", proof: "Local", illustration: "browse" },
   { number: "03", title: "Get it done.", body: "Run the task. Send photos. Get paid.", proof: "100% of pay", illustration: "done" },
 ];
 
@@ -119,7 +119,7 @@ function CardShell({ kicker, children }: { kicker: string; children: React.React
 
 function PostCard() {
   return (
-    <CardShell kicker="01 · Posted brief">
+    <CardShell kicker="01 · Posted task">
       <h4 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 24, lineHeight: 1.15, color: INK, margin: 0, fontVariationSettings: '"opsz" 36' }}>
         Install sign rider.
       </h4>
@@ -224,7 +224,7 @@ function VerifyCard() {
 
 function BrowseCard() {
   return (
-    <CardShell kicker="02 · Briefs nearby">
+    <CardShell kicker="02 · Tasks nearby">
       {[
         ["Install sign rider.", "Cherry Creek · 2.4 mi · $45"],
         ["Lockbox swap.", "Capitol Hill · 4.1 mi · $30"],
@@ -389,12 +389,12 @@ export function SceneBody({ showCta }: { showCta: boolean }) {
           ? [
               ["Both sides vetted", "ID and Checkr before any booking."],
               ["Funds in escrow", "Held by Stripe until you confirm."],
-              ["On the record", "Photos and a note on every task."],
+              ["Photos on every task", "A photo and a note when it's done."],
             ]
           : [
               ["Real work", "From agents, brokers, managers."],
               ["Vetted clients", "ID and Checkr, same as you."],
-              ["Repeat work", "A reputation paid in repeat clients."],
+              ["Repeat work", "Good work earns repeat clients."],
             ]
         ).map(([label, body]) => (
           <div key={label}>

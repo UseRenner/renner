@@ -1,7 +1,7 @@
 // Shared UI illustration components used across the how-it-works
 // previews. These are mockups of moments in the Renner product —
-// posted brief, applicant card, completion proof, onboarding,
-// briefs-nearby inbox, payout — so reviewers and prospective
+// posted task, applicant card, completion proof, onboarding,
+// tasks-nearby inbox, payout — so reviewers and prospective
 // users can see what the platform looks like before they sign up.
 //
 // Two size variants: <Card kind="..." /> renders the full card
@@ -34,7 +34,7 @@ const DISC_BG = "var(--ill-disc-bg, #cad1d8)";
 const DISC_TEXT = "var(--ill-disc-text, #0d0f12)";
 
 export type IllustrationKind =
-  | "brief"
+  | "task"
   | "applicant"
   | "completion"
   | "profile"
@@ -123,9 +123,9 @@ function Shell({ kicker, children, padding = 24, style }: { kicker: string; chil
 // Sized for prominent placement (Scene, Marketplace, Network,
 // Showcase). The footer info bar gives each card a closing beat.
 
-function BriefCard() {
+function TaskCard() {
   return (
-    <Shell kicker="01 · Posted brief">
+    <Shell kicker="01 · Posted task">
       <h4 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 24, lineHeight: 1.15, color: INK, margin: 0, fontVariationSettings: '"opsz" 36' }}>
         Install sign rider.
       </h4>
@@ -234,7 +234,7 @@ function ProfileCard() {
 
 function InboxCard() {
   return (
-    <Shell kicker="02 · Briefs nearby">
+    <Shell kicker="02 · Tasks nearby">
       {[
         ["Install sign rider.", "Cherry Creek · 2.4 mi · $45"],
         ["Lockbox swap.", "Capitol Hill · 4.1 mi · $30"],
@@ -280,8 +280,8 @@ function PayoutCard() {
 
 export function Card({ kind }: { kind: IllustrationKind }) {
   switch (kind) {
-    case "brief":
-      return <BriefCard />;
+    case "task":
+      return <TaskCard />;
     case "applicant":
       return <ApplicantCard />;
     case "completion":
@@ -314,9 +314,9 @@ function MiniShell({ kicker, children }: { kicker: string; children: ReactNode }
   );
 }
 
-function MiniBrief() {
+function MiniTask() {
   return (
-    <MiniShell kicker="Posted brief">
+    <MiniShell kicker="Posted task">
       <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 17, lineHeight: 1.15, color: INK, fontVariationSettings: '"opsz" 36' }}>
         Install sign rider.
       </div>
@@ -404,7 +404,7 @@ function MiniProfile() {
 
 function MiniInbox() {
   return (
-    <MiniShell kicker="Briefs nearby">
+    <MiniShell kicker="Tasks nearby">
       {[
         ["Install sign rider.", "$45"],
         ["Lockbox swap.", "$30"],
@@ -438,8 +438,8 @@ function MiniPayout() {
 
 export function Mini({ kind }: { kind: IllustrationKind }) {
   switch (kind) {
-    case "brief":
-      return <MiniBrief />;
+    case "task":
+      return <MiniTask />;
     case "applicant":
       return <MiniApplicant />;
     case "completion":
@@ -454,5 +454,5 @@ export function Mini({ kind }: { kind: IllustrationKind }) {
 }
 
 // Convenience: the canonical client / Renner illustration sequences
-export const CLIENT_KINDS: IllustrationKind[] = ["brief", "applicant", "completion"];
+export const CLIENT_KINDS: IllustrationKind[] = ["task", "applicant", "completion"];
 export const RENNER_KINDS: IllustrationKind[] = ["profile", "inbox", "payout"];

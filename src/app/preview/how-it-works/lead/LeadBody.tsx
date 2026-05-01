@@ -21,12 +21,12 @@ const RENNER_DEK = "Real-estate work, paid through the platform. Set your area, 
 
 const CLIENT_STEPS = [
   { number: "01", title: "Post a task.", body: "Where, when, what, how much. Two minutes.", proof: "Under 2 min" },
-  { number: "02", title: "Pick a Renner.", body: "Vetted Renners apply. Read the file. Book one.", proof: "Checkr-vetted" },
+  { number: "02", title: "Pick a Renner.", body: "Vetted Renners apply. Read their profile. Book one.", proof: "Checkr-vetted" },
   { number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Stripe pays.", proof: "Stripe escrow" },
 ];
 const RENNER_STEPS = [
   { number: "01", title: "Get verified.", body: "ID, background check, area, rate. Same day.", proof: "Same-day" },
-  { number: "02", title: "Pick a task.", body: "Briefs from agents and managers nearby. Apply.", proof: "Local" },
+  { number: "02", title: "Pick a task.", body: "Tasks from agents and managers nearby. Apply.", proof: "Local" },
   { number: "03", title: "Get it done.", body: "Run the task. Send photos. Get paid.", proof: "100% of pay" },
 ];
 
@@ -101,12 +101,12 @@ export function LeadBody({ showCta }: { showCta: boolean }) {
           ? [
               ["Both sides vetted", "ID and Checkr before any booking."],
               ["Funds in escrow", "Held by Stripe until you confirm."],
-              ["On the record", "Photos and a note on every task."],
+              ["Photos on every task", "A photo and a note when it's done."],
             ]
           : [
               ["Real work", "From agents, brokers, managers."],
               ["Vetted clients", "ID and Checkr, same as you."],
-              ["Repeat work", "A reputation paid in repeat clients."],
+              ["Repeat work", "Good work earns repeat clients."],
             ]
         ).map(([label, body]) => (
           <div key={label} style={{ maxWidth: "32ch" }}>

@@ -12,83 +12,21 @@ type Plate = {
 };
 
 const CLIENT_DEK =
-  "A marketplace for real-estate task work, handled by background-checked Renners and paid through escrow.";
+  "A marketplace for real-estate work. Post a task, pick a Renner, get it done. Both sides are screened to join.";
 
 const RENNER_DEK =
-  "Independent contractors running short real-estate tasks for agents, brokers, and managers — on your schedule, in your area.";
+  "Real-estate work, paid through the platform. Set your area, set your rate, pick what you take. Both sides are screened to join.";
 
 const CLIENT_PLATES: Plate[] = [
-  {
-    number: "01",
-    title: "Post a task.",
-    body: (
-      <>
-        Describe what you need — sign install, lockbox swap, property
-        visuals, guest check-in. Set the location, the window, and the
-        price.
-      </>
-    ),
-    proof: "Avg. post · under 2 minutes",
-  },
-  {
-    number: "02",
-    title: "Pick a Renner.",
-    body: (
-      <>
-        Background-checked Renners in your area apply with their bio,
-        ratings, and tenure. Book the right hand for the work.
-      </>
-    ),
-    proof: "Every Renner · Checkr-verified",
-  },
-  {
-    number: "03",
-    title: "Get it done.",
-    body: (
-      <>
-        Your Renner finishes the task and submits completion photos.
-        You confirm. Funds release through Stripe.
-      </>
-    ),
-    proof: "Funds held · escrow until confirmed",
-  },
+  { number: "01", title: "Post a task.", body: "Where, when, what, how much. Two minutes.", proof: "Under 2 min" },
+  { number: "02", title: "Pick a Renner.", body: "Vetted Renners apply. Read their profile. Book one.", proof: "Checkr-vetted" },
+  { number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Stripe pays.", proof: "Stripe escrow" },
 ];
 
 const RENNER_PLATES: Plate[] = [
-  {
-    number: "01",
-    title: "Get verified.",
-    body: (
-      <>
-        Sign up, verify your identity, clear a Checkr background
-        check. Pick your categories, set your service area, name your
-        rate.
-      </>
-    ),
-    proof: "Onboarding · same-day in most states",
-  },
-  {
-    number: "02",
-    title: "Pick a task.",
-    body: (
-      <>
-        See briefs posted by agents, brokers, and managers nearby.
-        Apply to the ones that fit your schedule and skills.
-      </>
-    ),
-    proof: "Marketplace · live in your area",
-  },
-  {
-    number: "03",
-    title: "Get it done.",
-    body: (
-      <>
-        Run the task, upload completion photos, get paid through the
-        platform. Build a reputation that earns repeat clients.
-      </>
-    ),
-    proof: "Reputation · built task by task",
-  },
+  { number: "01", title: "Get verified.", body: "ID, background check, area, rate. Same day.", proof: "Same-day" },
+  { number: "02", title: "Pick a task.", body: "Tasks from agents and managers nearby. Apply.", proof: "Local" },
+  { number: "03", title: "Get it done.", body: "Run the task. Send photos. Get paid.", proof: "100% of pay" },
 ];
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
@@ -104,19 +42,6 @@ const STEEL_500 = "var(--c-500, #7d8da0)";
 const STEEL_300 = "var(--c-300, #cad1d8)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 
-function Em({ children }: { children: React.ReactNode }) {
-  return (
-    <span
-      style={{
-        fontStyle: "italic",
-        fontWeight: 300,
-        color: STEEL_600,
-      }}
-    >
-      {children}
-    </span>
-  );
-}
 
 export function PlateBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");

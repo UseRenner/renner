@@ -29,81 +29,21 @@ type Step = {
 };
 
 const CLIENT_DEK =
-  "A marketplace built only for real-estate task work. You post the brief, a Renner applies, the work gets done. Both parties — clients and Renners — are ID-verified and background-checked.";
+  "A marketplace for real-estate work. Post a task, pick a Renner, get it done. Both sides are screened to join.";
 
 const RENNER_DEK =
-  "Real-estate work, brief by brief. Run tasks for the agents, brokers, and property managers who keep listings moving. The clients you book with are ID-verified and background-checked, the same as you.";
+  "Real-estate work, paid through the platform. Set your area, set your rate, pick what you take. Both sides are screened to join.";
 
 const CLIENT_STEPS: Step[] = [
-  {
-    number: "01",
-    title: "Post a task.",
-    body: (
-      <>
-        Address, window, price. Posts go live to background-checked
-        Renners in your area in under two minutes.
-      </>
-    ),
-    proof: "Avg. post · under 2 minutes",
-  },
-  {
-    number: "02",
-    title: "Pick a Renner.",
-    body: (
-      <>
-        Renners apply with bios, ratings, and tenure. Read the file,
-        book the right hand for the work.
-      </>
-    ),
-    proof: "Every Renner · Checkr-verified",
-  },
-  {
-    number: "03",
-    title: "Get it done.",
-    body: (
-      <>
-        Photos and a written confirmation arrive. You confirm; Stripe
-        releases the funds from escrow.
-      </>
-    ),
-    proof: "Funds held · escrow until confirmed",
-  },
+  { number: "01", title: "Post a task.", body: "Where, when, what, how much. Two minutes.", proof: "Under 2 min" },
+  { number: "02", title: "Pick a Renner.", body: "Vetted Renners apply. Read their profile. Book one.", proof: "Checkr-vetted" },
+  { number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Stripe pays.", proof: "Stripe escrow" },
 ];
 
 const RENNER_STEPS: Step[] = [
-  {
-    number: "01",
-    title: "Get verified.",
-    body: (
-      <>
-        Identity, background check, categories, service area, rate.
-        Onboarding usually clears the same day.
-      </>
-    ),
-    proof: "Onboarding · same-day in most states",
-  },
-  {
-    number: "02",
-    title: "Pick a task.",
-    body: (
-      <>
-        Briefs come in from agents, brokers, and managers nearby.
-        Apply to what fits your schedule.
-      </>
-    ),
-    proof: "Marketplace · live in your area",
-  },
-  {
-    number: "03",
-    title: "Get it done.",
-    body: (
-      <>
-        Run the task, upload photos, get paid through the platform.
-        Build a reputation that earns repeat clients.
-      </>
-    ),
-    proof: "Reputation · built task by task",
-  },
+  { number: "01", title: "Get verified.", body: "ID, background check, area, rate. Same day.", proof: "Same-day" },
+  { number: "02", title: "Pick a task.", body: "Tasks from agents and managers nearby. Apply.", proof: "Local" },
+  { number: "03", title: "Get it done.", body: "Run the task. Send photos. Get paid.", proof: "100% of pay" },
 ];
 
 export function MastBody({ showCta }: { showCta: boolean }) {
@@ -265,14 +205,14 @@ export function MastBody({ showCta }: { showCta: boolean }) {
         <dl style={{ margin: 0 }}>
           {(isClient
             ? [
-                ["Both sides verified", "Clients and Renners are ID-checked and background-checked before any booking."],
-                ["Stripe escrow", "Funds held until you confirm the work, or 48 hours pass."],
-                ["On the record", "Completion photos and a written confirmation on every task."],
+                ["Both sides vetted", "ID and Checkr before any booking."],
+                ["Funds in escrow", "Held by Stripe until you confirm."],
+                ["Photos on every task", "A photo and a note when it's done."],
               ]
             : [
-                ["Real-estate work", "Tasks come from agents, brokers, and property managers — the people who keep listings moving."],
-                ["Both sides verified", "The clients who book you are ID-checked and background-checked, the same as you."],
-                ["A real reputation", "Repeat clients find their way back to the Renners they trust."],
+                ["Real work", "From agents, brokers, managers."],
+                ["Vetted clients", "ID and Checkr, same as you."],
+                ["Repeat work", "Good work earns repeat clients."],
               ]
           ).map(([label, body], idx, arr) => (
             <div

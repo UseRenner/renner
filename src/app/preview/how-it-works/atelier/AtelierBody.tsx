@@ -7,94 +7,33 @@ import { Mini, CLIENT_KINDS, RENNER_KINDS } from "../_illustrations";
 type Step = { number: string; title: string; body: React.ReactNode; spec: string };
 
 const CLIENT_DEK =
-  "A marketplace for real-estate work. Vetted Renners, paid through escrow.";
+  "A marketplace for real-estate work. Post a task, pick a Renner, get it done. Both sides are screened to join.";
 
 const RENNER_DEK =
-  "Real-estate work, paid through the platform. Your area, your rate, your schedule.";
+  "Real-estate work, paid through the platform. Set your area, set your rate, pick what you take. Both sides are screened to join.";
 
 const CLIENT_STEPS: Step[] = [
-  {
-    number: "01",
-    title: "Post a task.",
-    body: (
-      <>
-        Describe what you need — sign install, lockbox swap, property
-        visuals, guest check-in. Set the location, the window, and the
-        price.
-      </>
-    ),
-    spec: "Avg. post · under 2 minutes",
-  },
-  {
-    number: "02",
-    title: "Pick a Renner.",
-    body: (
-      <>
-        Background-checked Renners in your area apply. Read their bio,
-        ratings, and tenure. Book the right hand for the work.
-      </>
-    ),
-    spec: "Every Renner · Checkr-verified",
-  },
-  {
-    number: "03",
-    title: "Get it done.",
-    body: (
-      <>
-        Your Renner finishes the task and submits completion photos.
-        You confirm. Funds release through Stripe.
-      </>
-    ),
-    spec: "Funds held · escrow until confirmed",
-  },
+  { number: "01", title: "Post a task.", body: "Where, when, what, how much. Two minutes.", spec: "Under 2 min" },
+  { number: "02", title: "Pick a Renner.", body: "Vetted Renners apply. Read their profile. Book one.", spec: "Checkr-vetted" },
+  { number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Stripe pays.", spec: "Stripe escrow" },
 ];
 
 const RENNER_STEPS: Step[] = [
-  {
-    number: "01",
-    title: "Get verified.",
-    body: (
-      <>
-        Sign up, verify your identity, clear a Checkr background check.
-        Pick your categories, set your service area, name your rate.
-      </>
-    ),
-    spec: "Onboarding · same-day in most states",
-  },
-  {
-    number: "02",
-    title: "Pick a task.",
-    body: (
-      <>
-        See briefs posted by agents, brokers, and managers nearby.
-        Apply to the ones that fit your schedule and skills.
-      </>
-    ),
-    spec: "Marketplace · live in your area",
-  },
-  {
-    number: "03",
-    title: "Get it done.",
-    body: (
-      <>
-        Run the task, upload completion photos, get paid through the
-        platform. Build a reputation that earns repeat clients.
-      </>
-    ),
-    spec: "Reputation · built task by task",
-  },
+  { number: "01", title: "Get verified.", body: "ID, background check, area, rate. Same day.", spec: "Same-day" },
+  { number: "02", title: "Pick a task.", body: "Tasks from agents and managers nearby. Apply.", spec: "Local" },
+  { number: "03", title: "Get it done.", body: "Run the task. Send photos. Get paid.", spec: "100% of pay" },
 ];
 
 const CLIENT_TRUST: Array<[string, string]> = [
-  ["Vetting", "Checkr background check before any booking."],
-  ["Custody", "Funds held by Stripe until you confirm."],
-  ["Record", "Completion photos and a written confirmation on every task."],
+  ["Both sides vetted", "ID and Checkr before any booking."],
+  ["Funds in escrow", "Held by Stripe until you confirm."],
+  ["Photos on every task", "A photo and a note when it's done."],
 ];
 
 const RENNER_TRUST: Array<[string, string]> = [
-  ["Independence", "Set your own schedule. Pick the work."],
-  ["Local", "Tasks come from agents, brokers, and managers in your area."],
-  ["Payout", "Through Stripe escrow on confirmation. No surprise fees."],
+  ["Real work", "From agents, brokers, managers."],
+  ["Vetted clients", "ID and Checkr, same as you."],
+  ["Repeat work", "Good work earns repeat clients."],
 ];
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";

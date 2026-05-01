@@ -26,27 +26,27 @@ const RENNER_DEK =
   "Real-estate work, paid through the platform. Set your area, set your rate, pick what you take. Both sides are screened to join.";
 
 const CLIENT_STEPS: Step[] = [
-  { id: "post", number: "01", title: "Post a task.", body: "Describe what you need — sign install, lockbox swap, courier run, property prep, guest check-in. Set the location, the time window, and the price. Posts go live to vetted Renners only.", proof: "Under 2 min" },
-  { id: "pick", number: "02", title: "Pick a Renner.", body: "Background-checked Renners in your area apply with bios, ratings, and tenure on the platform. Read the file, book the right hand for the work.", proof: "Checkr-vetted" },
-  { id: "done", number: "03", title: "Get it done.", body: "Photos and a written note arrive on completion. You confirm; Stripe releases the funds from escrow. After 48 hours without a response, payment auto-releases.", proof: "Stripe escrow" },
+  { id: "post", number: "01", title: "Post a task.", body: "Where, when, what, how much. Two minutes.", proof: "Under 2 min" },
+  { id: "pick", number: "02", title: "Pick a Renner.", body: "Vetted Renners apply. Read their profile. Book one.", proof: "Checkr-vetted" },
+  { id: "done", number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Stripe pays.", proof: "Stripe escrow" },
 ];
 
 const RENNER_STEPS: Step[] = [
-  { id: "verify", number: "01", title: "Get verified.", body: "Sign up, confirm your identity, clear a Checkr background check. Pick the categories you run. Set a service area and a rate. Onboarding usually clears the same day.", proof: "Same-day" },
-  { id: "pick", number: "02", title: "Pick a task.", body: "Briefs come in from agents, brokers, and property managers nearby. Apply to the ones that fit your schedule and skills. Decline anything that doesn't.", proof: "Local" },
-  { id: "done", number: "03", title: "Get it done.", body: "Run the task, upload completion photos, and get paid through the platform. Build a reputation that earns repeat clients in an industry that remembers.", proof: "100% of pay" },
+  { id: "verify", number: "01", title: "Get verified.", body: "ID, background check, area, rate. Same day.", proof: "Same-day" },
+  { id: "pick", number: "02", title: "Pick a task.", body: "Tasks from agents and managers nearby. Apply.", proof: "Local" },
+  { id: "done", number: "03", title: "Get it done.", body: "Run the task. Send photos. Get paid.", proof: "100% of pay" },
 ];
 
 const CLIENT_TRUST = [
   ["Both sides vetted", "ID and Checkr before any booking."],
   ["Funds in escrow", "Held by Stripe until you confirm."],
-  ["On the record", "Photos and a note on every task."],
+  ["Photos on every task", "A photo and a note when it's done."],
 ] as const;
 
 const RENNER_TRUST = [
   ["Real work", "From agents, brokers, managers."],
   ["Vetted clients", "ID and Checkr, same as you."],
-  ["Repeat work", "A reputation paid in repeat clients."],
+  ["Repeat work", "Good work earns repeat clients."],
 ] as const;
 
 export function TapeBody({ showCta }: { showCta: boolean }) {

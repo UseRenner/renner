@@ -19,12 +19,12 @@ const PAPER = "var(--c-bg, #fbfbfc)";
 
 const CLIENT_STEPS = [
   { number: "01", title: "Post a task.", body: "Where, when, what, how much. Two minutes.", proof: "Under 2 min" },
-  { number: "02", title: "Pick a Renner.", body: "Vetted Renners apply. Read the file. Book one.", proof: "Checkr-vetted" },
+  { number: "02", title: "Pick a Renner.", body: "Vetted Renners apply. Read their profile. Book one.", proof: "Checkr-vetted" },
   { number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Stripe pays.", proof: "Stripe escrow" },
 ];
 const RENNER_STEPS = [
   { number: "01", title: "Get verified.", body: "ID, background check, area, rate. Same day.", proof: "Same-day" },
-  { number: "02", title: "Pick a task.", body: "Briefs from agents and managers nearby. Apply.", proof: "Local" },
+  { number: "02", title: "Pick a task.", body: "Tasks from agents and managers nearby. Apply.", proof: "Local" },
   { number: "03", title: "Get it done.", body: "Run the task. Send photos. Get paid.", proof: "100% of pay" },
 ];
 
@@ -38,16 +38,13 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
     ? [
         ["Both sides vetted", "ID and Checkr before any booking.", "ID + Checkr"],
         ["Funds in escrow", "Held by Stripe until you confirm.", "Stripe held"],
-        ["On the record", "Photos and a note on every task.", "Photos + note"],
+        ["Photos on every task", "A photo and a note when it's done.", "Photo + note"],
       ]
     : [
         ["Real work", "From agents, brokers, managers.", "Agents · brokers · managers"],
         ["Vetted clients", "ID and Checkr, same as you.", "ID + Checkr"],
-        ["Repeat work", "A reputation paid in repeat clients.", "Built task by task"],
+        ["Repeat work", "Good work earns repeat clients.", "Earned, not given"],
       ];
-  const trustHeadline = isClient
-    ? "Both sides vetted. Funds held. On the record."
-    : "Real work. Vetted clients. Repeat work.";
 
   return (
     <>
@@ -94,7 +91,7 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
 
         {/* Top-right: a UI illustration — see the product first */}
         <section className="quarter-cell" style={{ padding: "clamp(28px, 3.5vw, 48px)", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: BONE }}>
-          <Mini kind={isClient ? "brief" : "inbox"} />
+          <Mini kind={isClient ? "task" : "inbox"} />
         </section>
 
         {/* Horizontal rule across all three columns */}

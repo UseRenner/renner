@@ -20,13 +20,13 @@ const RENNER_DEK = "Real-estate work, paid through the platform. Set your area, 
 
 const CLIENT_STEPS: Array<[string, string, string]> = [
   ["Post a task.", "Where, when, what, how much. Two minutes.", "Under 2 min"],
-  ["Pick a Renner.", "Vetted Renners apply. Read the file. Book one.", "Checkr-vetted"],
+  ["Pick a Renner.", "Vetted Renners apply. Read their profile. Book one.", "Checkr-vetted"],
   ["Get it done.", "Photos arrive. You confirm. Stripe pays.", "Stripe escrow"],
 ];
 
 const RENNER_STEPS: Array<[string, string, string]> = [
   ["Get verified.", "ID, background check, area, rate. Same day.", "Same-day"],
-  ["Pick a task.", "Briefs from agents and managers nearby. Apply.", "Local"],
+  ["Pick a task.", "Tasks from agents and managers nearby. Apply.", "Local"],
   ["Get it done.", "Run the task. Send photos. Get paid.", "100% of pay"],
 ];
 
@@ -99,12 +99,12 @@ export function ShowcaseBody({ showCta }: { showCta: boolean }) {
           ? [
               ["Both sides vetted", "ID and Checkr before any booking."],
               ["Funds in escrow", "Held by Stripe until you confirm."],
-              ["On the record", "Photos and a note on every task."],
+              ["Photos on every task", "A photo and a note when it's done."],
             ]
           : [
               ["Real work", "From agents, brokers, managers."],
               ["Vetted clients", "ID and Checkr, same as you."],
-              ["Repeat work", "A reputation paid in repeat clients."],
+              ["Repeat work", "Good work earns repeat clients."],
             ]
         ).map(([label, body]) => (
           <div key={label}>

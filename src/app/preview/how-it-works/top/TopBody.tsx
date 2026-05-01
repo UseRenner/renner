@@ -84,12 +84,12 @@ export function TopBody({ showCta }: { showCta: boolean }) {
           ? [
               ["Both sides vetted", "ID and Checkr before any booking."],
               ["Funds in escrow", "Held by Stripe until you confirm."],
-              ["On the record", "Photos and a note on every task."],
+              ["Photos on every task", "A photo and a note when it's done."],
             ]
           : [
               ["Real work", "From agents, brokers, managers."],
               ["Vetted clients", "ID and Checkr, same as you."],
-              ["Repeat work", "A reputation paid in repeat clients."],
+              ["Repeat work", "Good work earns repeat clients."],
             ]
         ).map(([label, body]) => (
           <div key={label}>
