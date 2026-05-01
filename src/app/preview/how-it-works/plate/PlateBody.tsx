@@ -205,7 +205,7 @@ export function PlateBody({ showCta }: { showCta: boolean }) {
           <article
             key={plate.number}
             style={{
-              backgroundColor: "#eaedf0",
+              backgroundColor: "var(--c-rule, #eaedf0)",
               padding: "clamp(32px, 4.5vw, 56px)",
               display: "grid",
               gridTemplateColumns: "minmax(56px, 64px) minmax(0, 1fr) minmax(260px, 320px)",

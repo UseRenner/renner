@@ -11,13 +11,13 @@ const MONO =
   "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
 const INK = "var(--c-text, #0d0f12)";
-const SLATE = "#2a2f36";
+const SLATE = "var(--c-700, #2a2f36)";
 const STEEL_700 = "var(--c-700, #38414d)";
 const STEEL_600 = "var(--c-600, #647589)";
 const STEEL_500 = "var(--c-500, #7d8da0)";
-const STEEL_400 = "#9aa6b4";
+const STEEL_400 = "var(--c-500, #9aa6b4)";
 const STEEL_300 = "var(--c-300, #cad1d8)";
-const STEEL_200 = "#a7b2be";
+const STEEL_200 = "var(--c-300, #a7b2be)";
 const RULE = "var(--c-rule, #eaedf0)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 

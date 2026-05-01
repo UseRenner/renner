@@ -157,7 +157,7 @@ export function QuarterlyBody({ showCta }: { showCta: boolean }) {
 
 function Tab({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) {
   return (
-    <button type="button" role="tab" aria-selected={active} onClick={onClick} style={{ background: "none", border: "none", padding: 0, fontFamily: "inherit", fontSize: "inherit", fontWeight: "inherit", letterSpacing: "inherit", textTransform: "inherit", color: active ? "#0d0f12" : "#647589", cursor: "pointer" }}>
+    <button type="button" role="tab" aria-selected={active} onClick={onClick} style={{ background: "none", border: "none", padding: 0, fontFamily: "inherit", fontSize: "inherit", fontWeight: "inherit", letterSpacing: "inherit", textTransform: "inherit", color: active ? "var(--c-text, #0d0f12)" : "var(--c-500, #647589)", cursor: "pointer" }}>
       {label}
     </button>
   );

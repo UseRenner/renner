@@ -15,15 +15,23 @@ const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
 const MONO = "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
-const INK = "#0d0f12";
-const STEEL_700 = "#4d5b6a";
-const STEEL_600 = "#647589";
-const STEEL_500 = "#7d8da0";
-const STEEL_400 = "#a7b2be";
-const STEEL_300 = "#cad1d8";
-const RULE = "#eaedf0";
-const BONE = "#f6f7f9";
-const PAPER = "#fbfbfc";
+// Illustration tokens — fed by PageShell via the --ill-* CSS
+// variables. In paper tone the cards render as a paper surface with
+// ink text; in steel and ink tones they flip to a step-lighter dark
+// surface (Steel 700 / Steel 800) with paper text. The semantic
+// names are kept (INK / PAPER / STEEL_*) so all the existing markup
+// reads naturally.
+const INK = "var(--ill-text, #0d0f12)";
+const STEEL_700 = "var(--ill-text-dim, #4d5b6a)";
+const STEEL_600 = "var(--ill-text-dim, #647589)";
+const STEEL_500 = "var(--ill-text-fog, #7d8da0)";
+const STEEL_400 = "var(--ill-photo-text, #a7b2be)";
+const STEEL_300 = "var(--ill-border, #cad1d8)";
+const RULE = "var(--ill-rule, #eaedf0)";
+const BONE = "var(--ill-photo-bg, #f6f7f9)";
+const PAPER = "var(--ill-bg, #fbfbfc)";
+const DISC_BG = "var(--ill-disc-bg, #cad1d8)";
+const DISC_TEXT = "var(--ill-disc-text, #0d0f12)";
 
 export type IllustrationKind =
   | "brief"
@@ -41,8 +49,8 @@ function InitialsDisc({ initials, size, fontSize }: { initials: string; size: nu
         width: size,
         height: size,
         borderRadius: "50%",
-        backgroundColor: STEEL_300,
-        color: INK,
+        backgroundColor: DISC_BG,
+        color: DISC_TEXT,
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",

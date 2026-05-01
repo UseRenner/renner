@@ -14,7 +14,7 @@ const STEEL_600 = "var(--c-600, #647589)";
 const STEEL_500 = "var(--c-500, #7d8da0)";
 const STEEL_300 = "var(--c-300, #cad1d8)";
 const RULE = "var(--c-rule, #eaedf0)";
-const BONE = "#f6f7f9";
+const BONE = "var(--ill-bg, #f6f7f9)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 
 const CLIENT_STEPS = [

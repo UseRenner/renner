@@ -166,6 +166,14 @@ const SHELL_PAPER = "#fbfbfc";
 
 export type ShellTone = "paper" | "steel" | "ink";
 
+export function getToneVars(tone: ShellTone): React.CSSProperties {
+  return TOKENS[tone] as React.CSSProperties;
+}
+
+export function isToneDark(tone: ShellTone): boolean {
+  return tone === "ink" || tone === "steel";
+}
+
 // Token map per tone. Bodies reference these via var(--c-…); the
 // PageShell sets the values on its outer container so a single
 // prop flips every body's palette in step.
@@ -180,28 +188,63 @@ const TOKENS: Record<ShellTone, Record<string, string>> = {
     "--c-rule": "#eaedf0",
     "--c-paper": "#fbfbfc",
     "--c-ink": "#0d0f12",
+    // Illustration surface — matches paper tone
+    "--ill-bg": "#fbfbfc",
+    "--ill-text": "#0d0f12",
+    "--ill-text-dim": "#4d5b6a",
+    "--ill-text-fog": "#7d8da0",
+    "--ill-border": "#cad1d8",
+    "--ill-rule": "#eaedf0",
+    "--ill-photo-bg": "#f6f7f9",
+    "--ill-photo-text": "#a7b2be",
+    "--ill-disc-bg": "#cad1d8",
+    "--ill-disc-text": "#0d0f12",
   },
   steel: {
-    "--c-text": "#0d0f12",
-    "--c-bg": "#eaedf0",
-    "--c-700": "#38414d",
-    "--c-600": "#647589",
-    "--c-500": "#7d8da0",
-    "--c-300": "#a7b2be",
-    "--c-rule": "#cad1d8",
-    "--c-paper": "#fbfbfc",
-    "--c-ink": "#0d0f12",
-  },
-  ink: {
+    // Steel tone — Steel 800 page (#38414d) with paper text. A mid-
+    // dark surface that reads as steel, not as nearly-paper.
     "--c-text": "#fbfbfc",
-    "--c-bg": "#0d0f12",
-    "--c-700": "#eaedf0",
+    "--c-bg": "#38414d",
+    "--c-700": "#fbfbfc",
     "--c-600": "#cad1d8",
     "--c-500": "#a7b2be",
     "--c-300": "#647589",
     "--c-rule": "rgba(251,251,252,0.18)",
-    "--c-paper": "#0d0f12",
-    "--c-ink": "#fbfbfc",
+    "--c-paper": "#fbfbfc",
+    "--c-ink": "#0d0f12",
+    // Illustration sits a step lighter than page (Steel 700ish)
+    "--ill-bg": "#4d5b6a",
+    "--ill-text": "#fbfbfc",
+    "--ill-text-dim": "rgba(251,251,252,0.78)",
+    "--ill-text-fog": "rgba(251,251,252,0.55)",
+    "--ill-border": "rgba(251,251,252,0.18)",
+    "--ill-rule": "rgba(251,251,252,0.10)",
+    "--ill-photo-bg": "#38414d",
+    "--ill-photo-text": "rgba(251,251,252,0.42)",
+    "--ill-disc-bg": "#647589",
+    "--ill-disc-text": "#fbfbfc",
+  },
+  ink: {
+    "--c-text": "#fbfbfc",
+    "--c-bg": "#0d0f12",
+    "--c-700": "#fbfbfc",
+    "--c-600": "#cad1d8",
+    "--c-500": "#a7b2be",
+    "--c-300": "#647589",
+    "--c-rule": "rgba(251,251,252,0.18)",
+    "--c-paper": "#fbfbfc",
+    "--c-ink": "#0d0f12",
+    // Illustration sits a step lighter than page (Steel 800)
+    "--ill-bg": "#38414d",
+    "--ill-text": "#fbfbfc",
+    "--ill-text-dim": "rgba(251,251,252,0.78)",
+    "--ill-text-fog": "rgba(251,251,252,0.55)",
+    "--ill-border": "rgba(251,251,252,0.18)",
+    "--ill-rule": "rgba(251,251,252,0.10)",
+    "--ill-photo-bg": "#2a2f36",
+    "--ill-photo-text": "rgba(251,251,252,0.42)",
+    "--ill-disc-bg": "#647589",
+    "--ill-disc-text": "#fbfbfc",
   },
 };
 
@@ -221,13 +264,14 @@ export function PageShell({
   const GUTTER = "clamp(28px, 4vw, 64px)";
   const isInk = tone === "ink";
   const isSteel = tone === "steel";
-  const pageBg = isInk ? SHELL_INK : isSteel ? SHELL_100 : SHELL_PAPER;
-  const textInk = isInk ? SHELL_PAPER : SHELL_INK;
-  const textMuted = isInk ? "rgba(251,251,252,0.62)" : SHELL_STEEL;
-  const textFog = isInk ? "rgba(251,251,252,0.42)" : SHELL_FOG;
-  const ruleColor = isInk ? "rgba(251,251,252,0.16)" : SHELL_RULE;
-  const ctaBg = isInk ? SHELL_PAPER : SHELL_INK;
-  const ctaFg = isInk ? SHELL_INK : SHELL_PAPER;
+  const isDark = isInk || isSteel;
+  const pageBg = isInk ? SHELL_INK : isSteel ? SHELL_STEEL_800 : SHELL_PAPER;
+  const textInk = isDark ? SHELL_PAPER : SHELL_INK;
+  const textMuted = isDark ? "rgba(251,251,252,0.62)" : SHELL_STEEL;
+  const textFog = isDark ? "rgba(251,251,252,0.42)" : SHELL_FOG;
+  const ruleColor = isDark ? "rgba(251,251,252,0.16)" : SHELL_RULE;
+  const ctaBg = isDark ? SHELL_PAPER : SHELL_INK;
+  const ctaFg = isDark ? SHELL_INK : SHELL_PAPER;
   const cssVars = TOKENS[tone] as React.CSSProperties;
 
   return (
@@ -264,7 +308,7 @@ export function PageShell({
                 <span style={{ fontFamily: SERIF_FONT, fontWeight: 400, fontSize: 19, lineHeight: 1.35, color: textInk, fontVariationSettings: '"opsz" 14' }}>{item.q}</span>
                 <span className="faq-toggle" style={{ fontFamily: SANS_FONT, fontSize: 18, color: textFog }} aria-hidden>+</span>
               </summary>
-              <p style={{ fontFamily: SERIF_FONT, fontSize: 16, color: isInk ? "rgba(251,251,252,0.78)" : SHELL_SLATE, lineHeight: 1.65, marginTop: 18, marginLeft: 80, marginBottom: 0, maxWidth: 600, fontVariationSettings: '"opsz" 14' }}>{item.a}</p>
+              <p style={{ fontFamily: SERIF_FONT, fontSize: 16, color: isDark ? "rgba(251,251,252,0.78)" : SHELL_SLATE, lineHeight: 1.65, marginTop: 18, marginLeft: 80, marginBottom: 0, maxWidth: 600, fontVariationSettings: '"opsz" 14' }}>{item.a}</p>
             </details>
           ))}
         </div>

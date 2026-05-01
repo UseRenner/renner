@@ -9,11 +9,12 @@ const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
 const MONO = "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
 const INK = "var(--c-text, #0d0f12)";
+const STEEL_700 = "var(--c-700, #38414d)";
+const STEEL_600 = "var(--c-600, #647589)";
+const STEEL_500 = "var(--c-500, #7d8da0)";
+const STEEL_300 = "var(--c-300, #cad1d8)";
+const RULE = "var(--c-rule, #eaedf0)";
 const PAPER = "var(--c-bg, #fbfbfc)";
-const PAPER_DIM = "rgba(251,251,252,0.78)";
-const PAPER_FOG = "rgba(251,251,252,0.52)";
-const PAPER_RULE = "rgba(251,251,252,0.22)";
-const PAPER_HAIR = "rgba(251,251,252,0.10)";
 
 const CLIENT_DEK = "A marketplace for real-estate work. Post a task, pick a Renner, get it done. Both sides are screened to join.";
 const RENNER_DEK = "Real-estate work, paid through the platform. Set your area, set your rate, pick what you take. Both sides are screened to join.";
@@ -39,17 +40,17 @@ export function AnchorBody({ showCta }: { showCta: boolean }) {
   return (
     <div style={{ minHeight: "min(820px, 80vh)", display: "flex", flexDirection: "column" }}>
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 24, flexWrap: "wrap" }}>
-        <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: PAPER_FOG }}>
+        <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500 }}>
           How it works
         </span>
         <div role="tablist" aria-label="Audience" style={{ display: "flex", alignItems: "baseline", gap: 14, fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 16 }}>
           <Tab label="For clients" active={isClient} onClick={() => setTab("client")} />
-          <span aria-hidden style={{ color: PAPER_FOG, fontStyle: "normal" }}>·</span>
+          <span aria-hidden style={{ color: STEEL_300, fontStyle: "normal" }}>·</span>
           <Tab label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
         </div>
       </div>
 
-      <p style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(24px, 3vw, 36px)", lineHeight: 1.3, color: PAPER, margin: 0, marginTop: "clamp(48px, 6vw, 72px)", maxWidth: "32ch", fontVariationSettings: '"opsz" 36' }}>
+      <p style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(24px, 3vw, 36px)", lineHeight: 1.3, color: INK, margin: 0, marginTop: "clamp(48px, 6vw, 72px)", maxWidth: "32ch", fontVariationSettings: '"opsz" 36' }}>
         {dek}
       </p>
 
@@ -65,7 +66,7 @@ export function AnchorBody({ showCta }: { showCta: boolean }) {
 
       <div style={{ flex: 1, minHeight: "clamp(64px, 8vw, 112px)" }} />
 
-      <ol style={{ listStyle: "none", margin: 0, padding: 0, borderTop: `1px solid ${PAPER}` }}>
+      <ol style={{ listStyle: "none", margin: 0, padding: 0, borderTop: `1px solid ${INK}` }}>
         {steps.map((s, i) => (
           <li
             key={s.number}
@@ -75,14 +76,14 @@ export function AnchorBody({ showCta }: { showCta: boolean }) {
               gridTemplateColumns: "56px minmax(180px, 1fr) minmax(0, 2.4fr) minmax(140px, auto)",
               gap: "clamp(20px, 2.5vw, 36px)",
               padding: "clamp(22px, 2.6vw, 32px) 0",
-              borderBottom: i === steps.length - 1 ? "none" : `1px solid ${PAPER_HAIR}`,
+              borderBottom: i === steps.length - 1 ? "none" : `1px solid ${RULE}`,
               alignItems: "baseline",
             }}
           >
-            <span style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.22em", color: PAPER_FOG }}>{s.number}</span>
-            <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(22px, 2.4vw, 28px)", lineHeight: 1.1, color: PAPER, fontVariationSettings: '"opsz" 36' }}>{s.title}</span>
-            <span style={{ fontFamily: SERIF, fontSize: 16, lineHeight: 1.55, color: PAPER_DIM, fontVariationSettings: '"opsz" 14' }}>{s.body}</span>
-            <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: PAPER, textAlign: "right" }}>{s.proof}</span>
+            <span style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.22em", color: STEEL_500 }}>{s.number}</span>
+            <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(22px, 2.4vw, 28px)", lineHeight: 1.1, color: INK, fontVariationSettings: '"opsz" 36' }}>{s.title}</span>
+            <span style={{ fontFamily: SERIF, fontSize: 16, lineHeight: 1.55, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>{s.body}</span>
+            <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: STEEL_600, textAlign: "right" }}>{s.proof}</span>
           </li>
         ))}
       </ol>
@@ -98,9 +99,9 @@ export function AnchorBody({ showCta }: { showCta: boolean }) {
               fontFamily: SANS,
               fontSize: 14,
               fontWeight: 500,
-              color: INK,
-              backgroundColor: PAPER,
-              border: `1px solid ${PAPER}`,
+              color: PAPER,
+              backgroundColor: INK,
+              border: `1px solid ${INK}`,
               borderRadius: 4,
               padding: "14px 22px",
               textDecoration: "none",
@@ -144,7 +145,7 @@ function Tab({ label, active, onClick }: { label: string; active: boolean; onCli
       role="tab"
       aria-selected={active}
       onClick={onClick}
-      style={{ background: "none", border: "none", padding: 0, fontFamily: "inherit", fontStyle: "inherit", fontSize: "inherit", fontWeight: "inherit", color: active ? "#fbfbfc" : "rgba(251,251,252,0.52)", cursor: "pointer" }}
+      style={{ background: "none", border: "none", padding: 0, fontFamily: "inherit", fontStyle: "inherit", fontSize: "inherit", fontWeight: "inherit", color: active ? INK : STEEL_500, cursor: "pointer" }}
     >
       {label}
     </button>

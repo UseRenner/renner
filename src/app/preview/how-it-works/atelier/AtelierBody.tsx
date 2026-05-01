@@ -104,7 +104,7 @@ const MONO =
   "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
 const INK = "var(--c-text, #0d0f12)";
-const STEEL_800 = "#38414d";
+const STEEL_800 = "var(--c-700, #38414d)";
 const STEEL_700 = "var(--c-700, #38414d)";
 const STEEL_600 = "var(--c-600, #647589)";
 const STEEL_500 = "var(--c-500, #7d8da0)";
