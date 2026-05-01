@@ -74,12 +74,13 @@ function VerifiedRow({ label, fontSize = 9 }: { label: string; fontSize?: number
   );
 }
 
-function PhotoSlot({ aspect = "1 / 1" }: { aspect?: string }) {
+function PhotoSlot({ aspect = "1 / 1", height }: { aspect?: string; height?: number | string }) {
   return (
     <div
       aria-hidden
       style={{
-        aspectRatio: aspect,
+        aspectRatio: height ? undefined : aspect,
+        height,
         backgroundColor: BONE,
         border: `1px solid ${RULE}`,
         position: "relative",
@@ -363,9 +364,9 @@ function MiniCompletion({ maxWidth }: { maxWidth?: number | string }) {
   return (
     <MiniShell kicker="Completion" maxWidth={maxWidth}>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 4 }}>
-        <PhotoSlot />
-        <PhotoSlot />
-        <PhotoSlot />
+        <PhotoSlot height={56} />
+        <PhotoSlot height={56} />
+        <PhotoSlot height={56} />
       </div>
       <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 16, color: INK, fontVariationSettings: '"opsz" 36' }}>
         Confirmed.
