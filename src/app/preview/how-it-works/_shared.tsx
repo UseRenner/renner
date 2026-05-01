@@ -49,7 +49,6 @@ export type VariantKey =
   | "marketplace"
   | "network"
   | "showcase"
-  | "frame"
   | "scene"
   | "mast"
   | "pivot"
@@ -82,7 +81,6 @@ export const VARIANTS: ReadonlyArray<{ href: string; key: VariantKey; label: str
   { href: "/preview/how-it-works/marketplace", key: "marketplace", label: "Marketplace" },
   { href: "/preview/how-it-works/network", key: "network", label: "Network" },
   { href: "/preview/how-it-works/showcase", key: "showcase", label: "Showcase" },
-  { href: "/preview/how-it-works/frame", key: "frame", label: "Frame" },
   { href: "/preview/how-it-works/scene", key: "scene", label: "Scene" },
   { href: "/preview/how-it-works/mast", key: "mast", label: "Mast" },
   { href: "/preview/how-it-works/pivot", key: "pivot", label: "Pivot" },
