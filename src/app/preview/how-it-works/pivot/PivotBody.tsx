@@ -67,7 +67,7 @@ export function PivotBody({ showCta }: { showCta: boolean }) {
         aria-label="Audience"
         className="pivot-axis-row"
         style={{
-          marginBottom: "clamp(56px, 7vw, 88px)",
+          marginBottom: "clamp(32px, 4vw, 48px)",
           fontFamily: SERIF,
           fontStyle: "italic",
           fontWeight: 300,
@@ -83,7 +83,7 @@ export function PivotBody({ showCta }: { showCta: boolean }) {
       </div>
 
       {/* Dek — single line, pinned to the axis */}
-      <div className="pivot-axis-row" style={{ marginBottom: "clamp(80px, 10vw, 128px)" }}>
+      <div className="pivot-axis-row" style={{ marginBottom: "clamp(48px, 6vw, 72px)" }}>
         <div className="pivot-left" style={{ textAlign: "right", paddingRight: 28 }}>
           <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500 }}>
             How it works
