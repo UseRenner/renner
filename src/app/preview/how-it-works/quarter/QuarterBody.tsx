@@ -116,12 +116,14 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
 
         <div aria-hidden style={{ backgroundColor: INK }} className="quarter-vrule" />
 
-        {/* Bottom-right: trust — high-contrast callout that flips polarity */}
-        <section className="quarter-cell quarter-trust" style={{ padding: "clamp(32px, 4.5vw, 64px)", backgroundColor: "var(--c-callout-bg)", color: "var(--c-callout-text)" }}>
-          <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--c-callout-fog)", marginBottom: 24 }}>
+        {/* Bottom-right: trust — distinguished by typographic scale, not by fill.
+            A strong left rule anchors the cell; labels render at display size
+            in italic 300, well above the rest of the page's body type. */}
+        <section className="quarter-cell quarter-trust" style={{ padding: "clamp(32px, 4.5vw, 64px)", borderLeft: `3px solid ${INK}` }}>
+          <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500, marginBottom: 28 }}>
             {isClient ? "Why Renner" : "What you get"}
           </div>
-          <dl style={{ margin: 0, display: "flex", flexDirection: "column", gap: 20 }}>
+          <dl style={{ margin: 0, display: "flex", flexDirection: "column", gap: "clamp(20px, 2.4vw, 28px)" }}>
             {(isClient
               ? [
                   ["Both sides vetted", "ID and Checkr before any booking."],
@@ -135,10 +137,10 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
                 ]
             ).map(([label, body]) => (
               <div key={label}>
-                <dt style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 20, color: "var(--c-callout-text)", marginBottom: 4, fontVariationSettings: '"opsz" 36' }}>
+                <dt style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(24px, 2.8vw, 32px)", lineHeight: 1.1, letterSpacing: "-0.012em", color: INK, marginBottom: 6, fontVariationSettings: '"opsz" 60' }}>
                   {label}.
                 </dt>
-                <dd style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.55, color: "var(--c-callout-dim)", margin: 0, fontVariationSettings: '"opsz" 14' }}>
+                <dd style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
                   {body}
                 </dd>
               </div>
