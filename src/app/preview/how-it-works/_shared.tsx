@@ -140,14 +140,14 @@ const SHELL_RULE = "#eaedf0";
 const SHELL_100 = "#eaedf0";
 const SHELL_PAPER = "#fbfbfc";
 
-export type ShellTone = "paper" | "steel" | "ink";
+export type ShellTone = "paper" | "haze" | "steel" | "ink";
 
 export function getToneVars(tone: ShellTone): React.CSSProperties {
   return TOKENS[tone] as React.CSSProperties;
 }
 
 export function isToneDark(tone: ShellTone): boolean {
-  return tone === "ink" || tone === "steel";
+  return tone === "ink" || tone === "steel" || tone === "haze";
 }
 
 // Token map per tone. Bodies reference these via var(--c-…); the
@@ -178,6 +178,35 @@ const TOKENS: Record<ShellTone, Record<string, string>> = {
     "--ill-disc-bg": "#cad1d8",
     "--ill-disc-text": "#0d0f12",
     // Callout — always a high-contrast dark panel
+    "--c-callout-bg": "#0d0f12",
+    "--c-callout-text": "#fbfbfc",
+    "--c-callout-fog": "rgba(251,251,252,0.6)",
+    "--c-callout-dim": "rgba(251,251,252,0.78)",
+  },
+  haze: {
+    // Haze tone — Steel 600 page (#647589, the brand root) with
+    // paper text. Sits between paper and steel as a mid-tone.
+    "--c-text": "#fbfbfc",
+    "--c-bg": "#647589",
+    "--c-700": "#fbfbfc",
+    "--c-600": "#eaedf0",
+    "--c-500": "#cad1d8",
+    "--c-300": "#7d8da0",
+    "--c-rule": "rgba(251,251,252,0.18)",
+    "--c-panel": "#7d8da0",
+    "--c-hover": "#7d8da0",
+    "--c-paper": "#fbfbfc",
+    "--c-ink": "#0d0f12",
+    "--ill-bg": "#647589",
+    "--ill-text": "#fbfbfc",
+    "--ill-text-dim": "rgba(251,251,252,0.78)",
+    "--ill-text-fog": "rgba(251,251,252,0.55)",
+    "--ill-border": "rgba(251,251,252,0.22)",
+    "--ill-rule": "rgba(251,251,252,0.12)",
+    "--ill-photo-bg": "#7d8da0",
+    "--ill-photo-text": "rgba(251,251,252,0.42)",
+    "--ill-disc-bg": "#38414d",
+    "--ill-disc-text": "#fbfbfc",
     "--c-callout-bg": "#0d0f12",
     "--c-callout-text": "#fbfbfc",
     "--c-callout-fog": "rgba(251,251,252,0.6)",

@@ -6,7 +6,7 @@ export const metadata = { title: "How it works · Showcase · Renner", robots: {
 export const dynamic = "force-dynamic";
 
 function readTone(v: unknown): ShellTone {
-  return v === "ink" || v === "steel" || v === "paper" ? v : "paper";
+  return v === "ink" || v === "steel" || v === "haze" || v === "paper" ? v : "paper";
 }
 
 export default async function ShowcaseHowItWorks({ searchParams }: { searchParams: Promise<{ tone?: string }> }) {
