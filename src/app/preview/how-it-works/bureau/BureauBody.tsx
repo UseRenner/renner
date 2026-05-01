@@ -53,7 +53,7 @@ export function BureauBody({ showCta }: { showCta: boolean }) {
 
       {/* Lede on the left, illustration of step 1 on the right — set
           the voice and show the product in one read. */}
-      <div className="bureau-lede" style={{ display: "grid", gridTemplateColumns: "minmax(0, 1.1fr) minmax(0, 1fr)", gap: "clamp(40px, 5vw, 80px)", alignItems: "end", marginBottom: "clamp(72px, 9vw, 112px)" }}>
+      <div className="bureau-lede" style={{ display: "grid", gridTemplateColumns: "minmax(0, 1.1fr) minmax(0, 1fr)", gap: "clamp(40px, 5vw, 80px)", alignItems: "start", marginBottom: "clamp(72px, 9vw, 112px)" }}>
         <p style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.25, letterSpacing: "-0.012em", color: INK, margin: 0, maxWidth: "32ch", fontVariationSettings: '"opsz" 60' }}>
           {dek}
         </p>
