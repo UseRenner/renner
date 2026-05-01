@@ -58,25 +58,39 @@ export function ShowcaseBody({ showCta }: { showCta: boolean }) {
         {dek}
       </p>
 
-      {/* Three card+caption columns — each step lives in one column,
-          card on top, caption directly beneath, no row gap between
-          card and caption. The eye reads card → caption → next step. */}
-      <div className="showcase-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "clamp(20px, 2.4vw, 32px)", marginBottom: "clamp(64px, 8vw, 96px)" }}>
+      {/* Three steps stacked vertically — each step is a full-width
+          row with the illustration centered and the caption beneath
+          it. Generous breathing room between steps so the page reads
+          one step at a time, not as a tight row of three. */}
+      <div className="showcase-stack" style={{ display: "flex", flexDirection: "column", marginBottom: "clamp(64px, 8vw, 96px)" }}>
         {kinds.map((kind, i) => {
           const [title, body, proof] = steps[i];
+          const isLast = i === kinds.length - 1;
           return (
-            <article key={kind} style={{ display: "flex", flexDirection: "column", gap: "clamp(20px, 2.4vw, 28px)" }}>
-              <Card kind={kind} />
-              <div style={{ paddingTop: "clamp(16px, 2vw, 20px)", borderTop: `1px solid ${RULE}` }}>
-                <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500, marginBottom: 10 }}>
-                  {String(i + 1).padStart(2, "0")} · {proof}
-                </div>
-                <h3 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(22px, 2.4vw, 28px)", lineHeight: 1.1, letterSpacing: "-0.012em", color: INK, margin: 0, marginBottom: 8, fontVariationSettings: '"opsz" 36' }}>
-                  {title}
-                </h3>
-                <p style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
-                  {body}
-                </p>
+            <article
+              key={kind}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "minmax(0, 1fr)",
+                gap: "clamp(28px, 3.5vw, 44px)",
+                paddingTop: "clamp(56px, 7vw, 88px)",
+                paddingBottom: isLast ? 0 : "clamp(56px, 7vw, 88px)",
+                borderTop: i === 0 ? "none" : `1px solid ${RULE}`,
+                justifyItems: "center",
+                textAlign: "center",
+              }}
+            >
+              <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500 }}>
+                {String(i + 1).padStart(2, "0")} · {proof}
+              </div>
+              <h3 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(28px, 3.2vw, 40px)", lineHeight: 1.1, letterSpacing: "-0.014em", color: INK, margin: 0, fontVariationSettings: '"opsz" 60' }}>
+                {title}
+              </h3>
+              <p style={{ fontFamily: SERIF, fontSize: 16, lineHeight: 1.6, color: STEEL_700, margin: 0, maxWidth: "44ch", fontVariationSettings: '"opsz" 14' }}>
+                {body}
+              </p>
+              <div style={{ width: "100%", maxWidth: 520, marginTop: "clamp(8px, 1vw, 16px)" }}>
+                <Card kind={kind} />
               </div>
             </article>
           );
@@ -146,7 +160,6 @@ export function ShowcaseBody({ showCta }: { showCta: boolean }) {
 
       <style jsx>{`
         @media (max-width: 880px) {
-          .showcase-grid,
           .showcase-trust {
             grid-template-columns: 1fr !important;
             gap: 32px !important;
