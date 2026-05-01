@@ -13,8 +13,9 @@ import { VARIANTS, type VariantKey } from "./_shared";
 
 const MONO = "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
-const TONES: Array<{ key: "paper" | "haze" | "steel" | "ink"; label: string }> = [
+const TONES: Array<{ key: "paper" | "mist" | "haze" | "steel" | "ink"; label: string }> = [
   { key: "paper", label: "Paper" },
+  { key: "mist", label: "Mist" },
   { key: "haze", label: "Haze" },
   { key: "steel", label: "Steel" },
   { key: "ink", label: "Ink" },
@@ -25,7 +26,7 @@ export function VariantSwitcher({ active }: { active: VariantKey }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const currentTone = (searchParams?.get("tone") as "paper" | "haze" | "steel" | "ink" | null) ?? "paper";
+  const currentTone = (searchParams?.get("tone") as "paper" | "mist" | "haze" | "steel" | "ink" | null) ?? "paper";
   const activeLabel = VARIANTS.find((v) => v.key === active)?.label ?? "";
 
   useEffect(() => {
@@ -49,7 +50,7 @@ export function VariantSwitcher({ active }: { active: VariantKey }) {
     return `${href}?tone=${currentTone}`;
   }
 
-  function hrefForTone(tone: "paper" | "haze" | "steel" | "ink") {
+  function hrefForTone(tone: "paper" | "mist" | "haze" | "steel" | "ink") {
     const base = pathname || "/";
     if (tone === "paper") return base;
     return `${base}?tone=${tone}`;

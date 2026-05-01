@@ -140,7 +140,7 @@ const SHELL_RULE = "#eaedf0";
 const SHELL_100 = "#eaedf0";
 const SHELL_PAPER = "#fbfbfc";
 
-export type ShellTone = "paper" | "haze" | "steel" | "ink";
+export type ShellTone = "paper" | "mist" | "haze" | "steel" | "ink";
 
 export function getToneVars(tone: ShellTone): React.CSSProperties {
   return TOKENS[tone] as React.CSSProperties;
@@ -178,6 +178,35 @@ const TOKENS: Record<ShellTone, Record<string, string>> = {
     "--ill-disc-bg": "#cad1d8",
     "--ill-disc-text": "#0d0f12",
     // Callout — always a high-contrast dark panel
+    "--c-callout-bg": "#0d0f12",
+    "--c-callout-text": "#fbfbfc",
+    "--c-callout-fog": "rgba(251,251,252,0.6)",
+    "--c-callout-dim": "rgba(251,251,252,0.78)",
+  },
+  mist: {
+    // Mist tone — Steel 400 page (#a7b2be) with ink text. A light
+    // mid-tone that sits between paper and haze.
+    "--c-text": "#0d0f12",
+    "--c-bg": "#a7b2be",
+    "--c-700": "#38414d",
+    "--c-600": "#647589",
+    "--c-500": "#7d8da0",
+    "--c-300": "#cad1d8",
+    "--c-rule": "rgba(13,15,18,0.18)",
+    "--c-panel": "#cad1d8",
+    "--c-hover": "#cad1d8",
+    "--c-paper": "#fbfbfc",
+    "--c-ink": "#0d0f12",
+    "--ill-bg": "#a7b2be",
+    "--ill-text": "#0d0f12",
+    "--ill-text-dim": "#38414d",
+    "--ill-text-fog": "#647589",
+    "--ill-border": "rgba(13,15,18,0.22)",
+    "--ill-rule": "rgba(13,15,18,0.12)",
+    "--ill-photo-bg": "#cad1d8",
+    "--ill-photo-text": "#647589",
+    "--ill-disc-bg": "#647589",
+    "--ill-disc-text": "#fbfbfc",
     "--c-callout-bg": "#0d0f12",
     "--c-callout-text": "#fbfbfc",
     "--c-callout-fog": "rgba(251,251,252,0.6)",
