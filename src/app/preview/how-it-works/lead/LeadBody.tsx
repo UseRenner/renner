@@ -96,7 +96,7 @@ export function LeadBody({ showCta }: { showCta: boolean }) {
         ))}
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "clamp(24px, 3vw, 48px)", marginBottom: showCta ? "clamp(48px, 6vw, 72px)" : 0 }} className="lead-trust">
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "clamp(24px, 3vw, 48px)", marginBottom: showCta ? "clamp(48px, 6vw, 72px)" : 0, textAlign: "center", justifyItems: "center" }} className="lead-trust">
         {(isClient
           ? [
               ["Both sides vetted", "ID and Checkr before any booking."],
@@ -109,8 +109,8 @@ export function LeadBody({ showCta }: { showCta: boolean }) {
               ["Repeat work", "A reputation paid in repeat clients."],
             ]
         ).map(([label, body]) => (
-          <div key={label}>
-            <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 18, color: INK, marginBottom: 8, fontVariationSettings: '"opsz" 36' }}>
+          <div key={label} style={{ maxWidth: "32ch" }}>
+            <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 400, fontSize: 18, color: INK, marginBottom: 8, fontVariationSettings: '"opsz" 36' }}>
               {label}.
             </div>
             <div style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.55, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>
