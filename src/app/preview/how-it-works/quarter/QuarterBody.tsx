@@ -258,7 +258,7 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
             //     edges; paper italic claims stack inside it.
             <div
               style={{
-                backgroundColor: INK,
+                backgroundColor: "var(--c-ink, #0d0f12)",
                 color: "var(--c-paper, #fbfbfc)",
                 padding: "clamp(56px, 7vw, 96px) clamp(32px, 4.5vw, 64px) clamp(32px, 4.5vw, 64px)",
                 minHeight: "100%",
