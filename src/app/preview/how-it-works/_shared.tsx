@@ -54,7 +54,6 @@ export type VariantKey =
   | "anchor"
   | "quarter"
   | "lead"
-  | "stack"
   | "top"
   | "compact"
   | "center"
@@ -69,7 +68,6 @@ export const VARIANTS: ReadonlyArray<{ href: string; key: VariantKey; label: str
   { href: "/preview/how-it-works/quarterly", key: "quarterly", label: "Quarterly" },
   { href: "/preview/how-it-works/charter", key: "charter", label: "Charter" },
   { href: "/preview/how-it-works/lead", key: "lead", label: "Lead" },
-  { href: "/preview/how-it-works/stack", key: "stack", label: "Stack" },
   { href: "/preview/how-it-works/top", key: "top", label: "Top" },
   { href: "/preview/how-it-works/compact", key: "compact", label: "Compact" },
   { href: "/preview/how-it-works/center", key: "center", label: "Center" },
