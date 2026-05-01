@@ -30,9 +30,25 @@ const RENNER_STEPS = [
 
 export function QuarterBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
+  const [trustVariant, setTrustVariant] = useState<"A" | "B" | "C" | "D">("A");
   const isClient = tab === "client";
   const steps = isClient ? CLIENT_STEPS : RENNER_STEPS;
   const cta = isClient ? { label: "Sign up", href: "/signup" } : { label: "Become a Renner", href: "/become-a-renner" };
+
+  const trustPairs: Array<[string, string, string]> = isClient
+    ? [
+        ["Both sides vetted", "ID and Checkr before any booking.", "ID + Checkr"],
+        ["Funds in escrow", "Held by Stripe until you confirm.", "Stripe held"],
+        ["On the record", "Photos and a note on every task.", "Photos + note"],
+      ]
+    : [
+        ["Real work", "From agents, brokers, managers.", "Agents · brokers · managers"],
+        ["Vetted clients", "ID and Checkr, same as you.", "ID + Checkr"],
+        ["Repeat work", "A reputation paid in repeat clients.", "Built task by task"],
+      ];
+  const trustHeadline = isClient
+    ? "Both sides vetted. Funds held. On the record."
+    : "Real work. Vetted clients. Repeat work.";
 
   return (
     <>
@@ -116,36 +132,102 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
 
         <div aria-hidden style={{ backgroundColor: INK }} className="quarter-vrule" />
 
-        {/* Bottom-right: trust — distinguished by typographic scale, not by fill.
-            A strong left rule anchors the cell; labels render at display size
-            in italic 300, well above the rest of the page's body type. */}
-        <section className="quarter-cell quarter-trust" style={{ padding: "clamp(32px, 4.5vw, 64px)", borderLeft: `3px solid ${INK}` }}>
-          <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500, marginBottom: 28 }}>
-            {isClient ? "Why Renner" : "What you get"}
+        {/* Bottom-right: trust — four design options switch in place. */}
+        <section className="quarter-cell quarter-trust" style={{ padding: "clamp(32px, 4.5vw, 64px)", borderLeft: trustVariant === "A" ? "none" : `3px solid ${INK}` }}>
+          <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16, marginBottom: 28, flexWrap: "wrap" }}>
+            <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500 }}>
+              {isClient ? "Why Renner" : "What you get"}
+            </span>
+            <div role="tablist" aria-label="Design option" style={{ display: "flex", alignItems: "baseline", gap: 8, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase" }}>
+              {(["A", "B", "C", "D"] as const).map((v) => (
+                <button
+                  key={v}
+                  type="button"
+                  role="tab"
+                  aria-selected={trustVariant === v}
+                  onClick={() => setTrustVariant(v)}
+                  style={{ background: "none", border: `1px solid ${trustVariant === v ? INK : STEEL_300}`, padding: "4px 8px", color: trustVariant === v ? INK : STEEL_500, cursor: "pointer", fontFamily: "inherit", fontSize: "inherit", fontWeight: "inherit", letterSpacing: "inherit", textTransform: "inherit" }}
+                >
+                  {v}
+                </button>
+              ))}
+            </div>
           </div>
-          <dl style={{ margin: 0, display: "flex", flexDirection: "column", gap: "clamp(20px, 2.4vw, 28px)" }}>
-            {(isClient
-              ? [
-                  ["Both sides vetted", "ID and Checkr before any booking."],
-                  ["Funds in escrow", "Held by Stripe until you confirm."],
-                  ["On the record", "Photos and a note on every task."],
-                ]
-              : [
-                  ["Real work", "From agents, brokers, managers."],
-                  ["Vetted clients", "ID and Checkr, same as you."],
-                  ["Repeat work", "A reputation paid in repeat clients."],
-                ]
-            ).map(([label, body]) => (
-              <div key={label}>
-                <dt style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(24px, 2.8vw, 32px)", lineHeight: 1.1, letterSpacing: "-0.012em", color: INK, marginBottom: 6, fontVariationSettings: '"opsz" 60' }}>
-                  {label}.
-                </dt>
-                <dd style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
-                  {body}
-                </dd>
-              </div>
-            ))}
-          </dl>
+
+          {trustVariant === "A" && (
+            // A — big italic claims, body recedes to a mono kicker
+            <dl style={{ margin: 0, display: "flex", flexDirection: "column", gap: "clamp(28px, 3.5vw, 40px)" }}>
+              {trustPairs.map(([label, , kicker]) => (
+                <div key={label}>
+                  <dt style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(32px, 4vw, 48px)", lineHeight: 1.05, letterSpacing: "-0.018em", color: INK, marginBottom: 10, fontVariationSettings: '"opsz" 96' }}>
+                    {label}.
+                  </dt>
+                  <dd style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500, margin: 0 }}>
+                    {kicker}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          )}
+
+          {trustVariant === "B" && (
+            // B — mono spec sheet: chevron · italic label · rule · serif body
+            <dl style={{ margin: 0, borderTop: `1px solid ${RULE}` }}>
+              {trustPairs.map(([label, body], i, arr) => (
+                <div key={label} style={{ display: "grid", gridTemplateColumns: "16px minmax(160px, auto) minmax(0, 1fr)", gap: 16, alignItems: "baseline", padding: "18px 0", borderBottom: i === arr.length - 1 ? `1px solid ${RULE}` : `1px solid ${RULE}` }}>
+                  <span aria-hidden style={{ fontFamily: MONO, fontSize: 12, color: STEEL_500 }}>›</span>
+                  <dt style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 17, color: INK, fontVariationSettings: '"opsz" 36' }}>
+                    {label}
+                  </dt>
+                  <dd style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+                    {body}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          )}
+
+          {trustVariant === "C" && (
+            // C — one italic statement at the top, three small bullets beneath
+            <div>
+              <p style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(26px, 3vw, 36px)", lineHeight: 1.2, letterSpacing: "-0.014em", color: INK, margin: 0, marginBottom: "clamp(28px, 3.5vw, 36px)", fontVariationSettings: '"opsz" 60' }}>
+                {trustHeadline}
+              </p>
+              <dl style={{ margin: 0, display: "flex", flexDirection: "column", gap: 14 }}>
+                {trustPairs.map(([label, body]) => (
+                  <div key={label} style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr)", gap: 2 }}>
+                    <dt style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
+                      {label}
+                    </dt>
+                    <dd style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.5, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+                      {body}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          )}
+
+          {trustVariant === "D" && (
+            // D — sigil-anchored pairs: small steel disc, italic label, body to the right
+            <dl style={{ margin: 0, display: "flex", flexDirection: "column", gap: "clamp(20px, 2.4vw, 28px)" }}>
+              {trustPairs.map(([label, body], i) => (
+                <div key={label} style={{ display: "grid", gridTemplateColumns: "44px minmax(0, 1fr)", gap: 18, alignItems: "start" }}>
+                  <span aria-hidden style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 32, height: 32, borderRadius: "50%", backgroundColor: "var(--ill-disc-bg, #cad1d8)", color: "var(--ill-disc-text, #0d0f12)", fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.04em" }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <dt style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(20px, 2.2vw, 24px)", lineHeight: 1.15, letterSpacing: "-0.012em", color: INK, marginBottom: 6, fontVariationSettings: '"opsz" 36' }}>
+                      {label}.
+                    </dt>
+                    <dd style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+                      {body}
+                    </dd>
+                  </div>
+                </div>
+              ))}
+            </dl>
+          )}
         </section>
       </div>
 
