@@ -98,10 +98,10 @@ function PhotoSlot({ aspect = "1 / 1" }: { aspect?: string }) {
   );
 }
 
-function Shell({ kicker, children, padding = 28, style }: { kicker: string; children: ReactNode; padding?: number; style?: CSSProperties }) {
+function Shell({ kicker, children, padding = 24, style }: { kicker: string; children: ReactNode; padding?: number; style?: CSSProperties }) {
   return (
-    <article style={{ border: `1px solid ${STEEL_300}`, backgroundColor: PAPER, display: "flex", flexDirection: "column", width: "100%", maxWidth: 420, minHeight: 480, ...style }}>
-      <div style={{ padding: "14px 18px", borderBottom: `1px solid ${RULE}`, fontFamily: MONO, fontSize: 9, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
+    <article style={{ border: `1px solid ${STEEL_300}`, backgroundColor: PAPER, display: "flex", flexDirection: "column", width: "100%", maxWidth: 420, minHeight: 360, ...style }}>
+      <div style={{ padding: "12px 16px", borderBottom: `1px solid ${RULE}`, fontFamily: MONO, fontSize: 9, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
         {kicker}
       </div>
       <div style={{ padding, display: "flex", flexDirection: "column", flex: 1, gap: 14 }}>
@@ -295,7 +295,7 @@ export function Card({ kind }: { kind: IllustrationKind }) {
 
 function MiniShell({ kicker, children }: { kicker: string; children: ReactNode }) {
   return (
-    <article style={{ border: `1px solid ${STEEL_300}`, backgroundColor: PAPER, display: "flex", flexDirection: "column", width: "100%", maxWidth: 320, minHeight: 300 }}>
+    <article style={{ border: `1px solid ${STEEL_300}`, backgroundColor: PAPER, display: "flex", flexDirection: "column", width: "100%", maxWidth: 320, minHeight: 240 }}>
       <div style={{ padding: "10px 14px", borderBottom: `1px solid ${RULE}`, fontFamily: MONO, fontSize: 8, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
         {kicker}
       </div>

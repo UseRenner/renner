@@ -46,7 +46,7 @@ export function LeadBody({ showCta }: { showCta: boolean }) {
         <Tab label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
-      <div className="lead-hero" style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1fr)", gap: "clamp(40px, 5vw, 80px)", alignItems: "center", marginBottom: "clamp(72px, 9vw, 112px)" }}>
+      <div className="lead-hero" style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1fr)", gap: "clamp(40px, 5vw, 80px)", alignItems: "start", marginBottom: "clamp(72px, 9vw, 112px)" }}>
         <p
           style={{
             fontFamily: SERIF,
