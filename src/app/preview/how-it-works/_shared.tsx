@@ -62,9 +62,17 @@ export type VariantKey =
   | "stack"
   | "top"
   | "compact"
-  | "center";
+  | "center"
+  | "bureau"
+  | "counsel"
+  | "quarterly"
+  | "charter";
 
 export const VARIANTS: ReadonlyArray<{ href: string; key: VariantKey; label: string }> = [
+  { href: "/preview/how-it-works/bureau", key: "bureau", label: "Bureau" },
+  { href: "/preview/how-it-works/counsel", key: "counsel", label: "Counsel" },
+  { href: "/preview/how-it-works/quarterly", key: "quarterly", label: "Quarterly" },
+  { href: "/preview/how-it-works/charter", key: "charter", label: "Charter" },
   { href: "/preview/how-it-works/lead", key: "lead", label: "Lead" },
   { href: "/preview/how-it-works/stack", key: "stack", label: "Stack" },
   { href: "/preview/how-it-works/top", key: "top", label: "Top" },
