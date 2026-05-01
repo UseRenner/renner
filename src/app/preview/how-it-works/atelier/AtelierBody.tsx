@@ -7,10 +7,10 @@ import { Mini, CLIENT_KINDS, RENNER_KINDS } from "../_illustrations";
 type Step = { number: string; title: string; body: React.ReactNode; spec: string };
 
 const CLIENT_DEK =
-  "A marketplace for real-estate task work — sign installs, lockbox swaps, showings, courier runs, property prep — handled by background-checked Renners and paid through escrow.";
+  "A marketplace for real-estate work. Vetted Renners, paid through escrow.";
 
 const RENNER_DEK =
-  "Independent contractors running short real-estate tasks for agents, brokers, and managers — on your schedule, in your area, paid through escrow.";
+  "Real-estate work, paid through the platform. Your area, your rate, your schedule.";
 
 const CLIENT_STEPS: Step[] = [
   {
