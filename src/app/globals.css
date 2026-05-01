@@ -398,7 +398,7 @@ h4,
   transition: background-color 150ms ease;
 }
 .faq-item:hover {
-  background-color: var(--s-25);
+  background-color: var(--c-hover, var(--s-25));
 }
 .faq-item summary {
   transition: color 150ms ease;

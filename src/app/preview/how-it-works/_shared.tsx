@@ -177,6 +177,7 @@ const TOKENS: Record<ShellTone, Record<string, string>> = {
     "--c-300": "#cad1d8",
     "--c-rule": "#eaedf0",
     "--c-panel": "#eaedf0",
+    "--c-hover": "#eaedf0",
     "--c-paper": "#fbfbfc",
     "--c-ink": "#0d0f12",
     // Illustration surface — matches paper tone
@@ -207,6 +208,7 @@ const TOKENS: Record<ShellTone, Record<string, string>> = {
     "--c-300": "#647589",
     "--c-rule": "rgba(251,251,252,0.18)",
     "--c-panel": "#4d5b6a",
+    "--c-hover": "#4d5b6a",
     "--c-paper": "#fbfbfc",
     "--c-ink": "#0d0f12",
     // Illustration follows the steel colorway — card surface stays
@@ -236,6 +238,7 @@ const TOKENS: Record<ShellTone, Record<string, string>> = {
     "--c-300": "#647589",
     "--c-rule": "rgba(251,251,252,0.18)",
     "--c-panel": "#38414d",
+    "--c-hover": "#38414d",
     "--c-paper": "#fbfbfc",
     "--c-ink": "#0d0f12",
     // Illustration follows the ink colorway — card surface stays
