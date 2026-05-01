@@ -30,7 +30,7 @@ const RENNER_STEPS = [
 
 export function QuarterBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
-  const [trustVariant, setTrustVariant] = useState<"A" | "B" | "C" | "D">("A");
+  const [trustVariant, setTrustVariant] = useState<"A" | "B" | "C" | "D" | "E">("A");
   const isClient = tab === "client";
   const steps = isClient ? CLIENT_STEPS : RENNER_STEPS;
   const cta = isClient ? { label: "Sign up", href: "/signup" } : { label: "Become a Renner", href: "/become-a-renner" };
@@ -133,36 +133,119 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
         <div aria-hidden style={{ backgroundColor: INK }} className="quarter-vrule" />
 
         {/* Bottom-right: trust — four design options switch in place. */}
-        <section className="quarter-cell quarter-trust" style={{ padding: "clamp(32px, 4.5vw, 64px)", borderLeft: trustVariant === "A" ? "none" : `3px solid ${INK}` }}>
-          <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16, marginBottom: 28, flexWrap: "wrap" }}>
-            <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500 }}>
+        <section
+          className="quarter-cell quarter-trust"
+          style={{
+            position: "relative",
+            padding: trustVariant === "B" ? 0 : "clamp(32px, 4.5vw, 64px)",
+            borderLeft: trustVariant === "A" || trustVariant === "D" || trustVariant === "E" ? `3px solid ${INK}` : "none",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "baseline",
+              justifyContent: "space-between",
+              gap: 16,
+              flexWrap: "wrap",
+              padding: trustVariant === "B" ? "clamp(20px, 2.4vw, 28px) clamp(20px, 2.4vw, 28px) 0" : 0,
+              marginBottom: trustVariant === "B" ? 0 : 28,
+              position: trustVariant === "B" ? "absolute" : "static",
+              top: trustVariant === "B" ? 0 : undefined,
+              left: trustVariant === "B" ? 0 : undefined,
+              right: trustVariant === "B" ? 0 : undefined,
+              zIndex: 1,
+            }}
+          >
+            <span
+              style={{
+                fontFamily: MONO,
+                fontSize: 10,
+                fontWeight: 500,
+                letterSpacing: "0.28em",
+                textTransform: "uppercase",
+                color: trustVariant === "B" ? "rgba(251,251,252,0.55)" : STEEL_500,
+              }}
+            >
               {isClient ? "Why Renner" : "What you get"}
             </span>
-            <div role="tablist" aria-label="Design option" style={{ display: "flex", alignItems: "baseline", gap: 8, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase" }}>
-              {(["A", "B", "C", "D"] as const).map((v) => (
-                <button
-                  key={v}
-                  type="button"
-                  role="tab"
-                  aria-selected={trustVariant === v}
-                  onClick={() => setTrustVariant(v)}
-                  style={{ background: "none", border: `1px solid ${trustVariant === v ? INK : STEEL_300}`, padding: "4px 8px", color: trustVariant === v ? INK : STEEL_500, cursor: "pointer", fontFamily: "inherit", fontSize: "inherit", fontWeight: "inherit", letterSpacing: "inherit", textTransform: "inherit" }}
-                >
-                  {v}
-                </button>
-              ))}
+            <div
+              role="tablist"
+              aria-label="Design option"
+              style={{ display: "flex", alignItems: "baseline", gap: 8, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase" }}
+            >
+              {(["A", "B", "C", "D", "E"] as const).map((v) => {
+                const onPlaque = trustVariant === "B";
+                const inactiveColor = onPlaque ? "rgba(251,251,252,0.55)" : STEEL_500;
+                const activeColor = onPlaque ? "var(--c-paper, #fbfbfc)" : INK;
+                const activeBorder = onPlaque ? "var(--c-paper, #fbfbfc)" : INK;
+                const inactiveBorder = onPlaque ? "rgba(251,251,252,0.32)" : STEEL_300;
+                return (
+                  <button
+                    key={v}
+                    type="button"
+                    role="tab"
+                    aria-selected={trustVariant === v}
+                    onClick={() => setTrustVariant(v)}
+                    style={{
+                      background: "none",
+                      border: `1px solid ${trustVariant === v ? activeBorder : inactiveBorder}`,
+                      padding: "4px 8px",
+                      color: trustVariant === v ? activeColor : inactiveColor,
+                      cursor: "pointer",
+                      fontFamily: "inherit",
+                      fontSize: "inherit",
+                      fontWeight: "inherit",
+                      letterSpacing: "inherit",
+                      textTransform: "inherit",
+                    }}
+                  >
+                    {v}
+                  </button>
+                );
+              })}
             </div>
           </div>
 
           {trustVariant === "A" && (
-            // A — big italic claims, body recedes to a mono kicker
-            <dl style={{ margin: 0, display: "flex", flexDirection: "column", gap: "clamp(28px, 3.5vw, 40px)" }}>
-              {trustPairs.map(([label, , kicker]) => (
-                <div key={label}>
-                  <dt style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(32px, 4vw, 48px)", lineHeight: 1.05, letterSpacing: "-0.018em", color: INK, marginBottom: 10, fontVariationSettings: '"opsz" 96' }}>
-                    {label}.
+            // A — Receipt. Pure mono ledger lines with leader dots.
+            <dl style={{ margin: 0, display: "flex", flexDirection: "column", gap: 0 }}>
+              {trustPairs.map(([label, , kicker], i, arr) => (
+                <div
+                  key={label}
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "minmax(0, auto) minmax(40px, 1fr) minmax(0, auto)",
+                    gap: 12,
+                    alignItems: "baseline",
+                    padding: "16px 0",
+                    borderBottom: i === arr.length - 1 ? "none" : `1px dashed ${RULE}`,
+                  }}
+                >
+                  <dt
+                    style={{
+                      fontFamily: MONO,
+                      fontSize: 12,
+                      fontWeight: 500,
+                      letterSpacing: "0.18em",
+                      textTransform: "uppercase",
+                      color: INK,
+                    }}
+                  >
+                    {label}
                   </dt>
-                  <dd style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500, margin: 0 }}>
+                  <span aria-hidden style={{ borderBottom: `1px dotted ${STEEL_300}`, alignSelf: "center", marginBottom: 4 }} />
+                  <dd
+                    style={{
+                      fontFamily: MONO,
+                      fontSize: 11,
+                      fontWeight: 500,
+                      letterSpacing: "0.16em",
+                      textTransform: "uppercase",
+                      color: STEEL_700,
+                      margin: 0,
+                    }}
+                  >
                     {kicker}
                   </dd>
                 </div>
@@ -171,36 +254,48 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
           )}
 
           {trustVariant === "B" && (
-            // B — mono spec sheet: chevron · italic label · rule · serif body
-            <dl style={{ margin: 0, borderTop: `1px solid ${RULE}` }}>
-              {trustPairs.map(([label, body], i, arr) => (
-                <div key={label} style={{ display: "grid", gridTemplateColumns: "16px minmax(160px, auto) minmax(0, 1fr)", gap: 16, alignItems: "baseline", padding: "18px 0", borderBottom: i === arr.length - 1 ? `1px solid ${RULE}` : `1px solid ${RULE}` }}>
-                  <span aria-hidden style={{ fontFamily: MONO, fontSize: 12, color: STEEL_500 }}>›</span>
-                  <dt style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 17, color: INK, fontVariationSettings: '"opsz" 36' }}>
-                    {label}
-                  </dt>
-                  <dd style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
-                    {body}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          )}
-
-          {trustVariant === "C" && (
-            // C — one italic statement at the top, three small bullets beneath
-            <div>
-              <p style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(26px, 3vw, 36px)", lineHeight: 1.2, letterSpacing: "-0.014em", color: INK, margin: 0, marginBottom: "clamp(28px, 3.5vw, 36px)", fontVariationSettings: '"opsz" 60' }}>
-                {trustHeadline}
-              </p>
-              <dl style={{ margin: 0, display: "flex", flexDirection: "column", gap: 14 }}>
-                {trustPairs.map(([label, body]) => (
-                  <div key={label} style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr)", gap: 2 }}>
-                    <dt style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
-                      {label}
+            // B — Plaque. A single ink-filled plaque bleeds to the cell
+            //     edges; paper italic claims stack inside it.
+            <div
+              style={{
+                backgroundColor: INK,
+                color: "var(--c-paper, #fbfbfc)",
+                padding: "clamp(56px, 7vw, 96px) clamp(32px, 4.5vw, 64px) clamp(32px, 4.5vw, 64px)",
+                minHeight: "100%",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <dl style={{ margin: 0, display: "flex", flexDirection: "column", gap: "clamp(20px, 2.4vw, 28px)", width: "100%" }}>
+                {trustPairs.map(([label, , kicker]) => (
+                  <div key={label}>
+                    <dt
+                      style={{
+                        fontFamily: SERIF,
+                        fontStyle: "italic",
+                        fontWeight: 300,
+                        fontSize: "clamp(26px, 3vw, 36px)",
+                        lineHeight: 1.1,
+                        letterSpacing: "-0.014em",
+                        color: "var(--c-paper, #fbfbfc)",
+                        marginBottom: 6,
+                        fontVariationSettings: '"opsz" 60',
+                      }}
+                    >
+                      {label}.
                     </dt>
-                    <dd style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.5, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
-                      {body}
+                    <dd
+                      style={{
+                        fontFamily: MONO,
+                        fontSize: 10,
+                        fontWeight: 500,
+                        letterSpacing: "0.22em",
+                        textTransform: "uppercase",
+                        color: "rgba(251,251,252,0.62)",
+                        margin: 0,
+                      }}
+                    >
+                      {kicker}
                     </dd>
                   </div>
                 ))}
@@ -208,22 +303,132 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
             </div>
           )}
 
-          {trustVariant === "D" && (
-            // D — sigil-anchored pairs: small steel disc, italic label, body to the right
-            <dl style={{ margin: 0, display: "flex", flexDirection: "column", gap: "clamp(20px, 2.4vw, 28px)" }}>
-              {trustPairs.map(([label, body], i) => (
-                <div key={label} style={{ display: "grid", gridTemplateColumns: "44px minmax(0, 1fr)", gap: 18, alignItems: "start" }}>
-                  <span aria-hidden style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 32, height: 32, borderRadius: "50%", backgroundColor: "var(--ill-disc-bg, #cad1d8)", color: "var(--ill-disc-text, #0d0f12)", fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.04em" }}>
-                    {String(i + 1).padStart(2, "0")}
+          {trustVariant === "C" && (
+            // C — Card stack. Three small steel-panel cards stacked.
+            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+              {trustPairs.map(([label, body]) => (
+                <div
+                  key={label}
+                  style={{
+                    backgroundColor: "var(--c-panel, #eaedf0)",
+                    padding: "clamp(20px, 2.4vw, 28px)",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 6,
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: SERIF,
+                      fontStyle: "italic",
+                      fontWeight: 300,
+                      fontSize: "clamp(20px, 2.2vw, 24px)",
+                      lineHeight: 1.1,
+                      letterSpacing: "-0.012em",
+                      color: INK,
+                      fontVariationSettings: '"opsz" 36',
+                    }}
+                  >
+                    {label}.
                   </span>
-                  <div>
-                    <dt style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(20px, 2.2vw, 24px)", lineHeight: 1.15, letterSpacing: "-0.012em", color: INK, marginBottom: 6, fontVariationSettings: '"opsz" 36' }}>
-                      {label}.
-                    </dt>
-                    <dd style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
-                      {body}
-                    </dd>
-                  </div>
+                  <span
+                    style={{
+                      fontFamily: SERIF,
+                      fontSize: 14,
+                      lineHeight: 1.55,
+                      color: STEEL_700,
+                      fontVariationSettings: '"opsz" 14',
+                    }}
+                  >
+                    {body}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {trustVariant === "E" && (
+            // E — Italic claims at a quieter display size, mono kicker beneath.
+            <dl style={{ margin: 0, display: "flex", flexDirection: "column", gap: "clamp(22px, 2.6vw, 30px)" }}>
+              {trustPairs.map(([label, , kicker]) => (
+                <div key={label}>
+                  <dt
+                    style={{
+                      fontFamily: SERIF,
+                      fontStyle: "italic",
+                      fontWeight: 300,
+                      fontSize: "clamp(22px, 2.4vw, 28px)",
+                      lineHeight: 1.1,
+                      letterSpacing: "-0.012em",
+                      color: INK,
+                      marginBottom: 8,
+                      fontVariationSettings: '"opsz" 36',
+                    }}
+                  >
+                    {label}.
+                  </dt>
+                  <dd
+                    style={{
+                      fontFamily: MONO,
+                      fontSize: 10,
+                      fontWeight: 500,
+                      letterSpacing: "0.22em",
+                      textTransform: "uppercase",
+                      color: STEEL_500,
+                      margin: 0,
+                    }}
+                  >
+                    {kicker}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          )}
+
+          {trustVariant === "D" && (
+            // D — Hairline schedule. Full-width hairline rules with italic
+            //     label on the left and mono proof flushed right.
+            <dl style={{ margin: 0, borderTop: `1px solid ${INK}` }}>
+              {trustPairs.map(([label, , kicker], i, arr) => (
+                <div
+                  key={label}
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "minmax(0, 1fr) minmax(0, auto)",
+                    gap: 16,
+                    alignItems: "baseline",
+                    padding: "clamp(18px, 2.2vw, 24px) 0",
+                    borderBottom: i === arr.length - 1 ? `1px solid ${INK}` : `1px solid ${RULE}`,
+                  }}
+                >
+                  <dt
+                    style={{
+                      fontFamily: SERIF,
+                      fontStyle: "italic",
+                      fontWeight: 300,
+                      fontSize: "clamp(20px, 2.2vw, 24px)",
+                      lineHeight: 1.1,
+                      letterSpacing: "-0.012em",
+                      color: INK,
+                      fontVariationSettings: '"opsz" 36',
+                    }}
+                  >
+                    {label}
+                  </dt>
+                  <dd
+                    style={{
+                      fontFamily: MONO,
+                      fontSize: 10,
+                      fontWeight: 500,
+                      letterSpacing: "0.22em",
+                      textTransform: "uppercase",
+                      color: STEEL_500,
+                      margin: 0,
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {kicker}
+                  </dd>
                 </div>
               ))}
             </dl>
