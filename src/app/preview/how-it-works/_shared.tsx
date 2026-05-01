@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { VariantSwitcher } from "./_variant-switcher";
+
+export { VariantSwitcher };
 
 // Faqs are stable across all preview variants — they are the same
 // product. Step copy and CTA voice live inside each variant so each
@@ -126,74 +129,8 @@ export function RennerMark({
 }
 
 // A thin review-only strip that lets the reviewer flip between the
-// preview directions. Lives outside the design itself — sticky to
-// the top in mono with hairline rules — so it never fights the page
-// it sits above. Wraps on narrow viewports.
-export function VariantSwitcher({ active }: { active: VariantKey }) {
-  return (
-    <div
-      style={{
-        position: "sticky",
-        top: 0,
-        zIndex: 50,
-        backgroundColor: "rgba(13,15,18,0.94)",
-        backdropFilter: "saturate(140%) blur(8px)",
-        WebkitBackdropFilter: "saturate(140%) blur(8px)",
-        borderBottom: "1px solid rgba(255,255,255,0.08)",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: 16,
-          padding: "10px clamp(20px, 4vw, 64px)",
-          fontFamily:
-            "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
-          fontSize: 10,
-          fontWeight: 500,
-          letterSpacing: "0.22em",
-          textTransform: "uppercase",
-          color: "rgba(255,255,255,0.55)",
-          flexWrap: "wrap",
-        }}
-      >
-        <span>Preview · How it works</span>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 12,
-            flexWrap: "wrap",
-          }}
-        >
-          {VARIANTS.map((v, i) => {
-            const isActive = v.key === active;
-            return (
-              <span
-                key={v.href}
-                style={{ display: "inline-flex", alignItems: "center", gap: 12 }}
-              >
-                {i > 0 && <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>}
-                <Link
-                  href={v.href}
-                  style={{
-                    color: isActive ? "#fbfbfc" : "rgba(255,255,255,0.55)",
-                    textDecoration: "none",
-                    transition: "color 150ms ease",
-                  }}
-                >
-                  {v.label}
-                </Link>
-              </span>
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
-}
+// preview directions. Now lives as a floating, almost-invisible
+// pill at the bottom-right of the viewport — see _variant-switcher.tsx.
 
 // A unified page shell so every variant shares one horizontal datum:
 // the wordmark, body content, FAQ, and footer all align to the same
@@ -253,20 +190,18 @@ export function PageShell({
       </main>
 
       <section style={{ paddingTop: "clamp(48px, 6vw, 80px)", paddingBottom: "clamp(96px, 12vw, 160px)", paddingLeft: GUTTER, paddingRight: GUTTER, borderTop: `1px solid ${SHELL_RULE}` }}>
-        <div className="mx-auto" style={{ maxWidth }}>
-          <div style={{ maxWidth: 720 }}>
-            <div style={{ fontFamily: MONO_FONT, fontSize: 10, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: SHELL_FOG, marginBottom: 40 }}>Common questions</div>
-            {FAQS.map((item, idx) => (
-              <details key={item.q} className="faq-item" style={{ padding: "24px 0", borderBottom: `1px solid ${SHELL_RULE}`, borderTop: idx === 0 ? `1px solid ${SHELL_RULE}` : "none" }}>
-                <summary style={{ cursor: "pointer", listStyle: "none", display: "grid", gridTemplateColumns: "minmax(48px, 56px) 1fr auto", gap: 24, alignItems: "baseline" }}>
-                  <span style={{ fontFamily: MONO_FONT, fontSize: 11, fontWeight: 500, letterSpacing: "0.2em", color: SHELL_FOG }}>{String(idx + 1).padStart(2, "0")}</span>
-                  <span style={{ fontFamily: SERIF_FONT, fontWeight: 400, fontSize: 19, lineHeight: 1.35, color: SHELL_INK, fontVariationSettings: '"opsz" 14' }}>{item.q}</span>
-                  <span className="faq-toggle" style={{ fontFamily: SANS_FONT, fontSize: 18, color: SHELL_FOG }} aria-hidden>+</span>
-                </summary>
-                <p style={{ fontFamily: SERIF_FONT, fontSize: 16, color: SHELL_SLATE, lineHeight: 1.65, marginTop: 18, marginLeft: 80, marginBottom: 0, maxWidth: 600, fontVariationSettings: '"opsz" 14' }}>{item.a}</p>
-              </details>
-            ))}
-          </div>
+        <div className="mx-auto" style={{ maxWidth: 720 }}>
+          <div style={{ fontFamily: MONO_FONT, fontSize: 10, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: SHELL_FOG, marginBottom: 40 }}>Common questions</div>
+          {FAQS.map((item, idx) => (
+            <details key={item.q} className="faq-item" style={{ padding: "24px 0", borderBottom: `1px solid ${SHELL_RULE}`, borderTop: idx === 0 ? `1px solid ${SHELL_RULE}` : "none" }}>
+              <summary style={{ cursor: "pointer", listStyle: "none", display: "grid", gridTemplateColumns: "minmax(48px, 56px) 1fr auto", gap: 24, alignItems: "baseline" }}>
+                <span style={{ fontFamily: MONO_FONT, fontSize: 11, fontWeight: 500, letterSpacing: "0.2em", color: SHELL_FOG }}>{String(idx + 1).padStart(2, "0")}</span>
+                <span style={{ fontFamily: SERIF_FONT, fontWeight: 400, fontSize: 19, lineHeight: 1.35, color: SHELL_INK, fontVariationSettings: '"opsz" 14' }}>{item.q}</span>
+                <span className="faq-toggle" style={{ fontFamily: SANS_FONT, fontSize: 18, color: SHELL_FOG }} aria-hidden>+</span>
+              </summary>
+              <p style={{ fontFamily: SERIF_FONT, fontSize: 16, color: SHELL_SLATE, lineHeight: 1.65, marginTop: 18, marginLeft: 80, marginBottom: 0, maxWidth: 600, fontVariationSettings: '"opsz" 14' }}>{item.a}</p>
+            </details>
+          ))}
         </div>
       </section>
 
