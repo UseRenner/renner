@@ -87,8 +87,6 @@ export function BureauBody({ showCta }: { showCta: boolean }) {
           display: "grid",
           gridTemplateColumns: "repeat(3, 1fr)",
           gap: "clamp(20px, 2.4vw, 32px)",
-          paddingTop: "clamp(28px, 3.5vw, 36px)",
-          borderTop: `1px solid ${INK}`,
           marginBottom: showCta ? "clamp(48px, 6vw, 72px)" : 0,
           textAlign: "center",
         }}
