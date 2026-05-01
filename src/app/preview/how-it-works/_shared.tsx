@@ -349,17 +349,16 @@ export function PageShell({
   tone?: ShellTone;
 }) {
   const GUTTER = "clamp(28px, 4vw, 64px)";
-  const isInk = tone === "ink";
-  const isSteel = tone === "steel";
-  const isDark = isInk || isSteel;
-  const pageBg = isInk ? SHELL_INK : isSteel ? SHELL_STEEL_800 : SHELL_PAPER;
-  const textInk = isDark ? SHELL_PAPER : SHELL_INK;
-  const textMuted = isDark ? "rgba(251,251,252,0.62)" : SHELL_STEEL;
-  const textFog = isDark ? "rgba(251,251,252,0.42)" : SHELL_FOG;
-  const ruleColor = isDark ? "rgba(251,251,252,0.16)" : SHELL_RULE;
+  const tokens = TOKENS[tone];
+  const isDark = isToneDark(tone);
+  const pageBg = tokens["--c-bg"];
+  const textInk = tokens["--c-text"];
+  const textMuted = isDark ? "rgba(251,251,252,0.62)" : tokens["--c-700"];
+  const textFog = isDark ? "rgba(251,251,252,0.42)" : tokens["--c-500"];
+  const ruleColor = tokens["--c-rule"];
   const ctaBg = isDark ? SHELL_PAPER : SHELL_INK;
   const ctaFg = isDark ? SHELL_INK : SHELL_PAPER;
-  const cssVars = TOKENS[tone] as React.CSSProperties;
+  const cssVars = tokens as React.CSSProperties;
 
   return (
     <div style={{ ...cssVars, backgroundColor: pageBg, color: textInk, minHeight: "100vh" }}>
@@ -395,7 +394,7 @@ export function PageShell({
                 <span style={{ fontFamily: SERIF_FONT, fontWeight: 400, fontSize: 19, lineHeight: 1.35, color: textInk, fontVariationSettings: '"opsz" 14' }}>{item.q}</span>
                 <span className="faq-toggle" style={{ fontFamily: SANS_FONT, fontSize: 18, color: textFog }} aria-hidden>+</span>
               </summary>
-              <p style={{ fontFamily: SERIF_FONT, fontSize: 16, color: isDark ? "rgba(251,251,252,0.78)" : SHELL_SLATE, lineHeight: 1.65, marginTop: 18, marginLeft: 80, marginBottom: 0, maxWidth: 600, fontVariationSettings: '"opsz" 14' }}>{item.a}</p>
+              <p style={{ fontFamily: SERIF_FONT, fontSize: 16, color: isDark ? "rgba(251,251,252,0.78)" : tokens["--c-700"], lineHeight: 1.65, marginTop: 18, marginLeft: 80, marginBottom: 0, maxWidth: 600, fontVariationSettings: '"opsz" 14' }}>{item.a}</p>
             </details>
           ))}
         </div>
