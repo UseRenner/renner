@@ -301,9 +301,9 @@ export function Card({ kind }: { kind: IllustrationKind }) {
 // — but at a tighter scale so it can sit beside body copy
 // without dominating.
 
-function MiniShell({ kicker, children }: { kicker: string; children: ReactNode }) {
+function MiniShell({ kicker, children, maxWidth = 320 }: { kicker: string; children: ReactNode; maxWidth?: number | string }) {
   return (
-    <article style={{ border: `1px solid ${STEEL_300}`, backgroundColor: PAPER, display: "flex", flexDirection: "column", width: "100%", maxWidth: 320, minHeight: 240 }}>
+    <article style={{ border: `1px solid ${STEEL_300}`, backgroundColor: PAPER, display: "flex", flexDirection: "column", width: "100%", maxWidth, minHeight: 240 }}>
       <div style={{ padding: "10px 14px", borderBottom: `1px solid ${RULE}`, fontFamily: MONO, fontSize: 8, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
         {kicker}
       </div>
@@ -314,9 +314,9 @@ function MiniShell({ kicker, children }: { kicker: string; children: ReactNode }
   );
 }
 
-function MiniTask() {
+function MiniTask({ maxWidth }: { maxWidth?: number | string }) {
   return (
-    <MiniShell kicker="Posted task">
+    <MiniShell kicker="Posted task" maxWidth={maxWidth}>
       <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 17, lineHeight: 1.15, color: INK, fontVariationSettings: '"opsz" 36' }}>
         Install sign rider.
       </div>
@@ -334,9 +334,9 @@ function MiniTask() {
   );
 }
 
-function MiniApplicant() {
+function MiniApplicant({ maxWidth }: { maxWidth?: number | string }) {
   return (
-    <MiniShell kicker="Applicant">
+    <MiniShell kicker="Applicant" maxWidth={maxWidth}>
       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
         <InitialsDisc initials="JM" size={32} fontSize={12} />
         <div>
@@ -359,9 +359,9 @@ function MiniApplicant() {
   );
 }
 
-function MiniCompletion() {
+function MiniCompletion({ maxWidth }: { maxWidth?: number | string }) {
   return (
-    <MiniShell kicker="Completion">
+    <MiniShell kicker="Completion" maxWidth={maxWidth}>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 4 }}>
         <PhotoSlot />
         <PhotoSlot />
@@ -378,9 +378,9 @@ function MiniCompletion() {
   );
 }
 
-function MiniProfile() {
+function MiniProfile({ maxWidth }: { maxWidth?: number | string }) {
   return (
-    <MiniShell kicker="Onboarding">
+    <MiniShell kicker="Onboarding" maxWidth={maxWidth}>
       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
         <InitialsDisc initials="JM" size={32} fontSize={12} />
         <div>
@@ -402,9 +402,9 @@ function MiniProfile() {
   );
 }
 
-function MiniInbox() {
+function MiniInbox({ maxWidth }: { maxWidth?: number | string }) {
   return (
-    <MiniShell kicker="Tasks nearby">
+    <MiniShell kicker="Tasks nearby" maxWidth={maxWidth}>
       {[
         ["Install sign rider.", "$45"],
         ["Lockbox swap.", "$30"],
@@ -419,9 +419,9 @@ function MiniInbox() {
   );
 }
 
-function MiniPayout() {
+function MiniPayout({ maxWidth }: { maxWidth?: number | string }) {
   return (
-    <MiniShell kicker="Payout">
+    <MiniShell kicker="Payout" maxWidth={maxWidth}>
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 8 }}>
         <span style={{ fontFamily: SERIF, fontSize: 26, fontWeight: 400, color: INK, fontVariationSettings: '"opsz" 60' }}>$45</span>
         <span style={{ fontFamily: MONO, fontSize: 9, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: STEEL_600 }}>100% of pay</span>
@@ -436,20 +436,20 @@ function MiniPayout() {
   );
 }
 
-export function Mini({ kind }: { kind: IllustrationKind }) {
+export function Mini({ kind, maxWidth }: { kind: IllustrationKind; maxWidth?: number | string }) {
   switch (kind) {
     case "task":
-      return <MiniTask />;
+      return <MiniTask maxWidth={maxWidth} />;
     case "applicant":
-      return <MiniApplicant />;
+      return <MiniApplicant maxWidth={maxWidth} />;
     case "completion":
-      return <MiniCompletion />;
+      return <MiniCompletion maxWidth={maxWidth} />;
     case "profile":
-      return <MiniProfile />;
+      return <MiniProfile maxWidth={maxWidth} />;
     case "inbox":
-      return <MiniInbox />;
+      return <MiniInbox maxWidth={maxWidth} />;
     case "payout":
-      return <MiniPayout />;
+      return <MiniPayout maxWidth={maxWidth} />;
   }
 }
 

@@ -63,10 +63,10 @@ export function TopBody({ showCta }: { showCta: boolean }) {
         {dek}
       </p>
 
-      <div className="top-row" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "clamp(24px, 3vw, 44px)", marginBottom: "clamp(48px, 6vw, 72px)", justifyItems: "center" }}>
+      <div className="top-row" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "clamp(24px, 3vw, 44px)", marginBottom: "clamp(48px, 6vw, 72px)" }}>
         {kinds.map((kind, i) => (
-          <div key={kind} style={{ display: "flex", flexDirection: "column", gap: 16, width: "100%", maxWidth: 320 }}>
-            <Mini kind={kind} />
+          <div key={kind} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            <Mini kind={kind} maxWidth="100%" />
             <div style={{ paddingTop: 14, borderTop: `1px solid ${RULE}` }}>
               <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", color: STEEL_500, marginBottom: 8 }}>
                 {captions[i].number} · {captions[i].proof}
