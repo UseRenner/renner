@@ -1,10 +1,5 @@
 "use client";
 
-// Quarterly — the seriousness of an annual report. Heavy display
-// numerals, ruled three-column structure, sans 600 small caps for
-// section headers, mono for data. The page reads like the front
-// of a fund's quarterly letter.
-
 import Link from "next/link";
 import { useState } from "react";
 import { Mini, CLIENT_KINDS, RENNER_KINDS } from "../_illustrations";
@@ -16,32 +11,24 @@ const MONO = "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Cons
 const INK = "var(--c-text, #0d0f12)";
 const STEEL_700 = "var(--c-700, #38414d)";
 const STEEL_500 = "var(--c-500, #7d8da0)";
-const STEEL_300 = "var(--c-300, #a7b2be)";
+const STEEL_300 = "var(--c-300, #cad1d8)";
 const RULE = "var(--c-rule, #eaedf0)";
+const PANEL = "var(--c-panel, #eaedf0)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 
 const CLIENT_DEK = "A marketplace for real-estate work. Post a task, pick a Renner, get it done. Both sides are screened to join.";
 const RENNER_DEK = "Real-estate work, paid through the platform. Set your area, set your rate, pick what you take. Both sides are screened to join.";
 
 const CLIENT_STEPS = [
-  { number: "01", title: "Post a task", body: "Where, when, what, how much. Two minutes.", proof: "Under 2 min" },
-  { number: "02", title: "Pick a Renner", body: "Vetted Renners apply. Read the file. Book one.", proof: "Checkr-vetted" },
-  { number: "03", title: "Get it done", body: "Photos arrive. You confirm. Stripe pays.", proof: "Stripe escrow" },
+  { number: "01", title: "Post a task.", body: "Where, when, what, how much. Two minutes.", proof: "Under 2 min" },
+  { number: "02", title: "Pick a Renner.", body: "Vetted Renners apply. Read the file. Book one.", proof: "Checkr-vetted" },
+  { number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Stripe pays.", proof: "Stripe escrow" },
 ];
 const RENNER_STEPS = [
-  { number: "01", title: "Get verified", body: "ID, background check, area, rate. Same day.", proof: "Same-day" },
-  { number: "02", title: "Pick a task", body: "Briefs from agents and managers nearby. Apply.", proof: "Local" },
-  { number: "03", title: "Get it done", body: "Run the task. Send photos. Get paid.", proof: "100% of pay" },
+  { number: "01", title: "Get verified.", body: "ID, background check, area, rate. Same day.", proof: "Same-day" },
+  { number: "02", title: "Pick a task.", body: "Briefs from agents and managers nearby. Apply.", proof: "Local" },
+  { number: "03", title: "Get it done.", body: "Run the task. Send photos. Get paid.", proof: "100% of pay" },
 ];
-
-const KICKER: React.CSSProperties = {
-  fontFamily: SANS,
-  fontSize: 11,
-  fontWeight: 600,
-  letterSpacing: "0.28em",
-  textTransform: "uppercase",
-  color: INK,
-};
 
 export function QuarterlyBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
@@ -53,42 +40,59 @@ export function QuarterlyBody({ showCta }: { showCta: boolean }) {
 
   return (
     <>
-      <div style={{ borderTop: `2px solid ${INK}`, borderBottom: `1px solid ${INK}`, padding: "16px 0", marginBottom: "clamp(48px, 6vw, 72px)", display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16, flexWrap: "wrap", ...KICKER, color: STEEL_500 }}>
-        <span style={{ color: INK }}>How it works</span>
-        <div role="tablist" aria-label="Audience" style={{ display: "flex", alignItems: "baseline", gap: 18 }}>
+      {/* Top — meta line + audience switch */}
+      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 24, flexWrap: "wrap", marginBottom: "clamp(40px, 5vw, 56px)" }}>
+        <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500 }}>
+          How it works
+        </span>
+        <div role="tablist" aria-label="Audience" style={{ display: "flex", alignItems: "baseline", gap: 14, fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 16 }}>
           <Tab label="For clients" active={isClient} onClick={() => setTab("client")} />
-          <span aria-hidden style={{ color: STEEL_300 }}>/</span>
+          <span aria-hidden style={{ color: STEEL_300, fontStyle: "normal" }}>·</span>
           <Tab label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
         </div>
       </div>
 
-      <p style={{ fontFamily: SANS, fontWeight: 500, fontSize: "clamp(26px, 3.2vw, 40px)", lineHeight: 1.25, letterSpacing: "-0.012em", color: INK, margin: 0, marginBottom: "clamp(72px, 9vw, 112px)", maxWidth: "32ch" }}>
+      {/* Lede */}
+      <p style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.25, letterSpacing: "-0.012em", color: INK, margin: 0, marginBottom: "clamp(64px, 8vw, 96px)", maxWidth: "32ch", fontVariationSettings: '"opsz" 60' }}>
         {dek}
       </p>
 
-      <div className="quarterly-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 0, borderTop: `2px solid ${INK}`, borderBottom: `2px solid ${INK}`, marginBottom: "clamp(56px, 7vw, 88px)" }}>
+      {/* Three tall cells — illustration sits on a panel at the top of
+          each cell, text follows beneath. The eye reads the picture
+          first, then the words. */}
+      <div className="quarterly-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "clamp(20px, 2.4vw, 32px)", marginBottom: "clamp(72px, 9vw, 112px)" }}>
         {steps.map((s, i) => (
-          <article key={s.number} className="quarterly-cell" style={{ padding: "clamp(32px, 4vw, 48px) clamp(24px, 3vw, 36px)", borderRight: i < steps.length - 1 ? `1px solid ${RULE}` : "none", display: "flex", flexDirection: "column", gap: 18 }}>
-            <span style={{ ...KICKER, color: STEEL_500 }}>
-              {s.number} · {s.proof}
-            </span>
-            <span style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "clamp(48px, 7vw, 96px)", lineHeight: 0.95, letterSpacing: "-0.03em", color: INK, fontVariationSettings: '"opsz" 144' }}>
-              {s.number}
-            </span>
-            <h3 style={{ fontFamily: SANS, fontWeight: 600, fontSize: "clamp(20px, 2.2vw, 26px)", lineHeight: 1.15, letterSpacing: "-0.012em", color: INK, margin: 0 }}>
-              {s.title}
-            </h3>
-            <p style={{ fontFamily: SERIF, fontWeight: 400, fontSize: 15, lineHeight: 1.6, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
-              {s.body}
-            </p>
-            <div style={{ marginTop: "auto", paddingTop: 18, borderTop: `1px solid ${RULE}` }}>
+          <article key={s.number} className="quarterly-cell" style={{ display: "flex", flexDirection: "column" }}>
+            <div style={{ backgroundColor: PANEL, padding: "clamp(24px, 3vw, 36px)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "clamp(20px, 2.4vw, 28px)" }}>
               <Mini kind={kinds[i]} />
+            </div>
+            <div style={{ paddingTop: "clamp(16px, 2vw, 20px)", borderTop: `1px solid ${RULE}` }}>
+              <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500, marginBottom: 10 }}>
+                {s.number} · {s.proof}
+              </div>
+              <h3 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(22px, 2.4vw, 28px)", lineHeight: 1.1, letterSpacing: "-0.012em", color: INK, margin: 0, marginBottom: 8, fontVariationSettings: '"opsz" 36' }}>
+                {s.title}
+              </h3>
+              <p style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+                {s.body}
+              </p>
             </div>
           </article>
         ))}
       </div>
 
-      <dl className="quarterly-prov" style={{ margin: 0, borderTop: `1px solid ${INK}`, marginBottom: showCta ? "clamp(56px, 7vw, 88px)" : 0 }}>
+      {/* Trust — three pairs in the same column rhythm */}
+      <section
+        className="quarterly-trust"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "clamp(20px, 2.4vw, 32px)",
+          paddingTop: "clamp(28px, 3.5vw, 36px)",
+          borderTop: `1px solid ${INK}`,
+          marginBottom: showCta ? "clamp(48px, 6vw, 72px)" : 0,
+        }}
+      >
         {(isClient
           ? [
               ["Both sides vetted", "ID and Checkr before any booking."],
@@ -100,21 +104,37 @@ export function QuarterlyBody({ showCta }: { showCta: boolean }) {
               ["Vetted clients", "ID and Checkr, same as you."],
               ["Repeat work", "A reputation paid in repeat clients."],
             ]
-        ).map(([label, body], i, arr) => (
-          <div key={label} className="quarterly-prov-row" style={{ display: "grid", gridTemplateColumns: "minmax(180px, 240px) minmax(0, 1fr)", gap: "clamp(24px, 3.5vw, 56px)", padding: "20px 0", borderBottom: `1px solid ${i === arr.length - 1 ? INK : RULE}`, alignItems: "baseline" }}>
-            <dt style={{ fontFamily: SANS, fontWeight: 600, fontSize: 16, color: INK, letterSpacing: "-0.005em" }}>
-              {label}
-            </dt>
-            <dd style={{ fontFamily: SERIF, fontWeight: 400, fontSize: 16, lineHeight: 1.6, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+        ).map(([label, body]) => (
+          <div key={label}>
+            <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 18, color: INK, marginBottom: 8, fontVariationSettings: '"opsz" 36' }}>
+              {label}.
+            </div>
+            <div style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.55, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>
               {body}
-            </dd>
+            </div>
           </div>
         ))}
-      </dl>
+      </section>
 
       {showCta && (
         <section style={{ display: "flex", justifyContent: "flex-start" }}>
-          <Link href={cta.href} style={{ display: "inline-flex", alignItems: "center", gap: 12, fontFamily: SANS, fontSize: 14, fontWeight: 600, color: PAPER, backgroundColor: INK, border: `1px solid ${INK}`, borderRadius: 0, padding: "16px 28px", textDecoration: "none", letterSpacing: "0.02em" }}>
+          <Link
+            href={cta.href}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 10,
+              fontFamily: SANS,
+              fontSize: 14,
+              fontWeight: 500,
+              color: PAPER,
+              backgroundColor: INK,
+              border: `1px solid ${INK}`,
+              borderRadius: 4,
+              padding: "14px 22px",
+              textDecoration: "none",
+            }}
+          >
             {cta.label}
             <span aria-hidden style={{ opacity: 0.7 }}>→</span>
           </Link>
@@ -122,32 +142,11 @@ export function QuarterlyBody({ showCta }: { showCta: boolean }) {
       )}
 
       <style jsx>{`
-        @media (max-width: 1024px) {
-          .quarterly-grid {
+        @media (max-width: 880px) {
+          .quarterly-grid,
+          .quarterly-trust {
             grid-template-columns: 1fr !important;
-          }
-          .quarterly-cell {
-            border-right: none !important;
-            border-bottom: 1px solid ${RULE};
-          }
-          .quarterly-cell:last-child {
-            border-bottom: none;
-          }
-        }
-        @media (max-width: 720px) {
-          .quarterly-mast {
-            grid-template-columns: 1fr !important;
-            gap: 8px !important;
-            text-align: left;
-          }
-          .quarterly-mast > :nth-child(2),
-          .quarterly-mast > :nth-child(3) {
-            text-align: left !important;
-            justify-content: flex-start !important;
-          }
-          .quarterly-prov-row {
-            grid-template-columns: 1fr !important;
-            gap: 4px !important;
+            gap: 32px !important;
           }
         }
       `}</style>
@@ -157,7 +156,13 @@ export function QuarterlyBody({ showCta }: { showCta: boolean }) {
 
 function Tab({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) {
   return (
-    <button type="button" role="tab" aria-selected={active} onClick={onClick} style={{ background: "none", border: "none", padding: 0, fontFamily: "inherit", fontSize: "inherit", fontWeight: "inherit", letterSpacing: "inherit", textTransform: "inherit", color: active ? "var(--c-text, #0d0f12)" : "var(--c-500, #647589)", cursor: "pointer" }}>
+    <button
+      type="button"
+      role="tab"
+      aria-selected={active}
+      onClick={onClick}
+      style={{ background: "none", border: "none", padding: 0, fontFamily: "inherit", fontStyle: "inherit", fontSize: "inherit", fontWeight: "inherit", color: active ? INK : STEEL_500, cursor: "pointer" }}
+    >
       {label}
     </button>
   );
