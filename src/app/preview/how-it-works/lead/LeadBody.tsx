@@ -74,7 +74,7 @@ export function LeadBody({ showCta }: { showCta: boolean }) {
             className="lead-row"
             style={{
               display: "grid",
-              gridTemplateColumns: "60px minmax(0, 1.2fr) minmax(0, 2fr) minmax(140px, auto)",
+              gridTemplateColumns: "60px minmax(0, 1fr) minmax(0, 2.4fr) minmax(140px, auto)",
               gap: "clamp(20px, 2.5vw, 36px)",
               padding: "clamp(24px, 3vw, 36px) 0",
               borderTop: i === 0 ? `1px solid ${INK}` : `1px solid ${RULE}`,
