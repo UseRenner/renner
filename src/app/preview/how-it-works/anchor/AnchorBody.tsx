@@ -16,13 +16,13 @@ const STEEL_300 = "var(--c-300, #cad1d8)";
 const RULE = "var(--c-rule, #eaedf0)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 
-const CLIENT_DEK = "A marketplace for real-estate work. Post a task, pick a Renner. Verified on both sides.";
-const RENNER_DEK = "Real-estate work, paid through the platform. Set your area, apply to tasks. Verified on both sides.";
+const CLIENT_DEK = "A secure marketplace for real-estate task work. Vetted on both sides, paid through the platform.";
+const RENNER_DEK = "A secure marketplace for real-estate task work. Vetted on both sides, paid through the platform.";
 
 const CLIENT_STEPS = [
   { number: "01", title: "Post a task.", body: "Set the location, time, task, and price.", proof: "Specifics" },
   { number: "02", title: "Pick a Renner.", body: "Renners apply. Read their profiles and book one.", proof: "Vetted" },
-  { number: "03", title: "It gets done.", body: "Receive photos and confirm completion. Payment is released.", proof: "Escrow" },
+  { number: "03", title: "It's taken care of.", body: "Receive photos and confirm completion. Payment is released.", proof: "Escrow" },
 ];
 const RENNER_STEPS = [
   { number: "01", title: "Get verified.", body: "Verify your ID, clear a background check, and set your service area.", proof: "Onboarded" },

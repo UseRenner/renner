@@ -21,14 +21,14 @@ const PAPER = "var(--c-bg, #fbfbfc)";
 type Step = { id: string; number: string; title: string; body: string; proof: string };
 
 const CLIENT_DEK =
-  "A marketplace for real-estate work. Post a task, pick a Renner. Verified on both sides.";
+  "A secure marketplace for real-estate task work. Vetted on both sides, paid through the platform.";
 const RENNER_DEK =
-  "Real-estate work, paid through the platform. Set your area, apply to tasks. Verified on both sides.";
+  "A secure marketplace for real-estate task work. Vetted on both sides, paid through the platform.";
 
 const CLIENT_STEPS: Step[] = [
   { id: "post", number: "01", title: "Post a task.", body: "Set the location, time, task, and price.", proof: "Specifics" },
   { id: "pick", number: "02", title: "Pick a Renner.", body: "Renners apply. Read their profiles and book one.", proof: "Vetted" },
-  { id: "done", number: "03", title: "It gets done.", body: "Receive photos and confirm completion. Payment is released.", proof: "Escrow" },
+  { id: "done", number: "03", title: "It's taken care of.", body: "Receive photos and confirm completion. Payment is released.", proof: "Escrow" },
 ];
 
 const RENNER_STEPS: Step[] = [
@@ -172,7 +172,7 @@ export function TapeBody({ showCta }: { showCta: boolean }) {
               <h3 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(24px, 2.6vw, 30px)", lineHeight: 1.1, color: INK, margin: 0, fontVariationSettings: '"opsz" 60' }}>
                 {s.title}
               </h3>
-              <p style={{ fontFamily: SERIF, fontSize: 17, lineHeight: 1.65, color: STEEL_700, margin: 0, maxWidth: "44ch", fontVariationSettings: '"opsz" 14' }}>
+              <p style={{ fontFamily: SERIF, fontSize: 17, lineHeight: 1.65, color: STEEL_700, margin: 0, maxWidth: "56ch", fontVariationSettings: '"opsz" 14' }}>
                 {s.body}
               </p>
               <div style={{ marginTop: 10 }}>

@@ -20,7 +20,7 @@ const PAPER = "var(--c-bg, #fbfbfc)";
 const CLIENT_STEPS = [
   { number: "01", title: "Post a task.", body: "Set the location, time, task, and price.", proof: "Specifics" },
   { number: "02", title: "Pick a Renner.", body: "Renners apply. Read their profiles and book one.", proof: "Vetted" },
-  { number: "03", title: "It gets done.", body: "Receive photos and confirm completion. Payment is released.", proof: "Escrow" },
+  { number: "03", title: "It's taken care of.", body: "Receive photos and confirm completion. Payment is released.", proof: "Escrow" },
 ];
 const RENNER_STEPS = [
   { number: "01", title: "Get verified.", body: "Verify your ID, clear a background check, and set your service area.", proof: "Onboarded" },
@@ -38,7 +38,7 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
     ? [
         ["Both sides vetted", "ID verified and background checked before any booking.", "Verified"],
         ["Funds in escrow", "Held by Stripe until you confirm.", "In escrow"],
-        ["Photos on every task", "A photo and a note when it's done.", "Photo + note"],
+        ["Photos on every task", "A photo and a note when it's done.", "Proof"],
       ]
     : [
         ["Real work", "Real estate.", "Real estate"],
@@ -84,8 +84,8 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
             }}
           >
             {isClient
-              ? "A marketplace for real-estate work. Post a task, pick a Renner. Verified on both sides."
-              : "Real-estate work, paid through the platform. Set your area, apply to tasks. Verified on both sides."}
+              ? "A secure marketplace for real-estate task work. Vetted on both sides, paid through the platform."
+              : "A secure marketplace for real-estate task work. Vetted on both sides, paid through the platform."}
           </p>
         </section>
 
