@@ -43,7 +43,7 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
     : [
         ["Real work", "Real-estate tasks.", "Real-estate"],
         ["Vetted clients", "ID verified and background checked, same as you.", "Verified"],
-        ["Repeat work", "Good work earns repeat clients.", "Earned, not given"],
+        ["Repeat work", "Saved as a favorite, booked again.", "Saved & booked"],
       ];
 
   return (

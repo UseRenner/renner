@@ -46,7 +46,7 @@ const CLIENT_TRUST = [
 const RENNER_TRUST = [
   ["Real work", "Real-estate tasks."],
   ["Vetted clients", "ID verified and background checked, same as you."],
-  ["Repeat work", "Good work earns repeat clients."],
+  ["Repeat work", "Saved as a favorite, booked again."],
 ] as const;
 
 export function TapeBody({ showCta }: { showCta: boolean }) {

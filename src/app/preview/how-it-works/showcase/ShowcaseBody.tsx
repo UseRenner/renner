@@ -106,7 +106,7 @@ export function ShowcaseBody({ showCta }: { showCta: boolean }) {
           : [
               ["Real work", "Real-estate tasks."],
               ["Vetted clients", "ID verified and background checked, same as you."],
-              ["Repeat work", "Good work earns repeat clients."],
+              ["Repeat work", "Saved as a favorite, booked again."],
             ]
         ).map(([label, body]) => (
           <div key={label}>
