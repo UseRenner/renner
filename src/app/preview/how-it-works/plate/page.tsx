@@ -16,7 +16,7 @@ export default async function PlateHowItWorks({ searchParams }: { searchParams: 
   const tone = readTone(sp?.tone);
   return (
     <PageShell active="plate" showCta={showCta} tone={tone}>
-      <PlateBody showCta={showCta} />
+      <PlateBody showCta={false} />
     </PageShell>
   );
 }

@@ -16,7 +16,7 @@ export default async function ShowcaseHowItWorks({ searchParams }: { searchParam
   const tone = readTone(sp?.tone);
   return (
     <PageShell active="showcase" showCta={showCta} tone={tone}>
-      <ShowcaseBody showCta={showCta} />
+      <ShowcaseBody showCta={false} />
     </PageShell>
   );
 }

@@ -16,7 +16,7 @@ export default async function LeadHowItWorks({ searchParams }: { searchParams: P
   const tone = readTone(sp?.tone);
   return (
     <PageShell active="lead" showCta={showCta} tone={tone}>
-      <LeadBody showCta={showCta} />
+      <LeadBody showCta={false} />
     </PageShell>
   );
 }

@@ -16,7 +16,7 @@ export default async function SceneHowItWorks({ searchParams }: { searchParams: 
   const tone = readTone(sp?.tone);
   return (
     <PageShell active="scene" showCta={showCta} tone={tone}>
-      <SceneBody showCta={showCta} />
+      <SceneBody showCta={false} />
     </PageShell>
   );
 }

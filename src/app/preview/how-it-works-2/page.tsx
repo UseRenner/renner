@@ -21,7 +21,7 @@ export default async function PreviewHowItWorksRail({ searchParams }: { searchPa
   return (
     <div style={{ ...cssVars, minHeight: "100vh", backgroundColor: "var(--c-bg)", color: "var(--c-text)" }}>
       <VariantSwitcher active="rail" />
-      <RailBody showCta={showCta} />
+      <RailBody showCta={false} />
     </div>
   );
 }

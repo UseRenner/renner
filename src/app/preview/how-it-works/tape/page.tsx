@@ -16,7 +16,7 @@ export default async function TapeHowItWorks({ searchParams }: { searchParams: P
   const tone = readTone(sp?.tone);
   return (
     <PageShell active="tape" showCta={showCta} tone={tone}>
-      <TapeBody showCta={showCta} />
+      <TapeBody showCta={false} />
     </PageShell>
   );
 }

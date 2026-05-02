@@ -16,7 +16,7 @@ export default async function QuarterHowItWorks({ searchParams }: { searchParams
   const tone = readTone(sp?.tone);
   return (
     <PageShell active="quarter" showCta={showCta} tone={tone}>
-      <QuarterBody showCta={showCta} />
+      <QuarterBody showCta={false} />
     </PageShell>
   );
 }

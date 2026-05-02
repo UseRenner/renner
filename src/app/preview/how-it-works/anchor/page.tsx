@@ -16,7 +16,7 @@ export default async function AnchorHowItWorks({ searchParams }: { searchParams:
   const tone = readTone(sp?.tone);
   return (
     <PageShell active="anchor" showCta={showCta} tone={tone}>
-      <AnchorBody showCta={showCta} />
+      <AnchorBody showCta={false} />
     </PageShell>
   );
 }

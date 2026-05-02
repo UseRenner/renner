@@ -16,7 +16,7 @@ export default async function CenterHowItWorks({ searchParams }: { searchParams:
   const tone = readTone(sp?.tone);
   return (
     <PageShell active="center" showCta={showCta} tone={tone}>
-      <CenterBody showCta={showCta} />
+      <CenterBody showCta={false} />
     </PageShell>
   );
 }

@@ -16,7 +16,7 @@ export default async function BureauHowItWorks({ searchParams }: { searchParams:
   const tone = readTone(sp?.tone);
   return (
     <PageShell active="bureau" showCta={showCta} tone={tone}>
-      <BureauBody showCta={showCta} />
+      <BureauBody showCta={false} />
     </PageShell>
   );
 }

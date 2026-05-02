@@ -16,7 +16,7 @@ export default async function CompactHowItWorks({ searchParams }: { searchParams
   const tone = readTone(sp?.tone);
   return (
     <PageShell active="compact" showCta={showCta} tone={tone}>
-      <CompactBody showCta={showCta} />
+      <CompactBody showCta={false} />
     </PageShell>
   );
 }

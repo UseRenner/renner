@@ -16,7 +16,7 @@ export default async function PivotHowItWorks({ searchParams }: { searchParams: 
   const tone = readTone(sp?.tone);
   return (
     <PageShell active="pivot" showCta={showCta} tone={tone}>
-      <PivotBody showCta={showCta} />
+      <PivotBody showCta={false} />
     </PageShell>
   );
 }
