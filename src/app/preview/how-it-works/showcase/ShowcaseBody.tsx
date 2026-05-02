@@ -19,15 +19,15 @@ const CLIENT_DEK = "A marketplace for real-estate work. Post a task, pick a Renn
 const RENNER_DEK = "Real-estate work, paid through the platform. Set your area, pick the tasks. Verified on both sides.";
 
 const CLIENT_STEPS: Array<[string, string, string]> = [
-  ["Post a task.", "Where, when, what, how much. Two minutes.", "Under 2 min"],
-  ["Pick a Renner.", "Vetted Renners apply. Read their profile. Book one.", "Vetted"],
-  ["Get it done.", "Photos arrive. You confirm. Funds release.", "Escrow"],
+  ["Post a task.", "Set the location, time, task, and price. Takes about two minutes.", "Under 2 min"],
+  ["Pick a Renner.", "Vetted Renners apply. Read their profiles and book one.", "Vetted"],
+  ["Get it done.", "The Renner sends photo confirmation. You confirm. Done.", "Escrow"],
 ];
 
 const RENNER_STEPS: Array<[string, string, string]> = [
-  ["Get verified.", "ID, background check, area. Same day.", "Same-day"],
-  ["Pick a task.", "Tasks from agents and managers nearby. Apply.", "Local"],
-  ["Get it done.", "Run the task. Send photos. Get paid.", "100% of pay"],
+  ["Get verified.", "Verify your ID, clear a background check, and set your service area. Done in a day.", "Same-day"],
+  ["Pick a task.", "See tasks posted in your area. Apply to the ones that fit your schedule.", "Local"],
+  ["Get it done.", "Complete the task. Send photo confirmation. Done.", "100% of pay"],
 ];
 
 export function ShowcaseBody({ showCta }: { showCta: boolean }) {

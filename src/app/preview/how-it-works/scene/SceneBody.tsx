@@ -29,14 +29,14 @@ type Step = {
 };
 
 const CLIENT_STEPS: Step[] = [
-  { number: "01", title: "Post a task.", body: "Where, when, what, how much. Two minutes.", proof: "Under 2 min", illustration: "post" },
-  { number: "02", title: "Pick a Renner.", body: "Vetted Renners apply. Read their profile. Book one.", proof: "Vetted", illustration: "pick" },
-  { number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Funds release.", proof: "Escrow", illustration: "completion" },
+  { number: "01", title: "Post a task.", body: "Set the location, time, task, and price. Takes about two minutes.", proof: "Under 2 min", illustration: "post" },
+  { number: "02", title: "Pick a Renner.", body: "Vetted Renners apply. Read their profiles and book one.", proof: "Vetted", illustration: "pick" },
+  { number: "03", title: "Get it done.", body: "The Renner sends photo confirmation. You confirm. Done.", proof: "Escrow", illustration: "completion" },
 ];
 const RENNER_STEPS: Step[] = [
-  { number: "01", title: "Get verified.", body: "ID, background check, area. Same day.", proof: "Same-day", illustration: "verify" },
-  { number: "02", title: "Pick a task.", body: "Tasks from agents and managers nearby. Apply.", proof: "Local", illustration: "browse" },
-  { number: "03", title: "Get it done.", body: "Run the task. Send photos. Get paid.", proof: "100% of pay", illustration: "done" },
+  { number: "01", title: "Get verified.", body: "Verify your ID, clear a background check, and set your service area. Done in a day.", proof: "Same-day", illustration: "verify" },
+  { number: "02", title: "Pick a task.", body: "See tasks posted in your area. Apply to the ones that fit your schedule.", proof: "Local", illustration: "browse" },
+  { number: "03", title: "Get it done.", body: "Complete the task. Send photo confirmation. Done.", proof: "100% of pay", illustration: "done" },
 ];
 
 function InitialsDisc({ initials, size = 40, fontSize = 14 }: { initials: string; size?: number; fontSize?: number }) {
