@@ -78,6 +78,27 @@ export function TapeBody({ showCta }: { showCta: boolean }) {
         <Tab label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
+      {/* The dek question — opens before the tape so the question lands
+          first, the at-a-glance tape strip and detail follow. */}
+      <p
+        style={{
+          fontFamily: SERIF,
+          fontStyle: "italic",
+          fontWeight: 300,
+          fontSize: "clamp(22px, 2.2vw, 28px)",
+          lineHeight: 1.4,
+          color: INK,
+          margin: 0,
+          maxWidth: 720,
+          marginLeft: "auto",
+          marginRight: "auto",
+          marginBottom: "clamp(40px, 5vw, 56px)",
+          fontVariationSettings: '"opsz" 36',
+        }}
+      >
+        {dek}
+      </p>
+
       {/* The tape — three cells in a single horizontal strip, top and bottom inked */}
       <div
         className="tape"
@@ -130,22 +151,6 @@ export function TapeBody({ showCta }: { showCta: boolean }) {
       {/* Below the tape — a settled reading column. The tape was the snap;
           this is the depth. Single column, hanging numerals, generous leading. */}
       <div className="tape-column" style={{ maxWidth: 720, margin: "0 auto", marginBottom: "clamp(72px, 9vw, 112px)" }}>
-        <p
-          style={{
-            fontFamily: SERIF,
-            fontStyle: "italic",
-            fontWeight: 300,
-            fontSize: "clamp(22px, 2.2vw, 28px)",
-            lineHeight: 1.4,
-            color: INK,
-            margin: 0,
-            marginBottom: "clamp(48px, 6vw, 72px)",
-            fontVariationSettings: '"opsz" 36',
-          }}
-        >
-          {dek}
-        </p>
-
         {steps.map((s, i) => {
           const kind = (isClient ? CLIENT_KINDS : RENNER_KINDS)[i];
           return (

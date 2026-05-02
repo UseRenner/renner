@@ -56,7 +56,7 @@ export function LeadBody({ showCta }: { showCta: boolean }) {
             letterSpacing: "-0.012em",
             color: INK,
             margin: 0,
-            maxWidth: "26ch",
+            maxWidth: "32ch",
             fontVariationSettings: '"opsz" 60',
           }}
         >
