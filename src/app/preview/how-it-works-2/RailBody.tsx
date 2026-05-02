@@ -20,7 +20,7 @@ const CLIENT_STEPS: Step[] = [
   },
   {
     number: "03",
-    title: "Get it done.",
+    title: "It gets done.",
     body: <>The Renner sends photo confirmation. You confirm. Done.</>,
   },
 ];

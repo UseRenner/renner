@@ -20,7 +20,7 @@ const RENNER_DEK =
 const CLIENT_PLATES: Plate[] = [
   { number: "01", title: "Post a task.", body: "Set the location, time, task, and price. Takes about two minutes.", proof: "Under 2 min" },
   { number: "02", title: "Pick a Renner.", body: "Renners apply. Read their profiles and book one.", proof: "Vetted" },
-  { number: "03", title: "Get it done.", body: "The Renner sends photo confirmation. You confirm. Done.", proof: "Escrow" },
+  { number: "03", title: "It gets done.", body: "The Renner sends photo confirmation. You confirm. Done.", proof: "Escrow" },
 ];
 
 const RENNER_PLATES: Plate[] = [
