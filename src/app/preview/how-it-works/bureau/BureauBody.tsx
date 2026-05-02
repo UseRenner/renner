@@ -15,7 +15,7 @@ const STEEL_300 = "var(--c-300, #cad1d8)";
 const RULE = "var(--c-rule, #eaedf0)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 
-const CLIENT_DEK = "A marketplace for real-estate work. Post a task, pick a Renner, get it done. Verified on both sides.";
+const CLIENT_DEK = "A marketplace for real-estate work. Post a task, pick a Renner. Verified on both sides.";
 const RENNER_DEK = "Real-estate work, paid through the platform. Set your area, apply to tasks. Verified on both sides.";
 
 const CLIENT_STEPS = [

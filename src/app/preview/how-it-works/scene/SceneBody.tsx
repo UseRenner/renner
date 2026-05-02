@@ -17,7 +17,7 @@ const RULE = "var(--c-rule, #eaedf0)";
 const BONE = "var(--ill-bg, #f6f7f9)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 
-const CLIENT_DEK = "A marketplace for real-estate work. Post a task, pick a Renner, get it done. Verified on both sides.";
+const CLIENT_DEK = "A marketplace for real-estate work. Post a task, pick a Renner. Verified on both sides.";
 const RENNER_DEK = "Real-estate work, paid through the platform. Set your area, apply to tasks. Verified on both sides.";
 
 type Step = {
