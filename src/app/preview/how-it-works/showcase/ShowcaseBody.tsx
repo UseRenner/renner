@@ -15,8 +15,8 @@ const STEEL_300 = "var(--c-300, #cad1d8)";
 const RULE = "var(--c-rule, #eaedf0)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 
-const CLIENT_DEK = "A marketplace for real-estate work. Post a task, pick a Renner, get it done. Both sides are screened to join.";
-const RENNER_DEK = "Real-estate work, paid through the platform. Set your area, set your rate, pick what you take. Both sides are screened to join.";
+const CLIENT_DEK = "A marketplace for real-estate work. Post a task, pick a Renner, get it done. Verified on both sides.";
+const RENNER_DEK = "Real-estate work, paid through the platform. Set your area, pick the tasks. Verified on both sides.";
 
 const CLIENT_STEPS: Array<[string, string, string]> = [
   ["Post a task.", "Where, when, what, how much. Two minutes.", "Under 2 min"],
@@ -25,7 +25,7 @@ const CLIENT_STEPS: Array<[string, string, string]> = [
 ];
 
 const RENNER_STEPS: Array<[string, string, string]> = [
-  ["Get verified.", "ID, background check, area, rate. Same day.", "Same-day"],
+  ["Get verified.", "Persona, Checkr, area. Same day.", "Same-day"],
   ["Pick a task.", "Tasks from agents and managers nearby. Apply.", "Local"],
   ["Get it done.", "Run the task. Send photos. Get paid.", "100% of pay"],
 ];
@@ -99,13 +99,13 @@ export function ShowcaseBody({ showCta }: { showCta: boolean }) {
       >
         {(isClient
           ? [
-              ["Both sides vetted", "ID and Checkr before any booking."],
+              ["Both sides vetted", "Persona and Checkr before any booking."],
               ["Funds in escrow", "Held by Stripe until you confirm."],
               ["Photos on every task", "A photo and a note when it's done."],
             ]
           : [
               ["Real work", "From agents, brokers, managers."],
-              ["Vetted clients", "ID and Checkr, same as you."],
+              ["Vetted clients", "Persona and Checkr, same as you."],
               ["Repeat work", "Good work earns repeat clients."],
             ]
         ).map(([label, body]) => (

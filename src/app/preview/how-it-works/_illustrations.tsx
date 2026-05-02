@@ -171,7 +171,7 @@ function ApplicantCard() {
         &ldquo;Five years in real estate operations. Punctual, courteous, photo-thorough.&rdquo;
       </p>
       <div style={{ marginTop: "auto", paddingTop: 14, borderTop: `1px solid ${RULE}`, display: "flex", flexDirection: "column", gap: 6 }}>
-        <VerifiedRow label="ID-verified" />
+        <VerifiedRow label="Persona-verified" />
         <VerifiedRow label="Background-checked" />
       </div>
     </Shell>
@@ -226,7 +226,7 @@ function ProfileCard() {
         <span style={{ color: STEEL_600 }}>· task minimum</span>
       </div>
       <div style={{ marginTop: "auto", paddingTop: 14, borderTop: `1px solid ${RULE}`, display: "flex", flexDirection: "column", gap: 6 }}>
-        <VerifiedRow label="ID-verified" />
+        <VerifiedRow label="Persona-verified" />
         <VerifiedRow label="Background-checked" />
       </div>
     </Shell>
@@ -354,7 +354,7 @@ function MiniApplicant({ maxWidth }: { maxWidth?: number | string }) {
         <span style={{ color: STEEL_600 }}>· 142 tasks</span>
       </div>
       <div style={{ paddingTop: 10, borderTop: `1px solid ${RULE}`, display: "flex", flexDirection: "column", gap: 4 }}>
-        <VerifiedRow label="ID + Checkr" fontSize={8} />
+        <VerifiedRow label="Persona + Checkr" fontSize={8} />
       </div>
     </MiniShell>
   );
@@ -397,7 +397,7 @@ function MiniProfile({ maxWidth }: { maxWidth?: number | string }) {
         Signs · Lockbox · Courier
       </div>
       <div style={{ paddingTop: 10, borderTop: `1px solid ${RULE}`, display: "flex", flexDirection: "column", gap: 4 }}>
-        <VerifiedRow label="ID + Checkr" fontSize={8} />
+        <VerifiedRow label="Persona + Checkr" fontSize={8} />
       </div>
     </MiniShell>
   );

@@ -21,9 +21,9 @@ const PAPER = "var(--c-bg, #fbfbfc)";
 type Step = { number: string; title: string; body: string; proof: string };
 
 const CLIENT_DEK =
-  "A marketplace for real-estate work. Post a task, pick a Renner, get it done. Both sides are screened to join.";
+  "A marketplace for real-estate work. Post a task, pick a Renner, get it done. Verified on both sides.";
 const RENNER_DEK =
-  "Real-estate work, paid through the platform. Set your area, set your rate, pick what you take. Both sides are screened to join.";
+  "Real-estate work, paid through the platform. Set your area, pick the tasks. Verified on both sides.";
 
 const CLIENT_STEPS: Step[] = [
   { number: "01", title: "Post a task.", body: "Where, when, what, how much. Two minutes.", proof: "Under 2 min" },
@@ -32,20 +32,20 @@ const CLIENT_STEPS: Step[] = [
 ];
 
 const RENNER_STEPS: Step[] = [
-  { number: "01", title: "Get verified.", body: "ID, background check, area, rate. Same day.", proof: "Same-day" },
+  { number: "01", title: "Get verified.", body: "Persona, Checkr, area. Same day.", proof: "Same-day" },
   { number: "02", title: "Pick a task.", body: "Tasks from agents and managers nearby. Apply.", proof: "Local" },
   { number: "03", title: "Get it done.", body: "Run the task. Send photos. Get paid.", proof: "100% of pay" },
 ];
 
 const CLIENT_TRUST = [
-  ["Both sides vetted", "ID and Checkr before any booking."],
+  ["Both sides vetted", "Persona and Checkr before any booking."],
   ["Funds in escrow", "Held by Stripe until you confirm."],
   ["Photos on every task", "A photo and a note when it's done."],
 ] as const;
 
 const RENNER_TRUST = [
   ["Real work", "From agents, brokers, managers."],
-  ["Vetted clients", "ID and Checkr, same as you."],
+  ["Vetted clients", "Persona and Checkr, same as you."],
   ["Repeat work", "Good work earns repeat clients."],
 ] as const;
 

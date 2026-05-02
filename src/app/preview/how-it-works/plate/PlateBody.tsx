@@ -12,10 +12,10 @@ type Plate = {
 };
 
 const CLIENT_DEK =
-  "A marketplace for real-estate work. Post a task, pick a Renner, get it done. Both sides are screened to join.";
+  "A marketplace for real-estate work. Post a task, pick a Renner, get it done. Verified on both sides.";
 
 const RENNER_DEK =
-  "Real-estate work, paid through the platform. Set your area, set your rate, pick what you take. Both sides are screened to join.";
+  "Real-estate work, paid through the platform. Set your area, pick the tasks. Verified on both sides.";
 
 const CLIENT_PLATES: Plate[] = [
   { number: "01", title: "Post a task.", body: "Where, when, what, how much. Two minutes.", proof: "Under 2 min" },
@@ -24,7 +24,7 @@ const CLIENT_PLATES: Plate[] = [
 ];
 
 const RENNER_PLATES: Plate[] = [
-  { number: "01", title: "Get verified.", body: "ID, background check, area, rate. Same day.", proof: "Same-day" },
+  { number: "01", title: "Get verified.", body: "Persona, Checkr, area. Same day.", proof: "Same-day" },
   { number: "02", title: "Pick a task.", body: "Tasks from agents and managers nearby. Apply.", proof: "Local" },
   { number: "03", title: "Get it done.", body: "Run the task. Send photos. Get paid.", proof: "100% of pay" },
 ];

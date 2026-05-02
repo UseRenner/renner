@@ -10,7 +10,7 @@ export { VariantSwitcher };
 export const FAQS: Array<{ q: string; a: string }> = [
   {
     q: "What is Renner?",
-    a: "Renner is a marketplace built specifically for real-estate task work. Clients post short jobs — sign placement, document delivery, property prep, guest check-ins, showings — and Renners apply, get booked, and get paid through the platform. Both clients and Renners are ID-verified and background-checked before they can post or book.",
+    a: "Renner is a marketplace built specifically for real-estate task work. Clients post short jobs — sign placement, document delivery, property prep, guest check-ins, showings — and Renners apply, get booked, and get paid through the platform. Both clients and Renners clear Persona ID verification and a Checkr background check before they can post or book.",
   },
   {
     q: "How much does it cost?",
@@ -18,7 +18,7 @@ export const FAQS: Array<{ q: string; a: string }> = [
   },
   {
     q: "Who is on the platform?",
-    a: "People who work in real estate, or who want to. Every party — clients and Renners alike — is ID-verified and clears a Checkr background check before posting or booking. Showings and other license-required tasks additionally require a verified real-estate license on the Renner side.",
+    a: "People who work in real estate, or who want to. Every party — clients and Renners alike — is Persona-verified and clears a Checkr background check before posting or booking. Showings and other license-required tasks additionally require a verified real-estate license on the Renner side.",
   },
   {
     q: "Are Renners employees?",

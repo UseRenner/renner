@@ -17,8 +17,8 @@ const RULE = "var(--c-rule, #eaedf0)";
 const BONE = "var(--ill-bg, #f6f7f9)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 
-const CLIENT_DEK = "A marketplace for real-estate work. Post a task, pick a Renner, get it done. Both sides are screened to join.";
-const RENNER_DEK = "Real-estate work, paid through the platform. Set your area, set your rate, pick what you take. Both sides are screened to join.";
+const CLIENT_DEK = "A marketplace for real-estate work. Post a task, pick a Renner, get it done. Verified on both sides.";
+const RENNER_DEK = "Real-estate work, paid through the platform. Set your area, pick the tasks. Verified on both sides.";
 
 type Step = {
   number: string;
@@ -34,7 +34,7 @@ const CLIENT_STEPS: Step[] = [
   { number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Stripe pays.", proof: "Stripe escrow", illustration: "completion" },
 ];
 const RENNER_STEPS: Step[] = [
-  { number: "01", title: "Get verified.", body: "ID, background check, area, rate. Same day.", proof: "Same-day", illustration: "verify" },
+  { number: "01", title: "Get verified.", body: "Persona, Checkr, area. Same day.", proof: "Same-day", illustration: "verify" },
   { number: "02", title: "Pick a task.", body: "Tasks from agents and managers nearby. Apply.", proof: "Local", illustration: "browse" },
   { number: "03", title: "Get it done.", body: "Run the task. Send photos. Get paid.", proof: "100% of pay", illustration: "done" },
 ];
@@ -166,7 +166,7 @@ function PickCard() {
         photo-thorough.&rdquo;
       </p>
       <div style={{ marginTop: "auto", paddingTop: 16, borderTop: `1px solid ${RULE}`, display: "flex", flexDirection: "column", gap: 6 }}>
-        <VerifiedRow label="ID-verified" />
+        <VerifiedRow label="Persona-verified" />
         <VerifiedRow label="Background-checked" />
       </div>
     </CardShell>
@@ -215,7 +215,7 @@ function VerifyCard() {
         <span style={{ color: STEEL_600 }}>· task minimum</span>
       </div>
       <div style={{ marginTop: "auto", paddingTop: 16, borderTop: `1px solid ${RULE}`, display: "flex", flexDirection: "column", gap: 6 }}>
-        <VerifiedRow label="ID-verified" />
+        <VerifiedRow label="Persona-verified" />
         <VerifiedRow label="Background-checked" />
       </div>
     </CardShell>
@@ -388,13 +388,13 @@ export function SceneBody({ showCta }: { showCta: boolean }) {
       >
         {(isClient
           ? [
-              ["Both sides vetted", "ID and Checkr before any booking."],
+              ["Both sides vetted", "Persona and Checkr before any booking."],
               ["Funds in escrow", "Held by Stripe until you confirm."],
               ["Photos on every task", "A photo and a note when it's done."],
             ]
           : [
               ["Real work", "From agents, brokers, managers."],
-              ["Vetted clients", "ID and Checkr, same as you."],
+              ["Vetted clients", "Persona and Checkr, same as you."],
               ["Repeat work", "Good work earns repeat clients."],
             ]
         ).map(([label, body]) => (

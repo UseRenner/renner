@@ -23,7 +23,7 @@ const CLIENT_STEPS = [
   { number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Stripe pays.", proof: "Stripe escrow" },
 ];
 const RENNER_STEPS = [
-  { number: "01", title: "Get verified.", body: "ID, background check, area, rate. Same day.", proof: "Same-day" },
+  { number: "01", title: "Get verified.", body: "Persona, Checkr, area. Same day.", proof: "Same-day" },
   { number: "02", title: "Pick a task.", body: "Tasks from agents and managers nearby. Apply.", proof: "Local" },
   { number: "03", title: "Get it done.", body: "Run the task. Send photos. Get paid.", proof: "100% of pay" },
 ];
@@ -36,13 +36,13 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
 
   const trustPairs: Array<[string, string, string]> = isClient
     ? [
-        ["Both sides vetted", "ID and Checkr before any booking.", "ID + Checkr"],
+        ["Both sides vetted", "Persona and Checkr before any booking.", "Persona + Checkr"],
         ["Funds in escrow", "Held by Stripe until you confirm.", "Stripe held"],
         ["Photos on every task", "A photo and a note when it's done.", "Photo + note"],
       ]
     : [
         ["Real work", "From agents, brokers, managers.", "Agents · brokers · managers"],
-        ["Vetted clients", "ID and Checkr, same as you.", "ID + Checkr"],
+        ["Vetted clients", "Persona and Checkr, same as you.", "Persona + Checkr"],
         ["Repeat work", "Good work earns repeat clients.", "Earned, not given"],
       ];
 
@@ -83,7 +83,7 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
               fontVariationSettings: '"opsz" 60',
             }}
           >
-            A marketplace for real-estate work. Post a task, pick a Renner, get it done. Both sides are screened to join.
+            A marketplace for real-estate work. Post a task, pick a Renner, get it done. Verified on both sides.
           </p>
         </section>
 
