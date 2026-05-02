@@ -360,7 +360,7 @@ export function SceneBody({ showCta }: { showCta: boolean }) {
                     lineHeight: 1.6,
                     color: STEEL_700,
                     margin: 0,
-                    maxWidth: "44ch",
+                    maxWidth: "60ch",
                     fontVariationSettings: '"opsz" 14',
                   }}
                 >

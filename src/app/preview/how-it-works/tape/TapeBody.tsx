@@ -175,7 +175,7 @@ export function TapeBody({ showCta }: { showCta: boolean }) {
               <h3 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(24px, 2.6vw, 30px)", lineHeight: 1.1, color: INK, margin: 0, fontVariationSettings: '"opsz" 60' }}>
                 {s.title}
               </h3>
-              <p style={{ fontFamily: SERIF, fontSize: 17, lineHeight: 1.65, color: STEEL_700, margin: 0, maxWidth: "56ch", fontVariationSettings: '"opsz" 14' }}>
+              <p style={{ fontFamily: SERIF, fontSize: 17, lineHeight: 1.65, color: STEEL_700, margin: 0, maxWidth: "80ch", fontVariationSettings: '"opsz" 14' }}>
                 {s.body}
               </p>
               <div style={{ marginTop: 10 }}>

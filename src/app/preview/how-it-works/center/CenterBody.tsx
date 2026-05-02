@@ -84,7 +84,7 @@ export function CenterBody({ showCta }: { showCta: boolean }) {
             <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(20px, 2vw, 24px)", lineHeight: 1.1, color: INK, marginBottom: 8, fontVariationSettings: '"opsz" 36' }}>
               {s.title}
             </div>
-            <p style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.55, color: STEEL_700, margin: "0 auto", maxWidth: "32ch", fontVariationSettings: '"opsz" 14' }}>
+            <p style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
               {s.body}
             </p>
           </div>

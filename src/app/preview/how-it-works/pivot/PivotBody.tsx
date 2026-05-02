@@ -157,7 +157,7 @@ export function PivotBody({ showCta }: { showCta: boolean }) {
                     color: STEEL_700,
                     margin: 0,
                     marginBottom: 16,
-                    maxWidth: bodySide === "left" ? "100%" : "40ch",
+                    maxWidth: "100%",
                     marginLeft: bodySide === "left" ? "auto" : 0,
                     fontVariationSettings: '"opsz" 14',
                   }}

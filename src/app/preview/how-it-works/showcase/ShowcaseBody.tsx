@@ -75,7 +75,7 @@ export function ShowcaseBody({ showCta }: { showCta: boolean }) {
                 <h3 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(22px, 2.4vw, 28px)", lineHeight: 1.1, letterSpacing: "-0.012em", color: INK, margin: 0, marginBottom: 8, fontVariationSettings: '"opsz" 36' }}>
                   {title}
                 </h3>
-                <p style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.55, color: STEEL_700, margin: 0, maxWidth: "32ch", fontVariationSettings: '"opsz" 14' }}>
+                <p style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
                   {body}
                 </p>
               </div>

@@ -148,7 +148,7 @@ export function PlateBody({ showCta }: { showCta: boolean }) {
                   lineHeight: 1.65,
                   color: STEEL_700,
                   margin: 0,
-                  maxWidth: "56ch",
+                  maxWidth: "80ch",
                   fontVariationSettings: '"opsz" 14',
                 }}
               >
