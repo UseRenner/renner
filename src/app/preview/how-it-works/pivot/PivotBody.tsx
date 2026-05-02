@@ -152,14 +152,15 @@ export function PivotBody({ showCta }: { showCta: boolean }) {
                 <p
                   style={{
                     fontFamily: SERIF,
+                    fontWeight: 400,
                     fontSize: "clamp(16px, 1.4vw, 18px)",
-                    lineHeight: 1.55,
+                    lineHeight: 1.6,
                     color: STEEL_700,
                     margin: 0,
                     marginBottom: 16,
                     maxWidth: "100%",
                     marginLeft: bodySide === "left" ? "auto" : 0,
-                    fontVariationSettings: '"opsz" 14',
+                    fontVariationSettings: '"opsz" 14, "wght" 400',
                   }}
                 >
                   {s.body}
