@@ -11,69 +11,35 @@ const CLIENT_STEPS: Step[] = [
   {
     number: "01",
     title: "Post a task.",
-    body: (
-      <>
-        Describe what you need — sign installation, lockbox swap, property
-        visuals, guest check-in, courier run, or anything real estate. Set
-        the location, time window, and price.
-      </>
-    ),
+    body: <>Set the location, time, task, and price. Takes about two minutes.</>,
   },
   {
     number: "02",
     title: "Pick a Renner.",
-    body: (
-      <>
-        Background-checked Renners in your area see your task and apply.
-        Review their profile, ratings, and experience. Pick the right fit.
-      </>
-    ),
+    body: <>Renners apply. Read their profiles and book one.</>,
   },
   {
     number: "03",
     title: "Get it done.",
-    body: (
-      <>
-        Your Renner handles it. You get confirmation with completion
-        photos. Pay securely through the platform. That&rsquo;s it.
-      </>
-    ),
+    body: <>The Renner sends photo confirmation. You confirm. Done.</>,
   },
 ];
 
 const RENNER_STEPS: Step[] = [
   {
     number: "01",
-    title: "Create your profile.",
-    body: (
-      <>
-        Sign up, verify your identity, and pass a background check. Add
-        your categories — signs, lockbox, courier, visuals, guest access,
-        showings, and more. Set your service area.
-      </>
-    ),
+    title: "Get verified.",
+    body: <>Verify your ID, clear a background check, and set your service area. Done in a day.</>,
   },
   {
     number: "02",
-    title: "Browse and apply.",
-    body: (
-      <>
-        See tasks posted by agents, brokers, property managers, leasing
-        agents, and landlords in your area. Apply to the ones that fit
-        your schedule and skills.
-      </>
-    ),
+    title: "Pick a task.",
+    body: <>See tasks posted in your area. Apply to the ones that fit your skills and schedule.</>,
   },
   {
     number: "03",
     title: "Get it done.",
-    body: (
-      <>
-        Complete the task, upload confirmation photos, and get paid
-        securely through the platform. Build your reputation with ratings
-        and reviews.
-      </>
-    ),
+    body: <>Complete the task. Send photo confirmation. Done.</>,
   },
 ];
 

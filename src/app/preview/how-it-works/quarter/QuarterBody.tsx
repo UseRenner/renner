@@ -83,7 +83,9 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
               fontVariationSettings: '"opsz" 60',
             }}
           >
-            A marketplace for real-estate work. Post a task, pick a Renner, get it done. Verified on both sides.
+            {isClient
+              ? "A marketplace for real-estate work. Post a task, pick a Renner, get it done. Verified on both sides."
+              : "Real-estate work, paid through the platform. Set your area, apply to tasks. Verified on both sides."}
           </p>
         </section>
 
