@@ -26,7 +26,7 @@ const CLIENT_STEPS: Array<[string, string, string]> = [
 
 const RENNER_STEPS: Array<[string, string, string]> = [
   ["Get verified.", "Verify your ID, clear a background check, and set your service area. Done in a day.", "Same-day"],
-  ["Apply to a task.", "See a task posted in your area. Apply if it fits your skills and schedule.", "Local"],
+  ["Pick a task.", "See tasks in your area. Apply to what fits your skills and schedule.", "Local"],
   ["Take care of it.", "Complete the task. Send photo confirmation. Receive payment.", "100% of pay"],
 ];
 

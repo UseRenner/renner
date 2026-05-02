@@ -25,7 +25,7 @@ const CLIENT_PLATES: Plate[] = [
 
 const RENNER_PLATES: Plate[] = [
   { number: "01", title: "Get verified.", body: "Verify your ID, clear a background check, and set your service area. Done in a day.", proof: "Same-day" },
-  { number: "02", title: "Apply to a task.", body: "See a task posted in your area. Apply if it fits your skills and schedule.", proof: "Local" },
+  { number: "02", title: "Pick a task.", body: "See tasks in your area. Apply to what fits your skills and schedule.", proof: "Local" },
   { number: "03", title: "Take care of it.", body: "Complete the task. Send photo confirmation. Receive payment.", proof: "100% of pay" },
 ];
 
