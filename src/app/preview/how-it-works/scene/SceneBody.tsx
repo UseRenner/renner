@@ -17,8 +17,8 @@ const RULE = "var(--c-rule, #eaedf0)";
 const BONE = "var(--ill-bg, #f6f7f9)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 
-const CLIENT_DEK = "The home for real estate tasks. Post a task. Pick a Renner.";
-const RENNER_DEK = "The home for real estate tasks. Become a Renner. Complete tasks.";
+const CLIENT_DEK = "The home for real estate tasks. Get something done. Hire a Renner.";
+const RENNER_DEK = "The home for real estate tasks. Make sure they're done. Become a Renner.";
 
 type Step = {
   number: string;

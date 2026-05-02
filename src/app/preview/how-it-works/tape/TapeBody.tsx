@@ -20,8 +20,8 @@ const PAPER = "var(--c-bg, #fbfbfc)";
 
 type Step = { id: string; number: string; title: string; body: string; proof: string };
 
-const CLIENT_DEK = "The home for real estate tasks. Post a task. Pick a Renner.";
-const RENNER_DEK = "The home for real estate tasks. Become a Renner. Complete tasks.";
+const CLIENT_DEK = "The home for real estate tasks. Get something done. Hire a Renner.";
+const RENNER_DEK = "The home for real estate tasks. Make sure they're done. Become a Renner.";
 
 const CLIENT_STEPS: Step[] = [
   { id: "post", number: "01", title: "Post a task.", body: "Set the location, time, task, and price.", proof: "Specifics" },

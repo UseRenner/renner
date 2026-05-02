@@ -84,8 +84,8 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
             }}
           >
             {isClient
-              ? "The home for real estate tasks. Post a task. Pick a Renner."
-              : "The home for real estate tasks. Become a Renner. Complete tasks."}
+              ? "The home for real estate tasks. Get something done. Hire a Renner."
+              : "The home for real estate tasks. Make sure they're done. Become a Renner."}
           </p>
         </section>
 
