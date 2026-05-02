@@ -121,7 +121,7 @@ function PostCard() {
   return (
     <CardShell kicker="01 · Posted task">
       <h4 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 24, lineHeight: 1.15, color: INK, margin: 0, fontVariationSettings: '"opsz" 36' }}>
-        Install sign rider.
+        Install sign rider
       </h4>
       <div style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.08em", color: STEEL_600, lineHeight: 1.5 }}>
         Cherry Creek, CO · 80205
@@ -225,9 +225,9 @@ function BrowseCard() {
   return (
     <CardShell kicker="02 · Tasks nearby">
       {[
-        ["Install sign rider.", "Cherry Creek · 2.4 mi · $45"],
-        ["Lockbox swap.", "Capitol Hill · 4.1 mi · $30"],
-        ["Property prep.", "Highlands · 5.8 mi · $90"],
+        ["Install sign rider", "Cherry Creek · 2.4 mi · $45"],
+        ["Lockbox swap", "Capitol Hill · 4.1 mi · $30"],
+        ["Property prep", "Highlands · 5.8 mi · $90"],
       ].map(([t, m]) => (
         <div key={t} style={{ display: "flex", flexDirection: "column", gap: 4, paddingBottom: 12, borderBottom: `1px solid ${RULE}` }}>
           <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 18, color: INK, fontVariationSettings: '"opsz" 36' }}>{t}</span>
