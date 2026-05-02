@@ -33,7 +33,7 @@ const RENNER_STEPS: Step[] = [
   },
   {
     number: "02",
-    title: "Pick a task.",
+    title: "Apply to tasks.",
     body: <>See tasks posted in your area. Apply to the ones that fit your skills and schedule.</>,
   },
   {
