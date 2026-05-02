@@ -25,7 +25,7 @@ const CLIENT_STEPS = [
 const RENNER_STEPS = [
   { number: "01", title: "Get verified.", body: "Verify your ID, clear a background check, and set your service area. Done in a day.", proof: "Same-day" },
   { number: "02", title: "Apply to tasks.", body: "See tasks posted in your area. Apply to the ones that fit your skills and schedule.", proof: "Local" },
-  { number: "03", title: "Start running.", body: "Complete tasks. Send photo confirmation. Receive payment.", proof: "100% of pay" },
+  { number: "03", title: "It gets done.", body: "Complete the task. Send photo confirmation. Receive payment.", proof: "100% of pay" },
 ];
 
 export function QuarterBody({ showCta }: { showCta: boolean }) {
@@ -43,7 +43,7 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
     : [
         ["Real work", "Real estate.", "Real estate"],
         ["Vetted clients", "ID verified and background checked, same as you.", "Verified"],
-        ["Repeat work", "Clients can save you as a favorite.", "Saved & booked"],
+        ["Repeat work", "Clients can save you as a favorite.", "Saved"],
       ];
 
   return (
