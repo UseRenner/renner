@@ -104,7 +104,7 @@ export function LeadBody({ showCta }: { showCta: boolean }) {
               ["Photos on every task", "A photo and a note when it's done."],
             ]
           : [
-              ["Real work", "Real-estate tasks."],
+              ["Real work", "Real estate."],
               ["Vetted clients", "ID verified and background checked, same as you."],
               ["Repeat work", "Saved as a favorite, booked again."],
             ]

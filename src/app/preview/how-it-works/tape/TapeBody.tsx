@@ -44,7 +44,7 @@ const CLIENT_TRUST = [
 ] as const;
 
 const RENNER_TRUST = [
-  ["Real work", "Real-estate tasks."],
+  ["Real work", "Real estate."],
   ["Vetted clients", "ID verified and background checked, same as you."],
   ["Repeat work", "Saved as a favorite, booked again."],
 ] as const;
