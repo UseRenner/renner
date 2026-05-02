@@ -27,7 +27,7 @@ const CLIENT_STEPS = [
 const RENNER_STEPS = [
   { number: "01", title: "Get verified.", body: "Verify your ID, clear a background check, and set your service area. Done in a day.", proof: "Same-day" },
   { number: "02", title: "Pick a task.", body: "See tasks posted in your area. Apply to the ones that fit your skills and schedule.", proof: "Local" },
-  { number: "03", title: "Get it done.", body: "Complete the task. Send photo confirmation. Done.", proof: "100% of pay" },
+  { number: "03", title: "It gets done.", body: "Complete the task. Send photo confirmation. Done.", proof: "100% of pay" },
 ];
 
 export function AnchorBody({ showCta }: { showCta: boolean }) {

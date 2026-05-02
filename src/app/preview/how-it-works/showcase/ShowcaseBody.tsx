@@ -27,7 +27,7 @@ const CLIENT_STEPS: Array<[string, string, string]> = [
 const RENNER_STEPS: Array<[string, string, string]> = [
   ["Get verified.", "Verify your ID, clear a background check, and set your service area. Done in a day.", "Same-day"],
   ["Pick a task.", "See tasks posted in your area. Apply to the ones that fit your skills and schedule.", "Local"],
-  ["Get it done.", "Complete the task. Send photo confirmation. Done.", "100% of pay"],
+  ["It gets done.", "Complete the task. Send photo confirmation. Done.", "100% of pay"],
 ];
 
 export function ShowcaseBody({ showCta }: { showCta: boolean }) {
