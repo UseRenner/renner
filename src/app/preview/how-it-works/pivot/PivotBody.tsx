@@ -268,7 +268,7 @@ export function PivotBody({ showCta }: { showCta: boolean }) {
           top: 0;
           bottom: 0;
           width: 1px;
-          background: ${INK};
+          background: ${RULE};
           pointer-events: none;
         }
         @media (max-width: 720px) {
