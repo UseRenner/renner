@@ -96,7 +96,7 @@ export function LeadBody({ showCta }: { showCta: boolean }) {
         ))}
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "clamp(24px, 3vw, 48px)", marginBottom: showCta ? "clamp(48px, 6vw, 72px)" : 0, textAlign: "center", justifyItems: "center" }} className="lead-trust">
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "clamp(20px, 2.4vw, 32px)", marginBottom: showCta ? "clamp(48px, 6vw, 72px)" : 0, textAlign: "center" }} className="lead-trust">
         {(isClient
           ? [
               ["Both sides vetted", "ID verified and background checked before any booking."],
