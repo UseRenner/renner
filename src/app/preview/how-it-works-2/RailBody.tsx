@@ -153,12 +153,12 @@ export function RailBody({ showCta }: { showCta: boolean }) {
               }}
             >
               <RailTab
-                label="For Clients"
+                label="Hire a Renner"
                 active={isClient}
                 onClick={() => setTab("client")}
               />
               <RailTab
-                label="For Renners"
+                label="Become a Renner"
                 active={!isClient}
                 onClick={() => setTab("renner")}
               />

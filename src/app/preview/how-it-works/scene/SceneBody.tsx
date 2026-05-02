@@ -294,9 +294,9 @@ export function SceneBody({ showCta }: { showCta: boolean }) {
   return (
     <>
       <div role="tablist" aria-label="Audience" style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: "clamp(40px, 5vw, 56px)", fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 16 }}>
-        <Tab label="For clients" active={isClient} onClick={() => setTab("client")} />
+        <Tab label="Hire a Renner" active={isClient} onClick={() => setTab("client")} />
         <span aria-hidden style={{ color: STEEL_300, fontStyle: "normal" }}>·</span>
-        <Tab label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
+        <Tab label="Become a Renner" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
       <p

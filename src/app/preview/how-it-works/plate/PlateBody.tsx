@@ -68,9 +68,9 @@ export function PlateBody({ showCta }: { showCta: boolean }) {
           letterSpacing: 0,
         }}
       >
-        <TabButton label="For clients" active={isClient} onClick={() => setTab("client")} />
+        <TabButton label="Hire a Renner" active={isClient} onClick={() => setTab("client")} />
         <span aria-hidden style={{ color: STEEL_300, fontStyle: "normal" }}>·</span>
-        <TabButton label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
+        <TabButton label="Become a Renner" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
       {/* ─── Lede ─── */}

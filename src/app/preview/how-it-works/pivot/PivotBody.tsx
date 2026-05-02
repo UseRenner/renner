@@ -73,10 +73,10 @@ export function PivotBody({ showCta }: { showCta: boolean }) {
         }}
       >
         <div className="pivot-left" style={{ textAlign: "right", paddingRight: 20 }}>
-          <Tab label="For clients" active={isClient} onClick={() => setTab("client")} />
+          <Tab label="Hire a Renner" active={isClient} onClick={() => setTab("client")} />
         </div>
         <div className="pivot-right" style={{ textAlign: "left", paddingLeft: 20 }}>
-          <Tab label="For Renners" active={!isClient} onClick={() => setTab("renner")} />
+          <Tab label="Become a Renner" active={!isClient} onClick={() => setTab("renner")} />
         </div>
       </div>
 
