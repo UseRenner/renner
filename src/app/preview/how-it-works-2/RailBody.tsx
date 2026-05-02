@@ -11,7 +11,7 @@ const CLIENT_STEPS: Step[] = [
   {
     number: "01",
     title: "Post a task.",
-    body: <>Set the location, time, task, and price. Takes about two minutes.</>,
+    body: <>Set the location, time, task, and price.</>,
   },
   {
     number: "02",
@@ -21,7 +21,7 @@ const CLIENT_STEPS: Step[] = [
   {
     number: "03",
     title: "It gets done.",
-    body: <>The Renner sends photo confirmation. You confirm. Payment is released.</>,
+    body: <>Receive photo confirmation. Confirm completion. Payment is released.</>,
   },
 ];
 
@@ -29,7 +29,7 @@ const RENNER_STEPS: Step[] = [
   {
     number: "01",
     title: "Get verified.",
-    body: <>Verify your ID, clear a background check, and set your service area. Done in a day.</>,
+    body: <>Verify your ID, clear a background check, and set your service area.</>,
   },
   {
     number: "02",

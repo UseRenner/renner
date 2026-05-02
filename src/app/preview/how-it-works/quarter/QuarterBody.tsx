@@ -18,12 +18,12 @@ const BONE = "var(--ill-bg, #f6f7f9)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 
 const CLIENT_STEPS = [
-  { number: "01", title: "Post a task.", body: "Set the location, time, task, and price. Takes about two minutes.", proof: "Under 2 min" },
+  { number: "01", title: "Post a task.", body: "Set the location, time, task, and price.", proof: "Exactly what you need done" },
   { number: "02", title: "Pick a Renner.", body: "Renners apply. Read their profiles and book one.", proof: "Vetted" },
-  { number: "03", title: "It gets done.", body: "The Renner sends photo confirmation. You confirm. Payment is released.", proof: "Escrow" },
+  { number: "03", title: "It gets done.", body: "Receive photo confirmation. Confirm completion. Payment is released.", proof: "Escrow" },
 ];
 const RENNER_STEPS = [
-  { number: "01", title: "Get verified.", body: "Verify your ID, clear a background check, and set your service area. Done in a day.", proof: "Same-day" },
+  { number: "01", title: "Get verified.", body: "Verify your ID, clear a background check, and set your service area.", proof: "Same-day" },
   { number: "02", title: "Pick a task.", body: "See tasks in your area. Apply to what fits your skills and schedule.", proof: "Local" },
   { number: "03", title: "Take care of it.", body: "Complete the task. Send photo confirmation. Receive payment.", proof: "100% of pay" },
 ];

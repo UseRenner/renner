@@ -19,13 +19,13 @@ const CLIENT_DEK = "A marketplace for real-estate work. Post a task, pick a Renn
 const RENNER_DEK = "Real-estate work, paid through the platform. Set your area, apply to tasks. Verified on both sides.";
 
 const CLIENT_STEPS: Array<[string, string, string]> = [
-  ["Post a task.", "Set the location, time, task, and price. Takes about two minutes.", "Under 2 min"],
+  ["Post a task.", "Set the location, time, task, and price.", "Under 2 min"],
   ["Pick a Renner.", "Renners apply. Read their profiles and book one.", "Vetted"],
-  ["It gets done.", "The Renner sends photo confirmation. You confirm. Payment is released.", "Escrow"],
+  ["It gets done.", "Receive photo confirmation. Confirm completion. Payment is released.", "Escrow"],
 ];
 
 const RENNER_STEPS: Array<[string, string, string]> = [
-  ["Get verified.", "Verify your ID, clear a background check, and set your service area. Done in a day.", "Same-day"],
+  ["Get verified.", "Verify your ID, clear a background check, and set your service area.", "Same-day"],
   ["Pick a task.", "See tasks in your area. Apply to what fits your skills and schedule.", "Local"],
   ["Take care of it.", "Complete the task. Send photo confirmation. Receive payment.", "100% of pay"],
 ];
