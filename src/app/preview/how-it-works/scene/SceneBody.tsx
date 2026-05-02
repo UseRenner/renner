@@ -29,7 +29,7 @@ type Step = {
 };
 
 const CLIENT_STEPS: Step[] = [
-  { number: "01", title: "Post a task.", body: "Set the location, time, task, and price.", proof: "Exactly what you need done", illustration: "post" },
+  { number: "01", title: "Post a task.", body: "Set the location, time, task, and price.", proof: "Specifics", illustration: "post" },
   { number: "02", title: "Pick a Renner.", body: "Renners apply. Read their profiles and book one.", proof: "Vetted", illustration: "pick" },
   { number: "03", title: "It gets done.", body: "Receive photo confirmation. Confirm completion. Payment is released.", proof: "Escrow", illustration: "completion" },
 ];

@@ -26,7 +26,7 @@ const RENNER_DEK =
   "Real-estate work, paid through the platform. Set your area, apply to tasks. Verified on both sides.";
 
 const CLIENT_STEPS: Step[] = [
-  { number: "01", title: "Post a task.", body: "Set the location, time, task, and price.", proof: "Exactly what you need done" },
+  { number: "01", title: "Post a task.", body: "Set the location, time, task, and price.", proof: "Specifics" },
   { number: "02", title: "Pick a Renner.", body: "Renners apply. Read their profiles and book one.", proof: "Vetted" },
   { number: "03", title: "It gets done.", body: "Receive photo confirmation. Confirm completion. Payment is released.", proof: "Escrow" },
 ];

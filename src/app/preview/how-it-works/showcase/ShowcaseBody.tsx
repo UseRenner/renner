@@ -19,7 +19,7 @@ const CLIENT_DEK = "A marketplace for real-estate work. Post a task, pick a Renn
 const RENNER_DEK = "Real-estate work, paid through the platform. Set your area, apply to tasks. Verified on both sides.";
 
 const CLIENT_STEPS: Array<[string, string, string]> = [
-  ["Post a task.", "Set the location, time, task, and price.", "Exactly what you need done"],
+  ["Post a task.", "Set the location, time, task, and price.", "Specifics"],
   ["Pick a Renner.", "Renners apply. Read their profiles and book one.", "Vetted"],
   ["It gets done.", "Receive photo confirmation. Confirm completion. Payment is released.", "Escrow"],
 ];
