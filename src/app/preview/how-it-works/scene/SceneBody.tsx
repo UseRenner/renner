@@ -393,7 +393,7 @@ export function SceneBody({ showCta }: { showCta: boolean }) {
               ["Photos on every task", "A photo and a note when it's done."],
             ]
           : [
-              ["Real work", "From agents, brokers, managers."],
+              ["Real work", "Real-estate tasks."],
               ["Vetted clients", "ID verified and background checked, same as you."],
               ["Repeat work", "Good work earns repeat clients."],
             ]

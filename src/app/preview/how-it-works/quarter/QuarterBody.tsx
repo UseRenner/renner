@@ -41,7 +41,7 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
         ["Photos on every task", "A photo and a note when it's done.", "Photo + note"],
       ]
     : [
-        ["Real work", "From agents, brokers, managers.", "Agents · brokers · managers"],
+        ["Real work", "Real-estate tasks.", "Real-estate"],
         ["Vetted clients", "ID verified and background checked, same as you.", "ID + Checkr"],
         ["Repeat work", "Good work earns repeat clients.", "Earned, not given"],
       ];
