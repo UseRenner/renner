@@ -136,7 +136,7 @@ function TaskCard() {
         Today 14:00–17:00 · $45
       </div>
       <p style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
-        Standard rider on a corner lot in RiNo. Bring a 6 ft ladder. Photographic confirmation on completion.
+        Add a "Just Listed" rider above the for-sale sign.
       </p>
       <div style={{ marginTop: "auto", paddingTop: 14, borderTop: `1px solid ${RULE}`, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
         <span style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: SANS, fontSize: 13, fontWeight: 500, color: INK }}>
