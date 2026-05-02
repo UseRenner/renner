@@ -91,7 +91,7 @@ export function PivotBody({ showCta }: { showCta: boolean }) {
           <p
             style={{
               fontFamily: SERIF,
-              fontSize: "clamp(18px, 1.7vw, 22px)",
+              fontSize: "clamp(22px, 2.2vw, 26px)",
               lineHeight: 1.45,
               color: INK,
               margin: 0,
