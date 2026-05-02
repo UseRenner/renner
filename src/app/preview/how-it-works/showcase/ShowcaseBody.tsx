@@ -21,7 +21,7 @@ const RENNER_DEK = "Real-estate work, paid through the platform. Set your area, 
 const CLIENT_STEPS: Array<[string, string, string]> = [
   ["Post a task.", "Set the location, time, task, and price.", "Specifics"],
   ["Pick a Renner.", "Renners apply. Read their profiles and book one.", "Vetted"],
-  ["It gets done.", "Receive photo confirmation. Confirm completion. Payment is released.", "Escrow"],
+  ["It gets done.", "Receive photos and confirm completion. Payment is released.", "Escrow"],
 ];
 
 const RENNER_STEPS: Array<[string, string, string]> = [

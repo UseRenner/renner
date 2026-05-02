@@ -20,7 +20,7 @@ const PAPER = "var(--c-bg, #fbfbfc)";
 const CLIENT_STEPS = [
   { number: "01", title: "Post a task.", body: "Set the location, time, task, and price.", proof: "Specifics" },
   { number: "02", title: "Pick a Renner.", body: "Renners apply. Read their profiles and book one.", proof: "Vetted" },
-  { number: "03", title: "It gets done.", body: "Receive photo confirmation. Confirm completion. Payment is released.", proof: "Escrow" },
+  { number: "03", title: "It gets done.", body: "Receive photos and confirm completion. Payment is released.", proof: "Escrow" },
 ];
 const RENNER_STEPS = [
   { number: "01", title: "Get verified.", body: "Verify your ID, clear a background check, and set your service area.", proof: "Onboarded" },

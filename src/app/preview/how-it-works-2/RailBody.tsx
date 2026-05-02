@@ -21,7 +21,7 @@ const CLIENT_STEPS: Step[] = [
   {
     number: "03",
     title: "It gets done.",
-    body: <>Receive photo confirmation. Confirm completion. Payment is released.</>,
+    body: <>Receive photos and confirm completion. Payment is released.</>,
   },
 ];
 
