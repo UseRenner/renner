@@ -20,12 +20,12 @@ const PAPER = "var(--c-bg, #fbfbfc)";
 const CLIENT_STEPS = [
   { number: "01", title: "Post a task.", body: "Set the location, time, task, and price. Takes about two minutes.", proof: "Under 2 min" },
   { number: "02", title: "Pick a Renner.", body: "Renners apply. Read their profiles and book one.", proof: "Vetted" },
-  { number: "03", title: "It gets done.", body: "The Renner sends photo confirmation. You confirm.", proof: "Escrow" },
+  { number: "03", title: "It gets done.", body: "The Renner sends photo confirmation. You confirm. Payment is released.", proof: "Escrow" },
 ];
 const RENNER_STEPS = [
   { number: "01", title: "Get verified.", body: "Verify your ID, clear a background check, and set your service area. Done in a day.", proof: "Same-day" },
   { number: "02", title: "Apply to tasks.", body: "See tasks posted in your area. Apply to the ones that fit your skills and schedule.", proof: "Local" },
-  { number: "03", title: "It gets done.", body: "Complete the task. Send photo confirmation.", proof: "100% of pay" },
+  { number: "03", title: "Start running.", body: "Complete tasks. Send photo confirmation. Receive payment.", proof: "100% of pay" },
 ];
 
 export function QuarterBody({ showCta }: { showCta: boolean }) {
@@ -43,7 +43,7 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
     : [
         ["Real work", "Real estate.", "Real estate"],
         ["Vetted clients", "ID verified and background checked, same as you.", "Verified"],
-        ["Repeat work", "Saved as a favorite, booked again.", "Saved & booked"],
+        ["Repeat work", "Clients can save you as a favorite.", "Saved & booked"],
       ];
 
   return (

@@ -21,13 +21,13 @@ const RENNER_DEK = "Real-estate work, paid through the platform. Set your area, 
 const CLIENT_STEPS: Array<[string, string, string]> = [
   ["Post a task.", "Set the location, time, task, and price. Takes about two minutes.", "Under 2 min"],
   ["Pick a Renner.", "Renners apply. Read their profiles and book one.", "Vetted"],
-  ["It gets done.", "The Renner sends photo confirmation. You confirm.", "Escrow"],
+  ["It gets done.", "The Renner sends photo confirmation. You confirm. Payment is released.", "Escrow"],
 ];
 
 const RENNER_STEPS: Array<[string, string, string]> = [
   ["Get verified.", "Verify your ID, clear a background check, and set your service area. Done in a day.", "Same-day"],
   ["Pick a task.", "See tasks posted in your area. Apply to the ones that fit your skills and schedule.", "Local"],
-  ["It gets done.", "Complete the task. Send photo confirmation.", "100% of pay"],
+  ["Start running.", "Complete tasks. Send photo confirmation. Receive payment.", "100% of pay"],
 ];
 
 export function ShowcaseBody({ showCta }: { showCta: boolean }) {
@@ -106,7 +106,7 @@ export function ShowcaseBody({ showCta }: { showCta: boolean }) {
           : [
               ["Real work", "Real estate."],
               ["Vetted clients", "ID verified and background checked, same as you."],
-              ["Repeat work", "Saved as a favorite, booked again."],
+              ["Repeat work", "Clients can save you as a favorite."],
             ]
         ).map(([label, body]) => (
           <div key={label}>

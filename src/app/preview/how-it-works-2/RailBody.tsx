@@ -21,7 +21,7 @@ const CLIENT_STEPS: Step[] = [
   {
     number: "03",
     title: "It gets done.",
-    body: <>The Renner sends photo confirmation. You confirm.</>,
+    body: <>The Renner sends photo confirmation. You confirm. Payment is released.</>,
   },
 ];
 
@@ -38,8 +38,8 @@ const RENNER_STEPS: Step[] = [
   },
   {
     number: "03",
-    title: "It gets done.",
-    body: <>Complete the task. Send photo confirmation.</>,
+    title: "Start running.",
+    body: <>Complete tasks. Send photo confirmation. Receive payment.</>,
   },
 ];
 
