@@ -109,7 +109,7 @@ export function LeadBody({ showCta }: { showCta: boolean }) {
               ["Repeat work", "Clients can save you as a favorite."],
             ]
         ).map(([label, body]) => (
-          <div key={label} style={{ maxWidth: "32ch" }}>
+          <div key={label}>
             <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 400, fontSize: 18, color: INK, marginBottom: 8, fontVariationSettings: '"opsz" 36' }}>
               {label}
             </div>
