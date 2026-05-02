@@ -38,8 +38,8 @@ const RENNER_STEPS: Step[] = [
   },
   {
     number: "03",
-    title: "Start running.",
-    body: <>Complete tasks. Send photo confirmation. Receive payment.</>,
+    title: "Take care of it.",
+    body: <>Complete the task with care. Send photo confirmation. Receive payment.</>,
   },
 ];
 
