@@ -21,8 +21,8 @@ const RENNER_DEK = "Real-estate work, paid through the platform. Set your area, 
 
 const CLIENT_STEPS = [
   { number: "01", title: "Post a task.", body: "Where, when, what, how much. Two minutes.", proof: "Under 2 min" },
-  { number: "02", title: "Pick a Renner.", body: "Vetted Renners apply. Read their profile. Book one.", proof: "Checkr-vetted" },
-  { number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Stripe pays.", proof: "Stripe escrow" },
+  { number: "02", title: "Pick a Renner.", body: "Vetted Renners apply. Read their profile. Book one.", proof: "Vetted" },
+  { number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Funds release.", proof: "Escrow" },
 ];
 const RENNER_STEPS = [
   { number: "01", title: "Get verified.", body: "ID, background check, area. Same day.", proof: "Same-day" },
@@ -93,7 +93,7 @@ export function CenterBody({ showCta }: { showCta: boolean }) {
 
       {/* Trust line — centered, single sentence */}
       <p style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(18px, 1.7vw, 22px)", lineHeight: 1.5, color: INK, margin: "0 auto", marginBottom: showCta ? "clamp(40px, 5vw, 56px)" : 0, maxWidth: "52ch", paddingTop: "clamp(28px, 3.5vw, 36px)", borderTop: `1px solid ${INK}`, fontVariationSettings: '"opsz" 36' }}>
-        Both sides — clients and Renners — are ID-verified and Checkr-cleared before any booking.
+        Both sides — clients and Renners — are ID-verified and background-checked before any booking.
       </p>
 
       {showCta && (

@@ -30,8 +30,8 @@ type Step = {
 
 const CLIENT_STEPS: Step[] = [
   { number: "01", title: "Post a task.", body: "Where, when, what, how much. Two minutes.", proof: "Under 2 min", illustration: "post" },
-  { number: "02", title: "Pick a Renner.", body: "Vetted Renners apply. Read their profile. Book one.", proof: "Checkr-vetted", illustration: "pick" },
-  { number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Stripe pays.", proof: "Stripe escrow", illustration: "completion" },
+  { number: "02", title: "Pick a Renner.", body: "Vetted Renners apply. Read their profile. Book one.", proof: "Vetted", illustration: "pick" },
+  { number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Funds release.", proof: "Escrow", illustration: "completion" },
 ];
 const RENNER_STEPS: Step[] = [
   { number: "01", title: "Get verified.", body: "ID, background check, area. Same day.", proof: "Same-day", illustration: "verify" },
@@ -193,7 +193,7 @@ function CompletionCard() {
         <span style={{ color: STEEL_500, fontFamily: MONO, fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 500 }}>
           Released
         </span>
-        <span>$45 through Stripe escrow</span>
+        <span>$45 in escrow</span>
       </div>
     </CardShell>
   );
@@ -255,7 +255,7 @@ function DoneCard() {
           Paid.
         </div>
         <div style={{ fontFamily: SANS, fontSize: 13, color: STEEL_600, lineHeight: 1.55 }}>
-          Confirmed by Sarah K. Funds released through Stripe.
+          Confirmed by Sarah K. Funds released.
         </div>
       </div>
       <div style={{ marginTop: "auto", paddingTop: 16, borderTop: `1px solid ${RULE}`, display: "grid", gridTemplateColumns: "auto 1fr", columnGap: 12, alignItems: "baseline", fontFamily: SANS, fontSize: 13, color: INK }}>

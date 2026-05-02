@@ -20,8 +20,8 @@ const RENNER_DEK = "Real-estate work, paid through the platform. Set your area, 
 
 const CLIENT_STEPS = [
   { number: "01", title: "Post a task.", body: "Where, when, what, how much. Two minutes.", proof: "Under 2 min" },
-  { number: "02", title: "Pick a Renner.", body: "Vetted Renners apply. Read their profile. Book one.", proof: "Checkr-vetted" },
-  { number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Stripe pays.", proof: "Stripe escrow" },
+  { number: "02", title: "Pick a Renner.", body: "Vetted Renners apply. Read their profile. Book one.", proof: "Vetted" },
+  { number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Funds release.", proof: "Escrow" },
 ];
 const RENNER_STEPS = [
   { number: "01", title: "Get verified.", body: "ID, background check, area. Same day.", proof: "Same-day" },

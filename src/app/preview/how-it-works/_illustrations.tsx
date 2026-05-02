@@ -198,7 +198,7 @@ function CompletionCard() {
         <span style={{ color: STEEL_500, fontFamily: MONO, fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 500 }}>
           Released
         </span>
-        <span>$45 through Stripe escrow</span>
+        <span>$45 in escrow</span>
       </div>
     </Shell>
   );
@@ -266,7 +266,7 @@ function PayoutCard() {
           Paid.
         </div>
         <div style={{ fontFamily: SANS, fontSize: 13, color: STEEL_600, lineHeight: 1.55 }}>
-          Confirmed by Sarah K. Funds released through Stripe.
+          Confirmed by Sarah K. Funds released.
         </div>
       </div>
       <div style={{ marginTop: "auto", paddingTop: 14, borderTop: `1px solid ${RULE}`, display: "grid", gridTemplateColumns: "auto 1fr", columnGap: 12, alignItems: "baseline", fontFamily: SANS, fontSize: 13, color: INK }}>
@@ -354,7 +354,7 @@ function MiniApplicant({ maxWidth }: { maxWidth?: number | string }) {
         <span style={{ color: STEEL_600 }}>· 142 tasks</span>
       </div>
       <div style={{ paddingTop: 10, borderTop: `1px solid ${RULE}`, display: "flex", flexDirection: "column", gap: 4 }}>
-        <VerifiedRow label="ID + Checkr" fontSize={8} />
+        <VerifiedRow label="Verified" fontSize={8} />
       </div>
     </MiniShell>
   );
@@ -373,7 +373,7 @@ function MiniCompletion({ maxWidth }: { maxWidth?: number | string }) {
       </div>
       <div style={{ paddingTop: 10, borderTop: `1px solid ${RULE}`, display: "flex", justifyContent: "space-between", alignItems: "baseline", fontFamily: MONO, fontSize: 9, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: STEEL_600 }}>
         <span>Released</span>
-        <span style={{ color: INK }}>$45 · Stripe</span>
+        <span style={{ color: INK }}>$45 · Released</span>
       </div>
     </MiniShell>
   );
@@ -397,7 +397,7 @@ function MiniProfile({ maxWidth }: { maxWidth?: number | string }) {
         Signs · Lockbox · Courier
       </div>
       <div style={{ paddingTop: 10, borderTop: `1px solid ${RULE}`, display: "flex", flexDirection: "column", gap: 4 }}>
-        <VerifiedRow label="ID + Checkr" fontSize={8} />
+        <VerifiedRow label="Verified" fontSize={8} />
       </div>
     </MiniShell>
   );
@@ -428,10 +428,10 @@ function MiniPayout({ maxWidth }: { maxWidth?: number | string }) {
         <span style={{ fontFamily: MONO, fontSize: 9, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: STEEL_600 }}>100% of pay</span>
       </div>
       <div style={{ fontFamily: SERIF, fontSize: 13, lineHeight: 1.5, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>
-        Released by Sarah K. through Stripe.
+        Released by Sarah K.
       </div>
       <div style={{ paddingTop: 10, borderTop: `1px solid ${RULE}` }}>
-        <VerifiedRow label="Stripe escrow" fontSize={8} />
+        <VerifiedRow label="Escrow" fontSize={8} />
       </div>
     </MiniShell>
   );

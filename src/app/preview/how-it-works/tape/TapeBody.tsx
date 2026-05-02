@@ -27,8 +27,8 @@ const RENNER_DEK =
 
 const CLIENT_STEPS: Step[] = [
   { id: "post", number: "01", title: "Post a task.", body: "Where, when, what, how much. Two minutes.", proof: "Under 2 min" },
-  { id: "pick", number: "02", title: "Pick a Renner.", body: "Vetted Renners apply. Read their profile. Book one.", proof: "Checkr-vetted" },
-  { id: "done", number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Stripe pays.", proof: "Stripe escrow" },
+  { id: "pick", number: "02", title: "Pick a Renner.", body: "Vetted Renners apply. Read their profile. Book one.", proof: "Vetted" },
+  { id: "done", number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Funds release.", proof: "Escrow" },
 ];
 
 const RENNER_STEPS: Step[] = [

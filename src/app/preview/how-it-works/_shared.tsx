@@ -18,7 +18,7 @@ export const FAQS: Array<{ q: string; a: string }> = [
   },
   {
     q: "Who is on the platform?",
-    a: "People who work in real estate, or who want to. Every party — clients and Renners alike — is ID-verified and clears a Checkr background check before posting or booking. Showings and other license-required tasks additionally require a verified real-estate license on the Renner side.",
+    a: "People who work in real estate, or who want to. Every party — clients and Renners alike — is ID-verified and clears a background check before posting or booking. Showings and other license-required tasks additionally require a verified real-estate license on the Renner side.",
   },
   {
     q: "Are Renners employees?",
@@ -30,7 +30,7 @@ export const FAQS: Array<{ q: string; a: string }> = [
   },
   {
     q: "How do payments work?",
-    a: "When you book a Renner, your card is charged and the funds are held in escrow by Stripe. After the Renner submits proof of completion, you have 48 hours to confirm or open a dispute. Confirmed funds release immediately to the Renner; if the 48 hours pass with no action, payment auto-releases.",
+    a: "When you book a Renner, your card is charged and the funds are held in escrow. After the Renner submits proof of completion, you have 48 hours to confirm or open a dispute. Confirmed funds release immediately to the Renner; if the 48 hours pass with no action, payment auto-releases.",
   },
   {
     q: "What if something is damaged or stolen during a task?",
