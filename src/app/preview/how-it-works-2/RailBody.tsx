@@ -10,17 +10,17 @@ type Step = { number: string; title: React.ReactNode; body: React.ReactNode };
 const CLIENT_STEPS: Step[] = [
   {
     number: "01",
-    title: "Post a task.",
+    title: "Post a task",
     body: <>Set the location, time, task, and price.</>,
   },
   {
     number: "02",
-    title: "Pick a Renner.",
+    title: "Pick a Renner",
     body: <>Renners apply. Read their profiles and book one.</>,
   },
   {
     number: "03",
-    title: "It's taken care of.",
+    title: "It's taken care of",
     body: <>Receive photos and confirm completion. Payment is released.</>,
   },
 ];
@@ -28,17 +28,17 @@ const CLIENT_STEPS: Step[] = [
 const RENNER_STEPS: Step[] = [
   {
     number: "01",
-    title: "Get verified.",
+    title: "Get verified",
     body: <>Verify your ID, clear a background check, and set your service area.</>,
   },
   {
     number: "02",
-    title: "Pick a task.",
+    title: "Pick a task",
     body: <>See tasks in your area. Apply to what fits your skills and schedule.</>,
   },
   {
     number: "03",
-    title: "Take care of it.",
+    title: "Take care of it",
     body: <>Complete the task. Send photo confirmation. Receive payment.</>,
   },
 ];

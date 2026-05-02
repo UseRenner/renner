@@ -24,15 +24,15 @@ const CLIENT_DEK = "What do you need taken care of?";
 const RENNER_DEK = "What can you take care of?";
 
 const CLIENT_STEPS: Step[] = [
-  { id: "post", number: "01", title: "Post a task.", body: "Set the location, time, task, and price.", proof: "Specifics" },
-  { id: "pick", number: "02", title: "Pick a Renner.", body: "Renners apply. Read their profiles and book one.", proof: "Vetted" },
-  { id: "done", number: "03", title: "It's taken care of.", body: "Receive photos and confirm completion. Payment is released.", proof: "Escrow" },
+  { id: "post", number: "01", title: "Post a task", body: "Set the location, time, task, and price.", proof: "Specifics" },
+  { id: "pick", number: "02", title: "Pick a Renner", body: "Renners apply. Read their profiles and book one.", proof: "Vetted" },
+  { id: "done", number: "03", title: "It's taken care of", body: "Receive photos and confirm completion. Payment is released.", proof: "Escrow" },
 ];
 
 const RENNER_STEPS: Step[] = [
-  { id: "verify", number: "01", title: "Get verified.", body: "Verify your ID, clear a background check, and set your service area.", proof: "Onboarded" },
-  { id: "pick", number: "02", title: "Pick a task.", body: "See tasks in your area. Apply to what fits your skills and schedule.", proof: "Local" },
-  { id: "done", number: "03", title: "Take care of it.", body: "Complete the task. Send photo confirmation. Receive payment.", proof: "100% of pay" },
+  { id: "verify", number: "01", title: "Get verified", body: "Verify your ID, clear a background check, and set your service area.", proof: "Onboarded" },
+  { id: "pick", number: "02", title: "Pick a task", body: "See tasks in your area. Apply to what fits your skills and schedule.", proof: "Local" },
+  { id: "done", number: "03", title: "Take care of it", body: "Complete the task. Send photo confirmation. Receive payment.", proof: "100% of pay" },
 ];
 
 const CLIENT_TRUST = [
@@ -202,7 +202,7 @@ export function TapeBody({ showCta }: { showCta: boolean }) {
         {trust.map(([label, body]) => (
           <div key={label}>
             <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 18, color: INK, marginBottom: 8, fontVariationSettings: '"opsz" 36' }}>
-              {label}.
+              {label}
             </div>
             <div style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.55, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>
               {body}

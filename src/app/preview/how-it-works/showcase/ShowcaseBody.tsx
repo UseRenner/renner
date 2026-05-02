@@ -19,15 +19,15 @@ const CLIENT_DEK = "What do you need taken care of?";
 const RENNER_DEK = "What can you take care of?";
 
 const CLIENT_STEPS: Array<[string, string, string]> = [
-  ["Post a task.", "Set the location, time, task, and price.", "Specifics"],
-  ["Pick a Renner.", "Renners apply. Read their profiles and book one.", "Vetted"],
-  ["It's taken care of.", "Receive photos and confirm completion. Payment is released.", "Escrow"],
+  ["Post a task", "Set the location, time, task, and price.", "Specifics"],
+  ["Pick a Renner", "Renners apply. Read their profiles and book one.", "Vetted"],
+  ["It's taken care of", "Receive photos and confirm completion. Payment is released.", "Escrow"],
 ];
 
 const RENNER_STEPS: Array<[string, string, string]> = [
-  ["Get verified.", "Verify your ID, clear a background check, and set your service area.", "Onboarded"],
-  ["Pick a task.", "See tasks in your area. Apply to what fits your skills and schedule.", "Local"],
-  ["Take care of it.", "Complete the task. Send photo confirmation. Receive payment.", "100% of pay"],
+  ["Get verified", "Verify your ID, clear a background check, and set your service area.", "Onboarded"],
+  ["Pick a task", "See tasks in your area. Apply to what fits your skills and schedule.", "Local"],
+  ["Take care of it", "Complete the task. Send photo confirmation. Receive payment.", "100% of pay"],
 ];
 
 export function ShowcaseBody({ showCta }: { showCta: boolean }) {
@@ -111,7 +111,7 @@ export function ShowcaseBody({ showCta }: { showCta: boolean }) {
         ).map(([label, body]) => (
           <div key={label}>
             <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 18, color: INK, marginBottom: 8, fontVariationSettings: '"opsz" 36' }}>
-              {label}.
+              {label}
             </div>
             <div style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.55, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>
               {body}
