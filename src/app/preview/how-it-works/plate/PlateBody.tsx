@@ -11,9 +11,9 @@ type Plate = {
   proof: string;
 };
 
-const CLIENT_DEK = "The home for real estate tasks. What do you need taken care of?";
+const CLIENT_DEK = "What do you need taken care of?";
 
-const RENNER_DEK = "The home for real estate tasks. What can you take care of?";
+const RENNER_DEK = "What can you take care of?";
 
 const CLIENT_PLATES: Plate[] = [
   { number: "01", title: "Post a task.", body: "Set the location, time, task, and price.", proof: "Specifics" },

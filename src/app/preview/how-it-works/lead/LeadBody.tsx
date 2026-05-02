@@ -16,8 +16,8 @@ const STEEL_300 = "var(--c-300, #cad1d8)";
 const RULE = "var(--c-rule, #eaedf0)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 
-const CLIENT_DEK = "The home for real estate tasks. What do you need taken care of?";
-const RENNER_DEK = "The home for real estate tasks. What can you take care of?";
+const CLIENT_DEK = "What do you need taken care of?";
+const RENNER_DEK = "What can you take care of?";
 
 const CLIENT_STEPS = [
   { number: "01", title: "Post a task.", body: "Set the location, time, task, and price.", proof: "Specifics" },
