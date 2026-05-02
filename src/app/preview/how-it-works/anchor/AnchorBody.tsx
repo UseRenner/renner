@@ -25,7 +25,7 @@ const CLIENT_STEPS = [
   { number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Stripe pays.", proof: "Stripe escrow" },
 ];
 const RENNER_STEPS = [
-  { number: "01", title: "Get verified.", body: "Persona, Checkr, area. Same day.", proof: "Same-day" },
+  { number: "01", title: "Get verified.", body: "ID, background check, area. Same day.", proof: "Same-day" },
   { number: "02", title: "Pick a task.", body: "Tasks from agents and managers nearby. Apply.", proof: "Local" },
   { number: "03", title: "Get it done.", body: "Run the task. Send photos. Get paid.", proof: "100% of pay" },
 ];

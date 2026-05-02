@@ -25,7 +25,7 @@ const CLIENT_STEPS = [
   { number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Stripe pays.", proof: "Stripe escrow" },
 ];
 const RENNER_STEPS = [
-  { number: "01", title: "Get verified.", body: "Persona, Checkr, area. Same day.", proof: "Same-day" },
+  { number: "01", title: "Get verified.", body: "ID, background check, area. Same day.", proof: "Same-day" },
   { number: "02", title: "Pick a task.", body: "Tasks from agents and managers nearby. Apply.", proof: "Local" },
   { number: "03", title: "Get it done.", body: "Run the task. Send photos. Get paid.", proof: "100% of pay" },
 ];
@@ -97,7 +97,7 @@ export function CompactBody({ showCta }: { showCta: boolean }) {
 
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, flexWrap: "wrap" }}>
         <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500 }}>
-          Verified on both sides · Persona + Checkr · Stripe escrow
+          Verified on both sides · ID + Checkr · Stripe escrow
         </span>
         {showCta && (
           <Link href={cta.href} style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: SANS, fontSize: 14, fontWeight: 500, color: PAPER, backgroundColor: INK, border: `1px solid ${INK}`, borderRadius: 4, padding: "12px 20px", textDecoration: "none" }}>

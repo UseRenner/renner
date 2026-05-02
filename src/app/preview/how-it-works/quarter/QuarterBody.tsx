@@ -23,7 +23,7 @@ const CLIENT_STEPS = [
   { number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Stripe pays.", proof: "Stripe escrow" },
 ];
 const RENNER_STEPS = [
-  { number: "01", title: "Get verified.", body: "Persona, Checkr, area. Same day.", proof: "Same-day" },
+  { number: "01", title: "Get verified.", body: "ID, background check, area. Same day.", proof: "Same-day" },
   { number: "02", title: "Pick a task.", body: "Tasks from agents and managers nearby. Apply.", proof: "Local" },
   { number: "03", title: "Get it done.", body: "Run the task. Send photos. Get paid.", proof: "100% of pay" },
 ];
@@ -36,13 +36,13 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
 
   const trustPairs: Array<[string, string, string]> = isClient
     ? [
-        ["Both sides vetted", "Persona and Checkr before any booking.", "Persona + Checkr"],
+        ["Both sides vetted", "ID verified and background checked before any booking.", "ID + Checkr"],
         ["Funds in escrow", "Held by Stripe until you confirm.", "Stripe held"],
         ["Photos on every task", "A photo and a note when it's done.", "Photo + note"],
       ]
     : [
         ["Real work", "From agents, brokers, managers.", "Agents · brokers · managers"],
-        ["Vetted clients", "Persona and Checkr, same as you.", "Persona + Checkr"],
+        ["Vetted clients", "ID verified and background checked, same as you.", "ID + Checkr"],
         ["Repeat work", "Good work earns repeat clients.", "Earned, not given"],
       ];
 

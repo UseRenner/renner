@@ -34,7 +34,7 @@ const CLIENT_STEPS: Step[] = [
   { number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Stripe pays.", proof: "Stripe escrow", illustration: "completion" },
 ];
 const RENNER_STEPS: Step[] = [
-  { number: "01", title: "Get verified.", body: "Persona, Checkr, area. Same day.", proof: "Same-day", illustration: "verify" },
+  { number: "01", title: "Get verified.", body: "ID, background check, area. Same day.", proof: "Same-day", illustration: "verify" },
   { number: "02", title: "Pick a task.", body: "Tasks from agents and managers nearby. Apply.", proof: "Local", illustration: "browse" },
   { number: "03", title: "Get it done.", body: "Run the task. Send photos. Get paid.", proof: "100% of pay", illustration: "done" },
 ];
@@ -166,7 +166,7 @@ function PickCard() {
         photo-thorough.&rdquo;
       </p>
       <div style={{ marginTop: "auto", paddingTop: 16, borderTop: `1px solid ${RULE}`, display: "flex", flexDirection: "column", gap: 6 }}>
-        <VerifiedRow label="Persona-verified" />
+        <VerifiedRow label="ID-verified" />
         <VerifiedRow label="Background-checked" />
       </div>
     </CardShell>
@@ -215,7 +215,7 @@ function VerifyCard() {
         <span style={{ color: STEEL_600 }}>· task minimum</span>
       </div>
       <div style={{ marginTop: "auto", paddingTop: 16, borderTop: `1px solid ${RULE}`, display: "flex", flexDirection: "column", gap: 6 }}>
-        <VerifiedRow label="Persona-verified" />
+        <VerifiedRow label="ID-verified" />
         <VerifiedRow label="Background-checked" />
       </div>
     </CardShell>
@@ -388,13 +388,13 @@ export function SceneBody({ showCta }: { showCta: boolean }) {
       >
         {(isClient
           ? [
-              ["Both sides vetted", "Persona and Checkr before any booking."],
+              ["Both sides vetted", "ID verified and background checked before any booking."],
               ["Funds in escrow", "Held by Stripe until you confirm."],
               ["Photos on every task", "A photo and a note when it's done."],
             ]
           : [
               ["Real work", "From agents, brokers, managers."],
-              ["Vetted clients", "Persona and Checkr, same as you."],
+              ["Vetted clients", "ID verified and background checked, same as you."],
               ["Repeat work", "Good work earns repeat clients."],
             ]
         ).map(([label, body]) => (

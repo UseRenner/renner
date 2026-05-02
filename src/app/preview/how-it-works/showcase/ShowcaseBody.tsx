@@ -25,7 +25,7 @@ const CLIENT_STEPS: Array<[string, string, string]> = [
 ];
 
 const RENNER_STEPS: Array<[string, string, string]> = [
-  ["Get verified.", "Persona, Checkr, area. Same day.", "Same-day"],
+  ["Get verified.", "ID, background check, area. Same day.", "Same-day"],
   ["Pick a task.", "Tasks from agents and managers nearby. Apply.", "Local"],
   ["Get it done.", "Run the task. Send photos. Get paid.", "100% of pay"],
 ];
@@ -99,13 +99,13 @@ export function ShowcaseBody({ showCta }: { showCta: boolean }) {
       >
         {(isClient
           ? [
-              ["Both sides vetted", "Persona and Checkr before any booking."],
+              ["Both sides vetted", "ID verified and background checked before any booking."],
               ["Funds in escrow", "Held by Stripe until you confirm."],
               ["Photos on every task", "A photo and a note when it's done."],
             ]
           : [
               ["Real work", "From agents, brokers, managers."],
-              ["Vetted clients", "Persona and Checkr, same as you."],
+              ["Vetted clients", "ID verified and background checked, same as you."],
               ["Repeat work", "Good work earns repeat clients."],
             ]
         ).map(([label, body]) => (

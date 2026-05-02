@@ -25,7 +25,7 @@ const CLIENT_STEPS = [
   { number: "03", title: "Get it done.", body: "Photos arrive. You confirm. Stripe pays.", proof: "Stripe escrow" },
 ];
 const RENNER_STEPS = [
-  { number: "01", title: "Get verified.", body: "Persona, Checkr, area. Same day.", proof: "Same-day" },
+  { number: "01", title: "Get verified.", body: "ID, background check, area. Same day.", proof: "Same-day" },
   { number: "02", title: "Pick a task.", body: "Tasks from agents and managers nearby. Apply.", proof: "Local" },
   { number: "03", title: "Get it done.", body: "Run the task. Send photos. Get paid.", proof: "100% of pay" },
 ];
@@ -93,7 +93,7 @@ export function CenterBody({ showCta }: { showCta: boolean }) {
 
       {/* Trust line — centered, single sentence */}
       <p style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(18px, 1.7vw, 22px)", lineHeight: 1.5, color: INK, margin: "0 auto", marginBottom: showCta ? "clamp(40px, 5vw, 56px)" : 0, maxWidth: "52ch", paddingTop: "clamp(28px, 3.5vw, 36px)", borderTop: `1px solid ${INK}`, fontVariationSettings: '"opsz" 36' }}>
-        Both sides — clients and Renners — are Persona-verified and Checkr-cleared before any booking.
+        Both sides — clients and Renners — are ID-verified and Checkr-cleared before any booking.
       </p>
 
       {showCta && (
