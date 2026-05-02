@@ -58,7 +58,7 @@ export function BureauBody({ showCta }: { showCta: boolean }) {
           {dek}
         </p>
         <div className="bureau-lede-illustration" style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Card kind={kinds[0]} />
+          <Card kind={isClient ? "task" : "inbox"} />
         </div>
       </div>
 

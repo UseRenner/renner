@@ -63,7 +63,7 @@ export function LeadBody({ showCta }: { showCta: boolean }) {
           {dek}
         </p>
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Card kind={kinds[0]} />
+          <Card kind={isClient ? "task" : "inbox"} />
         </div>
       </div>
 
