@@ -194,7 +194,7 @@ export function PivotBody({ showCta }: { showCta: boolean }) {
         gridTemplateColumns: "repeat(3, 1fr)",
         gap: "clamp(20px, 2.4vw, 32px)",
         paddingTop: "clamp(28px, 3.5vw, 36px)",
-        borderTop: `1px solid ${INK}`,
+        borderTop: `1px solid ${RULE}`,
         textAlign: "center",
       }}>
         {trust.map(([label, body]) => (
