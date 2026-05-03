@@ -28,8 +28,8 @@ const RENNER_STEPS = [
   { number: "03", title: "Take care of it", body: "Complete the task. Send photo confirmation. Receive payment.", proof: "100% of pay" },
 ];
 
-const CLIENT_TRUST = "Both sides — clients and Renners — clear ID verification and a background check before posting or booking. License-required tasks go only to licensed Renners. Funds are held in escrow until you confirm.";
-const RENNER_TRUST = "Tasks come from clients who clear ID verification and a background check, the same as you. Pay is released straight to you on completion — no commission, no markup. Clients can save you as a favorite and invite you to their tasks.";
+const CLIENT_TRUST = "Clients and Renners pass ID and background checks before posting or booking. Tasks that require a license go only to licensed Renners. Save Renners you like and invite them to your tasks.";
+const RENNER_TRUST = "The work is real-estate tasks — sign installs, lockboxes, showings, property prep. Clients and Renners pass ID and background checks. Clients can save you as a favorite and invite you directly to their next task.";
 
 export function BriefBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
