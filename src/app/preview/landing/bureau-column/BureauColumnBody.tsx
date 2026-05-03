@@ -66,9 +66,6 @@ export function BureauColumnBody() {
           <RennerMark size={36} weight={300} />
 
           <div>
-            <div style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.32em", textTransform: "uppercase", color: STEEL_500, marginBottom: 20 }}>
-              By invitation
-            </div>
             <h1
               style={{
                 fontFamily: SERIF,
@@ -158,12 +155,9 @@ function SignupForm() {
       }}
     >
       <div style={{ textAlign: "center" }}>
-        <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500, marginBottom: 12 }}>
-          Request access
+        <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500 }}>
+          Create an account
         </div>
-        <h2 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(24px, 2.6vw, 30px)", lineHeight: 1.05, letterSpacing: "-0.014em", color: INK, margin: 0, fontVariationSettings: '"opsz" 60' }}>
-          Take care of it.
-        </h2>
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
@@ -189,7 +183,7 @@ function SignupForm() {
           gap: 10,
         }}
       >
-        Request access
+        Sign up
         <span aria-hidden style={{ opacity: 0.7 }}>→</span>
       </button>
 

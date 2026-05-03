@@ -88,9 +88,6 @@ function LeftPanel({
 
       <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
         <div>
-          <div style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.32em", textTransform: "uppercase", color: PAPER_FOG, marginBottom: 24 }}>
-            Members area · By application
-          </div>
           <h1
             style={{
               fontFamily: SERIF,
@@ -255,12 +252,9 @@ function VaultSignupForm() {
       }}
     >
       <div>
-        <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: PAPER_FOG, marginBottom: 12 }}>
-          Apply for access
+        <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: PAPER_FOG }}>
+          Create an account
         </div>
-        <h2 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(28px, 3vw, 36px)", lineHeight: 1.1, letterSpacing: "-0.014em", color: PAPER, margin: 0, fontVariationSettings: '"opsz" 60' }}>
-          Take care of it.
-        </h2>
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
@@ -287,7 +281,7 @@ function VaultSignupForm() {
           gap: 10,
         }}
       >
-        Apply
+        Sign up
         <span aria-hidden style={{ opacity: 0.7 }}>→</span>
       </button>
 

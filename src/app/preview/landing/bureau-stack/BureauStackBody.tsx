@@ -71,9 +71,6 @@ function UpperBand({ sample }: { sample: typeof SAMPLE_TASKS[number] }) {
       <div className="bureau-st-upper" style={{ maxWidth: 1440, margin: "0 auto", display: "grid", gridTemplateColumns: "minmax(0, 1.4fr) minmax(0, 1fr)", gap: "clamp(40px, 6vw, 96px)", alignItems: "center" }}>
         <div>
           <RennerMark size={36} weight={300} />
-          <div style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.32em", textTransform: "uppercase", color: STEEL_500, marginTop: 32, marginBottom: 20 }}>
-            By application
-          </div>
           <h1
             style={{
               fontFamily: SERIF,
@@ -83,6 +80,7 @@ function UpperBand({ sample }: { sample: typeof SAMPLE_TASKS[number] }) {
               letterSpacing: "-0.024em",
               color: INK,
               margin: 0,
+              marginTop: 32,
               maxWidth: "14ch",
               fontVariationSettings: '"opsz" 144',
             }}
@@ -185,12 +183,9 @@ function SignupForm() {
       }}
     >
       <div style={{ textAlign: "center" }}>
-        <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500, marginBottom: 12 }}>
-          Apply for access
+        <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500 }}>
+          Create an account
         </div>
-        <h2 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(26px, 3vw, 34px)", lineHeight: 1.05, letterSpacing: "-0.014em", color: INK, margin: 0, fontVariationSettings: '"opsz" 60' }}>
-          Take care of it.
-        </h2>
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
@@ -217,7 +212,7 @@ function SignupForm() {
           gap: 10,
         }}
       >
-        Apply
+        Sign up
         <span aria-hidden style={{ opacity: 0.7 }}>→</span>
       </button>
 

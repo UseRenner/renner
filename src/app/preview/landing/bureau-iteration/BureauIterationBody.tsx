@@ -87,9 +87,6 @@ function LeftPanel({
 
       <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
         <div>
-          <div style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500, marginBottom: 24 }}>
-            Real-estate task marketplace
-          </div>
           <h1
             style={{
               fontFamily: SERIF,
@@ -253,12 +250,9 @@ function BureauSignupForm() {
       }}
     >
       <div>
-        <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500, marginBottom: 12 }}>
+        <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500 }}>
           Create an account
         </div>
-        <h2 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(28px, 3vw, 36px)", lineHeight: 1.1, letterSpacing: "-0.014em", color: INK, margin: 0, fontVariationSettings: '"opsz" 60' }}>
-          Take care of it.
-        </h2>
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
