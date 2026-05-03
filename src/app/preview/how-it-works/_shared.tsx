@@ -14,11 +14,11 @@ export const FAQS: Array<{ q: string; a: string }> = [
   },
   {
     q: "How much does it cost?",
-    a: "Renner adds a 10% service fee for clients. Renners keep 100% of the task pay. Both numbers are shown to both parties before a booking is confirmed — no hidden charges.",
+    a: "Renner adds a 10% service fee for clients. Renners keep 100% of the task pay. Both numbers are shown to both sides before a booking is confirmed — no hidden charges.",
   },
   {
     q: "Who is on the platform?",
-    a: "People who work in real estate, or who want to. Every party — clients and Renners alike — is ID-verified and clears a background check before posting or booking. Showings and other license-required tasks additionally require a verified real-estate license on the Renner side.",
+    a: "People who work in real estate, or who want to. Every person — clients and Renners alike — is ID-verified and clears a background check before posting or booking. Showings and other license-required tasks additionally require a verified real-estate license on the Renner side.",
   },
   {
     q: "Are Renners employees?",

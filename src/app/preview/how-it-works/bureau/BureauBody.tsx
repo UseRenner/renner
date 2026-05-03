@@ -93,7 +93,7 @@ export function BureauBody({ showCta }: { showCta: boolean }) {
       >
         {(isClient
           ? [
-              ["Verified on both sides", "Every person — clients and Renners alike — is ID-verified and clears a background check before posting or booking."],
+              ["Verified on both sides", "Clients and Renners pass ID and background checks."],
               ["License-gated", "Tasks requiring a license go to licensed Renners."],
 
               ["Funds in escrow", "Held by Stripe until you confirm."],

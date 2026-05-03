@@ -99,7 +99,7 @@ export function LeadBody({ showCta }: { showCta: boolean }) {
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "clamp(20px, 2.4vw, 32px)", marginBottom: showCta ? "clamp(48px, 6vw, 72px)" : 0, textAlign: "center" }} className="lead-trust">
         {(isClient
           ? [
-              ["Verified on both sides", "Every person — clients and Renners alike — is ID-verified and clears a background check before posting or booking."],
+              ["Verified on both sides", "Clients and Renners pass ID and background checks."],
               ["License-gated", "Tasks requiring a license go to licensed Renners."],
 
               ["Funds in escrow", "Held by Stripe until you confirm."],
