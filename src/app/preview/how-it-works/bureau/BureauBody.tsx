@@ -20,7 +20,7 @@ const RENNER_DEK = "What can you take care of?";
 
 const CLIENT_STEPS = [
   { number: "01", title: "Post a task", body: "Set the location, time, task, and price.", proof: "Specifics" },
-  { number: "02", title: "Pick a Renner", body: "Renners apply. Select one for your task.", proof: "Vetted" },
+  { number: "02", title: "Pick a Renner", body: "Local Renners apply. Select one for your task.", proof: "Vetted" },
   { number: "03", title: "It's taken care of", body: "Receive photos and confirm completion. Payment is released.", proof: "Escrow" },
 ];
 const RENNER_STEPS = [
