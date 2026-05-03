@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import { Card, CLIENT_KINDS, RENNER_KINDS } from "../_illustrations";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
@@ -75,93 +75,63 @@ export function CenterBody({ showCta }: { showCta: boolean }) {
         {dek}
       </p>
 
-      {/* Procession row: cards interleaved with thin connector
-          rules. A short hairline at the cards' vertical midline
-          replaces the previous display chevron — the same eye-
-          guide expressed through pure geometry instead of a
-          glyph. */}
+      {/* Procession row: cards laid out edge-to-edge with even
+          gaps. No connecting glyph or rule — just three cards
+          standing in line. */}
       <div
         className="procession"
         style={{
           display: "flex",
           alignItems: "center",
-          gap: "clamp(16px, 2vw, 28px)",
+          gap: "clamp(20px, 2.6vw, 36px)",
           marginBottom: "clamp(28px, 3.5vw, 40px)",
         }}
       >
-        {kinds.map((kind, i) => (
-          <Fragment key={kind}>
-            <div className="procession-card" style={{ flex: 1, display: "flex", justifyContent: "center", minWidth: 0 }}>
-              <Card kind={kind} />
-            </div>
-            {i < kinds.length - 1 && (
-              <span
-                aria-hidden
-                className="procession-chevron"
-                style={{
-                  flex: "0 0 auto",
-                  width: "clamp(32px, 4vw, 56px)",
-                  height: 1,
-                  backgroundColor: STEEL_300,
-                }}
-              />
-            )}
-          </Fragment>
+        {kinds.map((kind) => (
+          <div key={kind} className="procession-card" style={{ flex: 1, display: "flex", justifyContent: "center", minWidth: 0 }}>
+            <Card kind={kind} />
+          </div>
         ))}
       </div>
 
-      {/* Captions row aligned to the cards above. Mirrors the
-          procession's column rhythm: caption cells take the same
-          flex unit as the card cells; chevron-width spacers keep
-          them locked to each card. */}
+      {/* Captions row aligned to the cards above — same flex
+          template, no spacer needed since the procession row
+          dropped its connector. */}
       <div
         className="procession-captions"
         style={{
           display: "flex",
           alignItems: "flex-start",
-          gap: "clamp(16px, 2vw, 28px)",
+          gap: "clamp(20px, 2.6vw, 36px)",
           marginBottom: "clamp(64px, 8vw, 96px)",
           textAlign: "center",
         }}
       >
-        {steps.map((s, i) => (
-          <Fragment key={s.title}>
-            <div style={{ flex: 1, minWidth: 0, paddingLeft: 8, paddingRight: 8 }}>
-              <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500, marginBottom: 12 }}>
-                {s.proof}
-              </div>
-              <h3
-                style={{
-                  fontFamily: SERIF,
-                  fontStyle: "italic",
-                  fontWeight: 300,
-                  fontSize: "clamp(22px, 2.4vw, 28px)",
-                  lineHeight: 1.1,
-                  letterSpacing: "-0.012em",
-                  color: INK,
-                  margin: 0,
-                  marginBottom: 10,
-                  fontVariationSettings: '"opsz" 36',
-                }}
-              >
-                {s.title}
-              </h3>
-              <p style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
-                {s.body}
-              </p>
+        {steps.map((s) => (
+          <div key={s.title} style={{ flex: 1, minWidth: 0, paddingLeft: 8, paddingRight: 8 }}>
+            <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500, marginBottom: 12 }}>
+              {s.proof}
             </div>
-            {i < steps.length - 1 && (
-              <span
-                aria-hidden
-                className="procession-spacer"
-                style={{
-                  flex: "0 0 auto",
-                  width: "clamp(32px, 4vw, 56px)",
-                  height: 1,
-                }}
-              />
-            )}
-          </Fragment>
+            <h3
+              style={{
+                fontFamily: SERIF,
+                fontStyle: "italic",
+                fontWeight: 300,
+                fontSize: "clamp(22px, 2.4vw, 28px)",
+                lineHeight: 1.1,
+                letterSpacing: "-0.012em",
+                color: INK,
+                margin: 0,
+                marginBottom: 10,
+                fontVariationSettings: '"opsz" 36',
+              }}
+            >
+              {s.title}
+            </h3>
+            <p style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+              {s.body}
+            </p>
+          </div>
         ))}
       </div>
 
@@ -198,16 +168,6 @@ export function CenterBody({ showCta }: { showCta: boolean }) {
           .procession-captions {
             flex-direction: column !important;
             gap: 32px !important;
-          }
-          /* On a vertical stack the horizontal hairline becomes
-             a vertical one — same role, ninety degrees off. */
-          .procession-chevron {
-            width: 1px !important;
-            height: 32px !important;
-            margin: 4px 0 !important;
-          }
-          .procession-spacer {
-            display: none !important;
           }
         }
       `}</style>
