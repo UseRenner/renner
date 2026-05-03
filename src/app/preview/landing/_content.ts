@@ -16,17 +16,16 @@ export type Category = {
   id: string;
   label: string;
   title: string;
-  rate: string;
   detail: string;
 };
 
 export const CATEGORIES: Category[] = [
-  { id: "signs", label: "Signs", title: "Sign installs", rate: "From $35", detail: "Sign riders, post installs, removals." },
-  { id: "lockbox", label: "Lockbox", title: "Lockbox swaps", rate: "From $30", detail: "Combination resets, lockbox swaps, key drops." },
-  { id: "showings", label: "Showings", title: "Licensed showings", rate: "From $75", detail: "Buyer showings, on-call coverage, open houses." },
-  { id: "courier", label: "Courier", title: "Document delivery", rate: "From $40", detail: "Closing docs, key drops, contract relays." },
-  { id: "visuals", label: "Visuals", title: "Walkthrough photos", rate: "From $75", detail: "Photo-ready setup, walkthrough captures, virtual tours." },
-  { id: "guest", label: "Guest access", title: "Guest check-ins", rate: "From $40", detail: "Guest check-ins, host assistance, property access." },
+  { id: "signs", label: "Signs", title: "Sign installs", detail: "Sign riders, post installs, removals." },
+  { id: "lockbox", label: "Lockbox", title: "Lockbox swaps", detail: "Combination resets, lockbox swaps, key drops." },
+  { id: "showings", label: "Showings", title: "Licensed showings", detail: "Buyer showings, on-call coverage, open houses." },
+  { id: "courier", label: "Courier", title: "Document delivery", detail: "Closing docs, key drops, contract relays." },
+  { id: "visuals", label: "Visuals", title: "Walkthrough photos", detail: "Photo-ready setup, walkthrough captures, virtual tours." },
+  { id: "guest", label: "Guest access", title: "Guest check-ins", detail: "Guest check-ins, host assistance, property access." },
 ];
 
 export type Testimonial = {
@@ -69,10 +68,10 @@ export const FINAL_CTA_HEAD = "Take care of it.";
 export const FINAL_CTA_DEK = "Sign up to post your first task or apply as a Renner.";
 
 export const SAMPLE_TASKS: Array<{ category: string; title: string; location: string; price: string }> = [
-  { category: "Signs", title: "Install sign rider", location: "RiNo, Denver 80205 · Today, 2:00 – 5:00 PM", price: "$45" },
-  { category: "Lockbox", title: "Swap lockbox at listing", location: "Buckhead, Atlanta 30305 · Today, 10:00 AM – 12:00 PM", price: "$35" },
-  { category: "Showing", title: "Show property to buyer", location: "Lincoln Park, Chicago 60614 · Tomorrow, 1:00 PM", price: "$75" },
-  { category: "Courier", title: "Deliver closing docs", location: "SoHo, New York 10012 · Today, 1:00 – 3:00 PM", price: "$45" },
-  { category: "Visuals", title: "Walkthrough photos", location: "West Hollywood, Los Angeles 90046 · Tomorrow, 8:00 AM", price: "$75" },
-  { category: "Guest access", title: "Guest check-in", location: "South Beach, Miami 33139 · Today, 4:00 PM", price: "$40" },
+  { category: "Signs", title: "Install sign rider", location: "RiNo, Denver 80205 · 2:00 – 5:00 PM", price: "$45" },
+  { category: "Lockbox", title: "Swap lockbox at listing", location: "Buckhead, Atlanta 30305 · 10:00 AM – 12:00 PM", price: "$35" },
+  { category: "Showing", title: "Show property to buyer", location: "Lincoln Park, Chicago 60614 · 1:00 PM", price: "$75" },
+  { category: "Courier", title: "Deliver closing docs", location: "SoHo, New York 10012 · 1:00 – 3:00 PM", price: "$45" },
+  { category: "Visuals", title: "Walkthrough photos", location: "West Hollywood, Los Angeles 90046 · 8:00 AM", price: "$75" },
+  { category: "Guest access", title: "Guest check-in", location: "South Beach, Miami 33139 · 4:00 PM", price: "$40" },
 ];

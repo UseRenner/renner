@@ -115,7 +115,7 @@ function SampleTaskCard({ task }: { task: typeof SAMPLE_TASKS[number] }) {
           {task.category}
         </span>
         <span style={{ fontFamily: MONO, fontSize: 9, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: STEEL_500 }}>
-          Posted task · today
+          Posted task
         </span>
       </div>
       <div style={{ padding: 24, display: "flex", flexDirection: "column", gap: 14 }}>
@@ -165,27 +165,48 @@ function SignupForm() {
         <BureauField label="Last" type="text" placeholder="Mendez" autoComplete="family-name" />
       </div>
       <BureauField label="Email" type="email" placeholder="you@firm.com" autoComplete="email" />
-
-      <button
-        type="submit"
-        style={{
-          fontFamily: SANS,
-          fontSize: 14,
-          fontWeight: 500,
-          color: PAPER,
-          backgroundColor: INK,
-          border: `1px solid ${INK}`,
-          padding: "14px 22px",
-          cursor: "pointer",
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 10,
-        }}
-      >
-        Sign up
-        <span aria-hidden style={{ opacity: 0.7 }}>→</span>
-      </button>
+      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        <button
+          type="submit"
+          style={{
+            fontFamily: SANS,
+            fontSize: 14,
+            fontWeight: 500,
+            color: PAPER,
+            backgroundColor: INK,
+            border: `1px solid ${INK}`,
+            padding: "14px 22px",
+            cursor: "pointer",
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 10,
+          }}
+        >
+          Sign up to hire
+          <span aria-hidden style={{ opacity: 0.7 }}>→</span>
+        </button>
+        <Link
+          href="/become-a-renner"
+          style={{
+            fontFamily: SANS,
+            fontSize: 14,
+            fontWeight: 500,
+            color: INK,
+            backgroundColor: PAPER,
+            border: `1px solid ${INK}`,
+            padding: "14px 22px",
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 10,
+            textDecoration: "none",
+          }}
+        >
+          Become a Renner
+          <span aria-hidden style={{ opacity: 0.7 }}>→</span>
+        </Link>
+      </div>
 
       <p style={{ fontFamily: SERIF, fontSize: 12, lineHeight: 1.55, color: STEEL_500, margin: 0, textAlign: "center", fontVariationSettings: '"opsz" 14' }}>
         ID verification + Checkr background check follow.

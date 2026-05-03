@@ -117,7 +117,7 @@ function SamplePeek({ task }: { task: typeof SAMPLE_TASKS[number] }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
       <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
-        Sample posted task
+        Posted task
       </div>
       <article
         aria-hidden
@@ -133,7 +133,7 @@ function SamplePeek({ task }: { task: typeof SAMPLE_TASKS[number] }) {
             {task.category}
           </span>
           <span style={{ fontFamily: MONO, fontSize: 9, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: STEEL_500 }}>
-            Today
+            Posted task
           </span>
         </div>
         <div style={{ padding: 20, display: "flex", flexDirection: "column", gap: 12 }}>
@@ -177,28 +177,48 @@ function SignupForm() {
       </div>
       <BureauField label="Email" type="email" placeholder="you@firm.com" autoComplete="email" />
       <BureauField label="Password" type="password" placeholder="At least 8 characters" autoComplete="new-password" />
-
-      <button
-        type="submit"
-        style={{
-          fontFamily: SANS,
-          fontSize: 14,
-          fontWeight: 500,
-          color: PAPER,
-          backgroundColor: INK,
-          border: `1px solid ${INK}`,
-          padding: "14px 22px",
-          cursor: "pointer",
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 10,
-          marginTop: 6,
-        }}
-      >
-        Sign up
-        <span aria-hidden style={{ opacity: 0.7 }}>→</span>
-      </button>
+      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        <button
+          type="submit"
+          style={{
+            fontFamily: SANS,
+            fontSize: 14,
+            fontWeight: 500,
+            color: PAPER,
+            backgroundColor: INK,
+            border: `1px solid ${INK}`,
+            padding: "14px 22px",
+            cursor: "pointer",
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 10,
+          }}
+        >
+          Sign up to hire
+          <span aria-hidden style={{ opacity: 0.7 }}>→</span>
+        </button>
+        <Link
+          href="/become-a-renner"
+          style={{
+            fontFamily: SANS,
+            fontSize: 14,
+            fontWeight: 500,
+            color: INK,
+            backgroundColor: PAPER,
+            border: `1px solid ${INK}`,
+            padding: "14px 22px",
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 10,
+            textDecoration: "none",
+          }}
+        >
+          Become a Renner
+          <span aria-hidden style={{ opacity: 0.7 }}>→</span>
+        </Link>
+      </div>
     </form>
   );
 }

@@ -102,7 +102,7 @@ function Feed() {
             className="bureau-ar-row"
             style={{
               display: "grid",
-              gridTemplateColumns: "minmax(80px, 100px) minmax(0, 1.4fr) minmax(0, 2fr) auto",
+              gridTemplateColumns: "minmax(80px, 100px) minmax(0, 1.2fr) minmax(0, 2fr)",
               gap: "clamp(12px, 1.6vw, 24px)",
               padding: "16px 0",
               borderBottom: i === CATEGORIES.length - 1 ? "none" : `1px solid ${RULE}`,
@@ -118,9 +118,6 @@ function Feed() {
             <span style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.5, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>
               {row.detail}
             </span>
-            <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: STEEL_700, whiteSpace: "nowrap" }}>
-              {row.rate}
-            </span>
           </article>
         ))}
       </div>
@@ -128,7 +125,7 @@ function Feed() {
       <style>{`
         @media (max-width: 1100px) {
           .bureau-ar-row {
-            grid-template-columns: minmax(70px, 90px) 1fr auto !important;
+            grid-template-columns: minmax(70px, 90px) 1fr !important;
           }
           .bureau-ar-row > :nth-child(3) {
             display: none;
@@ -195,27 +192,48 @@ function SignupForm() {
       </div>
       <BureauField label="Email" type="email" placeholder="you@firm.com" autoComplete="email" />
       <BureauField label="Password" type="password" placeholder="At least 8 characters" autoComplete="new-password" />
-
-      <button
-        type="submit"
-        style={{
-          fontFamily: SANS,
-          fontSize: 14,
-          fontWeight: 500,
-          color: PAPER,
-          backgroundColor: INK,
-          border: `1px solid ${INK}`,
-          padding: "14px 22px",
-          cursor: "pointer",
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 10,
-        }}
-      >
-        Sign up
-        <span aria-hidden style={{ opacity: 0.7 }}>→</span>
-      </button>
+      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        <button
+          type="submit"
+          style={{
+            fontFamily: SANS,
+            fontSize: 14,
+            fontWeight: 500,
+            color: PAPER,
+            backgroundColor: INK,
+            border: `1px solid ${INK}`,
+            padding: "14px 22px",
+            cursor: "pointer",
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 10,
+          }}
+        >
+          Sign up to hire
+          <span aria-hidden style={{ opacity: 0.7 }}>→</span>
+        </button>
+        <Link
+          href="/become-a-renner"
+          style={{
+            fontFamily: SANS,
+            fontSize: 14,
+            fontWeight: 500,
+            color: INK,
+            backgroundColor: PAPER,
+            border: `1px solid ${INK}`,
+            padding: "14px 22px",
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 10,
+            textDecoration: "none",
+          }}
+        >
+          Become a Renner
+          <span aria-hidden style={{ opacity: 0.7 }}>→</span>
+        </Link>
+      </div>
 
       <p style={{ fontFamily: SERIF, fontSize: 13, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
         ID verification + Checkr background check follow before any first task is posted or booked.

@@ -264,26 +264,48 @@ function VaultSignupForm() {
       <VaultField label="Email" type="email" placeholder="you@firm.com" autoComplete="email" />
       <VaultField label="Password" type="password" placeholder="At least 8 characters" autoComplete="new-password" />
 
-      <button
-        type="submit"
-        style={{
-          fontFamily: SANS,
-          fontSize: 14,
-          fontWeight: 500,
-          color: INK,
-          backgroundColor: PAPER,
-          border: `1px solid ${PAPER}`,
-          padding: "14px 22px",
-          cursor: "pointer",
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 10,
-        }}
-      >
-        Sign up
-        <span aria-hidden style={{ opacity: 0.7 }}>→</span>
-      </button>
+      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        <button
+          type="submit"
+          style={{
+            fontFamily: SANS,
+            fontSize: 14,
+            fontWeight: 500,
+            color: INK,
+            backgroundColor: PAPER,
+            border: `1px solid ${PAPER}`,
+            padding: "14px 22px",
+            cursor: "pointer",
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 10,
+          }}
+        >
+          Sign up to hire
+          <span aria-hidden style={{ opacity: 0.7 }}>→</span>
+        </button>
+        <Link
+          href="/become-a-renner"
+          style={{
+            fontFamily: SANS,
+            fontSize: 14,
+            fontWeight: 500,
+            color: PAPER,
+            backgroundColor: "transparent",
+            border: `1px solid ${PAPER}`,
+            padding: "14px 22px",
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 10,
+            textDecoration: "none",
+          }}
+        >
+          Become a Renner
+          <span aria-hidden style={{ opacity: 0.7 }}>→</span>
+        </Link>
+      </div>
 
       <p style={{ fontFamily: SERIF, fontSize: 13, lineHeight: 1.55, color: PAPER_DIM, margin: 0, fontVariationSettings: '"opsz" 14' }}>
         ID verification + Checkr background check follow before any first task is posted or booked.

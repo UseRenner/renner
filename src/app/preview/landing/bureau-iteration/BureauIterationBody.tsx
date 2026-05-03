@@ -262,30 +262,51 @@ function BureauSignupForm() {
       <BureauField label="Email" type="email" placeholder="you@firm.com" autoComplete="email" />
       <BureauField label="Password" type="password" placeholder="At least 8 characters" autoComplete="new-password" />
 
-      <button
-        type="submit"
-        style={{
-          fontFamily: SANS,
-          fontSize: 14,
-          fontWeight: 500,
-          color: PAPER,
-          backgroundColor: INK,
-          border: `1px solid ${INK}`,
-          // sharp corners — Bureau DNA
-          padding: "14px 22px",
-          cursor: "pointer",
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 10,
-        }}
-      >
-        Sign up
-        <span aria-hidden style={{ opacity: 0.7 }}>→</span>
-      </button>
+      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        <button
+          type="submit"
+          style={{
+            fontFamily: SANS,
+            fontSize: 14,
+            fontWeight: 500,
+            color: PAPER,
+            backgroundColor: INK,
+            border: `1px solid ${INK}`,
+            padding: "14px 22px",
+            cursor: "pointer",
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 10,
+          }}
+        >
+          Sign up to hire
+          <span aria-hidden style={{ opacity: 0.7 }}>→</span>
+        </button>
+        <Link
+          href="/become-a-renner"
+          style={{
+            fontFamily: SANS,
+            fontSize: 14,
+            fontWeight: 500,
+            color: INK,
+            backgroundColor: PAPER,
+            border: `1px solid ${INK}`,
+            padding: "14px 22px",
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 10,
+            textDecoration: "none",
+          }}
+        >
+          Become a Renner
+          <span aria-hidden style={{ opacity: 0.7 }}>→</span>
+        </Link>
+      </div>
 
       <p style={{ fontFamily: SERIF, fontSize: 13, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
-        Verifying as <em>client</em> by default. ID verification and a Checkr background check follow before you can post a task.
+        ID verification and a Checkr background check follow before either side can post or take a task.
       </p>
     </form>
   );
