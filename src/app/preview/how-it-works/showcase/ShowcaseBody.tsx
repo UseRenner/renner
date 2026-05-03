@@ -20,7 +20,7 @@ const RENNER_DEK = "What can you take care of?";
 
 const CLIENT_STEPS: Array<[string, string, string]> = [
   ["Post a task", "Set the location, time, task, and price.", "Specifics"],
-  ["Pick a Renner", "Renners apply. Read their profiles and book one.", "Vetted"],
+  ["Pick a Renner", "Renners apply. Select one for your task.", "Vetted"],
   ["It's taken care of", "Receive photos and confirm completion. Payment is released.", "Escrow"],
 ];
 
@@ -101,7 +101,7 @@ export function ShowcaseBody({ showCta }: { showCta: boolean }) {
           ? [
               ["Both sides vetted", "ID verified and background checked before any booking."],
               ["Funds in escrow", "Held by Stripe until you confirm."],
-              ["Photos on every task", "A photo and a note when it's done."],
+              ["Proof of completion", "Photos on every task."],
             ]
           : [
               ["Real work", "Real estate."],

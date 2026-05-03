@@ -16,7 +16,7 @@ const CLIENT_STEPS: Step[] = [
   {
     number: "02",
     title: "Pick a Renner",
-    body: <>Renners apply. Read their profiles and book one.</>,
+    body: <>Renners apply. Select one for your task.</>,
   },
   {
     number: "03",

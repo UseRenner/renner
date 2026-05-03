@@ -25,7 +25,7 @@ const RENNER_DEK = "What can you take care of?";
 
 const CLIENT_STEPS: Step[] = [
   { number: "01", title: "Post a task", body: "Set the location, time, task, and price.", proof: "Specifics" },
-  { number: "02", title: "Pick a Renner", body: "Renners apply. Read their profiles and book one.", proof: "Vetted" },
+  { number: "02", title: "Pick a Renner", body: "Renners apply. Select one for your task.", proof: "Vetted" },
   { number: "03", title: "It's taken care of", body: "Receive photos and confirm completion. Payment is released.", proof: "Escrow" },
 ];
 
@@ -38,7 +38,7 @@ const RENNER_STEPS: Step[] = [
 const CLIENT_TRUST = [
   ["Both sides vetted", "ID verified and background checked before any booking."],
   ["Funds in escrow", "Held by Stripe until you confirm."],
-  ["Photos on every task", "A photo and a note when it's done."],
+  ["Proof of completion", "Photos on every task."],
 ] as const;
 
 const RENNER_TRUST = [
