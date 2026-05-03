@@ -84,7 +84,7 @@ export function FolioBody({ showCta }: { showCta: boolean }) {
           <Fragment key={kind}>
             <article style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%", maxWidth: 540 }}>
               <Card kind={kind} />
-              <div style={{ marginTop: "clamp(20px, 2.4vw, 28px)", maxWidth: "34ch", paddingLeft: 16, paddingRight: 16 }}>
+              <div style={{ marginTop: "clamp(20px, 2.4vw, 28px)", maxWidth: "50ch", paddingLeft: 16, paddingRight: 16 }}>
                 <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500, marginBottom: 10 }}>
                   {steps[i].proof}
                 </div>

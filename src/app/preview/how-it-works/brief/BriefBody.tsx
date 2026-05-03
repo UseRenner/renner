@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Mini, CLIENT_KINDS, RENNER_KINDS } from "../_illustrations";
+import { Card, CLIENT_KINDS, RENNER_KINDS } from "../_illustrations";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
@@ -33,13 +33,15 @@ const CLIENT_TRUST = "Clients and Renners pass ID and background checks before p
 const RENNER_TRUST = "The work is real-estate tasks — sign installs, lockboxes, showings, property prep. Clients and Renners pass ID and background checks. Clients can save you as a favorite and invite you directly to their next task.";
 
 // Brief — "Triptych".
-// Three Mini panels enclosed in a single ink-weight frame with
+// Three full Cards enclosed in a single rule-weight frame with
 // internal vertical dividers. The frame and dividers provide the
 // eye-guide: a contained, museum-like exhibit case where reading
 // order is implicit in left-to-right placement. No numerals,
 // no chevrons — just a unified architecture that keeps the three
 // steps in a single visual breath. Above each panel: the proof
-// kicker. Below: the italic title and body.
+// kicker. Below: the italic title and body. The cards carry the
+// same level of detail as Scene's, since the triptych panels
+// have room to host them at full width.
 
 export function BriefBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
@@ -76,11 +78,13 @@ export function BriefBody({ showCta }: { showCta: boolean }) {
         {dek}
       </p>
 
-      {/* Triptych: three Mini panels under a single frame.
+      {/* Triptych: three full Cards under a single frame.
           Internal vertical dividers demarcate each panel; both
           frame and dividers use the page's lighter rule weight
           so the triptych feels contained without competing with
-          the Minis (which have their own STEEL_300 borders). */}
+          the Cards (which carry their own STEEL_300 borders).
+          Panel padding is tight horizontally so the Cards have
+          room to render at their full detail. */}
       <section
         className="triptych"
         style={{
@@ -98,7 +102,7 @@ export function BriefBody({ showCta }: { showCta: boolean }) {
               className="triptych-panel"
               style={{
                 borderRight: isLast ? "none" : `1px solid ${RULE}`,
-                padding: "clamp(28px, 3.5vw, 44px) clamp(20px, 2.4vw, 32px)",
+                padding: "clamp(28px, 3.5vw, 40px) clamp(16px, 1.6vw, 20px)",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -112,7 +116,7 @@ export function BriefBody({ showCta }: { showCta: boolean }) {
                 {steps[i].proof}
               </div>
 
-              <Mini kind={kind} maxWidth={260} />
+              <Card kind={kind} />
 
               <div>
                 <h3
