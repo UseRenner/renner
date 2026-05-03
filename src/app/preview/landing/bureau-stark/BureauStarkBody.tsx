@@ -1,44 +1,46 @@
 "use client";
 
 import Link from "next/link";
-import { RennerMark, getToneVars } from "../../how-it-works/_shared";
-import { CATEGORIES, HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
+import { RennerMark } from "../../how-it-works/_shared";
+import { HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
 const MONO = "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
-const INK = "var(--c-text, #0d0f12)";
-const STEEL_700 = "var(--c-700, #38414d)";
-const STEEL_500 = "var(--c-500, #7d8da0)";
-const STEEL_300 = "var(--c-300, #cad1d8)";
-const RULE = "var(--c-rule, #eaedf0)";
-const PAPER = "var(--c-bg, #fbfbfc)";
+const INK = "#0d0f12";
+const STEEL_700 = "#38414d";
+const STEEL_500 = "#7d8da0";
+const STEEL_300 = "#cad1d8";
+const RULE = "#eaedf0";
+const PAPER = "#fbfbfc";
+const PAPER_FOG = "rgba(251,251,252,0.55)";
+const PAPER_DIM = "rgba(251,251,252,0.78)";
 
-// Bureau — ARCHIVE WALL.
-// Same 50/50 wall geometry as Iteration. Left side: a six-row
-// table of the service categories Renner exists for, in
-// Bureau's table grammar — category, italic title, detail,
-// rate. Right side: signup form. The list is descriptive of
-// what the platform does, not a fictional "live feed."
+// Bureau — STARK WALL.
+// Two-tone 50/50. The left half is ink — paper headline, paper
+// dek, no peek, just type on a dark field. The right half is
+// paper — signup form. The contrast between the two halves
+// is the wall: dark on one side, light on the other, hairline
+// between. Strongest visual statement of all the side-by-sides.
 
-export function BureauArchiveBody() {
+export function BureauStarkBody() {
   return (
-    <div style={{ ...getToneVars("paper"), backgroundColor: PAPER, color: INK, minHeight: "100vh" }}>
-      <div className="bureau-ar-split">
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+      <div className="bureau-sk-split">
         <LeftPanel />
         <RightPanel />
       </div>
       <Footer />
 
       <style jsx>{`
-        .bureau-ar-split {
+        .bureau-sk-split {
           display: grid;
           grid-template-columns: 1fr 1fr;
           min-height: 100vh;
         }
         @media (max-width: 880px) {
-          .bureau-ar-split {
+          .bureau-sk-split {
             grid-template-columns: 1fr;
           }
         }
@@ -51,16 +53,18 @@ function LeftPanel() {
   return (
     <section
       style={{
+        backgroundColor: INK,
+        color: PAPER,
         padding: "clamp(40px, 5vw, 72px)",
         display: "flex",
         flexDirection: "column",
-        gap: 40,
-        borderRight: `1px solid ${INK}`,
+        justifyContent: "space-between",
+        gap: 56,
       }}
     >
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
         <RennerMark size={36} weight={300} />
-        <Link href="/preview/landing" style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500, textDecoration: "none" }}>
+        <Link href="/preview/landing" style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: PAPER_FOG, textDecoration: "none" }}>
           ← All previews
         </Link>
       </div>
@@ -70,72 +74,25 @@ function LeftPanel() {
           style={{
             fontFamily: SERIF,
             fontWeight: 400,
-            fontSize: "clamp(40px, 5.4vw, 72px)",
-            lineHeight: 0.98,
-            letterSpacing: "-0.022em",
-            color: INK,
+            fontSize: "clamp(48px, 6.4vw, 96px)",
+            lineHeight: 0.96,
+            letterSpacing: "-0.024em",
+            color: PAPER,
             margin: 0,
-            maxWidth: "16ch",
+            maxWidth: "14ch",
             fontVariationSettings: '"opsz" 144',
           }}
         >
           {HEADLINE_LEAD}{" "}
-          <span style={{ fontStyle: "italic", fontWeight: 300, color: STEEL_700 }}>{HEADLINE_TAIL}</span>
+          <span style={{ fontStyle: "italic", fontWeight: 300, color: PAPER_DIM }}>{HEADLINE_TAIL}</span>
         </h1>
-        <p style={{ fontFamily: SERIF, fontSize: "clamp(15px, 1.4vw, 17px)", lineHeight: 1.55, color: STEEL_700, margin: 0, marginTop: 24, maxWidth: "44ch", fontVariationSettings: '"opsz" 14' }}>
+        <p style={{ fontFamily: SERIF, fontSize: "clamp(15px, 1.4vw, 17px)", lineHeight: 1.55, color: PAPER_DIM, margin: 0, marginTop: 24, maxWidth: "44ch", fontVariationSettings: '"opsz" 14' }}>
           {SHORT_DEK}
         </p>
       </div>
 
-      <Feed />
+      <div aria-hidden />
     </section>
-  );
-}
-
-function Feed() {
-  return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-      <div style={{ borderTop: `1px solid ${INK}`, borderBottom: `1px solid ${INK}` }}>
-        {CATEGORIES.map((row, i) => (
-          <article
-            key={row.id}
-            className="bureau-ar-row"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "minmax(80px, 100px) minmax(0, 1.4fr) minmax(0, 2fr) auto",
-              gap: "clamp(12px, 1.6vw, 24px)",
-              padding: "16px 0",
-              borderBottom: i === CATEGORIES.length - 1 ? "none" : `1px solid ${RULE}`,
-              alignItems: "baseline",
-            }}
-          >
-            <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
-              {row.label}
-            </span>
-            <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(16px, 1.6vw, 19px)", lineHeight: 1.15, color: INK, fontVariationSettings: '"opsz" 36' }}>
-              {row.title}
-            </span>
-            <span style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.5, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>
-              {row.detail}
-            </span>
-            <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: STEEL_700, whiteSpace: "nowrap" }}>
-              {row.rate}
-            </span>
-          </article>
-        ))}
-      </div>
-
-      <style>{`
-        @media (max-width: 1100px) {
-          .bureau-ar-row {
-            grid-template-columns: minmax(70px, 90px) 1fr auto !important;
-          }
-          .bureau-ar-row > :nth-child(3) {
-            display: none;
-          }
-        }
-      `}</style>
-    </div>
   );
 }
 
@@ -177,7 +134,7 @@ function SignupForm() {
         maxWidth: 440,
         display: "flex",
         flexDirection: "column",
-        gap: 24,
+        gap: 20,
         border: `1px solid ${INK}`,
         padding: "clamp(28px, 3.5vw, 40px)",
         backgroundColor: PAPER,
@@ -260,7 +217,7 @@ function BureauField({
 
 function Footer() {
   return (
-    <footer style={{ paddingTop: "clamp(40px, 5vw, 64px)", paddingBottom: "clamp(40px, 5vw, 64px)", paddingLeft: "clamp(28px, 4vw, 64px)", paddingRight: "clamp(28px, 4vw, 64px)", borderTop: `1px solid ${INK}`, backgroundColor: PAPER }}>
+    <footer style={{ paddingTop: "clamp(40px, 5vw, 64px)", paddingBottom: "clamp(40px, 5vw, 64px)", paddingLeft: "clamp(28px, 4vw, 64px)", paddingRight: "clamp(28px, 4vw, 64px)", borderTop: `1px solid ${RULE}`, backgroundColor: PAPER }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 20 }}>
         <RennerMark size={28} weight={300} />
         <div style={{ display: "flex", alignItems: "center", gap: 24, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { RennerMark, getToneVars } from "../../how-it-works/_shared";
-import { CATEGORIES, HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
+import { HEADLINE_LEAD, HEADLINE_TAIL, SAMPLE_TASKS, SHORT_DEK } from "../_content";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
@@ -15,30 +15,31 @@ const STEEL_300 = "var(--c-300, #cad1d8)";
 const RULE = "var(--c-rule, #eaedf0)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 
-// Bureau — ARCHIVE WALL.
-// Same 50/50 wall geometry as Iteration. Left side: a six-row
-// table of the service categories Renner exists for, in
-// Bureau's table grammar — category, italic title, detail,
-// rate. Right side: signup form. The list is descriptive of
-// what the platform does, not a fictional "live feed."
+// Bureau — TRIO WALL.
+// Same 50/50 wall geometry. Left side stacks three sample task
+// cards — Signs, Lockbox, Showings — clearly framed as samples.
+// Conveys variety of what the platform handles without claiming
+// any are live tasks. Right side is the form.
 
-export function BureauArchiveBody() {
+const TRIO = [SAMPLE_TASKS[0], SAMPLE_TASKS[1], SAMPLE_TASKS[2]];
+
+export function BureauTrioBody() {
   return (
     <div style={{ ...getToneVars("paper"), backgroundColor: PAPER, color: INK, minHeight: "100vh" }}>
-      <div className="bureau-ar-split">
+      <div className="bureau-tr-split">
         <LeftPanel />
         <RightPanel />
       </div>
       <Footer />
 
       <style jsx>{`
-        .bureau-ar-split {
+        .bureau-tr-split {
           display: grid;
           grid-template-columns: 1fr 1fr;
           min-height: 100vh;
         }
         @media (max-width: 880px) {
-          .bureau-ar-split {
+          .bureau-tr-split {
             grid-template-columns: 1fr;
           }
         }
@@ -70,7 +71,7 @@ function LeftPanel() {
           style={{
             fontFamily: SERIF,
             fontWeight: 400,
-            fontSize: "clamp(40px, 5.4vw, 72px)",
+            fontSize: "clamp(36px, 4.6vw, 60px)",
             lineHeight: 0.98,
             letterSpacing: "-0.022em",
             color: INK,
@@ -82,60 +83,54 @@ function LeftPanel() {
           {HEADLINE_LEAD}{" "}
           <span style={{ fontStyle: "italic", fontWeight: 300, color: STEEL_700 }}>{HEADLINE_TAIL}</span>
         </h1>
-        <p style={{ fontFamily: SERIF, fontSize: "clamp(15px, 1.4vw, 17px)", lineHeight: 1.55, color: STEEL_700, margin: 0, marginTop: 24, maxWidth: "44ch", fontVariationSettings: '"opsz" 14' }}>
+        <p style={{ fontFamily: SERIF, fontSize: "clamp(14px, 1.3vw, 16px)", lineHeight: 1.55, color: STEEL_700, margin: 0, marginTop: 18, maxWidth: "44ch", fontVariationSettings: '"opsz" 14' }}>
           {SHORT_DEK}
         </p>
       </div>
 
-      <Feed />
+      <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+        <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
+          Sample posted tasks
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          {TRIO.map((task) => (
+            <SampleRow key={task.title} task={task} />
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
 
-function Feed() {
+function SampleRow({ task }: { task: typeof SAMPLE_TASKS[number] }) {
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-      <div style={{ borderTop: `1px solid ${INK}`, borderBottom: `1px solid ${INK}` }}>
-        {CATEGORIES.map((row, i) => (
-          <article
-            key={row.id}
-            className="bureau-ar-row"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "minmax(80px, 100px) minmax(0, 1.4fr) minmax(0, 2fr) auto",
-              gap: "clamp(12px, 1.6vw, 24px)",
-              padding: "16px 0",
-              borderBottom: i === CATEGORIES.length - 1 ? "none" : `1px solid ${RULE}`,
-              alignItems: "baseline",
-            }}
-          >
-            <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
-              {row.label}
-            </span>
-            <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(16px, 1.6vw, 19px)", lineHeight: 1.15, color: INK, fontVariationSettings: '"opsz" 36' }}>
-              {row.title}
-            </span>
-            <span style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.5, color: STEEL_700, fontVariationSettings: '"opsz" 14' }}>
-              {row.detail}
-            </span>
-            <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: STEEL_700, whiteSpace: "nowrap" }}>
-              {row.rate}
-            </span>
-          </article>
-        ))}
+    <article
+      aria-hidden
+      style={{
+        backgroundColor: PAPER,
+        border: `1px solid ${STEEL_300}`,
+        display: "grid",
+        gridTemplateColumns: "minmax(80px, 100px) minmax(0, 1fr) auto",
+        alignItems: "baseline",
+        gap: "clamp(12px, 1.6vw, 20px)",
+        padding: "14px 18px",
+      }}
+    >
+      <span style={{ fontFamily: MONO, fontSize: 9, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
+        {task.category}
+      </span>
+      <div>
+        <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 17, lineHeight: 1.15, color: INK, fontVariationSettings: '"opsz" 36' }}>
+          {task.title}
+        </div>
+        <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.06em", color: STEEL_700, lineHeight: 1.5, marginTop: 4 }}>
+          {task.location}
+        </div>
       </div>
-
-      <style>{`
-        @media (max-width: 1100px) {
-          .bureau-ar-row {
-            grid-template-columns: minmax(70px, 90px) 1fr auto !important;
-          }
-          .bureau-ar-row > :nth-child(3) {
-            display: none;
-          }
-        }
-      `}</style>
-    </div>
+      <span style={{ fontFamily: SERIF, fontSize: 18, fontWeight: 400, color: INK, fontVariationSettings: '"opsz" 36' }}>
+        {task.price}
+      </span>
+    </article>
   );
 }
 
@@ -177,7 +172,7 @@ function SignupForm() {
         maxWidth: 440,
         display: "flex",
         flexDirection: "column",
-        gap: 24,
+        gap: 20,
         border: `1px solid ${INK}`,
         padding: "clamp(28px, 3.5vw, 40px)",
         backgroundColor: PAPER,

@@ -58,12 +58,12 @@ function Panel({ sample }: { sample: typeof SAMPLE_TASKS[number] }) {
         backgroundColor: PAPER,
         border: `1px solid ${INK}`,
         width: "100%",
-        maxWidth: 720,
+        maxWidth: 880,
         display: "flex",
         flexDirection: "column",
       }}
     >
-      <div style={{ padding: "clamp(20px, 2.4vw, 28px) clamp(28px, 3vw, 40px)", borderBottom: `1px solid ${RULE}`, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
+      <div style={{ padding: "clamp(16px, 2vw, 22px) clamp(24px, 3vw, 36px)", borderBottom: `1px solid ${RULE}`, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
         <RennerMark size={28} weight={300} />
         <p style={{ fontFamily: SANS, fontSize: 13, color: STEEL_700, margin: 0 }}>
           Have an account?{" "}
@@ -73,32 +73,32 @@ function Panel({ sample }: { sample: typeof SAMPLE_TASKS[number] }) {
         </p>
       </div>
 
-      <div style={{ padding: "clamp(36px, 4.5vw, 56px) clamp(28px, 3.5vw, 56px)", display: "flex", flexDirection: "column", gap: "clamp(32px, 4vw, 48px)" }}>
+      <div style={{ padding: "clamp(28px, 3.5vw, 44px) clamp(24px, 3vw, 48px)", display: "flex", flexDirection: "column", gap: "clamp(24px, 3vw, 36px)" }}>
         {/* Headline */}
         <div>
           <h1
             style={{
               fontFamily: SERIF,
               fontWeight: 400,
-              fontSize: "clamp(40px, 5vw, 64px)",
-              lineHeight: 0.98,
-              letterSpacing: "-0.022em",
+              fontSize: "clamp(32px, 4vw, 52px)",
+              lineHeight: 1,
+              letterSpacing: "-0.02em",
               color: INK,
               margin: 0,
-              marginBottom: 20,
+              marginBottom: 14,
               fontVariationSettings: '"opsz" 144',
             }}
           >
             {HEADLINE_LEAD}{" "}
             <span style={{ fontStyle: "italic", fontWeight: 300, color: STEEL_700 }}>{HEADLINE_TAIL}</span>
           </h1>
-          <p style={{ fontFamily: SERIF, fontSize: "clamp(15px, 1.4vw, 17px)", lineHeight: 1.55, color: STEEL_700, margin: 0, maxWidth: "44ch", fontVariationSettings: '"opsz" 14' }}>
+          <p style={{ fontFamily: SERIF, fontSize: "clamp(14px, 1.3vw, 16px)", lineHeight: 1.5, color: STEEL_700, margin: 0, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
             {SHORT_DEK}
           </p>
         </div>
 
         {/* Two-column: peek on the left, form on the right */}
-        <div className="bureau-wn-body" style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1.1fr)", gap: "clamp(28px, 3.5vw, 48px)", alignItems: "start" }}>
+        <div className="bureau-wn-body" style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1.1fr)", gap: "clamp(24px, 3vw, 40px)", alignItems: "start" }}>
           <SamplePeek task={sample} />
           <SignupForm />
         </div>

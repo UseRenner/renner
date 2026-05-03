@@ -15,28 +15,46 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     note: "The current live page in Bureau's DNA. Wordmark + headline + interactive sample card + category pills on the left; signup form on the right.",
   },
   {
-    slug: "bureau-column",
-    label: "Bureau · Column",
-    subtitle: "Centered narrow column, paper",
-    note: "Single vertical axis down the page. Wordmark, headline, one sample card, signup form, footer.",
-  },
-  {
     slug: "bureau-archive",
     label: "Bureau · Archive",
-    subtitle: "50/50 split with task feed",
-    note: "Left side is six recent posted tasks in a Bureau-style table. Right side is the signup form.",
+    subtitle: "50/50 with category table",
+    note: "Left side is a six-row table of the service categories Renner exists for. Right side is the signup form.",
   },
   {
-    slug: "bureau-window",
-    label: "Bureau · Window",
-    subtitle: "Bordered panel on chalk",
-    note: "One ink-bordered panel at the center of a chalk page contains everything — wordmark, headline, sample card, and signup form.",
+    slug: "bureau-trio",
+    label: "Bureau · Trio",
+    subtitle: "50/50 with three sample tasks",
+    note: "Left side stacks three sample task cards — Signs, Lockbox, Showings — clearly framed as samples. Right side is the signup form.",
+  },
+  {
+    slug: "bureau-stark",
+    label: "Bureau · Stark",
+    subtitle: "Two-tone 50/50 (ink + paper)",
+    note: "Left half is ink with paper headline and dek; no peek imagery. Right half is paper with the signup form. Strongest contrast of all the side-by-sides.",
+  },
+  {
+    slug: "bureau-quote",
+    label: "Bureau · Quote",
+    subtitle: "Type 50/50",
+    note: "Left half is one editorial line in italic Source Serif — the long-form description of the marketplace. Right half is the signup form. Most stripped-down side-by-side.",
   },
   {
     slug: "bureau-vault",
     label: "Bureau · Vault",
     subtitle: "50/50 split, ink tone",
     note: "Same wall as Iteration, rendered in Bureau's dark register.",
+  },
+  {
+    slug: "bureau-column",
+    label: "Bureau · Column",
+    subtitle: "Centered narrow column, paper",
+    note: "Single vertical axis down the page. Wordmark, headline, one sample card, signup form, footer.",
+  },
+  {
+    slug: "bureau-window",
+    label: "Bureau · Window",
+    subtitle: "Bordered panel on chalk",
+    note: "One ink-bordered panel at the center of a chalk page contains everything — wordmark, headline, sample card, and signup form.",
   },
   {
     slug: "bureau-stack",
@@ -54,10 +72,10 @@ export default function LandingPreviewIndex() {
           Landing previews · Bureau
         </div>
         <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(36px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, marginBottom: 16, fontVariationSettings: '"opsz" 60' }}>
-          Six Bureau walls.
+          Nine Bureau walls.
         </h1>
         <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.55, color: "#38414d", margin: 0, marginBottom: 56, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-          Six wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts.
+          Nine wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. The first six are side-by-sides; the last three are other shapes.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #0d0f12" }}>
