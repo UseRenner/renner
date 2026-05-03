@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Mini, CLIENT_KINDS, RENNER_KINDS } from "../_illustrations";
+import { Card, CLIENT_KINDS, RENNER_KINDS } from "../_illustrations";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
@@ -63,7 +63,10 @@ export function CompactBody({ showCta }: { showCta: boolean }) {
         </div>
       </div>
 
-      {/* Three rows; each holds number + title + body + proof + Mini, in line */}
+      {/* Three rows; each holds number + title + body + proof + full Card, in line.
+          The Card is wider and taller than the previous Mini, so the row reads
+          as a card-with-sidebar-text rather than a single dense line — but the
+          horizontal information density that defines Compact is preserved. */}
       <div style={{ borderTop: `1px solid ${INK}`, borderBottom: `1px solid ${INK}` }}>
         {steps.map((s, i) => (
           <article
@@ -71,7 +74,7 @@ export function CompactBody({ showCta }: { showCta: boolean }) {
             className="compact-row"
             style={{
               display: "grid",
-              gridTemplateColumns: "44px minmax(180px, 1fr) minmax(0, 1.4fr) minmax(140px, auto) minmax(280px, 320px)",
+              gridTemplateColumns: "44px minmax(180px, 1fr) minmax(0, 1.4fr) minmax(140px, auto) minmax(360px, 440px)",
               gap: "clamp(16px, 2.4vw, 28px)",
               padding: "clamp(20px, 2.4vw, 28px) 0",
               borderBottom: i === steps.length - 1 ? "none" : `1px solid ${RULE}`,
@@ -89,7 +92,7 @@ export function CompactBody({ showCta }: { showCta: boolean }) {
               {s.proof}
             </span>
             <div className="compact-illustration" style={{ display: "flex", justifyContent: "flex-end" }}>
-              <Mini kind={kinds[i]} />
+              <Card kind={kinds[i]} />
             </div>
           </article>
         ))}
@@ -108,7 +111,11 @@ export function CompactBody({ showCta }: { showCta: boolean }) {
       </div>
 
       <style jsx>{`
-        @media (max-width: 1024px) {
+        /* The Card is wider than the old Mini, so the breakpoint
+           where the illustration column drops out moves up. Below
+           1200px the row becomes text-only and the row still reads
+           as a structured table. */
+        @media (max-width: 1200px) {
           .compact-row {
             grid-template-columns: 44px minmax(180px, 1fr) minmax(0, 1.4fr) minmax(140px, auto) !important;
           }
