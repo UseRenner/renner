@@ -5,8 +5,8 @@
 // users can see what the platform looks like before they sign up.
 //
 // Two size variants: <Card kind="..." /> renders the full card
-// (~440px sweet spot, used by Bureau / Center / Lead / Quarter /
-// Scene). <Mini kind="..." /> renders the same content tightly
+// (~440px sweet spot, used by Scene / Marketplace / Network /
+// Showcase). <Mini kind="..." /> renders the same content tightly
 // (~280-320px) for inline placement inside text-heavy layouts.
 
 import type { CSSProperties, ReactNode } from "react";
@@ -121,8 +121,8 @@ function Shell({ kicker, children, padding = 24, style }: { kicker: string; chil
 }
 
 // ─── Full cards ───
-// Sized for prominent placement (Bureau, Center, Lead, Quarter,
-// Scene). The footer info bar gives each card a closing beat.
+// Sized for prominent placement (Scene, Marketplace, Network,
+// Showcase). The footer info bar gives each card a closing beat.
 
 function TaskCard() {
   return (
