@@ -15,7 +15,7 @@ export default async function FolioHowItWorks({ searchParams }: { searchParams: 
   const sp = await searchParams;
   const tone = readTone(sp?.tone);
   return (
-    <PageShell active="folio" showCta={showCta} tone={tone}>
+    <PageShell active="folio" showCta={showCta} tone={tone} maxWidth={1440}>
       <FolioBody showCta={false} />
     </PageShell>
   );
