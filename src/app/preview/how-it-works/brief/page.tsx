@@ -15,7 +15,7 @@ export default async function BriefHowItWorks({ searchParams }: { searchParams: 
   const sp = await searchParams;
   const tone = readTone(sp?.tone);
   return (
-    <PageShell active="brief" showCta={showCta} tone={tone}>
+    <PageShell active="brief" showCta={showCta} tone={tone} maxWidth={1440}>
       <BriefBody showCta={false} />
     </PageShell>
   );
