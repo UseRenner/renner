@@ -387,9 +387,10 @@ export function SceneBody({ showCta }: { showCta: boolean }) {
       >
         {(isClient
           ? [
-              ["Both sides vetted", "ID verified and background checked before any booking."],
-              ["Funds in escrow", "Held by Stripe until you confirm."],
+              ["Verified on both sides", "Every person — clients and Renners alike — is ID-verified and clears a background check before posting or booking."],
               ["License-gated", "Tasks requiring a license go to licensed Renners."],
+
+              ["Funds in escrow", "Held by Stripe until you confirm."],
             ]
           : [
               ["Real work", "Real estate."],

@@ -36,9 +36,9 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
 
   const trustPairs: Array<[string, string, string]> = isClient
     ? [
-        ["Both sides vetted", "ID verified and background checked before any booking.", "Verified"],
-        ["Funds in escrow", "Held by Stripe until you confirm.", "In escrow"],
+        ["Verified on both sides", "Every person — clients and Renners alike — is ID-verified and clears a background check before posting or booking.", "Verified"],
         ["License-gated", "Tasks requiring a license go to licensed Renners.", "Licensed"],
+        ["Funds in escrow", "Held by Stripe until you confirm.", "In escrow"],
       ]
     : [
         ["Real work", "Real estate.", "Real estate"],
