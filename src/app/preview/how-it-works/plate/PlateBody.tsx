@@ -97,7 +97,7 @@ export function PlateBody({ showCta }: { showCta: boolean }) {
           display: "flex",
           flexDirection: "column",
           gap: "clamp(20px, 2.5vw, 32px)",
-          marginBottom: showCta ? "clamp(72px, 9vw, 120px)" : 0,
+          marginBottom: "clamp(72px, 9vw, 120px)",
         }}
       >
         {plates.map((plate, idx) => (
@@ -164,6 +164,62 @@ export function PlateBody({ showCta }: { showCta: boolean }) {
           </article>
         ))}
       </div>
+
+      {/* ─── Trust ─── three pairs in the same three-column rhythm as the plates header */}
+      <section
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "clamp(24px, 3vw, 40px)",
+          paddingTop: "clamp(28px, 3.5vw, 36px)",
+          borderTop: `1px solid ${INK}`,
+          marginBottom: showCta ? "clamp(72px, 9vw, 120px)" : 0,
+          textAlign: "center",
+        }}
+        className="plate-trust"
+      >
+        {(isClient
+          ? [
+              ["Verified on both sides", "Clients and Renners pass ID and background checks."],
+              ["License-gated", "Tasks requiring a license go to licensed Renners."],
+              ["Save your favorites", "Invite them to your tasks."],
+            ]
+          : [
+              ["Real work", "Real estate tasks."],
+              ["Verified on both sides", "Clients and Renners pass ID and background checks."],
+              ["Repeat work", "Clients can save you as a favorite."],
+            ]
+        ).map(([label, body]) => (
+          <div key={label}>
+            <div
+              style={{
+                fontFamily: SERIF,
+                fontStyle: "italic",
+                fontWeight: 300,
+                fontSize: "clamp(20px, 2vw, 24px)",
+                lineHeight: 1.15,
+                letterSpacing: "-0.012em",
+                color: INK,
+                marginBottom: 10,
+                fontVariationSettings: '"opsz" 36',
+              }}
+            >
+              {label}
+            </div>
+            <div
+              style={{
+                fontFamily: SERIF,
+                fontSize: 15,
+                lineHeight: 1.55,
+                color: STEEL_700,
+                fontVariationSettings: '"opsz" 14',
+              }}
+            >
+              {body}
+            </div>
+          </div>
+        ))}
+      </section>
 
       {showCta && (
         <section
@@ -232,6 +288,10 @@ export function PlateBody({ showCta }: { showCta: boolean }) {
           :global(.plate-card) {
             grid-template-columns: 1fr !important;
             gap: 12px !important;
+          }
+          :global(.plate-trust) {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
           }
         }
       `}</style>
