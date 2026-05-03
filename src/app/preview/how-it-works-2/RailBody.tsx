@@ -45,7 +45,7 @@ const RENNER_STEPS: Step[] = [
 
 // Trust copy mirrors Brief's exactly so the variants speak with
 // one voice: a single editorial paragraph keyed by audience,
-// kickered by "Why Renner" / "What you get".
+// kickered by "Why Renner".
 const CLIENT_TRUST =
   "Clients and Renners pass ID and background checks before posting or booking. Tasks that require a license go only to licensed Renners. Save Renners you like and invite them to your tasks.";
 const RENNER_TRUST =
@@ -71,7 +71,7 @@ export function RailBody({ showCta }: { showCta: boolean }) {
   const isClient = tab === "client";
   const steps = isClient ? CLIENT_STEPS : RENNER_STEPS;
   const trust = isClient ? CLIENT_TRUST : RENNER_TRUST;
-  const trustKicker = isClient ? "Why Renner" : "What you get";
+  const trustKicker = "Why Renner";
   const ctaButton = isClient
     ? { label: "Sign up", href: "/signup" }
     : { label: "Become a Renner", href: "/become-a-renner" };

@@ -155,7 +155,7 @@ export default function DesignSystemPreview() {
               color: STEEL.fog,
             }}
           >
-            What you get
+            Why Renner
           </span>
         </Row>
         <Row>

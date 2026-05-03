@@ -146,7 +146,7 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
           }}
         >
           <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500, marginBottom: 28 }}>
-            {isClient ? "Why Renner" : "What you get"}
+            Why Renner
           </div>
           <dl style={{ margin: 0, display: "flex", flexDirection: "column", gap: "clamp(22px, 2.6vw, 30px)" }}>
             {trustPairs.map(([label, , kicker]) => (

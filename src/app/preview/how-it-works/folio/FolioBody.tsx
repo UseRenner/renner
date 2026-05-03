@@ -46,7 +46,7 @@ export function FolioBody({ showCta }: { showCta: boolean }) {
   const steps = isClient ? CLIENT_STEPS : RENNER_STEPS;
   const kinds = isClient ? CLIENT_KINDS : RENNER_KINDS;
   const trust = isClient ? CLIENT_TRUST : RENNER_TRUST;
-  const trustKicker = isClient ? "Why Renner" : "What you get";
+  const trustKicker = "Why Renner";
   const cta = isClient ? { label: "Sign up", href: "/signup" } : { label: "Become a Renner", href: "/become-a-renner" };
 
   return (

@@ -173,7 +173,7 @@ export function HowItWorksTabs({
           className="micro-label"
           style={{ marginBottom: "16px" }}
         >
-          {isClient ? "Why Renner" : "What you get"}
+          Why Renner
         </div>
         <ul
           style={{
