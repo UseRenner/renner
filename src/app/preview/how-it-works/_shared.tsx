@@ -45,6 +45,7 @@ export const FAQS: Array<{ q: string; a: string }> = [
 export type VariantKey =
   | "rail"
   | "plate"
+  | "showcase"
   | "scene"
   | "pivot"
   | "quarter"
@@ -60,6 +61,7 @@ export const VARIANTS: ReadonlyArray<{ href: string; key: VariantKey; label: str
   { href: "/preview/how-it-works/center", key: "center", label: "Center" },
   { href: "/preview/how-it-works-2", key: "rail", label: "Rail" },
   { href: "/preview/how-it-works/plate", key: "plate", label: "Plate" },
+  { href: "/preview/how-it-works/showcase", key: "showcase", label: "Showcase" },
   { href: "/preview/how-it-works/scene", key: "scene", label: "Scene" },
   { href: "/preview/how-it-works/pivot", key: "pivot", label: "Pivot" },
   { href: "/preview/how-it-works/quarter", key: "quarter", label: "Quarter" },
