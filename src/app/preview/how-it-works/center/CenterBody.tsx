@@ -18,23 +18,27 @@ const CLIENT_DEK = "What do you need taken care of?";
 const RENNER_DEK = "What can you take care of?";
 
 const CLIENT_STEPS = [
-  { number: "01", title: "Post a task", body: "Set the location, time, task, and price.", proof: "Specifics" },
-  { number: "02", title: "Pick a Renner", body: "Local Renners apply. Select one for your task.", proof: "Vetted" },
-  { number: "03", title: "It's taken care of", body: "Receive photos and confirm completion. Payment is released.", proof: "Escrow" },
+  { title: "Post a task", body: "Set the location, time, task, and price.", proof: "Specifics" },
+  { title: "Pick a Renner", body: "Local Renners apply. Select one for your task.", proof: "Vetted" },
+  { title: "It's taken care of", body: "Receive photos and confirm completion. Payment is released.", proof: "Escrow" },
 ];
 const RENNER_STEPS = [
-  { number: "01", title: "Get verified", body: "Verify your ID, clear a background check, and set your service area.", proof: "Onboarded" },
-  { number: "02", title: "Pick a task", body: "See tasks in your area. Apply to what fits your skills and schedule.", proof: "Local" },
-  { number: "03", title: "Take care of it", body: "Complete the task. Send photo confirmation. Receive payment.", proof: "100% of pay" },
+  { title: "Get verified", body: "Verify your ID, clear a background check, and set your service area.", proof: "Onboarded" },
+  { title: "Pick a task", body: "See tasks in your area. Apply to what fits your skills and schedule.", proof: "Local" },
+  { title: "Take care of it", body: "Complete the task. Send photo confirmation. Receive payment.", proof: "100% of pay" },
 ];
 
-// Center — "Spine".
-// All three illustrations live on a single vertical centerline.
-// A continuous hairline runs the full length of the section,
-// punctuated by numbered discs that sit ahead of each card. The
-// reader's eye follows the spine top-to-bottom: disc → card →
-// caption → disc → card → caption. The spine is the navigation;
-// every step is a stop on the same line.
+const CLIENT_TRUST = "Clients and Renners pass ID and background checks before posting or booking. Tasks that require a license go only to licensed Renners. Save Renners you like and invite them to your tasks.";
+const RENNER_TRUST = "The work is real-estate tasks — sign installs, lockboxes, showings, property prep. Clients and Renners pass ID and background checks. Clients can save you as a favorite and invite you directly to their next task.";
+
+// Center — "Procession".
+// A horizontal procession of three full Cards interleaved with
+// large display chevrons. The chevrons are the eye-guide: their
+// shape is direction itself, and at display scale they pull the
+// eye left across the row without any need for numerals. Each
+// card's caption sits directly below it, with the proof word as
+// the kicker. The trust paragraph below echoes Brief's copy so
+// the variants speak with one voice.
 
 export function CenterBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
@@ -42,6 +46,8 @@ export function CenterBody({ showCta }: { showCta: boolean }) {
   const dek = isClient ? CLIENT_DEK : RENNER_DEK;
   const steps = isClient ? CLIENT_STEPS : RENNER_STEPS;
   const kinds = isClient ? CLIENT_KINDS : RENNER_KINDS;
+  const trust = isClient ? CLIENT_TRUST : RENNER_TRUST;
+  const trustKicker = isClient ? "Why Renner" : "What you get";
   const cta = isClient ? { label: "Sign up", href: "/signup" } : { label: "Become a Renner", href: "/become-a-renner" };
 
   return (
@@ -61,7 +67,7 @@ export function CenterBody({ showCta }: { showCta: boolean }) {
           letterSpacing: "-0.012em",
           color: INK,
           margin: "0 auto",
-          marginBottom: "clamp(48px, 6vw, 64px)",
+          marginBottom: "clamp(56px, 7vw, 80px)",
           maxWidth: "32ch",
           fontVariationSettings: '"opsz" 60',
         }}
@@ -69,116 +75,153 @@ export function CenterBody({ showCta }: { showCta: boolean }) {
         {dek}
       </p>
 
-      {/* Spine: numbered discs strung along a single centerline.
-          The line begins at the dek and ends at the trust rule, so
-          the entire section reads as one continuous path. */}
-      <div className="center-spine" style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center", paddingBottom: "clamp(48px, 6vw, 72px)" }}>
-        {/* Continuous vertical hairline, behind everything */}
-        <div
-          aria-hidden
-          className="center-spine-line"
-          style={{
-            position: "absolute",
-            top: 0,
-            bottom: 0,
-            left: "50%",
-            width: 1,
-            backgroundColor: STEEL_300,
-            transform: "translateX(-0.5px)",
-          }}
-        />
+      {/* Procession row: cards interleaved with display chevrons.
+          The flex row keeps each card-cell at equal width while
+          letting chevrons collapse to their content size. */}
+      <div
+        className="procession"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "clamp(16px, 2vw, 28px)",
+          marginBottom: "clamp(28px, 3.5vw, 40px)",
+        }}
+      >
         {kinds.map((kind, i) => (
           <Fragment key={kind}>
-            {/* Numbered disc — eye anchor on the spine */}
-            <SpineDisc number={steps[i].number} first={i === 0} />
-
-            {/* Card, centered on the spine */}
-            <div style={{ position: "relative", marginTop: "clamp(24px, 3vw, 32px)", display: "flex", justifyContent: "center", width: "100%" }}>
-              <div style={{ width: "100%", maxWidth: 480, display: "flex", justifyContent: "center" }}>
-                <Card kind={kind} />
-              </div>
+            <div className="procession-card" style={{ flex: 1, display: "flex", justifyContent: "center", minWidth: 0 }}>
+              <Card kind={kind} />
             </div>
-
-            {/* Caption below the card, centered, narrow */}
-            <div style={{ position: "relative", marginTop: "clamp(20px, 2.4vw, 28px)", maxWidth: "30ch", paddingLeft: 24, paddingRight: 24, backgroundColor: PAPER }}>
-              <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500, marginBottom: 10 }}>
-                {steps[i].proof}
-              </div>
-              <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(22px, 2.2vw, 26px)", lineHeight: 1.15, letterSpacing: "-0.012em", color: INK, marginBottom: 8, fontVariationSettings: '"opsz" 36' }}>
-                {steps[i].title}
-              </div>
-              <p style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
-                {steps[i].body}
-              </p>
-            </div>
-
-            {/* Spacer so the spine has room to breathe between
-                steps. Last step gets less because the trust rule
-                seals the spine. */}
-            {i < kinds.length - 1 && <div style={{ height: "clamp(56px, 7vw, 88px)" }} />}
+            {i < kinds.length - 1 && (
+              <span
+                aria-hidden
+                className="procession-chevron"
+                style={{
+                  flex: "0 0 auto",
+                  fontFamily: SERIF,
+                  fontStyle: "italic",
+                  fontWeight: 300,
+                  fontSize: "clamp(36px, 4.5vw, 56px)",
+                  lineHeight: 1,
+                  color: INK,
+                  fontVariationSettings: '"opsz" 60',
+                  userSelect: "none",
+                }}
+              >
+                →
+              </span>
+            )}
           </Fragment>
         ))}
       </div>
 
-      {/* Trust rule — the spine terminates here. The hairline
-          becomes ink-weight to signal "end of process". */}
-      <p
+      {/* Captions row aligned to the cards above. Mirrors the
+          procession's column rhythm: caption cells take the same
+          flex unit as the card cells; chevron-width spacers keep
+          them locked to each card. */}
+      <div
+        className="procession-captions"
         style={{
-          fontFamily: SERIF,
-          fontStyle: "italic",
-          fontWeight: 300,
-          fontSize: "clamp(18px, 1.7vw, 22px)",
-          lineHeight: 1.5,
-          color: INK,
-          margin: "0 auto",
-          marginBottom: showCta ? "clamp(40px, 5vw, 56px)" : 0,
-          maxWidth: "52ch",
-          paddingTop: "clamp(28px, 3.5vw, 36px)",
-          borderTop: `1px solid ${INK}`,
-          fontVariationSettings: '"opsz" 36',
+          display: "flex",
+          alignItems: "flex-start",
+          gap: "clamp(16px, 2vw, 28px)",
+          marginBottom: "clamp(64px, 8vw, 96px)",
+          textAlign: "center",
         }}
       >
-        Both sides — clients and Renners — are ID-verified and background-checked before any booking.
-      </p>
+        {steps.map((s, i) => (
+          <Fragment key={s.title}>
+            <div style={{ flex: 1, minWidth: 0, paddingLeft: 8, paddingRight: 8 }}>
+              <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500, marginBottom: 12 }}>
+                {s.proof}
+              </div>
+              <h3
+                style={{
+                  fontFamily: SERIF,
+                  fontStyle: "italic",
+                  fontWeight: 300,
+                  fontSize: "clamp(22px, 2.4vw, 28px)",
+                  lineHeight: 1.1,
+                  letterSpacing: "-0.012em",
+                  color: INK,
+                  margin: 0,
+                  marginBottom: 10,
+                  fontVariationSettings: '"opsz" 36',
+                }}
+              >
+                {s.title}
+              </h3>
+              <p style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+                {s.body}
+              </p>
+            </div>
+            {i < steps.length - 1 && (
+              <span
+                aria-hidden
+                className="procession-spacer"
+                style={{
+                  flex: "0 0 auto",
+                  fontFamily: SERIF,
+                  fontStyle: "italic",
+                  fontWeight: 300,
+                  fontSize: "clamp(36px, 4.5vw, 56px)",
+                  lineHeight: 1,
+                  color: "transparent",
+                  fontVariationSettings: '"opsz" 60',
+                  userSelect: "none",
+                }}
+              >
+                →
+              </span>
+            )}
+          </Fragment>
+        ))}
+      </div>
+
+      {/* Trust — Brief's editorial paragraph, mono-kickered. */}
+      <section
+        style={{
+          paddingTop: "clamp(40px, 5vw, 56px)",
+          borderTop: `1px solid ${INK}`,
+          marginBottom: showCta ? "clamp(48px, 6vw, 72px)" : 0,
+          maxWidth: "60ch",
+          margin: "0 auto",
+        }}
+      >
+        <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500, marginBottom: "clamp(20px, 2.5vw, 28px)" }}>
+          {trustKicker}
+        </div>
+        <p style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(20px, 2.2vw, 26px)", lineHeight: 1.5, letterSpacing: "-0.005em", color: INK, margin: 0, fontVariationSettings: '"opsz" 36' }}>
+          {trust}
+        </p>
+      </section>
 
       {showCta && (
-        <section style={{ display: "flex", justifyContent: "center" }}>
+        <section style={{ display: "flex", justifyContent: "center", marginTop: "clamp(48px, 6vw, 72px)" }}>
           <Link href={cta.href} style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: SANS, fontSize: 14, fontWeight: 500, color: PAPER, backgroundColor: INK, border: `1px solid ${INK}`, borderRadius: 4, padding: "14px 22px", textDecoration: "none" }}>
             {cta.label}
             <span aria-hidden style={{ opacity: 0.7 }}>→</span>
           </Link>
         </section>
       )}
-    </div>
-  );
-}
 
-function SpineDisc({ number, first }: { number: string; first: boolean }) {
-  // Disc punctuates the spine. The first disc has a slightly
-  // taller cap of breathing room above it; subsequent discs sit
-  // closer because the eye is already moving.
-  const size = 44;
-  return (
-    <div
-      style={{
-        position: "relative",
-        marginTop: first ? 0 : 0,
-        width: size,
-        height: size,
-        borderRadius: "50%",
-        backgroundColor: PAPER,
-        border: `1px solid ${INK}`,
-        display: "inline-flex",
-        alignItems: "center",
-        justifyContent: "center",
-        fontFamily: MONO,
-        fontSize: 11,
-        fontWeight: 500,
-        letterSpacing: "0.16em",
-        color: INK,
-      }}
-    >
-      {number}
+      <style jsx>{`
+        @media (max-width: 880px) {
+          .procession,
+          .procession-captions {
+            flex-direction: column !important;
+            gap: 32px !important;
+          }
+          .procession-chevron,
+          .procession-spacer {
+            transform: rotate(90deg);
+            margin: 4px 0 !important;
+          }
+          .procession-spacer {
+            display: none !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }
