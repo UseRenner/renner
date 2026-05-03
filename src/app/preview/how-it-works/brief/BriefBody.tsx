@@ -12,6 +12,7 @@ const INK = "var(--c-text, #0d0f12)";
 const STEEL_700 = "var(--c-700, #38414d)";
 const STEEL_500 = "var(--c-500, #7d8da0)";
 const STEEL_300 = "var(--c-300, #cad1d8)";
+const RULE = "var(--c-rule, #eaedf0)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 
 const CLIENT_DEK = "What do you need taken care of?";
@@ -75,14 +76,15 @@ export function BriefBody({ showCta }: { showCta: boolean }) {
         {dek}
       </p>
 
-      {/* Triptych: three Mini panels under a single ink frame.
-          Internal vertical dividers (also ink-weight) demarcate
-          each panel, but the outer border ties them into a
-          single object so the reader sees one piece, not three. */}
+      {/* Triptych: three Mini panels under a single frame.
+          Internal vertical dividers demarcate each panel; both
+          frame and dividers use the page's lighter rule weight
+          so the triptych feels contained without competing with
+          the Minis (which have their own STEEL_300 borders). */}
       <section
         className="triptych"
         style={{
-          border: `1px solid ${INK}`,
+          border: `1px solid ${RULE}`,
           display: "grid",
           gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
           marginBottom: "clamp(64px, 8vw, 96px)",
@@ -95,7 +97,7 @@ export function BriefBody({ showCta }: { showCta: boolean }) {
               key={kind}
               className="triptych-panel"
               style={{
-                borderRight: isLast ? "none" : `1px solid ${INK}`,
+                borderRight: isLast ? "none" : `1px solid ${RULE}`,
                 padding: "clamp(28px, 3.5vw, 44px) clamp(20px, 2.4vw, 32px)",
                 display: "flex",
                 flexDirection: "column",
@@ -173,7 +175,7 @@ export function BriefBody({ showCta }: { showCta: boolean }) {
           }
           .triptych-panel {
             border-right: none !important;
-            border-bottom: 1px solid ${INK} !important;
+            border-bottom: 1px solid ${RULE} !important;
           }
           .triptych-panel:last-child {
             border-bottom: none !important;
