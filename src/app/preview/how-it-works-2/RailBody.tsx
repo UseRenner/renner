@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { RennerMark } from "../how-it-works/_shared";
-import { Mini, CLIENT_KINDS, RENNER_KINDS } from "../how-it-works/_illustrations";
+import { FAQS, RennerMark } from "../how-it-works/_shared";
+import { Card, CLIENT_KINDS, RENNER_KINDS } from "../how-it-works/_illustrations";
 
 type Step = { number: string; title: React.ReactNode; body: React.ReactNode };
 
@@ -43,53 +43,13 @@ const RENNER_STEPS: Step[] = [
   },
 ];
 
-const CLIENT_BENEFITS = [
-  "Every Renner is background-checked.",
-  "Secure payments through the platform.",
-  "Rate and review after every task.",
-];
-
-const RENNER_BENEFITS = [
-  "Set your own schedule.",
-  "Work in your area.",
-  "Get paid for every completed task.",
-  "Build a reputation that earns repeat clients.",
-];
-
-const FAQS = [
-  {
-    q: "What is Renner?",
-    a: "Renner is a marketplace built specifically for real-estate task work. Clients post short jobs — sign placement, document delivery, property prep, guest check-ins, showings — and background-checked Renners apply, get booked, and get paid through the platform.",
-  },
-  {
-    q: "How much does it cost?",
-    a: "Renner adds a 10% service fee for clients. Renners keep 90% of the task pay. Both numbers are shown to both parties before a booking is confirmed — no hidden charges.",
-  },
-  {
-    q: "Who can become a Renner?",
-    a: "Independent contractors who can pass a background check. Every Renner clears a Checkr background check before booking any task — licensed or not. Showings and other license-required tasks additionally require a verified real-estate license.",
-  },
-  {
-    q: "Are Renners employees?",
-    a: "No. Renner is a marketplace and Renners are independent contractors. They set their own schedule, choose which tasks to apply to, and aren't directed in how the work gets done.",
-  },
-  {
-    q: "What types of tasks can I post?",
-    a: "Anything real estate — sign installs, lockbox swaps, courier runs, property prep, photo-ready setup, guest check-ins, host assistance, property access for inspectors and contractors, showings, open houses, and more. If it's a short, location-based job tied to a listing or property, it fits.",
-  },
-  {
-    q: "How do payments work?",
-    a: "When you book a Renner, your card is charged and the funds are held in escrow by Stripe. After the Renner submits proof of completion, you have 48 hours to confirm or open a dispute. Confirmed funds release immediately to the Renner; if the 48 hours pass with no action, payment auto-releases.",
-  },
-  {
-    q: "What if something is damaged or stolen during a task?",
-    a: "Document the damage with photos and file a report within 48 hours. The Renner has 48 hours to accept, counter, or dispute the claim. We facilitate resolution using completion photos and the message thread as evidence; unresolved claims escalate to Renner support.",
-  },
-  {
-    q: "What if I need to cancel a task?",
-    a: "Clients can cancel before the Renner starts — full refund, task reopens. After the Renner starts, the task pay is split 50/50. Renners can cancel before starting with no penalty; after starting the same 50/50 split applies regardless of reason.",
-  },
-];
+// Trust copy mirrors Brief's exactly so the variants speak with
+// one voice: a single editorial paragraph keyed by audience,
+// kickered by "Why Renner" / "What you get".
+const CLIENT_TRUST =
+  "Clients and Renners pass ID and background checks before posting or booking. Tasks that require a license go only to licensed Renners. Save Renners you like and invite them to your tasks.";
+const RENNER_TRUST =
+  "The work is real-estate tasks — sign installs, lockboxes, showings, property prep. Clients and Renners pass ID and background checks. Clients can save you as a favorite and invite you directly to their next task.";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS =
@@ -110,7 +70,8 @@ export function RailBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
   const isClient = tab === "client";
   const steps = isClient ? CLIENT_STEPS : RENNER_STEPS;
-  const benefits = isClient ? CLIENT_BENEFITS : RENNER_BENEFITS;
+  const trust = isClient ? CLIENT_TRUST : RENNER_TRUST;
+  const trustKicker = isClient ? "Why Renner" : "What you get";
   const ctaButton = isClient
     ? { label: "Sign up", href: "/signup" }
     : { label: "Become a Renner", href: "/become-a-renner" };
@@ -130,7 +91,7 @@ export function RailBody({ showCta }: { showCta: boolean }) {
                 fontFamily: SERIF,
                 fontWeight: 400,
                 fontSize: "clamp(36px, 3.4vw, 48px)",
-                lineHeight: 1.05,
+                lineHeight: 1.1,
                 letterSpacing: "-0.025em",
                 color: INK,
                 margin: 0,
@@ -138,7 +99,7 @@ export function RailBody({ showCta }: { showCta: boolean }) {
                 fontVariationSettings: '"opsz" 144',
               }}
             >
-              How Renner works
+              {isClient ? "What do you need taken care of?" : "What can you take care of?"}
             </h1>
 
             <div
@@ -291,46 +252,49 @@ export function RailBody({ showCta }: { showCta: boolean }) {
                   >
                     {step.body}
                   </p>
-                  <Mini kind={(isClient ? CLIENT_KINDS : RENNER_KINDS)[idx]} />
+                  <Card kind={(isClient ? CLIENT_KINDS : RENNER_KINDS)[idx]} />
                 </div>
               </article>
             ))}
           </div>
 
-          {/* Benefits — italic serif stack */}
+          {/* Trust — Brief's editorial paragraph, mono-kickered.
+              Replaces the previous bulleted benefits list so the
+              copy lines up with Center / Folio / Brief. */}
           <div
             style={{
               padding: "clamp(64px, 8vw, 112px) 0",
+              maxWidth: 640,
             }}
           >
-            <ul
+            <div
               style={{
-                listStyle: "none",
-                padding: 0,
-                margin: 0,
-                display: "flex",
-                flexDirection: "column",
-                gap: 20,
+                fontFamily: MONO,
+                fontSize: 11,
+                fontWeight: 500,
+                letterSpacing: "0.28em",
+                textTransform: "uppercase",
+                color: FOG,
+                marginBottom: "clamp(20px, 2.5vw, 28px)",
               }}
             >
-              {benefits.map((b) => (
-                <li
-                  key={b}
-                  style={{
-                    fontFamily: SERIF,
-                    fontStyle: "italic",
-                    fontWeight: 300,
-                    fontSize: "clamp(22px, 2.4vw, 30px)",
-                    lineHeight: 1.3,
-                    letterSpacing: "-0.012em",
-                    color: INK,
-                    fontVariationSettings: '"opsz" 36',
-                  }}
-                >
-                  {b}
-                </li>
-              ))}
-            </ul>
+              {trustKicker}
+            </div>
+            <p
+              style={{
+                fontFamily: SERIF,
+                fontStyle: "italic",
+                fontWeight: 300,
+                fontSize: "clamp(22px, 2.4vw, 28px)",
+                lineHeight: 1.5,
+                letterSpacing: "-0.005em",
+                color: INK,
+                margin: 0,
+                fontVariationSettings: '"opsz" 36',
+              }}
+            >
+              {trust}
+            </p>
           </div>
 
           {/* FAQ */}
