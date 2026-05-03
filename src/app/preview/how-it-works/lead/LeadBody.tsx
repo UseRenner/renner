@@ -101,8 +101,7 @@ export function LeadBody({ showCta }: { showCta: boolean }) {
           ? [
               ["Verified on both sides", "Clients and Renners pass ID and background checks."],
               ["License-gated", "Tasks requiring a license go to licensed Renners."],
-
-              ["Funds in escrow", "Held by Stripe until you confirm."],
+              ["Save your favorites", "Invite them to your tasks."],
             ]
           : [
               ["Real work", "Real estate tasks."],

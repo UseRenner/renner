@@ -38,7 +38,7 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
     ? [
         ["Verified on both sides", "Clients and Renners pass ID and background checks.", "Verified"],
         ["License-gated", "Tasks requiring a license go to licensed Renners.", "Licensed"],
-        ["Funds in escrow", "Held by Stripe until you confirm.", "In escrow"],
+        ["Save your favorites", "Invite them to your tasks.", "Saved"],
       ]
     : [
         ["Real work", "Real estate tasks.", "Real estate"],
