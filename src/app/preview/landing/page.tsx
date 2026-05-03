@@ -15,12 +15,6 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     note: "The current live page in Bureau's DNA. Wordmark + headline + interactive sample card + category pills on the left; signup form on the right.",
   },
   {
-    slug: "bureau-archive",
-    label: "Bureau · Archive",
-    subtitle: "50/50 with category table",
-    note: "Left side is a six-row table of the service categories Renner exists for. Right side is the signup form.",
-  },
-  {
     slug: "bureau-trio",
     label: "Bureau · Trio",
     subtitle: "50/50 with three sample tasks",
@@ -66,10 +60,10 @@ export default function LandingPreviewIndex() {
           Landing previews · Bureau
         </div>
         <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(36px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, marginBottom: 16, fontVariationSettings: '"opsz" 60' }}>
-          Eight Bureau walls.
+          Seven Bureau walls.
         </h1>
         <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.55, color: "#38414d", margin: 0, marginBottom: 56, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-          Eight wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. The first five are side-by-sides; the last three are other shapes. Every wall offers both pathways — sign up to hire, or apply as a Renner.
+          Seven wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. The first four are side-by-sides; the last three are other shapes. Every wall offers both pathways — sign up to hire, or apply as a Renner.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #0d0f12" }}>
