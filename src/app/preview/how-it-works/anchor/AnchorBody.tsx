@@ -55,8 +55,16 @@ export function AnchorBody({ showCta }: { showCta: boolean }) {
       </p>
 
       <div className="anchor-cards" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "clamp(20px, 2.4vw, 32px)", marginTop: "clamp(56px, 7vw, 88px)" }}>
-        {(isClient ? CLIENT_KINDS : RENNER_KINDS).map((kind) => (
-          <div key={kind} style={{ display: "flex" }}>
+        {(isClient ? CLIENT_KINDS : RENNER_KINDS).map((kind, i) => (
+          <div key={kind} style={{ display: "flex", flexDirection: "column", gap: "clamp(14px, 1.6vw, 20px)" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
+                {steps[i].number} · {steps[i].proof}
+              </div>
+              <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(20px, 2vw, 24px)", lineHeight: 1.15, letterSpacing: "-0.012em", color: INK, fontVariationSettings: '"opsz" 36' }}>
+                {steps[i].title}
+              </div>
+            </div>
             <div style={{ flex: 1 }}>
               <Card kind={kind} />
             </div>

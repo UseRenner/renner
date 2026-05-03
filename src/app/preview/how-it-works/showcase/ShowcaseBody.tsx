@@ -67,8 +67,7 @@ export function ShowcaseBody({ showCta }: { showCta: boolean }) {
           const [title, body, proof] = steps[i];
           return (
             <article key={kind} style={{ display: "flex", flexDirection: "column", gap: "clamp(20px, 2.4vw, 28px)" }}>
-              <Card kind={kind} />
-              <div style={{ paddingTop: "clamp(16px, 2vw, 20px)", borderTop: `1px solid ${RULE}`, width: "100%" }}>
+              <div style={{ paddingBottom: "clamp(16px, 2vw, 20px)", borderBottom: `1px solid ${RULE}`, width: "100%" }}>
                 <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500, marginBottom: 10 }}>
                   {String(i + 1).padStart(2, "0")} · {proof}
                 </div>
@@ -79,6 +78,7 @@ export function ShowcaseBody({ showCta }: { showCta: boolean }) {
                   {body}
                 </p>
               </div>
+              <Card kind={kind} />
             </article>
           );
         })}
