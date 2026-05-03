@@ -41,7 +41,7 @@ export function QuarterBody({ showCta }: { showCta: boolean }) {
         ["Funds in escrow", "Held by Stripe until you confirm.", "In escrow"],
       ]
     : [
-        ["Real work", "Real estate.", "Real estate"],
+        ["Real work", "Real estate industry tasks.", "Real estate"],
         ["Vetted clients", "ID verified and background checked, same as you.", "Verified"],
         ["Repeat work", "Clients can save you as a favorite.", "Saved"],
       ];
