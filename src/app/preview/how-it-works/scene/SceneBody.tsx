@@ -393,8 +393,8 @@ export function SceneBody({ showCta }: { showCta: boolean }) {
               ["Funds in escrow", "Held by Stripe until you confirm."],
             ]
           : [
-              ["Real work", "Real estate industry tasks."],
-              ["Vetted clients", "ID verified and background checked, same as you."],
+              ["Real work", "Real estate tasks."],
+              ["Verified on both sides", "Clients and Renners pass ID and background checks."],
               ["Repeat work", "Clients can save you as a favorite."],
             ]
         ).map(([label, body]) => (
