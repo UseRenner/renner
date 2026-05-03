@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { Card, CLIENT_KINDS, RENNER_KINDS } from "../_illustrations";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
@@ -10,10 +10,8 @@ const MONO = "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Cons
 
 const INK = "var(--c-text, #0d0f12)";
 const STEEL_700 = "var(--c-700, #38414d)";
-const STEEL_600 = "var(--c-600, #647589)";
 const STEEL_500 = "var(--c-500, #7d8da0)";
 const STEEL_300 = "var(--c-300, #cad1d8)";
-const RULE = "var(--c-rule, #eaedf0)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 
 const CLIENT_DEK = "What do you need taken care of?";
@@ -29,6 +27,14 @@ const RENNER_STEPS = [
   { number: "02", title: "Pick a task", body: "See tasks in your area. Apply to what fits your skills and schedule.", proof: "Local" },
   { number: "03", title: "Take care of it", body: "Complete the task. Send photo confirmation. Receive payment.", proof: "100% of pay" },
 ];
+
+// Center — "Spine".
+// All three illustrations live on a single vertical centerline.
+// A continuous hairline runs the full length of the section,
+// punctuated by numbered discs that sit ahead of each card. The
+// reader's eye follows the spine top-to-bottom: disc → card →
+// caption → disc → card → caption. The spine is the navigation;
+// every step is a stop on the same line.
 
 export function CenterBody({ showCta }: { showCta: boolean }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
@@ -55,7 +61,7 @@ export function CenterBody({ showCta }: { showCta: boolean }) {
           letterSpacing: "-0.012em",
           color: INK,
           margin: "0 auto",
-          marginBottom: "clamp(64px, 8vw, 96px)",
+          marginBottom: "clamp(48px, 6vw, 64px)",
           maxWidth: "32ch",
           fontVariationSettings: '"opsz" 60',
         }}
@@ -63,36 +69,75 @@ export function CenterBody({ showCta }: { showCta: boolean }) {
         {dek}
       </p>
 
-      {/* Three cards centered in a row */}
-      <div className="center-row" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "clamp(20px, 2.4vw, 32px)", marginBottom: "clamp(40px, 5vw, 56px)", textAlign: "left" }}>
-        {kinds.map((kind) => (
-          <div key={kind} style={{ display: "flex" }}>
-            <div style={{ flex: 1 }}>
-              <Card kind={kind} />
+      {/* Spine: numbered discs strung along a single centerline.
+          The line begins at the dek and ends at the trust rule, so
+          the entire section reads as one continuous path. */}
+      <div className="center-spine" style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center", paddingBottom: "clamp(48px, 6vw, 72px)" }}>
+        {/* Continuous vertical hairline, behind everything */}
+        <div
+          aria-hidden
+          className="center-spine-line"
+          style={{
+            position: "absolute",
+            top: 0,
+            bottom: 0,
+            left: "50%",
+            width: 1,
+            backgroundColor: STEEL_300,
+            transform: "translateX(-0.5px)",
+          }}
+        />
+        {kinds.map((kind, i) => (
+          <Fragment key={kind}>
+            {/* Numbered disc — eye anchor on the spine */}
+            <SpineDisc number={steps[i].number} first={i === 0} />
+
+            {/* Card, centered on the spine */}
+            <div style={{ position: "relative", marginTop: "clamp(24px, 3vw, 32px)", display: "flex", justifyContent: "center", width: "100%" }}>
+              <div style={{ width: "100%", maxWidth: 480, display: "flex", justifyContent: "center" }}>
+                <Card kind={kind} />
+              </div>
             </div>
-          </div>
+
+            {/* Caption below the card, centered, narrow */}
+            <div style={{ position: "relative", marginTop: "clamp(20px, 2.4vw, 28px)", maxWidth: "30ch", paddingLeft: 24, paddingRight: 24, backgroundColor: PAPER }}>
+              <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500, marginBottom: 10 }}>
+                {steps[i].proof}
+              </div>
+              <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(22px, 2.2vw, 26px)", lineHeight: 1.15, letterSpacing: "-0.012em", color: INK, marginBottom: 8, fontVariationSettings: '"opsz" 36' }}>
+                {steps[i].title}
+              </div>
+              <p style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+                {steps[i].body}
+              </p>
+            </div>
+
+            {/* Spacer so the spine has room to breathe between
+                steps. Last step gets less because the trust rule
+                seals the spine. */}
+            {i < kinds.length - 1 && <div style={{ height: "clamp(56px, 7vw, 88px)" }} />}
+          </Fragment>
         ))}
       </div>
 
-      {/* Captions row centered */}
-      <div className="center-captions" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "clamp(20px, 2.4vw, 32px)", marginBottom: "clamp(64px, 8vw, 96px)" }}>
-        {steps.map((s) => (
-          <div key={s.number} style={{ textAlign: "center" }}>
-            <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500, marginBottom: 10 }}>
-              {s.number} · {s.proof}
-            </div>
-            <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(20px, 2vw, 24px)", lineHeight: 1.1, color: INK, marginBottom: 8, fontVariationSettings: '"opsz" 36' }}>
-              {s.title}
-            </div>
-            <p style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
-              {s.body}
-            </p>
-          </div>
-        ))}
-      </div>
-
-      {/* Trust line — centered, single sentence */}
-      <p style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(18px, 1.7vw, 22px)", lineHeight: 1.5, color: INK, margin: "0 auto", marginBottom: showCta ? "clamp(40px, 5vw, 56px)" : 0, maxWidth: "52ch", paddingTop: "clamp(28px, 3.5vw, 36px)", borderTop: `1px solid ${INK}`, fontVariationSettings: '"opsz" 36' }}>
+      {/* Trust rule — the spine terminates here. The hairline
+          becomes ink-weight to signal "end of process". */}
+      <p
+        style={{
+          fontFamily: SERIF,
+          fontStyle: "italic",
+          fontWeight: 300,
+          fontSize: "clamp(18px, 1.7vw, 22px)",
+          lineHeight: 1.5,
+          color: INK,
+          margin: "0 auto",
+          marginBottom: showCta ? "clamp(40px, 5vw, 56px)" : 0,
+          maxWidth: "52ch",
+          paddingTop: "clamp(28px, 3.5vw, 36px)",
+          borderTop: `1px solid ${INK}`,
+          fontVariationSettings: '"opsz" 36',
+        }}
+      >
         Both sides — clients and Renners — are ID-verified and background-checked before any booking.
       </p>
 
@@ -104,16 +149,36 @@ export function CenterBody({ showCta }: { showCta: boolean }) {
           </Link>
         </section>
       )}
+    </div>
+  );
+}
 
-      <style jsx>{`
-        @media (max-width: 880px) {
-          .center-row,
-          .center-captions {
-            grid-template-columns: 1fr !important;
-            gap: 24px !important;
-          }
-        }
-      `}</style>
+function SpineDisc({ number, first }: { number: string; first: boolean }) {
+  // Disc punctuates the spine. The first disc has a slightly
+  // taller cap of breathing room above it; subsequent discs sit
+  // closer because the eye is already moving.
+  const size = 44;
+  return (
+    <div
+      style={{
+        position: "relative",
+        marginTop: first ? 0 : 0,
+        width: size,
+        height: size,
+        borderRadius: "50%",
+        backgroundColor: PAPER,
+        border: `1px solid ${INK}`,
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontFamily: MONO,
+        fontSize: 11,
+        fontWeight: 500,
+        letterSpacing: "0.16em",
+        color: INK,
+      }}
+    >
+      {number}
     </div>
   );
 }
