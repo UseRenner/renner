@@ -75,9 +75,11 @@ export function CenterBody({ showCta }: { showCta: boolean }) {
         {dek}
       </p>
 
-      {/* Procession row: cards interleaved with display chevrons.
-          The flex row keeps each card-cell at equal width while
-          letting chevrons collapse to their content size. */}
+      {/* Procession row: cards interleaved with thin connector
+          rules. A short hairline at the cards' vertical midline
+          replaces the previous display chevron — the same eye-
+          guide expressed through pure geometry instead of a
+          glyph. */}
       <div
         className="procession"
         style={{
@@ -98,18 +100,11 @@ export function CenterBody({ showCta }: { showCta: boolean }) {
                 className="procession-chevron"
                 style={{
                   flex: "0 0 auto",
-                  fontFamily: SERIF,
-                  fontStyle: "italic",
-                  fontWeight: 300,
-                  fontSize: "clamp(36px, 4.5vw, 56px)",
-                  lineHeight: 1,
-                  color: INK,
-                  fontVariationSettings: '"opsz" 60',
-                  userSelect: "none",
+                  width: "clamp(32px, 4vw, 56px)",
+                  height: 1,
+                  backgroundColor: STEEL_300,
                 }}
-              >
-                →
-              </span>
+              />
             )}
           </Fragment>
         ))}
@@ -161,18 +156,10 @@ export function CenterBody({ showCta }: { showCta: boolean }) {
                 className="procession-spacer"
                 style={{
                   flex: "0 0 auto",
-                  fontFamily: SERIF,
-                  fontStyle: "italic",
-                  fontWeight: 300,
-                  fontSize: "clamp(36px, 4.5vw, 56px)",
-                  lineHeight: 1,
-                  color: "transparent",
-                  fontVariationSettings: '"opsz" 60',
-                  userSelect: "none",
+                  width: "clamp(32px, 4vw, 56px)",
+                  height: 1,
                 }}
-              >
-                →
-              </span>
+              />
             )}
           </Fragment>
         ))}
@@ -212,9 +199,11 @@ export function CenterBody({ showCta }: { showCta: boolean }) {
             flex-direction: column !important;
             gap: 32px !important;
           }
-          .procession-chevron,
-          .procession-spacer {
-            transform: rotate(90deg);
+          /* On a vertical stack the horizontal hairline becomes
+             a vertical one — same role, ninety degrees off. */
+          .procession-chevron {
+            width: 1px !important;
+            height: 32px !important;
             margin: 4px 0 !important;
           }
           .procession-spacer {

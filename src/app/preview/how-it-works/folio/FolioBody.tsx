@@ -115,20 +115,13 @@ export function FolioBody({ showCta }: { showCta: boolean }) {
                 aria-hidden
                 style={{
                   display: "block",
+                  width: 1,
+                  height: "clamp(48px, 6vw, 72px)",
                   marginTop: "clamp(36px, 4.5vw, 56px)",
                   marginBottom: "clamp(36px, 4.5vw, 56px)",
-                  fontFamily: SERIF,
-                  fontStyle: "italic",
-                  fontWeight: 300,
-                  fontSize: "clamp(40px, 5vw, 64px)",
-                  lineHeight: 1,
-                  color: INK,
-                  fontVariationSettings: '"opsz" 60',
-                  userSelect: "none",
+                  backgroundColor: STEEL_300,
                 }}
-              >
-                ↓
-              </span>
+              />
             )}
           </Fragment>
         ))}
