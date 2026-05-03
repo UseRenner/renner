@@ -10,7 +10,7 @@ export const HEADLINE_FULL = "Keep real estate running.";
 
 export const DEK = "A marketplace for the small jobs real estate runs on — sign installs, lockboxes, showings, courier runs, walkthrough photos, guest check-ins. Posted by clients, picked up by ID-verified Renners, paid through escrow.";
 
-export const SHORT_DEK = "The small jobs real estate runs on — posted, picked up, paid through escrow.";
+export const SHORT_DEK = "From sign installs to showings — there's a Renner.";
 
 export type Category = {
   id: string;
