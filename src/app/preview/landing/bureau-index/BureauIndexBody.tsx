@@ -127,15 +127,15 @@ function EntryStrip() {
               fontFamily: SERIF,
               fontStyle: "italic",
               fontWeight: 300,
-              fontSize: "clamp(20px, 2.2vw, 26px)",
-              lineHeight: 1.2,
+              fontSize: "clamp(14px, 1.4vw, 17px)",
+              lineHeight: 1.3,
               color: INK,
               fontVariationSettings: '"opsz" 36',
             }}
           >
             {title}
             {i < ENTRY_TITLES.length - 1 && (
-              <span aria-hidden style={{ marginLeft: "clamp(12px, 1.6vw, 20px)", marginRight: "clamp(12px, 1.6vw, 20px)", color: STEEL_300 }}>·</span>
+              <span aria-hidden style={{ marginLeft: "clamp(8px, 1.2vw, 14px)", marginRight: "clamp(8px, 1.2vw, 14px)", color: STEEL_300 }}>·</span>
             )}
           </li>
         ))}
@@ -225,7 +225,7 @@ function IndexForm() {
       </div>
 
       <p style={{ fontFamily: SERIF, fontSize: 13, lineHeight: 1.6, color: STEEL_500, margin: 0, fontVariationSettings: '"opsz" 14' }}>
-        ID verification and a Checkr background check follow before either side can post or take a task.
+        ID verification and a Checkr background check required before hiring or becoming a Renner.
       </p>
     </form>
   );

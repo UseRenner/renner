@@ -236,6 +236,10 @@ function FormCell() {
         Or become a Renner
         <span aria-hidden style={{ opacity: 0.6 }}>→</span>
       </Link>
+
+      <p style={{ fontFamily: SERIF, fontSize: 12, lineHeight: 1.6, color: STEEL_500, margin: 0, marginTop: 4, fontVariationSettings: '"opsz" 14' }}>
+        ID verification and a Checkr background check required before hiring or becoming a Renner.
+      </p>
     </form>
   );
 }

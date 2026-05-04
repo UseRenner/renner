@@ -181,6 +181,10 @@ function ColumnForm() {
           <span aria-hidden style={{ opacity: 0.6 }}>→</span>
         </Link>
       </div>
+
+      <p style={{ fontFamily: SERIF, fontSize: 13, lineHeight: 1.6, color: STEEL_500, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+        ID verification and a Checkr background check required before hiring or becoming a Renner.
+      </p>
     </form>
   );
 }
