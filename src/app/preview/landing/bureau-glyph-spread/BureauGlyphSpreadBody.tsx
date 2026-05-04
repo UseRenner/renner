@@ -14,21 +14,19 @@ const STEEL_500 = "var(--c-500, #7d8da0)";
 const STEEL_300 = "var(--c-300, #cad1d8)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 
-// Bureau — GLYPH WALL.
-// The wordmark is rendered enormously across the top of the
-// page — italic, low-opsz, generous letter-spacing — anchoring
-// the entire composition. Below it, the body splits into
-// headline+dek+categories on the left and the form on the
-// right. Reading order:
+// Bureau — GLYPH WALL · SPREAD.
+// Same architectural wordmark and same body grid as Glyph, but
+// the categories block uses geometric symmetry: the hairline
+// spans the entire headline column, and the categories
+// distribute edge to edge across that width with
+// justifyContent: space-between. First title flush left, last
+// title flush right, even gaps between.
 //
-//     giant glyph → "Keep real estate running." → dek →
-//     categories → form
-//
-// The headline keeps top billing right after the wordmark; the
-// categories sit as a supporting list close to the message they
-// support, separated from the dek by a single light hairline.
+// Glyph (canonical) does content symmetry — the hairline shrinks
+// to the categories' natural width. Spread does geometric
+// symmetry — the categories expand to the rule's width.
 
-export function BureauGlyphBody({ tone }: { tone: ShellTone }) {
+export function BureauGlyphSpreadBody({ tone }: { tone: ShellTone }) {
   return (
     <div style={{ ...getToneVars(tone), backgroundColor: PAPER, color: INK, minHeight: "100vh", display: "flex", flexDirection: "column", overflow: "hidden" }}>
       <Header />
@@ -131,14 +129,12 @@ function Body() {
             {SHORT_DEK}
           </p>
 
-          {/* Categories tucked under the dek. Wrapper uses
-              width: fit-content so the hairline shrinks to span
-              only the categories — left and right edges of the
-              rule line up with the start of "Sign installs" and
-              the end of "Licensed showings". No middots; gaps
-              between titles carry the separation. */}
-          <div style={{ width: "fit-content", maxWidth: "100%", paddingTop: "clamp(20px, 2.4vw, 28px)", borderTop: `1px solid ${STEEL_300}` }}>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", columnGap: "clamp(20px, 2.4vw, 32px)", rowGap: 8 }}>
+          {/* Categories — full column-width hairline above; the
+              categories distribute edge to edge across that
+              width. First title flush left, last title flush
+              right. */}
+          <div style={{ paddingTop: "clamp(20px, 2.4vw, 28px)", borderTop: `1px solid ${STEEL_300}` }}>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", justifyContent: "space-between", columnGap: "clamp(8px, 1.2vw, 16px)", rowGap: 8 }}>
               {CATEGORY_STRIP_SHORT.map((c) => (
                 <li
                   key={c.id}

@@ -96,16 +96,25 @@ function Letter() {
             rendered in INK so the list reads with real presence
             in the body, rather than disappearing as a quiet
             continuation of the prose. */}
-        <p style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(16px, 1.6vw, 19px)", lineHeight: 1.5, color: INK, margin: 0, fontVariationSettings: '"opsz" 14' }}>
-          {CATEGORY_STRIP_SHORT.map((c, i, arr) => (
-            <span key={c.id}>
-              <span style={{ whiteSpace: "nowrap" }}>{c.title}</span>
-              {i < arr.length - 1 && (
-                <span aria-hidden style={{ marginLeft: "clamp(8px, 1.2vw, 14px)", marginRight: "clamp(8px, 1.2vw, 14px)", color: STEEL_300 }}>·</span>
-              )}
-            </span>
+        <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", columnGap: "clamp(20px, 2.4vw, 32px)", rowGap: 8 }}>
+          {CATEGORY_STRIP_SHORT.map((c) => (
+            <li
+              key={c.id}
+              style={{
+                fontFamily: SERIF,
+                fontStyle: "italic",
+                fontWeight: 300,
+                fontSize: "clamp(16px, 1.6vw, 19px)",
+                lineHeight: 1.5,
+                color: INK,
+                fontVariationSettings: '"opsz" 14',
+                whiteSpace: "nowrap",
+              }}
+            >
+              {c.title}
+            </li>
           ))}
-        </p>
+        </ul>
 
         <SignupLetter />
       </div>
