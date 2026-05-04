@@ -33,6 +33,12 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     note: "Sections separated by single hairlines move from headline to categories to form. Categories distribute edge to edge between two light hairlines. No section labels — each element speaks for itself.",
   },
   {
+    slug: "bureau-specimen-inked",
+    label: "Bureau · Specimen · Inked",
+    subtitle: "Specimen with categories rendered in ink",
+    note: "Identical to Specimen except the categories strip is rendered in INK rather than STEEL_700, matching Index's heavier color register. Same size and weight, just darker.",
+  },
+  {
     slug: "bureau-glyph",
     label: "Bureau · Glyph",
     subtitle: "Wordmark as architecture",
@@ -54,10 +60,10 @@ export default function LandingPreviewIndex() {
           Landing previews · Bureau
         </div>
         <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(36px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, marginBottom: 16, fontVariationSettings: '"opsz" 60' }}>
-          Six Bureau walls.
+          Seven Bureau walls.
         </h1>
         <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.55, color: "#38414d", margin: 0, marginBottom: 56, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-          Six wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. Every wall offers both pathways — sign up to hire, or apply as a Renner.
+          Seven wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. Every wall offers both pathways — sign up to hire, or apply as a Renner.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #0d0f12" }}>

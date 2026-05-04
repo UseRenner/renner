@@ -30,24 +30,23 @@ export const CATEGORIES: Category[] = [
   { id: "property-access", label: "Property access", title: "Property access", detail: "Owner walk-ins, contractor access, key drops." },
   { id: "guest-access", label: "Guest access", title: "Guest check-ins", detail: "Guest check-ins, host assistance, property access." },
   { id: "host-assistance", label: "Host assistance", title: "Host assistance", detail: "Turnover prep, restock, light tidying between guests." },
-  { id: "showing", label: "Showing", title: "Licensed showings", detail: "Buyer showings, on-call coverage." },
+  { id: "showing", label: "Showing", title: "Showings", detail: "Buyer showings, on-call coverage." },
   { id: "open-house", label: "Open house", title: "Open house coverage", detail: "Open house sit-ins, sign-in, lights and lockup." },
 ];
 
 // The full strip used by walls with room to breathe (Specimen,
-// Index, Letter, Cipher) — six descriptive titles, dropping the
-// three longer / niche entries from the canonical list. Render
-// via `c.title` in the descriptive register, never `c.label`.
-const STRIP_OMIT_IDS = new Set(["property-access", "host-assistance", "open-house"]);
+// Index) — descriptive titles minus the two same-as-label
+// entries (Property access, Host assistance) that don't add
+// breadth. Render via `c.title`, never `c.label`.
+const STRIP_OMIT_IDS = new Set(["property-access", "host-assistance"]);
 export const CATEGORY_STRIP: Category[] = CATEGORIES.filter((c) => !STRIP_OMIT_IDS.has(c.id));
 
-// The short strip used by the narrowest walls (Window, Glyph)
-// where six descriptive titles run over. Four entries — signage,
-// key access, host check-ins (so hosts see themselves on the
-// page), and licensed work — covering both audiences without
-// the row clipping or wrapping awkwardly. Identical between the
-// clipped walls so the brand reads consistently.
-const SHORT_STRIP_IDS = new Set(["signs", "lockbox", "guest-access", "showing"]);
+// The short strip used by the narrowest walls (Window, Letter,
+// Glyph) where the full list runs over. Five entries spanning
+// signage, key access, host check-ins, showings, and open
+// houses. Identical between the clipped walls so the brand
+// reads consistently.
+const SHORT_STRIP_IDS = new Set(["signs", "lockbox", "guest-access", "showing", "open-house"]);
 export const CATEGORY_STRIP_SHORT: Category[] = CATEGORIES.filter((c) => SHORT_STRIP_IDS.has(c.id));
 
 export type Testimonial = {
