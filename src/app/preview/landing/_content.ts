@@ -19,15 +19,19 @@ export type Category = {
   detail: string;
 };
 
-// Mirrors the six categories on the live landing page (LandingHero.tsx).
-// Labels MUST match exactly — including singular "Showing".
+// Mirrors the canonical task categories in src/lib/types.ts —
+// same labels, same order, minus "Other" (catch-all bucket; not
+// shown as a marketing category).
 export const CATEGORIES: Category[] = [
   { id: "signs", label: "Signs", title: "Sign installs", detail: "Sign riders, post installs, removals." },
   { id: "lockbox", label: "Lockbox", title: "Lockbox swaps", detail: "Combination resets, lockbox swaps, key drops." },
-  { id: "showing", label: "Showing", title: "Licensed showings", detail: "Buyer showings, on-call coverage, open houses." },
   { id: "courier", label: "Courier", title: "Document delivery", detail: "Closing docs, key drops, contract relays." },
   { id: "visuals", label: "Visuals", title: "Walkthrough photos", detail: "Photo-ready setup, walkthrough captures, virtual tours." },
-  { id: "guest", label: "Guest access", title: "Guest check-ins", detail: "Guest check-ins, host assistance, property access." },
+  { id: "property-access", label: "Property access", title: "Property access", detail: "Owner walk-ins, contractor access, key drops." },
+  { id: "guest-access", label: "Guest access", title: "Guest check-ins", detail: "Guest check-ins, host assistance, property access." },
+  { id: "host-assistance", label: "Host assistance", title: "Host assistance", detail: "Turnover prep, restock, light tidying between guests." },
+  { id: "showing", label: "Showing", title: "Licensed showings", detail: "Buyer showings, on-call coverage." },
+  { id: "open-house", label: "Open house", title: "Open house coverage", detail: "Open house sit-ins, sign-in, lights and lockup." },
 ];
 
 export type Testimonial = {

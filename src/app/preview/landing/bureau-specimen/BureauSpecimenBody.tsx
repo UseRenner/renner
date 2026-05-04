@@ -65,8 +65,12 @@ export function BureauSpecimenBody({ tone }: { tone: ShellTone }) {
 
           {/* Categories */}
           <Section>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", columnGap: 0, rowGap: 8 }}>
-              {CATEGORIES.map((c, i) => (
+            {/* Labels distributed edge to edge across the row —
+                first flush left, last flush right, even gaps
+                between. No middots: the empty space carries the
+                separation. */}
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", justifyContent: "space-between", columnGap: "clamp(8px, 1.2vw, 16px)", rowGap: 8 }}>
+              {CATEGORIES.map((c) => (
                 <li
                   key={c.id}
                   style={{
@@ -79,9 +83,6 @@ export function BureauSpecimenBody({ tone }: { tone: ShellTone }) {
                   }}
                 >
                   {c.label}
-                  {i < CATEGORIES.length - 1 && (
-                    <span aria-hidden style={{ marginLeft: "clamp(8px, 1.2vw, 16px)", marginRight: "clamp(8px, 1.2vw, 16px)", color: STEEL_300 }}>·</span>
-                  )}
                 </li>
               ))}
             </ul>
