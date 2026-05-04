@@ -15,14 +15,14 @@ const STEEL_300 = "var(--c-300, #cad1d8)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 const CHALK = "var(--c-panel, #eaedf0)";
 
-// Bureau — WINDOW · C — small refined sans sign-in
-// Same text "Have an account? Sign in", but in a smaller (11px)
-// quieter sans treatment — color STEEL_500 with the link in
-// STEEL_700 — instead of the current 13px sans.
+// Bureau — WINDOW · C — small refined serif sign-in
+// Same text "Have an account? Sign in", in a smaller (12px)
+// quieter Source Serif treatment — color STEEL_500 with the
+// link in STEEL_700 — instead of the current 13px sans.
 
 function SignInPrompt() {
   return (
-    <p style={{ fontFamily: SANS, fontSize: 11, color: STEEL_500, margin: 0 }}>
+    <p style={{ fontFamily: SERIF, fontSize: 12, color: STEEL_500, margin: 0, fontVariationSettings: '"opsz" 14' }}>
       Have an account?{" "}
       <Link href="/signin" style={{ color: STEEL_700, fontWeight: 500, textDecoration: "underline", textUnderlineOffset: 3 }}>
         Sign in
@@ -254,7 +254,7 @@ function Footer() {
     >
       <div style={{ maxWidth: 1440, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
         <RennerMark size={28} weight={300} />
-        <div style={{ display: "flex", alignItems: "center", gap: 18, fontFamily: SANS, fontSize: 11, color: STEEL_500 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 18, fontFamily: SERIF, fontSize: 12, color: STEEL_500, fontVariationSettings: '"opsz" 14' }}>
           <Link href="/contact" style={{ color: STEEL_700, textDecoration: "none" }}>Contact</Link>
           <Link href="/terms" style={{ color: STEEL_700, textDecoration: "none" }}>Terms</Link>
           <Link href="/privacy" style={{ color: STEEL_700, textDecoration: "none" }}>Privacy</Link>
