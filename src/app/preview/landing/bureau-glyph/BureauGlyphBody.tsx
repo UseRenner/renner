@@ -146,7 +146,7 @@ function Body() {
                     fontFamily: SERIF,
                     fontStyle: "italic",
                     fontWeight: 300,
-                    fontSize: "clamp(14px, 1.4vw, 16px)",
+                    fontSize: "clamp(16px, 1.5vw, 18px)",
                     lineHeight: 1.5,
                     color: INK,
                     fontVariationSettings: '"opsz" 14',
