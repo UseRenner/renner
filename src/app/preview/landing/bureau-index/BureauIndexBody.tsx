@@ -61,17 +61,10 @@ export function BureauIndexBody({ tone }: { tone: ShellTone }) {
             </p>
           </div>
 
-          {/* The index. Each entry is a single italic title in
-              the TOC rhythm. No numbers, no page references —
-              just the titles in a stack between two ink rules. */}
-          <div style={{ borderTop: `1px solid ${INK}`, borderBottom: `1px solid ${INK}` }}>
-            <Entry title="Sign installs" />
-            <Entry title="Lockbox swaps" />
-            <Entry title="Licensed showings" />
-            <Entry title="Document delivery" />
-            <Entry title="Walkthrough photos" />
-            <Entry title="Guest check-ins" />
-          </div>
+          {/* The index. The six entries flow as a single italic
+              line between two ink rules — wrapping as needed.
+              Same TOC gesture, far less vertical space. */}
+          <EntryStrip />
 
           {/* Final entry — the form. Sits in the same TOC rhythm,
               expanded inline rather than as a row. The reader
@@ -107,18 +100,47 @@ function Header() {
   );
 }
 
-function Entry({ title }: { title: string }) {
+const ENTRY_TITLES = [
+  "Sign installs",
+  "Lockbox swaps",
+  "Licensed showings",
+  "Document delivery",
+  "Walkthrough photos",
+  "Guest check-ins",
+];
+
+function EntryStrip() {
   return (
-    <article
+    <div
       style={{
-        padding: "clamp(18px, 2vw, 24px) 0",
-        borderBottom: `1px solid var(--c-rule, #eaedf0)`,
+        borderTop: `1px solid ${INK}`,
+        borderBottom: `1px solid ${INK}`,
+        paddingTop: "clamp(28px, 3vw, 40px)",
+        paddingBottom: "clamp(28px, 3vw, 40px)",
       }}
     >
-      <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(20px, 2.2vw, 26px)", lineHeight: 1.15, color: INK, fontVariationSettings: '"opsz" 36' }}>
-        {title}
-      </span>
-    </article>
+      <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", alignItems: "baseline", rowGap: 8 }}>
+        {ENTRY_TITLES.map((title, i) => (
+          <li
+            key={title}
+            style={{
+              fontFamily: SERIF,
+              fontStyle: "italic",
+              fontWeight: 300,
+              fontSize: "clamp(20px, 2.2vw, 26px)",
+              lineHeight: 1.2,
+              color: INK,
+              fontVariationSettings: '"opsz" 36',
+            }}
+          >
+            {title}
+            {i < ENTRY_TITLES.length - 1 && (
+              <span aria-hidden style={{ marginLeft: "clamp(12px, 1.6vw, 20px)", marginRight: "clamp(12px, 1.6vw, 20px)", color: STEEL_300 }}>·</span>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
