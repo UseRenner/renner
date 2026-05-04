@@ -15,7 +15,8 @@ export type LandingVariantKey =
   | "column"
   | "window"
   | "stack"
-  | "letter";
+  | "letter"
+  | "specimen";
 
 export const LANDING_VARIANTS: ReadonlyArray<{
   href: string;
@@ -30,6 +31,7 @@ export const LANDING_VARIANTS: ReadonlyArray<{
   { href: "/preview/landing/bureau-window", key: "window", label: "Window" },
   { href: "/preview/landing/bureau-stack", key: "stack", label: "Stack" },
   { href: "/preview/landing/bureau-letter", key: "letter", label: "Letter" },
+  { href: "/preview/landing/bureau-specimen", key: "specimen", label: "Specimen" },
 ];
 
 import type { ShellTone } from "../how-it-works/_shared";

@@ -54,7 +54,13 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     slug: "bureau-letter",
     label: "Bureau · Letter",
     subtitle: "Editorial stationery",
-    note: "Reads as a single piece of letter paper. Double-rule masthead at the top, narrow centered reading column, and form fields integrated directly into the body — no wrapping form box, no enclosing border. Each input is just a fill-in-the-blank line. The most original of the eight.",
+    note: "Reads as a single piece of letter paper. Double-rule masthead at the top, narrow centered reading column, and form fields integrated directly into the body — no wrapping form box, no enclosing border. Each input is just a fill-in-the-blank line.",
+  },
+  {
+    slug: "bureau-specimen",
+    label: "Bureau · Specimen",
+    subtitle: "Type specimen sheet",
+    note: "Reads as a typeface specimen catalog. Massive italic wordmark sets the type at the top; below it, sections separated by single hairlines name each piece of the brand voice — Headline, Categories, Membership. The form is the last specimen, the catalog ending in the act of becoming a member.",
   },
 ];
 
@@ -66,10 +72,10 @@ export default function LandingPreviewIndex() {
           Landing previews · Bureau
         </div>
         <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(36px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, marginBottom: 16, fontVariationSettings: '"opsz" 60' }}>
-          Eight Bureau walls.
+          Nine Bureau walls.
         </h1>
         <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.55, color: "#38414d", margin: 0, marginBottom: 56, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-          Eight wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. The first four are side-by-sides; the last four are other shapes. Every wall offers both pathways — sign up to hire, or apply as a Renner.
+          Nine wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. The first four are side-by-sides; the last five are other shapes. Every wall offers both pathways — sign up to hire, or apply as a Renner.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #0d0f12" }}>
