@@ -8,6 +8,11 @@ const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
 const MONO = "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
+// Specimen drops a few of the longer / more-niche descriptive
+// titles so the row fits on one line at typical viewport widths.
+// The full canonical list still lives in _content.ts.
+const SPECIMEN_OMIT = new Set(["property-access", "host-assistance", "open-house"]);
+
 const INK = "var(--c-text, #0d0f12)";
 const STEEL_700 = "var(--c-700, #38414d)";
 const STEEL_500 = "var(--c-500, #7d8da0)";
@@ -79,7 +84,7 @@ export function BureauSpecimenBody({ tone }: { tone: ShellTone }) {
             }}
           >
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", justifyContent: "space-between", columnGap: "clamp(8px, 1.2vw, 16px)", rowGap: 8 }}>
-              {CATEGORIES.map((c) => (
+              {CATEGORIES.filter((c) => !SPECIMEN_OMIT.has(c.id)).map((c) => (
                 <li
                   key={c.id}
                   style={{
