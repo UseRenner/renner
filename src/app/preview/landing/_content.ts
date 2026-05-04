@@ -42,13 +42,12 @@ const STRIP_OMIT_IDS = new Set(["property-access", "host-assistance", "open-hous
 export const CATEGORY_STRIP: Category[] = CATEGORIES.filter((c) => !STRIP_OMIT_IDS.has(c.id));
 
 // The short strip used by the narrowest walls (Window, Glyph)
-// where six descriptive titles run over. Same descriptive
-// register, five entries — signage, key access, visual content,
-// host check-ins (so hosts see themselves on the page too), and
-// licensed work — covering both audiences without the row
-// clipping or wrapping awkwardly. Identical between the clipped
-// walls so the brand reads consistently.
-const SHORT_STRIP_IDS = new Set(["signs", "lockbox", "visuals", "guest-access", "showing"]);
+// where six descriptive titles run over. Four entries — signage,
+// key access, host check-ins (so hosts see themselves on the
+// page), and licensed work — covering both audiences without
+// the row clipping or wrapping awkwardly. Identical between the
+// clipped walls so the brand reads consistently.
+const SHORT_STRIP_IDS = new Set(["signs", "lockbox", "guest-access", "showing"]);
 export const CATEGORY_STRIP_SHORT: Category[] = CATEGORIES.filter((c) => SHORT_STRIP_IDS.has(c.id));
 
 export type Testimonial = {

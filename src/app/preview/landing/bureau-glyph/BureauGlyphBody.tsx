@@ -137,7 +137,7 @@ function Body() {
               caps, so the strip fits inside the headline column.
               Each title is nowrap so any line break happens
               cleanly between titles, never mid-word. */}
-          <p style={{ paddingTop: "clamp(20px, 2.4vw, 28px)", borderTop: `1px solid ${STEEL_300}`, fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(13px, 1.2vw, 15px)", lineHeight: 1.5, color: INK, margin: 0, fontVariationSettings: '"opsz" 36' }}>
+          <p style={{ paddingTop: "clamp(20px, 2.4vw, 28px)", borderTop: `1px solid ${STEEL_300}`, fontFamily: SERIF, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(14px, 1.3vw, 16px)", lineHeight: 1.5, color: INK, margin: 0, fontVariationSettings: '"opsz" 14' }}>
             {CATEGORY_STRIP_SHORT.map((c, i, arr) => (
               <span key={c.id}>
                 <span style={{ whiteSpace: "nowrap" }}>{c.title}</span>
