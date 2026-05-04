@@ -41,7 +41,7 @@ export function BureauTrioBody({ tone }: { tone: ShellTone }) {
           paddingRight: "clamp(24px, 4vw, 64px)",
         }}
       >
-        <div style={{ maxWidth: 1180, margin: "0 auto", display: "flex", flexDirection: "column", gap: "clamp(40px, 5vw, 64px)" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", display: "flex", flexDirection: "column", gap: "clamp(40px, 5vw, 64px)" }}>
           <Lede />
           <Triptych />
           <FormSection />
