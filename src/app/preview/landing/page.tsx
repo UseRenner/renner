@@ -21,12 +21,6 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     note: "One paper panel at the center of a chalk page, framed by light steel hairlines. Inside, everything stacks down a single vertical axis — mark above the rule, headline, dek, categories edge to edge between two rules, form, secondary path.",
   },
   {
-    slug: "bureau-window-card",
-    label: "Bureau · Window · Card",
-    subtitle: "Panel with chrome outside",
-    note: "Same panel-on-chalk composition as Window, but the renner mark and Sign in link sit OUTSIDE the panel — at the page level in their normal header position. The panel becomes a pure content card holding only the headline, dek, categories, and form.",
-  },
-  {
     slug: "bureau-letter",
     label: "Bureau · Letter",
     subtitle: "Editorial stationery",
@@ -45,12 +39,6 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     note: "The wordmark renders large across the top of the page — italic, low-opsz, generous letter-spacing — anchoring the composition. Categories tucked inside the headline column with a hairline that shrinks to span only the categories' width — content-symmetric.",
   },
   {
-    slug: "bureau-glyph-spread",
-    label: "Bureau · Glyph · Spread",
-    subtitle: "Glyph with categories spread edge to edge",
-    note: "Same wall as Glyph, but the categories' hairline spans the full headline column and the categories distribute edge to edge across that width with space-between — geometric symmetry vs Glyph's content symmetry.",
-  },
-  {
     slug: "bureau-index",
     label: "Bureau · Index",
     subtitle: "Editorial table of contents",
@@ -66,10 +54,10 @@ export default function LandingPreviewIndex() {
           Landing previews · Bureau
         </div>
         <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(36px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, marginBottom: 16, fontVariationSettings: '"opsz" 60' }}>
-          Eight Bureau walls.
+          Six Bureau walls.
         </h1>
         <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.55, color: "#38414d", margin: 0, marginBottom: 56, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-          Eight wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. Every wall offers both pathways — sign up to hire, or apply as a Renner.
+          Six wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. Every wall offers both pathways — sign up to hire, or apply as a Renner.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #0d0f12" }}>

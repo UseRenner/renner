@@ -10,11 +10,9 @@ export { VariantSwitcher } from "./_variant-switcher";
 export type LandingVariantKey =
   | "trio"
   | "window"
-  | "window-card"
   | "letter"
   | "specimen"
   | "glyph"
-  | "glyph-spread"
   | "index";
 
 export const LANDING_VARIANTS: ReadonlyArray<{
@@ -24,11 +22,9 @@ export const LANDING_VARIANTS: ReadonlyArray<{
 }> = [
   { href: "/preview/landing/bureau-trio", key: "trio", label: "Trio" },
   { href: "/preview/landing/bureau-window", key: "window", label: "Window" },
-  { href: "/preview/landing/bureau-window-card", key: "window-card", label: "Window · Card" },
   { href: "/preview/landing/bureau-letter", key: "letter", label: "Letter" },
   { href: "/preview/landing/bureau-specimen", key: "specimen", label: "Specimen" },
   { href: "/preview/landing/bureau-glyph", key: "glyph", label: "Glyph" },
-  { href: "/preview/landing/bureau-glyph-spread", key: "glyph-spread", label: "Glyph · Spread" },
   { href: "/preview/landing/bureau-index", key: "index", label: "Index" },
 ];
 
