@@ -138,7 +138,7 @@ function Body() {
               the end of "Licensed showings". No middots; gaps
               between titles carry the separation. */}
           <div style={{ width: "fit-content", maxWidth: "100%", paddingTop: "clamp(20px, 2.4vw, 28px)", borderTop: `1px solid ${STEEL_300}` }}>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", columnGap: "clamp(20px, 2.4vw, 32px)", rowGap: 8 }}>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", columnGap: "clamp(8px, 1vw, 14px)", rowGap: 8 }}>
               {CATEGORY_STRIP_SHORT.map((c) => (
                 <li
                   key={c.id}
@@ -146,7 +146,7 @@ function Body() {
                     fontFamily: SERIF,
                     fontStyle: "italic",
                     fontWeight: 300,
-                    fontSize: "clamp(16px, 1.5vw, 19px)",
+                    fontSize: "clamp(14px, 1.4vw, 16px)",
                     lineHeight: 1.5,
                     color: INK,
                     fontVariationSettings: '"opsz" 14',

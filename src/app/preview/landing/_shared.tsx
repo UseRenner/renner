@@ -13,6 +13,7 @@ export type LandingVariantKey =
   | "letter"
   | "specimen"
   | "specimen-inked"
+  | "specimen-bold"
   | "glyph"
   | "index";
 
@@ -26,6 +27,7 @@ export const LANDING_VARIANTS: ReadonlyArray<{
   { href: "/preview/landing/bureau-letter", key: "letter", label: "Letter" },
   { href: "/preview/landing/bureau-specimen", key: "specimen", label: "Specimen" },
   { href: "/preview/landing/bureau-specimen-inked", key: "specimen-inked", label: "Specimen · Inked" },
+  { href: "/preview/landing/bureau-specimen-bold", key: "specimen-bold", label: "Specimen · Bold" },
   { href: "/preview/landing/bureau-glyph", key: "glyph", label: "Glyph" },
   { href: "/preview/landing/bureau-index", key: "index", label: "Index" },
 ];

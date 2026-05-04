@@ -39,6 +39,12 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     note: "Identical to Specimen except the categories strip is rendered in INK rather than STEEL_700, matching Index's heavier color register. Same size and weight, just darker.",
   },
   {
+    slug: "bureau-specimen-bold",
+    label: "Bureau · Specimen · Bold",
+    subtitle: "Specimen with ink categories AND ink rules",
+    note: "Same Specimen composition with the categories block fully inked: italic-serif categories in INK bracketed by INK rules. The strip becomes a stamped band — the heaviest version of Specimen's categories register.",
+  },
+  {
     slug: "bureau-glyph",
     label: "Bureau · Glyph",
     subtitle: "Wordmark as architecture",
@@ -60,10 +66,10 @@ export default function LandingPreviewIndex() {
           Landing previews · Bureau
         </div>
         <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(36px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, marginBottom: 16, fontVariationSettings: '"opsz" 60' }}>
-          Seven Bureau walls.
+          Eight Bureau walls.
         </h1>
         <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.55, color: "#38414d", margin: 0, marginBottom: 56, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-          Seven wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. Every wall offers both pathways — sign up to hire, or apply as a Renner.
+          Eight wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. Every wall offers both pathways — sign up to hire, or apply as a Renner.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #0d0f12" }}>
