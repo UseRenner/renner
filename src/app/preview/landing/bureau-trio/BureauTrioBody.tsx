@@ -310,9 +310,9 @@ function Footer() {
         borderTop: `1px solid ${STEEL_300}`,
       }}
     >
-      <div style={{ maxWidth: 1280, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
-        <span>Real-estate task marketplace</span>
-        <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
+        <RennerMark size={28} weight={300} />
+        <div style={{ display: "flex", alignItems: "center", gap: 24, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
           <Link href="/contact" style={{ color: STEEL_700, textDecoration: "none" }}>Contact</Link>
           <Link href="/terms" style={{ color: STEEL_700, textDecoration: "none" }}>Terms</Link>
           <Link href="/privacy" style={{ color: STEEL_700, textDecoration: "none" }}>Privacy</Link>

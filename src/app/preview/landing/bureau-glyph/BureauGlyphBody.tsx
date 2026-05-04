@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { getToneVars, type ShellTone } from "../../how-it-works/_shared";
+import { RennerMark, getToneVars, type ShellTone } from "../../how-it-works/_shared";
 import { HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
@@ -51,9 +51,7 @@ function Header() {
       }}
     >
       <div style={{ maxWidth: 1440, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
-        <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500 }}>
-          Real-estate task marketplace
-        </span>
+        <RennerMark size={28} weight={300} />
         <p style={{ fontFamily: SANS, fontSize: 13, color: STEEL_700, margin: 0 }}>
           Have an account?{" "}
           <Link href="/signin" style={{ color: INK, fontWeight: 500, textDecoration: "underline", textUnderlineOffset: 3 }}>
@@ -270,12 +268,15 @@ function Footer() {
         borderTop: `1px solid ${STEEL_300}`,
       }}
     >
-      <div style={{ maxWidth: 1440, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "center", gap: 24, flexWrap: "wrap", fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
-        <Link href="/contact" style={{ color: STEEL_700, textDecoration: "none" }}>Contact</Link>
-        <Link href="/terms" style={{ color: STEEL_700, textDecoration: "none" }}>Terms</Link>
-        <Link href="/privacy" style={{ color: STEEL_700, textDecoration: "none" }}>Privacy</Link>
-        <span>·</span>
-        <span>© 2026</span>
+      <div style={{ maxWidth: 1440, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
+        <RennerMark size={28} weight={300} />
+        <div style={{ display: "flex", alignItems: "center", gap: 24, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
+          <Link href="/contact" style={{ color: STEEL_700, textDecoration: "none" }}>Contact</Link>
+          <Link href="/terms" style={{ color: STEEL_700, textDecoration: "none" }}>Terms</Link>
+          <Link href="/privacy" style={{ color: STEEL_700, textDecoration: "none" }}>Privacy</Link>
+          <span>·</span>
+          <span>© 2026</span>
+        </div>
       </div>
     </footer>
   );
