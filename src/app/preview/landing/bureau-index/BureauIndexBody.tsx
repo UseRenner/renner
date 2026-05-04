@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { RennerMark, getToneVars, type ShellTone } from "../../how-it-works/_shared";
-import { CATEGORIES, SHORT_DEK } from "../_content";
+import { HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
@@ -14,18 +14,15 @@ const STEEL_500 = "var(--c-500, #7d8da0)";
 const STEEL_300 = "var(--c-300, #cad1d8)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 
-// Bureau — SPECIMEN WALL.
-// The page reads as a typeface specimen sheet — the brand
-// voice on display in different scales. A massive italic
-// wordmark anchors the top; below it, sections separated by
-// single hairlines move from dek (the editorial line) to the
-// categories (the kicker register) to the form (the inputs).
-//
-// No section labels — each element speaks for itself. The
-// wordmark IS the headline; the dek is the message; the form
-// is the action. Hairlines do all the structural work.
+// Bureau — INDEX WALL.
+// The page is a table of contents. Numbered entries down a
+// single column, each a row in a TOC: number on the left,
+// title (italic) in the middle, leader dots, page reference
+// on the right. The signup form is the final entry —
+// expanded inline as the place the reader arrives at when
+// they reach the end of the index.
 
-export function BureauSpecimenBody({ tone }: { tone: ShellTone }) {
+export function BureauIndexBody({ tone }: { tone: ShellTone }) {
   return (
     <div style={{ ...getToneVars(tone), backgroundColor: PAPER, color: INK, minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <Header />
@@ -38,60 +35,48 @@ export function BureauSpecimenBody({ tone }: { tone: ShellTone }) {
           paddingRight: "clamp(24px, 4vw, 64px)",
         }}
       >
-        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-          {/* Wordmark at display scale — the headline. */}
-          <span
-            aria-hidden
-            style={{
-              fontFamily: SERIF,
-              fontStyle: "italic",
-              fontWeight: 300,
-              fontSize: "clamp(96px, 18vw, 280px)",
-              lineHeight: 0.85,
-              letterSpacing: "-0.04em",
-              color: INK,
-              display: "block",
-              fontVariationSettings: '"opsz" 144',
-            }}
-          >
-            renner
-          </span>
-
-          {/* Dek */}
-          <Section>
-            <p style={{ fontFamily: SERIF, fontSize: "clamp(20px, 2.4vw, 30px)", lineHeight: 1.4, color: INK, margin: 0, maxWidth: "44ch", fontVariationSettings: '"opsz" 36' }}>
+        <div style={{ maxWidth: 880, margin: "0 auto" }}>
+          {/* Cover line — the hero is one editorial sentence
+              treated as the table-of-contents title. */}
+          <div style={{ paddingBottom: "clamp(40px, 5vw, 64px)" }}>
+            <h1
+              style={{
+                fontFamily: SERIF,
+                fontWeight: 400,
+                fontSize: "clamp(48px, 6.4vw, 88px)",
+                lineHeight: 0.96,
+                letterSpacing: "-0.024em",
+                color: INK,
+                margin: 0,
+                marginBottom: "clamp(20px, 2.4vw, 28px)",
+                maxWidth: "16ch",
+                fontVariationSettings: '"opsz" 144',
+              }}
+            >
+              {HEADLINE_LEAD}{" "}
+              <span style={{ fontStyle: "italic", fontWeight: 300, color: STEEL_700 }}>{HEADLINE_TAIL}</span>
+            </h1>
+            <p style={{ fontFamily: SERIF, fontSize: "clamp(17px, 1.7vw, 20px)", lineHeight: 1.55, color: STEEL_700, margin: 0, maxWidth: "44ch", fontVariationSettings: '"opsz" 14' }}>
               {SHORT_DEK}
             </p>
-          </Section>
+          </div>
 
-          {/* Categories */}
-          <Section>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", columnGap: "clamp(16px, 2.4vw, 32px)", rowGap: 8 }}>
-              {CATEGORIES.map((c, i) => (
-                <li
-                  key={c.id}
-                  style={{
-                    fontFamily: MONO,
-                    fontSize: "clamp(11px, 1vw, 13px)",
-                    fontWeight: 500,
-                    letterSpacing: "0.18em",
-                    textTransform: "uppercase",
-                    color: STEEL_700,
-                  }}
-                >
-                  {c.label}
-                  {i < CATEGORIES.length - 1 && (
-                    <span aria-hidden style={{ marginLeft: "clamp(16px, 2.4vw, 32px)", color: STEEL_300 }}>·</span>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </Section>
+          {/* The index. Each entry: number, italic title with
+              leader dots, page reference. Reads as a TOC. */}
+          <div style={{ borderTop: `1px solid ${INK}`, borderBottom: `1px solid ${INK}` }}>
+            <Entry n="01" title="Sign installs" page="03" />
+            <Entry n="02" title="Lockbox swaps" page="04" />
+            <Entry n="03" title="Licensed showings" page="05" />
+            <Entry n="04" title="Document delivery" page="06" />
+            <Entry n="05" title="Walkthrough photos" page="07" />
+            <Entry n="06" title="Guest check-ins" page="08" />
+          </div>
 
-          {/* Form */}
-          <Section>
-            <SignupSpecimen />
-          </Section>
+          {/* Final entry — the form. Numbered as 07 so it sits
+              in the same TOC rhythm. Expanded inline rather
+              than as a row, because this is the entry the
+              reader actually opens. */}
+          <FinalEntry />
         </div>
       </main>
       <Footer />
@@ -122,24 +107,56 @@ function Header() {
   );
 }
 
-// One section. Hairline above, generous breathing space.
-// No label, no left gutter — the content runs full width.
-function Section({ children }: { children: React.ReactNode }) {
+function Entry({ n, title, page }: { n: string; title: string; page: string }) {
   return (
-    <section
+    <article
       style={{
-        paddingTop: "clamp(40px, 5vw, 64px)",
-        paddingBottom: "clamp(40px, 5vw, 64px)",
-        marginTop: "clamp(40px, 5vw, 64px)",
-        borderTop: `1px solid ${STEEL_300}`,
+        display: "grid",
+        gridTemplateColumns: "minmax(60px, 80px) minmax(0, 1fr) auto",
+        alignItems: "baseline",
+        gap: "clamp(16px, 2vw, 28px)",
+        padding: "clamp(18px, 2vw, 24px) 0",
+        borderBottom: `1px solid var(--c-rule, #eaedf0)`,
       }}
     >
-      {children}
-    </section>
+      <span style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.22em", color: STEEL_500 }}>
+        {n}
+      </span>
+      <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(18px, 1.9vw, 22px)", lineHeight: 1.15, color: INK, fontVariationSettings: '"opsz" 36' }}>
+        {title}
+      </span>
+      <span style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.18em", color: STEEL_500, whiteSpace: "nowrap" }}>
+        {page}
+      </span>
+    </article>
   );
 }
 
-function SignupSpecimen() {
+function FinalEntry() {
+  return (
+    <article
+      style={{
+        display: "grid",
+        gridTemplateColumns: "minmax(60px, 80px) minmax(0, 1fr)",
+        alignItems: "baseline",
+        gap: "clamp(16px, 2vw, 28px)",
+        paddingTop: "clamp(40px, 5vw, 64px)",
+      }}
+    >
+      <span style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.22em", color: STEEL_500, marginTop: 8 }}>
+        07
+      </span>
+      <div>
+        <h2 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(24px, 2.6vw, 32px)", lineHeight: 1.1, letterSpacing: "-0.014em", color: INK, margin: 0, marginBottom: "clamp(20px, 2.4vw, 28px)", fontVariationSettings: '"opsz" 36' }}>
+          Sign up — to hire or to be hired
+        </h2>
+        <IndexForm />
+      </div>
+    </article>
+  );
+}
+
+function IndexForm() {
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
@@ -147,15 +164,15 @@ function SignupSpecimen() {
         display: "flex",
         flexDirection: "column",
         gap: "clamp(20px, 2.4vw, 28px)",
-        maxWidth: 560,
+        maxWidth: 520,
       }}
     >
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(16px, 2vw, 24px)" }}>
-        <SpecimenField label="First" type="text" placeholder="James" autoComplete="given-name" />
-        <SpecimenField label="Last" type="text" placeholder="Mendez" autoComplete="family-name" />
+        <IndexField label="First" type="text" placeholder="James" autoComplete="given-name" />
+        <IndexField label="Last" type="text" placeholder="Mendez" autoComplete="family-name" />
       </div>
-      <SpecimenField label="Email" type="email" placeholder="you@firm.com" autoComplete="email" />
-      <SpecimenField label="Password" type="password" placeholder="At least 8 characters" autoComplete="new-password" />
+      <IndexField label="Email" type="email" placeholder="you@firm.com" autoComplete="email" />
+      <IndexField label="Password" type="password" placeholder="At least 8 characters" autoComplete="new-password" />
 
       <div style={{ display: "flex", flexDirection: "column", gap: "clamp(16px, 2vw, 20px)", marginTop: "clamp(8px, 1vw, 12px)" }}>
         <button
@@ -211,7 +228,7 @@ function SignupSpecimen() {
   );
 }
 
-function SpecimenField({
+function IndexField({
   label,
   type,
   placeholder,

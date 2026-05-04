@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { RennerMark, getToneVars, type ShellTone } from "../../how-it-works/_shared";
-import { CATEGORIES, SHORT_DEK } from "../_content";
+import { HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
@@ -14,18 +14,17 @@ const STEEL_500 = "var(--c-500, #7d8da0)";
 const STEEL_300 = "var(--c-300, #cad1d8)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 
-// Bureau — SPECIMEN WALL.
-// The page reads as a typeface specimen sheet — the brand
-// voice on display in different scales. A massive italic
-// wordmark anchors the top; below it, sections separated by
-// single hairlines move from dek (the editorial line) to the
-// categories (the kicker register) to the form (the inputs).
-//
-// No section labels — each element speaks for itself. The
-// wordmark IS the headline; the dek is the message; the form
-// is the action. Hairlines do all the structural work.
+// Bureau — MEMO WALL.
+// The page reads as an internal memo. A header block of TO /
+// FROM / RE lines (mono caps, label : value), a single
+// hairline separator, then the editorial body — headline as
+// the lede, dek as the opening paragraph, signup form as the
+// "request" the memo is asking for, signature line at the
+// end. The form fields use the same border-bottom treatment
+// as Letter and Specimen so they read as part of the memo's
+// continuous body, not as a walled-off form.
 
-export function BureauSpecimenBody({ tone }: { tone: ShellTone }) {
+export function BureauMemoBody({ tone }: { tone: ShellTone }) {
   return (
     <div style={{ ...getToneVars(tone), backgroundColor: PAPER, color: INK, minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <Header />
@@ -38,60 +37,9 @@ export function BureauSpecimenBody({ tone }: { tone: ShellTone }) {
           paddingRight: "clamp(24px, 4vw, 64px)",
         }}
       >
-        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-          {/* Wordmark at display scale — the headline. */}
-          <span
-            aria-hidden
-            style={{
-              fontFamily: SERIF,
-              fontStyle: "italic",
-              fontWeight: 300,
-              fontSize: "clamp(96px, 18vw, 280px)",
-              lineHeight: 0.85,
-              letterSpacing: "-0.04em",
-              color: INK,
-              display: "block",
-              fontVariationSettings: '"opsz" 144',
-            }}
-          >
-            renner
-          </span>
-
-          {/* Dek */}
-          <Section>
-            <p style={{ fontFamily: SERIF, fontSize: "clamp(20px, 2.4vw, 30px)", lineHeight: 1.4, color: INK, margin: 0, maxWidth: "44ch", fontVariationSettings: '"opsz" 36' }}>
-              {SHORT_DEK}
-            </p>
-          </Section>
-
-          {/* Categories */}
-          <Section>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", columnGap: "clamp(16px, 2.4vw, 32px)", rowGap: 8 }}>
-              {CATEGORIES.map((c, i) => (
-                <li
-                  key={c.id}
-                  style={{
-                    fontFamily: MONO,
-                    fontSize: "clamp(11px, 1vw, 13px)",
-                    fontWeight: 500,
-                    letterSpacing: "0.18em",
-                    textTransform: "uppercase",
-                    color: STEEL_700,
-                  }}
-                >
-                  {c.label}
-                  {i < CATEGORIES.length - 1 && (
-                    <span aria-hidden style={{ marginLeft: "clamp(16px, 2.4vw, 32px)", color: STEEL_300 }}>·</span>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </Section>
-
-          {/* Form */}
-          <Section>
-            <SignupSpecimen />
-          </Section>
+        <div style={{ maxWidth: 720, margin: "0 auto" }}>
+          <MemoHeader />
+          <MemoBody />
         </div>
       </main>
       <Footer />
@@ -122,24 +70,69 @@ function Header() {
   );
 }
 
-// One section. Hairline above, generous breathing space.
-// No label, no left gutter — the content runs full width.
-function Section({ children }: { children: React.ReactNode }) {
+function MemoHeader() {
+  // Memo header lines. Mono caps labels, serif italic values.
+  // Reads as a sheet of typed memo paper.
+  const rows: Array<[string, React.ReactNode]> = [
+    ["To", "Real estate, anywhere"],
+    ["From", "Renner"],
+    ["Re", <span key="re"><em>Sign installs to showings</em> — and the people who handle them</span>],
+  ];
   return (
-    <section
-      style={{
-        paddingTop: "clamp(40px, 5vw, 64px)",
-        paddingBottom: "clamp(40px, 5vw, 64px)",
-        marginTop: "clamp(40px, 5vw, 64px)",
-        borderTop: `1px solid ${STEEL_300}`,
-      }}
-    >
-      {children}
-    </section>
+    <div style={{ paddingBottom: "clamp(32px, 4vw, 48px)", borderBottom: `1px solid ${INK}` }}>
+      <dl style={{ margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
+        {rows.map(([label, value]) => (
+          <div key={label} style={{ display: "grid", gridTemplateColumns: "minmax(80px, 96px) 1fr", alignItems: "baseline", gap: 16 }}>
+            <dt style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500 }}>
+              {label}
+            </dt>
+            <dd style={{ margin: 0, fontFamily: SERIF, fontSize: "clamp(15px, 1.5vw, 17px)", lineHeight: 1.5, color: INK, fontVariationSettings: '"opsz" 14' }}>
+              {value}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </div>
   );
 }
 
-function SignupSpecimen() {
+function MemoBody() {
+  return (
+    <div style={{ paddingTop: "clamp(40px, 5vw, 64px)", display: "flex", flexDirection: "column", gap: "clamp(36px, 4.5vw, 56px)" }}>
+      <div>
+        <h1
+          style={{
+            fontFamily: SERIF,
+            fontWeight: 400,
+            fontSize: "clamp(40px, 5.4vw, 72px)",
+            lineHeight: 1.0,
+            letterSpacing: "-0.022em",
+            color: INK,
+            margin: 0,
+            marginBottom: "clamp(20px, 2.4vw, 28px)",
+            maxWidth: "16ch",
+            fontVariationSettings: '"opsz" 144',
+          }}
+        >
+          {HEADLINE_LEAD}{" "}
+          <span style={{ fontStyle: "italic", fontWeight: 300, color: STEEL_700 }}>{HEADLINE_TAIL}</span>
+        </h1>
+        <p style={{ fontFamily: SERIF, fontSize: "clamp(17px, 1.7vw, 20px)", lineHeight: 1.6, color: STEEL_700, margin: 0, maxWidth: "52ch", fontVariationSettings: '"opsz" 14' }}>
+          {SHORT_DEK} The marketplace exists for both sides — clients with tasks to post, and Renners who handle them. ID verification and a Checkr background check sit between the form below and a first task.
+        </p>
+      </div>
+
+      <MemoForm />
+
+      {/* Signature line — closes the memo. */}
+      <div style={{ paddingTop: "clamp(24px, 3vw, 32px)", borderTop: `1px solid ${STEEL_300}`, fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(17px, 1.6vw, 19px)", color: INK, fontVariationSettings: '"opsz" 36' }}>
+        — Renner
+      </div>
+    </div>
+  );
+}
+
+function MemoForm() {
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
@@ -147,15 +140,14 @@ function SignupSpecimen() {
         display: "flex",
         flexDirection: "column",
         gap: "clamp(20px, 2.4vw, 28px)",
-        maxWidth: 560,
       }}
     >
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(16px, 2vw, 24px)" }}>
-        <SpecimenField label="First" type="text" placeholder="James" autoComplete="given-name" />
-        <SpecimenField label="Last" type="text" placeholder="Mendez" autoComplete="family-name" />
+        <MemoField label="First" type="text" placeholder="James" autoComplete="given-name" />
+        <MemoField label="Last" type="text" placeholder="Mendez" autoComplete="family-name" />
       </div>
-      <SpecimenField label="Email" type="email" placeholder="you@firm.com" autoComplete="email" />
-      <SpecimenField label="Password" type="password" placeholder="At least 8 characters" autoComplete="new-password" />
+      <MemoField label="Email" type="email" placeholder="you@firm.com" autoComplete="email" />
+      <MemoField label="Password" type="password" placeholder="At least 8 characters" autoComplete="new-password" />
 
       <div style={{ display: "flex", flexDirection: "column", gap: "clamp(16px, 2vw, 20px)", marginTop: "clamp(8px, 1vw, 12px)" }}>
         <button
@@ -203,15 +195,11 @@ function SignupSpecimen() {
           <span aria-hidden style={{ opacity: 0.6 }}>→</span>
         </Link>
       </div>
-
-      <p style={{ fontFamily: SERIF, fontSize: 13, lineHeight: 1.6, color: STEEL_500, margin: 0, fontVariationSettings: '"opsz" 14' }}>
-        ID verification and a Checkr background check follow before either side can post or take a task.
-      </p>
     </form>
   );
 }
 
-function SpecimenField({
+function MemoField({
   label,
   type,
   placeholder,

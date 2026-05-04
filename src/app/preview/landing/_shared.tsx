@@ -16,7 +16,12 @@ export type LandingVariantKey =
   | "window"
   | "stack"
   | "letter"
-  | "specimen";
+  | "specimen"
+  | "manuscript"
+  | "glyph"
+  | "index"
+  | "memo"
+  | "cipher";
 
 export const LANDING_VARIANTS: ReadonlyArray<{
   href: string;
@@ -32,6 +37,11 @@ export const LANDING_VARIANTS: ReadonlyArray<{
   { href: "/preview/landing/bureau-stack", key: "stack", label: "Stack" },
   { href: "/preview/landing/bureau-letter", key: "letter", label: "Letter" },
   { href: "/preview/landing/bureau-specimen", key: "specimen", label: "Specimen" },
+  { href: "/preview/landing/bureau-manuscript", key: "manuscript", label: "Manuscript" },
+  { href: "/preview/landing/bureau-glyph", key: "glyph", label: "Glyph" },
+  { href: "/preview/landing/bureau-index", key: "index", label: "Index" },
+  { href: "/preview/landing/bureau-memo", key: "memo", label: "Memo" },
+  { href: "/preview/landing/bureau-cipher", key: "cipher", label: "Cipher" },
 ];
 
 import type { ShellTone } from "../how-it-works/_shared";
