@@ -121,7 +121,8 @@ function Triptych() {
             borderLeft: i === 0 ? "none" : `1px solid ${STEEL_300}`,
             display: "flex",
             flexDirection: "column",
-            gap: "clamp(12px, 1.4vw, 16px)",
+            justifyContent: "center",
+            gap: "clamp(16px, 1.8vw, 22px)",
             minHeight: "clamp(180px, 20vw, 240px)",
           }}
         >
