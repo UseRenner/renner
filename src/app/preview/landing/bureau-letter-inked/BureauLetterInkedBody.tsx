@@ -94,7 +94,7 @@ function Letter() {
             rendered in INK so the list reads with real presence
             in the body, rather than disappearing as a quiet
             continuation of the prose. */}
-        <p style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(16px, 1.6vw, 19px)", lineHeight: 1.5, color: INK, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+        <p style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(16px, 1.6vw, 19px)", lineHeight: 1.5, color: INK, margin: 0, fontVariationSettings: '"opsz" 14' }}>
           {CATEGORY_STRIP_SHORT.map((c, i, arr) => (
             <span key={c.id}>
               <span style={{ whiteSpace: "nowrap" }}>{c.title}</span>
