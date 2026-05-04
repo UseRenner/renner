@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { RennerMark, getToneVars, type ShellTone } from "../../how-it-works/_shared";
-import { HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
+import { CATEGORIES, HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
@@ -33,6 +33,7 @@ export function BureauGlyphBody({ tone }: { tone: ShellTone }) {
       <Header />
       <main style={{ flex: 1, display: "flex", flexDirection: "column" }}>
         <Glyph />
+        <CategoryStrip />
         <Body />
       </main>
       <Footer />
@@ -98,6 +99,56 @@ function Glyph() {
         </span>
       </div>
     </div>
+  );
+}
+
+// Categories — mono caps strip running across the page width
+// directly under the giant glyph. Bracketed by light hairlines
+// so it reads as a typographic seal between the wordmark and
+// the body. All nine descriptive titles fit because the strip
+// has the full max-1440 width to distribute across.
+function CategoryStrip() {
+  return (
+    <section
+      style={{
+        paddingTop: "clamp(20px, 2.4vw, 28px)",
+        paddingBottom: "clamp(20px, 2.4vw, 28px)",
+        paddingLeft: "clamp(24px, 4vw, 64px)",
+        paddingRight: "clamp(24px, 4vw, 64px)",
+        borderTop: `1px solid ${STEEL_300}`,
+        borderBottom: `1px solid ${STEEL_300}`,
+      }}
+    >
+      <ul
+        style={{
+          maxWidth: 1440,
+          margin: "0 auto",
+          listStyle: "none",
+          padding: 0,
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+          columnGap: "clamp(8px, 1.2vw, 16px)",
+          rowGap: 8,
+        }}
+      >
+        {CATEGORIES.map((c) => (
+          <li
+            key={c.id}
+            style={{
+              fontFamily: MONO,
+              fontSize: "clamp(10px, 0.95vw, 12px)",
+              fontWeight: 500,
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: STEEL_700,
+            }}
+          >
+            {c.label}
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }
 

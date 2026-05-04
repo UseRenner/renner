@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { RennerMark, getToneVars, type ShellTone } from "../../how-it-works/_shared";
-import { HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
+import { CATEGORIES, HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
@@ -15,6 +15,11 @@ const STEEL_300 = "var(--c-300, #cad1d8)";
 const RULE = "var(--c-rule, #eaedf0)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 const CHALK = "var(--c-panel, #eaedf0)";
+
+// Same trim as Specimen / Index — the panel is too narrow for
+// nine descriptive titles in mono caps, so we drop the longer /
+// niche entries.
+const WINDOW_OMIT = new Set(["property-access", "host-assistance", "open-house"]);
 
 // Bureau — WINDOW WALL.
 // One ink-bordered panel sits at the center of a chalk page,
@@ -109,6 +114,30 @@ function Panel() {
           <p style={{ fontFamily: SERIF, fontSize: "clamp(16px, 1.5vw, 18px)", lineHeight: 1.55, color: STEEL_700, margin: 0, whiteSpace: "nowrap", fontVariationSettings: '"opsz" 14' }}>
             {SHORT_DEK}
           </p>
+        </div>
+
+        {/* Categories — mono caps strip inside the panel,
+            distributed edge to edge. Bracketed by light hairlines
+            so it reads as a typographic stamp between the lede
+            and the form. */}
+        <div style={{ paddingTop: "clamp(18px, 2.2vw, 24px)", paddingBottom: "clamp(18px, 2.2vw, 24px)", borderTop: `1px solid ${STEEL_300}`, borderBottom: `1px solid ${STEEL_300}` }}>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", justifyContent: "space-between", columnGap: "clamp(8px, 1.2vw, 16px)", rowGap: 8 }}>
+            {CATEGORIES.filter((c) => !WINDOW_OMIT.has(c.id)).map((c) => (
+              <li
+                key={c.id}
+                style={{
+                  fontFamily: MONO,
+                  fontSize: "clamp(10px, 0.95vw, 12px)",
+                  fontWeight: 500,
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  color: STEEL_700,
+                }}
+              >
+                {c.label}
+              </li>
+            ))}
+          </ul>
         </div>
 
         <WindowForm />
