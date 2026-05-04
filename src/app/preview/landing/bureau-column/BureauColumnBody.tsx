@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { RennerMark, getToneVars } from "../../how-it-works/_shared";
+import { RennerMark, getToneVars, type ShellTone } from "../../how-it-works/_shared";
 import { HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK, SAMPLE_TASKS } from "../_content";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
@@ -23,13 +23,13 @@ const PAPER = "var(--c-bg, #fbfbfc)";
 // one vertical axis. Restraint is the message; the gate feels
 // editorial rather than transactional.
 
-export function BureauColumnBody() {
+export function BureauColumnBody({ tone }: { tone: ShellTone }) {
   // One curated sample task for the column wall — no pill-driven
   // swap. The first task in the list is the cover example.
   const sample = SAMPLE_TASKS[0];
 
   return (
-    <div style={{ ...getToneVars("paper"), backgroundColor: PAPER, color: INK, minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+    <div style={{ ...getToneVars(tone), backgroundColor: PAPER, color: INK, minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       {/* Top bar — minimal: previews link + sign-in. The
           wordmark moves down into the column itself so the
           page reads as one composition rather than chrome

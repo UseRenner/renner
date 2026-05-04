@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { RennerMark, getToneVars } from "../../how-it-works/_shared";
+import { RennerMark, getToneVars, type ShellTone } from "../../how-it-works/_shared";
 import { HEADLINE_LEAD, HEADLINE_TAIL, SAMPLE_TASKS, SHORT_DEK } from "../_content";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
@@ -14,7 +14,7 @@ const STEEL_500 = "var(--c-500, #7d8da0)";
 const STEEL_300 = "var(--c-300, #cad1d8)";
 const RULE = "var(--c-rule, #eaedf0)";
 const PAPER = "var(--c-bg, #fbfbfc)";
-const CHALK = "#eaedf0"; // Steel 100 — slightly off paper for the lower band
+const CHALK = "var(--c-panel, #eaedf0)"; // tone-aware lower band
 
 // Bureau — STACK WALL.
 // Two horizontal bands separated by an ink rule. The upper
@@ -25,11 +25,11 @@ const CHALK = "#eaedf0"; // Steel 100 — slightly off paper for the lower band
 // the door. Different rhythm than the 50/50 split — vertical
 // pacing instead of bilateral.
 
-export function BureauStackBody() {
+export function BureauStackBody({ tone }: { tone: ShellTone }) {
   const sample = SAMPLE_TASKS[0];
 
   return (
-    <div style={{ ...getToneVars("paper"), backgroundColor: PAPER, color: INK, minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+    <div style={{ ...getToneVars(tone), backgroundColor: PAPER, color: INK, minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <Header />
       <UpperBand sample={sample} />
       <LowerBand />

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { RennerMark, getToneVars } from "../../how-it-works/_shared";
+import { RennerMark, getToneVars, type ShellTone } from "../../how-it-works/_shared";
 import { HEADLINE_LEAD, HEADLINE_TAIL, SAMPLE_TASKS, SHORT_DEK } from "../_content";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
@@ -15,7 +15,7 @@ const STEEL_500 = "var(--c-500, #7d8da0)";
 const STEEL_300 = "var(--c-300, #cad1d8)";
 const RULE = "var(--c-rule, #eaedf0)";
 const PAPER = "var(--c-bg, #fbfbfc)";
-const PANEL = "#eaedf0";
+const PANEL = "var(--c-panel, #eaedf0)";
 
 // Bureau — ITERATION OF THE LIVE LANDING.
 // Same skeleton as renner-zeta.vercel.app: 50/50 split, wordmark
@@ -28,12 +28,12 @@ const PANEL = "#eaedf0";
 // click, but they've lost their "pill" shape — they're now
 // hairline-bordered chips reading as Bureau audience tabs.
 
-export function BureauIterationBody() {
+export function BureauIterationBody({ tone }: { tone: ShellTone }) {
   const [activeId, setActiveId] = useState<string>(SAMPLE_TASKS[0].category);
   const active = SAMPLE_TASKS.find((t) => t.category === activeId) ?? SAMPLE_TASKS[0];
 
   return (
-    <div style={{ ...getToneVars("paper"), backgroundColor: PAPER, color: INK, minHeight: "100vh" }}>
+    <div style={{ ...getToneVars(tone), backgroundColor: PAPER, color: INK, minHeight: "100vh" }}>
       <div className="bureau-iter-split">
         <LeftPanel active={active} activeId={activeId} onSelect={setActiveId} />
         <RightPanel />
@@ -49,6 +49,18 @@ export function BureauIterationBody() {
         @media (max-width: 880px) {
           .bureau-iter-split {
             grid-template-columns: 1fr;
+          }
+        }
+        /* When the panel is too narrow for the pills to fit
+           one row, swap to dot navigation. The pill/dot wrappers
+           are emitted by helper components, so we reach them
+           with :global(). */
+        @media (max-width: 1100px) and (min-width: 881px) {
+          .bureau-iter-split :global(.bureau-iter-pills-wrap) {
+            display: none !important;
+          }
+          .bureau-iter-split :global(.bureau-iter-dots-wrap) {
+            display: flex !important;
           }
         }
       `}</style>
@@ -111,6 +123,7 @@ function LeftPanel({
         <SampleCard task={active} />
 
         <CategoryPills activeId={activeId} onSelect={onSelect} />
+        <CategoryDots activeId={activeId} onSelect={onSelect} />
       </div>
 
       <div aria-hidden />
@@ -167,7 +180,7 @@ function CategoryPills({
   onSelect: (id: string) => void;
 }) {
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 520 }}>
+    <div className="bureau-iter-pills-wrap" style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 520 }}>
       <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
         Categories
       </div>
@@ -197,6 +210,51 @@ function CategoryPills({
             >
               {t.category}
             </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// Dots fallback: when the panel is too narrow for the pills to
+// fit on one row, show a row of small clickable dots instead.
+// Same activeId state powers both — the pills hide and dots
+// show via a media query below.
+function CategoryDots({
+  activeId,
+  onSelect,
+}: {
+  activeId: string;
+  onSelect: (id: string) => void;
+}) {
+  const activeCategory = SAMPLE_TASKS.find((t) => t.category === activeId)?.category ?? "";
+  return (
+    <div className="bureau-iter-dots-wrap" style={{ display: "none", flexDirection: "column", gap: 12, maxWidth: 520 }}>
+      <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
+        Categories · <span style={{ color: INK }}>{activeCategory}</span>
+      </div>
+      <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+        {SAMPLE_TASKS.map((t) => {
+          const isActive = t.category === activeId;
+          return (
+            <button
+              key={t.category}
+              type="button"
+              tabIndex={-1}
+              aria-label={`Show ${t.category} sample`}
+              onClick={() => onSelect(t.category)}
+              style={{
+                width: 10,
+                height: 10,
+                borderRadius: "50%",
+                backgroundColor: isActive ? INK : "transparent",
+                border: `1px solid ${INK}`,
+                padding: 0,
+                cursor: "pointer",
+                transition: "background-color 120ms ease",
+              }}
+            />
           );
         })}
       </div>

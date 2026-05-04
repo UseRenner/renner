@@ -2,17 +2,21 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { RennerMark, getToneVars } from "../../how-it-works/_shared";
+import { RennerMark, getToneVars, type ShellTone } from "../../how-it-works/_shared";
 import { HEADLINE_LEAD, HEADLINE_TAIL, SAMPLE_TASKS, SHORT_DEK } from "../_content";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
 const MONO = "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
-// In ink tone, the tokens flip: --c-text is paper, --c-bg is
-// ink, --c-300 is mid-grey on dark, etc. We re-name them here
-// so the JSX still reads naturally — INK is the page bg, PAPER
-// is the foreground, BORDER is the rule weight.
+// Vault is the dark register variant — when given tone="ink" it
+// renders as the original Vault. The constants below intentionally
+// invert the standard naming: PAPER is the foreground (var(--c-text))
+// and INK is the page background (var(--c-bg)). In paper tone they
+// resolve to the opposite of the variable name, which is exactly
+// what we want for a "wall that looks like its environment" — the
+// wall always reads as light-text-on-dark or dark-text-on-light
+// depending on the tone passed.
 const PAPER = "var(--c-text, #fbfbfc)";
 const PAPER_DIM = "var(--c-600, #cad1d8)";
 const PAPER_FOG = "var(--c-500, #a7b2be)";
@@ -30,12 +34,12 @@ const PANEL = "var(--c-panel, #38414d)";
 // card. Lead-capture's same job; "private club" instead of
 // "editorial publication."
 
-export function BureauVaultBody() {
+export function BureauVaultBody({ tone }: { tone: ShellTone }) {
   const [activeId, setActiveId] = useState<string>(SAMPLE_TASKS[0].category);
   const active = SAMPLE_TASKS.find((t) => t.category === activeId) ?? SAMPLE_TASKS[0];
 
   return (
-    <div style={{ ...getToneVars("ink"), backgroundColor: INK, color: PAPER, minHeight: "100vh" }}>
+    <div style={{ ...getToneVars(tone), backgroundColor: INK, color: PAPER, minHeight: "100vh" }}>
       <div className="bureau-vt-split">
         <LeftPanel active={active} activeId={activeId} onSelect={setActiveId} />
         <RightPanel />
@@ -51,6 +55,14 @@ export function BureauVaultBody() {
         @media (max-width: 880px) {
           .bureau-vt-split {
             grid-template-columns: 1fr;
+          }
+        }
+        @media (max-width: 1100px) and (min-width: 881px) {
+          .bureau-vt-split :global(.bureau-vt-pills-wrap) {
+            display: none !important;
+          }
+          .bureau-vt-split :global(.bureau-vt-dots-wrap) {
+            display: flex !important;
           }
         }
       `}</style>
@@ -112,6 +124,7 @@ function LeftPanel({
         <SamplePeek task={active} />
 
         <CategoryPills activeId={activeId} onSelect={onSelect} />
+        <CategoryDots activeId={activeId} onSelect={onSelect} />
       </div>
 
       <div aria-hidden />
@@ -171,7 +184,7 @@ function CategoryPills({
   onSelect: (id: string) => void;
 }) {
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 520 }}>
+    <div className="bureau-vt-pills-wrap" style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 520 }}>
       <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: PAPER_FOG }}>
         Categories
       </div>
@@ -200,6 +213,49 @@ function CategoryPills({
             >
               {t.category}
             </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// Dots fallback: when the panel is too narrow for the pills to
+// fit on one row, show a row of small clickable dots instead.
+function CategoryDots({
+  activeId,
+  onSelect,
+}: {
+  activeId: string;
+  onSelect: (id: string) => void;
+}) {
+  const activeCategory = SAMPLE_TASKS.find((t) => t.category === activeId)?.category ?? "";
+  return (
+    <div className="bureau-vt-dots-wrap" style={{ display: "none", flexDirection: "column", gap: 12, maxWidth: 520 }}>
+      <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: PAPER_FOG }}>
+        Categories · <span style={{ color: PAPER }}>{activeCategory}</span>
+      </div>
+      <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+        {SAMPLE_TASKS.map((t) => {
+          const isActive = t.category === activeId;
+          return (
+            <button
+              key={t.category}
+              type="button"
+              tabIndex={-1}
+              aria-label={`Show ${t.category} sample`}
+              onClick={() => onSelect(t.category)}
+              style={{
+                width: 10,
+                height: 10,
+                borderRadius: "50%",
+                backgroundColor: isActive ? PAPER : "transparent",
+                border: `1px solid ${PAPER}`,
+                padding: 0,
+                cursor: "pointer",
+                transition: "background-color 120ms ease",
+              }}
+            />
           );
         })}
       </div>

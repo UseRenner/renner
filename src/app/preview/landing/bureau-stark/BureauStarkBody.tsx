@@ -1,32 +1,41 @@
 "use client";
 
 import Link from "next/link";
-import { RennerMark } from "../../how-it-works/_shared";
+import { RennerMark, getToneVars, type ShellTone } from "../../how-it-works/_shared";
 import { HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
 const MONO = "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
-const INK = "#0d0f12";
-const STEEL_700 = "#38414d";
-const STEEL_500 = "#7d8da0";
-const STEEL_300 = "#cad1d8";
-const RULE = "#eaedf0";
-const PAPER = "#fbfbfc";
-const PAPER_FOG = "rgba(251,251,252,0.55)";
-const PAPER_DIM = "rgba(251,251,252,0.78)";
+// Stark is two-tone: left panel uses the callout palette (always
+// the strongest contrast against the page tone, light on dark or
+// dark on light), right panel uses the current tone. Switching
+// tone via ?tone= flips which side reads dark and which reads
+// light, but the high-contrast two-tone identity stays.
+const LEFT_BG = "var(--c-callout-bg, #0d0f12)";
+const LEFT_FG = "var(--c-callout-text, #fbfbfc)";
+const LEFT_FG_DIM = "var(--c-callout-dim, rgba(251,251,252,0.78))";
+const LEFT_FG_FOG = "var(--c-callout-fog, rgba(251,251,252,0.55))";
+
+const RIGHT_BG = "var(--c-bg, #fbfbfc)";
+const RIGHT_FG = "var(--c-text, #0d0f12)";
+const RIGHT_FG_DIM = "var(--c-700, #38414d)";
+const RIGHT_FG_FOG = "var(--c-500, #7d8da0)";
+const RIGHT_BORDER = "var(--c-300, #cad1d8)";
+const RIGHT_RULE = "var(--c-rule, #eaedf0)";
 
 // Bureau — STARK WALL.
-// Two-tone 50/50. The left half is ink — paper headline, paper
-// dek, no peek, just type on a dark field. The right half is
-// paper — signup form. The contrast between the two halves
-// is the wall: dark on one side, light on the other, hairline
-// between. Strongest visual statement of all the side-by-sides.
+// Two-tone 50/50. The left half is callout-bg — paper headline,
+// paper dek, no peek, just type on a dark field. The right half
+// is the current tone's bg — signup form. The contrast between
+// the two halves is the wall: dark on one side, light on the
+// other, hairline between. In ink tone the contrast inverts:
+// left becomes light, right becomes dark.
 
-export function BureauStarkBody() {
+export function BureauStarkBody({ tone }: { tone: ShellTone }) {
   return (
-    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+    <div style={{ ...getToneVars(tone), minHeight: "100vh", display: "flex", flexDirection: "column", backgroundColor: RIGHT_BG }}>
       <div className="bureau-sk-split">
         <LeftPanel />
         <RightPanel />
@@ -53,8 +62,8 @@ function LeftPanel() {
   return (
     <section
       style={{
-        backgroundColor: INK,
-        color: PAPER,
+        backgroundColor: LEFT_BG,
+        color: LEFT_FG,
         padding: "clamp(40px, 5vw, 72px)",
         display: "flex",
         flexDirection: "column",
@@ -64,7 +73,7 @@ function LeftPanel() {
     >
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
         <RennerMark size={36} weight={300} />
-        <Link href="/preview/landing" style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: PAPER_FOG, textDecoration: "none" }}>
+        <Link href="/preview/landing" style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: LEFT_FG_FOG, textDecoration: "none" }}>
           ← All previews
         </Link>
       </div>
@@ -77,16 +86,16 @@ function LeftPanel() {
             fontSize: "clamp(48px, 6.4vw, 96px)",
             lineHeight: 0.96,
             letterSpacing: "-0.024em",
-            color: PAPER,
+            color: LEFT_FG,
             margin: 0,
             maxWidth: "14ch",
             fontVariationSettings: '"opsz" 144',
           }}
         >
           {HEADLINE_LEAD}{" "}
-          <span style={{ fontStyle: "italic", fontWeight: 300, color: PAPER_DIM }}>{HEADLINE_TAIL}</span>
+          <span style={{ fontStyle: "italic", fontWeight: 300, color: LEFT_FG_DIM }}>{HEADLINE_TAIL}</span>
         </h1>
-        <p style={{ fontFamily: SERIF, fontSize: "clamp(15px, 1.4vw, 17px)", lineHeight: 1.55, color: PAPER_DIM, margin: 0, marginTop: 24, maxWidth: "44ch", fontVariationSettings: '"opsz" 14' }}>
+        <p style={{ fontFamily: SERIF, fontSize: "clamp(15px, 1.4vw, 17px)", lineHeight: 1.55, color: LEFT_FG_DIM, margin: 0, marginTop: 24, maxWidth: "44ch", fontVariationSettings: '"opsz" 14' }}>
           {SHORT_DEK}
         </p>
       </div>
@@ -100,7 +109,7 @@ function RightPanel() {
   return (
     <section
       style={{
-        backgroundColor: PAPER,
+        backgroundColor: RIGHT_BG,
         padding: "clamp(40px, 5vw, 72px)",
         display: "flex",
         flexDirection: "column",
@@ -108,9 +117,9 @@ function RightPanel() {
       }}
     >
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
-        <p style={{ fontFamily: SANS, fontSize: 13, color: STEEL_700, margin: 0 }}>
+        <p style={{ fontFamily: SANS, fontSize: 13, color: RIGHT_FG_DIM, margin: 0 }}>
           Have an account?{" "}
-          <Link href="/signin" style={{ color: INK, fontWeight: 500, textDecoration: "underline", textUnderlineOffset: 3 }}>
+          <Link href="/signin" style={{ color: RIGHT_FG, fontWeight: 500, textDecoration: "underline", textUnderlineOffset: 3 }}>
             Sign in
           </Link>
         </p>
@@ -135,13 +144,13 @@ function SignupForm() {
         display: "flex",
         flexDirection: "column",
         gap: 20,
-        border: `1px solid ${INK}`,
+        border: `1px solid ${RIGHT_FG}`,
         padding: "clamp(28px, 3.5vw, 40px)",
-        backgroundColor: PAPER,
+        backgroundColor: RIGHT_BG,
       }}
     >
       <div>
-        <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500 }}>
+        <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: RIGHT_FG_FOG }}>
           Create an account
         </div>
       </div>
@@ -159,9 +168,9 @@ function SignupForm() {
             fontFamily: SANS,
             fontSize: 14,
             fontWeight: 500,
-            color: PAPER,
-            backgroundColor: INK,
-            border: `1px solid ${INK}`,
+            color: RIGHT_BG,
+            backgroundColor: RIGHT_FG,
+            border: `1px solid ${RIGHT_FG}`,
             padding: "14px 22px",
             cursor: "pointer",
             display: "inline-flex",
@@ -179,9 +188,9 @@ function SignupForm() {
             fontFamily: SANS,
             fontSize: 14,
             fontWeight: 500,
-            color: INK,
-            backgroundColor: PAPER,
-            border: `1px solid ${INK}`,
+            color: RIGHT_FG,
+            backgroundColor: RIGHT_BG,
+            border: `1px solid ${RIGHT_FG}`,
             padding: "14px 22px",
             display: "inline-flex",
             alignItems: "center",
@@ -195,7 +204,7 @@ function SignupForm() {
         </Link>
       </div>
 
-      <p style={{ fontFamily: SERIF, fontSize: 13, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+      <p style={{ fontFamily: SERIF, fontSize: 13, lineHeight: 1.55, color: RIGHT_FG_DIM, margin: 0, fontVariationSettings: '"opsz" 14' }}>
         ID verification + Checkr background check follow before any first task is posted or booked.
       </p>
     </form>
@@ -215,7 +224,7 @@ function BureauField({
 }) {
   return (
     <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-      <span style={{ fontFamily: MONO, fontSize: 9, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
+      <span style={{ fontFamily: MONO, fontSize: 9, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: RIGHT_FG_FOG }}>
         {label}
       </span>
       <input
@@ -225,9 +234,9 @@ function BureauField({
         style={{
           fontFamily: SANS,
           fontSize: 14,
-          color: INK,
-          backgroundColor: PAPER,
-          border: `1px solid ${STEEL_300}`,
+          color: RIGHT_FG,
+          backgroundColor: RIGHT_BG,
+          border: `1px solid ${RIGHT_BORDER}`,
           padding: "12px 14px",
           outline: "none",
         }}
@@ -238,13 +247,13 @@ function BureauField({
 
 function Footer() {
   return (
-    <footer style={{ paddingTop: "clamp(40px, 5vw, 64px)", paddingBottom: "clamp(40px, 5vw, 64px)", paddingLeft: "clamp(28px, 4vw, 64px)", paddingRight: "clamp(28px, 4vw, 64px)", borderTop: `1px solid ${RULE}`, backgroundColor: PAPER }}>
+    <footer style={{ paddingTop: "clamp(40px, 5vw, 64px)", paddingBottom: "clamp(40px, 5vw, 64px)", paddingLeft: "clamp(28px, 4vw, 64px)", paddingRight: "clamp(28px, 4vw, 64px)", borderTop: `1px solid ${RIGHT_RULE}`, backgroundColor: RIGHT_BG }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 20 }}>
         <RennerMark size={28} weight={300} />
-        <div style={{ display: "flex", alignItems: "center", gap: 24, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
-          <Link href="/contact" style={{ color: STEEL_700, textDecoration: "none" }}>Contact</Link>
-          <Link href="/terms" style={{ color: STEEL_700, textDecoration: "none" }}>Terms</Link>
-          <Link href="/privacy" style={{ color: STEEL_700, textDecoration: "none" }}>Privacy</Link>
+        <div style={{ display: "flex", alignItems: "center", gap: 24, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: RIGHT_FG_FOG }}>
+          <Link href="/contact" style={{ color: RIGHT_FG_DIM, textDecoration: "none" }}>Contact</Link>
+          <Link href="/terms" style={{ color: RIGHT_FG_DIM, textDecoration: "none" }}>Terms</Link>
+          <Link href="/privacy" style={{ color: RIGHT_FG_DIM, textDecoration: "none" }}>Privacy</Link>
           <span>·</span>
           <span>© 2026</span>
         </div>

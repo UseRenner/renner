@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { RennerMark, getToneVars } from "../../how-it-works/_shared";
+import { RennerMark, getToneVars, type ShellTone } from "../../how-it-works/_shared";
 import { HEADLINE_LEAD, HEADLINE_TAIL, SAMPLE_TASKS, SHORT_DEK } from "../_content";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
@@ -23,9 +23,9 @@ const PAPER = "var(--c-bg, #fbfbfc)";
 
 const TRIO = [SAMPLE_TASKS[0], SAMPLE_TASKS[1], SAMPLE_TASKS[2]];
 
-export function BureauTrioBody() {
+export function BureauTrioBody({ tone }: { tone: ShellTone }) {
   return (
-    <div style={{ ...getToneVars("paper"), backgroundColor: PAPER, color: INK, minHeight: "100vh" }}>
+    <div style={{ ...getToneVars(tone), backgroundColor: PAPER, color: INK, minHeight: "100vh" }}>
       <div className="bureau-tr-split">
         <LeftPanel />
         <RightPanel />

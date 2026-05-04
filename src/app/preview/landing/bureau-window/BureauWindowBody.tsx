@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { RennerMark, getToneVars } from "../../how-it-works/_shared";
+import { RennerMark, getToneVars, type ShellTone } from "../../how-it-works/_shared";
 import { HEADLINE_LEAD, HEADLINE_TAIL, SAMPLE_TASKS, SHORT_DEK } from "../_content";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
@@ -14,7 +14,7 @@ const STEEL_500 = "var(--c-500, #7d8da0)";
 const STEEL_300 = "var(--c-300, #cad1d8)";
 const RULE = "var(--c-rule, #eaedf0)";
 const PAPER = "var(--c-bg, #fbfbfc)";
-const CHALK = "#eaedf0"; // Steel 100 — the page surrounding the panel
+const CHALK = "var(--c-panel, #eaedf0)"; // tone-aware page surrounding the panel
 
 // Bureau — WINDOW WALL.
 // A single bordered panel sits at the center of a chalk page,
@@ -25,11 +25,11 @@ const CHALK = "#eaedf0"; // Steel 100 — the page surrounding the panel
 // composed object placed before the visitor — open it or
 // don't.
 
-export function BureauWindowBody() {
+export function BureauWindowBody({ tone }: { tone: ShellTone }) {
   const sample = SAMPLE_TASKS[0];
 
   return (
-    <div style={{ ...getToneVars("paper"), backgroundColor: CHALK, color: INK, minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+    <div style={{ ...getToneVars(tone), backgroundColor: CHALK, color: INK, minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <Header />
       <main style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "clamp(32px, 4vw, 64px) clamp(20px, 3vw, 48px)" }}>
         <Panel sample={sample} />
@@ -116,9 +116,6 @@ function Panel({ sample }: { sample: typeof SAMPLE_TASKS[number] }) {
 function SamplePeek({ task }: { task: typeof SAMPLE_TASKS[number] }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-      <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
-        Posted task
-      </div>
       <article
         aria-hidden
         style={{
