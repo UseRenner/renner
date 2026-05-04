@@ -22,9 +22,9 @@ const CHALK = "var(--c-panel, #eaedf0)";
 
 function SignInPrompt() {
   return (
-    <p style={{ fontFamily: SANS, fontSize: 11, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: STEEL_500, margin: 0 }}>
+    <p style={{ fontFamily: SANS, fontStyle: "italic", fontSize: 15, color: STEEL_500, margin: 0 }}>
       Have an account?{" "}
-      <Link href="/signin" style={{ color: STEEL_700, textDecoration: "underline", textUnderlineOffset: 3 }}>
+      <Link href="/signin" style={{ color: STEEL_700, fontWeight: 500, textDecoration: "underline", textUnderlineOffset: 3 }}>
         Sign in
       </Link>
     </p>
@@ -254,7 +254,7 @@ function Footer() {
     >
       <div style={{ maxWidth: 1440, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
         <RennerMark size={28} weight={300} />
-        <div style={{ display: "flex", alignItems: "center", gap: 24, fontFamily: SANS, fontSize: 11, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: STEEL_500 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 18, fontFamily: SANS, fontStyle: "italic", fontSize: 15, color: STEEL_500 }}>
           <Link href="/contact" style={{ color: STEEL_700, textDecoration: "none" }}>Contact</Link>
           <Link href="/terms" style={{ color: STEEL_700, textDecoration: "none" }}>Terms</Link>
           <Link href="/privacy" style={{ color: STEEL_700, textDecoration: "none" }}>Privacy</Link>
