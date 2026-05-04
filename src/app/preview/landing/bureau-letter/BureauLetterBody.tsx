@@ -12,24 +12,18 @@ const INK = "var(--c-text, #0d0f12)";
 const STEEL_700 = "var(--c-700, #38414d)";
 const STEEL_500 = "var(--c-500, #7d8da0)";
 const STEEL_300 = "var(--c-300, #cad1d8)";
-const RULE = "var(--c-rule, #eaedf0)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 
-
 // Bureau — LETTER WALL.
-// The page is a single piece of editorial stationery. A
-// masthead hairline across the top, a narrow centered reading
-// column below, and form fields that sit DIRECTLY in the page
-// — no wrapping form box, no enclosing border. Each field has
-// its own input rule; the form as a whole is just a stack of
-// fields integrated into the body of the letter, like an RSVP
-// card printed inside a letter.
+// Editorial stationery: masthead hairline at the top, a narrow
+// centered reading column below, fields-in-page form integrated
+// directly into the body. The categories strip sits in the
+// editorial body as italic serif at a generous size in INK, so
+// the list carries real presence in the page.
 //
-// What makes it distinct from any signup page I've seen: most
-// signup forms are walled off — a card, a box, a border. Here
-// the form is part of the editorial body. The page reads as a
-// continuous composition from headline to closing line, with
-// no design seam between "the writing" and "the form."
+// Most signup forms are walled off — a card, a box, a border.
+// Here the form is part of the editorial body. The page reads
+// as a continuous composition from headline to closing line.
 
 export function BureauLetterBody({ tone }: { tone: ShellTone }) {
   return (
@@ -42,8 +36,6 @@ export function BureauLetterBody({ tone }: { tone: ShellTone }) {
 }
 
 function Masthead() {
-  // Single hairline below the masthead — quieter than letterhead,
-  // still a clear horizon for the page.
   return (
     <header
       style={{
@@ -77,7 +69,6 @@ function Letter() {
       }}
     >
       <div style={{ maxWidth: 640, margin: "0 auto", display: "flex", flexDirection: "column", gap: "clamp(40px, 5vw, 64px)" }}>
-        {/* Headline + dek read as the opening of the letter. */}
         <div>
           <h1
             style={{
@@ -101,12 +92,11 @@ function Letter() {
           </p>
         </div>
 
-        {/* Categories — italic serif strip with middots, sitting
-            in the editorial body between the dek and the form.
-            Same descriptive titles as Index, lighter handling
-            (no rules) so it reads as a continuation of the
-            letter rather than a framed component. */}
-        <p style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(14px, 1.4vw, 16px)", lineHeight: 1.5, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 36' }}>
+        {/* Categories — bumped to clamp(16, 1.6vw, 19) and
+            rendered in INK so the list reads with real presence
+            in the body, rather than disappearing as a quiet
+            continuation of the prose. */}
+        <p style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(16px, 1.6vw, 19px)", lineHeight: 1.5, color: INK, margin: 0, fontVariationSettings: '"opsz" 14' }}>
           {CATEGORY_STRIP_SHORT.map((c, i, arr) => (
             <span key={c.id}>
               <span style={{ whiteSpace: "nowrap" }}>{c.title}</span>
@@ -117,10 +107,6 @@ function Letter() {
           ))}
         </p>
 
-        {/* The form sits directly in the page — no wrapping
-            border. Each field has its own input rule. The form
-            reads as the body of the letter continuing into an
-            RSVP card. */}
         <SignupLetter />
       </div>
     </main>
@@ -144,11 +130,6 @@ function SignupLetter() {
       <LetterField label="Email" type="email" placeholder="you@firm.com" autoComplete="email" />
       <LetterField label="Password" type="password" placeholder="At least 8 characters" autoComplete="new-password" />
 
-      {/* Primary action: a black button that sits in the column.
-          Secondary action: a hairline-rule text link below. The
-          asymmetry — solid button + spare link — reads as
-          "primary path / quieter alternative" without a second
-          button competing for attention. */}
       <div style={{ display: "flex", flexDirection: "column", gap: "clamp(16px, 2vw, 20px)", marginTop: "clamp(8px, 1vw, 12px)" }}>
         <button
           type="submit"
@@ -173,9 +154,6 @@ function SignupLetter() {
           <span aria-hidden style={{ opacity: 0.7 }}>→</span>
         </button>
 
-        {/* Secondary path as an italic-serif text link with a
-            hairline beneath. Reads like a closing line in a
-            letter ("with regards"), not like a competing CTA. */}
         <Link
           href="/become-a-renner"
           style={{
@@ -217,9 +195,6 @@ function LetterField({
   placeholder: string;
   autoComplete: string;
 }) {
-  // Field with no surrounding box — the input has only a
-  // bottom rule (like a fill-in-the-blank line on a paper
-  // form). Keeps the "page integration" feel.
   return (
     <label style={{ display: "flex", flexDirection: "column", gap: 8 }}>
       <span style={{ fontFamily: MONO, fontSize: 9, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>

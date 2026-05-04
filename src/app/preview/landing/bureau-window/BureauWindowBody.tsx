@@ -12,24 +12,16 @@ const INK = "var(--c-text, #0d0f12)";
 const STEEL_700 = "var(--c-700, #38414d)";
 const STEEL_500 = "var(--c-500, #7d8da0)";
 const STEEL_300 = "var(--c-300, #cad1d8)";
-const RULE = "var(--c-rule, #eaedf0)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 const CHALK = "var(--c-panel, #eaedf0)";
 
-
 // Bureau — WINDOW WALL.
-// One ink-bordered panel sits at the center of a chalk page,
-// like an invitation card laid on a desk. Inside the panel,
-// everything reads down a single vertical axis: mark above the
-// hairline, then headline, dek, form, secondary path. No
-// internal split, no peek beside the form — the eye moves
-// straight down without choosing.
-//
-// The panel-on-chalk does the work the form-box-in-the-corner
-// pattern usually does, but as one composed object instead of
-// chrome. The negative space around the panel sells the "card
-// on a desk" metaphor; the vertical rhythm inside sells the
-// reading.
+// A paper panel sits at the center of a chalk page — outer
+// panel border, header-bar hairline, and categories framed top
+// and bottom, all rendered in STEEL_300 (softer than ink rules
+// but still structural). Inside the panel, a single vertical
+// axis: mark + sign-in, headline, dek, categories, form,
+// secondary path. The eye moves straight down.
 
 export function BureauWindowBody({ tone }: { tone: ShellTone }) {
   return (
@@ -55,7 +47,7 @@ function Panel() {
     <article
       style={{
         backgroundColor: PAPER,
-        border: `1px solid ${INK}`,
+        border: `1px solid ${STEEL_300}`,
         width: "100%",
         maxWidth: 640,
         display: "flex",
@@ -65,7 +57,7 @@ function Panel() {
       <div
         style={{
           padding: "clamp(18px, 2vw, 24px) clamp(28px, 3.5vw, 44px)",
-          borderBottom: `1px solid ${INK}`,
+          borderBottom: `1px solid ${STEEL_300}`,
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
@@ -112,22 +104,30 @@ function Panel() {
           </p>
         </div>
 
-        {/* Categories — italic serif with middots, bracketed by
-            light hairlines so it reads as a typographic stamp
-            between the lede and the form. The italic serif
-            register conveys "Renner takes care of things" rather
-            than the clipped mono-caps "running through tasks." */}
+        {/* Categories — italic serif distributed edge to edge
+            between two light hairlines. No middots: each title
+            sits as its own typographic stamp, the gaps between
+            them carry the separation. */}
         <div style={{ paddingTop: "clamp(18px, 2.2vw, 24px)", paddingBottom: "clamp(18px, 2.2vw, 24px)", borderTop: `1px solid ${STEEL_300}`, borderBottom: `1px solid ${STEEL_300}` }}>
-          <p style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(13px, 1.2vw, 15px)", lineHeight: 1.5, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
-            {CATEGORY_STRIP_SHORT.map((c, i, arr) => (
-              <span key={c.id}>
-                <span style={{ whiteSpace: "nowrap" }}>{c.title}</span>
-                {i < arr.length - 1 && (
-                  <span aria-hidden style={{ marginLeft: "clamp(8px, 1.2vw, 14px)", marginRight: "clamp(8px, 1.2vw, 14px)", color: STEEL_300 }}>·</span>
-                )}
-              </span>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", justifyContent: "space-between", columnGap: "clamp(8px, 1.2vw, 16px)", rowGap: 8 }}>
+            {CATEGORY_STRIP_SHORT.map((c) => (
+              <li
+                key={c.id}
+                style={{
+                  fontFamily: SERIF,
+                  fontStyle: "italic",
+                  fontWeight: 300,
+                  fontSize: "clamp(14px, 1.3vw, 16px)",
+                  lineHeight: 1.5,
+                  color: INK,
+                  fontVariationSettings: '"opsz" 14',
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {c.title}
+              </li>
             ))}
-          </p>
+          </ul>
         </div>
 
         <WindowForm />

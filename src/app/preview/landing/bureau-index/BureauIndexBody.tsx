@@ -105,32 +105,28 @@ function EntryStrip() {
   return (
     <div
       style={{
-        width: "fit-content",
-        maxWidth: "100%",
         borderTop: `1px solid ${INK}`,
         borderBottom: `1px solid ${INK}`,
         paddingTop: "clamp(28px, 3vw, 40px)",
         paddingBottom: "clamp(28px, 3vw, 40px)",
       }}
     >
-      <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", alignItems: "baseline", rowGap: 8 }}>
-        {CATEGORY_STRIP.map((c, i, arr) => (
+      <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "baseline", columnGap: "clamp(8px, 1.2vw, 16px)", rowGap: 8 }}>
+        {CATEGORY_STRIP.map((c) => (
           <li
             key={c.id}
             style={{
               fontFamily: SERIF,
               fontStyle: "italic",
               fontWeight: 300,
-              fontSize: "clamp(14px, 1.4vw, 17px)",
+              fontSize: "clamp(15px, 1.4vw, 18px)",
               lineHeight: 1.3,
               color: INK,
-              fontVariationSettings: '"opsz" 36',
+              fontVariationSettings: '"opsz" 14',
+              whiteSpace: "nowrap",
             }}
           >
             {c.title}
-            {i < arr.length - 1 && (
-              <span aria-hidden style={{ marginLeft: "clamp(8px, 1.2vw, 14px)", marginRight: "clamp(8px, 1.2vw, 14px)", color: STEEL_300 }}>·</span>
-            )}
           </li>
         ))}
       </ul>

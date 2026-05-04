@@ -18,43 +18,25 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     slug: "bureau-window",
     label: "Bureau · Window",
     subtitle: "Single panel on chalk",
-    note: "One ink-bordered panel at the center of a chalk page. Inside, everything stacks down a single vertical axis — mark above the hairline, headline, dek, form, secondary path. No internal split.",
-  },
-  {
-    slug: "bureau-window-soft",
-    label: "Bureau · Window · Soft",
-    subtitle: "Two-tone panel, no borders",
-    note: "Same panel-on-chalk composition rendered with two tones and no borders — the paper-on-chalk tone change defines the panel's edge. Categories switch from mono caps to italic serif. Reads softer than the original Window.",
+    note: "One paper panel at the center of a chalk page, framed by light steel hairlines. Inside, everything stacks down a single vertical axis — mark above the rule, headline, dek, categories edge to edge between two rules, form, secondary path.",
   },
   {
     slug: "bureau-letter",
     label: "Bureau · Letter",
     subtitle: "Editorial stationery",
-    note: "Reads as a single piece of letter paper. Hairline masthead, narrow centered reading column, form fields integrated directly into the body — no wrapping form box. Each input is a fill-in-the-blank line.",
-  },
-  {
-    slug: "bureau-letter-inked",
-    label: "Bureau · Letter · Inked",
-    subtitle: "Letter, with categories rendered in ink",
-    note: "Same editorial stationery as Letter, but the categories strip is bumped up a size and rendered in INK rather than steel — the list reads with real presence in the body instead of disappearing as a quiet continuation of the prose.",
+    note: "Reads as a single piece of letter paper. Hairline masthead, narrow centered reading column, fields-in-page form integrated directly into the body. Categories sit in italic serif at a generous INK size as the editorial body's list of what Renner handles.",
   },
   {
     slug: "bureau-specimen",
     label: "Bureau · Specimen",
     subtitle: "Type specimen sheet",
-    note: "Sections separated by single hairlines move from headline to categories to form. No section labels — each element speaks for itself.",
+    note: "Sections separated by single hairlines move from headline to categories to form. Categories distribute edge to edge between two light hairlines. No section labels — each element speaks for itself.",
   },
   {
     slug: "bureau-glyph",
     label: "Bureau · Glyph",
     subtitle: "Wordmark as architecture",
     note: "The wordmark renders large across the top of the page — italic, low-opsz, generous letter-spacing — anchoring the composition. Reading order: glyph → headline → dek → categories → form, with the categories tucked inside the headline column so the headline keeps top billing.",
-  },
-  {
-    slug: "bureau-glyph-light",
-    label: "Bureau · Glyph · Light",
-    subtitle: "Glyph with the categories at lighter weight",
-    note: "Identical to Glyph in every respect except the categories strip is rendered at fontWeight 300 instead of 400 — quieter, more refined italic.",
   },
   {
     slug: "bureau-index",
@@ -72,10 +54,10 @@ export default function LandingPreviewIndex() {
           Landing previews · Bureau
         </div>
         <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(36px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, marginBottom: 16, fontVariationSettings: '"opsz" 60' }}>
-          Nine Bureau walls.
+          Six Bureau walls.
         </h1>
         <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.55, color: "#38414d", margin: 0, marginBottom: 56, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-          Nine wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. Every wall offers both pathways — sign up to hire, or apply as a Renner.
+          Six wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. Every wall offers both pathways — sign up to hire, or apply as a Renner.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #0d0f12" }}>
