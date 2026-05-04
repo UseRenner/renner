@@ -90,9 +90,9 @@ function Header() {
     >
       <div style={{ maxWidth: 1280, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
         <RennerMark size={28} weight={300} />
-        <p style={{ fontFamily: SANS, fontSize: 13, color: STEEL_700, margin: 0 }}>
+        <p style={{ fontFamily: SERIF, fontSize: 15, color: STEEL_500, margin: 0, fontVariationSettings: '"opsz" 14' }}>
           Have an account?{" "}
-          <Link href="/signin" style={{ color: INK, fontWeight: 500, textDecoration: "underline", textUnderlineOffset: 3 }}>
+          <Link href="/signin" style={{ color: STEEL_700, fontWeight: 500, textDecoration: "underline", textUnderlineOffset: 3 }}>
             Sign in
           </Link>
         </p>
@@ -174,9 +174,9 @@ function IndexForm() {
         <button
           type="submit"
           style={{
-            fontFamily: SANS,
-            fontSize: 14,
-            fontWeight: 500,
+            fontFamily: SERIF,
+            fontSize: 15,
+            fontWeight: 400,
             color: PAPER,
             backgroundColor: INK,
             border: `1px solid ${INK}`,
@@ -188,6 +188,7 @@ function IndexForm() {
             gap: 10,
             alignSelf: "flex-start",
             minWidth: 220,
+            fontVariationSettings: '"opsz" 14',
           }}
         >
           Sign up to hire
@@ -269,7 +270,7 @@ function Footer() {
     >
       <div style={{ maxWidth: 1280, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
         <RennerMark size={28} weight={300} />
-        <div style={{ display: "flex", alignItems: "center", gap: 24, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 18, fontFamily: SERIF, fontSize: 15, color: STEEL_500, fontVariationSettings: '"opsz" 14' }}>
           <Link href="/contact" style={{ color: STEEL_700, textDecoration: "none" }}>Contact</Link>
           <Link href="/terms" style={{ color: STEEL_700, textDecoration: "none" }}>Terms</Link>
           <Link href="/privacy" style={{ color: STEEL_700, textDecoration: "none" }}>Privacy</Link>
