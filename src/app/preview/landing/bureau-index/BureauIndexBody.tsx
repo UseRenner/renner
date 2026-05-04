@@ -14,6 +14,12 @@ const STEEL_500 = "var(--c-500, #7d8da0)";
 const STEEL_300 = "var(--c-300, #cad1d8)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 
+// Index drops the same three longer / more-niche descriptive
+// titles Specimen does, so the strip fits on one line within
+// the 880-wide body column. The full canonical list still
+// lives in _content.ts.
+const INDEX_OMIT = new Set(["property-access", "host-assistance", "open-house"]);
+
 // Bureau — INDEX WALL.
 // The page is a table of contents. Numbered entries down a
 // single column, each a row in a TOC: number on the left,
@@ -113,7 +119,7 @@ function EntryStrip() {
       }}
     >
       <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", alignItems: "baseline", rowGap: 8 }}>
-        {CATEGORIES.map((c, i) => (
+        {CATEGORIES.filter((c) => !INDEX_OMIT.has(c.id)).map((c, i, arr) => (
           <li
             key={c.id}
             style={{
@@ -127,7 +133,7 @@ function EntryStrip() {
             }}
           >
             {c.title}
-            {i < CATEGORIES.length - 1 && (
+            {i < arr.length - 1 && (
               <span aria-hidden style={{ marginLeft: "clamp(8px, 1.2vw, 14px)", marginRight: "clamp(8px, 1.2vw, 14px)", color: STEEL_300 }}>·</span>
             )}
           </li>
