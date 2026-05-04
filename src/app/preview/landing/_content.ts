@@ -31,7 +31,7 @@ export const CATEGORIES: Category[] = [
   { id: "guest-access", label: "Guest access", title: "Guest check-ins", detail: "Guest check-ins, host assistance, property access." },
   { id: "host-assistance", label: "Host assistance", title: "Host assistance", detail: "Turnover prep, restock, light tidying between guests." },
   { id: "showing", label: "Showing", title: "Showings", detail: "Buyer showings, on-call coverage." },
-  { id: "open-house", label: "Open house", title: "Open house coverage", detail: "Open house sit-ins, sign-in, lights and lockup." },
+  { id: "open-house", label: "Open house", title: "Open houses", detail: "Open house sit-ins, sign-in, lights and lockup." },
 ];
 
 // The full strip used by walls with room to breathe (Specimen,
