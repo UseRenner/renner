@@ -15,15 +15,12 @@ const STEEL_300 = "var(--c-300, #cad1d8)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 
 // Bureau — SPECIMEN WALL.
-// The page reads as a typeface specimen sheet — the brand
-// voice on display in different scales. A massive italic
-// wordmark anchors the top; below it, sections separated by
-// single hairlines move from dek (the editorial line) to the
-// categories (the kicker register) to the form (the inputs).
-//
-// No section labels — each element speaks for itself. The
-// wordmark IS the headline; the dek is the message; the form
-// is the action. Hairlines do all the structural work.
+// The page reads as a typeface specimen sheet, with the
+// categories block as the visual centerpiece: ink rules above
+// and below, italic-serif categories distributed edge to edge
+// between them. Reads like a lane on a road — the two ink
+// rules are the lane lines, the categories are the dashes
+// that mark its rhythm.
 
 export function BureauSpecimenBody({ tone }: { tone: ShellTone }) {
   return (
@@ -39,7 +36,6 @@ export function BureauSpecimenBody({ tone }: { tone: ShellTone }) {
         }}
       >
         <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-          {/* Headline + dek as the opening of the specimen. */}
           <div>
             <h1
               style={{
@@ -63,19 +59,17 @@ export function BureauSpecimenBody({ tone }: { tone: ShellTone }) {
             </p>
           </div>
 
-          {/* Categories — sandwiched between two light hairlines
-              with symmetric padding above and below, so the row
-              reads as centered between the rules (mirroring the
-              Index strip pattern, but lighter — Specimen's mono
-              caps already carry weight on their own). Labels
-              distributed edge to edge across the row. */}
+          {/* Categories — fully inked: INK rules above and below,
+              INK italic-serif type. The block becomes a stamped
+              band in the page, the heaviest version of Specimen's
+              categories register. */}
           <section
             style={{
               marginTop: "clamp(40px, 5vw, 64px)",
               paddingTop: "clamp(20px, 2.4vw, 28px)",
               paddingBottom: "clamp(20px, 2.4vw, 28px)",
-              borderTop: `1px solid ${STEEL_300}`,
-              borderBottom: `1px solid ${STEEL_300}`,
+              borderTop: `1px solid ${INK}`,
+              borderBottom: `1px solid ${INK}`,
             }}
           >
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", justifyContent: "space-between", columnGap: "clamp(8px, 1.2vw, 16px)", rowGap: 8 }}>
@@ -88,7 +82,7 @@ export function BureauSpecimenBody({ tone }: { tone: ShellTone }) {
                     fontWeight: 300,
                     fontSize: "clamp(15px, 1.4vw, 18px)",
                     lineHeight: 1.4,
-                    color: STEEL_700,
+                    color: INK,
                     fontVariationSettings: '"opsz" 14',
                     whiteSpace: "nowrap",
                   }}
@@ -99,9 +93,6 @@ export function BureauSpecimenBody({ tone }: { tone: ShellTone }) {
             </ul>
           </section>
 
-          {/* Form — sits below the categories block with a
-              breathing-room gap, no extra hairline. The
-              categories' bottom rule is the only divider needed. */}
           <section style={{ marginTop: "clamp(40px, 5vw, 64px)" }}>
             <SignupSpecimen />
             <p style={{ fontFamily: SERIF, fontSize: 12, lineHeight: 1.6, color: STEEL_500, margin: 0, marginTop: "clamp(20px, 2.4vw, 28px)", whiteSpace: "nowrap", fontVariationSettings: '"opsz" 14' }}>
