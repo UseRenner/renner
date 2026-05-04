@@ -13,6 +13,7 @@ export type LandingVariantKey =
   | "window-a"
   | "window-b"
   | "window-c"
+  | "window-d"
   | "letter"
   | "specimen"
   | "glyph"
@@ -28,6 +29,7 @@ export const LANDING_VARIANTS: ReadonlyArray<{
   { href: "/preview/landing/bureau-window-a", key: "window-a", label: "Window · A — Italic serif" },
   { href: "/preview/landing/bureau-window-b", key: "window-b", label: "Window · B — Mono caps" },
   { href: "/preview/landing/bureau-window-c", key: "window-c", label: "Window · C — Small serif" },
+  { href: "/preview/landing/bureau-window-d", key: "window-d", label: "Window · D — Sans tracked caps" },
   { href: "/preview/landing/bureau-letter", key: "letter", label: "Letter" },
   { href: "/preview/landing/bureau-specimen", key: "specimen", label: "Specimen" },
   { href: "/preview/landing/bureau-glyph", key: "glyph", label: "Glyph" },
