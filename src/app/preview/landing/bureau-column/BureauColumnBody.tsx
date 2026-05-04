@@ -35,10 +35,7 @@ export function BureauColumnBody({ tone }: { tone: ShellTone }) {
           page reads as one composition rather than chrome
           with content. */}
       <div style={{ paddingTop: "clamp(20px, 2.5vw, 32px)", paddingBottom: "clamp(20px, 2.5vw, 32px)", paddingLeft: "clamp(24px, 4vw, 56px)", paddingRight: "clamp(24px, 4vw, 56px)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <Link href="/preview/landing" style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500, textDecoration: "none" }}>
-          ← All previews
-        </Link>
-        <p style={{ fontFamily: SANS, fontSize: 13, color: STEEL_700, margin: 0 }}>
+<p style={{ fontFamily: SANS, fontSize: 13, color: STEEL_700, margin: 0 }}>
           Have an account?{" "}
           <Link href="/signin" style={{ color: INK, fontWeight: 500, textDecoration: "underline", textUnderlineOffset: 3 }}>
             Sign in
@@ -148,7 +145,7 @@ function SignupForm() {
         display: "flex",
         flexDirection: "column",
         gap: 20,
-        border: `1px solid ${INK}`,
+        border: `1px solid ${STEEL_300}`,
         padding: "clamp(28px, 3.5vw, 40px)",
         backgroundColor: PAPER,
         textAlign: "left",
@@ -194,7 +191,7 @@ function SignupForm() {
             fontWeight: 500,
             color: INK,
             backgroundColor: PAPER,
-            border: `1px solid ${INK}`,
+            border: `1px solid ${STEEL_300}`,
             padding: "14px 22px",
             display: "inline-flex",
             alignItems: "center",

@@ -42,10 +42,7 @@ function Header() {
   return (
     <header style={{ paddingTop: "clamp(20px, 2.5vw, 32px)", paddingBottom: "clamp(20px, 2.5vw, 32px)", paddingLeft: "clamp(24px, 4vw, 56px)", paddingRight: "clamp(24px, 4vw, 56px)" }}>
       <div style={{ maxWidth: 1440, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
-        <Link href="/preview/landing" style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500, textDecoration: "none" }}>
-          ← All previews
-        </Link>
-        <p style={{ fontFamily: SANS, fontSize: 13, color: STEEL_700, margin: 0 }}>
+<p style={{ fontFamily: SANS, fontSize: 13, color: STEEL_700, margin: 0 }}>
           Have an account?{" "}
           <Link href="/signin" style={{ color: INK, fontWeight: 500, textDecoration: "underline", textUnderlineOffset: 3 }}>
             Sign in
@@ -177,7 +174,7 @@ function SignupForm() {
         display: "flex",
         flexDirection: "column",
         gap: 20,
-        border: `1px solid ${INK}`,
+        border: `1px solid ${STEEL_300}`,
         padding: "clamp(28px, 3.5vw, 40px)",
         backgroundColor: PAPER,
       }}
@@ -223,7 +220,7 @@ function SignupForm() {
             fontWeight: 500,
             color: INK,
             backgroundColor: PAPER,
-            border: `1px solid ${INK}`,
+            border: `1px solid ${STEEL_300}`,
             padding: "14px 22px",
             display: "inline-flex",
             alignItems: "center",
@@ -280,7 +277,7 @@ function BureauField({
 
 function Footer() {
   return (
-    <footer style={{ paddingTop: "clamp(20px, 2.5vw, 32px)", paddingBottom: "clamp(20px, 2.5vw, 32px)", paddingLeft: "clamp(24px, 4vw, 56px)", paddingRight: "clamp(24px, 4vw, 56px)", borderTop: `1px solid ${INK}`, backgroundColor: CHALK }}>
+    <footer style={{ paddingTop: "clamp(20px, 2.5vw, 32px)", paddingBottom: "clamp(20px, 2.5vw, 32px)", paddingLeft: "clamp(24px, 4vw, 56px)", paddingRight: "clamp(24px, 4vw, 56px)", borderTop: `1px solid ${STEEL_300}`, backgroundColor: CHALK }}>
       <div style={{ maxWidth: 1440, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "center", gap: 24, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500, flexWrap: "wrap" }}>
         <Link href="/contact" style={{ color: STEEL_700, textDecoration: "none" }}>Contact</Link>
         <Link href="/terms" style={{ color: STEEL_700, textDecoration: "none" }}>Terms</Link>

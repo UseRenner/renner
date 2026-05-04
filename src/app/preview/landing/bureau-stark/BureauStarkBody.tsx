@@ -73,10 +73,7 @@ function LeftPanel() {
     >
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
         <RennerMark size={36} weight={300} />
-        <Link href="/preview/landing" style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: LEFT_FG_FOG, textDecoration: "none" }}>
-          ← All previews
-        </Link>
-      </div>
+</div>
 
       <div>
         <h1
@@ -144,7 +141,7 @@ function SignupForm() {
         display: "flex",
         flexDirection: "column",
         gap: 20,
-        border: `1px solid ${RIGHT_FG}`,
+        border: `1px solid ${RIGHT_BORDER}`,
         padding: "clamp(28px, 3.5vw, 40px)",
         backgroundColor: RIGHT_BG,
       }}
@@ -190,7 +187,7 @@ function SignupForm() {
             fontWeight: 500,
             color: RIGHT_FG,
             backgroundColor: RIGHT_BG,
-            border: `1px solid ${RIGHT_FG}`,
+            border: `1px solid ${RIGHT_BORDER}`,
             padding: "14px 22px",
             display: "inline-flex",
             alignItems: "center",

@@ -93,10 +93,7 @@ function LeftPanel({
     >
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
         <RennerMark size={36} weight={300} />
-        <Link href="/preview/landing" style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: PAPER_FOG, textDecoration: "none" }}>
-          ← All previews
-        </Link>
-      </div>
+</div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
         <div>
@@ -302,7 +299,7 @@ function VaultSignupForm() {
         display: "flex",
         flexDirection: "column",
         gap: 24,
-        border: `1px solid ${PAPER}`,
+        border: `1px solid ${BORDER}`,
         padding: "clamp(28px, 3.5vw, 40px)",
         backgroundColor: INK,
       }}
@@ -349,7 +346,7 @@ function VaultSignupForm() {
             fontWeight: 500,
             color: PAPER,
             backgroundColor: "transparent",
-            border: `1px solid ${PAPER}`,
+            border: `1px solid ${BORDER}`,
             padding: "14px 22px",
             display: "inline-flex",
             alignItems: "center",

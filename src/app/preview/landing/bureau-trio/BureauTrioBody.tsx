@@ -56,15 +56,12 @@ function LeftPanel() {
         display: "flex",
         flexDirection: "column",
         gap: 40,
-        borderRight: `1px solid ${INK}`,
+        borderRight: `1px solid ${STEEL_300}`,
       }}
     >
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
         <RennerMark size={36} weight={300} />
-        <Link href="/preview/landing" style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500, textDecoration: "none" }}>
-          ← All previews
-        </Link>
-      </div>
+</div>
 
       <div>
         <h1
@@ -168,7 +165,7 @@ function SignupForm() {
         display: "flex",
         flexDirection: "column",
         gap: 20,
-        border: `1px solid ${INK}`,
+        border: `1px solid ${STEEL_300}`,
         padding: "clamp(28px, 3.5vw, 40px)",
         backgroundColor: PAPER,
       }}
@@ -214,7 +211,7 @@ function SignupForm() {
             fontWeight: 500,
             color: INK,
             backgroundColor: PAPER,
-            border: `1px solid ${INK}`,
+            border: `1px solid ${STEEL_300}`,
             padding: "14px 22px",
             display: "inline-flex",
             alignItems: "center",
@@ -271,7 +268,7 @@ function BureauField({
 
 function Footer() {
   return (
-    <footer style={{ paddingTop: "clamp(40px, 5vw, 64px)", paddingBottom: "clamp(40px, 5vw, 64px)", paddingLeft: "clamp(28px, 4vw, 64px)", paddingRight: "clamp(28px, 4vw, 64px)", borderTop: `1px solid ${INK}`, backgroundColor: PAPER }}>
+    <footer style={{ paddingTop: "clamp(40px, 5vw, 64px)", paddingBottom: "clamp(40px, 5vw, 64px)", paddingLeft: "clamp(28px, 4vw, 64px)", paddingRight: "clamp(28px, 4vw, 64px)", borderTop: `1px solid ${STEEL_300}`, backgroundColor: PAPER }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 20 }}>
         <RennerMark size={28} weight={300} />
         <div style={{ display: "flex", alignItems: "center", gap: 24, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
