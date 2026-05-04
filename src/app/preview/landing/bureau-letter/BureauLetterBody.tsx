@@ -92,29 +92,33 @@ function Letter() {
           </p>
         </div>
 
-        {/* Categories — bumped to clamp(16, 1.6vw, 19) and
-            rendered in INK so the list reads with real presence
-            in the body, rather than disappearing as a quiet
-            continuation of the prose. */}
-        <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", columnGap: "clamp(8px, 1vw, 14px)", rowGap: 8 }}>
-          {CATEGORY_STRIP_SHORT.map((c) => (
-            <li
-              key={c.id}
-              style={{
-                fontFamily: SERIF,
-                fontStyle: "italic",
-                fontWeight: 300,
-                fontSize: "clamp(14px, 1.4vw, 16px)",
-                lineHeight: 1.5,
-                color: INK,
-                fontVariationSettings: '"opsz" 14',
-                whiteSpace: "nowrap",
-              }}
-            >
-              {c.title}
-            </li>
-          ))}
-        </ul>
+        {/* Categories — same lane treatment as Specimen,
+            transplanted into Letter's narrow editorial column.
+            INK rules above and below, italic-serif categories
+            distributed edge to edge between them as the dashes
+            of the lane. Brings motion + visual presence to the
+            editorial body. */}
+        <div style={{ paddingTop: "clamp(18px, 2.2vw, 24px)", paddingBottom: "clamp(18px, 2.2vw, 24px)", borderTop: `1px solid ${INK}`, borderBottom: `1px solid ${INK}` }}>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", justifyContent: "space-between", columnGap: "clamp(8px, 1vw, 14px)", rowGap: 8 }}>
+            {CATEGORY_STRIP_SHORT.map((c) => (
+              <li
+                key={c.id}
+                style={{
+                  fontFamily: SERIF,
+                  fontStyle: "italic",
+                  fontWeight: 300,
+                  fontSize: "clamp(15px, 1.5vw, 17px)",
+                  lineHeight: 1.5,
+                  color: INK,
+                  fontVariationSettings: '"opsz" 14',
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {c.title}
+              </li>
+            ))}
+          </ul>
+        </div>
 
         <SignupLetter />
       </div>
