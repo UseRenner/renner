@@ -16,16 +16,14 @@ const PAPER = "var(--c-bg, #fbfbfc)";
 const CHALK = "var(--c-panel, #eaedf0)";
 
 // Bureau — WINDOW WALL · SOFT.
-// Same panel-on-chalk composition as Window, but rendered with
-// two tones and no borders: a paper panel sitting on a chalk
-// page, the tone change alone defining the panel's edge. No
-// outer ink frame, no inner hairlines — sections inside the
-// panel are separated by whitespace alone.
+// Same panel-on-chalk composition as Window, with all the same
+// lines as the original — outer panel border, header-bar
+// hairline, categories framed top and bottom — just rendered in
+// STEEL_300 instead of INK. Reads softer than the original
+// Window: same structure, lighter rules.
 //
-// Categories switch from mono caps to italic serif, matching
-// Letter's editorial register. Reads softer than the original
-// Window — quieter card laid on quieter surface, with the type
-// doing all the work.
+// Categories also switch from mono caps to italic serif,
+// matching the rest of the variants.
 
 export function BureauWindowSoftBody({ tone }: { tone: ShellTone }) {
   return (
@@ -51,6 +49,7 @@ function Panel() {
     <article
       style={{
         backgroundColor: PAPER,
+        border: `1px solid ${STEEL_300}`,
         width: "100%",
         maxWidth: 640,
         display: "flex",
@@ -59,7 +58,8 @@ function Panel() {
     >
       <div
         style={{
-          padding: "clamp(28px, 3vw, 36px) clamp(28px, 3.5vw, 44px)",
+          padding: "clamp(18px, 2vw, 24px) clamp(28px, 3.5vw, 44px)",
+          borderBottom: `1px solid ${STEEL_300}`,
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
@@ -77,10 +77,10 @@ function Panel() {
 
       <div
         style={{
-          padding: "clamp(24px, 3vw, 40px) clamp(28px, 3.5vw, 56px) clamp(40px, 5vw, 64px)",
+          padding: "clamp(40px, 5vw, 64px) clamp(28px, 3.5vw, 56px)",
           display: "flex",
           flexDirection: "column",
-          gap: "clamp(28px, 3.5vw, 40px)",
+          gap: "clamp(32px, 4vw, 48px)",
         }}
       >
         <div>
@@ -106,19 +106,22 @@ function Panel() {
           </p>
         </div>
 
-        {/* Categories — italic serif with middots, no rules.
-            Same content as the original Window's mono-caps strip
-            but in Letter's editorial register. */}
-        <p style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(14px, 1.3vw, 16px)", lineHeight: 1.5, color: INK, margin: 0, fontVariationSettings: '"opsz" 14' }}>
-          {CATEGORY_STRIP_SHORT.map((c, i, arr) => (
-            <span key={c.id}>
-              <span style={{ whiteSpace: "nowrap" }}>{c.title}</span>
-              {i < arr.length - 1 && (
-                <span aria-hidden style={{ marginLeft: "clamp(8px, 1.2vw, 14px)", marginRight: "clamp(8px, 1.2vw, 14px)", color: STEEL_300 }}>·</span>
-              )}
-            </span>
-          ))}
-        </p>
+        {/* Categories — italic serif with middots, bracketed by
+            light hairlines (steel, not ink). Same framing rhythm
+            as the original Window, just rendered in the lighter
+            rule color. */}
+        <div style={{ paddingTop: "clamp(18px, 2.2vw, 24px)", paddingBottom: "clamp(18px, 2.2vw, 24px)", borderTop: `1px solid ${STEEL_300}`, borderBottom: `1px solid ${STEEL_300}` }}>
+          <p style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(14px, 1.3vw, 16px)", lineHeight: 1.5, color: INK, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+            {CATEGORY_STRIP_SHORT.map((c, i, arr) => (
+              <span key={c.id}>
+                <span style={{ whiteSpace: "nowrap" }}>{c.title}</span>
+                {i < arr.length - 1 && (
+                  <span aria-hidden style={{ marginLeft: "clamp(8px, 1.2vw, 14px)", marginRight: "clamp(8px, 1.2vw, 14px)", color: STEEL_300 }}>·</span>
+                )}
+              </span>
+            ))}
+          </p>
+        </div>
 
         <WindowForm />
       </div>
