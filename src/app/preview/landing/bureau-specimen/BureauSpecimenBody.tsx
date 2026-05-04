@@ -63,12 +63,18 @@ export function BureauSpecimenBody({ tone }: { tone: ShellTone }) {
             </p>
           </div>
 
-          {/* Categories */}
-          <Section>
-            {/* Labels distributed edge to edge across the row —
-                first flush left, last flush right, even gaps
-                between. No middots: the empty space carries the
-                separation. */}
+          {/* Categories — sandwiched between two ink rules with
+              symmetric padding, mirroring the Index strip. Labels
+              distributed edge to edge across the row. */}
+          <section
+            style={{
+              marginTop: "clamp(40px, 5vw, 64px)",
+              paddingTop: "clamp(20px, 2.4vw, 28px)",
+              paddingBottom: "clamp(20px, 2.4vw, 28px)",
+              borderTop: `1px solid ${STEEL_300}`,
+              borderBottom: `1px solid ${STEEL_300}`,
+            }}
+          >
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", justifyContent: "space-between", columnGap: "clamp(8px, 1.2vw, 16px)", rowGap: 8 }}>
               {CATEGORIES.map((c) => (
                 <li
@@ -86,7 +92,7 @@ export function BureauSpecimenBody({ tone }: { tone: ShellTone }) {
                 </li>
               ))}
             </ul>
-          </Section>
+          </section>
 
           {/* Form */}
           <Section>
