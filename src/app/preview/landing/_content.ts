@@ -25,7 +25,7 @@ export type Category = {
 export const CATEGORIES: Category[] = [
   { id: "signs", label: "Signs", title: "Sign installs", detail: "Sign riders, post installs, removals." },
   { id: "lockbox", label: "Lockbox", title: "Lockbox swaps", detail: "Combination resets, lockbox swaps, key drops." },
-  { id: "courier", label: "Courier", title: "Document delivery", detail: "Closing docs, key drops, contract relays." },
+  { id: "courier", label: "Courier", title: "Courier runs", detail: "Closing docs, key drops, contract relays." },
   { id: "visuals", label: "Visuals", title: "Walkthrough photos", detail: "Photo-ready setup, walkthrough captures, virtual tours." },
   { id: "property-access", label: "Property access", title: "Property access", detail: "Owner walk-ins, contractor access, key drops." },
   { id: "guest-access", label: "Guest access", title: "Guest check-ins", detail: "Guest check-ins, host assistance, property access." },

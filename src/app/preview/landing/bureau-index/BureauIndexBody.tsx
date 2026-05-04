@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { RennerMark, getToneVars, type ShellTone } from "../../how-it-works/_shared";
-import { HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
+import { CATEGORIES, HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
@@ -100,15 +100,6 @@ function Header() {
   );
 }
 
-const ENTRY_TITLES = [
-  "Sign installs",
-  "Lockbox swaps",
-  "Licensed showings",
-  "Document delivery",
-  "Walkthrough photos",
-  "Guest check-ins",
-];
-
 function EntryStrip() {
   return (
     <div
@@ -122,9 +113,9 @@ function EntryStrip() {
       }}
     >
       <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", alignItems: "baseline", rowGap: 8 }}>
-        {ENTRY_TITLES.map((title, i) => (
+        {CATEGORIES.map((c, i) => (
           <li
-            key={title}
+            key={c.id}
             style={{
               fontFamily: SERIF,
               fontStyle: "italic",
@@ -135,8 +126,8 @@ function EntryStrip() {
               fontVariationSettings: '"opsz" 36',
             }}
           >
-            {title}
-            {i < ENTRY_TITLES.length - 1 && (
+            {c.title}
+            {i < CATEGORIES.length - 1 && (
               <span aria-hidden style={{ marginLeft: "clamp(8px, 1.2vw, 14px)", marginRight: "clamp(8px, 1.2vw, 14px)", color: STEEL_300 }}>·</span>
             )}
           </li>

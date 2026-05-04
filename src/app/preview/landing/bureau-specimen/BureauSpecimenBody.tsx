@@ -91,19 +91,21 @@ export function BureauSpecimenBody({ tone }: { tone: ShellTone }) {
                     color: STEEL_700,
                   }}
                 >
-                  {c.label}
+                  {c.title}
                 </li>
               ))}
             </ul>
           </section>
 
-          {/* Form */}
-          <Section>
+          {/* Form — sits below the categories block with a
+              breathing-room gap, no extra hairline. The
+              categories' bottom rule is the only divider needed. */}
+          <section style={{ marginTop: "clamp(40px, 5vw, 64px)" }}>
             <SignupSpecimen />
             <p style={{ fontFamily: SERIF, fontSize: 12, lineHeight: 1.6, color: STEEL_500, margin: 0, marginTop: "clamp(20px, 2.4vw, 28px)", whiteSpace: "nowrap", fontVariationSettings: '"opsz" 14' }}>
               Persona identity verification and Checkr background check required to create an account.
             </p>
-          </Section>
+          </section>
         </div>
       </main>
       <Footer />
@@ -131,24 +133,6 @@ function Header() {
         </p>
       </div>
     </header>
-  );
-}
-
-// One section. Hairline above, content close beneath it; the
-// gap between sections lives above the rule (marginTop) so each
-// rule reads as the opening of its section, not a free-floating
-// divider.
-function Section({ children }: { children: React.ReactNode }) {
-  return (
-    <section
-      style={{
-        marginTop: "clamp(40px, 5vw, 64px)",
-        paddingTop: "clamp(20px, 2.4vw, 28px)",
-        borderTop: `1px solid ${STEEL_300}`,
-      }}
-    >
-      {children}
-    </section>
   );
 }
 
