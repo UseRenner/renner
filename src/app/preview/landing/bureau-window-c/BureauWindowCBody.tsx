@@ -156,9 +156,9 @@ function WindowForm() {
         <button
           type="submit"
           style={{
-            fontFamily: SANS,
-            fontSize: 14,
-            fontWeight: 500,
+            fontFamily: SERIF,
+            fontSize: 15,
+            fontWeight: 400,
             color: PAPER,
             backgroundColor: INK,
             border: `1px solid ${INK}`,
@@ -170,6 +170,7 @@ function WindowForm() {
             gap: 10,
             alignSelf: "flex-start",
             minWidth: 220,
+            fontVariationSettings: '"opsz" 14',
           }}
         >
           Sign up to hire
