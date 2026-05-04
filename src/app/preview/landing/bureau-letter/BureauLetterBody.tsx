@@ -183,7 +183,7 @@ function SignupLetter() {
       </div>
 
       <p style={{ fontFamily: SERIF, fontSize: 13, lineHeight: 1.6, color: STEEL_500, margin: 0, marginTop: "clamp(8px, 1vw, 12px)", maxWidth: "52ch", fontVariationSettings: '"opsz" 14' }}>
-        ID verification and a Checkr background check required before hiring or becoming a Renner.
+        Persona identity verification and Checkr background check required before hiring or becoming a Renner.
       </p>
     </form>
   );

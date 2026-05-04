@@ -238,7 +238,7 @@ function FormCell() {
       </Link>
 
       <p style={{ fontFamily: SERIF, fontSize: 12, lineHeight: 1.6, color: STEEL_500, margin: 0, marginTop: 4, fontVariationSettings: '"opsz" 14' }}>
-        ID verification and a Checkr background check required before hiring or becoming a Renner.
+        Persona identity verification and Checkr background check required before hiring or becoming a Renner.
       </p>
     </form>
   );
