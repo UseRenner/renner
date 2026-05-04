@@ -63,13 +63,18 @@ function Header() {
 function RuledColumn() {
   // The column is bounded left and right by INK hairlines that
   // run the full height of the main area. Inner padding gives
-  // the body type breathing room from the rules.
+  // the body type breathing room from the rules. The compliance
+  // line lives below the column at a wider width — it
+  // intentionally breaks out of the ruled margins as a footer
+  // stamp, since the line is too long to fit inside them.
   return (
     <main
       style={{
         flex: 1,
         display: "flex",
-        justifyContent: "center",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "clamp(24px, 3vw, 40px)",
         paddingTop: "clamp(48px, 6vw, 88px)",
         paddingBottom: "clamp(48px, 6vw, 88px)",
         paddingLeft: "clamp(20px, 3vw, 48px)",
@@ -108,13 +113,16 @@ function RuledColumn() {
             {HEADLINE_LEAD}{" "}
             <span style={{ fontStyle: "italic", fontWeight: 300, color: STEEL_700 }}>{HEADLINE_TAIL}</span>
           </h1>
-          <p style={{ fontFamily: SERIF, fontSize: "clamp(16px, 1.5vw, 18px)", lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+          <p style={{ fontFamily: SERIF, fontSize: "clamp(14px, 1.4vw, 16px)", lineHeight: 1.55, color: STEEL_700, margin: 0, whiteSpace: "nowrap", fontVariationSettings: '"opsz" 14' }}>
             {SHORT_DEK}
           </p>
         </div>
 
         <ColumnForm />
       </div>
+      <p style={{ fontFamily: SERIF, fontSize: 12, lineHeight: 1.6, color: STEEL_500, margin: 0, whiteSpace: "nowrap", textAlign: "center", fontVariationSettings: '"opsz" 14' }}>
+        Persona identity verification and Checkr background check required to create an account.
+      </p>
     </main>
   );
 }
@@ -181,10 +189,6 @@ function ColumnForm() {
           <span aria-hidden style={{ opacity: 0.6 }}>→</span>
         </Link>
       </div>
-
-      <p style={{ fontFamily: SERIF, fontSize: 13, lineHeight: 1.6, color: STEEL_500, margin: 0, fontVariationSettings: '"opsz" 14' }}>
-        Persona identity verification and Checkr background check required to create an account.
-      </p>
     </form>
   );
 }

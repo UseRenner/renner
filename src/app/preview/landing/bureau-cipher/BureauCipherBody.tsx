@@ -63,9 +63,14 @@ export function BureauCipherBody({ tone }: { tone: ShellTone }) {
             <FormCell />
           </Cell>
 
-          {/* Bottom row — categories full-width across 12 cols */}
+          {/* Categories — full-width across 12 cols */}
           <Cell cols="1 / span 12" rows="3 / span 1" topBorder dim>
             <CategoriesCell />
+          </Cell>
+
+          {/* Compliance stamp — full-width across 12 cols */}
+          <Cell cols="1 / span 12" rows="4 / span 1" topBorder>
+            <ComplianceCell />
           </Cell>
         </div>
       </main>
@@ -170,7 +175,7 @@ function HeadlineCell() {
         {HEADLINE_LEAD}{" "}
         <span style={{ fontStyle: "italic", fontWeight: 300, color: STEEL_700 }}>{HEADLINE_TAIL}</span>
       </h1>
-      <p style={{ fontFamily: SERIF, fontSize: "clamp(17px, 1.7vw, 20px)", lineHeight: 1.55, color: STEEL_700, margin: 0, maxWidth: "44ch", fontVariationSettings: '"opsz" 14' }}>
+      <p style={{ fontFamily: SERIF, fontSize: "clamp(17px, 1.7vw, 20px)", lineHeight: 1.55, color: STEEL_700, margin: 0, whiteSpace: "nowrap", fontVariationSettings: '"opsz" 14' }}>
         {SHORT_DEK}
       </p>
     </div>
@@ -236,11 +241,15 @@ function FormCell() {
         Or become a Renner
         <span aria-hidden style={{ opacity: 0.6 }}>→</span>
       </Link>
-
-      <p style={{ fontFamily: SERIF, fontSize: 12, lineHeight: 1.6, color: STEEL_500, margin: 0, marginTop: 4, fontVariationSettings: '"opsz" 14' }}>
-        Persona identity verification and Checkr background check required to create an account.
-      </p>
     </form>
+  );
+}
+
+function ComplianceCell() {
+  return (
+    <p style={{ fontFamily: SERIF, fontSize: 12, lineHeight: 1.6, color: STEEL_500, margin: 0, whiteSpace: "nowrap", fontVariationSettings: '"opsz" 14' }}>
+      Persona identity verification and Checkr background check required to create an account.
+    </p>
   );
 }
 

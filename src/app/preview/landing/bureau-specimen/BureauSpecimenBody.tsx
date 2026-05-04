@@ -58,7 +58,7 @@ export function BureauSpecimenBody({ tone }: { tone: ShellTone }) {
               {HEADLINE_LEAD}{" "}
               <span style={{ fontStyle: "italic", fontWeight: 300, color: STEEL_700 }}>{HEADLINE_TAIL}</span>
             </h1>
-            <p style={{ fontFamily: SERIF, fontSize: "clamp(17px, 1.7vw, 20px)", lineHeight: 1.55, color: STEEL_700, margin: 0, maxWidth: "44ch", fontVariationSettings: '"opsz" 14' }}>
+            <p style={{ fontFamily: SERIF, fontSize: "clamp(17px, 1.7vw, 20px)", lineHeight: 1.55, color: STEEL_700, margin: 0, whiteSpace: "nowrap", fontVariationSettings: '"opsz" 14' }}>
               {SHORT_DEK}
             </p>
           </div>
@@ -90,6 +90,9 @@ export function BureauSpecimenBody({ tone }: { tone: ShellTone }) {
           {/* Form */}
           <Section>
             <SignupSpecimen />
+            <p style={{ fontFamily: SERIF, fontSize: 12, lineHeight: 1.6, color: STEEL_500, margin: 0, marginTop: "clamp(20px, 2.4vw, 28px)", whiteSpace: "nowrap", fontVariationSettings: '"opsz" 14' }}>
+              Persona identity verification and Checkr background check required to create an account.
+            </p>
           </Section>
         </div>
       </main>
@@ -121,15 +124,16 @@ function Header() {
   );
 }
 
-// One section. Hairline above, generous breathing space.
-// No label, no left gutter — the content runs full width.
+// One section. Hairline above, content close beneath it; the
+// gap between sections lives above the rule (marginTop) so each
+// rule reads as the opening of its section, not a free-floating
+// divider.
 function Section({ children }: { children: React.ReactNode }) {
   return (
     <section
       style={{
-        paddingTop: "clamp(40px, 5vw, 64px)",
-        paddingBottom: "clamp(40px, 5vw, 64px)",
         marginTop: "clamp(40px, 5vw, 64px)",
+        paddingTop: "clamp(20px, 2.4vw, 28px)",
         borderTop: `1px solid ${STEEL_300}`,
       }}
     >
@@ -202,10 +206,6 @@ function SignupSpecimen() {
           <span aria-hidden style={{ opacity: 0.6 }}>→</span>
         </Link>
       </div>
-
-      <p style={{ fontFamily: SERIF, fontSize: 13, lineHeight: 1.6, color: STEEL_500, margin: 0, fontVariationSettings: '"opsz" 14' }}>
-        Persona identity verification and Checkr background check required to create an account.
-      </p>
     </form>
   );
 }

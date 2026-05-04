@@ -106,7 +106,7 @@ function Panel() {
             {HEADLINE_LEAD}{" "}
             <span style={{ fontStyle: "italic", fontWeight: 300, color: STEEL_700 }}>{HEADLINE_TAIL}</span>
           </h1>
-          <p style={{ fontFamily: SERIF, fontSize: "clamp(16px, 1.5vw, 18px)", lineHeight: 1.55, color: STEEL_700, margin: 0, maxWidth: "44ch", fontVariationSettings: '"opsz" 14' }}>
+          <p style={{ fontFamily: SERIF, fontSize: "clamp(16px, 1.5vw, 18px)", lineHeight: 1.55, color: STEEL_700, margin: 0, whiteSpace: "nowrap", fontVariationSettings: '"opsz" 14' }}>
             {SHORT_DEK}
           </p>
         </div>
@@ -181,7 +181,7 @@ function WindowForm() {
         </Link>
       </div>
 
-      <p style={{ fontFamily: SERIF, fontSize: 13, lineHeight: 1.6, color: STEEL_500, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+      <p style={{ fontFamily: SERIF, fontSize: 11, lineHeight: 1.6, color: STEEL_500, margin: 0, whiteSpace: "nowrap", fontVariationSettings: '"opsz" 14' }}>
         Persona identity verification and Checkr background check required to create an account.
       </p>
     </form>
