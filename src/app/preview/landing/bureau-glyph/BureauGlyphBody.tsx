@@ -131,9 +131,12 @@ function Body() {
             {SHORT_DEK}
           </p>
 
-          {/* Same as Glyph but at fontWeight 300 — lighter,
-              quieter italic. */}
-          <p style={{ paddingTop: "clamp(20px, 2.4vw, 28px)", borderTop: `1px solid ${STEEL_300}`, fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(16px, 1.5vw, 19px)", lineHeight: 1.5, color: INK, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+          {/* Categories tucked under the dek. The wrapper uses
+              width: fit-content so the hairline only spans the
+              categories text — left and right edges of the rule
+              line up with the start of "Sign installs" and the
+              end of "Licensed showings". */}
+          <p style={{ width: "fit-content", maxWidth: "100%", paddingTop: "clamp(20px, 2.4vw, 28px)", borderTop: `1px solid ${STEEL_300}`, fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(16px, 1.5vw, 19px)", lineHeight: 1.5, color: INK, margin: 0, fontVariationSettings: '"opsz" 14' }}>
             {CATEGORY_STRIP_SHORT.map((c, i, arr) => (
               <span key={c.id}>
                 <span style={{ whiteSpace: "nowrap" }}>{c.title}</span>
