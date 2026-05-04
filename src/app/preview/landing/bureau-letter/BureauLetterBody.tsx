@@ -106,12 +106,12 @@ function Letter() {
             Same descriptive titles as Index, lighter handling
             (no rules) so it reads as a continuation of the
             letter rather than a framed component. */}
-        <p style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(14px, 1.3vw, 16px)", lineHeight: 1.45, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 36' }}>
+        <p style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(12px, 1.1vw, 14px)", lineHeight: 1.5, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 36' }}>
           {CATEGORY_STRIP.map((c, i, arr) => (
             <span key={c.id}>
-              {c.title}
+              <span style={{ whiteSpace: "nowrap" }}>{c.title}</span>
               {i < arr.length - 1 && (
-                <span aria-hidden style={{ marginLeft: "clamp(8px, 1.2vw, 14px)", marginRight: "clamp(8px, 1.2vw, 14px)", color: STEEL_300 }}>·</span>
+                <span aria-hidden style={{ marginLeft: "clamp(6px, 1vw, 12px)", marginRight: "clamp(6px, 1vw, 12px)", color: STEEL_300 }}>·</span>
               )}
             </span>
           ))}

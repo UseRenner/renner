@@ -297,11 +297,12 @@ function CategoriesCell() {
           key={c.id}
           style={{
             fontFamily: MONO,
-            fontSize: "clamp(11px, 1.1vw, 14px)",
+            fontSize: "clamp(9px, 0.9vw, 12px)",
             fontWeight: 500,
-            letterSpacing: "0.22em",
+            letterSpacing: "0.16em",
             textTransform: "uppercase",
             color: STEEL_700,
+            whiteSpace: "nowrap",
           }}
         >
           {c.title}

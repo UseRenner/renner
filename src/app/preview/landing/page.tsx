@@ -36,7 +36,13 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     slug: "bureau-glyph",
     label: "Bureau · Glyph",
     subtitle: "Wordmark as architecture",
-    note: "The wordmark renders large across the top of the page — italic, low-opsz, generous letter-spacing — anchoring the composition. Headline, dek, and form sit in the negative space the glyph leaves.",
+    note: "The wordmark renders large across the top of the page — italic, low-opsz, generous letter-spacing — anchoring the composition. Categories sit as a typographic seal directly under the glyph; headline, dek, and form follow.",
+  },
+  {
+    slug: "bureau-glyph-tucked",
+    label: "Bureau · Glyph · Tucked",
+    subtitle: "Wordmark with categories tucked under the headline",
+    note: "Same architectural wordmark, different rhythm: categories tucked inside the headline column after the dek. The reading order goes glyph → headline → dek → categories → form, so the headline keeps top billing.",
   },
   {
     slug: "bureau-index",
@@ -60,10 +66,10 @@ export default function LandingPreviewIndex() {
           Landing previews · Bureau
         </div>
         <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(36px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, marginBottom: 16, fontVariationSettings: '"opsz" 60' }}>
-          Seven Bureau walls.
+          Eight Bureau walls.
         </h1>
         <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.55, color: "#38414d", margin: 0, marginBottom: 56, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-          Seven wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. Every wall offers both pathways — sign up to hire, or apply as a Renner.
+          Eight wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. Every wall offers both pathways — sign up to hire, or apply as a Renner.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #0d0f12" }}>
