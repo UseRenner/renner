@@ -51,6 +51,12 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     note: "The wordmark renders large across the top of the page — italic, low-opsz, generous letter-spacing — anchoring the composition. Reading order: glyph → headline → dek → categories → form, with the categories tucked inside the headline column so the headline keeps top billing.",
   },
   {
+    slug: "bureau-glyph-light",
+    label: "Bureau · Glyph · Light",
+    subtitle: "Glyph with the categories at lighter weight",
+    note: "Identical to Glyph in every respect except the categories strip is rendered at fontWeight 300 instead of 400 — quieter, more refined italic.",
+  },
+  {
     slug: "bureau-index",
     label: "Bureau · Index",
     subtitle: "Editorial table of contents",
@@ -66,10 +72,10 @@ export default function LandingPreviewIndex() {
           Landing previews · Bureau
         </div>
         <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(36px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, marginBottom: 16, fontVariationSettings: '"opsz" 60' }}>
-          Eight Bureau walls.
+          Nine Bureau walls.
         </h1>
         <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.55, color: "#38414d", margin: 0, marginBottom: 56, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-          Eight wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. Every wall offers both pathways — sign up to hire, or apply as a Renner.
+          Nine wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. Every wall offers both pathways — sign up to hire, or apply as a Renner.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #0d0f12" }}>

@@ -14,21 +14,15 @@ const STEEL_500 = "var(--c-500, #7d8da0)";
 const STEEL_300 = "var(--c-300, #cad1d8)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 
-// Bureau — GLYPH WALL.
-// The wordmark is rendered enormously across the top of the
-// page — italic, low-opsz, generous letter-spacing — anchoring
-// the entire composition. Below it, the body splits into
-// headline+dek+categories on the left and the form on the
-// right. Reading order:
-//
-//     giant glyph → "Keep real estate running." → dek →
-//     categories → form
-//
-// The headline keeps top billing right after the wordmark; the
-// categories sit as a supporting list close to the message they
-// support, separated from the dek by a single light hairline.
+// Bureau — GLYPH WALL · LIGHT.
+// Identical to Glyph in every other respect — same architectural
+// wordmark, same body grid, same headline+dek+categories+form
+// reading order. The only difference: the categories strip is
+// rendered at fontWeight 300 instead of 400, so the list reads
+// quieter and more refined. Side-by-side with Glyph for an
+// A/B comparison of weight.
 
-export function BureauGlyphBody({ tone }: { tone: ShellTone }) {
+export function BureauGlyphLightBody({ tone }: { tone: ShellTone }) {
   return (
     <div style={{ ...getToneVars(tone), backgroundColor: PAPER, color: INK, minHeight: "100vh", display: "flex", flexDirection: "column", overflow: "hidden" }}>
       <Header />
@@ -131,13 +125,9 @@ function Body() {
             {SHORT_DEK}
           </p>
 
-          {/* Categories tucked right under the dek, supporting
-              the headline rather than preceding it. Italic serif
-              with middots — narrower per-character than mono
-              caps, so the strip fits inside the headline column.
-              Each title is nowrap so any line break happens
-              cleanly between titles, never mid-word. */}
-          <p style={{ paddingTop: "clamp(20px, 2.4vw, 28px)", borderTop: `1px solid ${STEEL_300}`, fontFamily: SERIF, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(14px, 1.3vw, 16px)", lineHeight: 1.5, color: INK, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+          {/* Same as Glyph but at fontWeight 300 — lighter,
+              quieter italic. */}
+          <p style={{ paddingTop: "clamp(20px, 2.4vw, 28px)", borderTop: `1px solid ${STEEL_300}`, fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(14px, 1.3vw, 16px)", lineHeight: 1.5, color: INK, margin: 0, fontVariationSettings: '"opsz" 14' }}>
             {CATEGORY_STRIP_SHORT.map((c, i, arr) => (
               <span key={c.id}>
                 <span style={{ whiteSpace: "nowrap" }}>{c.title}</span>
