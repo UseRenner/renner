@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { RennerMark, getToneVars, type ShellTone } from "../../how-it-works/_shared";
-import { CATEGORY_STRIP, HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
+import { CATEGORY_STRIP_SHORT, HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
@@ -118,7 +118,7 @@ function Panel() {
             and the form. */}
         <div style={{ paddingTop: "clamp(18px, 2.2vw, 24px)", paddingBottom: "clamp(18px, 2.2vw, 24px)", borderTop: `1px solid ${STEEL_300}`, borderBottom: `1px solid ${STEEL_300}` }}>
           <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", justifyContent: "space-between", columnGap: "clamp(8px, 1.2vw, 16px)", rowGap: 8 }}>
-            {CATEGORY_STRIP.map((c) => (
+            {CATEGORY_STRIP_SHORT.map((c) => (
               <li
                 key={c.id}
                 style={{

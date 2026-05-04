@@ -34,13 +34,21 @@ export const CATEGORIES: Category[] = [
   { id: "open-house", label: "Open house", title: "Open house coverage", detail: "Open house sit-ins, sign-in, lights and lockup." },
 ];
 
-// The trimmed list every landing-variant strip displays — six
-// descriptive titles, identical across all variants. Drops three
-// of the longer / more-niche entries so the row reads cleanly
-// even in the narrower walls. Render via `c.title` in the
-// descriptive register, never `c.label`.
+// The full strip used by walls with room to breathe (Specimen,
+// Index, Letter, Cipher) — six descriptive titles, dropping the
+// three longer / niche entries from the canonical list. Render
+// via `c.title` in the descriptive register, never `c.label`.
 const STRIP_OMIT_IDS = new Set(["property-access", "host-assistance", "open-house"]);
 export const CATEGORY_STRIP: Category[] = CATEGORIES.filter((c) => !STRIP_OMIT_IDS.has(c.id));
+
+// The short strip used by the narrowest walls (Window, Glyph)
+// where six descriptive titles run over. Same descriptive
+// register, four strongest entries — signage, key access,
+// visual content, licensed work — covering the breadth without
+// the row clipping or wrapping awkwardly. Identical between the
+// clipped walls so the brand reads consistently.
+const SHORT_STRIP_IDS = new Set(["signs", "lockbox", "visuals", "showing"]);
+export const CATEGORY_STRIP_SHORT: Category[] = CATEGORIES.filter((c) => SHORT_STRIP_IDS.has(c.id));
 
 export type Testimonial = {
   quote: string;

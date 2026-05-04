@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { RennerMark, getToneVars, type ShellTone } from "../../how-it-works/_shared";
-import { CATEGORY_STRIP, HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
+import { CATEGORY_STRIP_SHORT, HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
@@ -138,7 +138,7 @@ function Body() {
               Each title is nowrap so any line break happens
               cleanly between titles, never mid-word. */}
           <p style={{ paddingTop: "clamp(20px, 2.4vw, 28px)", borderTop: `1px solid ${STEEL_300}`, fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(13px, 1.2vw, 15px)", lineHeight: 1.5, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 36' }}>
-            {CATEGORY_STRIP.map((c, i, arr) => (
+            {CATEGORY_STRIP_SHORT.map((c, i, arr) => (
               <span key={c.id}>
                 <span style={{ whiteSpace: "nowrap" }}>{c.title}</span>
                 {i < arr.length - 1 && (
