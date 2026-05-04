@@ -113,6 +113,8 @@ function EntryStrip() {
   return (
     <div
       style={{
+        width: "fit-content",
+        maxWidth: "100%",
         borderTop: `1px solid ${INK}`,
         borderBottom: `1px solid ${INK}`,
         paddingTop: "clamp(28px, 3vw, 40px)",
