@@ -15,17 +15,18 @@ const STEEL_300 = "var(--c-300, #cad1d8)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 
 // Bureau — GLYPH WALL.
-// The wordmark IS the page. "renner" rendered enormously
-// across the top half — italic, low-opsz, generous letter-
-// spacing — anchors the entire composition. Below it, the
-// headline + dek and the form sit in the negative space the
-// glyph leaves behind.
+// The wordmark is rendered enormously across the top of the
+// page — italic, low-opsz, generous letter-spacing — anchoring
+// the entire composition. Below it, the body splits into
+// headline+dek+categories on the left and the form on the
+// right. Reading order:
 //
-// Reads as the brand-as-architecture: type forms the building,
-// the form is the door. Closest reference is a Wim Crouwel or
-// Massimo Vignelli typographic poster, with the type's
-// counters and ascenders defining the white space rather than
-// frames or borders.
+//     giant glyph → "Keep real estate running." → dek →
+//     categories → form
+//
+// The headline keeps top billing right after the wordmark; the
+// categories sit as a supporting list close to the message they
+// support, separated from the dek by a single light hairline.
 
 export function BureauGlyphBody({ tone }: { tone: ShellTone }) {
   return (
@@ -33,7 +34,6 @@ export function BureauGlyphBody({ tone }: { tone: ShellTone }) {
       <Header />
       <main style={{ flex: 1, display: "flex", flexDirection: "column" }}>
         <Glyph />
-        <CategoryStrip />
         <Body />
       </main>
       <Footer />
@@ -65,11 +65,6 @@ function Header() {
 }
 
 function Glyph() {
-  // The wordmark at architectural scale. Sized by viewport
-  // width so it reads as the page, not as a heading. Negative
-  // letter-spacing pushes the letters into a single graphic
-  // form. Vertical padding kept tight so the glyph feels like
-  // it's sitting on the page surface, not floating in air.
   return (
     <div
       aria-hidden
@@ -99,56 +94,6 @@ function Glyph() {
         </span>
       </div>
     </div>
-  );
-}
-
-// Categories — mono caps strip running across the page width
-// directly under the giant glyph. Bracketed by light hairlines
-// so it reads as a typographic seal between the wordmark and
-// the body. Uses the shared trimmed list (six descriptive
-// titles) so every variant carries the same content.
-function CategoryStrip() {
-  return (
-    <section
-      style={{
-        paddingTop: "clamp(20px, 2.4vw, 28px)",
-        paddingBottom: "clamp(20px, 2.4vw, 28px)",
-        paddingLeft: "clamp(24px, 4vw, 64px)",
-        paddingRight: "clamp(24px, 4vw, 64px)",
-        borderTop: `1px solid ${STEEL_300}`,
-        borderBottom: `1px solid ${STEEL_300}`,
-      }}
-    >
-      <ul
-        style={{
-          maxWidth: 1440,
-          margin: "0 auto",
-          listStyle: "none",
-          padding: 0,
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
-          columnGap: "clamp(8px, 1.2vw, 16px)",
-          rowGap: 8,
-        }}
-      >
-        {CATEGORY_STRIP.map((c) => (
-          <li
-            key={c.id}
-            style={{
-              fontFamily: MONO,
-              fontSize: "clamp(10px, 0.95vw, 12px)",
-              fontWeight: 500,
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              color: STEEL_700,
-            }}
-          >
-            {c.title}
-          </li>
-        ))}
-      </ul>
-    </section>
   );
 }
 
@@ -182,8 +127,25 @@ function Body() {
             {HEADLINE_LEAD}{" "}
             <span style={{ fontStyle: "italic", fontWeight: 300, color: STEEL_700 }}>{HEADLINE_TAIL}</span>
           </h1>
-          <p style={{ fontFamily: SERIF, fontSize: "clamp(17px, 1.6vw, 19px)", lineHeight: 1.55, color: STEEL_700, margin: 0, whiteSpace: "nowrap", fontVariationSettings: '"opsz" 14' }}>
+          <p style={{ fontFamily: SERIF, fontSize: "clamp(17px, 1.6vw, 19px)", lineHeight: 1.55, color: STEEL_700, margin: 0, marginBottom: "clamp(28px, 3.2vw, 40px)", whiteSpace: "nowrap", fontVariationSettings: '"opsz" 14' }}>
             {SHORT_DEK}
+          </p>
+
+          {/* Categories tucked right under the dek, supporting
+              the headline rather than preceding it. Italic serif
+              with middots — narrower per-character than mono
+              caps, so the strip fits inside the headline column.
+              Each title is nowrap so any line break happens
+              cleanly between titles, never mid-word. */}
+          <p style={{ paddingTop: "clamp(20px, 2.4vw, 28px)", borderTop: `1px solid ${STEEL_300}`, fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(13px, 1.2vw, 15px)", lineHeight: 1.5, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 36' }}>
+            {CATEGORY_STRIP.map((c, i, arr) => (
+              <span key={c.id}>
+                <span style={{ whiteSpace: "nowrap" }}>{c.title}</span>
+                {i < arr.length - 1 && (
+                  <span aria-hidden style={{ marginLeft: "clamp(6px, 1vw, 12px)", marginRight: "clamp(6px, 1vw, 12px)", color: STEEL_300 }}>·</span>
+                )}
+              </span>
+            ))}
           </p>
         </div>
 
