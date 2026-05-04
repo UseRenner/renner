@@ -159,7 +159,6 @@ function Triptych() {
               letterSpacing: "0.06em",
               color: STEEL_700,
               lineHeight: 1.5,
-              marginTop: "auto",
             }}
           >
             {task.location}
