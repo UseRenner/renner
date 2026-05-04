@@ -44,12 +44,6 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     subtitle: "Editorial table of contents",
     note: "Page is a TOC. Six italic category entries down a single column between two ink rules; the seventh entry is the signup itself, expanded inline. The form is the last entry — what the reader arrives at when they reach the end.",
   },
-  {
-    slug: "bureau-cipher",
-    label: "Bureau · Cipher",
-    subtitle: "Bauhaus block grid",
-    note: "12-column architectural composition. Cells of the grid hold the wordmark, the sign-in link, the headline, the form, and the categories — bound by a single ink frame and dividing hairlines. Reads as a constructivist poster.",
-  },
 ];
 
 export default function LandingPreviewIndex() {
@@ -60,10 +54,10 @@ export default function LandingPreviewIndex() {
           Landing previews · Bureau
         </div>
         <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(36px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, marginBottom: 16, fontVariationSettings: '"opsz" 60' }}>
-          Seven Bureau walls.
+          Six Bureau walls.
         </h1>
         <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.55, color: "#38414d", margin: 0, marginBottom: 56, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-          Seven wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. Every wall offers both pathways — sign up to hire, or apply as a Renner.
+          Six wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. Every wall offers both pathways — sign up to hire, or apply as a Renner.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #0d0f12" }}>

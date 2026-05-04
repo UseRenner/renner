@@ -125,9 +125,10 @@ function Panel() {
                   fontFamily: MONO,
                   fontSize: "clamp(9px, 0.85vw, 11px)",
                   fontWeight: 500,
-                  letterSpacing: "0.16em",
+                  letterSpacing: "0.08em",
                   textTransform: "uppercase",
                   color: STEEL_700,
+                  whiteSpace: "nowrap",
                 }}
               >
                 {c.title}

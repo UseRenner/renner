@@ -13,8 +13,7 @@ export type LandingVariantKey =
   | "letter"
   | "specimen"
   | "glyph"
-  | "index"
-  | "cipher";
+  | "index";
 
 export const LANDING_VARIANTS: ReadonlyArray<{
   href: string;
@@ -27,7 +26,6 @@ export const LANDING_VARIANTS: ReadonlyArray<{
   { href: "/preview/landing/bureau-specimen", key: "specimen", label: "Specimen" },
   { href: "/preview/landing/bureau-glyph", key: "glyph", label: "Glyph" },
   { href: "/preview/landing/bureau-index", key: "index", label: "Index" },
-  { href: "/preview/landing/bureau-cipher", key: "cipher", label: "Cipher" },
 ];
 
 import type { ShellTone } from "../how-it-works/_shared";
