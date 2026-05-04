@@ -26,7 +26,12 @@ const PAPER = "var(--c-bg, #fbfbfc)";
 // The trio shows the variety of what Renner handles in one
 // horizontal sweep, then the form below closes the page.
 
-const TRIO = [SAMPLE_TASKS[0], SAMPLE_TASKS[1], SAMPLE_TASKS[2]];
+// Three samples chosen to span the audience at first glance:
+// signage (the iconic real-estate task), guest access (host
+// audience), and licensed showings (the premium broker side).
+// Without a host-side example, non-traditional-real-estate
+// visitors leave thinking Renner isn't for them.
+const TRIO = [SAMPLE_TASKS[0], SAMPLE_TASKS[5], SAMPLE_TASKS[2]];
 
 export function BureauTrioBody({ tone }: { tone: ShellTone }) {
   return (
