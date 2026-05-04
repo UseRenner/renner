@@ -85,7 +85,7 @@ export function BureauSpecimenBody({ tone }: { tone: ShellTone }) {
                   style={{
                     fontFamily: SERIF,
                     fontStyle: "italic",
-                    fontWeight: 400,
+                    fontWeight: 300,
                     fontSize: "clamp(15px, 1.4vw, 18px)",
                     lineHeight: 1.4,
                     color: STEEL_700,
