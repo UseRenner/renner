@@ -36,7 +36,7 @@ export function BureauIndexBody({ tone }: { tone: ShellTone }) {
           paddingRight: "clamp(24px, 4vw, 64px)",
         }}
       >
-        <div style={{ maxWidth: 880, margin: "0 auto" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
           {/* Cover line — the hero is one editorial sentence
               treated as the table-of-contents title. */}
           <div style={{ paddingBottom: "clamp(40px, 5vw, 64px)" }}>
