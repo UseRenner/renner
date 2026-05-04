@@ -23,9 +23,13 @@ export const CATEGORIES: Category[] = [
   { id: "signs", label: "Signs", title: "Sign installs", detail: "Sign riders, post installs, removals." },
   { id: "lockbox", label: "Lockbox", title: "Lockbox swaps", detail: "Combination resets, lockbox swaps, key drops." },
   { id: "showings", label: "Showings", title: "Licensed showings", detail: "Buyer showings, on-call coverage, open houses." },
+  { id: "open-houses", label: "Open houses", title: "Open house coverage", detail: "Open house sit-ins, sign-in, lights and lockup." },
   { id: "courier", label: "Courier", title: "Document delivery", detail: "Closing docs, key drops, contract relays." },
   { id: "visuals", label: "Visuals", title: "Walkthrough photos", detail: "Photo-ready setup, walkthrough captures, virtual tours." },
+  { id: "inspections", label: "Inspections", title: "Inspection access", detail: "Let inspectors in, walk through, lock back up." },
+  { id: "notary", label: "Notary", title: "Notary visits", detail: "Mobile notary, signing room coverage." },
   { id: "guest", label: "Guest access", title: "Guest check-ins", detail: "Guest check-ins, host assistance, property access." },
+  { id: "permits", label: "Permits", title: "Permit pulls", detail: "City-hall permit pulls, application drops." },
 ];
 
 export type Testimonial = {

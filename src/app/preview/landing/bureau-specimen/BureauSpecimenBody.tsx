@@ -65,7 +65,7 @@ export function BureauSpecimenBody({ tone }: { tone: ShellTone }) {
 
           {/* Categories */}
           <Section>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", columnGap: "clamp(16px, 2.4vw, 32px)", rowGap: 8 }}>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", columnGap: 0, rowGap: 8 }}>
               {CATEGORIES.map((c, i) => (
                 <li
                   key={c.id}
@@ -80,7 +80,7 @@ export function BureauSpecimenBody({ tone }: { tone: ShellTone }) {
                 >
                   {c.label}
                   {i < CATEGORIES.length - 1 && (
-                    <span aria-hidden style={{ marginLeft: "clamp(16px, 2.4vw, 32px)", color: STEEL_300 }}>·</span>
+                    <span aria-hidden style={{ marginLeft: "clamp(8px, 1.2vw, 16px)", marginRight: "clamp(8px, 1.2vw, 16px)", color: STEEL_300 }}>·</span>
                   )}
                 </li>
               ))}
