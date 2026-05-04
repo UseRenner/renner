@@ -8,19 +8,14 @@ export { getToneVars, isToneDark, RennerMark, type ShellTone } from "../how-it-w
 export { VariantSwitcher } from "./_variant-switcher";
 
 export type LandingVariantKey =
-  | "iteration"
   | "trio"
-  | "stark"
-  | "vault"
   | "column"
   | "window"
-  | "stack"
   | "letter"
   | "specimen"
   | "manuscript"
   | "glyph"
   | "index"
-  | "memo"
   | "cipher";
 
 export const LANDING_VARIANTS: ReadonlyArray<{
@@ -28,19 +23,14 @@ export const LANDING_VARIANTS: ReadonlyArray<{
   key: LandingVariantKey;
   label: string;
 }> = [
-  { href: "/preview/landing/bureau-iteration", key: "iteration", label: "Iteration" },
   { href: "/preview/landing/bureau-trio", key: "trio", label: "Trio" },
-  { href: "/preview/landing/bureau-stark", key: "stark", label: "Stark" },
-  { href: "/preview/landing/bureau-vault", key: "vault", label: "Vault" },
   { href: "/preview/landing/bureau-column", key: "column", label: "Column" },
   { href: "/preview/landing/bureau-window", key: "window", label: "Window" },
-  { href: "/preview/landing/bureau-stack", key: "stack", label: "Stack" },
   { href: "/preview/landing/bureau-letter", key: "letter", label: "Letter" },
   { href: "/preview/landing/bureau-specimen", key: "specimen", label: "Specimen" },
   { href: "/preview/landing/bureau-manuscript", key: "manuscript", label: "Manuscript" },
   { href: "/preview/landing/bureau-glyph", key: "glyph", label: "Glyph" },
   { href: "/preview/landing/bureau-index", key: "index", label: "Index" },
-  { href: "/preview/landing/bureau-memo", key: "memo", label: "Memo" },
   { href: "/preview/landing/bureau-cipher", key: "cipher", label: "Cipher" },
 ];
 

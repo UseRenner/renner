@@ -9,88 +9,58 @@ const MONO = "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Cons
 
 const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: string }> = [
   {
-    slug: "bureau-iteration",
-    label: "Bureau · Iteration",
-    subtitle: "50/50 split, paper",
-    note: "The current live page in Bureau's DNA. Wordmark + headline + interactive sample card + category pills on the left; signup form on the right.",
-  },
-  {
     slug: "bureau-trio",
     label: "Bureau · Trio",
-    subtitle: "50/50 with three sample tasks",
-    note: "Left side stacks three sample task cards — Signs, Lockbox, Showings — clearly framed as samples. Right side is the signup form.",
-  },
-  {
-    slug: "bureau-stark",
-    label: "Bureau · Stark",
-    subtitle: "Two-tone 50/50 (ink + paper)",
-    note: "Left half is ink with paper headline and dek; no peek imagery. Right half is paper with the signup form. Strongest contrast of all the side-by-sides.",
-  },
-  {
-    slug: "bureau-vault",
-    label: "Bureau · Vault",
-    subtitle: "50/50 split, ink tone",
-    note: "Same wall as Iteration, rendered in Bureau's dark register.",
+    subtitle: "Typographic triptych",
+    note: "Headline above a three-column triptych — kicker, italic title, location stamp — separated by floor-to-ceiling hairlines. Form sits beneath as the closing section.",
   },
   {
     slug: "bureau-column",
     label: "Bureau · Column",
-    subtitle: "Centered narrow column, paper",
-    note: "Single vertical axis down the page. Wordmark, headline, one sample card, signup form, footer.",
+    subtitle: "Ruled vertical column",
+    note: "Narrow body column flanked left and right by full-height ink hairlines. Headline, dek, and form run inside the ruled margins as one continuous reading.",
   },
   {
     slug: "bureau-window",
     label: "Bureau · Window",
-    subtitle: "Bordered panel on chalk",
-    note: "One ink-bordered panel at the center of a chalk page contains everything — wordmark, headline, sample card, and signup form.",
-  },
-  {
-    slug: "bureau-stack",
-    label: "Bureau · Stack",
-    subtitle: "Two horizontal bands",
-    note: "Upper band (paper) holds the wordmark, headline, and sample. Lower band (chalk) holds the signup form.",
+    subtitle: "Single panel on chalk",
+    note: "One ink-bordered panel at the center of a chalk page. Inside, everything stacks down a single vertical axis — mark above the hairline, headline, dek, form, secondary path. No internal split.",
   },
   {
     slug: "bureau-letter",
     label: "Bureau · Letter",
     subtitle: "Editorial stationery",
-    note: "Reads as a single piece of letter paper. Double-rule masthead at the top, narrow centered reading column, and form fields integrated directly into the body — no wrapping form box, no enclosing border. Each input is just a fill-in-the-blank line.",
+    note: "Reads as a single piece of letter paper. Hairline masthead, narrow centered reading column, form fields integrated directly into the body — no wrapping form box. Each input is a fill-in-the-blank line.",
   },
   {
     slug: "bureau-specimen",
     label: "Bureau · Specimen",
     subtitle: "Type specimen sheet",
-    note: "Massive italic wordmark sets the typographic register; below it, sections separated by single hairlines move from dek to categories to form. No section labels — each element speaks for itself.",
+    note: "Sections separated by single hairlines move from headline to categories to form. No section labels — each element speaks for itself.",
   },
   {
     slug: "bureau-manuscript",
     label: "Bureau · Manuscript",
     subtitle: "Two-page spread",
-    note: "Page divided into a left and right page by a vertical spine hairline. Left page reads as the chapter opening (wordmark, headline, dek). Right page is the RSVP card — form fields integrated as fill-in-the-blank lines. Roman page numbers in the corners.",
+    note: "Page divided into a left and right page by a vertical spine hairline. Left page holds the wordmark and editorial opening. Right page holds the sign-in line and the form.",
   },
   {
     slug: "bureau-glyph",
     label: "Bureau · Glyph",
     subtitle: "Wordmark as architecture",
-    note: "The wordmark renders enormously across the top half of the page — italic, low-opsz, generous letter-spacing — anchoring the entire composition. Headline, dek, and form sit in the negative space the glyph leaves. Type forms the building, the form is the door.",
+    note: "The wordmark renders large across the top of the page — italic, low-opsz, generous letter-spacing — anchoring the composition. Headline, dek, and form sit in the negative space the glyph leaves.",
   },
   {
     slug: "bureau-index",
     label: "Bureau · Index",
-    subtitle: "Numbered table of contents",
-    note: "Page is a TOC. Six numbered category entries down a single column with leader dots and page references; the seventh entry is the signup itself, expanded inline. The form is the last entry — what the reader arrives at when they reach the end of the index.",
-  },
-  {
-    slug: "bureau-memo",
-    label: "Bureau · Memo",
-    subtitle: "Internal memo",
-    note: "Reads as a typed memo. Header block with TO / FROM / RE lines (mono caps + serif italic), a single hairline separator, then the editorial body — headline as the lede, form as the request, italic 'Renner' signature line at the end.",
+    subtitle: "Editorial table of contents",
+    note: "Page is a TOC. Six italic category entries down a single column between two ink rules; the seventh entry is the signup itself, expanded inline. The form is the last entry — what the reader arrives at when they reach the end.",
   },
   {
     slug: "bureau-cipher",
     label: "Bureau · Cipher",
     subtitle: "Bauhaus block grid",
-    note: "12-column architectural composition. Cells of the grid hold the wordmark, the sign-in link, the headline, the form, and the categories — bound by a single ink frame and dividing hairlines. Reads as a constructivist poster: type and form as architectural elements arranged across the page.",
+    note: "12-column architectural composition. Cells of the grid hold the wordmark, the sign-in link, the headline, the form, and the categories — bound by a single ink frame and dividing hairlines. Reads as a constructivist poster.",
   },
 ];
 
@@ -102,10 +72,10 @@ export default function LandingPreviewIndex() {
           Landing previews · Bureau
         </div>
         <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(36px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, marginBottom: 16, fontVariationSettings: '"opsz" 60' }}>
-          Fourteen Bureau walls.
+          Nine Bureau walls.
         </h1>
         <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.55, color: "#38414d", margin: 0, marginBottom: 56, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-          Fourteen wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. The first four are side-by-sides; the rest push the design vocabulary into more original territory. Every wall offers both pathways — sign up to hire, or apply as a Renner.
+          Nine wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. Every wall offers both pathways — sign up to hire, or apply as a Renner.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #0d0f12" }}>

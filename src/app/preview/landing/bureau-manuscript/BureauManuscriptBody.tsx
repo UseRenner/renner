@@ -17,13 +17,13 @@ const PAPER = "var(--c-bg, #fbfbfc)";
 
 // Bureau — MANUSCRIPT WALL.
 // The page is a two-page spread joined by a vertical spine
-// hairline down the middle. Left page reads as the chapter
-// opening — wordmark, headline, dek, page number. Right page
-// is the RSVP card — form fields integrated as fill-in-the-
-// blank lines, with a "signature" link beneath. Page numbers
-// in mono caps anchor each side.
+// hairline down the middle. Left page holds the wordmark and
+// the editorial opening (headline + dek). Right page holds the
+// sign-in line and the form — fields integrated as fill-in-
+// the-blank lines.
 //
-// Reads as opening a book to the membership card insert.
+// The spine hairline does all the structural work. No page
+// numbers, no captions: the geometry alone reads as a spread.
 
 export function BureauManuscriptBody({ tone }: { tone: ShellTone }) {
   return (
@@ -59,19 +59,15 @@ function LeftPage() {
         padding: "clamp(40px, 6vw, 88px)",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
-        gap: 64,
+        gap: "clamp(56px, 7vw, 96px)",
         minHeight: "100vh",
       }}
     >
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
-        <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500 }}>
-          i
-        </span>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-start", gap: 16 }}>
         <RennerMark size={28} weight={300} />
       </div>
 
-      <div style={{ maxWidth: "20ch" }}>
+      <div style={{ maxWidth: "20ch", flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
         <h1
           style={{
             fontFamily: SERIF,
@@ -92,12 +88,6 @@ function LeftPage() {
           {SHORT_DEK}
         </p>
       </div>
-
-      <div style={{ display: "flex", justifyContent: "flex-end" }}>
-        <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500 }}>
-          The chapter
-        </span>
-      </div>
     </section>
   );
 }
@@ -109,29 +99,21 @@ function RightPage() {
         padding: "clamp(40px, 6vw, 88px)",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
-        gap: 64,
+        gap: "clamp(56px, 7vw, 96px)",
         minHeight: "100vh",
       }}
     >
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 16 }}>
         <p style={{ fontFamily: SANS, fontSize: 13, color: STEEL_700, margin: 0 }}>
           Have an account?{" "}
           <Link href="/signin" style={{ color: INK, fontWeight: 500, textDecoration: "underline", textUnderlineOffset: 3 }}>
             Sign in
           </Link>
         </p>
-        <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500 }}>
-          ii
-        </span>
       </div>
 
-      <ManuscriptForm />
-
-      <div style={{ display: "flex", justifyContent: "flex-start" }}>
-        <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500 }}>
-          The card
-        </span>
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+        <ManuscriptForm />
       </div>
     </section>
   );

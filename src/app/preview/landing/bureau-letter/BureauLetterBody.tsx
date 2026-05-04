@@ -17,12 +17,12 @@ const PAPER = "var(--c-bg, #fbfbfc)";
 
 // Bureau — LETTER WALL.
 // The page is a single piece of editorial stationery. A
-// masthead double-rule across the top, a narrow centered
-// reading column below, and form fields that sit DIRECTLY in
-// the page — no wrapping form box, no enclosing border. Each
-// field has its own input rule; the form as a whole is just a
-// stack of fields integrated into the body of the letter,
-// like an RSVP card printed inside a letter.
+// masthead hairline across the top, a narrow centered reading
+// column below, and form fields that sit DIRECTLY in the page
+// — no wrapping form box, no enclosing border. Each field has
+// its own input rule; the form as a whole is just a stack of
+// fields integrated into the body of the letter, like an RSVP
+// card printed inside a letter.
 //
 // What makes it distinct from any signup page I've seen: most
 // signup forms are walled off — a card, a box, a border. Here
@@ -41,8 +41,8 @@ export function BureauLetterBody({ tone }: { tone: ShellTone }) {
 }
 
 function Masthead() {
-  // Double rule: a 1px ink line, a 4px gap, another 1px ink
-  // line. Reads as letterpress letterhead.
+  // Single hairline below the masthead — quieter than letterhead,
+  // still a clear horizon for the page.
   return (
     <header
       style={{
@@ -51,7 +51,7 @@ function Masthead() {
         paddingRight: "clamp(28px, 4vw, 64px)",
       }}
     >
-      <div style={{ maxWidth: 1180, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, paddingBottom: 16 }}>
+      <div style={{ maxWidth: 1180, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, paddingBottom: 16, borderBottom: `1px solid ${INK}` }}>
         <RennerMark size={32} weight={300} />
         <p style={{ fontFamily: SANS, fontSize: 13, color: STEEL_700, margin: 0 }}>
           Have an account?{" "}
@@ -59,9 +59,6 @@ function Masthead() {
             Sign in
           </Link>
         </p>
-      </div>
-      <div style={{ maxWidth: 1180, margin: "0 auto", borderTop: `1px solid ${INK}`, paddingTop: 4 }}>
-        <div style={{ borderTop: `1px solid ${INK}` }} />
       </div>
     </header>
   );
@@ -241,16 +238,14 @@ function Footer() {
         paddingRight: "clamp(28px, 4vw, 64px)",
       }}
     >
-      <div style={{ maxWidth: 1180, margin: "0 auto", borderTop: `1px solid ${INK}`, paddingTop: 4 }}>
-        <div style={{ borderTop: `1px solid ${INK}`, paddingTop: 16, display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
-          <span>Real-estate task marketplace</span>
-          <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
-            <Link href="/contact" style={{ color: STEEL_700, textDecoration: "none" }}>Contact</Link>
-            <Link href="/terms" style={{ color: STEEL_700, textDecoration: "none" }}>Terms</Link>
-            <Link href="/privacy" style={{ color: STEEL_700, textDecoration: "none" }}>Privacy</Link>
-            <span>·</span>
-            <span>© 2026</span>
-          </div>
+      <div style={{ maxWidth: 1180, margin: "0 auto", borderTop: `1px solid ${INK}`, paddingTop: 16, display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
+        <span>Real-estate task marketplace</span>
+        <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
+          <Link href="/contact" style={{ color: STEEL_700, textDecoration: "none" }}>Contact</Link>
+          <Link href="/terms" style={{ color: STEEL_700, textDecoration: "none" }}>Terms</Link>
+          <Link href="/privacy" style={{ color: STEEL_700, textDecoration: "none" }}>Privacy</Link>
+          <span>·</span>
+          <span>© 2026</span>
         </div>
       </div>
     </footer>

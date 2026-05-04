@@ -61,21 +61,21 @@ export function BureauIndexBody({ tone }: { tone: ShellTone }) {
             </p>
           </div>
 
-          {/* The index. Each entry: number, italic title with
-              leader dots, page reference. Reads as a TOC. */}
+          {/* The index. Each entry is a single italic title in
+              the TOC rhythm. No numbers, no page references —
+              just the titles in a stack between two ink rules. */}
           <div style={{ borderTop: `1px solid ${INK}`, borderBottom: `1px solid ${INK}` }}>
-            <Entry n="01" title="Sign installs" page="03" />
-            <Entry n="02" title="Lockbox swaps" page="04" />
-            <Entry n="03" title="Licensed showings" page="05" />
-            <Entry n="04" title="Document delivery" page="06" />
-            <Entry n="05" title="Walkthrough photos" page="07" />
-            <Entry n="06" title="Guest check-ins" page="08" />
+            <Entry title="Sign installs" />
+            <Entry title="Lockbox swaps" />
+            <Entry title="Licensed showings" />
+            <Entry title="Document delivery" />
+            <Entry title="Walkthrough photos" />
+            <Entry title="Guest check-ins" />
           </div>
 
-          {/* Final entry — the form. Numbered as 07 so it sits
-              in the same TOC rhythm. Expanded inline rather
-              than as a row, because this is the entry the
-              reader actually opens. */}
+          {/* Final entry — the form. Sits in the same TOC rhythm,
+              expanded inline rather than as a row. The reader
+              arrives at it after the list. */}
           <FinalEntry />
         </div>
       </main>
@@ -107,26 +107,16 @@ function Header() {
   );
 }
 
-function Entry({ n, title, page }: { n: string; title: string; page: string }) {
+function Entry({ title }: { title: string }) {
   return (
     <article
       style={{
-        display: "grid",
-        gridTemplateColumns: "minmax(60px, 80px) minmax(0, 1fr) auto",
-        alignItems: "baseline",
-        gap: "clamp(16px, 2vw, 28px)",
         padding: "clamp(18px, 2vw, 24px) 0",
         borderBottom: `1px solid var(--c-rule, #eaedf0)`,
       }}
     >
-      <span style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.22em", color: STEEL_500 }}>
-        {n}
-      </span>
-      <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(18px, 1.9vw, 22px)", lineHeight: 1.15, color: INK, fontVariationSettings: '"opsz" 36' }}>
+      <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(20px, 2.2vw, 26px)", lineHeight: 1.15, color: INK, fontVariationSettings: '"opsz" 36' }}>
         {title}
-      </span>
-      <span style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.18em", color: STEEL_500, whiteSpace: "nowrap" }}>
-        {page}
       </span>
     </article>
   );
@@ -136,22 +126,13 @@ function FinalEntry() {
   return (
     <article
       style={{
-        display: "grid",
-        gridTemplateColumns: "minmax(60px, 80px) minmax(0, 1fr)",
-        alignItems: "baseline",
-        gap: "clamp(16px, 2vw, 28px)",
         paddingTop: "clamp(40px, 5vw, 64px)",
       }}
     >
-      <span style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.22em", color: STEEL_500, marginTop: 8 }}>
-        07
-      </span>
-      <div>
-        <h2 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(24px, 2.6vw, 32px)", lineHeight: 1.1, letterSpacing: "-0.014em", color: INK, margin: 0, marginBottom: "clamp(20px, 2.4vw, 28px)", fontVariationSettings: '"opsz" 36' }}>
-          Sign up — to hire or to be hired
-        </h2>
-        <IndexForm />
-      </div>
+      <h2 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(24px, 2.6vw, 32px)", lineHeight: 1.1, letterSpacing: "-0.014em", color: INK, margin: 0, marginBottom: "clamp(20px, 2.4vw, 28px)", fontVariationSettings: '"opsz" 36' }}>
+        Sign up — to hire or to be hired
+      </h2>
+      <IndexForm />
     </article>
   );
 }
