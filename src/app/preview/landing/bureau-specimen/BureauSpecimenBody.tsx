@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { RennerMark, getToneVars, type ShellTone } from "../../how-it-works/_shared";
-import { CATEGORIES, SHORT_DEK } from "../_content";
+import { CATEGORIES, HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
@@ -39,30 +39,29 @@ export function BureauSpecimenBody({ tone }: { tone: ShellTone }) {
         }}
       >
         <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-          {/* Wordmark at display scale — the headline. */}
-          <span
-            aria-hidden
-            style={{
-              fontFamily: SERIF,
-              fontStyle: "italic",
-              fontWeight: 300,
-              fontSize: "clamp(96px, 18vw, 280px)",
-              lineHeight: 0.85,
-              letterSpacing: "-0.04em",
-              color: INK,
-              display: "block",
-              fontVariationSettings: '"opsz" 144',
-            }}
-          >
-            renner
-          </span>
-
-          {/* Dek */}
-          <Section>
-            <p style={{ fontFamily: SERIF, fontSize: "clamp(20px, 2.4vw, 30px)", lineHeight: 1.4, color: INK, margin: 0, maxWidth: "44ch", fontVariationSettings: '"opsz" 36' }}>
+          {/* Headline + dek as the opening of the specimen. */}
+          <div>
+            <h1
+              style={{
+                fontFamily: SERIF,
+                fontWeight: 400,
+                fontSize: "clamp(40px, 5.6vw, 80px)",
+                lineHeight: 0.98,
+                letterSpacing: "-0.022em",
+                color: INK,
+                margin: 0,
+                marginBottom: "clamp(20px, 2.4vw, 28px)",
+                maxWidth: "16ch",
+                fontVariationSettings: '"opsz" 144',
+              }}
+            >
+              {HEADLINE_LEAD}{" "}
+              <span style={{ fontStyle: "italic", fontWeight: 300, color: STEEL_700 }}>{HEADLINE_TAIL}</span>
+            </h1>
+            <p style={{ fontFamily: SERIF, fontSize: "clamp(17px, 1.7vw, 20px)", lineHeight: 1.55, color: STEEL_700, margin: 0, maxWidth: "44ch", fontVariationSettings: '"opsz" 14' }}>
               {SHORT_DEK}
             </p>
-          </Section>
+          </div>
 
           {/* Categories */}
           <Section>
