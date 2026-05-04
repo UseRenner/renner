@@ -83,11 +83,11 @@ function LeftPanel({
     <section
       style={{
         backgroundColor: INK,
-        padding: "clamp(40px, 5vw, 72px)",
+        padding: "clamp(56px, 6.5vw, 96px)",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        gap: 56,
+        gap: 72,
         borderRight: `1px solid ${RULE}`,
       }}
     >
@@ -265,10 +265,10 @@ function RightPanel() {
     <section
       style={{
         backgroundColor: INK,
-        padding: "clamp(40px, 5vw, 72px)",
+        padding: "clamp(56px, 6.5vw, 96px)",
         display: "flex",
         flexDirection: "column",
-        gap: 56,
+        gap: 72,
       }}
     >
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
