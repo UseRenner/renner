@@ -83,12 +83,14 @@ export function BureauSpecimenBody({ tone }: { tone: ShellTone }) {
                 <li
                   key={c.id}
                   style={{
-                    fontFamily: MONO,
-                    fontSize: "clamp(11px, 1vw, 13px)",
-                    fontWeight: 500,
-                    letterSpacing: "0.18em",
-                    textTransform: "uppercase",
+                    fontFamily: SERIF,
+                    fontStyle: "italic",
+                    fontWeight: 400,
+                    fontSize: "clamp(15px, 1.4vw, 18px)",
+                    lineHeight: 1.4,
                     color: STEEL_700,
+                    fontVariationSettings: '"opsz" 14',
+                    whiteSpace: "nowrap",
                   }}
                 >
                   {c.title}

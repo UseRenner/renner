@@ -112,29 +112,22 @@ function Panel() {
           </p>
         </div>
 
-        {/* Categories — mono caps strip inside the panel,
-            distributed edge to edge. Bracketed by light hairlines
-            so it reads as a typographic stamp between the lede
-            and the form. */}
+        {/* Categories — italic serif with middots, bracketed by
+            light hairlines so it reads as a typographic stamp
+            between the lede and the form. The italic serif
+            register conveys "Renner takes care of things" rather
+            than the clipped mono-caps "running through tasks." */}
         <div style={{ paddingTop: "clamp(18px, 2.2vw, 24px)", paddingBottom: "clamp(18px, 2.2vw, 24px)", borderTop: `1px solid ${STEEL_300}`, borderBottom: `1px solid ${STEEL_300}` }}>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", justifyContent: "space-between", columnGap: "clamp(8px, 1.2vw, 16px)", rowGap: 8 }}>
-            {CATEGORY_STRIP_SHORT.map((c) => (
-              <li
-                key={c.id}
-                style={{
-                  fontFamily: MONO,
-                  fontSize: "clamp(9px, 0.85vw, 11px)",
-                  fontWeight: 500,
-                  letterSpacing: "0.16em",
-                  textTransform: "uppercase",
-                  color: STEEL_700,
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {c.title}
-              </li>
+          <p style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(13px, 1.2vw, 15px)", lineHeight: 1.5, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+            {CATEGORY_STRIP_SHORT.map((c, i, arr) => (
+              <span key={c.id}>
+                <span style={{ whiteSpace: "nowrap" }}>{c.title}</span>
+                {i < arr.length - 1 && (
+                  <span aria-hidden style={{ marginLeft: "clamp(8px, 1.2vw, 14px)", marginRight: "clamp(8px, 1.2vw, 14px)", color: STEEL_300 }}>·</span>
+                )}
+              </span>
             ))}
-          </ul>
+          </p>
         </div>
 
         <WindowForm />
