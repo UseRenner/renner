@@ -259,7 +259,7 @@ function TrioForm() {
       </div>
 
       <p style={{ fontFamily: SERIF, fontSize: 13, lineHeight: 1.6, color: STEEL_500, margin: 0, fontVariationSettings: '"opsz" 14' }}>
-        Persona identity verification and Checkr background check required before hiring or becoming a Renner.
+        Persona identity verification and Checkr background check required to create an account.
       </p>
     </form>
   );
