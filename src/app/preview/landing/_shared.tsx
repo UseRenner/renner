@@ -1,3 +1,4 @@
+// Cache-buster: deploy nudge 2026-05-04T19:18Z
 // Shared infrastructure for the landing-page previews. Mirrors
 // the how-it-works/_shared.tsx pattern: a single source of truth
 // for the variant list, the tone reader, and re-exports of the
