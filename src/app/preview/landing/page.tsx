@@ -21,10 +21,22 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     note: "One ink-bordered panel at the center of a chalk page. Inside, everything stacks down a single vertical axis — mark above the hairline, headline, dek, form, secondary path. No internal split.",
   },
   {
+    slug: "bureau-window-soft",
+    label: "Bureau · Window · Soft",
+    subtitle: "Two-tone panel, no borders",
+    note: "Same panel-on-chalk composition rendered with two tones and no borders — the paper-on-chalk tone change defines the panel's edge. Categories switch from mono caps to italic serif. Reads softer than the original Window.",
+  },
+  {
     slug: "bureau-letter",
     label: "Bureau · Letter",
     subtitle: "Editorial stationery",
     note: "Reads as a single piece of letter paper. Hairline masthead, narrow centered reading column, form fields integrated directly into the body — no wrapping form box. Each input is a fill-in-the-blank line.",
+  },
+  {
+    slug: "bureau-letter-inked",
+    label: "Bureau · Letter · Inked",
+    subtitle: "Letter, with categories rendered in ink",
+    note: "Same editorial stationery as Letter, but the categories strip is bumped up a size and rendered in INK rather than steel — the list reads with real presence in the body instead of disappearing as a quiet continuation of the prose.",
   },
   {
     slug: "bureau-specimen",
@@ -54,10 +66,10 @@ export default function LandingPreviewIndex() {
           Landing previews · Bureau
         </div>
         <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(36px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, marginBottom: 16, fontVariationSettings: '"opsz" 60' }}>
-          Six Bureau walls.
+          Eight Bureau walls.
         </h1>
         <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.55, color: "#38414d", margin: 0, marginBottom: 56, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-          Six wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. Every wall offers both pathways — sign up to hire, or apply as a Renner.
+          Eight wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. Every wall offers both pathways — sign up to hire, or apply as a Renner.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #0d0f12" }}>
