@@ -15,8 +15,10 @@ const STEEL_300 = "var(--c-300, #cad1d8)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 const CHALK = "var(--c-panel, #eaedf0)";
 
-// Bureau — WINDOW · A · "Sign in" only
-// Sign-in option: bare link, no question or prompt.
+// Bureau — WINDOW · A — italic serif sign-in
+// Same text "Have an account? Sign in", but rendered in italic
+// Source Serif (matching the editorial body register) instead
+// of Source Sans.
 
 export function BureauWindowABody({ tone }: { tone: ShellTone }) {
   return (
@@ -60,9 +62,12 @@ function Panel() {
         }}
       >
         <RennerMark size={28} weight={300} />
-        <Link href="/signin" style={{ fontFamily: SANS, fontSize: 13, color: INK, fontWeight: 500, textDecoration: "underline", textUnderlineOffset: 3 }}>
-          Sign in
-        </Link>
+        <p style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 15, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+          Have an account?{" "}
+          <Link href="/signin" style={{ color: INK, fontWeight: 400, textDecoration: "underline", textUnderlineOffset: 3 }}>
+            Sign in
+          </Link>
+        </p>
       </div>
 
       <div
@@ -241,19 +246,14 @@ function Footer() {
         paddingRight: "clamp(24px, 4vw, 56px)",
       }}
     >
-      <div style={{ maxWidth: 1440, margin: "0 auto", display: "flex", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
+      <div style={{ maxWidth: 1440, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
         <RennerMark size={28} weight={300} />
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 12 }}>
-          <Link href="/signin" style={{ fontFamily: SANS, fontSize: 13, color: INK, fontWeight: 500, textDecoration: "underline", textUnderlineOffset: 3 }}>
-            Sign in
-          </Link>
-          <div style={{ display: "flex", alignItems: "center", gap: 24, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
-            <Link href="/contact" style={{ color: STEEL_700, textDecoration: "none" }}>Contact</Link>
-            <Link href="/terms" style={{ color: STEEL_700, textDecoration: "none" }}>Terms</Link>
-            <Link href="/privacy" style={{ color: STEEL_700, textDecoration: "none" }}>Privacy</Link>
-            <span>·</span>
-            <span>© 2026</span>
-          </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 24, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
+          <Link href="/contact" style={{ color: STEEL_700, textDecoration: "none" }}>Contact</Link>
+          <Link href="/terms" style={{ color: STEEL_700, textDecoration: "none" }}>Terms</Link>
+          <Link href="/privacy" style={{ color: STEEL_700, textDecoration: "none" }}>Privacy</Link>
+          <span>·</span>
+          <span>© 2026</span>
         </div>
       </div>
     </footer>

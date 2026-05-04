@@ -15,14 +15,16 @@ const STEEL_300 = "var(--c-300, #cad1d8)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 const CHALK = "var(--c-panel, #eaedf0)";
 
-// Bureau — WINDOW · B · "Already a Renner? Sign in"
-// Sign-in option: brand-aware greeting that uses the worker term.
+// Bureau — WINDOW · B — mono caps sign-in
+// Same text "Have an account? Sign in", but rendered in mono
+// caps (matching Bureau's footer / kicker register) instead of
+// Source Sans.
 
 function SignInPrompt() {
   return (
-    <p style={{ fontFamily: SANS, fontSize: 13, color: STEEL_700, margin: 0 }}>
-      Already a Renner?{" "}
-      <Link href="/signin" style={{ color: INK, fontWeight: 500, textDecoration: "underline", textUnderlineOffset: 3 }}>
+    <p style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500, margin: 0 }}>
+      Have an account?{" "}
+      <Link href="/signin" style={{ color: STEEL_700, textDecoration: "underline", textUnderlineOffset: 3 }}>
         Sign in
       </Link>
     </p>
@@ -250,17 +252,14 @@ function Footer() {
         paddingRight: "clamp(24px, 4vw, 56px)",
       }}
     >
-      <div style={{ maxWidth: 1440, margin: "0 auto", display: "flex", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
+      <div style={{ maxWidth: 1440, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
         <RennerMark size={28} weight={300} />
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 12 }}>
-          <SignInPrompt />
-          <div style={{ display: "flex", alignItems: "center", gap: 24, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
-            <Link href="/contact" style={{ color: STEEL_700, textDecoration: "none" }}>Contact</Link>
-            <Link href="/terms" style={{ color: STEEL_700, textDecoration: "none" }}>Terms</Link>
-            <Link href="/privacy" style={{ color: STEEL_700, textDecoration: "none" }}>Privacy</Link>
-            <span>·</span>
-            <span>© 2026</span>
-          </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 24, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
+          <Link href="/contact" style={{ color: STEEL_700, textDecoration: "none" }}>Contact</Link>
+          <Link href="/terms" style={{ color: STEEL_700, textDecoration: "none" }}>Terms</Link>
+          <Link href="/privacy" style={{ color: STEEL_700, textDecoration: "none" }}>Privacy</Link>
+          <span>·</span>
+          <span>© 2026</span>
         </div>
       </div>
     </footer>
