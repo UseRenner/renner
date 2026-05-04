@@ -65,7 +65,7 @@ function Panel() {
         }}
       >
         <RennerMark size={28} weight={300} />
-        <p style={{ fontFamily: SANS, fontSize: 13, color: STEEL_700, margin: 0 }}>
+        <p style={{ fontFamily: SANS, fontSize: 15, color: STEEL_700, margin: 0 }}>
           Have an account?{" "}
           <Link href="/signin" style={{ color: INK, fontWeight: 500, textDecoration: "underline", textUnderlineOffset: 3 }}>
             Sign in
