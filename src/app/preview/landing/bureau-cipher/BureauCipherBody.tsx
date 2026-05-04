@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { RennerMark, getToneVars, type ShellTone } from "../../how-it-works/_shared";
-import { CATEGORIES, HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
+import { CATEGORY_STRIP, HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
@@ -292,7 +292,7 @@ function CipherField({
 function CategoriesCell() {
   return (
     <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "clamp(12px, 2vw, 32px)", height: "100%" }}>
-      {CATEGORIES.map((c) => (
+      {CATEGORY_STRIP.map((c) => (
         <span
           key={c.id}
           style={{
@@ -304,7 +304,7 @@ function CategoriesCell() {
             color: STEEL_700,
           }}
         >
-          {c.label}
+          {c.title}
         </span>
       ))}
     </div>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { RennerMark, getToneVars, type ShellTone } from "../../how-it-works/_shared";
-import { CATEGORIES, HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
+import { CATEGORY_STRIP, HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
@@ -14,11 +14,6 @@ const STEEL_500 = "var(--c-500, #7d8da0)";
 const STEEL_300 = "var(--c-300, #cad1d8)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 
-// Index drops the same three longer / more-niche descriptive
-// titles Specimen does, so the strip fits on one line within
-// the 880-wide body column. The full canonical list still
-// lives in _content.ts.
-const INDEX_OMIT = new Set(["property-access", "host-assistance", "open-house"]);
 
 // Bureau — INDEX WALL.
 // The page is a table of contents. Numbered entries down a
@@ -119,7 +114,7 @@ function EntryStrip() {
       }}
     >
       <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", alignItems: "baseline", rowGap: 8 }}>
-        {CATEGORIES.filter((c) => !INDEX_OMIT.has(c.id)).map((c, i, arr) => (
+        {CATEGORY_STRIP.map((c, i, arr) => (
           <li
             key={c.id}
             style={{

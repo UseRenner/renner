@@ -2,16 +2,11 @@
 
 import Link from "next/link";
 import { RennerMark, getToneVars, type ShellTone } from "../../how-it-works/_shared";
-import { CATEGORIES, HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
+import { CATEGORY_STRIP, HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
 const MONO = "var(--font-source-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
-
-// Specimen drops a few of the longer / more-niche descriptive
-// titles so the row fits on one line at typical viewport widths.
-// The full canonical list still lives in _content.ts.
-const SPECIMEN_OMIT = new Set(["property-access", "host-assistance", "open-house"]);
 
 const INK = "var(--c-text, #0d0f12)";
 const STEEL_700 = "var(--c-700, #38414d)";
@@ -84,7 +79,7 @@ export function BureauSpecimenBody({ tone }: { tone: ShellTone }) {
             }}
           >
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", justifyContent: "space-between", columnGap: "clamp(8px, 1.2vw, 16px)", rowGap: 8 }}>
-              {CATEGORIES.filter((c) => !SPECIMEN_OMIT.has(c.id)).map((c) => (
+              {CATEGORY_STRIP.map((c) => (
                 <li
                   key={c.id}
                   style={{

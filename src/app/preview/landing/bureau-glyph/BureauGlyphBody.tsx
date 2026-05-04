@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { RennerMark, getToneVars, type ShellTone } from "../../how-it-works/_shared";
-import { CATEGORIES, HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
+import { CATEGORY_STRIP, HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
@@ -105,8 +105,8 @@ function Glyph() {
 // Categories — mono caps strip running across the page width
 // directly under the giant glyph. Bracketed by light hairlines
 // so it reads as a typographic seal between the wordmark and
-// the body. All nine descriptive titles fit because the strip
-// has the full max-1440 width to distribute across.
+// the body. Uses the shared trimmed list (six descriptive
+// titles) so every variant carries the same content.
 function CategoryStrip() {
   return (
     <section
@@ -132,7 +132,7 @@ function CategoryStrip() {
           rowGap: 8,
         }}
       >
-        {CATEGORIES.map((c) => (
+        {CATEGORY_STRIP.map((c) => (
           <li
             key={c.id}
             style={{
@@ -144,7 +144,7 @@ function CategoryStrip() {
               color: STEEL_700,
             }}
           >
-            {c.label}
+            {c.title}
           </li>
         ))}
       </ul>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { RennerMark, getToneVars, type ShellTone } from "../../how-it-works/_shared";
-import { CATEGORIES, HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
+import { CATEGORY_STRIP, HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
@@ -16,10 +16,6 @@ const RULE = "var(--c-rule, #eaedf0)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 const CHALK = "var(--c-panel, #eaedf0)";
 
-// Same trim as Specimen / Index — the panel is too narrow for
-// nine descriptive titles in mono caps, so we drop the longer /
-// niche entries.
-const WINDOW_OMIT = new Set(["property-access", "host-assistance", "open-house"]);
 
 // Bureau — WINDOW WALL.
 // One ink-bordered panel sits at the center of a chalk page,
@@ -122,19 +118,19 @@ function Panel() {
             and the form. */}
         <div style={{ paddingTop: "clamp(18px, 2.2vw, 24px)", paddingBottom: "clamp(18px, 2.2vw, 24px)", borderTop: `1px solid ${STEEL_300}`, borderBottom: `1px solid ${STEEL_300}` }}>
           <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", justifyContent: "space-between", columnGap: "clamp(8px, 1.2vw, 16px)", rowGap: 8 }}>
-            {CATEGORIES.filter((c) => !WINDOW_OMIT.has(c.id)).map((c) => (
+            {CATEGORY_STRIP.map((c) => (
               <li
                 key={c.id}
                 style={{
                   fontFamily: MONO,
-                  fontSize: "clamp(10px, 0.95vw, 12px)",
+                  fontSize: "clamp(9px, 0.85vw, 11px)",
                   fontWeight: 500,
-                  letterSpacing: "0.18em",
+                  letterSpacing: "0.16em",
                   textTransform: "uppercase",
                   color: STEEL_700,
                 }}
               >
-                {c.label}
+                {c.title}
               </li>
             ))}
           </ul>

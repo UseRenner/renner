@@ -34,6 +34,14 @@ export const CATEGORIES: Category[] = [
   { id: "open-house", label: "Open house", title: "Open house coverage", detail: "Open house sit-ins, sign-in, lights and lockup." },
 ];
 
+// The trimmed list every landing-variant strip displays — six
+// descriptive titles, identical across all variants. Drops three
+// of the longer / more-niche entries so the row reads cleanly
+// even in the narrower walls. Render via `c.title` in the
+// descriptive register, never `c.label`.
+const STRIP_OMIT_IDS = new Set(["property-access", "host-assistance", "open-house"]);
+export const CATEGORY_STRIP: Category[] = CATEGORIES.filter((c) => !STRIP_OMIT_IDS.has(c.id));
+
 export type Testimonial = {
   quote: string;
   name: string;

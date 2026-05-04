@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { RennerMark, getToneVars, type ShellTone } from "../../how-it-works/_shared";
-import { CATEGORIES, HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
+import { CATEGORY_STRIP, HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
 
 const SERIF = "var(--font-source-serif), ui-serif, Georgia, serif";
 const SANS = "var(--font-source-sans), ui-sans-serif, system-ui, sans-serif";
@@ -15,10 +15,6 @@ const STEEL_300 = "var(--c-300, #cad1d8)";
 const RULE = "var(--c-rule, #eaedf0)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 
-// Six trimmed descriptive titles — the long / niche entries are
-// dropped to keep the strip short enough to flow as one inline
-// editorial line rather than a wrapping list.
-const LETTER_OMIT = new Set(["property-access", "host-assistance", "open-house"]);
 
 // Bureau — LETTER WALL.
 // The page is a single piece of editorial stationery. A
@@ -111,7 +107,7 @@ function Letter() {
             (no rules) so it reads as a continuation of the
             letter rather than a framed component. */}
         <p style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(14px, 1.3vw, 16px)", lineHeight: 1.45, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 36' }}>
-          {CATEGORIES.filter((c) => !LETTER_OMIT.has(c.id)).map((c, i, arr) => (
+          {CATEGORY_STRIP.map((c, i, arr) => (
             <span key={c.id}>
               {c.title}
               {i < arr.length - 1 && (
