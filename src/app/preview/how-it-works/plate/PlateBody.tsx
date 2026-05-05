@@ -17,7 +17,7 @@ const RENNER_DEK = "What can you take care of?";
 
 const CLIENT_PLATES: Plate[] = [
   { number: "01", title: "Get verified", body: "Verify your ID and clear a background check.", proof: "Verified" },
-  { number: "02", title: "Post a task", body: "Set the location, time, task, and price. Local Renners apply — select one for your task.", proof: "Specifics" },
+  { number: "02", title: "Post a task", body: "Set the location, time, task, and price. Local Renners apply — select one.", proof: "Specifics" },
   { number: "03", title: "It's taken care of", body: "Receive photos and confirm completion. Payment is released.", proof: "Escrow" },
 ];
 
