@@ -317,11 +317,11 @@ function MiniShell({
   maxWidth?: number | string;
 }) {
   return (
-    <article style={{ border: `1px solid ${STEEL_300}`, backgroundColor: PAPER, display: "flex", flexDirection: "column", width: "100%", maxWidth }}>
+    <article style={{ border: `1px solid ${STEEL_300}`, backgroundColor: PAPER, display: "flex", flexDirection: "column", width: "100%", maxWidth, minHeight: 160 }}>
       <div style={{ padding: "8px 12px", borderBottom: `1px solid ${RULE}`, fontFamily: MONO, fontSize: 8, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
         {kicker}
       </div>
-      <div style={{ padding: 12, display: "flex", flexDirection: "column", gap: 10 }}>
+      <div style={{ padding: 12, display: "flex", flexDirection: "column", flex: 1, gap: 10 }}>
         {children}
       </div>
       {footer ? (
@@ -336,7 +336,7 @@ function MiniShell({
 function MiniTask({ maxWidth }: { maxWidth?: number | string }) {
   return (
     <MiniShell
-      kicker="Posted task"
+      kicker="Open"
       maxWidth={maxWidth}
       footer={<div>Today · 14:00–17:00</div>}
     >
@@ -423,29 +423,16 @@ function MiniProfile({ maxWidth }: { maxWidth?: number | string }) {
 function MiniInbox({ maxWidth }: { maxWidth?: number | string }) {
   return (
     <MiniShell
-      kicker="Tasks nearby"
+      kicker="Apply"
       maxWidth={maxWidth}
-      footer={<div>More in your area</div>}
+      footer={<div>Today · 14:00–17:00</div>}
     >
-      {[
-        ["Install sign rider", "Cherry Creek · 2.4 mi"],
-        ["Lockbox swap", "Capitol Hill · 4.1 mi"],
-        ["Property prep", "Highlands · 5.8 mi"],
-      ].map(([t, m], i, arr) => (
-        <div
-          key={t}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 2,
-            paddingBottom: i === arr.length - 1 ? 0 : 8,
-            borderBottom: i === arr.length - 1 ? "none" : `1px solid ${RULE}`,
-          }}
-        >
-          <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 14, lineHeight: 1.1, color: INK, fontVariationSettings: '"opsz" 36' }}>{t}</span>
-          <span style={{ fontFamily: MONO, fontSize: 9, fontWeight: 500, letterSpacing: "0.14em", color: STEEL_500 }}>{m}</span>
-        </div>
-      ))}
+      <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 17, lineHeight: 1.15, color: INK, fontVariationSettings: '"opsz" 36' }}>
+        Install sign rider
+      </div>
+      <div style={{ fontFamily: MONO, fontSize: 9, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: STEEL_500 }}>
+        Cherry Creek, CO · 80205
+      </div>
     </MiniShell>
   );
 }
