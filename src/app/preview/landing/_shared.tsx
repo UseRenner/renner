@@ -22,7 +22,7 @@ export type LandingVariantKey =
   | "pivot-trio-steel"
   | "pivot-trio-capped"
   | "pivot-trio-upright"
-  | "pivot-trio-upright-300"
+  | "pivot-trio-upright-375"
   | "pivot-trio-upright-350"
   | "pivot-trio-upright-400"
   | "folio"
@@ -48,7 +48,7 @@ export const LANDING_VARIANTS: ReadonlyArray<{
   { href: "/preview/landing/bureau-pivot-trio-steel", key: "pivot-trio-steel", label: "Pivot · Trio · Steel" },
   { href: "/preview/landing/bureau-pivot-trio-capped", key: "pivot-trio-capped", label: "Pivot · Trio · Capped" },
   { href: "/preview/landing/bureau-pivot-trio-upright", key: "pivot-trio-upright", label: "Pivot · Trio · Upright" },
-  { href: "/preview/landing/bureau-pivot-trio-upright-300", key: "pivot-trio-upright-300", label: "Pivot · Trio · Upright · 300" },
+  { href: "/preview/landing/bureau-pivot-trio-upright-375", key: "pivot-trio-upright-375", label: "Pivot · Trio · Upright · 375" },
   { href: "/preview/landing/bureau-pivot-trio-upright-350", key: "pivot-trio-upright-350", label: "Pivot · Trio · Upright · 350" },
   { href: "/preview/landing/bureau-pivot-trio-upright-400", key: "pivot-trio-upright-400", label: "Pivot · Trio · Upright · 400" },
   { href: "/preview/landing/bureau-folio", key: "folio", label: "Folio" },

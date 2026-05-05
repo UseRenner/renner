@@ -87,10 +87,10 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     note: "Pivot · Trio · Steel but the &ldquo;Hire or become a Renner&rdquo; heading is set in regular (upright) serif rather than italic — a test for whether italic serif is being overused across the system.",
   },
   {
-    slug: "bureau-pivot-trio-upright-300",
-    label: "Bureau · Pivot · Trio · Upright · 300",
-    subtitle: "Both upright at weight 300",
-    note: "Upright variant where both the dek and the sign-up heading are set to fontWeight 300 — matched, light. Tests the lightest matched-weight read.",
+    slug: "bureau-pivot-trio-upright-375",
+    label: "Bureau · Pivot · Trio · Upright · 375",
+    subtitle: "Both upright at weight 375",
+    note: "Upright variant where both the dek and the sign-up heading are set to fontWeight 375 — matched, between 350 and regular. A heavier middle ground.",
   },
   {
     slug: "bureau-pivot-trio-upright-350",
