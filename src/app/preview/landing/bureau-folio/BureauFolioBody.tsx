@@ -46,7 +46,7 @@ export function BureauFolioBody({ tone }: { tone: ShellTone }) {
             {HEADLINE_LEAD}{" "}
             <span style={{ fontStyle: "italic", fontWeight: 300, color: STEEL_700 }}>{HEADLINE_TAIL}</span>
           </h1>
-          <p style={{ fontFamily: SERIF, fontSize: "clamp(17px, 1.7vw, 20px)", lineHeight: 1.55, color: STEEL_700, margin: 0, whiteSpace: "nowrap", fontVariationSettings: '"opsz" 14' }}>
+          <p style={{ fontFamily: SERIF, fontSize: "clamp(17px, 1.7vw, 20px)", lineHeight: 1.55, color: STEEL_700, margin: 0, whiteSpace: "nowrap", fontVariationSettings: '"opsz" 14', fontWeight: 375 }}>
             {SHORT_DEK}
           </p>
         </section>
@@ -77,7 +77,18 @@ export function BureauFolioBody({ tone }: { tone: ShellTone }) {
         <span aria-hidden style={{ display: "block", width: 1, height: "clamp(48px, 6vw, 72px)", marginTop: "clamp(36px, 4.5vw, 56px)", marginBottom: "clamp(36px, 4.5vw, 56px)", backgroundColor: STEEL_300 }} />
 
         <section style={{ width: "100%", maxWidth: 520, display: "flex", flexDirection: "column", alignItems: "center" }}>
-          <SignupHeading style={{ textAlign: "center" }} />
+          <SignupHeading
+            style={{
+              textAlign: "center",
+              fontSize: "clamp(17px, 1.7vw, 20px)",
+              fontStyle: "normal",
+              fontWeight: 375,
+              color: STEEL_700,
+              lineHeight: 1.55,
+              letterSpacing: 0,
+              fontVariationSettings: '"opsz" 14',
+            }}
+          />
           <SignupForm maxWidth={520} />
           <ComplianceLine style={{ marginTop: "clamp(20px, 2.4vw, 28px)", textAlign: "center" }} />
         </section>

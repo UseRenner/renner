@@ -88,15 +88,15 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
   },
   {
     slug: "bureau-folio",
-    label: "Bureau · Folio",
-    subtitle: "Vertical descent",
-    note: "A vertical column of three centered sections — headline, categories, signup — separated by thin vertical hairlines. The descent reads as one continuous downward motion: section → spacer → section.",
+    label: "Bureau · Folio · A",
+    subtitle: "Categories descent",
+    note: "A vertical column of three centered sections — headline, categories, signup — separated by thin vertical hairlines. The descent reads as one continuous downward motion. Dek + signup heading match the same quiet register (STEEL_700, 375, opsz 14).",
   },
   {
     slug: "bureau-folio-trio-match",
-    label: "Bureau · Folio · Trio · Match",
-    subtitle: "Heading matches the dek",
-    note: "Folio's vertical descent carrying Trio's hero tasks. The signup heading sits at the dek's exact size, color (STEEL_700) and weight (375) — bookending the page in the same quiet register as the intro.",
+    label: "Bureau · Folio · B",
+    subtitle: "Tasks descent",
+    note: "Folio's vertical descent carrying Trio's hero tasks instead of categories. The signup heading sits at the dek's exact size, color (STEEL_700) and weight (375) — bookending the page in the same quiet register as the intro.",
   },
   {
     slug: "bureau-quarter",
