@@ -19,11 +19,7 @@ export type LandingVariantKey =
   | "lede"
   | "compact"
   | "pivot"
-  | "pivot-ink"
   | "pivot-steel"
-  | "pivot-spine"
-  | "pivot-lift"
-  | "pivot-cap"
   | "pivot-soft"
   | "folio"
   | "quarter";
@@ -43,11 +39,7 @@ export const LANDING_VARIANTS: ReadonlyArray<{
   { href: "/preview/landing/bureau-lede", key: "lede", label: "Lede" },
   { href: "/preview/landing/bureau-compact", key: "compact", label: "Compact" },
   { href: "/preview/landing/bureau-pivot", key: "pivot", label: "Pivot" },
-  { href: "/preview/landing/bureau-pivot-ink", key: "pivot-ink", label: "Pivot · Ink" },
   { href: "/preview/landing/bureau-pivot-steel", key: "pivot-steel", label: "Pivot · Steel" },
-  { href: "/preview/landing/bureau-pivot-spine", key: "pivot-spine", label: "Pivot · Spine" },
-  { href: "/preview/landing/bureau-pivot-lift", key: "pivot-lift", label: "Pivot · Lift" },
-  { href: "/preview/landing/bureau-pivot-cap", key: "pivot-cap", label: "Pivot · Cap" },
   { href: "/preview/landing/bureau-pivot-soft", key: "pivot-soft", label: "Pivot · Soft" },
   { href: "/preview/landing/bureau-folio", key: "folio", label: "Folio" },
   { href: "/preview/landing/bureau-quarter", key: "quarter", label: "Quarter" },

@@ -9,7 +9,7 @@ export default async function BureauPivotSteelLanding({ searchParams }: { search
   const tone = readTone(sp?.tone);
   return (
     <>
-      <BureauPivotBody tone={tone} rules={{ spine: "steel", aboveCategories: "steel", aboveSignup: "steel" }} />
+      <BureauPivotBody tone={tone} rules={{ spine: "steel", aboveCategories: "steel", aboveSignup: "none" }} />
       <VariantSwitcher active="pivot-steel" />
     </>
   );

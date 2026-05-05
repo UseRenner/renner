@@ -35,7 +35,7 @@ function ruleBorder(tone: PivotRuleTone): string {
 export function BureauPivotBody({ tone, rules }: { tone: ShellTone; rules?: PivotRules }) {
   const spineTone: Exclude<PivotRuleTone, "none"> = rules?.spine ?? "ink";
   const aboveCategoriesTone: PivotRuleTone = rules?.aboveCategories ?? "rule";
-  const aboveSignupTone: PivotRuleTone = rules?.aboveSignup ?? "rule";
+  const aboveSignupTone: PivotRuleTone = rules?.aboveSignup ?? "none";
 
   return (
     <div style={{ ...getToneVars(tone), backgroundColor: PAPER, color: INK, minHeight: "100vh", display: "flex", flexDirection: "column" }}>
