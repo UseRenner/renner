@@ -83,9 +83,9 @@ export function PlateBody({
             {audiencePrompt}
           </span>
         ) : null}
-        <TabButton label="Hire a Renner" active={isClient} onClick={() => setTab("client")} />
+        <TabButton label="Hire a Renner" active={isClient} onClick={() => setTab("client")} weight={audienceUpright ? 375 : 300} />
         <span aria-hidden style={{ color: STEEL_300, fontStyle: "normal" }}>·</span>
-        <TabButton label="Become a Renner" active={!isClient} onClick={() => setTab("renner")} />
+        <TabButton label="Become a Renner" active={!isClient} onClick={() => setTab("renner")} weight={audienceUpright ? 375 : 300} />
       </div>
 
       {/* ─── Plates ─── three hairline-bordered cards stacked vertically */}
@@ -300,10 +300,12 @@ function TabButton({
   label,
   active,
   onClick,
+  weight,
 }: {
   label: string;
   active: boolean;
   onClick: () => void;
+  weight?: number;
 }) {
   return (
     <button
@@ -318,7 +320,7 @@ function TabButton({
         fontFamily: "inherit",
         fontStyle: "inherit",
         fontSize: "inherit",
-        fontWeight: "inherit",
+        fontWeight: weight ?? "inherit",
         letterSpacing: "inherit",
         textTransform: "inherit",
         color: active ? INK : STEEL_500,
