@@ -63,10 +63,28 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     note: "Pivot with the spine and the rule above categories both in mid-steel. Structure is implied rather than asserted; the page breathes most. Form floats free at the bottom.",
   },
   {
+    slug: "bureau-pivot-ink",
+    label: "Bureau · Pivot · Ink",
+    subtitle: "INK spine, steel horizontals",
+    note: "Pivot Steel's restrained body with one architectural commitment: the spine in INK. Steel horizontals above categories and above signup. The INK axis carries the page; the rest implies structure rather than asserting it.",
+  },
+  {
     slug: "bureau-pivot-trio-steel",
     label: "Bureau · Pivot · Trio · Steel",
     subtitle: "All rules in steel",
     note: "Pivot · Trio with the spine and every horizontal in mid-steel. Structure is implied rather than asserted; the page breathes most. The hero tasks carry the read.",
+  },
+  {
+    slug: "bureau-pivot-trio-capped",
+    label: "Bureau · Pivot · Trio · Capped",
+    subtitle: "Steel everywhere + caps",
+    note: "Pivot · Trio · Steel with horizontal steel rules at the very top and very bottom of the spine — the spine reads as an I-beam, framed top and bottom. The structure closes; the page is contained.",
+  },
+  {
+    slug: "bureau-pivot-trio-upright",
+    label: "Bureau · Pivot · Trio · Upright",
+    subtitle: "Regular serif sign-up heading",
+    note: "Pivot · Trio · Steel but the &ldquo;Hire or become a Renner&rdquo; heading is set in regular (upright) serif rather than italic — a test for whether italic serif is being overused across the system.",
   },
   {
     slug: "bureau-folio",
@@ -102,10 +120,10 @@ export default function LandingPreviewIndex() {
           Landing previews · Bureau
         </div>
         <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(36px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, marginBottom: 16, fontVariationSettings: '"opsz" 60' }}>
-          Fourteen Bureau walls.
+          Seventeen Bureau walls.
         </h1>
         <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.55, color: "#38414d", margin: 0, marginBottom: 56, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-          Fourteen wall-shaped landing pages in Bureau&rsquo;s DNA — including Pivot · Steel and its Trio cross, plus two more Trio crosses that pull the hero tasks into the architectural walls. Same content, different layouts. Every wall offers both pathways: sign up to hire, or apply as a Renner.
+          Seventeen wall-shaped landing pages in Bureau&rsquo;s DNA — including the Pivot family (Steel, Ink, Trio · Steel, Trio · Capped, Trio · Upright) plus two more Trio crosses that pull the hero tasks into the architectural walls. Same content, different layouts. Every wall offers both pathways: sign up to hire, or apply as a Renner.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #0d0f12" }}>

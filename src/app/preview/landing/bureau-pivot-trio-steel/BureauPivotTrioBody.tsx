@@ -21,6 +21,7 @@ export type PivotTrioRuleTone = "ink" | "steel" | "rule" | "none";
 export type PivotTrioRules = {
   spine?: Exclude<PivotTrioRuleTone, "none">;
   rows?: PivotTrioRuleTone;
+  caps?: PivotTrioRuleTone;
 };
 
 const TONE_TO_COLOR: Record<PivotTrioRuleTone, string> = {
@@ -34,10 +35,20 @@ function ruleBorder(tone: PivotTrioRuleTone): string {
   return tone === "none" ? "none" : `1px solid ${TONE_TO_COLOR[tone]}`;
 }
 
-export function BureauPivotTrioBody({ tone, rules }: { tone: ShellTone; rules?: PivotTrioRules }) {
+export function BureauPivotTrioBody({
+  tone,
+  rules,
+  uprightSignupHeading,
+}: {
+  tone: ShellTone;
+  rules?: PivotTrioRules;
+  uprightSignupHeading?: boolean;
+}) {
   const spineTone: Exclude<PivotTrioRuleTone, "none"> = rules?.spine ?? "ink";
   const rowsTone: PivotTrioRuleTone = rules?.rows ?? "rule";
+  const capsTone: PivotTrioRuleTone = rules?.caps ?? "none";
   const rowBorder = ruleBorder(rowsTone);
+  const capBorder = ruleBorder(capsTone);
 
   return (
     <div style={{ ...getToneVars(tone), backgroundColor: PAPER, color: INK, minHeight: "100vh", display: "flex", flexDirection: "column" }}>
@@ -51,7 +62,7 @@ export function BureauPivotTrioBody({ tone, rules }: { tone: ShellTone; rules?: 
           paddingRight: "clamp(24px, 4vw, 64px)",
         }}
       >
-        <div className="pivot-spine" style={{ maxWidth: 1280, margin: "0 auto", position: "relative" }}>
+        <div className="pivot-spine" style={{ maxWidth: 1280, margin: "0 auto", position: "relative", borderTop: capBorder, borderBottom: capBorder }}>
           {/* Hero row */}
           <div className="pivot-row" style={{ paddingTop: "clamp(40px, 5vw, 64px)", paddingBottom: "clamp(40px, 5vw, 64px)" }}>
             <div className="pivot-left" style={{ textAlign: "right", paddingRight: "clamp(28px, 3.5vw, 56px)" }}>
@@ -137,7 +148,7 @@ export function BureauPivotTrioBody({ tone, rules }: { tone: ShellTone; rules?: 
           {/* Signup row */}
           <div className="pivot-row" style={{ paddingTop: "clamp(36px, 4.5vw, 56px)", paddingBottom: "clamp(40px, 5vw, 64px)", borderTop: rowBorder }}>
             <div className="pivot-left" style={{ textAlign: "right", paddingRight: "clamp(28px, 3.5vw, 56px)" }}>
-              <SignupHeading style={{ marginBottom: 0, whiteSpace: "nowrap", fontSize: "clamp(18px, 1.7vw, 22px)" }} />
+              <SignupHeading style={{ marginBottom: 0, whiteSpace: "nowrap", fontSize: "clamp(18px, 1.7vw, 22px)", fontStyle: uprightSignupHeading ? "normal" : "italic" }} />
             </div>
             <div className="pivot-right" style={{ textAlign: "left", paddingLeft: "clamp(28px, 3.5vw, 56px)" }}>
               <SignupForm maxWidth={520} />

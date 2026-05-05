@@ -18,7 +18,10 @@ export type LandingVariantKey =
   | "lead"
   | "compact"
   | "pivot-steel"
+  | "pivot-ink"
   | "pivot-trio-steel"
+  | "pivot-trio-capped"
+  | "pivot-trio-upright"
   | "folio"
   | "folio-trio"
   | "quarter"
@@ -38,7 +41,10 @@ export const LANDING_VARIANTS: ReadonlyArray<{
   { href: "/preview/landing/bureau-lead", key: "lead", label: "Lead" },
   { href: "/preview/landing/bureau-compact", key: "compact", label: "Compact" },
   { href: "/preview/landing/bureau-pivot-steel", key: "pivot-steel", label: "Pivot · Steel" },
+  { href: "/preview/landing/bureau-pivot-ink", key: "pivot-ink", label: "Pivot · Ink" },
   { href: "/preview/landing/bureau-pivot-trio-steel", key: "pivot-trio-steel", label: "Pivot · Trio · Steel" },
+  { href: "/preview/landing/bureau-pivot-trio-capped", key: "pivot-trio-capped", label: "Pivot · Trio · Capped" },
+  { href: "/preview/landing/bureau-pivot-trio-upright", key: "pivot-trio-upright", label: "Pivot · Trio · Upright" },
   { href: "/preview/landing/bureau-folio", key: "folio", label: "Folio" },
   { href: "/preview/landing/bureau-folio-trio", key: "folio-trio", label: "Folio · Trio" },
   { href: "/preview/landing/bureau-quarter", key: "quarter", label: "Quarter" },
