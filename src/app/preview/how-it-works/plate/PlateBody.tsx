@@ -41,7 +41,15 @@ const STEEL_300 = "var(--c-300, #cad1d8)";
 const PAPER = "var(--c-bg, #fbfbfc)";
 
 
-export function PlateBody({ showCta }: { showCta: boolean }) {
+export function PlateBody({
+  showCta,
+  audiencePrompt,
+  audienceUpright,
+}: {
+  showCta: boolean;
+  audiencePrompt?: string | null;
+  audienceUpright?: boolean;
+}) {
   const [tab, setTab] = useState<"client" | "renner">("client");
   const isClient = tab === "client";
   const dek = isClient ? CLIENT_DEK : RENNER_DEK;
@@ -52,7 +60,7 @@ export function PlateBody({ showCta }: { showCta: boolean }) {
 
   return (
     <>
-      {/* ─── Audience switch ─── italic, restrained */}
+      {/* ─── Audience switch ─── */}
       <div
         role="tablist"
         aria-label="Audience"
@@ -62,12 +70,17 @@ export function PlateBody({ showCta }: { showCta: boolean }) {
           gap: 14,
           marginBottom: 56,
           fontFamily: SERIF,
-          fontStyle: "italic",
-          fontWeight: 300,
+          fontStyle: audienceUpright ? "normal" : "italic",
+          fontWeight: audienceUpright ? 375 : 300,
           fontSize: 16,
           letterSpacing: 0,
         }}
       >
+        {audiencePrompt ? (
+          <span style={{ color: STEEL_500, fontStyle: "italic", fontWeight: 300 }}>
+            {audiencePrompt}
+          </span>
+        ) : null}
         <TabButton label="Hire a Renner" active={isClient} onClick={() => setTab("client")} />
         <span aria-hidden style={{ color: STEEL_300, fontStyle: "normal" }}>·</span>
         <TabButton label="Become a Renner" active={!isClient} onClick={() => setTab("renner")} />

@@ -365,9 +365,9 @@ export function PageShell({
       <header style={{ paddingTop: "clamp(28px, 3.5vw, 48px)", paddingBottom: "clamp(28px, 3.5vw, 48px)", paddingLeft: GUTTER, paddingRight: GUTTER }}>
         <div className="mx-auto" style={{ maxWidth, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
           <RennerMark size={36} weight={300} />
-          <p style={{ fontFamily: SERIF_FONT, fontSize: 15, color: textMuted, margin: 0, fontVariationSettings: '"opsz" 14', fontWeight: 375 }}>
+          <p style={{ fontFamily: SERIF_FONT, fontSize: 15, color: textFog, margin: 0, fontVariationSettings: '"opsz" 14', fontWeight: 375 }}>
             Have an account?{" "}
-            <Link href="/signin" style={{ color: textInk, textDecoration: "none" }}>
+            <Link href="/signin" style={{ color: textMuted, textDecoration: "none" }}>
               Sign in
             </Link>
           </p>
