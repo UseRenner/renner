@@ -31,40 +31,38 @@ function VerifiedProfileCard({ role }: { role: "Client" | "Renner" }) {
       <div style={{ padding: "8px 12px", borderBottom: `1px solid ${RULE}`, fontFamily: MONO, fontSize: 8, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
         {role}
       </div>
-      <div style={{ padding: 12, display: "flex", flexDirection: "column", gap: 10 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <span
-            aria-hidden
-            style={{
-              width: 32,
-              height: 32,
-              borderRadius: "50%",
-              backgroundColor: DISC_BG,
-              color: DISC_TEXT,
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontFamily: SANS,
-              fontSize: 12,
-              fontWeight: 500,
-              flexShrink: 0,
-            }}
-          >
-            JM
-          </span>
-          <div>
-            <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 16, lineHeight: 1.1, color: INK, fontVariationSettings: '"opsz" 36' }}>
-              James M.
-            </div>
-            <div style={{ marginTop: 2, fontFamily: MONO, fontSize: 9, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: STEEL_500 }}>
-              Denver, CO
-            </div>
+      <div style={{ padding: 12, display: "flex", alignItems: "center", gap: 10 }}>
+        <span
+          aria-hidden
+          style={{
+            width: 32,
+            height: 32,
+            borderRadius: "50%",
+            backgroundColor: DISC_BG,
+            color: DISC_TEXT,
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontFamily: SANS,
+            fontSize: 12,
+            fontWeight: 500,
+            flexShrink: 0,
+          }}
+        >
+          JM
+        </span>
+        <div>
+          <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 16, lineHeight: 1.1, color: INK, fontVariationSettings: '"opsz" 36' }}>
+            James M.
+          </div>
+          <div style={{ marginTop: 2, fontFamily: MONO, fontSize: 9, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: STEEL_500 }}>
+            Denver, CO
           </div>
         </div>
-        <div style={{ paddingTop: 8, borderTop: `1px solid ${RULE}`, display: "flex", flexDirection: "column", gap: 3, fontFamily: MONO, fontSize: 8, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: STEEL_500 }}>
-          <div>ID-verified</div>
-          <div>Background-checked</div>
-        </div>
+      </div>
+      <div style={{ padding: "10px 12px", borderTop: `1px solid ${RULE}`, display: "flex", flexDirection: "column", gap: 3, fontFamily: MONO, fontSize: 8, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: STEEL_500 }}>
+        <div>ID-verified</div>
+        <div>Background-checked</div>
       </div>
     </article>
   );
