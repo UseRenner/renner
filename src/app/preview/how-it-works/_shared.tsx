@@ -365,14 +365,12 @@ export function PageShell({
       <header style={{ paddingTop: "clamp(28px, 3.5vw, 48px)", paddingBottom: "clamp(28px, 3.5vw, 48px)", paddingLeft: GUTTER, paddingRight: GUTTER }}>
         <div className="mx-auto" style={{ maxWidth, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
           <RennerMark size={36} weight={300} />
-          {showCta ? (
-            <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
-              <Link href="/signin" style={{ fontFamily: SANS_FONT, fontSize: 13, fontWeight: 500, color: textMuted, textDecoration: "none" }}>Sign in</Link>
-              <Link href="/signup" style={{ fontFamily: SANS_FONT, fontSize: 13, fontWeight: 500, color: ctaFg, backgroundColor: ctaBg, border: `1px solid ${ctaBg}`, borderRadius: 4, padding: "10px 18px", textDecoration: "none", whiteSpace: "nowrap" }}>Sign up</Link>
-            </div>
-          ) : (
-            <Link href="/dashboard" style={{ fontFamily: SANS_FONT, fontSize: 13, fontWeight: 500, color: textInk, textDecoration: "none" }}>Dashboard →</Link>
-          )}
+          <p style={{ fontFamily: SERIF_FONT, fontSize: 15, color: textMuted, margin: 0, fontVariationSettings: '"opsz" 14', fontWeight: 375 }}>
+            Have an account?{" "}
+            <Link href="/signin" style={{ color: textInk, textDecoration: "none" }}>
+              Sign in
+            </Link>
+          </p>
         </div>
       </header>
 
@@ -398,14 +396,14 @@ export function PageShell({
         </div>
       </section>
 
-      <footer style={{ paddingTop: "clamp(40px, 5vw, 64px)", paddingBottom: "clamp(40px, 5vw, 64px)", paddingLeft: GUTTER, paddingRight: GUTTER, borderTop: `1px solid ${ruleColor}` }}>
-        <div className="mx-auto" style={{ maxWidth, display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 20 }}>
-          <RennerMark size={36} weight={300} />
-          <div style={{ display: "flex", alignItems: "center", gap: 24, fontFamily: MONO_FONT, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: textFog }}>
-            <Link href="/contact" style={{ color: textMuted, textDecoration: "none" }}>Contact</Link>
-            <Link href="/terms" style={{ color: textMuted, textDecoration: "none" }}>Terms</Link>
-            <Link href="/privacy" style={{ color: textMuted, textDecoration: "none" }}>Privacy</Link>
-            <span style={{ color: textFog }}>·</span>
+      <footer style={{ paddingTop: "clamp(20px, 2.5vw, 28px)", paddingBottom: "clamp(20px, 2.5vw, 28px)", paddingLeft: GUTTER, paddingRight: GUTTER }}>
+        <div className="mx-auto" style={{ maxWidth, display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
+          <RennerMark size={28} weight={300} />
+          <div style={{ display: "flex", alignItems: "center", gap: 18, fontFamily: SERIF_FONT, fontSize: 15, color: textMuted, fontVariationSettings: '"opsz" 14', fontWeight: 375 }}>
+            <Link href="/contact" style={{ color: textInk, textDecoration: "none" }}>Contact</Link>
+            <Link href="/terms" style={{ color: textInk, textDecoration: "none" }}>Terms</Link>
+            <Link href="/privacy" style={{ color: textInk, textDecoration: "none" }}>Privacy</Link>
+            <span>·</span>
             <span>© 2026</span>
           </div>
         </div>
