@@ -298,45 +298,53 @@ export function Card({ kind }: { kind: IllustrationKind }) {
 }
 
 // ─── Mini cards ───
-// Same content density as the full Cards — every line of copy a
-// Card carries is present here too — at a tighter scale so the
-// Mini can sit inside dense, text-heavy layouts (Compact, Plate)
-// without dominating. Footers stick to the bottom via flex:1 so
-// rows with different content lengths still line up cleanly.
+// Compact, realistic product surfaces. Each card sits at the
+// minimal-but-realistic register: a kicker (role), the named
+// entity, the proof — with edge-to-edge rules between sections.
+// No minHeight stretching, no narrative quotes, no rating
+// inflation, no price anchors. Cards are exactly as tall as
+// their content.
 
-function MiniShell({ kicker, children, maxWidth = 320 }: { kicker: string; children: ReactNode; maxWidth?: number | string }) {
+function MiniShell({
+  kicker,
+  children,
+  footer,
+  maxWidth = 240,
+}: {
+  kicker: string;
+  children: ReactNode;
+  footer?: ReactNode;
+  maxWidth?: number | string;
+}) {
   return (
-    <article style={{ border: `1px solid ${STEEL_300}`, backgroundColor: PAPER, display: "flex", flexDirection: "column", width: "100%", maxWidth, minHeight: 300 }}>
-      <div style={{ padding: "10px 14px", borderBottom: `1px solid ${RULE}`, fontFamily: MONO, fontSize: 8, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
+    <article style={{ border: `1px solid ${STEEL_300}`, backgroundColor: PAPER, display: "flex", flexDirection: "column", width: "100%", maxWidth }}>
+      <div style={{ padding: "8px 12px", borderBottom: `1px solid ${RULE}`, fontFamily: MONO, fontSize: 8, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
         {kicker}
       </div>
-      <div style={{ padding: 16, display: "flex", flexDirection: "column", flex: 1, gap: 10 }}>
+      <div style={{ padding: 12, display: "flex", flexDirection: "column", gap: 10 }}>
         {children}
       </div>
+      {footer ? (
+        <div style={{ padding: "10px 12px", borderTop: `1px solid ${RULE}`, fontFamily: MONO, fontSize: 8, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: STEEL_500 }}>
+          {footer}
+        </div>
+      ) : null}
     </article>
   );
 }
 
 function MiniTask({ maxWidth }: { maxWidth?: number | string }) {
   return (
-    <MiniShell kicker="Posted task" maxWidth={maxWidth}>
+    <MiniShell
+      kicker="Posted task"
+      maxWidth={maxWidth}
+      footer={<div>Today · 14:00–17:00</div>}
+    >
       <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 17, lineHeight: 1.15, color: INK, fontVariationSettings: '"opsz" 36' }}>
         Install sign rider
       </div>
-      <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.06em", color: STEEL_600, lineHeight: 1.5 }}>
+      <div style={{ fontFamily: MONO, fontSize: 9, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: STEEL_500 }}>
         Cherry Creek, CO · 80205
-        <br />
-        Today 14:00–17:00 · $45
-      </div>
-      <p style={{ fontFamily: SERIF, fontSize: 13, lineHeight: 1.5, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
-        Add a &ldquo;Just Listed&rdquo; rider above the for-sale sign.
-      </p>
-      <div style={{ marginTop: "auto", paddingTop: 10, borderTop: `1px solid ${RULE}`, display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8 }}>
-        <span style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: SANS, fontSize: 11, fontWeight: 500, color: INK }}>
-          <InitialsDisc initials="SK" size={18} fontSize={9} />
-          Sarah K.
-        </span>
-        <VerifiedRow label="Verified" fontSize={8} />
       </div>
     </MiniShell>
   );
@@ -344,7 +352,16 @@ function MiniTask({ maxWidth }: { maxWidth?: number | string }) {
 
 function MiniApplicant({ maxWidth }: { maxWidth?: number | string }) {
   return (
-    <MiniShell kicker="Applicant" maxWidth={maxWidth}>
+    <MiniShell
+      kicker="Applicant"
+      maxWidth={maxWidth}
+      footer={
+        <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+          <div>ID-verified</div>
+          <div>Background-checked</div>
+        </div>
+      }
+    >
       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
         <InitialsDisc initials="JM" size={32} fontSize={12} />
         <div>
@@ -352,20 +369,9 @@ function MiniApplicant({ maxWidth }: { maxWidth?: number | string }) {
             James M.
           </div>
           <div style={{ marginTop: 2, fontFamily: MONO, fontSize: 9, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: STEEL_500 }}>
-            Denver · 2.4 mi away
+            Denver, CO
           </div>
         </div>
-      </div>
-      <div style={{ display: "flex", alignItems: "baseline", gap: 10, fontFamily: SANS, fontSize: 11, color: INK }}>
-        <span style={{ fontFamily: SERIF, fontSize: 17, fontWeight: 400, color: INK }}>4.96</span>
-        <span style={{ color: STEEL_600 }}>· 142 tasks completed</span>
-      </div>
-      <p style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 12, lineHeight: 1.5, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
-        &ldquo;Five years in real estate operations. Punctual, courteous, photo-thorough.&rdquo;
-      </p>
-      <div style={{ marginTop: "auto", paddingTop: 10, borderTop: `1px solid ${RULE}`, display: "flex", flexDirection: "column", gap: 4 }}>
-        <VerifiedRow label="ID-verified" fontSize={8} />
-        <VerifiedRow label="Background-checked" fontSize={8} />
       </div>
     </MiniShell>
   );
@@ -373,25 +379,15 @@ function MiniApplicant({ maxWidth }: { maxWidth?: number | string }) {
 
 function MiniCompletion({ maxWidth }: { maxWidth?: number | string }) {
   return (
-    <MiniShell kicker="Completion" maxWidth={maxWidth}>
+    <MiniShell
+      kicker="Completion"
+      maxWidth={maxWidth}
+      footer={<div>Confirmed · funds released</div>}
+    >
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 4 }}>
         <PhotoSlot height={48} />
         <PhotoSlot height={48} />
         <PhotoSlot height={48} />
-      </div>
-      <div>
-        <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 16, lineHeight: 1.15, color: INK, marginBottom: 4, fontVariationSettings: '"opsz" 36' }}>
-          Confirmed.
-        </div>
-        <div style={{ fontFamily: SANS, fontSize: 11, color: STEEL_600, lineHeight: 1.5 }}>
-          Sarah K. confirmed the work and released payment.
-        </div>
-      </div>
-      <div style={{ marginTop: "auto", paddingTop: 10, borderTop: `1px solid ${RULE}`, display: "grid", gridTemplateColumns: "auto 1fr", columnGap: 10, alignItems: "baseline", fontFamily: SANS, fontSize: 11, color: INK }}>
-        <span style={{ color: STEEL_500, fontFamily: MONO, fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 500 }}>
-          Released
-        </span>
-        <span>$45 in escrow</span>
       </div>
     </MiniShell>
   );
@@ -399,7 +395,16 @@ function MiniCompletion({ maxWidth }: { maxWidth?: number | string }) {
 
 function MiniProfile({ maxWidth }: { maxWidth?: number | string }) {
   return (
-    <MiniShell kicker="Onboarding" maxWidth={maxWidth}>
+    <MiniShell
+      kicker="Onboarding"
+      maxWidth={maxWidth}
+      footer={
+        <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+          <div>ID-verified</div>
+          <div>Background-checked</div>
+        </div>
+      }
+    >
       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
         <InitialsDisc initials="JM" size={32} fontSize={12} />
         <div>
@@ -411,62 +416,51 @@ function MiniProfile({ maxWidth }: { maxWidth?: number | string }) {
           </div>
         </div>
       </div>
-      <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.06em", color: STEEL_600 }}>
-        Signs · Lockbox · Courier
-      </div>
-      <div style={{ display: "flex", alignItems: "baseline", gap: 10, fontFamily: SANS, fontSize: 11, color: INK }}>
-        <span style={{ fontFamily: SERIF, fontSize: 17, fontWeight: 400, color: INK }}>$45</span>
-        <span style={{ color: STEEL_600 }}>· task minimum</span>
-      </div>
-      <div style={{ marginTop: "auto", paddingTop: 10, borderTop: `1px solid ${RULE}`, display: "flex", flexDirection: "column", gap: 4 }}>
-        <VerifiedRow label="ID-verified" fontSize={8} />
-        <VerifiedRow label="Background-checked" fontSize={8} />
-      </div>
     </MiniShell>
   );
 }
 
 function MiniInbox({ maxWidth }: { maxWidth?: number | string }) {
   return (
-    <MiniShell kicker="Tasks nearby" maxWidth={maxWidth}>
+    <MiniShell
+      kicker="Tasks nearby"
+      maxWidth={maxWidth}
+      footer={<div>More in your area</div>}
+    >
       {[
-        ["Install sign rider", "Cherry Creek · 2.4 mi · $45"],
-        ["Lockbox swap", "Capitol Hill · 4.1 mi · $30"],
-        ["Property prep", "Highlands · 5.8 mi · $90"],
-      ].map(([t, m]) => (
-        <div key={t} style={{ display: "flex", flexDirection: "column", gap: 2, paddingBottom: 8, borderBottom: `1px solid ${RULE}` }}>
+        ["Install sign rider", "Cherry Creek · 2.4 mi"],
+        ["Lockbox swap", "Capitol Hill · 4.1 mi"],
+        ["Property prep", "Highlands · 5.8 mi"],
+      ].map(([t, m], i, arr) => (
+        <div
+          key={t}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 2,
+            paddingBottom: i === arr.length - 1 ? 0 : 8,
+            borderBottom: i === arr.length - 1 ? "none" : `1px solid ${RULE}`,
+          }}
+        >
           <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 14, lineHeight: 1.1, color: INK, fontVariationSettings: '"opsz" 36' }}>{t}</span>
-          <span style={{ fontFamily: MONO, fontSize: 9, fontWeight: 500, letterSpacing: "0.14em", color: STEEL_600 }}>{m}</span>
+          <span style={{ fontFamily: MONO, fontSize: 9, fontWeight: 500, letterSpacing: "0.14em", color: STEEL_500 }}>{m}</span>
         </div>
       ))}
-      <div style={{ marginTop: "auto", paddingTop: 6, fontFamily: MONO, fontSize: 9, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: STEEL_500 }}>
-        4 more in your area
-      </div>
     </MiniShell>
   );
 }
 
 function MiniPayout({ maxWidth }: { maxWidth?: number | string }) {
   return (
-    <MiniShell kicker="Payout" maxWidth={maxWidth}>
+    <MiniShell
+      kicker="Payout"
+      maxWidth={maxWidth}
+      footer={<div>Released · 100% to Renner</div>}
+    >
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 4 }}>
         <PhotoSlot height={48} />
         <PhotoSlot height={48} />
         <PhotoSlot height={48} />
-      </div>
-      <div>
-        <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 16, lineHeight: 1.15, color: INK, marginBottom: 4, fontVariationSettings: '"opsz" 36' }}>
-          Paid.
-        </div>
-        <div style={{ fontFamily: SANS, fontSize: 11, color: STEEL_600, lineHeight: 1.5 }}>
-          Confirmed by Sarah K. Funds released.
-        </div>
-      </div>
-      <div style={{ marginTop: "auto", paddingTop: 10, borderTop: `1px solid ${RULE}`, display: "grid", gridTemplateColumns: "auto 1fr", columnGap: 10, alignItems: "baseline", fontFamily: SANS, fontSize: 11, color: INK }}>
-        <span style={{ color: STEEL_500, fontFamily: MONO, fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 500 }}>
-          Earned
-        </span>
-        <span>$45 · 100% of task pay</span>
       </div>
     </MiniShell>
   );
