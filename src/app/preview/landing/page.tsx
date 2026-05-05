@@ -81,16 +81,34 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     note: "Pivot with a softer mid-steel spine and an INK rule above categories. Inverts the usual weight relationship — the band is firmer than the axis. Form floats free at the bottom.",
   },
   {
+    slug: "bureau-pivot-trio",
+    label: "Bureau · Pivot · Trio",
+    subtitle: "Spine carries hero tasks",
+    note: "Pivot's bisecting spine carries Trio's hero tasks. Hero row at top, three sample-task rows alternating sides around the spine (kicker + italic title + location stamp on one side, an italic-serif price echo on the other), signup row at the bottom.",
+  },
+  {
     slug: "bureau-folio",
     label: "Bureau · Folio",
     subtitle: "Vertical descent",
     note: "A vertical column of three centered sections — headline, categories, signup — separated by thin vertical hairlines. The descent reads as one continuous downward motion: section → spacer → section.",
   },
   {
+    slug: "bureau-folio-trio",
+    label: "Bureau · Folio · Trio",
+    subtitle: "Descent of hero tasks",
+    note: "Folio's vertical descent carrying Trio's hero tasks. Hero up top, then three sample tasks (kicker · price, italic title, location stamp) descending the page with hairline spacers between each, then the form. Reads as a single downward thread of inventory.",
+  },
+  {
     slug: "bureau-quarter",
     label: "Bureau · Quarter",
     subtitle: "Four quadrants by crosshair",
     note: "A 2×2 grid divided by an INK crosshair. Top-left: headline. Top-right: dek on chalk. Bottom-left: categories. Bottom-right: signup. Each quadrant equal in width and height — the crosshair anchors the page.",
+  },
+  {
+    slug: "bureau-quarter-trio",
+    label: "Bureau · Quarter · Trio",
+    subtitle: "Crosshair around tasks + form",
+    note: "Quarter's INK crosshair carrying Trio's hero tasks. Hero band above; inside the 2×2 frame, three quadrants each hold a sample task and the fourth holds the signup form — making the form architecturally part of the inventory. Sign up to take care of the others.",
   },
 ];
 
@@ -102,10 +120,10 @@ export default function LandingPreviewIndex() {
           Landing previews · Bureau
         </div>
         <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(36px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, marginBottom: 16, fontVariationSettings: '"opsz" 60' }}>
-          Fourteen Bureau walls.
+          Seventeen Bureau walls.
         </h1>
         <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.55, color: "#38414d", margin: 0, marginBottom: 56, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-          Fourteen wall-shaped landing pages in Bureau&rsquo;s DNA — including two Pivot rule variants for dialling the structural temperature. Same content, different layouts. Every wall offers both pathways: sign up to hire, or apply as a Renner.
+          Seventeen wall-shaped landing pages in Bureau&rsquo;s DNA — including two Pivot rule variants and three Trio crosses (Pivot · Trio, Folio · Trio, Quarter · Trio) that pull the hero tasks into the architectural walls. Same content, different layouts. Every wall offers both pathways: sign up to hire, or apply as a Renner.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #0d0f12" }}>

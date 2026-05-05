@@ -293,7 +293,6 @@ function Footer() {
         paddingBottom: "clamp(20px, 2.5vw, 28px)",
         paddingLeft: "clamp(24px, 4vw, 64px)",
         paddingRight: "clamp(24px, 4vw, 64px)",
-        borderTop: `1px solid ${STEEL_300}`,
       }}
     >
       <div style={{ maxWidth: 1440, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>

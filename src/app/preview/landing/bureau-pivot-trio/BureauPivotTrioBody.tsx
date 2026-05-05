@@ -1,42 +1,23 @@
 "use client";
 
 import { getToneVars, type ShellTone } from "../../how-it-works/_shared";
-import { CATEGORY_STRIP_SHORT, HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
+import { HEADLINE_LEAD, HEADLINE_TAIL, SAMPLE_TASKS, SHORT_DEK } from "../_content";
 import { ComplianceLine, Footer, Header, SignupForm, SignupHeading, TOKENS } from "../_pieces";
 
 const { SERIF, MONO, INK, STEEL_700, STEEL_500, STEEL_300, PAPER } = TOKENS;
 const RULE = "var(--c-rule, #eaedf0)";
 
-// PIVOT — a single 1px spine bisects the page top-to-bottom.
-// Three rows alternate which side hosts content. The rule
-// weights are parameterised so each Pivot variant can dial
-// the page's structural temperature: spine weight, the two
-// horizontals (above categories, above signup), or none.
+const TASKS = [SAMPLE_TASKS[0]!, SAMPLE_TASKS[5]!, SAMPLE_TASKS[2]!];
 
-export type PivotRuleTone = "ink" | "steel" | "rule" | "none";
+// PIVOT · TRIO — Pivot's bisecting spine carrying Trio's hero
+// tasks. Hero row at top, three task rows alternating sides
+// around the spine, signup row at the bottom. Each task sits
+// fully on one side of the spine; the opposite side carries a
+// small mono price stamp as an echo. The same Trio dialect
+// (mono kicker, italic title, location stamp) reads through
+// the architecture.
 
-export type PivotRules = {
-  spine?: Exclude<PivotRuleTone, "none">;
-  aboveCategories?: PivotRuleTone;
-  aboveSignup?: PivotRuleTone;
-};
-
-const TONE_TO_COLOR: Record<PivotRuleTone, string> = {
-  ink: INK,
-  steel: STEEL_300,
-  rule: RULE,
-  none: "transparent",
-};
-
-function ruleBorder(tone: PivotRuleTone): string {
-  return tone === "none" ? "none" : `1px solid ${TONE_TO_COLOR[tone]}`;
-}
-
-export function BureauPivotBody({ tone, rules }: { tone: ShellTone; rules?: PivotRules }) {
-  const spineTone: Exclude<PivotRuleTone, "none"> = rules?.spine ?? "ink";
-  const aboveCategoriesTone: PivotRuleTone = rules?.aboveCategories ?? "rule";
-  const aboveSignupTone: PivotRuleTone = rules?.aboveSignup ?? "rule";
-
+export function BureauPivotTrioBody({ tone }: { tone: ShellTone }) {
   return (
     <div style={{ ...getToneVars(tone), backgroundColor: PAPER, color: INK, minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <Header />
@@ -50,7 +31,7 @@ export function BureauPivotBody({ tone, rules }: { tone: ShellTone; rules?: Pivo
         }}
       >
         <div className="pivot-spine" style={{ maxWidth: 1280, margin: "0 auto", position: "relative" }}>
-          {/* Row 1 — headline left, dek right */}
+          {/* Hero row */}
           <div className="pivot-row" style={{ paddingTop: "clamp(40px, 5vw, 64px)", paddingBottom: "clamp(40px, 5vw, 64px)" }}>
             <div className="pivot-left" style={{ textAlign: "right", paddingRight: "clamp(28px, 3.5vw, 56px)" }}>
               <h1
@@ -78,37 +59,78 @@ export function BureauPivotBody({ tone, rules }: { tone: ShellTone; rules?: Pivo
             </div>
           </div>
 
-          {/* Row 2 — kicker left, categories right */}
-          <div className="pivot-row" style={{ paddingTop: "clamp(36px, 4.5vw, 56px)", paddingBottom: "clamp(36px, 4.5vw, 56px)", borderTop: ruleBorder(aboveCategoriesTone) }}>
-            <div className="pivot-left" style={{ textAlign: "right", paddingRight: "clamp(28px, 3.5vw, 56px)" }}>
-              <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500 }}>
-                Things handled
-              </span>
-            </div>
-            <div className="pivot-right" style={{ textAlign: "left", paddingLeft: "clamp(28px, 3.5vw, 56px)" }}>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
-                {CATEGORY_STRIP_SHORT.map((c) => (
-                  <li
-                    key={c.id}
+          {/* Three task rows alternating sides */}
+          {TASKS.map((task, i) => {
+            const taskOnLeft = i % 2 === 0;
+            const taskSideStyle = {
+              textAlign: taskOnLeft ? ("right" as const) : ("left" as const),
+              paddingRight: taskOnLeft ? "clamp(28px, 3.5vw, 56px)" : 0,
+              paddingLeft: taskOnLeft ? 0 : "clamp(28px, 3.5vw, 56px)",
+            };
+            const echoSideStyle = {
+              textAlign: taskOnLeft ? ("left" as const) : ("right" as const),
+              paddingLeft: taskOnLeft ? "clamp(28px, 3.5vw, 56px)" : 0,
+              paddingRight: taskOnLeft ? 0 : "clamp(28px, 3.5vw, 56px)",
+              alignSelf: "center",
+            };
+            const taskCard = (
+              <div style={taskSideStyle}>
+                <div style={{ display: "flex", flexDirection: "column", gap: 10, alignItems: taskOnLeft ? "flex-end" : "flex-start" }}>
+                  <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
+                    {task.category}
+                  </span>
+                  <h3
                     style={{
                       fontFamily: SERIF,
                       fontStyle: "italic",
                       fontWeight: 300,
-                      fontSize: "clamp(17px, 1.6vw, 20px)",
-                      lineHeight: 1.4,
+                      fontSize: "clamp(22px, 2.4vw, 30px)",
+                      lineHeight: 1.1,
+                      letterSpacing: "-0.012em",
                       color: INK,
-                      fontVariationSettings: '"opsz" 36',
+                      margin: 0,
+                      maxWidth: "20ch",
+                      fontVariationSettings: '"opsz" 60',
                     }}
                   >
-                    {c.title}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+                    {task.title}
+                  </h3>
+                  <span style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: STEEL_500 }}>
+                    {task.location}
+                  </span>
+                </div>
+              </div>
+            );
+            const priceEcho = (
+              <div style={echoSideStyle}>
+                <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(28px, 3vw, 40px)", color: STEEL_700, fontVariationSettings: '"opsz" 60' }}>
+                  {task.price}
+                </span>
+              </div>
+            );
+            return (
+              <div
+                key={task.title}
+                className="pivot-row"
+                style={{ paddingTop: "clamp(28px, 3.5vw, 44px)", paddingBottom: "clamp(28px, 3.5vw, 44px)", borderTop: `1px solid ${RULE}` }}
+              >
+                {taskOnLeft ? (
+                  <>
+                    <div className="pivot-left">{taskCard}</div>
+                    <div className="pivot-right">{priceEcho}</div>
+                  </>
+                ) : (
+                  <>
+                    <div className="pivot-left">{priceEcho}</div>
+                    <div className="pivot-right">{taskCard}</div>
+                  </>
+                )}
+              </div>
+            );
+          })}
 
-          {/* Row 3 — signup heading left, form right */}
-          <div className="pivot-row" style={{ paddingTop: "clamp(36px, 4.5vw, 56px)", paddingBottom: "clamp(40px, 5vw, 64px)", borderTop: ruleBorder(aboveSignupTone) }}>
+          {/* Signup row */}
+          <div className="pivot-row" style={{ paddingTop: "clamp(36px, 4.5vw, 56px)", paddingBottom: "clamp(40px, 5vw, 64px)", borderTop: `1px solid ${RULE}` }}>
             <div className="pivot-left" style={{ textAlign: "right", paddingRight: "clamp(28px, 3.5vw, 56px)" }}>
               <SignupHeading style={{ marginBottom: 0, whiteSpace: "nowrap", fontSize: "clamp(18px, 1.7vw, 22px)" }} />
             </div>
@@ -129,7 +151,7 @@ export function BureauPivotBody({ tone, rules }: { tone: ShellTone; rules?: Pivo
           top: 0;
           bottom: 0;
           width: 1px;
-          background: ${TONE_TO_COLOR[spineTone]};
+          background: ${INK};
           pointer-events: none;
         }
         .pivot-row {

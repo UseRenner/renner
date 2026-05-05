@@ -21,8 +21,11 @@ export type LandingVariantKey =
   | "pivot"
   | "pivot-steel"
   | "pivot-soft"
+  | "pivot-trio"
   | "folio"
-  | "quarter";
+  | "folio-trio"
+  | "quarter"
+  | "quarter-trio";
 
 export const LANDING_VARIANTS: ReadonlyArray<{
   href: string;
@@ -41,8 +44,11 @@ export const LANDING_VARIANTS: ReadonlyArray<{
   { href: "/preview/landing/bureau-pivot", key: "pivot", label: "Pivot" },
   { href: "/preview/landing/bureau-pivot-steel", key: "pivot-steel", label: "Pivot · Steel" },
   { href: "/preview/landing/bureau-pivot-soft", key: "pivot-soft", label: "Pivot · Soft" },
+  { href: "/preview/landing/bureau-pivot-trio", key: "pivot-trio", label: "Pivot · Trio" },
   { href: "/preview/landing/bureau-folio", key: "folio", label: "Folio" },
+  { href: "/preview/landing/bureau-folio-trio", key: "folio-trio", label: "Folio · Trio" },
   { href: "/preview/landing/bureau-quarter", key: "quarter", label: "Quarter" },
+  { href: "/preview/landing/bureau-quarter-trio", key: "quarter-trio", label: "Quarter · Trio" },
 ];
 
 import type { ShellTone } from "../how-it-works/_shared";
