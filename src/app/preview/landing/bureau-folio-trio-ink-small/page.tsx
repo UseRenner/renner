@@ -18,6 +18,9 @@ export default async function BureauFolioTrioInkSmallLanding({ searchParams }: {
           fontSize: "clamp(17px, 1.7vw, 20px)",
           color: "var(--c-text, #0d0f12)",
           fontWeight: 375,
+          lineHeight: 1.55,
+          letterSpacing: 0,
+          fontVariationSettings: '"opsz" 14',
         }}
       />
       <VariantSwitcher active="folio-trio-ink-small" />

@@ -19,6 +19,9 @@ export default async function BureauFolioTrioMatchLanding({ searchParams }: { se
           fontSize: "clamp(17px, 1.7vw, 20px)",
           color: "var(--c-700, #38414d)",
           fontWeight: 375,
+          lineHeight: 1.55,
+          letterSpacing: 0,
+          fontVariationSettings: '"opsz" 14',
         }}
       />
       <VariantSwitcher active="folio-trio-match" />
