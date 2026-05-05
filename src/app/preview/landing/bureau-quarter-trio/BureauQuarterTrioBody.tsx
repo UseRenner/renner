@@ -70,7 +70,7 @@ export function BureauQuarterTrioBody({ tone }: { tone: ShellTone }) {
 
           {/* TR — dek on chalk */}
           <section style={{ padding: "clamp(28px, 4vw, 56px)", display: "flex", alignItems: "center", backgroundColor: BONE }}>
-            <p style={{ fontFamily: SERIF, fontWeight: 375, fontSize: "clamp(22px, 2.4vw, 28px)", lineHeight: 1.45, color: INK, margin: 0, maxWidth: "28ch", fontVariationSettings: '"opsz" 36' }}>
+            <p style={{ fontFamily: SERIF, fontWeight: 375, fontSize: "clamp(22px, 2.4vw, 28px)", lineHeight: 1.45, color: STEEL_700, margin: 0, maxWidth: "28ch", fontVariationSettings: '"opsz" 36' }}>
               {SHORT_DEK}
             </p>
           </section>
@@ -101,7 +101,7 @@ export function BureauQuarterTrioBody({ tone }: { tone: ShellTone }) {
                       fontFamily: SERIF,
                       fontStyle: "italic",
                       fontWeight: 300,
-                      fontSize: "clamp(18px, 1.8vw, 22px)",
+                      fontSize: "clamp(20px, 2vw, 24px)",
                       lineHeight: 1.15,
                       letterSpacing: "-0.01em",
                       color: INK,
