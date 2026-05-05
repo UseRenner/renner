@@ -83,11 +83,9 @@ export function BureauPivotBody({ tone, rules, content }: { tone: ShellTone; rul
           {/* Row 2 — kicker/empty left, content right (categories or task feed) */}
           <div className="pivot-row" style={{ paddingTop: "clamp(36px, 4.5vw, 56px)", paddingBottom: "clamp(36px, 4.5vw, 56px)", borderTop: ruleBorder(aboveCategoriesTone) }}>
             <div className="pivot-left" style={{ textAlign: "right", paddingRight: "clamp(28px, 3.5vw, 56px)" }}>
-              {showTasks ? null : (
-                <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500 }}>
-                  Things handled
-                </span>
-              )}
+              <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500 }}>
+                Things handled
+              </span>
             </div>
             <div className="pivot-right" style={{ textAlign: "left", paddingLeft: "clamp(28px, 3.5vw, 56px)" }}>
               {showTasks ? (
