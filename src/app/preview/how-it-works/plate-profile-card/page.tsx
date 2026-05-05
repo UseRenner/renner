@@ -27,11 +27,11 @@ function readTone(v: unknown): ShellTone {
 // toggle.
 function VerifiedProfileCard({ role }: { role: "Client" | "Renner" }) {
   return (
-    <article style={{ border: `1px solid ${STEEL_300}`, backgroundColor: PAPER, display: "flex", flexDirection: "column", width: "100%", maxWidth: 240 }}>
+    <article style={{ border: `1px solid ${STEEL_300}`, backgroundColor: PAPER, display: "flex", flexDirection: "column", width: "100%", maxWidth: 240, minHeight: 160 }}>
       <div style={{ padding: "8px 12px", borderBottom: `1px solid ${RULE}`, fontFamily: MONO, fontSize: 8, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
         {role}
       </div>
-      <div style={{ padding: 12, display: "flex", alignItems: "center", gap: 10 }}>
+      <div style={{ padding: 12, display: "flex", alignItems: "center", gap: 10, flex: 1 }}>
         <span
           aria-hidden
           style={{

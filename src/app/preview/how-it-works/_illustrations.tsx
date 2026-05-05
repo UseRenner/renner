@@ -353,7 +353,7 @@ function MiniTask({ maxWidth }: { maxWidth?: number | string }) {
 function MiniApplicant({ maxWidth }: { maxWidth?: number | string }) {
   return (
     <MiniShell
-      kicker="Applicant"
+      kicker="Profile"
       maxWidth={maxWidth}
       footer={
         <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>

@@ -19,7 +19,7 @@ function readTone(v: unknown): ShellTone {
 // like a notarized document stamp. Lightest possible move.
 function VerifiedStamp() {
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 10, paddingTop: 24 }}>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", justifyContent: "center", gap: 10, minHeight: 160, width: "100%", maxWidth: 240 }}>
       <div style={{ fontFamily: MONO, fontSize: 14, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: INK, paddingBottom: 12, borderBottom: `1px solid ${INK}`, minWidth: 160, textAlign: "right" }}>
         Verified · 002
       </div>
