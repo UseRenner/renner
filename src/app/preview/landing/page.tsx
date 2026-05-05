@@ -69,6 +69,42 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     note: "A 1px spine bisects the page top-to-bottom. Three rows alternate which side hosts content — headline LEFT, dek RIGHT; kicker LEFT, categories RIGHT; signup heading LEFT, form RIGHT. The flip-flop around the spine is the eye-guide.",
   },
   {
+    slug: "bureau-pivot-ink",
+    label: "Bureau · Pivot · Ink",
+    subtitle: "All rules in INK",
+    note: "Pivot with every rule (spine + both horizontals) in INK. The heaviest, most definitive version — page reads as a printer's tray with full-weight bands.",
+  },
+  {
+    slug: "bureau-pivot-steel",
+    label: "Bureau · Pivot · Steel",
+    subtitle: "All rules in steel",
+    note: "Pivot with every rule (spine + both horizontals) in mid-steel. The lightest version — structure is implied rather than asserted; the page breathes most.",
+  },
+  {
+    slug: "bureau-pivot-spine",
+    label: "Bureau · Pivot · Spine",
+    subtitle: "Spine only, no horizontals",
+    note: "Pivot stripped to just the INK spine. No horizontal rules between rows — the spine alone organises the page. The purest architectural read.",
+  },
+  {
+    slug: "bureau-pivot-lift",
+    label: "Bureau · Pivot · Lift",
+    subtitle: "No rule above signup",
+    note: "Pivot with the INK spine, INK rule above categories, and no rule above the signup row. Releases the form to float free of the structure — the destination feels open.",
+  },
+  {
+    slug: "bureau-pivot-cap",
+    label: "Bureau · Pivot · Cap",
+    subtitle: "No rule above categories",
+    note: "Pivot with the INK spine, no rule above categories, INK rule above signup. The hero floats free at the top, and the form sits inside a closed lower band — the inverse of Lift.",
+  },
+  {
+    slug: "bureau-pivot-soft",
+    label: "Bureau · Pivot · Soft",
+    subtitle: "Steel spine, ink horizontals",
+    note: "Pivot with a softer mid-steel spine and INK horizontals. Inverts the usual weight relationship — the bands are firmer than the axis, so the page reads in horizontal stripes rather than two columns.",
+  },
+  {
     slug: "bureau-folio",
     label: "Bureau · Folio",
     subtitle: "Vertical descent",
@@ -90,10 +126,10 @@ export default function LandingPreviewIndex() {
           Landing previews · Bureau
         </div>
         <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(36px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, marginBottom: 16, fontVariationSettings: '"opsz" 60' }}>
-          Twelve Bureau walls.
+          Eighteen Bureau walls.
         </h1>
         <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.55, color: "#38414d", margin: 0, marginBottom: 56, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-          Twelve wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. Every wall offers both pathways — sign up to hire, or apply as a Renner.
+          Eighteen wall-shaped landing pages in Bureau&rsquo;s DNA — including six Pivot variants for dialling the structural temperature. Same content, different layouts. Every wall offers both pathways: sign up to hire, or apply as a Renner.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #0d0f12" }}>

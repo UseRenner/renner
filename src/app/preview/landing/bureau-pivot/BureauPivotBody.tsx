@@ -8,13 +8,35 @@ const { SERIF, MONO, INK, STEEL_700, STEEL_500, STEEL_300, PAPER } = TOKENS;
 const RULE = "var(--c-rule, #eaedf0)";
 
 // PIVOT — a single 1px spine bisects the page top-to-bottom.
-// Three rows alternate which side hosts content. Row 1: headline
-// LEFT (right-aligned to spine), dek RIGHT. Row 2: categories
-// RIGHT, kicker LEFT. Row 3: signup heading LEFT, form RIGHT.
-// The flip-flop around the spine is the DNA of how-it-works
-// Pivot translated to a sign-up wall.
+// Three rows alternate which side hosts content. The rule
+// weights are parameterised so each Pivot variant can dial
+// the page's structural temperature: spine weight, the two
+// horizontals (above categories, above signup), or none.
 
-export function BureauPivotBody({ tone }: { tone: ShellTone }) {
+export type PivotRuleTone = "ink" | "steel" | "rule" | "none";
+
+export type PivotRules = {
+  spine?: Exclude<PivotRuleTone, "none">;
+  aboveCategories?: PivotRuleTone;
+  aboveSignup?: PivotRuleTone;
+};
+
+const TONE_TO_COLOR: Record<PivotRuleTone, string> = {
+  ink: INK,
+  steel: STEEL_300,
+  rule: RULE,
+  none: "transparent",
+};
+
+function ruleBorder(tone: PivotRuleTone): string {
+  return tone === "none" ? "none" : `1px solid ${TONE_TO_COLOR[tone]}`;
+}
+
+export function BureauPivotBody({ tone, rules }: { tone: ShellTone; rules?: PivotRules }) {
+  const spineTone: Exclude<PivotRuleTone, "none"> = rules?.spine ?? "ink";
+  const aboveCategoriesTone: PivotRuleTone = rules?.aboveCategories ?? "rule";
+  const aboveSignupTone: PivotRuleTone = rules?.aboveSignup ?? "rule";
+
   return (
     <div style={{ ...getToneVars(tone), backgroundColor: PAPER, color: INK, minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <Header />
@@ -57,7 +79,7 @@ export function BureauPivotBody({ tone }: { tone: ShellTone }) {
           </div>
 
           {/* Row 2 — kicker left, categories right */}
-          <div className="pivot-row" style={{ paddingTop: "clamp(36px, 4.5vw, 56px)", paddingBottom: "clamp(36px, 4.5vw, 56px)", borderTop: `1px solid ${RULE}` }}>
+          <div className="pivot-row" style={{ paddingTop: "clamp(36px, 4.5vw, 56px)", paddingBottom: "clamp(36px, 4.5vw, 56px)", borderTop: ruleBorder(aboveCategoriesTone) }}>
             <div className="pivot-left" style={{ textAlign: "right", paddingRight: "clamp(28px, 3.5vw, 56px)" }}>
               <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500 }}>
                 Things handled
@@ -86,7 +108,7 @@ export function BureauPivotBody({ tone }: { tone: ShellTone }) {
           </div>
 
           {/* Row 3 — signup heading left, form right */}
-          <div className="pivot-row" style={{ paddingTop: "clamp(36px, 4.5vw, 56px)", paddingBottom: "clamp(40px, 5vw, 64px)", borderTop: `1px solid ${RULE}` }}>
+          <div className="pivot-row" style={{ paddingTop: "clamp(36px, 4.5vw, 56px)", paddingBottom: "clamp(40px, 5vw, 64px)", borderTop: ruleBorder(aboveSignupTone) }}>
             <div className="pivot-left" style={{ textAlign: "right", paddingRight: "clamp(28px, 3.5vw, 56px)" }}>
               <SignupHeading style={{ marginBottom: 0, whiteSpace: "nowrap", fontSize: "clamp(18px, 1.7vw, 22px)" }} />
             </div>
@@ -107,7 +129,7 @@ export function BureauPivotBody({ tone }: { tone: ShellTone }) {
           top: 0;
           bottom: 0;
           width: 1px;
-          background: ${INK};
+          background: ${TONE_TO_COLOR[spineTone]};
           pointer-events: none;
         }
         .pivot-row {
