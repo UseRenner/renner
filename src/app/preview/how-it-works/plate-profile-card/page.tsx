@@ -18,9 +18,9 @@ function readTone(v: unknown): ShellTone {
 }
 
 // Typographic profile card — hairline-bordered, no portrait.
-// Kicker identifies the role (CLIENT or RENNER) based on which
-// side of the audience toggle the visitor is reading. The card
-// shape mirrors Renner's other Mini cards in the system.
+// Kicker identifies the role (CLIENT or RENNER) so the visitor
+// sees their own side's verified profile based on the active
+// audience toggle.
 function VerifiedProfileCard({ role }: { role: "Client" | "Renner" }) {
   return (
     <article style={{ border: `1px solid ${STEEL_300}`, backgroundColor: PAPER, display: "flex", flexDirection: "column", width: "100%", maxWidth: 240, minHeight: 180 }}>
@@ -54,7 +54,8 @@ export default async function PlateProfileCardHowItWorks({ searchParams }: { sea
         showCta={showCta}
         audiencePrompt="How to —"
         audienceUpright
-        step1Illustration={(isClient) => <VerifiedProfileCard role={isClient ? "Client" : "Renner"} />}
+        step1IllustrationClient={<VerifiedProfileCard role="Client" />}
+        step1IllustrationRenner={<VerifiedProfileCard role="Renner" />}
       />
     </PageShell>
   );
