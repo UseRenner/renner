@@ -86,24 +86,6 @@ export function PlateBody({
         <TabButton label="Become a Renner" active={!isClient} onClick={() => setTab("renner")} />
       </div>
 
-      {/* ─── Lede ─── */}
-      <p
-        style={{
-          fontFamily: SERIF,
-          fontWeight: 400,
-          fontSize: "clamp(28px, 3.5vw, 44px)",
-          lineHeight: 1.25,
-          letterSpacing: "-0.012em",
-          color: INK,
-          margin: 0,
-          marginBottom: "clamp(72px, 9vw, 120px)",
-          maxWidth: "32ch",
-          fontVariationSettings: '"opsz" 60',
-        }}
-      >
-        {dek}
-      </p>
-
       {/* ─── Plates ─── three hairline-bordered cards stacked vertically */}
       <div
         style={{

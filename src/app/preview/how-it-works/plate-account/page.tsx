@@ -15,7 +15,7 @@ export default async function PlateAccountHowItWorks({ searchParams }: { searchP
   const sp = await searchParams;
   const tone = readTone(sp?.tone);
   return (
-    <PageShell active="plate" showCta={showCta} tone={tone}>
+    <PageShell active="plate-account" showCta={showCta} tone={tone}>
       <PlateBody showCta={showCta} audiencePrompt="Have an account?" />
     </PageShell>
   );
