@@ -1,5 +1,6 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { getToneVars, type ShellTone } from "../../how-it-works/_shared";
 import { HEADLINE_LEAD, HEADLINE_TAIL, SAMPLE_TASKS, SHORT_DEK } from "../_content";
 import { ComplianceLine, Footer, Header, SignupForm, SignupHeading, TOKENS } from "../_pieces";
@@ -12,8 +13,16 @@ const TASKS = [SAMPLE_TASKS[0]!, SAMPLE_TASKS[5]!, SAMPLE_TASKS[2]!];
 // tasks. Hero, then three sample tasks descending the page with
 // hairline spacers between each, then the form. Each task is
 // the Trio dialect: mono kicker, italic title, location stamp.
+// `signupHeadingStyle` lets sibling pages override the heading
+// treatment (size/color/weight) for typography A/B variants.
 
-export function BureauFolioTrioBody({ tone }: { tone: ShellTone }) {
+export function BureauFolioTrioBody({
+  tone,
+  signupHeadingStyle,
+}: {
+  tone: ShellTone;
+  signupHeadingStyle?: CSSProperties;
+}) {
   return (
     <div style={{ ...getToneVars(tone), backgroundColor: PAPER, color: INK, minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <Header />
@@ -83,7 +92,7 @@ export function BureauFolioTrioBody({ tone }: { tone: ShellTone }) {
         <span aria-hidden style={{ display: "block", width: 1, height: "clamp(48px, 6vw, 72px)", marginTop: "clamp(36px, 4.5vw, 56px)", marginBottom: "clamp(36px, 4.5vw, 56px)", backgroundColor: STEEL_300 }} />
 
         <section style={{ width: "100%", maxWidth: 520, display: "flex", flexDirection: "column", alignItems: "center" }}>
-          <SignupHeading style={{ textAlign: "center", fontSize: "clamp(24px, 2.6vw, 32px)", fontStyle: "normal", fontWeight: 375 }} />
+          <SignupHeading style={{ textAlign: "center", fontSize: "clamp(24px, 2.6vw, 32px)", fontStyle: "normal", fontWeight: 375, ...signupHeadingStyle }} />
           <SignupForm maxWidth={520} />
           <ComplianceLine style={{ marginTop: "clamp(20px, 2.4vw, 28px)", textAlign: "center" }} />
         </section>

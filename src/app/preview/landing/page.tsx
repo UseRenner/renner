@@ -93,6 +93,24 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     note: "Folio's vertical descent carrying Trio's hero tasks. Hero up top, then three sample tasks (kicker · price, italic title, location stamp) descending the page with hairline spacers between each, then the form. Reads as a single downward thread of inventory.",
   },
   {
+    slug: "bureau-folio-trio-match",
+    label: "Bureau · Folio · Trio · Match",
+    subtitle: "Heading exactly matches the dek",
+    note: "Folio · Trio with the signup heading dropped to the dek's exact size, color (STEEL_700) and weight (375). The form heading sits at the same quiet register as the intro — quietest possible read.",
+  },
+  {
+    slug: "bureau-folio-trio-ink-small",
+    label: "Bureau · Folio · Trio · Ink Small",
+    subtitle: "Same size as dek, INK",
+    note: "Folio · Trio with the signup heading at the dek's size and weight but in INK. Reads as a small declarative stamp — escalated by color only.",
+  },
+  {
+    slug: "bureau-folio-trio-larger",
+    label: "Bureau · Folio · Trio · Larger",
+    subtitle: "Larger size, dek's color/weight",
+    note: "Folio · Trio with the signup heading kept at clamp(24, 2.6vw, 32) but recoloured STEEL_700 (matches the dek). Escalated by size only — same quiet voice, just bigger.",
+  },
+  {
     slug: "bureau-quarter",
     label: "Bureau · Quarter",
     subtitle: "Four quadrants by crosshair",
@@ -114,10 +132,10 @@ export default function LandingPreviewIndex() {
           Landing previews · Bureau
         </div>
         <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(36px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, marginBottom: 16, fontVariationSettings: '"opsz" 60' }}>
-          Sixteen Bureau walls.
+          Nineteen Bureau walls.
         </h1>
         <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.55, color: "#38414d", margin: 0, marginBottom: 56, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-          Sixteen wall-shaped landing pages in Bureau&rsquo;s DNA — including the Pivot family (Steel, Ink, Trio · Steel, Trio · Capped) where the dek and sign-up heading sit at 375-weight upright, and two more Trio crosses that pull the hero tasks into the architectural walls. Same content, different layouts. Every wall offers both pathways: sign up to hire, or apply as a Renner.
+          Nineteen wall-shaped landing pages in Bureau&rsquo;s DNA — including the Pivot family (Steel, Ink, Trio · Steel, Trio · Capped), Folio · Trio with three sign-up heading treatments to compare (Match, Ink Small, Larger), and the rest of the Trio crosses. Same content, different layouts. Every wall offers both pathways: sign up to hire, or apply as a Renner.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #0d0f12" }}>
