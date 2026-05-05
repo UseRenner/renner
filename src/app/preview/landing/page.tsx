@@ -69,6 +69,12 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     note: "Pivot · A's bisecting spine carrying Trio's hero tasks instead of categories. Three task rows alternate sides around the INK spine (mono kicker on one side, italic title + location stamp on the other). The spine separates label from specifics.",
   },
   {
+    slug: "bureau-pivot-c",
+    label: "Bureau · Pivot · C",
+    subtitle: "Tasks stacked on the spine",
+    note: "Pivot · A's architecture (INK spine + steel horizontals) with Quarter · B's stacked task feed in the middle row instead of a categories list. Three tasks (kicker, italic title, location stamp) stack on the right side of the spine; left side is open. The spine bisects but doesn't split each task — they read as a vertical Renner's-eye feed with the architectural axis behind them.",
+  },
+  {
     slug: "bureau-folio",
     label: "Bureau · Folio · A",
     subtitle: "Categories descent",
@@ -102,10 +108,10 @@ export default function LandingPreviewIndex() {
           Landing previews · Bureau
         </div>
         <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(36px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, marginBottom: 16, fontVariationSettings: '"opsz" 60' }}>
-          Fourteen Bureau walls.
+          Fifteen Bureau walls.
         </h1>
         <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.55, color: "#38414d", margin: 0, marginBottom: 56, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-          Fourteen wall-shaped landing pages in Bureau&rsquo;s DNA — including paired A/B variants for Pivot, Folio, and Quarter (categories vs hero-task editions). Same content, different layouts. Every wall offers both pathways: sign up to hire, or apply as a Renner.
+          Fifteen wall-shaped landing pages in Bureau&rsquo;s DNA — including paired A/B variants for Folio and Quarter (categories vs hero-task editions), plus a third Pivot · C that stacks Quarter · B&rsquo;s task feed on Pivot · A&rsquo;s spine. Same content, different layouts. Every wall offers both pathways: sign up to hire, or apply as a Renner.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #0d0f12" }}>

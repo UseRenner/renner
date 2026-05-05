@@ -1,7 +1,7 @@
 "use client";
 
 import { getToneVars, type ShellTone } from "../../how-it-works/_shared";
-import { CATEGORY_STRIP_SHORT, HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
+import { CATEGORY_STRIP_SHORT, HEADLINE_LEAD, HEADLINE_TAIL, SAMPLE_TASKS, SHORT_DEK } from "../_content";
 import { ComplianceLine, Footer, Header, SignupForm, SignupHeading, TOKENS } from "../_pieces";
 
 const { SERIF, MONO, INK, STEEL_700, STEEL_500, STEEL_300, PAPER } = TOKENS;
@@ -32,10 +32,12 @@ function ruleBorder(tone: PivotRuleTone): string {
   return tone === "none" ? "none" : `1px solid ${TONE_TO_COLOR[tone]}`;
 }
 
-export function BureauPivotBody({ tone, rules }: { tone: ShellTone; rules?: PivotRules }) {
+export function BureauPivotBody({ tone, rules, content }: { tone: ShellTone; rules?: PivotRules; content?: "categories" | "tasks" }) {
   const spineTone: Exclude<PivotRuleTone, "none"> = rules?.spine ?? "ink";
   const aboveCategoriesTone: PivotRuleTone = rules?.aboveCategories ?? "rule";
   const aboveSignupTone: PivotRuleTone = rules?.aboveSignup ?? "rule";
+  const showTasks = content === "tasks";
+  const TASKS = [SAMPLE_TASKS[0]!, SAMPLE_TASKS[5]!, SAMPLE_TASKS[2]!];
 
   return (
     <div style={{ ...getToneVars(tone), backgroundColor: PAPER, color: INK, minHeight: "100vh", display: "flex", flexDirection: "column" }}>
@@ -78,32 +80,74 @@ export function BureauPivotBody({ tone, rules }: { tone: ShellTone; rules?: Pivo
             </div>
           </div>
 
-          {/* Row 2 — kicker left, categories right */}
+          {/* Row 2 — kicker/empty left, content right (categories or task feed) */}
           <div className="pivot-row" style={{ paddingTop: "clamp(36px, 4.5vw, 56px)", paddingBottom: "clamp(36px, 4.5vw, 56px)", borderTop: ruleBorder(aboveCategoriesTone) }}>
             <div className="pivot-left" style={{ textAlign: "right", paddingRight: "clamp(28px, 3.5vw, 56px)" }}>
-              <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500 }}>
-                Things handled
-              </span>
+              {showTasks ? null : (
+                <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", color: STEEL_500 }}>
+                  Things handled
+                </span>
+              )}
             </div>
             <div className="pivot-right" style={{ textAlign: "left", paddingLeft: "clamp(28px, 3.5vw, 56px)" }}>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
-                {CATEGORY_STRIP_SHORT.map((c) => (
-                  <li
-                    key={c.id}
-                    style={{
-                      fontFamily: SERIF,
-                      fontStyle: "italic",
-                      fontWeight: 300,
-                      fontSize: "clamp(17px, 1.6vw, 20px)",
-                      lineHeight: 1.4,
-                      color: INK,
-                      fontVariationSettings: '"opsz" 36',
-                    }}
-                  >
-                    {c.title}
-                  </li>
-                ))}
-              </ul>
+              {showTasks ? (
+                <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column" }}>
+                  {TASKS.map((task, i) => (
+                    <li
+                      key={task.title}
+                      style={{
+                        paddingTop: i === 0 ? 0 : "clamp(16px, 2vw, 22px)",
+                        paddingBottom: i === TASKS.length - 1 ? 0 : "clamp(16px, 2vw, 22px)",
+                        borderTop: i === 0 ? "none" : `1px solid ${STEEL_300}`,
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: 8,
+                      }}
+                    >
+                      <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
+                        {task.category}
+                      </span>
+                      <h3
+                        style={{
+                          fontFamily: SERIF,
+                          fontStyle: "italic",
+                          fontWeight: 300,
+                          fontSize: "clamp(20px, 2vw, 24px)",
+                          lineHeight: 1.15,
+                          letterSpacing: "-0.01em",
+                          color: INK,
+                          margin: 0,
+                          fontVariationSettings: '"opsz" 36',
+                        }}
+                      >
+                        {task.title}
+                      </h3>
+                      <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: STEEL_500 }}>
+                        {task.location}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
+                  {CATEGORY_STRIP_SHORT.map((c) => (
+                    <li
+                      key={c.id}
+                      style={{
+                        fontFamily: SERIF,
+                        fontStyle: "italic",
+                        fontWeight: 300,
+                        fontSize: "clamp(17px, 1.6vw, 20px)",
+                        lineHeight: 1.4,
+                        color: INK,
+                        fontVariationSettings: '"opsz" 36',
+                      }}
+                    >
+                      {c.title}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </div>
 

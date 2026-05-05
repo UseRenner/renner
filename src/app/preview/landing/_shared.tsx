@@ -19,6 +19,7 @@ export type LandingVariantKey =
   | "compact"
   | "pivot-ink"
   | "pivot-trio-ink"
+  | "pivot-c"
   | "folio"
   | "folio-trio-match"
   | "quarter"
@@ -39,6 +40,7 @@ export const LANDING_VARIANTS: ReadonlyArray<{
   { href: "/preview/landing/bureau-compact", key: "compact", label: "Compact" },
   { href: "/preview/landing/bureau-pivot-ink", key: "pivot-ink", label: "Pivot · A" },
   { href: "/preview/landing/bureau-pivot-trio-ink", key: "pivot-trio-ink", label: "Pivot · B" },
+  { href: "/preview/landing/bureau-pivot-c", key: "pivot-c", label: "Pivot · C" },
   { href: "/preview/landing/bureau-folio", key: "folio", label: "Folio · A" },
   { href: "/preview/landing/bureau-folio-trio-match", key: "folio-trio-match", label: "Folio · B" },
   { href: "/preview/landing/bureau-quarter", key: "quarter", label: "Quarter · A" },
