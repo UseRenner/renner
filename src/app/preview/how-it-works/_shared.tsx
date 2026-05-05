@@ -47,7 +47,6 @@ export type VariantKey =
   | "plate"
   | "plate-em"
   | "plate-colon"
-  | "plate-account"
   | "plate-plain"
   | "scene"
   | "pivot"
@@ -70,7 +69,6 @@ export const VARIANTS: ReadonlyArray<{ href: string; key: VariantKey; label: str
   { href: "/preview/how-it-works/plate", key: "plate", label: "Plate" },
   { href: "/preview/how-it-works/plate-em", key: "plate-em", label: "Plate · How do I —" },
   { href: "/preview/how-it-works/plate-colon", key: "plate-colon", label: "Plate · How do I:" },
-  { href: "/preview/how-it-works/plate-account", key: "plate-account", label: "Plate · Have an account?" },
   { href: "/preview/how-it-works/plate-plain", key: "plate-plain", label: "Plate · Plain" },
   { href: "/preview/how-it-works/scene", key: "scene", label: "Scene" },
   { href: "/preview/how-it-works/pivot", key: "pivot", label: "Pivot" },
