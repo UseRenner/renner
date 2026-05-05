@@ -1,4 +1,4 @@
-import { BureauFolioTrioBody } from "../bureau-folio-trio/BureauFolioTrioBody";
+import { BureauFolioTrioBody } from "./BureauFolioTrioBody";
 import { readTone, VariantSwitcher } from "../_shared";
 
 export const metadata = { title: "Landing · Bureau · Folio · Trio · Match · Renner", robots: { index: false, follow: false } };

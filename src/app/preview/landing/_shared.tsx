@@ -22,10 +22,7 @@ export type LandingVariantKey =
   | "pivot-trio-steel"
   | "pivot-trio-capped"
   | "folio"
-  | "folio-trio"
   | "folio-trio-match"
-  | "folio-trio-ink-small"
-  | "folio-trio-larger"
   | "quarter"
   | "quarter-trio";
 
@@ -47,10 +44,7 @@ export const LANDING_VARIANTS: ReadonlyArray<{
   { href: "/preview/landing/bureau-pivot-trio-steel", key: "pivot-trio-steel", label: "Pivot · Trio · Steel" },
   { href: "/preview/landing/bureau-pivot-trio-capped", key: "pivot-trio-capped", label: "Pivot · Trio · Capped" },
   { href: "/preview/landing/bureau-folio", key: "folio", label: "Folio" },
-  { href: "/preview/landing/bureau-folio-trio", key: "folio-trio", label: "Folio · Trio" },
   { href: "/preview/landing/bureau-folio-trio-match", key: "folio-trio-match", label: "Folio · Trio · Match" },
-  { href: "/preview/landing/bureau-folio-trio-ink-small", key: "folio-trio-ink-small", label: "Folio · Trio · Ink Small" },
-  { href: "/preview/landing/bureau-folio-trio-larger", key: "folio-trio-larger", label: "Folio · Trio · Larger" },
   { href: "/preview/landing/bureau-quarter", key: "quarter", label: "Quarter" },
   { href: "/preview/landing/bureau-quarter-trio", key: "quarter-trio", label: "Quarter · Trio" },
 ];
