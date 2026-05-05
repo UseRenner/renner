@@ -83,7 +83,7 @@ export function BureauFolioTrioBody({ tone }: { tone: ShellTone }) {
         <span aria-hidden style={{ display: "block", width: 1, height: "clamp(48px, 6vw, 72px)", marginTop: "clamp(36px, 4.5vw, 56px)", marginBottom: "clamp(36px, 4.5vw, 56px)", backgroundColor: STEEL_300 }} />
 
         <section style={{ width: "100%", maxWidth: 520, display: "flex", flexDirection: "column", alignItems: "center" }}>
-          <SignupHeading style={{ textAlign: "center" }} />
+          <SignupHeading style={{ textAlign: "center", fontSize: "clamp(24px, 2.6vw, 32px)" }} />
           <SignupForm maxWidth={520} />
           <ComplianceLine style={{ marginTop: "clamp(20px, 2.4vw, 28px)", textAlign: "center" }} />
         </section>
