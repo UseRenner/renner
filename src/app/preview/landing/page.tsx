@@ -69,12 +69,6 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     note: "Pivot with the spine and the rule above categories both in mid-steel. Structure is implied rather than asserted; the page breathes most. Form floats free at the bottom.",
   },
   {
-    slug: "bureau-pivot-soft",
-    label: "Bureau · Pivot · Soft",
-    subtitle: "Steel spine, ink rule",
-    note: "Pivot with a softer mid-steel spine and an INK rule above categories. Inverts the usual weight relationship — the band is firmer than the axis. Form floats free at the bottom.",
-  },
-  {
     slug: "bureau-pivot-trio",
     label: "Bureau · Pivot · Trio",
     subtitle: "Spine carries hero tasks",
@@ -126,10 +120,10 @@ export default function LandingPreviewIndex() {
           Landing previews · Bureau
         </div>
         <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(36px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, marginBottom: 16, fontVariationSettings: '"opsz" 60' }}>
-          Eighteen Bureau walls.
+          Seventeen Bureau walls.
         </h1>
         <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.55, color: "#38414d", margin: 0, marginBottom: 56, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-          Eighteen wall-shaped landing pages in Bureau&rsquo;s DNA — including Pivot and Pivot · Trio in three rule weights (default, Steel, Soft), and three Trio crosses that pull the hero tasks into the architectural walls. Same content, different layouts. Every wall offers both pathways: sign up to hire, or apply as a Renner.
+          Seventeen wall-shaped landing pages in Bureau&rsquo;s DNA — including a Pivot · Steel rule variant, two Pivot · Trio rule variants, and three Trio crosses that pull the hero tasks into the architectural walls. Same content, different layouts. Every wall offers both pathways: sign up to hire, or apply as a Renner.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #0d0f12" }}>
