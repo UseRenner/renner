@@ -123,7 +123,7 @@ export function BureauQuarterTrioBody({ tone }: { tone: ShellTone }) {
 
           {/* BR — signup */}
           <section style={{ padding: "clamp(28px, 4vw, 56px)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-            <SignupHeading style={{ fontStyle: "normal", fontWeight: 375 }} />
+            <SignupHeading style={{ fontStyle: "normal", fontWeight: 375, color: STEEL_700 }} />
             <SignupForm maxWidth={460} />
             <ComplianceLine style={{ marginTop: "clamp(20px, 2.4vw, 28px)", whiteSpace: "normal" }} />
           </section>
