@@ -92,7 +92,7 @@ function Header() {
         <RennerMark size={28} weight={300} />
         <p style={{ fontFamily: SERIF, fontSize: 15, color: STEEL_500, margin: 0, fontVariationSettings: '"opsz" 14' }}>
           Have an account?{" "}
-          <Link href="/signin" style={{ color: STEEL_700, fontWeight: 500, textDecoration: "underline", textUnderlineOffset: 3 }}>
+          <Link href="/signin" style={{ color: STEEL_700, fontWeight: 500, textDecoration: "none" }}>
             Sign in
           </Link>
         </p>
