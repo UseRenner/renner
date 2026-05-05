@@ -134,7 +134,7 @@ function TaskCard() {
       <div style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.08em", color: STEEL_600, lineHeight: 1.5 }}>
         Cherry Creek, CO · 80205
         <br />
-        Today 14:00–17:00 · $45
+        Today 2:00–5:00 PM · $45
       </div>
       <p style={{ fontFamily: SERIF, fontSize: 14, lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
         Add a "Just Listed" rider above the for-sale sign.
@@ -338,7 +338,7 @@ function MiniTask({ maxWidth }: { maxWidth?: number | string }) {
     <MiniShell
       kicker="Open"
       maxWidth={maxWidth}
-      footer={<div>Today · 14:00–17:00</div>}
+      footer={<div>Today · 2:00–5:00 PM</div>}
     >
       <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 17, lineHeight: 1.15, color: INK, fontVariationSettings: '"opsz" 36' }}>
         Install sign rider
@@ -425,7 +425,7 @@ function MiniInbox({ maxWidth }: { maxWidth?: number | string }) {
     <MiniShell
       kicker="Apply"
       maxWidth={maxWidth}
-      footer={<div>Today · 14:00–17:00</div>}
+      footer={<div>Today · 2:00–5:00 PM</div>}
     >
       <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 17, lineHeight: 1.15, color: INK, fontVariationSettings: '"opsz" 36' }}>
         Install sign rider
