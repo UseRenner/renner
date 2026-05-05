@@ -71,8 +71,20 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
   {
     slug: "bureau-pivot-c",
     label: "Bureau · Pivot · C",
-    subtitle: "Tasks stacked on the spine",
-    note: "Pivot · A's architecture (INK spine + steel horizontals) with Quarter · B's stacked task feed in the middle row instead of a categories list. Three tasks (kicker, italic title, location stamp) stack on the right side of the spine; left side is open. The spine bisects but doesn't split each task — they read as a vertical Renner's-eye feed with the architectural axis behind them.",
+    subtitle: "Tasks stacked, with row kicker",
+    note: "Pivot · A's architecture (INK spine + steel horizontals) with Quarter · B's stacked task feed in the middle row. \"Things handled\" row kicker on the left, three full tasks (kicker, italic title, location stamp) on the right.",
+  },
+  {
+    slug: "bureau-pivot-d",
+    label: "Bureau · Pivot · D",
+    subtitle: "Tasks stacked, blank left",
+    note: "Pivot · C without the \"Things handled\" row kicker. Stacked task feed on the right; spine bisects open whitespace on the left of the task row. No mono caps row kicker competing with the per-task SIGNS / SHOWING / GUEST ACCESS labels.",
+  },
+  {
+    slug: "bureau-pivot-e",
+    label: "Bureau · Pivot · E",
+    subtitle: "Row kicker, no task kickers",
+    note: "Pivot · C with \"Things handled\" kept on the left but the per-task category kickers (SIGNS, GUEST ACCESS, SHOWING) dropped. Tasks read as italic title + location stamp only — one mono caps voice on the page (the row kicker) instead of two.",
   },
   {
     slug: "bureau-folio",
@@ -108,10 +120,10 @@ export default function LandingPreviewIndex() {
           Landing previews · Bureau
         </div>
         <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(36px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, marginBottom: 16, fontVariationSettings: '"opsz" 60' }}>
-          Fifteen Bureau walls.
+          Seventeen Bureau walls.
         </h1>
         <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.55, color: "#38414d", margin: 0, marginBottom: 56, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-          Fifteen wall-shaped landing pages in Bureau&rsquo;s DNA — including paired A/B variants for Folio and Quarter (categories vs hero-task editions), plus a third Pivot · C that stacks Quarter · B&rsquo;s task feed on Pivot · A&rsquo;s spine. Same content, different layouts. Every wall offers both pathways: sign up to hire, or apply as a Renner.
+          Seventeen wall-shaped landing pages in Bureau&rsquo;s DNA — including paired A/B variants for Folio and Quarter (categories vs hero-task editions), plus Pivot · C/D/E exploring kicker placement on the stacked task feed. Same content, different layouts. Every wall offers both pathways: sign up to hire, or apply as a Renner.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #0d0f12" }}>
