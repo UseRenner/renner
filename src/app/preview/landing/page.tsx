@@ -94,14 +94,14 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
   },
   {
     slug: "bureau-quarter",
-    label: "Bureau · Quarter",
-    subtitle: "Four quadrants by crosshair",
+    label: "Bureau · Quarter · A",
+    subtitle: "Categories quadrant",
     note: "A 2×2 grid divided by an INK crosshair. Top-left: headline. Top-right: dek on chalk. Bottom-left: categories. Bottom-right: signup. Each quadrant equal in width and height — the crosshair anchors the page.",
   },
   {
     slug: "bureau-quarter-trio",
-    label: "Bureau · Quarter · Trio",
-    subtitle: "Crosshair around a task feed",
+    label: "Bureau · Quarter · B",
+    subtitle: "Tasks quadrant",
     note: "Quarter's INK crosshair, but the BL quadrant carries a Renner's task feed instead of categories: three live tasks (kicker, italic title, location stamp) stacked as the reader-side view of the marketplace. Hero (TL) and dek on chalk (TR) frame the feed; the signup form sits in BR.",
   },
 ];

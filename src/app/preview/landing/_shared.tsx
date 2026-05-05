@@ -45,8 +45,8 @@ export const LANDING_VARIANTS: ReadonlyArray<{
   { href: "/preview/landing/bureau-pivot-trio-ink", key: "pivot-trio-ink", label: "Pivot · Trio · Ink" },
   { href: "/preview/landing/bureau-folio", key: "folio", label: "Folio · A" },
   { href: "/preview/landing/bureau-folio-trio-match", key: "folio-trio-match", label: "Folio · B" },
-  { href: "/preview/landing/bureau-quarter", key: "quarter", label: "Quarter" },
-  { href: "/preview/landing/bureau-quarter-trio", key: "quarter-trio", label: "Quarter · Trio" },
+  { href: "/preview/landing/bureau-quarter", key: "quarter", label: "Quarter · A" },
+  { href: "/preview/landing/bureau-quarter-trio", key: "quarter-trio", label: "Quarter · B" },
 ];
 
 import type { ShellTone } from "../how-it-works/_shared";
