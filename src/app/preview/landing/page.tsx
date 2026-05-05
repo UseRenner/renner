@@ -15,12 +15,6 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     note: "Headline above a three-column triptych — kicker, italic title, location stamp — separated by floor-to-ceiling hairlines. Form sits beneath as the closing section.",
   },
   {
-    slug: "bureau-window",
-    label: "Bureau · Window",
-    subtitle: "Single panel on chalk",
-    note: "One paper panel at the center of a chalk page, framed by light steel hairlines. Inside, everything stacks down a single vertical axis — mark above the rule, headline, dek, categories edge to edge between two rules, form, secondary path.",
-  },
-  {
     slug: "bureau-letter",
     label: "Bureau · Letter",
     subtitle: "Editorial stationery",
@@ -54,10 +48,10 @@ export default function LandingPreviewIndex() {
           Landing previews · Bureau
         </div>
         <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(36px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, marginBottom: 16, fontVariationSettings: '"opsz" 60' }}>
-          Six Bureau walls.
+          Five Bureau walls.
         </h1>
         <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.55, color: "#38414d", margin: 0, marginBottom: 56, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-          Six wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. Every wall offers both pathways — sign up to hire, or apply as a Renner.
+          Five wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. Every wall offers both pathways — sign up to hire, or apply as a Renner.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #0d0f12" }}>
