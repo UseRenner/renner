@@ -66,7 +66,7 @@ export function BureauQuarterBody({ tone }: { tone: ShellTone }) {
 
           {/* TR — dek on chalk */}
           <section style={{ padding: "clamp(28px, 4vw, 56px)", display: "flex", alignItems: "center", backgroundColor: BONE }}>
-            <p style={{ fontFamily: SERIF, fontWeight: 375, fontSize: "clamp(22px, 2.4vw, 28px)", lineHeight: 1.45, color: INK, margin: 0, maxWidth: "28ch", fontVariationSettings: '"opsz" 36' }}>
+            <p style={{ fontFamily: SERIF, fontWeight: 375, fontSize: "clamp(22px, 2.4vw, 28px)", lineHeight: 1.45, color: STEEL_700, margin: 0, maxWidth: "28ch", fontVariationSettings: '"opsz" 36' }}>
               {SHORT_DEK}
             </p>
           </section>
@@ -103,7 +103,7 @@ export function BureauQuarterBody({ tone }: { tone: ShellTone }) {
 
           {/* BR — signup */}
           <section style={{ padding: "clamp(28px, 4vw, 56px)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-            <SignupHeading style={{ fontStyle: "normal", fontWeight: 375 }} />
+            <SignupHeading style={{ fontStyle: "normal", fontWeight: 375, color: STEEL_700 }} />
             <SignupForm maxWidth={460} />
             <ComplianceLine style={{ marginTop: "clamp(20px, 2.4vw, 28px)", whiteSpace: "normal" }} />
           </section>
