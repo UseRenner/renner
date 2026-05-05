@@ -11,6 +11,7 @@ export { VariantSwitcher } from "./_variant-switcher";
 export type LandingVariantKey =
   | "trio"
   | "letter"
+  | "pair"
   | "specimen"
   | "glyph"
   | "index";
@@ -25,6 +26,7 @@ export const LANDING_VARIANTS: ReadonlyArray<{
   { href: "/preview/landing/bureau-specimen", key: "specimen", label: "Specimen" },
   { href: "/preview/landing/bureau-glyph", key: "glyph", label: "Glyph" },
   { href: "/preview/landing/bureau-index", key: "index", label: "Index" },
+  { href: "/preview/landing/bureau-pair", key: "pair", label: "Pair" },
 ];
 
 import type { ShellTone } from "../how-it-works/_shared";
