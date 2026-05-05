@@ -1,10 +1,11 @@
 "use client";
 
 import { getToneVars, type ShellTone } from "../../how-it-works/_shared";
-import { CATEGORY_STRIP_SHORT, HEADLINE_LEAD, HEADLINE_TAIL, SHORT_DEK } from "../_content";
+import { CATEGORY_STRIP_SHORT, HEADLINE_LEAD, HEADLINE_TAIL, SAMPLE_TASKS, SHORT_DEK } from "../_content";
 import { ComplianceLine, Footer, Header, SignupForm, SignupHeading, TOKENS } from "../_pieces";
 
-const { SERIF, INK, STEEL_700, STEEL_500, STEEL_300, PAPER } = TOKENS;
+const { SERIF, MONO, INK, STEEL_700, STEEL_500, STEEL_300, PAPER } = TOKENS;
+const SAMPLE = SAMPLE_TASKS[0]!;
 
 // LEAD — hero side-by-side at top (headline+dek LEFT, an empty
 // editorial card RIGHT), then a single linear horizontal row
@@ -53,7 +54,47 @@ export function BureauLeadBody({ tone }: { tone: ShellTone }) {
                 {SHORT_DEK}
               </p>
             </div>
-            <div aria-hidden style={{ minHeight: "clamp(180px, 24vw, 320px)", border: `1px solid ${STEEL_300}` }} />
+            <aside
+              aria-label="Sample task"
+              style={{
+                border: `1px solid ${STEEL_300}`,
+                backgroundColor: PAPER,
+                padding: "clamp(28px, 3.5vw, 40px) clamp(24px, 3vw, 36px)",
+                display: "flex",
+                flexDirection: "column",
+                gap: "clamp(16px, 2vw, 22px)",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16 }}>
+                <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
+                  Sample task · {SAMPLE.category}
+                </span>
+                <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(20px, 2vw, 24px)", color: INK, fontVariationSettings: '"opsz" 36' }}>
+                  {SAMPLE.price}
+                </span>
+              </div>
+              <h2
+                style={{
+                  fontFamily: SERIF,
+                  fontStyle: "italic",
+                  fontWeight: 300,
+                  fontSize: "clamp(24px, 2.6vw, 32px)",
+                  lineHeight: 1.1,
+                  letterSpacing: "-0.014em",
+                  color: INK,
+                  margin: 0,
+                  fontVariationSettings: '"opsz" 60',
+                }}
+              >
+                {SAMPLE.title}
+              </h2>
+              <p style={{ fontFamily: SERIF, fontSize: "clamp(14px, 1.35vw, 16px)", lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+                {SAMPLE.location}
+              </p>
+              <div style={{ marginTop: "auto", paddingTop: "clamp(8px, 1vw, 12px)", borderTop: `1px solid ${STEEL_300}`, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
+                Open · Apply by 1:30 PM
+              </div>
+            </aside>
           </div>
 
           {/* Categories — single horizontal row, like a table line. */}

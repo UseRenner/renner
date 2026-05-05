@@ -39,28 +39,16 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     note: "Page is a TOC. Six italic category entries down a single column between two ink rules; the seventh entry is the signup itself, expanded inline. The form is the last entry — what the reader arrives at when they reach the end.",
   },
   {
-    slug: "bureau-pair",
-    label: "Bureau · Pair",
-    subtitle: "Glyph without the wordmark",
-    note: "Same body grid as Glyph — headline, dek and categories anchored left, form anchored right — but the giant wordmark is dropped in favour of a normal-sized mark in the header. Lets the body breathe without the architectural overhead.",
-  },
-  {
     slug: "bureau-plate",
     label: "Bureau · Plate",
     subtitle: "Banded card stack",
     note: "Three banded paper cards stacked vertically on a chalk page. Each band is a distinct contained unit — headline+dek, categories, signup. The DNA of how-it-works Plate translated to a sign-up wall.",
   },
   {
-    slug: "bureau-scene",
-    label: "Bureau · Scene",
-    subtitle: "Zigzag of panels",
-    note: "Alternating left/right panels create a zigzag rhythm down the page. Headline+dek anchors top-LEFT, categories sits top-RIGHT, form anchors bottom-LEFT. Decorative chalk panels balance each row.",
-  },
-  {
     slug: "bureau-lead",
     label: "Bureau · Lead",
     subtitle: "Hero, lane, form",
-    note: "Hero side-by-side at top — headline+dek LEFT, an editorial card RIGHT — then a single linear horizontal lane for the categories, with the form anchored below at the same flat baseline.",
+    note: "Hero up top — a wide headline + dek block — then a single linear horizontal lane for the categories between two ink rules, with the form anchored below at the same flat baseline.",
   },
   {
     slug: "bureau-compact",
@@ -92,12 +80,6 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     subtitle: "Four quadrants by crosshair",
     note: "A 2×2 grid divided by an INK crosshair. Top-left: headline. Top-right: dek on chalk. Bottom-left: categories. Bottom-right: signup. Each quadrant equal in width and height — the crosshair anchors the page.",
   },
-  {
-    slug: "bureau-center",
-    label: "Bureau · Center",
-    subtitle: "Three pieces in a row",
-    note: "A horizontal procession of three equal sections sitting flat in a single row: headline+dek, categories, signup. Same flex template, equal gaps, no connectors — three pieces standing in line.",
-  },
 ];
 
 export default function LandingPreviewIndex() {
@@ -108,10 +90,10 @@ export default function LandingPreviewIndex() {
           Landing previews · Bureau
         </div>
         <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(36px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, marginBottom: 16, fontVariationSettings: '"opsz" 60' }}>
-          Fifteen Bureau walls.
+          Twelve Bureau walls.
         </h1>
         <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.55, color: "#38414d", margin: 0, marginBottom: 56, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-          Fifteen wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. Every wall offers both pathways — sign up to hire, or apply as a Renner.
+          Twelve wall-shaped landing pages in Bureau&rsquo;s DNA. Same content, different layouts. Every wall offers both pathways — sign up to hire, or apply as a Renner.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #0d0f12" }}>
