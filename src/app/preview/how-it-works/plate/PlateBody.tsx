@@ -45,10 +45,12 @@ export function PlateBody({
   showCta,
   audiencePrompt,
   audienceUpright,
+  step1Illustration,
 }: {
   showCta: boolean;
   audiencePrompt?: string | null;
   audienceUpright?: boolean;
+  step1Illustration?: React.ReactNode;
 }) {
   const [tab, setTab] = useState<"client" | "renner">("client");
   const isClient = tab === "client";
@@ -153,7 +155,7 @@ export function PlateBody({
               </p>
             </div>
             <div className="plate-illustration" style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "flex-end" }}>
-              <Mini kind={(isClient ? CLIENT_KINDS : RENNER_KINDS)[idx]} />
+              {idx === 0 && step1Illustration ? step1Illustration : <Mini kind={(isClient ? CLIENT_KINDS : RENNER_KINDS)[idx]} />}
               <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: STEEL_600 }}>
                 {plate.proof}
               </span>

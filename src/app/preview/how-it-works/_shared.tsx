@@ -48,6 +48,10 @@ export type VariantKey =
   | "plate-em"
   | "plate-colon"
   | "plate-plain"
+  | "plate-stamp"
+  | "plate-profile-card"
+  | "plate-applicant"
+  | "plate-mini-profile"
   | "scene"
   | "pivot"
   | "quarter"
@@ -70,6 +74,10 @@ export const VARIANTS: ReadonlyArray<{ href: string; key: VariantKey; label: str
   { href: "/preview/how-it-works/plate-em", key: "plate-em", label: "Plate · How to —" },
   { href: "/preview/how-it-works/plate-colon", key: "plate-colon", label: "Plate · How to:" },
   { href: "/preview/how-it-works/plate-plain", key: "plate-plain", label: "Plate · Plain" },
+  { href: "/preview/how-it-works/plate-stamp", key: "plate-stamp", label: "Plate · Step 1 · Stamp" },
+  { href: "/preview/how-it-works/plate-profile-card", key: "plate-profile-card", label: "Plate · Step 1 · Profile Card" },
+  { href: "/preview/how-it-works/plate-applicant", key: "plate-applicant", label: "Plate · Step 1 · Applicant" },
+  { href: "/preview/how-it-works/plate-mini-profile", key: "plate-mini-profile", label: "Plate · Step 1 · Mini Profile" },
   { href: "/preview/how-it-works/scene", key: "scene", label: "Scene" },
   { href: "/preview/how-it-works/pivot", key: "pivot", label: "Pivot" },
   { href: "/preview/how-it-works/quarter", key: "quarter", label: "Quarter" },
