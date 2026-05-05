@@ -1,4 +1,4 @@
-// Cache-buster: deploy nudge 2026-05-04T19:18Z
+// Cache-buster: deploy nudge 2026-05-05T00:00Z
 // Shared infrastructure for the landing-page previews. Mirrors
 // the how-it-works/_shared.tsx pattern: a single source of truth
 // for the variant list, the tone reader, and re-exports of the
@@ -14,7 +14,16 @@ export type LandingVariantKey =
   | "pair"
   | "specimen"
   | "glyph"
-  | "index";
+  | "index"
+  | "plate"
+  | "scene"
+  | "lead"
+  | "compact"
+  | "pivot"
+  | "folio"
+  | "brief"
+  | "quarter"
+  | "center";
 
 export const LANDING_VARIANTS: ReadonlyArray<{
   href: string;
@@ -27,6 +36,15 @@ export const LANDING_VARIANTS: ReadonlyArray<{
   { href: "/preview/landing/bureau-glyph", key: "glyph", label: "Glyph" },
   { href: "/preview/landing/bureau-index", key: "index", label: "Index" },
   { href: "/preview/landing/bureau-pair", key: "pair", label: "Pair" },
+  { href: "/preview/landing/bureau-plate", key: "plate", label: "Plate" },
+  { href: "/preview/landing/bureau-scene", key: "scene", label: "Scene" },
+  { href: "/preview/landing/bureau-lead", key: "lead", label: "Lead" },
+  { href: "/preview/landing/bureau-compact", key: "compact", label: "Compact" },
+  { href: "/preview/landing/bureau-pivot", key: "pivot", label: "Pivot" },
+  { href: "/preview/landing/bureau-folio", key: "folio", label: "Folio" },
+  { href: "/preview/landing/bureau-brief", key: "brief", label: "Brief" },
+  { href: "/preview/landing/bureau-quarter", key: "quarter", label: "Quarter" },
+  { href: "/preview/landing/bureau-center", key: "center", label: "Center" },
 ];
 
 import type { ShellTone } from "../how-it-works/_shared";
