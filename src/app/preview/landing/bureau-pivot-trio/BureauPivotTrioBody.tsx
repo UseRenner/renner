@@ -11,13 +11,34 @@ const TASKS = [SAMPLE_TASKS[0]!, SAMPLE_TASKS[5]!, SAMPLE_TASKS[2]!];
 
 // PIVOT · TRIO — Pivot's bisecting spine carrying Trio's hero
 // tasks. Hero row at top, three task rows alternating sides
-// around the spine, signup row at the bottom. Each task sits
-// fully on one side of the spine; the opposite side carries a
-// small mono price stamp as an echo. The same Trio dialect
-// (mono kicker, italic title, location stamp) reads through
-// the architecture.
+// around the spine (kicker on one side, italic title + location
+// stamp on the other), signup row at the bottom. The spine
+// separates label from specifics. Rule weights are parameterised
+// so each variant can dial structural temperature uniformly.
 
-export function BureauPivotTrioBody({ tone }: { tone: ShellTone }) {
+export type PivotTrioRuleTone = "ink" | "steel" | "rule" | "none";
+
+export type PivotTrioRules = {
+  spine?: Exclude<PivotTrioRuleTone, "none">;
+  rows?: PivotTrioRuleTone;
+};
+
+const TONE_TO_COLOR: Record<PivotTrioRuleTone, string> = {
+  ink: INK,
+  steel: STEEL_300,
+  rule: RULE,
+  none: "transparent",
+};
+
+function ruleBorder(tone: PivotTrioRuleTone): string {
+  return tone === "none" ? "none" : `1px solid ${TONE_TO_COLOR[tone]}`;
+}
+
+export function BureauPivotTrioBody({ tone, rules }: { tone: ShellTone; rules?: PivotTrioRules }) {
+  const spineTone: Exclude<PivotTrioRuleTone, "none"> = rules?.spine ?? "ink";
+  const rowsTone: PivotTrioRuleTone = rules?.rows ?? "rule";
+  const rowBorder = ruleBorder(rowsTone);
+
   return (
     <div style={{ ...getToneVars(tone), backgroundColor: PAPER, color: INK, minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <Header />
@@ -96,7 +117,7 @@ export function BureauPivotTrioBody({ tone }: { tone: ShellTone }) {
               <div
                 key={task.title}
                 className="pivot-row"
-                style={{ paddingTop: "clamp(28px, 3.5vw, 44px)", paddingBottom: "clamp(28px, 3.5vw, 44px)", borderTop: `1px solid ${RULE}`, alignItems: "center" }}
+                style={{ paddingTop: "clamp(28px, 3.5vw, 44px)", paddingBottom: "clamp(28px, 3.5vw, 44px)", borderTop: rowBorder, alignItems: "center" }}
               >
                 {labelOnLeft ? (
                   <>
@@ -114,7 +135,7 @@ export function BureauPivotTrioBody({ tone }: { tone: ShellTone }) {
           })}
 
           {/* Signup row */}
-          <div className="pivot-row" style={{ paddingTop: "clamp(36px, 4.5vw, 56px)", paddingBottom: "clamp(40px, 5vw, 64px)", borderTop: `1px solid ${RULE}` }}>
+          <div className="pivot-row" style={{ paddingTop: "clamp(36px, 4.5vw, 56px)", paddingBottom: "clamp(40px, 5vw, 64px)", borderTop: rowBorder }}>
             <div className="pivot-left" style={{ textAlign: "right", paddingRight: "clamp(28px, 3.5vw, 56px)" }}>
               <SignupHeading style={{ marginBottom: 0, whiteSpace: "nowrap", fontSize: "clamp(18px, 1.7vw, 22px)" }} />
             </div>
@@ -135,7 +156,7 @@ export function BureauPivotTrioBody({ tone }: { tone: ShellTone }) {
           top: 0;
           bottom: 0;
           width: 1px;
-          background: ${INK};
+          background: ${TONE_TO_COLOR[spineTone]};
           pointer-events: none;
         }
         .pivot-row {
