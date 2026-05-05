@@ -16,7 +16,7 @@ export default async function PlateEmHowItWorks({ searchParams }: { searchParams
   const tone = readTone(sp?.tone);
   return (
     <PageShell active="plate-em" showCta={showCta} tone={tone}>
-      <PlateBody showCta={showCta} audiencePrompt="How do I —" audienceUpright />
+      <PlateBody showCta={showCta} audiencePrompt="How to —" audienceUpright />
     </PageShell>
   );
 }

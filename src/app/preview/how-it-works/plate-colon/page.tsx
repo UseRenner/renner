@@ -16,7 +16,7 @@ export default async function PlateColonHowItWorks({ searchParams }: { searchPar
   const tone = readTone(sp?.tone);
   return (
     <PageShell active="plate-colon" showCta={showCta} tone={tone}>
-      <PlateBody showCta={showCta} audiencePrompt="How do I:" audienceUpright />
+      <PlateBody showCta={showCta} audiencePrompt="How to:" audienceUpright />
     </PageShell>
   );
 }
