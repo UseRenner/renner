@@ -471,5 +471,5 @@ export function Mini({ kind, maxWidth }: { kind: IllustrationKind; maxWidth?: nu
 }
 
 // Convenience: the canonical client / Renner illustration sequences
-export const CLIENT_KINDS: IllustrationKind[] = ["task", "applicant", "completion"];
+export const CLIENT_KINDS: IllustrationKind[] = ["applicant", "task", "completion"];
 export const RENNER_KINDS: IllustrationKind[] = ["profile", "inbox", "payout"];
