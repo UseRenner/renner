@@ -135,7 +135,7 @@ function Triptych() {
             style={{
               fontFamily: SERIF,
               fontSize: 12,
-              fontWeight: 500,
+              fontWeight: 400,
               letterSpacing: "0.16em",
               textTransform: "uppercase",
               color: STEEL_500,
@@ -284,7 +284,7 @@ function TrioField({
 }) {
   return (
     <label style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-      <span style={{ fontFamily: SERIF, fontSize: 11, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: STEEL_500, fontVariationSettings: '"opsz" 14' }}>
+      <span style={{ fontFamily: SERIF, fontSize: 11, fontWeight: 400, letterSpacing: "0.16em", textTransform: "uppercase", color: STEEL_500, fontVariationSettings: '"opsz" 14' }}>
         {label}
       </span>
       <input
