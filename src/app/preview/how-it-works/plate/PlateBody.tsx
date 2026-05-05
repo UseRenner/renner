@@ -16,9 +16,9 @@ const CLIENT_DEK = "What do you need taken care of?";
 const RENNER_DEK = "What can you take care of?";
 
 const CLIENT_PLATES: Plate[] = [
-  { number: "01", title: "Post a task", body: "Set the location, time, task, and price.", proof: "Specifics" },
-  { number: "02", title: "Pick a Renner", body: "Local Renners apply. Select one for your task.", proof: "Vetted" },
-  { number: "03", title: "It's taken care of", body: "Receive photos and confirm completion. Payment is released.", proof: "Escrow" },
+  { number: "01", title: "Get verified", body: "Verify your ID and clear a background check.", proof: "Verified" },
+  { number: "02", title: "Post a task", body: "Set the location, time, task, and price.", proof: "Specifics" },
+  { number: "03", title: "It's taken care of", body: "Local Renners apply. Pick one. Confirm completion and payment is released.", proof: "Escrow" },
 ];
 
 const RENNER_PLATES: Plate[] = [
@@ -177,13 +177,13 @@ export function PlateBody({
       >
         {(isClient
           ? [
-              ["Verified on both sides", "Clients and Renners pass ID and background checks."],
+              ["Verification", "Everyone on Renner passes ID and background checks."],
               ["License-gated", "Tasks requiring a license go to licensed Renners."],
               ["Save your favorites", "Invite them to your tasks."],
             ]
           : [
               ["Real work", "Real estate tasks."],
-              ["Verified on both sides", "Clients and Renners pass ID and background checks."],
+              ["Verification", "Everyone on Renner passes ID and background checks."],
               ["Repeat work", "Clients can save you as a favorite."],
             ]
         ).map(([label, body]) => (
