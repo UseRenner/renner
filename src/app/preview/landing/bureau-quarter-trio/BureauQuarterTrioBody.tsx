@@ -5,16 +5,18 @@ import { HEADLINE_LEAD, HEADLINE_TAIL, SAMPLE_TASKS, SHORT_DEK } from "../_conte
 import { ComplianceLine, Footer, Header, SignupForm, SignupHeading, TOKENS } from "../_pieces";
 
 const { SERIF, MONO, INK, STEEL_700, STEEL_500, STEEL_300, PAPER } = TOKENS;
+const BONE = "var(--ill-bg, #f6f7f9)";
 
 const TASKS = [SAMPLE_TASKS[0]!, SAMPLE_TASKS[5]!, SAMPLE_TASKS[2]!];
 
-// QUARTER · TRIO — Quarter's INK crosshair carrying Trio's hero
-// tasks. Hero (headline + dek) sits as a full-width band above
-// the frame. Inside the 2×2 grid, three quadrants each hold a
-// sample task (Trio dialect: mono kicker, italic title, location
-// stamp, price), and the fourth quadrant holds the signup form.
-// The form becomes the fourth task — what you do to take care
-// of the others.
+// QUARTER · TRIO — same 2×2 INK crosshair as Quarter, but the
+// BL quadrant carries a Renner's task feed instead of the
+// categories list: three live tasks (mono kicker, italic
+// title, location stamp) stacked as the reader-side view of
+// the marketplace. Hero (TL) and dek on chalk (TR) frame the
+// feed; the signup form sits in BR. The page reads as Renner's
+// product surface — what a Renner sees, with the form as the
+// way in.
 
 export function BureauQuarterTrioBody({ tone }: { tone: ShellTone }) {
   return (
@@ -28,36 +30,10 @@ export function BureauQuarterTrioBody({ tone }: { tone: ShellTone }) {
           paddingLeft: "clamp(24px, 4vw, 64px)",
           paddingRight: "clamp(24px, 4vw, 64px)",
           display: "flex",
-          flexDirection: "column",
           alignItems: "center",
-          gap: "clamp(40px, 5vw, 64px)",
+          justifyContent: "center",
         }}
       >
-        {/* Hero band above the frame */}
-        <section style={{ width: "100%", maxWidth: 1280 }}>
-          <h1
-            style={{
-              fontFamily: SERIF,
-              fontWeight: 400,
-              fontSize: "clamp(40px, 5.4vw, 80px)",
-              lineHeight: 0.96,
-              letterSpacing: "-0.024em",
-              color: INK,
-              margin: 0,
-              marginBottom: "clamp(20px, 2.4vw, 28px)",
-              maxWidth: "16ch",
-              fontVariationSettings: '"opsz" 144',
-            }}
-          >
-            {HEADLINE_LEAD}{" "}
-            <span style={{ fontStyle: "italic", fontWeight: 300, color: STEEL_700 }}>{HEADLINE_TAIL}</span>
-          </h1>
-          <p style={{ fontFamily: SERIF, fontSize: "clamp(17px, 1.7vw, 20px)", lineHeight: 1.55, color: STEEL_700, margin: 0, whiteSpace: "nowrap", fontVariationSettings: '"opsz" 14' }}>
-            {SHORT_DEK}
-          </p>
-        </section>
-
-        {/* 2 × 2 frame: three tasks + form */}
         <div
           className="quarter-frame"
           style={{
@@ -65,27 +41,90 @@ export function BureauQuarterTrioBody({ tone }: { tone: ShellTone }) {
             maxWidth: 1280,
             display: "grid",
             gridTemplateColumns: "1fr 1px 1fr",
-            gridTemplateRows: "auto 1px auto",
+            gridTemplateRows: "1fr 1px 1fr",
             border: `1px solid ${INK}`,
+            minHeight: "clamp(560px, 64vw, 760px)",
           }}
         >
-          {/* TL — task 1 */}
-          <TaskCell task={TASKS[0]!} />
+          {/* TL — headline */}
+          <section style={{ padding: "clamp(28px, 4vw, 56px)", display: "flex", alignItems: "center" }}>
+            <h1
+              style={{
+                fontFamily: SERIF,
+                fontWeight: 400,
+                fontSize: "clamp(32px, 4vw, 64px)",
+                lineHeight: 0.96,
+                letterSpacing: "-0.022em",
+                color: INK,
+                margin: 0,
+                maxWidth: "12ch",
+                fontVariationSettings: '"opsz" 144',
+              }}
+            >
+              {HEADLINE_LEAD}{" "}
+              <span style={{ fontStyle: "italic", fontWeight: 300, color: STEEL_700 }}>{HEADLINE_TAIL}</span>
+            </h1>
+          </section>
 
           <div aria-hidden style={{ backgroundColor: INK }} className="quarter-vrule" />
 
-          {/* TR — task 2 */}
-          <TaskCell task={TASKS[1]!} />
+          {/* TR — dek on chalk */}
+          <section style={{ padding: "clamp(28px, 4vw, 56px)", display: "flex", alignItems: "center", backgroundColor: BONE }}>
+            <p style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(20px, 2.4vw, 28px)", lineHeight: 1.45, color: INK, margin: 0, maxWidth: "28ch", fontVariationSettings: '"opsz" 36' }}>
+              {SHORT_DEK}
+            </p>
+          </section>
 
           {/* HR */}
           <div aria-hidden style={{ backgroundColor: INK, gridColumn: "1 / -1" }} />
 
-          {/* BL — task 3 */}
-          <TaskCell task={TASKS[2]!} />
+          {/* BL — Renner's task feed */}
+          <section style={{ padding: "clamp(28px, 4vw, 56px)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+            <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500, marginBottom: "clamp(20px, 2.4vw, 28px)" }}>
+              Tasks open
+            </div>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column" }}>
+              {TASKS.map((task, i) => (
+                <li
+                  key={task.title}
+                  style={{
+                    paddingTop: i === 0 ? 0 : "clamp(16px, 2vw, 22px)",
+                    paddingBottom: i === TASKS.length - 1 ? 0 : "clamp(16px, 2vw, 22px)",
+                    borderTop: i === 0 ? "none" : `1px solid ${STEEL_300}`,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 8,
+                  }}
+                >
+                  <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
+                    {task.category}
+                  </span>
+                  <h3
+                    style={{
+                      fontFamily: SERIF,
+                      fontStyle: "italic",
+                      fontWeight: 300,
+                      fontSize: "clamp(18px, 1.8vw, 22px)",
+                      lineHeight: 1.15,
+                      letterSpacing: "-0.01em",
+                      color: INK,
+                      margin: 0,
+                      fontVariationSettings: '"opsz" 36',
+                    }}
+                  >
+                    {task.title}
+                  </h3>
+                  <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: STEEL_500 }}>
+                    {task.location}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </section>
 
           <div aria-hidden style={{ backgroundColor: INK }} className="quarter-vrule" />
 
-          {/* BR — signup form */}
+          {/* BR — signup */}
           <section style={{ padding: "clamp(28px, 4vw, 56px)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
             <SignupHeading />
             <SignupForm maxWidth={460} />
@@ -104,53 +143,14 @@ export function BureauQuarterTrioBody({ tone }: { tone: ShellTone }) {
           .quarter-frame > .quarter-vrule {
             display: none;
           }
-          .quarter-frame > section,
-          .quarter-frame > article {
+          .quarter-frame > section {
             border-bottom: 1px solid ${INK};
           }
-          .quarter-frame > section:last-child,
-          .quarter-frame > article:last-child {
+          .quarter-frame > section:last-child {
             border-bottom: none;
           }
         }
       `}</style>
     </div>
-  );
-}
-
-function TaskCell({ task }: { task: { category: string; title: string; location: string } }) {
-  return (
-    <article
-      style={{
-        padding: "clamp(28px, 4vw, 56px)",
-        display: "flex",
-        flexDirection: "column",
-        gap: "clamp(14px, 1.8vw, 22px)",
-        justifyContent: "center",
-        minHeight: "clamp(180px, 22vw, 260px)",
-      }}
-    >
-      <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
-        {task.category}
-      </span>
-      <h2
-        style={{
-          fontFamily: SERIF,
-          fontStyle: "italic",
-          fontWeight: 300,
-          fontSize: "clamp(22px, 2.4vw, 30px)",
-          lineHeight: 1.1,
-          letterSpacing: "-0.012em",
-          color: INK,
-          margin: 0,
-          fontVariationSettings: '"opsz" 60',
-        }}
-      >
-        {task.title}
-      </h2>
-      <span style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: STEEL_500 }}>
-        {task.location}
-      </span>
-    </article>
   );
 }

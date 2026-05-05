@@ -107,8 +107,8 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
   {
     slug: "bureau-quarter-trio",
     label: "Bureau · Quarter · Trio",
-    subtitle: "Crosshair around tasks + form",
-    note: "Quarter's INK crosshair carrying Trio's hero tasks. Hero band above; inside the 2×2 frame, three quadrants each hold a sample task and the fourth holds the signup form — making the form architecturally part of the inventory. Sign up to take care of the others.",
+    subtitle: "Crosshair around a task feed",
+    note: "Quarter's INK crosshair, but the BL quadrant carries a Renner's task feed instead of categories: three live tasks (kicker, italic title, location stamp) stacked as the reader-side view of the marketplace. Hero (TL) and dek on chalk (TR) frame the feed; the signup form sits in BR.",
   },
 ];
 
