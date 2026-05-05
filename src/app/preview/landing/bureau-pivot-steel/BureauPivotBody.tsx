@@ -72,7 +72,7 @@ export function BureauPivotBody({ tone, rules }: { tone: ShellTone; rules?: Pivo
               </h1>
             </div>
             <div className="pivot-right" style={{ textAlign: "left", paddingLeft: "clamp(28px, 3.5vw, 56px)", display: "flex", alignItems: "flex-end" }}>
-              <p style={{ fontFamily: SERIF, fontSize: "clamp(17px, 1.7vw, 20px)", lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14', maxWidth: "32ch" }}>
+              <p style={{ fontFamily: SERIF, fontSize: "clamp(17px, 1.7vw, 20px)", lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14', maxWidth: "32ch", fontWeight: 375 }}>
                 {SHORT_DEK}
               </p>
             </div>
@@ -110,7 +110,7 @@ export function BureauPivotBody({ tone, rules }: { tone: ShellTone; rules?: Pivo
           {/* Row 3 — signup heading left, form right */}
           <div className="pivot-row" style={{ paddingTop: "clamp(36px, 4.5vw, 56px)", paddingBottom: "clamp(40px, 5vw, 64px)", borderTop: ruleBorder(aboveSignupTone) }}>
             <div className="pivot-left" style={{ textAlign: "right", paddingRight: "clamp(28px, 3.5vw, 56px)" }}>
-              <SignupHeading style={{ marginBottom: 0, whiteSpace: "nowrap", fontSize: "clamp(18px, 1.7vw, 22px)" }} />
+              <SignupHeading style={{ marginBottom: 0, whiteSpace: "nowrap", fontSize: "clamp(18px, 1.7vw, 22px)", fontStyle: "normal", fontWeight: 375 }} />
             </div>
             <div className="pivot-right" style={{ textAlign: "left", paddingLeft: "clamp(28px, 3.5vw, 56px)" }}>
               <SignupForm maxWidth={520} />

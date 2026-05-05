@@ -38,13 +38,9 @@ function ruleBorder(tone: PivotTrioRuleTone): string {
 export function BureauPivotTrioBody({
   tone,
   rules,
-  uprightSignupHeading,
-  uprightTextWeight,
 }: {
   tone: ShellTone;
   rules?: PivotTrioRules;
-  uprightSignupHeading?: boolean;
-  uprightTextWeight?: number;
 }) {
   const spineTone: Exclude<PivotTrioRuleTone, "none"> = rules?.spine ?? "ink";
   const rowsTone: PivotTrioRuleTone = rules?.rows ?? "rule";
@@ -87,7 +83,7 @@ export function BureauPivotTrioBody({
               </h1>
             </div>
             <div className="pivot-right" style={{ textAlign: "left", paddingLeft: "clamp(28px, 3.5vw, 56px)", display: "flex", alignItems: "flex-end" }}>
-              <p style={{ fontFamily: SERIF, fontSize: "clamp(17px, 1.7vw, 20px)", lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14', maxWidth: "32ch", fontWeight: uprightTextWeight }}>
+              <p style={{ fontFamily: SERIF, fontSize: "clamp(17px, 1.7vw, 20px)", lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14', maxWidth: "32ch", fontWeight: 375 }}>
                 {SHORT_DEK}
               </p>
             </div>
@@ -150,7 +146,7 @@ export function BureauPivotTrioBody({
           {/* Signup row */}
           <div className="pivot-row" style={{ paddingTop: "clamp(36px, 4.5vw, 56px)", paddingBottom: "clamp(40px, 5vw, 64px)", borderTop: rowBorder }}>
             <div className="pivot-left" style={{ textAlign: "right", paddingRight: "clamp(28px, 3.5vw, 56px)" }}>
-              <SignupHeading style={{ marginBottom: 0, whiteSpace: "nowrap", fontSize: "clamp(18px, 1.7vw, 22px)", fontStyle: uprightSignupHeading ? "normal" : "italic", fontWeight: uprightTextWeight }} />
+              <SignupHeading style={{ marginBottom: 0, whiteSpace: "nowrap", fontSize: "clamp(18px, 1.7vw, 22px)", fontStyle: "normal", fontWeight: 375 }} />
             </div>
             <div className="pivot-right" style={{ textAlign: "left", paddingLeft: "clamp(28px, 3.5vw, 56px)" }}>
               <SignupForm maxWidth={520} />
