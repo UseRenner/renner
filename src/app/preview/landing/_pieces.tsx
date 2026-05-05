@@ -86,7 +86,7 @@ export function SignupHeading({ style }: { style?: CSSProperties }) {
         ...style,
       }}
     >
-      Sign up — to hire or become a Renner
+      Hire or become a Renner
     </h2>
   );
 }

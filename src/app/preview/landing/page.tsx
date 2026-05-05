@@ -81,12 +81,6 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     note: "Pivot · Trio with the spine and every horizontal in mid-steel. Structure is implied rather than asserted; the page breathes most. The hero tasks carry the read.",
   },
   {
-    slug: "bureau-pivot-trio-soft",
-    label: "Bureau · Pivot · Trio · Soft",
-    subtitle: "Steel spine, ink rows",
-    note: "Pivot · Trio with a softer mid-steel spine and INK row dividers. Inverts the usual weight relationship — the row bands are firmer than the axis, so the page reads in horizontal stripes rather than two columns.",
-  },
-  {
     slug: "bureau-folio",
     label: "Bureau · Folio",
     subtitle: "Vertical descent",
@@ -120,10 +114,10 @@ export default function LandingPreviewIndex() {
           Landing previews · Bureau
         </div>
         <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(36px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, marginBottom: 16, fontVariationSettings: '"opsz" 60' }}>
-          Seventeen Bureau walls.
+          Sixteen Bureau walls.
         </h1>
         <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.55, color: "#38414d", margin: 0, marginBottom: 56, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-          Seventeen wall-shaped landing pages in Bureau&rsquo;s DNA — including a Pivot · Steel rule variant, two Pivot · Trio rule variants, and three Trio crosses that pull the hero tasks into the architectural walls. Same content, different layouts. Every wall offers both pathways: sign up to hire, or apply as a Renner.
+          Sixteen wall-shaped landing pages in Bureau&rsquo;s DNA — including a Pivot · Steel rule variant, a Pivot · Trio · Steel rule variant, and three Trio crosses that pull the hero tasks into the architectural walls. Same content, different layouts. Every wall offers both pathways: sign up to hire, or apply as a Renner.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #0d0f12" }}>

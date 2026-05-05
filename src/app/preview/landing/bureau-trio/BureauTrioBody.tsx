@@ -194,7 +194,7 @@ function FormSection() {
   return (
     <section style={{ paddingTop: "clamp(8px, 1vw, 16px)" }}>
       <h2 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(24px, 2.6vw, 32px)", lineHeight: 1.1, letterSpacing: "-0.014em", color: INK, margin: 0, marginBottom: "clamp(20px, 2.4vw, 28px)", fontVariationSettings: '"opsz" 36' }}>
-        Sign up — to hire or become a Renner
+        Hire or become a Renner
       </h2>
       <TrioForm />
       <p style={{ fontFamily: SERIF, fontSize: 12, lineHeight: 1.6, color: STEEL_500, margin: 0, marginTop: "clamp(20px, 2.4vw, 28px)", whiteSpace: "nowrap", fontVariationSettings: '"opsz" 14' }}>
