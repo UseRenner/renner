@@ -59,52 +59,36 @@ export function BureauPivotTrioBody({ tone }: { tone: ShellTone }) {
             </div>
           </div>
 
-          {/* Three task rows alternating sides */}
+          {/* Three task rows alternating sides — kicker (label) on
+              one side, italic title + location stamp (content) on
+              the other. The spine separates label from specifics. */}
           {TASKS.map((task, i) => {
-            const taskOnLeft = i % 2 === 0;
-            const taskSideStyle = {
-              textAlign: taskOnLeft ? ("right" as const) : ("left" as const),
-              paddingRight: taskOnLeft ? "clamp(28px, 3.5vw, 56px)" : 0,
-              paddingLeft: taskOnLeft ? 0 : "clamp(28px, 3.5vw, 56px)",
-            };
-            const echoSideStyle = {
-              textAlign: taskOnLeft ? ("left" as const) : ("right" as const),
-              paddingLeft: taskOnLeft ? "clamp(28px, 3.5vw, 56px)" : 0,
-              paddingRight: taskOnLeft ? 0 : "clamp(28px, 3.5vw, 56px)",
-              alignSelf: "center",
-            };
-            const taskCard = (
-              <div style={taskSideStyle}>
-                <div style={{ display: "flex", flexDirection: "column", gap: 10, alignItems: taskOnLeft ? "flex-end" : "flex-start" }}>
-                  <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
-                    {task.category}
-                  </span>
-                  <h3
-                    style={{
-                      fontFamily: SERIF,
-                      fontStyle: "italic",
-                      fontWeight: 300,
-                      fontSize: "clamp(22px, 2.4vw, 30px)",
-                      lineHeight: 1.1,
-                      letterSpacing: "-0.012em",
-                      color: INK,
-                      margin: 0,
-                      maxWidth: "20ch",
-                      fontVariationSettings: '"opsz" 60',
-                    }}
-                  >
-                    {task.title}
-                  </h3>
-                  <span style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: STEEL_500 }}>
-                    {task.location}
-                  </span>
-                </div>
-              </div>
+            const labelOnLeft = i % 2 === 0;
+            const kicker = (
+              <span style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
+                {task.category}
+              </span>
             );
-            const priceEcho = (
-              <div style={echoSideStyle}>
-                <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(28px, 3vw, 40px)", color: STEEL_700, fontVariationSettings: '"opsz" 60' }}>
-                  {task.price}
+            const content = (
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                <h3
+                  style={{
+                    fontFamily: SERIF,
+                    fontStyle: "italic",
+                    fontWeight: 300,
+                    fontSize: "clamp(22px, 2.4vw, 30px)",
+                    lineHeight: 1.1,
+                    letterSpacing: "-0.012em",
+                    color: INK,
+                    margin: 0,
+                    maxWidth: "24ch",
+                    fontVariationSettings: '"opsz" 60',
+                  }}
+                >
+                  {task.title}
+                </h3>
+                <span style={{ fontFamily: MONO, fontSize: 11, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: STEEL_500 }}>
+                  {task.location}
                 </span>
               </div>
             );
@@ -112,17 +96,17 @@ export function BureauPivotTrioBody({ tone }: { tone: ShellTone }) {
               <div
                 key={task.title}
                 className="pivot-row"
-                style={{ paddingTop: "clamp(28px, 3.5vw, 44px)", paddingBottom: "clamp(28px, 3.5vw, 44px)", borderTop: `1px solid ${RULE}` }}
+                style={{ paddingTop: "clamp(28px, 3.5vw, 44px)", paddingBottom: "clamp(28px, 3.5vw, 44px)", borderTop: `1px solid ${RULE}`, alignItems: "center" }}
               >
-                {taskOnLeft ? (
+                {labelOnLeft ? (
                   <>
-                    <div className="pivot-left">{taskCard}</div>
-                    <div className="pivot-right">{priceEcho}</div>
+                    <div className="pivot-left" style={{ textAlign: "right", paddingRight: "clamp(28px, 3.5vw, 56px)" }}>{kicker}</div>
+                    <div className="pivot-right" style={{ textAlign: "left", paddingLeft: "clamp(28px, 3.5vw, 56px)" }}>{content}</div>
                   </>
                 ) : (
                   <>
-                    <div className="pivot-left">{priceEcho}</div>
-                    <div className="pivot-right">{taskCard}</div>
+                    <div className="pivot-left" style={{ textAlign: "right", paddingRight: "clamp(28px, 3.5vw, 56px)", display: "flex", justifyContent: "flex-end" }}>{content}</div>
+                    <div className="pivot-right" style={{ textAlign: "left", paddingLeft: "clamp(28px, 3.5vw, 56px)" }}>{kicker}</div>
                   </>
                 )}
               </div>

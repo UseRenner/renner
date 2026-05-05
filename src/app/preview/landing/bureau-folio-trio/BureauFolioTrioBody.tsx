@@ -55,15 +55,9 @@ export function BureauFolioTrioBody({ tone }: { tone: ShellTone }) {
           <div key={task.title} style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%" }}>
             <span aria-hidden style={{ display: "block", width: 1, height: "clamp(48px, 6vw, 72px)", marginTop: "clamp(36px, 4.5vw, 56px)", marginBottom: "clamp(36px, 4.5vw, 56px)", backgroundColor: STEEL_300 }} />
             <article style={{ width: "100%", maxWidth: 520, textAlign: "center", display: "flex", flexDirection: "column", gap: 12 }}>
-              <div style={{ display: "flex", alignItems: "baseline", justifyContent: "center", gap: 14 }}>
-                <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
-                  {task.category}
-                </span>
-                <span aria-hidden style={{ color: STEEL_300 }}>·</span>
-                <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(18px, 1.7vw, 22px)", color: INK, fontVariationSettings: '"opsz" 36' }}>
-                  {task.price}
-                </span>
-              </div>
+              <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
+                {task.category}
+              </span>
               <h2
                 style={{
                   fontFamily: SERIF,

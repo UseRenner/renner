@@ -64,14 +64,9 @@ export function BureauLeadBody({ tone }: { tone: ShellTone }) {
                 gap: "clamp(16px, 2vw, 22px)",
               }}
             >
-              <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16 }}>
-                <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
-                  {SAMPLE.category}
-                </span>
-                <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(20px, 2vw, 24px)", color: INK, fontVariationSettings: '"opsz" 36' }}>
-                  {SAMPLE.price}
-                </span>
-              </div>
+              <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
+                {SAMPLE.category}
+              </span>
               <h2
                 style={{
                   fontFamily: SERIF,

@@ -118,7 +118,7 @@ export function BureauQuarterTrioBody({ tone }: { tone: ShellTone }) {
   );
 }
 
-function TaskCell({ task }: { task: { category: string; title: string; location: string; price: string } }) {
+function TaskCell({ task }: { task: { category: string; title: string; location: string } }) {
   return (
     <article
       style={{
@@ -130,14 +130,9 @@ function TaskCell({ task }: { task: { category: string; title: string; location:
         minHeight: "clamp(180px, 22vw, 260px)",
       }}
     >
-      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16 }}>
-        <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
-          {task.category}
-        </span>
-        <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(20px, 2vw, 24px)", color: INK, fontVariationSettings: '"opsz" 36' }}>
-          {task.price}
-        </span>
-      </div>
+      <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
+        {task.category}
+      </span>
       <h2
         style={{
           fontFamily: SERIF,
