@@ -10,6 +10,8 @@ export { VariantSwitcher } from "./_variant-switcher";
 
 export type LandingVariantKey =
   | "trio"
+  | "trio-a"
+  | "trio-b"
   | "window"
   | "window-a"
   | "window-b"
@@ -26,6 +28,8 @@ export const LANDING_VARIANTS: ReadonlyArray<{
   label: string;
 }> = [
   { href: "/preview/landing/bureau-trio", key: "trio", label: "Trio" },
+  { href: "/preview/landing/bureau-trio-a", key: "trio-a", label: "Trio · A — Serif titlecase labels" },
+  { href: "/preview/landing/bureau-trio-b", key: "trio-b", label: "Trio · B — Serif allcaps labels" },
   { href: "/preview/landing/bureau-window", key: "window", label: "Window" },
   { href: "/preview/landing/bureau-window-a", key: "window-a", label: "Window · A — Italic serif" },
   { href: "/preview/landing/bureau-window-b", key: "window-b", label: "Window · B — Source Code Pro" },
