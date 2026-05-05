@@ -251,7 +251,7 @@ function Footer() {
     >
       <div style={{ maxWidth: 1180, margin: "0 auto", paddingTop: 16, display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
         <RennerMark size={32} weight={300} />
-        <div style={{ display: "flex", alignItems: "center", gap: 18, fontFamily: SERIF, fontSize: 15, color: STEEL_500, fontVariationSettings: '"opsz" 14' }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 18, fontFamily: SERIF, fontSize: 15, color: STEEL_500, fontVariationSettings: '"opsz" 14', fontWeight: 375 }}>
           <Link href="/contact" style={{ color: STEEL_700, textDecoration: "none" }}>Contact</Link>
           <Link href="/terms" style={{ color: STEEL_700, textDecoration: "none" }}>Terms</Link>
           <Link href="/privacy" style={{ color: STEEL_700, textDecoration: "none" }}>Privacy</Link>
