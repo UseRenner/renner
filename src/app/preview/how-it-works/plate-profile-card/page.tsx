@@ -18,14 +18,14 @@ function readTone(v: unknown): ShellTone {
 }
 
 // Typographic profile card — hairline-bordered, no portrait.
-// Same shape as Renner's other Mini cards in the system (TaskCard,
-// ApplicantCard, etc.) but the content is profile-as-typography:
-// kicker, italic name, mono location, verification footer.
-function VerifiedProfileCard() {
+// Kicker identifies the role (CLIENT or RENNER) based on which
+// side of the audience toggle the visitor is reading. The card
+// shape mirrors Renner's other Mini cards in the system.
+function VerifiedProfileCard({ role }: { role: "Client" | "Renner" }) {
   return (
     <article style={{ border: `1px solid ${STEEL_300}`, backgroundColor: PAPER, display: "flex", flexDirection: "column", width: "100%", maxWidth: 240, minHeight: 180 }}>
       <div style={{ padding: "10px 14px", borderBottom: `1px solid ${RULE}`, fontFamily: MONO, fontSize: 8, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
-        Verified profile
+        {role}
       </div>
       <div style={{ padding: 16, display: "flex", flexDirection: "column", flex: 1, gap: 10 }}>
         <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: 18, lineHeight: 1.1, color: INK, fontVariationSettings: '"opsz" 36' }}>
@@ -50,7 +50,12 @@ export default async function PlateProfileCardHowItWorks({ searchParams }: { sea
   const tone = readTone(sp?.tone);
   return (
     <PageShell active="plate-profile-card" showCta={showCta} tone={tone}>
-      <PlateBody showCta={showCta} audiencePrompt="How to —" audienceUpright step1Illustration={<VerifiedProfileCard />} />
+      <PlateBody
+        showCta={showCta}
+        audiencePrompt="How to —"
+        audienceUpright
+        step1Illustration={(isClient) => <VerifiedProfileCard role={isClient ? "Client" : "Renner"} />}
+      />
     </PageShell>
   );
 }
