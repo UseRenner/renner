@@ -27,11 +27,11 @@ function readTone(v: unknown): ShellTone {
 // toggle.
 function VerifiedProfileCard({ role }: { role: "Client" | "Renner" }) {
   return (
-    <article style={{ border: `1px solid ${STEEL_300}`, backgroundColor: PAPER, display: "flex", flexDirection: "column", width: "100%", maxWidth: 240, minHeight: 200 }}>
-      <div style={{ padding: "10px 14px", borderBottom: `1px solid ${RULE}`, fontFamily: MONO, fontSize: 8, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
+    <article style={{ border: `1px solid ${STEEL_300}`, backgroundColor: PAPER, display: "flex", flexDirection: "column", width: "100%", maxWidth: 240 }}>
+      <div style={{ padding: "8px 12px", borderBottom: `1px solid ${RULE}`, fontFamily: MONO, fontSize: 8, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
         {role}
       </div>
-      <div style={{ padding: 16, display: "flex", flexDirection: "column", flex: 1, gap: 10 }}>
+      <div style={{ padding: 12, display: "flex", flexDirection: "column", gap: 10 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <span
             aria-hidden
@@ -61,7 +61,7 @@ function VerifiedProfileCard({ role }: { role: "Client" | "Renner" }) {
             </div>
           </div>
         </div>
-        <div style={{ marginTop: "auto", paddingTop: 10, borderTop: `1px solid ${RULE}`, display: "flex", flexDirection: "column", gap: 4, fontFamily: MONO, fontSize: 8, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: STEEL_500 }}>
+        <div style={{ paddingTop: 8, borderTop: `1px solid ${RULE}`, display: "flex", flexDirection: "column", gap: 3, fontFamily: MONO, fontSize: 8, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: STEEL_500 }}>
           <div>ID-verified</div>
           <div>Background-checked</div>
         </div>
