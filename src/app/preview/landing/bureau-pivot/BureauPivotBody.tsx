@@ -88,7 +88,7 @@ export function BureauPivotBody({ tone }: { tone: ShellTone }) {
           {/* Row 3 — signup heading left, form right */}
           <div className="pivot-row" style={{ paddingTop: "clamp(36px, 4.5vw, 56px)", paddingBottom: "clamp(40px, 5vw, 64px)", borderTop: `1px solid ${RULE}` }}>
             <div className="pivot-left" style={{ textAlign: "right", paddingRight: "clamp(28px, 3.5vw, 56px)" }}>
-              <SignupHeading style={{ marginBottom: 0, whiteSpace: "nowrap" }} />
+              <SignupHeading style={{ marginBottom: 0, whiteSpace: "nowrap", fontSize: "clamp(18px, 1.7vw, 22px)" }} />
             </div>
             <div className="pivot-right" style={{ textAlign: "left", paddingLeft: "clamp(28px, 3.5vw, 56px)" }}>
               <SignupForm maxWidth={520} />

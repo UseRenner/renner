@@ -55,7 +55,6 @@ export function BureauLeadBody({ tone }: { tone: ShellTone }) {
               </p>
             </div>
             <aside
-              aria-label="Sample task"
               style={{
                 border: `1px solid ${STEEL_300}`,
                 backgroundColor: PAPER,
@@ -67,7 +66,7 @@ export function BureauLeadBody({ tone }: { tone: ShellTone }) {
             >
               <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16 }}>
                 <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500 }}>
-                  Sample task · {SAMPLE.category}
+                  {SAMPLE.category}
                 </span>
                 <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(20px, 2vw, 24px)", color: INK, fontVariationSettings: '"opsz" 36' }}>
                   {SAMPLE.price}
@@ -91,9 +90,6 @@ export function BureauLeadBody({ tone }: { tone: ShellTone }) {
               <p style={{ fontFamily: SERIF, fontSize: "clamp(14px, 1.35vw, 16px)", lineHeight: 1.55, color: STEEL_700, margin: 0, fontVariationSettings: '"opsz" 14' }}>
                 {SAMPLE.location}
               </p>
-              <div style={{ marginTop: "auto", paddingTop: "clamp(8px, 1vw, 12px)", borderTop: `1px solid ${STEEL_300}`, fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: STEEL_500 }}>
-                Open · Apply by 1:30 PM
-              </div>
             </aside>
           </div>
 
