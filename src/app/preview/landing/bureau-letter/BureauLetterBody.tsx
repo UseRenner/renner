@@ -46,7 +46,7 @@ function Masthead() {
     >
       <div style={{ maxWidth: 1180, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, paddingBottom: 16, borderBottom: `1px solid ${INK}` }}>
         <RennerMark size={32} weight={300} />
-        <p style={{ fontFamily: SERIF, fontSize: 15, color: STEEL_500, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+        <p style={{ fontFamily: SERIF, fontSize: 15, color: STEEL_500, margin: 0, fontVariationSettings: '"opsz" 14', fontWeight: 375 }}>
           Have an account?{" "}
           <Link href="/signin" style={{ color: STEEL_700, textDecoration: "none" }}>
             Sign in

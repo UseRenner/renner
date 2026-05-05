@@ -34,7 +34,7 @@ export function Header({ maxWidth = 1440 }: { maxWidth?: number }) {
     >
       <div style={{ maxWidth, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
         <RennerMark size={28} weight={300} />
-        <p style={{ fontFamily: SERIF, fontSize: 15, color: STEEL_500, margin: 0, fontVariationSettings: '"opsz" 14' }}>
+        <p style={{ fontFamily: SERIF, fontSize: 15, color: STEEL_500, margin: 0, fontVariationSettings: '"opsz" 14', fontWeight: 375 }}>
           Have an account?{" "}
           <Link href="/signin" style={{ color: STEEL_700, textDecoration: "none" }}>
             Sign in
