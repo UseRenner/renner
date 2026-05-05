@@ -57,28 +57,16 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     note: "Every wall element packed into a single bordered container with dense griddled rows. Lede row, categories band, signup row. Reads as a printed table.",
   },
   {
-    slug: "bureau-pivot-steel",
-    label: "Bureau · Pivot · Steel",
-    subtitle: "Spine + horizontal in steel",
-    note: "Pivot with the spine and the rule above categories both in mid-steel. Structure is implied rather than asserted; the page breathes most. Form floats free at the bottom.",
-  },
-  {
     slug: "bureau-pivot-ink",
-    label: "Bureau · Pivot · Ink",
-    subtitle: "INK spine, steel horizontals",
-    note: "Pivot Steel's restrained body with one architectural commitment: the spine in INK. Steel horizontals above categories and above signup. The INK axis carries the page; the rest implies structure rather than asserting it.",
-  },
-  {
-    slug: "bureau-pivot-trio-steel",
-    label: "Bureau · Pivot · Trio · Steel",
-    subtitle: "All rules in steel",
-    note: "Pivot · Trio with the spine and every horizontal in mid-steel. Structure is implied rather than asserted; the page breathes most. The hero tasks carry the read.",
+    label: "Bureau · Pivot · A",
+    subtitle: "Categories spine",
+    note: "A 1px INK spine bisects the page top-to-bottom, with steel horizontals above categories and above signup. Three rows alternate which side hosts content — headline LEFT, dek RIGHT; kicker LEFT, categories RIGHT; signup heading LEFT, form RIGHT. The INK axis guides the eye; the rest implies structure.",
   },
   {
     slug: "bureau-pivot-trio-ink",
-    label: "Bureau · Pivot · Trio · Ink",
-    subtitle: "INK spine, steel rows",
-    note: "Pivot · Trio with an INK spine and steel row dividers. The architectural commitment of the spine plus the quiet rows — the spine is the load-bearing element while the row bands stay implied.",
+    label: "Bureau · Pivot · B",
+    subtitle: "Tasks spine",
+    note: "Pivot · A's bisecting spine carrying Trio's hero tasks instead of categories. Three task rows alternate sides around the INK spine (mono kicker on one side, italic title + location stamp on the other). The spine separates label from specifics.",
   },
   {
     slug: "bureau-folio",
@@ -114,10 +102,10 @@ export default function LandingPreviewIndex() {
           Landing previews · Bureau
         </div>
         <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(36px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, marginBottom: 16, fontVariationSettings: '"opsz" 60' }}>
-          Sixteen Bureau walls.
+          Fourteen Bureau walls.
         </h1>
         <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.55, color: "#38414d", margin: 0, marginBottom: 56, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-          Sixteen wall-shaped landing pages in Bureau&rsquo;s DNA — including the Pivot family (Steel, Ink, Trio · Steel, Trio · Ink) and a tightened set of Trio crosses. Same content, different layouts. Every wall offers both pathways: sign up to hire, or apply as a Renner.
+          Fourteen wall-shaped landing pages in Bureau&rsquo;s DNA — including paired A/B variants for Pivot, Folio, and Quarter (categories vs hero-task editions). Same content, different layouts. Every wall offers both pathways: sign up to hire, or apply as a Renner.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #0d0f12" }}>
