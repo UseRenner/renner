@@ -380,7 +380,7 @@ function MiniApplicant({ maxWidth }: { maxWidth?: number | string }) {
 function MiniCompletion({ maxWidth }: { maxWidth?: number | string }) {
   return (
     <MiniShell
-      kicker="Completion"
+      kicker="Completed"
       maxWidth={maxWidth}
       footer={<div>Confirmed · funds released</div>}
     >
