@@ -1,4 +1,4 @@
-import { BureauPivotBody } from "../bureau-pivot/BureauPivotBody";
+import { BureauPivotBody } from "./BureauPivotBody";
 import { readTone, VariantSwitcher } from "../_shared";
 
 export const metadata = { title: "Landing · Bureau · Pivot · Steel · Renner", robots: { index: false, follow: false } };

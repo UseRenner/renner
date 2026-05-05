@@ -17,9 +17,7 @@ export type LandingVariantKey =
   | "plate"
   | "lead"
   | "compact"
-  | "pivot"
   | "pivot-steel"
-  | "pivot-trio"
   | "pivot-trio-steel"
   | "folio"
   | "folio-trio"
@@ -39,9 +37,7 @@ export const LANDING_VARIANTS: ReadonlyArray<{
   { href: "/preview/landing/bureau-plate", key: "plate", label: "Plate" },
   { href: "/preview/landing/bureau-lead", key: "lead", label: "Lead" },
   { href: "/preview/landing/bureau-compact", key: "compact", label: "Compact" },
-  { href: "/preview/landing/bureau-pivot", key: "pivot", label: "Pivot" },
   { href: "/preview/landing/bureau-pivot-steel", key: "pivot-steel", label: "Pivot · Steel" },
-  { href: "/preview/landing/bureau-pivot-trio", key: "pivot-trio", label: "Pivot · Trio" },
   { href: "/preview/landing/bureau-pivot-trio-steel", key: "pivot-trio-steel", label: "Pivot · Trio · Steel" },
   { href: "/preview/landing/bureau-folio", key: "folio", label: "Folio" },
   { href: "/preview/landing/bureau-folio-trio", key: "folio-trio", label: "Folio · Trio" },

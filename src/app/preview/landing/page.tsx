@@ -57,22 +57,10 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     note: "Every wall element packed into a single bordered container with dense griddled rows. Lede row, categories band, signup row. Reads as a printed table.",
   },
   {
-    slug: "bureau-pivot",
-    label: "Bureau · Pivot",
-    subtitle: "Spine bisects the page",
-    note: "A 1px spine bisects the page top-to-bottom. Three rows alternate which side hosts content — headline LEFT, dek RIGHT; kicker LEFT, categories RIGHT; signup heading LEFT, form RIGHT. A light rule sits above the categories; the form floats free at the bottom.",
-  },
-  {
     slug: "bureau-pivot-steel",
     label: "Bureau · Pivot · Steel",
     subtitle: "Spine + horizontal in steel",
     note: "Pivot with the spine and the rule above categories both in mid-steel. Structure is implied rather than asserted; the page breathes most. Form floats free at the bottom.",
-  },
-  {
-    slug: "bureau-pivot-trio",
-    label: "Bureau · Pivot · Trio",
-    subtitle: "Spine carries hero tasks",
-    note: "Pivot's bisecting spine carries Trio's hero tasks. Hero row at top, three task rows alternating sides around the spine (mono kicker on one side, italic title + location stamp on the other), signup row at the bottom. The spine separates label from specifics.",
   },
   {
     slug: "bureau-pivot-trio-steel",
@@ -114,10 +102,10 @@ export default function LandingPreviewIndex() {
           Landing previews · Bureau
         </div>
         <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(36px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, marginBottom: 16, fontVariationSettings: '"opsz" 60' }}>
-          Sixteen Bureau walls.
+          Fourteen Bureau walls.
         </h1>
         <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.55, color: "#38414d", margin: 0, marginBottom: 56, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-          Sixteen wall-shaped landing pages in Bureau&rsquo;s DNA — including a Pivot · Steel rule variant, a Pivot · Trio · Steel rule variant, and three Trio crosses that pull the hero tasks into the architectural walls. Same content, different layouts. Every wall offers both pathways: sign up to hire, or apply as a Renner.
+          Fourteen wall-shaped landing pages in Bureau&rsquo;s DNA — including Pivot · Steel and its Trio cross, plus two more Trio crosses that pull the hero tasks into the architectural walls. Same content, different layouts. Every wall offers both pathways: sign up to hire, or apply as a Renner.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #0d0f12" }}>
