@@ -77,7 +77,7 @@ export function BureauQuarterBody({ tone }: { tone: ShellTone }) {
           {/* BL — categories */}
           <section style={{ padding: "clamp(28px, 4vw, 56px)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
             <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500, marginBottom: "clamp(16px, 2vw, 24px)" }}>
-              What we run
+              Tasks handled
             </div>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
               {CATEGORY_STRIP_SHORT.map((c) => (

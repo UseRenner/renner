@@ -19,7 +19,6 @@ export type LandingVariantKey =
   | "compact"
   | "pivot"
   | "folio"
-  | "brief"
   | "quarter";
 
 export const LANDING_VARIANTS: ReadonlyArray<{
@@ -37,7 +36,6 @@ export const LANDING_VARIANTS: ReadonlyArray<{
   { href: "/preview/landing/bureau-compact", key: "compact", label: "Compact" },
   { href: "/preview/landing/bureau-pivot", key: "pivot", label: "Pivot" },
   { href: "/preview/landing/bureau-folio", key: "folio", label: "Folio" },
-  { href: "/preview/landing/bureau-brief", key: "brief", label: "Brief" },
   { href: "/preview/landing/bureau-quarter", key: "quarter", label: "Quarter" },
 ];
 
