@@ -22,8 +22,8 @@ const CLIENT_PLATES: Plate[] = [
 ];
 
 const RENNER_PLATES: Plate[] = [
-  { number: "01", title: "Get verified", body: "Verify your identity with Persona and clear a Checkr background check. Set your service area.", proof: "Verified" },
-  { number: "02", title: "Pick a task", body: "See tasks in your area. Apply to what fits your skills and schedule.", proof: "Local" },
+  { number: "01", title: "Get verified", body: "Verify your identity with Persona and clear a Checkr background check.", proof: "Verified" },
+  { number: "02", title: "Pick a task", body: "Set your service area and browse tasks nearby. Apply to what fits your skills and schedule.", proof: "Local" },
   { number: "03", title: "Take care of it", body: "Complete the task. Send photo confirmation. Receive payment.", proof: "100% of pay" },
 ];
 
