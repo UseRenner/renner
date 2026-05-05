@@ -133,12 +133,11 @@ function Triptych() {
         >
           <span
             style={{
-              fontFamily: MONO,
-              fontSize: 10,
-              fontWeight: 500,
-              letterSpacing: "0.24em",
-              textTransform: "uppercase",
+              fontFamily: SERIF,
+              fontSize: 13,
+              fontWeight: 400,
               color: STEEL_500,
+              fontVariationSettings: '"opsz" 14',
             }}
           >
             {task.category}
