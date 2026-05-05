@@ -161,6 +161,9 @@ function Body() {
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "clamp(20px, 2.4vw, 28px)" }}>
+          <h2 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(22px, 2.4vw, 28px)", lineHeight: 1.1, letterSpacing: "-0.014em", color: INK, margin: 0, fontVariationSettings: '"opsz" 36' }}>
+            Sign up — to hire or become a Renner
+          </h2>
           <GlyphForm />
           <p style={{ fontFamily: SERIF, fontSize: 12, lineHeight: 1.6, color: STEEL_500, margin: 0, whiteSpace: "nowrap", fontVariationSettings: '"opsz" 14' }}>
             Persona identity verification and Checkr background check required to create an account.

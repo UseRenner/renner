@@ -120,7 +120,12 @@ function Letter() {
           </ul>
         </div>
 
-        <SignupLetter />
+        <div>
+          <h2 style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 300, fontSize: "clamp(24px, 2.6vw, 32px)", lineHeight: 1.1, letterSpacing: "-0.014em", color: INK, margin: 0, marginBottom: "clamp(20px, 2.4vw, 28px)", fontVariationSettings: '"opsz" 36' }}>
+            Sign up — to hire or become a Renner
+          </h2>
+          <SignupLetter />
+        </div>
       </div>
     </main>
   );
