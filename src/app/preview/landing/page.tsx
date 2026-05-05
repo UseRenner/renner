@@ -81,12 +81,6 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     note: "Pivot · Trio with an INK spine and steel row dividers. The architectural commitment of the spine plus the quiet rows — the spine is the load-bearing element while the row bands stay implied.",
   },
   {
-    slug: "bureau-pivot-trio-capped",
-    label: "Bureau · Pivot · Trio · Capped",
-    subtitle: "Steel everywhere + caps",
-    note: "Pivot · Trio · Steel with horizontal steel rules at the very top and very bottom of the spine — the spine reads as an I-beam, framed top and bottom. The structure closes; the page is contained.",
-  },
-  {
     slug: "bureau-folio",
     label: "Bureau · Folio · A",
     subtitle: "Categories descent",
@@ -120,10 +114,10 @@ export default function LandingPreviewIndex() {
           Landing previews · Bureau
         </div>
         <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(36px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, marginBottom: 16, fontVariationSettings: '"opsz" 60' }}>
-          Seventeen Bureau walls.
+          Sixteen Bureau walls.
         </h1>
         <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.55, color: "#38414d", margin: 0, marginBottom: 56, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-          Seventeen wall-shaped landing pages in Bureau&rsquo;s DNA — including the Pivot family (Steel, Ink, Trio · Steel, Trio · Ink, Trio · Capped) and a tightened set of Trio crosses. Same content, different layouts. Every wall offers both pathways: sign up to hire, or apply as a Renner.
+          Sixteen wall-shaped landing pages in Bureau&rsquo;s DNA — including the Pivot family (Steel, Ink, Trio · Steel, Trio · Ink) and a tightened set of Trio crosses. Same content, different layouts. Every wall offers both pathways: sign up to hire, or apply as a Renner.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #0d0f12" }}>
