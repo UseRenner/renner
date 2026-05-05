@@ -72,8 +72,10 @@ export function PlateBody({
           fontFamily: SERIF,
           fontStyle: audienceUpright ? "normal" : "italic",
           fontWeight: audienceUpright ? 375 : 300,
-          fontSize: 16,
+          fontSize: "clamp(17px, 1.7vw, 20px)",
+          lineHeight: 1.55,
           letterSpacing: 0,
+          fontVariationSettings: '"opsz" 14',
         }}
       >
         {audiencePrompt ? (
