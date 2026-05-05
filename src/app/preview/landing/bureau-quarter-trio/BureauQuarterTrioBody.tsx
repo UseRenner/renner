@@ -80,9 +80,6 @@ export function BureauQuarterTrioBody({ tone }: { tone: ShellTone }) {
 
           {/* BL — Renner's task feed */}
           <section style={{ padding: "clamp(28px, 4vw, 56px)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-            <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: STEEL_500, marginBottom: "clamp(20px, 2.4vw, 28px)" }}>
-              Tasks open
-            </div>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column" }}>
               {TASKS.map((task, i) => (
                 <li
