@@ -189,13 +189,13 @@ export function PlateBody({
       >
         {(isClient
           ? [
-              ["Verification", "Everyone on Renner passes ID and background checks."],
+              ["Verification", "Everyone on Renner passes identity and background checks."],
               ["License-gated", "Tasks requiring a license go to licensed Renners."],
               ["Save your favorites", "Invite them to your tasks."],
             ]
           : [
               ["Real work", "Real estate tasks."],
-              ["Verification", "Everyone on Renner passes ID and background checks."],
+              ["Verification", "Everyone on Renner passes identity and background checks."],
               ["Repeat work", "Clients can save you as a favorite."],
             ]
         ).map(([label, body]) => (
