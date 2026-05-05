@@ -16,7 +16,6 @@ export type LandingVariantKey =
   | "index"
   | "plate"
   | "lead"
-  | "lede"
   | "compact"
   | "pivot"
   | "pivot-steel"
@@ -41,7 +40,6 @@ export const LANDING_VARIANTS: ReadonlyArray<{
   { href: "/preview/landing/bureau-index", key: "index", label: "Index" },
   { href: "/preview/landing/bureau-plate", key: "plate", label: "Plate" },
   { href: "/preview/landing/bureau-lead", key: "lead", label: "Lead" },
-  { href: "/preview/landing/bureau-lede", key: "lede", label: "Lede" },
   { href: "/preview/landing/bureau-compact", key: "compact", label: "Compact" },
   { href: "/preview/landing/bureau-pivot", key: "pivot", label: "Pivot" },
   { href: "/preview/landing/bureau-pivot-steel", key: "pivot-steel", label: "Pivot · Steel" },

@@ -51,12 +51,6 @@ const VARIANTS: Array<{ slug: string; label: string; subtitle: string; note: str
     note: "Hero up top — a wide headline + dek block — then a single linear horizontal lane for the categories between two ink rules, with the form anchored below at the same flat baseline.",
   },
   {
-    slug: "bureau-lede",
-    label: "Bureau · Lede",
-    subtitle: "Lead, stripped",
-    note: "Same vertical sequence as Lead — hero, lane, form — but the hero drops the right-hand companion card so the headline+dek occupy the page on their own. Reads as the editorial lede of an article: just the opening paragraph, nothing competing with it.",
-  },
-  {
     slug: "bureau-compact",
     label: "Bureau · Compact",
     subtitle: "Single bordered table",
@@ -132,10 +126,10 @@ export default function LandingPreviewIndex() {
           Landing previews · Bureau
         </div>
         <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: "clamp(36px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, marginBottom: 16, fontVariationSettings: '"opsz" 60' }}>
-          Nineteen Bureau walls.
+          Eighteen Bureau walls.
         </h1>
         <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.55, color: "#38414d", margin: 0, marginBottom: 56, maxWidth: "60ch", fontVariationSettings: '"opsz" 14' }}>
-          Nineteen wall-shaped landing pages in Bureau&rsquo;s DNA — including Pivot and Pivot · Trio in three rule weights (default, Steel, Soft), and three Trio crosses that pull the hero tasks into the architectural walls. Same content, different layouts. Every wall offers both pathways: sign up to hire, or apply as a Renner.
+          Eighteen wall-shaped landing pages in Bureau&rsquo;s DNA — including Pivot and Pivot · Trio in three rule weights (default, Steel, Soft), and three Trio crosses that pull the hero tasks into the architectural walls. Same content, different layouts. Every wall offers both pathways: sign up to hire, or apply as a Renner.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #0d0f12" }}>
